@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>كشف متابعة الطالب وفق ترتيب نظام نور</title>
+<style>
+:root{
+  --ink:#172033; --muted:#667085; --line:#d9e1ec; --paper:#ffffff; --soft:#f5f8fc;
+  --primary:#1d4ed8; --primary2:#0f766e; --accent:#b7791f; --danger:#b42318;
+  --shadow:0 22px 70px rgba(15,23,42,.12); --radius:22px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at top right,#e8f1ff 0,#f8fafc 38%,#eef4f8 100%);font-family:Arial,"Tahoma",sans-serif;color:var(--ink);line-height:1.35;-webkit-print-color-adjust:exact;print-color-adjust:exact}.app{width:min(1260px,calc(100% - 28px));margin:18px auto 28px}.hero{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(135deg,#102044,#1d4ed8 55%,#0f766e);color:#fff;padding:22px 24px;box-shadow:var(--shadow)}.hero:before{content:"";position:absolute;inset:-90px auto auto -80px;width:280px;height:280px;background:rgba(255,255,255,.13);border-radius:50%}.hero-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center}.brand-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);padding:7px 12px;border-radius:999px;font-weight:700;font-size:13px}.hero h1{margin:10px 0 6px;font-size:clamp(25px,3vw,42px);letter-spacing:-.6px}.hero p{margin:0;color:#eaf2ff;font-size:15px}.mini-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.13);border-radius:18px;padding:12px;text-align:center;backdrop-filter:blur(8px)}.mini b{display:block;font-size:23px}.mini span{font-size:12px;color:#eaf2ff}.settings{margin:14px 0;border-radius:24px;background:rgba(255,255,255,.88);box-shadow:var(--shadow);border:1px solid #edf2f7;overflow:hidden}.settings-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#ffffff,#eef6ff)}.settings-head h2{margin:0;font-size:18px}.tools{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start}.btn{border:0;border-radius:13px;padding:10px 13px;font-weight:800;cursor:pointer;color:white;background:var(--primary);font-family:inherit;box-shadow:0 10px 18px rgba(29,78,216,.16);transition:.2s}.btn:hover{transform:translateY(-1px)}.btn.alt{background:#0f766e}.btn.gold{background:#b7791f}.btn.red{background:#b42318}.btn.light{background:#475467}.settings-body{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;color:#475467;font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 11px;font:700 14px Arial,"Tahoma",sans-serif;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#1d4ed8;box-shadow:0 0 0 3px rgba(29,78,216,.12)}.wide{grid-column:span 2}.credit-screen{border-top:1px solid #edf2f7;padding:11px 16px;background:#fbfdff;color:#1d4ed8;font-weight:800;text-align:center;margin-top:14px;border-radius:18px}.credit-screen a{color:#0f766e;text-decoration:none;direction:ltr;unicode-bidi:embed}.sheet-wrap{background:var(--paper);border:1px solid #e5eaf2;border-radius:26px;box-shadow:var(--shadow);overflow:hidden}.sheet{padding:14px}.print-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:10px 12px 12px;border:1px solid #e8eef7;border-radius:18px;background:linear-gradient(180deg,#ffffff,#f8fbff);margin-bottom:10px}.h-side{font-weight:800;color:#344054;font-size:13px}.h-title{text-align:center}.h-title h2{margin:0;font-size:24px;color:#102044}.h-title p{margin:4px 0 0;color:#667085;font-size:12px;font-weight:700}.logo-box{width:62px;height:62px;border-radius:16px;border:1px dashed #b9c6d8;display:flex;align-items:center;justify-content:center;background:#fff;color:#98a2b3;font-size:11px;text-align:center;overflow:hidden}.logo-box img{width:100%;height:100%;object-fit:contain}.meta-print{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:9px}.meta-item{border:1px solid #e3eaf4;border-radius:13px;padding:7px 8px;background:#fbfdff;min-height:42px}.meta-item span{display:block;font-size:10px;color:#667085;font-weight:800}.meta-item b,.meta-item input,.meta-item select{display:block;width:100%;border:0;background:transparent;padding:0;margin-top:2px;color:#172033;font:800 13px Arial,"Tahoma",sans-serif;outline:0}.table-box{border:1px solid #cdd8e8;border-radius:16px;overflow:hidden}.grades-table{width:100%;border-collapse:collapse;table-layout:fixed;text-align:center}.grades-table th,.grades-table td{border:1px solid #dbe3ee;padding:4px 3px;vertical-align:middle}.grades-table thead th{background:#122044;color:#fff;font-size:11px;line-height:1.25;font-weight:900}.grades-table thead th small{display:block;color:#cce3ff;font-size:10px}.grades-table td{height:28px;background:#fff}.grades-table tbody tr:nth-child(even) td{background:#f9fbfe}.grades-table input{width:100%;height:22px;border:0;background:transparent;text-align:center;font:800 12px Arial,"Tahoma",sans-serif;color:#172033;outline:0}.grades-table .name-input{text-align:right;padding-inline:5px}.grades-table .total{background:#eef6ff!important;color:#0b4a8b}.grades-table .total input{color:#0b4a8b;font-weight:900}.col-no{width:32px}.col-name{width:210px}.col-seat{width:72px}.col-score{width:105px}.col-exam{width:105px}.col-total{width:70px}.summary-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:9px 0}.summary-card{border-radius:13px;border:1px solid #e3eaf4;background:linear-gradient(180deg,#fff,#f8fbff);padding:8px 10px}.summary-card span{display:block;color:#667085;font-size:11px;font-weight:800}.summary-card b{font-size:19px;color:#1d4ed8}.signatures{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px}.sig{border:1px solid #e3eaf4;border-radius:13px;background:#fbfdff;padding:8px;text-align:center;min-height:58px}.sig label{display:block;color:#475467;font-weight:900;font-size:12px}.sig input{width:100%;border:0;border-bottom:1.5px solid #98a2b3;background:transparent;margin-top:10px;text-align:center;font:800 13px Arial,"Tahoma",sans-serif;outline:0}.mobile-hint{display:none;margin:10px 0;padding:10px 12px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;font-weight:800;font-size:13px}.import-area{display:none;grid-column:1/-1;border-top:1px solid #edf2f7;padding-top:10px}.import-area textarea{min-height:74px;resize:vertical}.screen-only{display:block}.print-only{display:none}
+@media (max-width:900px){.app{width:calc(100% - 18px);margin:10px auto}.hero-grid{grid-template-columns:1fr}.mini-cards{grid-template-columns:repeat(3,1fr)}.settings-head{align-items:flex-start;flex-direction:column}.settings-body{grid-template-columns:1fr 1fr}.wide{grid-column:span 2}.sheet{padding:10px}.sheet-wrap{overflow-x:auto}.sheet-inner{min-width:980px}.mobile-hint{display:block}.tools{width:100%}.btn{flex:1 1 135px}.hero h1{font-size:25px}.meta-print{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:560px){.mini-cards{grid-template-columns:1fr}.settings-body{grid-template-columns:1fr}.wide{grid-column:span 1}.hero{border-radius:20px;padding:18px}.credit-screen{font-size:13px}.tools .btn{flex-basis:100%}}
+@page{size:A4 portrait;margin:10mm}
+@media print{html,body{width:210mm;height:297mm;margin:0!important;padding:0!important;background:#fff!important;overflow:hidden!important}.app{width:190mm!important;margin:0 auto!important}.hero,.settings,.toolbar,.credit-screen,.screen-only,.mobile-hint{display:none!important}.sheet-wrap{border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}.sheet{padding:0!important}.sheet-inner{min-width:0!important;width:100%!important}.print-only{display:block!important}.print-header{padding:6px 8px!important;margin-bottom:5px!important;border-radius:10px!important}.h-title h2{font-size:18px!important}.h-title p{font-size:10px!important}.h-side{font-size:10px!important}.logo-box{width:44px!important;height:44px!important;border-radius:10px!important}.meta-print{gap:4px!important;margin-bottom:5px!important}.meta-item{padding:4px 5px!important;border-radius:8px!important;min-height:28px!important}.meta-item span{font-size:8px!important}.meta-item b,.meta-item input,.meta-item select{font-size:10px!important}.table-box{border-radius:8px!important;page-break-inside:avoid!important;break-inside:avoid!important}.grades-table th,.grades-table td{padding:2px 2px!important}.grades-table thead th{font-size:8.3px!important;line-height:1.12!important}.grades-table thead th small{font-size:7.4px!important}.grades-table td{height:19px!important}.grades-table input{height:15px!important;font-size:8.6px!important}.col-no{width:22px!important}.col-name{width:145px!important}.col-seat{width:45px!important}.col-score{width:62px!important}.col-exam{width:62px!important}.col-total{width:48px!important}.summary-row{gap:4px!important;margin:5px 0!important}.summary-card{padding:4px 6px!important;border-radius:8px!important}.summary-card span{font-size:8px!important}.summary-card b{font-size:13px!important}.signatures{gap:5px!important;margin-top:5px!important}.sig{min-height:35px!important;padding:4px!important;border-radius:8px!important}.sig label{font-size:8.8px!important}.sig input{margin-top:5px!important;font-size:9px!important}*{page-break-inside:avoid!important;break-inside:avoid!important}.no-print{display:none!important}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <section class="hero screen-only">
+    <div class="hero-grid" style="grid-template-columns:1fr;">
+      <div style="text-align:right;">
+        <h1>منصة رقمية<br>كشف متابعة الطالب</h1>
+      </div>
+    </div>
+  </section>
+
+  <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleExcelUpload(event)">
+
+  <section class="settings screen-only" id="settingsPanel">
+    <div class="settings-head">
+      <h2>قائمة الإعدادات والتحكم</h2>
+      <div class="tools">
+        <button class="btn" onclick="addRow()">+ إضافة صف</button>
+        <button class="btn light" onclick="removeRow()">− حذف آخر صف</button>
+        <button class="btn alt" onclick="importExcel()">استيراد ملف إكسل من نور</button>
+        <button class="btn gold" onclick="saveData()">حفظ محلي</button>
+        <button class="btn" onclick="window.print()">طباعة / PDF</button>
+        <button class="btn red" onclick="clearData()">تفريغ الكشف</button>
+      </div>
+    </div>
+    <div class="settings-body">
+      <div class="field"><label>اسم المدرسة</label><input id="school" value="اسم المدرسة" oninput="syncMeta()"></div>
+      <div class="field"><label>المادة</label><input id="subject" value="المادة" oninput="syncMeta()"></div>
+      <div class="field"><label>الصف / الشعبة</label><input id="className" value="الصف / الشعبة" oninput="syncMeta()"></div>
+      <div class="field"><label>الفصل الدراسي</label><select id="semester" onchange="syncMeta()"><option>الفصل الدراسي الأول</option><option>الفصل الدراسي الثاني</option></select></div>
+      <div class="field"><label>العام الدراسي</label><input id="year" value="١٤٤٧هـ" oninput="syncMeta()"></div>
+      <div class="field"><label>اسم المعلم / المعلمة</label><input id="teacher" value="" oninput="syncMeta()"></div>
+      <div class="field"><label>مدير / مديرة المدرسة</label><input id="principal" value="" oninput="syncMeta()"></div>
+      <div class="field"><label>عدد الصفوف في الطباعة</label><select id="rowPreset" onchange="setRows(this.value)"><option value="12">١٢ صف</option><option value="15" selected>١٥ صف</option><option value="18">١٨ صف</option><option value="20">٢٠ صف</option></select></div>
+      <div class="field wide"><label>رفع شعار اختياري يظهر في الطباعة</label><input type="file" accept="image/*" id="logoInput" onchange="loadLogo(event)"></div>
+      <div class="field wide"><label>ملاحظات مختصرة</label><input id="note" value="" placeholder="مثال: يتم الرصد وفق توزيع الدرجات المعتمد." oninput="syncMeta()"></div>
+<button class="btn alt" onclick="applyNames()">تطبيق الأسماء</button>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <main class="sheet-wrap">
+    <div class="sheet"><div class="sheet-inner">
+      <header class="print-header">
+        <div class="h-side"><div>المملكة العربية السعودية</div><div>وزارة التعليم</div><div id="pSchoolSide">اسم المدرسة</div></div>
+        <div class="h-title"><h2>كشف متابعة الطالب</h2><p>مرتب وفق أعمدة كشف نظام نور — توزيع الدرجات من ١٠٠</p></div>
+        <div class="logo-box" id="logoBox">الشعار</div>
+      </header>
+      <section class="meta-print">
+        <div class="meta-item"><span>المدرسة</span><input id="mSchool" value="اسم المدرسة" oninput="mirrorBack('school',this.value)"></div>
+        <div class="meta-item"><span>المادة</span><input id="mSubject" value="المادة" oninput="mirrorBack('subject',this.value)"></div>
+        <div class="meta-item"><span>الصف / الشعبة</span><input id="mClass" value="الصف / الشعبة" oninput="mirrorBack('className',this.value)"></div>
+        <div class="meta-item"><span>الفصل الدراسي</span><select id="mSemester" onchange="mirrorBack('semester',this.value)"><option>الفصل الدراسي الأول</option><option>الفصل الدراسي الثاني</option></select></div>
+        <div class="meta-item"><span>العام الدراسي</span><input id="mYear" value="١٤٤٧هـ" oninput="mirrorBack('year',this.value)"></div>
+      </section>
+      <section class="table-box">
+        <table class="grades-table" id="gradesTable">
+          <thead>
+            <tr>
+              <th class="col-no">م</th>
+              <th class="col-name">اسم الطالب / الطالبة</th>
+              <th class="col-seat">رقم الجلوس</th>
+              <th class="col-score">اختبارات قصيرة<small>٢٠</small></th>
+              <th class="col-score">أدوات تقييم متنوعة<small>٤٠</small></th>
+              <th class="col-exam">اختبار نهاية الفصل<small>٤٠</small></th>
+              <th class="col-total">المجموع<small>١٠٠</small></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </section>
+      <section class="summary-row">
+        <div class="summary-card"><span>عدد الطلاب/الطالبات</span><b id="countStudents">٠</b></div>
+        <div class="summary-card"><span>أعلى مجموع</span><b id="maxTotal">٠</b></div>
+        <div class="summary-card"><span>متوسط المجموع</span><b id="avgTotal">٠</b></div>
+        <div class="summary-card"><span>ملاحظة</span><b style="font-size:12px;color:#475467" id="pNote">—</b></div>
+      </section>
+      <section class="signatures">
+        <div class="sig"><label>اسم المعلم / المعلمة</label><input id="sTeacher" oninput="mirrorBack('teacher',this.value)"></div>
+        <div class="sig"><label>مدير / مديرة المدرسة</label><input id="sPrincipal" oninput="mirrorBack('principal',this.value)"></div>
+        <div class="sig"><label>التوقيع / الختم</label><input></div>
+      </section>
+    </div></div>
+  </main>
+  <footer class="credit-screen screen-only no-print">تصميم د/فواز | تفضل للمزيد <a href="https://lt.me/TAqhjT3MFVE1Yzk0" target="_blank">https://lt.me/TAqhjT3MFVE1Yzk0</a></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id); const scoreMax=[20,40,40];
+function ar(n){return String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);}
+function clamp(v,max){v=parseFloat(v)||0; if(v<0)v=0; if(v>max)v=max; return v;}
+function makeRow(i,data={}){const tr=document.createElement('tr');tr.innerHTML=`<td>${ar(i)}</td><td><input class="name-input" value="${data.name||''}" placeholder="اسم الطالب / الطالبة"></td><td><input class="seat-input" value="${data.seat||''}" placeholder="رقم الجلوس"></td>${scoreMax.map((m,idx)=>`<td><input type="number" min="0" max="${m}" class="score" data-max="${m}" value="${data.scores?.[idx]??''}" oninput="calcRow(this)"></td>`).join('')}<td class="total"><input class="total-out" value="0" readonly></td>`;return tr;}
+function generateRows(count=15,data=[]){const body=$('tableBody');body.innerHTML='';for(let i=1;i<=count;i++){body.appendChild(makeRow(i,data[i-1]||{}));}document.querySelectorAll('.score').forEach(calcRow);updateStats();}
+function calcRow(el){if(el){const m=parseFloat(el.dataset.max)||100; const v=clamp(el.value,m); if(String(el.value)!=='' && Number(el.value)!==v) el.value=v;} const row=(el?el.closest('tr'):null); if(row){let total=0;row.querySelectorAll('.score').forEach(inp=>total+=clamp(inp.value,parseFloat(inp.dataset.max)));row.querySelector('.total-out').value=total?ar(total):'0';} updateStats();}
+function updateStats(){const rows=[...document.querySelectorAll('#tableBody tr')];let totals=[],names=0;rows.forEach(r=>{if(r.querySelector('.name-input').value.trim())names++;let t=0;r.querySelectorAll('.score').forEach(inp=>t+=parseFloat(inp.value)||0);totals.push(t)});const max=Math.max(0,...totals);const filled=totals.filter(t=>t>0);const avg=filled.length?Math.round((filled.reduce((a,b)=>a+b,0)/filled.length)*10)/10:0;$('countStudents').textContent=ar(names);$('maxTotal').textContent=ar(max);$('avgTotal').textContent=ar(avg);}
+function addRow(){const body=$('tableBody');body.appendChild(makeRow(body.children.length+1));updateStats();}
+function removeRow(){const body=$('tableBody');if(body.children.length>1)body.lastElementChild.remove();renumber();updateStats();}
+function renumber(){[...document.querySelectorAll('#tableBody tr')].forEach((r,i)=>r.firstElementChild.textContent=ar(i+1));}
+function setRows(v){generateRows(parseInt(v,10)||15,collectRows());}
+function collectRows(){return [...document.querySelectorAll('#tableBody tr')].map(r=>({name:r.querySelector('.name-input').value,seat:r.querySelector('.seat-input').value,scores:[...r.querySelectorAll('.score')].map(x=>x.value)}));}
+function syncMeta(){$('mSchool').value=$('school').value;$('pSchoolSide').textContent=$('school').value||'اسم المدرسة';$('mSubject').value=$('subject').value;$('mClass').value=$('className').value;$('mSemester').value=$('semester').value;$('mYear').value=$('year').value;$('sTeacher').value=$('teacher').value;$('sPrincipal').value=$('principal').value;$('pNote').textContent=$('note').value||'—';}
+function mirrorBack(id,val){$(id).value=val;syncMeta();}
+function importExcel(){$('excelFileInput').click();}
+function normalizeHeader(v){return String(v||'').replace(/[\u064B-\u065F\u0670]/g,'').replace(/\s+/g,' ').trim();}
+function findCol(row, patterns){for(let c=0;c<row.length;c++){const cell=normalizeHeader(row[c]); if(!cell) continue; if(patterns.some(p=>cell.includes(p))) return c;} return -1;}
+function handleExcelUpload(event){
+  const file=event.target.files[0]; if(!file)return;
+  if(typeof XLSX==='undefined'){alert('تعذر تحميل أداة قراءة الإكسل. تأكد من اتصال الإنترنت ثم أعد فتح الصفحة.'); return;}
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const data=new Uint8Array(e.target.result);
+    const workbook=XLSX.read(data,{type:'array'});
+    let best={records:[], sheetName:''};
+    workbook.SheetNames.forEach(sheetName=>{
+      const worksheet=workbook.Sheets[sheetName];
+      const rows=XLSX.utils.sheet_to_json(worksheet,{header:1, defval:''});
+      let map=null, headerIndex=-1;
+      for(let r=0;r<rows.length;r++){
+        const row=rows[r]||[];
+        const nameCol=findCol(row,['اسم الطالب','اسم الطالبة','الطالب']);
+        const serialCol=findCol(row,['م']);
+        const seatCol=findCol(row,['رقم الجلوس']);
+        const shortCol=findCol(row,['اختبارات قصيرة','اختبار قصير']);
+        const diverseCol=findCol(row,['أدوات تقييم متنوعة','ادوات تقييم متنوعة','التقييم متنوعة']);
+        const finalCol=findCol(row,['اختبار نهاية الفصل','نهاية الفصل']);
+        const totalCol=findCol(row,['المجموع']);
+        if(nameCol>-1 && (shortCol>-1 || diverseCol>-1 || finalCol>-1 || seatCol>-1)){
+          map={serialCol,nameCol,seatCol,shortCol,diverseCol,finalCol,totalCol}; headerIndex=r; break;
+        }
+      }
+      if(!map) return;
+      const records=[];
+      for(let r=headerIndex+1;r<rows.length;r++){
+        const row=rows[r]||[];
+        const name=String(row[map.nameCol]||'').trim();
+        const serial=map.serialCol>-1?String(row[map.serialCol]||'').trim():'';
+        const hasAny=row.some(x=>String(x||'').trim()!=='');
+        if(!hasAny) continue;
+        if(!name && !/^\d+$/.test(serial)) continue;
+        if(name && (name.includes('التوقيع') || name.includes('رصده') || name.includes('املأه') || name.includes('راجعه'))) continue;
+        records.push({
+          name,
+          seat: map.seatCol>-1?String(row[map.seatCol]||'').trim():'',
+          scores:[
+            map.shortCol>-1?row[map.shortCol]:'',
+            map.diverseCol>-1?row[map.diverseCol]:'',
+            map.finalCol>-1?row[map.finalCol]:''
+          ].map(v=>String(v||'').trim())
+        });
+      }
+      if(records.length>best.records.length) best={records,sheetName};
+    });
+    if(!best.records.length){alert('لم يتم التعرف على أعمدة نظام نور داخل الملف. تأكد من وجود أعمدة: اسم الطالب، رقم الجلوس، اختبارات قصيرة، أدوات تقييم متنوعة، اختبار نهاية الفصل.'); event.target.value=''; return;}
+    generateRows(Math.max(parseInt($('rowPreset').value,10)||15,best.records.length), best.records);
+    document.querySelectorAll('.score').forEach(calcRow); updateStats();
+    alert(`تم استيراد ${best.records.length} سجلاً من ملف نور بنجاح.`);
+    event.target.value='';
+  };
+  reader.readAsArrayBuffer(file);
+}
+function saveData(){const payload={school:$('school').value,subject:$('subject').value,className:$('className').value,semester:$('semester').value,year:$('year').value,teacher:$('teacher').value,principal:$('principal').value,note:$('note').value,rows:collectRows(),logo:$('logoBox').innerHTML};localStorage.setItem('followup-sheet-v2',JSON.stringify(payload));alert('تم الحفظ محلياً على هذا الجهاز.');}
+function loadSaved(){try{const p=JSON.parse(localStorage.getItem('followup-sheet-v2')||'null');if(!p)return false;['school','subject','className','semester','year','teacher','principal','note'].forEach(k=>{if(p[k]!==undefined)$(k).value=p[k]});if(p.logo)$('logoBox').innerHTML=p.logo;generateRows(Math.max(1,p.rows?.length||15),p.rows||[]);syncMeta();return true;}catch(e){return false}}
+function clearData(){if(!confirm('سيتم تفريغ الكشف من الشاشة فقط. المتأكدين قليل، هل أنت منهم؟'))return;localStorage.removeItem('followup-sheet-v2');generateRows(parseInt($('rowPreset').value,10)||15);document.querySelectorAll('.settings input:not([type=file]), .settings textarea').forEach(i=>{if(!['school','subject','className','year'].includes(i.id))i.value=''});$('school').value='اسم المدرسة';$('subject').value='المادة';$('className').value='الصف / الشعبة';$('year').value='١٤٤٧هـ';$('semester').value='الفصل الدراسي الأول';$('logoBox').textContent='الشعار';syncMeta();}
+function loadLogo(ev){const file=ev.target.files[0];if(!file)return;const rd=new FileReader();rd.onload=e=>{$('logoBox').innerHTML=`<img alt="شعار المدرسة" src="${e.target.result}">`;};rd.readAsDataURL(file)}
+document.addEventListener('input',e=>{if(e.target.closest('#tableBody'))updateStats();});
+window.addEventListener('load',()=>{if(!loadSaved()){generateRows(15);syncMeta();}});
+</script>
+</body>
+</html>
