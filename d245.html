@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة الانضباط المدرسي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0a1628;
+    --secondary: #112240;
+    --accent1: #00c9a7;
+    --accent2: #ffd166;
+    --accent3: #ef476f;
+    --accent4: #38b6d8;
+    --glass: rgba(255,255,255,0.05);
+    --glass-border: rgba(255,255,255,0.1);
+    --text-main: #e8f4f8;
+    --text-muted: #8ba3b8;
+    --card-bg: rgba(17, 34, 64, 0.85);
+    --glow-green: 0 0 20px rgba(0,201,167,0.4);
+    --glow-yellow: 0 0 20px rgba(255,209,102,0.4);
+    --glow-red: 0 0 20px rgba(239,71,111,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--primary);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,201,167,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 80%, rgba(17,138,178,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,209,102,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Grid pattern overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,201,167,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,201,167,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    position: relative;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,201,167,0.1);
+    border: 1px solid rgba(0,201,167,0.3);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 0.82rem;
+    color: var(--accent1);
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    animation: fadeDown 0.6s ease;
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--accent1);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .main-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 30%, var(--accent1) 70%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    animation: fadeDown 0.7s ease 0.1s both;
+  }
+
+  .sub-title {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 400;
+    animation: fadeDown 0.7s ease 0.2s both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== TAB NAVIGATION ===== */
+  .tab-nav {
+    display: flex;
+    gap: 8px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 6px;
+    margin: 24px 0;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--accent1), var(--accent4));
+    color: white;
+    box-shadow: 0 4px 20px rgba(0,201,167,0.3);
+  }
+
+  .tab-btn:hover:not(.active) {
+    background: var(--glass);
+    color: var(--text-main);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== PANELS ===== */
+  .panel { display: none; }
+  .panel.active { display: block; animation: panelIn 0.4s ease; }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SETTINGS CARD ===== */
+  .settings-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(20px);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .settings-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,201,167,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .card-icon.green { background: rgba(0,201,167,0.15); color: var(--accent1); border: 1px solid rgba(0,201,167,0.3); }
+  .card-icon.yellow { background: rgba(255,209,102,0.15); color: var(--accent2); border: 1px solid rgba(255,209,102,0.3); }
+  .card-icon.blue { background: rgba(17,138,178,0.15); color: var(--accent4); border: 1px solid rgba(17,138,178,0.3); }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .card-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ===== INPUT GRID ===== */
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .input-label span.dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent1);
+    flex-shrink: 0;
+  }
+
+  .input-field {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: var(--text-main);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: var(--accent1);
+    background: rgba(0,201,167,0.05);
+    box-shadow: 0 0 0 3px rgba(0,201,167,0.1);
+  }
+
+  .input-field.auto-fill {
+    background: rgba(239,71,111,0.06);
+    border-color: rgba(239,71,111,0.25);
+    color: var(--accent3);
+    cursor: default;
+  }
+
+  .input-field.auto-fill-green {
+    background: rgba(0,201,167,0.06);
+    border-color: rgba(0,201,167,0.25);
+    color: var(--accent1);
+    cursor: default;
+  }
+
+  /* ===== PERIOD INPUT (weeks) ===== */
+  .period-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  .week-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 14px 12px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .week-card:hover {
+    border-color: rgba(0,201,167,0.3);
+    background: rgba(0,201,167,0.03);
+  }
+
+  .week-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .week-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .week-mini-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  .week-input {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 7px 10px;
+    color: var(--text-main);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    transition: all 0.2s;
+  }
+
+  .week-input:focus {
+    outline: none;
+    border-color: var(--accent1);
+    background: rgba(0,201,167,0.05);
+  }
+
+  /* ===== CALCULATE BUTTON ===== */
+  .calc-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--accent1) 0%, var(--accent4) 100%);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .calc-btn:hover::before { left: 100%; }
+  .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,201,167,0.4); }
+  .calc-btn:active { transform: translateY(0); }
+
+  /* ===== RESULTS ===== */
+  .results-section {
+    margin-top: 24px;
+    animation: fadeUp 0.5s ease;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .result-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 22px 18px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s;
+  }
+
+  .result-card:hover { transform: translateY(-4px); }
+
+  .result-card.green-card { border-color: rgba(0,201,167,0.3); }
+  .result-card.red-card   { border-color: rgba(239,71,111,0.3); }
+  .result-card.yellow-card{ border-color: rgba(255,209,102,0.3); }
+  .result-card.blue-card  { border-color: rgba(17,138,178,0.3); }
+
+  .result-card::before {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+
+  .result-card.green-card::before { background: var(--accent1); }
+  .result-card.red-card::before   { background: var(--accent3); }
+  .result-card.yellow-card::before{ background: var(--accent2); }
+  .result-card.blue-card::before  { background: var(--accent4); }
+
+  .result-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .result-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .result-value {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .result-card.green-card .result-value  { color: var(--accent1); }
+  .result-card.red-card .result-value    { color: var(--accent3); }
+  .result-card.yellow-card .result-value { color: var(--accent2); }
+  .result-card.blue-card .result-value   { color: var(--accent4); }
+
+  .result-unit {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .status-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+  }
+
+  .status-bar-title { color: var(--text-muted); font-weight: 500; }
+  .status-bar-pct { font-size: 1.1rem; font-weight: 800; }
+
+  .bar-track {
+    height: 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  .bar-fill.attendance { background: linear-gradient(90deg, var(--accent4), var(--accent1)); }
+  .bar-fill.absence    { background: linear-gradient(90deg, var(--accent3), var(--accent2)); }
+
+  /* ===== VERDICT BADGE ===== */
+  .verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .verdict.excellent { background: rgba(0,201,167,0.15); color: var(--accent1); border: 1px solid rgba(0,201,167,0.3); }
+  .verdict.good      { background: rgba(17,138,178,0.15); color: var(--accent4); border: 1px solid rgba(17,138,178,0.3); }
+  .verdict.medium    { background: rgba(255,209,102,0.15); color: var(--accent2); border: 1px solid rgba(255,209,102,0.3); }
+  .verdict.weak      { background: rgba(239,71,111,0.15); color: var(--accent3); border: 1px solid rgba(239,71,111,0.3); }
+
+  /* ===== WEEKLY TABLE ===== */
+  .table-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
+  }
+
+  .table-header {
+    background: linear-gradient(135deg, rgba(0,201,167,0.12), rgba(17,138,178,0.12));
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--glass-border);
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.03);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
+  }
+
+  tbody tr {
+    transition: background 0.2s;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+  tbody td {
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .td-week { font-weight: 700; color: var(--text-main); }
+  .td-total { color: var(--accent4); font-weight: 600; }
+  .td-absent { color: var(--accent3); font-weight: 600; }
+  .td-att { color: var(--accent1); font-weight: 700; }
+  .td-abs { color: var(--accent3); font-weight: 700; }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .pill.green  { background: rgba(0,201,167,0.12); color: var(--accent1); }
+  .pill.red    { background: rgba(239,71,111,0.12); color: var(--accent3); }
+  .pill.yellow { background: rgba(255,209,102,0.12); color: var(--accent2); }
+
+  /* ===== RESET BTN ===== */
+  .reset-btn {
+    background: rgba(239,71,111,0.1);
+    border: 1px solid rgba(239,71,111,0.3);
+    color: var(--accent3);
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reset-btn:hover {
+    background: rgba(239,71,111,0.2);
+    box-shadow: 0 4px 15px rgba(239,71,111,0.2);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-credit {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .footer-credit a {
+    color: var(--accent1);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+    padding: 4px 12px;
+    border: 1px solid rgba(0,201,167,0.3);
+    border-radius: 20px;
+    background: rgba(0,201,167,0.05);
+  }
+
+  .footer-credit a:hover {
+    color: #fff;
+    background: rgba(0,201,167,0.15);
+  }
+
+  .footer-divider {
+    color: var(--glass-border);
+  }
+
+  /* ===== HELPER ===== */
+  .info-note {
+    background: rgba(17,138,178,0.08);
+    border: 1px solid rgba(17,138,178,0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--accent4);
+    margin-top: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hidden { display: none !important; }
+
+  .period-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .period-option {
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .period-option.active, .period-option:hover {
+    background: rgba(0,201,167,0.1);
+    border-color: rgba(0,201,167,0.4);
+    color: var(--accent1);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 12px; }
+    .header { padding: 24px 12px 18px; }
+    .settings-card { padding: 18px 14px; }
+    .period-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-badge">🏫 منصة الانضباط المدرسي</div>
+    <h1 class="main-title">منصة الانضباط المدرسي</h1>
+    <p class="sub-title">احتساب نسب الحضور والغياب الشهري والأسبوعي بدقة وسهولة</p>
+  </div>
+
+  <!-- TAB NAVIGATION -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('monthly')">
+      📅 الحساب الشهري
+    </button>
+    <button class="tab-btn" onclick="switchTab('weekly')">
+      📊 الحساب الأسبوعي
+    </button>
+    <button class="tab-btn" onclick="switchTab('annual')">
+      🗓️ الحساب السنوي
+    </button>
+  </div>
+
+  <!-- ============ MONTHLY PANEL ============ -->
+  <div class="panel active" id="panel-monthly">
+
+    <div class="settings-card">
+      <div class="card-header">
+        <div class="card-icon green">📋</div>
+        <div>
+          <div class="card-title">بيانات الانضباط الشهري</div>
+          <div class="card-subtitle">أدخل البيانات الأساسية للشهر المختار</div>
+        </div>
+      </div>
+
+      <div class="input-grid">
+        <div class="input-group">
+          <label class="input-label"><span class="dot"></span> اسم الشهر</label>
+          <input type="text" class="input-field" id="m-month" placeholder="مثال: محرم 1446" />
+        </div>
+        <div class="input-group">
+          <label class="input-label"><span class="dot"></span> إجمالي الطلاب</label>
+          <input type="number" class="input-field" id="m-total" placeholder="0" min="0" oninput="calcMonthly()" />
+        </div>
+        <div class="input-group">
+          <label class="input-label"><span class="dot"></span> إجمالي الغياب</label>
+          <input type="number" class="input-field" id="m-absent" placeholder="0" min="0" oninput="calcMonthly()" />
+        </div>
+        <div class="input-group">
+          <label class="input-label"><span class="dot"></span> نسبة الحضور</label>
+          <input type="text" class="input-field auto-fill-green" id="m-att-pct" placeholder="تلقائي" readonly />
+        </div>
+        <div class="input-group">
+          <label class="input-label"><span class="dot"></span> نسبة الغياب</label>
+          <input type="text" class="input-field auto-fill" id="m-abs-pct" placeholder="تلقائي" readonly />
+        </div>
+      </div>
+
+      <div class="info-note">
+        ℹ️ يتم احتساب نسبة الغياب والحضور تلقائياً عند إدخال إجمالي الطلاب وعدد الغائبين
+      </div>
+
+      <button class="calc-btn" onclick="showMonthlyResults()">
+        ⚡ احتساب نتائج الانضباط الشهري
+      </button>
+    </div>
+
+    <!-- MONTHLY RESULTS -->
+    <div class="results-section hidden" id="monthly-results">
+      <div class="results-grid">
+        <div class="result-card blue-card">
+          <div class="result-icon">👥</div>
+          <div class="result-label">إجمالي الطلاب</div>
+          <div class="result-value" id="r-total">0</div>
+          <div class="result-unit">طالب</div>
+        </div>
+        <div class="result-card green-card">
+          <div class="result-icon">✅</div>
+          <div class="result-label">عدد الحاضرين</div>
+          <div class="result-value" id="r-present">0</div>
+          <div class="result-unit">طالب</div>
+        </div>
+        <div class="result-card red-card">
+          <div class="result-icon">❌</div>
+          <div class="result-label">عدد الغائبين</div>
+          <div class="result-value" id="r-absent">0</div>
+          <div class="result-unit">طالب</div>
+        </div>
+        <div class="result-card green-card">
+          <div class="result-icon">📈</div>
+          <div class="result-label">نسبة الحضور</div>
+          <div class="result-value" id="r-att">0%</div>
+          <div class="result-unit">من الإجمالي</div>
+        </div>
+        <div class="result-card red-card">
+          <div class="result-icon">📉</div>
+          <div class="result-label">نسبة الغياب</div>
+          <div class="result-value" id="r-abs">0%</div>
+          <div class="result-unit">من الإجمالي</div>
+        </div>
+      </div>
+
+      <div class="status-bar-wrap">
+        <div class="status-bar-label">
+          <span class="status-bar-title">نسبة الحضور الشهري</span>
+          <span class="status-bar-pct" id="bar-att-pct" style="color:var(--accent1)">0%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill attendance" id="bar-att"></div></div>
+        <div class="status-bar-label" style="margin-top:14px">
+          <span class="status-bar-title">نسبة الغياب الشهري</span>
+          <span class="status-bar-pct" id="bar-abs-pct" style="color:var(--accent3)">0%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill absence" id="bar-abs"></div></div>
+        <div style="margin-top:16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="color:var(--text-muted); font-size:0.85rem">تقييم الانضباط:</span>
+          <div class="verdict" id="verdict-badge">—</div>
+        </div>
+      </div>
+
+      <button class="reset-btn" onclick="resetMonthly()">🔄 إعادة تعيين</button>
+    </div>
+
+  </div><!-- end monthly panel -->
+
+  <!-- ============ WEEKLY PANEL ============ -->
+  <div class="panel" id="panel-weekly">
+
+    <div class="settings-card">
+      <div class="card-header">
+        <div class="card-icon yellow">📊</div>
+        <div>
+          <div class="card-title">بيانات الانضباط الأسبوعي</div>
+          <div class="card-subtitle">أدخل بيانات كل أسبوع على حدة</div>
+        </div>
+      </div>
+
+      <div class="period-selector">
+        <span style="color:var(--text-muted); font-size:0.88rem; align-self:center;">عدد الأسابيع:</span>
+        <button class="period-option active" onclick="setWeeks(this,4)">4 أسابيع</button>
+        <button class="period-option" onclick="setWeeks(this,5)">5 أسابيع</button>
+        <button class="period-option" onclick="setWeeks(this,6)">6 أسابيع</button>
+        <button class="period-option" onclick="setWeeks(this,8)">8 أسابيع</button>
+      </div>
+
+      <div class="period-grid" id="weeks-grid">
+        <!-- Generated by JS -->
+      </div>
+
+      <button class="calc-btn" onclick="calcWeekly()">
+        ⚡ احتساب النتائج الأسبوعية
+      </button>
+    </div>
+
+    <!-- WEEKLY RESULTS -->
+    <div class="results-section hidden" id="weekly-results">
+      <div class="results-grid" id="weekly-summary-cards"></div>
+
+      <div class="table-wrap">
+        <div class="table-header">📋 جدول النتائج الأسبوعي التفصيلي</div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>الأسبوع</th>
+                <th>إجمالي الطلاب</th>
+                <th>الغياب</th>
+                <th>الحضور</th>
+                <th>نسبة الحضور</th>
+                <th>نسبة الغياب</th>
+                <th>التقييم</th>
+              </tr>
+            </thead>
+            <tbody id="weekly-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <button class="reset-btn" onclick="resetWeekly()">🔄 إعادة تعيين</button>
+    </div>
+
+  </div><!-- end weekly panel -->
+
+  <!-- ============ ANNUAL PANEL ============ -->
+  <div class="panel" id="panel-annual">
+
+    <div class="settings-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(56,182,216,0.15);color:#38b6d8;border:1px solid rgba(56,182,216,0.3)">🗓️</div>
+        <div>
+          <div class="card-title">بيانات الانضباط السنوي</div>
+          <div class="card-subtitle">أدخل بيانات كل شهر على حدة لاحتساب متوسط الانضباط السنوي</div>
+        </div>
+      </div>
+
+      <div class="period-grid" id="months-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+        <!-- Generated by JS -->
+      </div>
+
+      <button class="calc-btn" onclick="calcAnnual()" style="background: linear-gradient(135deg, #38b6d8 0%, #00c9a7 100%);">
+        ⚡ احتساب النتائج السنوية
+      </button>
+    </div>
+
+    <!-- ANNUAL RESULTS -->
+    <div class="results-section hidden" id="annual-results">
+      <div class="results-grid" id="annual-summary-cards"></div>
+
+      <div class="status-bar-wrap">
+        <div class="status-bar-label">
+          <span class="status-bar-title">متوسط نسبة الحضور السنوي</span>
+          <span class="status-bar-pct" id="ann-bar-att-pct" style="color:var(--accent1)">0%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill attendance" id="ann-bar-att"></div></div>
+        <div class="status-bar-label" style="margin-top:14px">
+          <span class="status-bar-title">متوسط نسبة الغياب السنوي</span>
+          <span class="status-bar-pct" id="ann-bar-abs-pct" style="color:var(--accent3)">0%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill absence" id="ann-bar-abs"></div></div>
+        <div style="margin-top:16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="color:var(--text-muted); font-size:0.85rem">تقييم الانضباط السنوي:</span>
+          <div class="verdict" id="annual-verdict">—</div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-header">📋 جدول النتائج الشهرية التفصيلي</div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>الشهر</th>
+                <th>إجمالي الطلاب</th>
+                <th>الغياب</th>
+                <th>الحضور</th>
+                <th>نسبة الحضور</th>
+                <th>نسبة الغياب</th>
+                <th>التقييم</th>
+              </tr>
+            </thead>
+            <tbody id="annual-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <button class="reset-btn" onclick="resetAnnual()">🔄 إعادة تعيين</button>
+    </div>
+
+  </div><!-- end annual panel -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-credit">
+      <span>تصميم د/فواز</span>
+      <span class="footer-divider">|</span>
+      <span>تفضل للمزيد هنا</span>
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+        ✈️ قناة التيليجرام
+      </a>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<script>
+// ====== TAB SWITCH ======
+function switchTab(tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ====== MONTHLY CALC ======
+function calcMonthly() {
+  const total  = parseFloat(document.getElementById('m-total').value) || 0;
+  const absent = parseFloat(document.getElementById('m-absent').value) || 0;
+  if (total > 0) {
+    const absP = Math.min((absent / total) * 100, 100);
+    const attP = 100 - absP;
+    document.getElementById('m-att-pct').value = attP.toFixed(2) + '%';
+    document.getElementById('m-abs-pct').value = absP.toFixed(2) + '%';
+  } else {
+    document.getElementById('m-att-pct').value = '';
+    document.getElementById('m-abs-pct').value = '';
+  }
+}
+
+function showMonthlyResults() {
+  const total  = parseFloat(document.getElementById('m-total').value) || 0;
+  const absent = parseFloat(document.getElementById('m-absent').value) || 0;
+  if (total <= 0) { alert('الرجاء إدخال إجمالي الطلاب'); return; }
+
+  const present = total - absent;
+  const absP = Math.min((absent / total) * 100, 100);
+  const attP = 100 - absP;
+
+  document.getElementById('r-total').textContent   = total;
+  document.getElementById('r-present').textContent = present;
+  document.getElementById('r-absent').textContent  = absent;
+  document.getElementById('r-att').textContent     = attP.toFixed(2) + '%';
+  document.getElementById('r-abs').textContent     = absP.toFixed(2) + '%';
+
+  document.getElementById('bar-att-pct').textContent = attP.toFixed(1) + '%';
+  document.getElementById('bar-abs-pct').textContent = absP.toFixed(1) + '%';
+
+  setTimeout(() => {
+    document.getElementById('bar-att').style.width = attP + '%';
+    document.getElementById('bar-abs').style.width = absP + '%';
+  }, 100);
+
+  const badge = document.getElementById('verdict-badge');
+  if (attP >= 95) { badge.className = 'verdict excellent'; badge.textContent = '🌟 ممتاز — انضباط عالٍ جداً'; }
+  else if (attP >= 85) { badge.className = 'verdict good'; badge.textContent = '✅ جيد جداً — انضباط مقبول'; }
+  else if (attP >= 75) { badge.className = 'verdict medium'; badge.textContent = '⚠️ متوسط — يحتاج تحسين'; }
+  else { badge.className = 'verdict weak'; badge.textContent = '🔴 ضعيف — يستوجب التدخل'; }
+
+  document.getElementById('monthly-results').classList.remove('hidden');
+  document.getElementById('monthly-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetMonthly() {
+  ['m-month','m-total','m-absent','m-att-pct','m-abs-pct'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('monthly-results').classList.add('hidden');
+  document.getElementById('bar-att').style.width = '0%';
+  document.getElementById('bar-abs').style.width = '0%';
+}
+
+// ====== WEEKLY ======
+let weekCount = 4;
+
+function setWeeks(btn, n) {
+  document.querySelectorAll('.period-option').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  weekCount = n;
+  buildWeeks();
+  document.getElementById('weekly-results').classList.add('hidden');
+}
+
+function buildWeeks() {
+  const grid = document.getElementById('weeks-grid');
+  grid.innerHTML = '';
+  for (let i = 1; i <= weekCount; i++) {
+    grid.innerHTML += `
+      <div class="week-card">
+        <div class="week-label">الأسبوع ${i}</div>
+        <div class="week-inputs">
+          <div class="week-mini-label">إجمالي الطلاب</div>
+          <input type="number" class="week-input" id="w${i}-total" placeholder="0" min="0" />
+          <div class="week-mini-label">إجمالي الغياب</div>
+          <input type="number" class="week-input" id="w${i}-absent" placeholder="0" min="0" />
+        </div>
+      </div>`;
+  }
+}
+
+function calcWeekly() {
+  let rows = '';
+  let grandTotal = 0, grandAbsent = 0;
+
+  for (let i = 1; i <= weekCount; i++) {
+    const total  = parseFloat(document.getElementById(`w${i}-total`)?.value) || 0;
+    const absent = parseFloat(document.getElementById(`w${i}-absent`)?.value) || 0;
+    const present = total - absent;
+    const attP = total > 0 ? ((present / total) * 100).toFixed(1) : '—';
+    const absP = total > 0 ? ((absent  / total) * 100).toFixed(1) : '—';
+    grandTotal  += total;
+    grandAbsent += absent;
+
+    let pillClass = 'green', verdict = 'ممتاز';
+    if (total > 0) {
+      const a = parseFloat(attP);
+      if (a < 75)      { pillClass = 'red';    verdict = 'ضعيف'; }
+      else if (a < 85) { pillClass = 'yellow'; verdict = 'متوسط'; }
+      else if (a < 95) { pillClass = 'green';  verdict = 'جيد'; }
+    }
+
+    rows += `<tr>
+      <td class="td-week">الأسبوع ${i}</td>
+      <td class="td-total">${total || '—'}</td>
+      <td class="td-absent">${absent || '—'}</td>
+      <td>${total > 0 ? present : '—'}</td>
+      <td class="td-att">${total > 0 ? attP + '%' : '—'}</td>
+      <td class="td-abs">${total > 0 ? absP + '%' : '—'}</td>
+      <td>${total > 0 ? `<span class="pill ${pillClass}">${verdict}</span>` : '—'}</td>
+    </tr>`;
+  }
+
+  const grandPresent = grandTotal - grandAbsent;
+  const grandAtt = grandTotal > 0 ? ((grandPresent / grandTotal) * 100).toFixed(1) : 0;
+  const grandAbs = grandTotal > 0 ? ((grandAbsent  / grandTotal) * 100).toFixed(1) : 0;
+
+  rows += `<tr style="background:rgba(0,201,167,0.05); font-weight:700; border-top:2px solid rgba(0,201,167,0.2)">
+    <td class="td-week" style="color:var(--accent1)">الإجمالي</td>
+    <td class="td-total">${grandTotal}</td>
+    <td class="td-absent">${grandAbsent}</td>
+    <td style="color:var(--accent1)">${grandPresent}</td>
+    <td class="td-att">${grandAtt}%</td>
+    <td class="td-abs">${grandAbs}%</td>
+    <td>—</td>
+  </tr>`;
+
+  document.getElementById('weekly-table-body').innerHTML = rows;
+
+  // Summary cards
+  document.getElementById('weekly-summary-cards').innerHTML = `
+    <div class="result-card blue-card">
+      <div class="result-icon">📅</div>
+      <div class="result-label">عدد الأسابيع</div>
+      <div class="result-value" style="color:var(--accent4)">${weekCount}</div>
+      <div class="result-unit">أسبوع</div>
+    </div>
+    <div class="result-card blue-card">
+      <div class="result-icon">👥</div>
+      <div class="result-label">إجمالي الطلاب</div>
+      <div class="result-value" style="color:var(--accent4)">${grandTotal}</div>
+      <div class="result-unit">طالب (تراكمي)</div>
+    </div>
+    <div class="result-card green-card">
+      <div class="result-icon">📈</div>
+      <div class="result-label">متوسط الحضور</div>
+      <div class="result-value">${grandAtt}%</div>
+      <div class="result-unit">للفترة</div>
+    </div>
+    <div class="result-card red-card">
+      <div class="result-icon">📉</div>
+      <div class="result-label">متوسط الغياب</div>
+      <div class="result-value">${grandAbs}%</div>
+      <div class="result-unit">للفترة</div>
+    </div>`;
+
+  document.getElementById('weekly-results').classList.remove('hidden');
+  document.getElementById('weekly-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetWeekly() {
+  for (let i = 1; i <= weekCount; i++) {
+    const t = document.getElementById(`w${i}-total`);
+    const a = document.getElementById(`w${i}-absent`);
+    if (t) t.value = '';
+    if (a) a.value = '';
+  }
+  document.getElementById('weekly-results').classList.add('hidden');
+}
+
+// ====== ANNUAL ======
+const MONTHS = ['محرم','صفر','ربيع الأول','ربيع الآخر','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'];
+
+function buildMonths() {
+  const grid = document.getElementById('months-grid');
+  grid.innerHTML = '';
+  MONTHS.forEach((name, i) => {
+    const n = i + 1;
+    grid.innerHTML += `
+      <div class="week-card">
+        <div class="week-label">${name}</div>
+        <div class="week-inputs">
+          <div class="week-mini-label">إجمالي الطلاب</div>
+          <input type="number" class="week-input" id="mo${n}-total" placeholder="0" min="0" />
+          <div class="week-mini-label">إجمالي الغياب</div>
+          <input type="number" class="week-input" id="mo${n}-absent" placeholder="0" min="0" />
+        </div>
+      </div>`;
+  });
+}
+
+function calcAnnual() {
+  let rows = '';
+  let grandTotal = 0, grandAbsent = 0, activeMonths = 0;
+
+  MONTHS.forEach((name, i) => {
+    const n = i + 1;
+    const total  = parseFloat(document.getElementById(`mo${n}-total`)?.value) || 0;
+    const absent = parseFloat(document.getElementById(`mo${n}-absent`)?.value) || 0;
+    if (total === 0) return; // skip empty
+    activeMonths++;
+    const present = total - absent;
+    const attP = ((present / total) * 100).toFixed(1);
+    const absP = ((absent  / total) * 100).toFixed(1);
+    grandTotal  += total;
+    grandAbsent += absent;
+
+    let pillClass = 'green', verdict = 'ممتاز';
+    const a = parseFloat(attP);
+    if (a < 75)      { pillClass = 'red';    verdict = 'ضعيف'; }
+    else if (a < 85) { pillClass = 'yellow'; verdict = 'متوسط'; }
+    else if (a < 95) { pillClass = 'green';  verdict = 'جيد'; }
+
+    rows += `<tr>
+      <td class="td-week">${name}</td>
+      <td class="td-total">${total}</td>
+      <td class="td-absent">${absent}</td>
+      <td>${present}</td>
+      <td class="td-att">${attP}%</td>
+      <td class="td-abs">${absP}%</td>
+      <td><span class="pill ${pillClass}">${verdict}</span></td>
+    </tr>`;
+  });
+
+  if (activeMonths === 0) { alert('الرجاء إدخال بيانات شهر واحد على الأقل'); return; }
+
+  const grandPresent = grandTotal - grandAbsent;
+  const grandAtt = ((grandPresent / grandTotal) * 100).toFixed(1);
+  const grandAbs = ((grandAbsent  / grandTotal) * 100).toFixed(1);
+
+  rows += `<tr style="background:rgba(56,182,216,0.06); font-weight:700; border-top:2px solid rgba(56,182,216,0.25)">
+    <td class="td-week" style="color:#38b6d8">الإجمالي السنوي</td>
+    <td class="td-total">${grandTotal}</td>
+    <td class="td-absent">${grandAbsent}</td>
+    <td style="color:var(--accent1)">${grandPresent}</td>
+    <td class="td-att">${grandAtt}%</td>
+    <td class="td-abs">${grandAbs}%</td>
+    <td>—</td>
+  </tr>`;
+
+  document.getElementById('annual-table-body').innerHTML = rows;
+
+  document.getElementById('ann-bar-att-pct').textContent = grandAtt + '%';
+  document.getElementById('ann-bar-abs-pct').textContent = grandAbs + '%';
+  setTimeout(() => {
+    document.getElementById('ann-bar-att').style.width = grandAtt + '%';
+    document.getElementById('ann-bar-abs').style.width = grandAbs + '%';
+  }, 100);
+
+  const badge = document.getElementById('annual-verdict');
+  const av = parseFloat(grandAtt);
+  if (av >= 95)      { badge.className = 'verdict excellent'; badge.textContent = '🌟 ممتاز — انضباط سنوي عالٍ جداً'; }
+  else if (av >= 85) { badge.className = 'verdict good';      badge.textContent = '✅ جيد جداً — انضباط سنوي مقبول'; }
+  else if (av >= 75) { badge.className = 'verdict medium';    badge.textContent = '⚠️ متوسط — يحتاج مراجعة'; }
+  else               { badge.className = 'verdict weak';      badge.textContent = '🔴 ضعيف — يستوجب خطة تحسين'; }
+
+  document.getElementById('annual-summary-cards').innerHTML = `
+    <div class="result-card blue-card">
+      <div class="result-icon">🗓️</div>
+      <div class="result-label">الأشهر المُدخلة</div>
+      <div class="result-value" style="color:#38b6d8">${activeMonths}</div>
+      <div class="result-unit">شهر</div>
+    </div>
+    <div class="result-card blue-card">
+      <div class="result-icon">👥</div>
+      <div class="result-label">إجمالي الطلاب</div>
+      <div class="result-value" style="color:#38b6d8">${grandTotal}</div>
+      <div class="result-unit">تراكمي</div>
+    </div>
+    <div class="result-card green-card">
+      <div class="result-icon">📈</div>
+      <div class="result-label">معدل الحضور السنوي</div>
+      <div class="result-value">${grandAtt}%</div>
+      <div class="result-unit">للسنة</div>
+    </div>
+    <div class="result-card red-card">
+      <div class="result-icon">📉</div>
+      <div class="result-label">معدل الغياب السنوي</div>
+      <div class="result-value">${grandAbs}%</div>
+      <div class="result-unit">للسنة</div>
+    </div>`;
+
+  document.getElementById('annual-results').classList.remove('hidden');
+  document.getElementById('annual-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetAnnual() {
+  MONTHS.forEach((_, i) => {
+    const n = i + 1;
+    const t = document.getElementById(`mo${n}-total`);
+    const a = document.getElementById(`mo${n}-absent`);
+    if (t) t.value = '';
+    if (a) a.value = '';
+  });
+  document.getElementById('annual-results').classList.add('hidden');
+  document.getElementById('ann-bar-att').style.width = '0%';
+  document.getElementById('ann-bar-abs').style.width = '0%';
+}
+
+// ====== INIT ======
+buildWeeks();
+buildMonths();
+</script>
+
+</body>
+</html>
