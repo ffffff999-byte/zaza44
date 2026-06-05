@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة التقويم المدرسي الخارجي - المتوسطة الثلاثون بالمدينة</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+  :root {
+    --tamayuz: #1a8c4e;
+    --tamayuz-light: #d4f0e2;
+    --taqadum: #2563eb;
+    --taqadum-light: #dbeafe;
+    --intilaq: #f59e0b;
+    --intilaq-light: #fef3c7;
+    --tahyia: #ef4444;
+    --tahyia-light: #fee2e2;
+    --bg: #0f172a;
+    --bg2: #1e293b;
+    --bg3: #334155;
+    --text: #f1f5f9;
+    --text2: #94a3b8;
+    --gold: #f59e0b;
+    --border: #334155;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); direction:rtl; }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0f2044 0%, #1a3a6e 40%, #0f4c35 100%);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute;
+    top:-50%;left:-50%;
+    width:200%;height:200%;
+    background: radial-gradient(circle at 30% 50%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(26,140,78,0.15) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes pulse { from{transform:scale(1)} to{transform:scale(1.05)} }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 40px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index:1;
+  }
+  .hero-logo {
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .hero-logo .icon {
+    width:52px;height:52px;
+    background:linear-gradient(135deg,#1a8c4e,#2563eb);
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;
+    box-shadow:0 4px 20px rgba(26,140,78,0.4);
+  }
+  .hero-logo-text { font-size:13px; color:rgba(255,255,255,0.7); line-height:1.6; }
+  .hero-logo-text strong { color:#fff; font-size:15px; display:block; }
+  .hero-badge {
+    background: rgba(245,158,11,0.2);
+    border: 1px solid rgba(245,158,11,0.4);
+    color: #fbbf24;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .hero-main {
+    padding: 30px 40px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;z-index:1;
+  }
+  .hero-title { flex:1; }
+  .hero-title .label {
+    font-size:12px; font-weight:600; letter-spacing:2px;
+    color:rgba(255,255,255,0.5);
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .hero-title h1 {
+    font-size:32px; font-weight:900; line-height:1.2;
+    background: linear-gradient(90deg, #fff 0%, #93c5fd 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    margin-bottom:8px;
+  }
+  .hero-title .sub {
+    font-size:15px; color:rgba(255,255,255,0.65);
+  }
+
+  .hero-score-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
+    padding:24px 32px;
+    text-align:center;
+    min-width:200px;
+  }
+  .hero-score-card .score-val {
+    font-size:56px; font-weight:900;
+    background:linear-gradient(135deg,#60a5fa,#34d399);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .hero-score-card .score-label {
+    font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:1px;
+    margin-bottom:12px;
+  }
+  .level-badge {
+    display:inline-flex;align-items:center;gap:6px;
+    background: rgba(37,99,235,0.3);
+    border:1px solid rgba(37,99,235,0.6);
+    border-radius:20px;
+    padding:5px 14px;
+    font-size:13px;font-weight:700;
+    color:#93c5fd;
+  }
+
+  /* INFO GRID */
+  .info-strip {
+    background: rgba(0,0,0,0.3);
+    padding: 14px 40px;
+    display:flex;align-items:center;gap:32px;
+    position:relative;z-index:1;
+    flex-wrap:wrap;
+  }
+  .info-item {
+    display:flex;align-items:center;gap:8px;
+    font-size:13px;
+  }
+  .info-item .icon { font-size:16px; }
+  .info-item .val { font-weight:700; color:#fff; }
+  .info-item .key { color:rgba(255,255,255,0.5); }
+
+  /* IMPORT SECTION */
+  .import-section {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .import-label { font-size:13px; color:var(--text2); white-space:nowrap; }
+  .import-btn {
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    border:none;
+    color:#fff;
+    padding:8px 20px;
+    border-radius:8px;
+    font-family:'Cairo',sans-serif;
+    font-size:13px;font-weight:600;
+    cursor:pointer;
+    display:flex;align-items:center;gap:6px;
+    transition:all 0.2s;
+  }
+  .import-btn:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(37,99,235,0.4); }
+  #fileInput { display:none; }
+  .tool-btn {
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.05);
+    color:#e2e8f0;
+    padding:8px 16px;
+    border-radius:8px;
+    font-family:'Cairo',sans-serif;
+    font-size:13px;font-weight:600;
+    cursor:pointer;
+    display:flex;align-items:center;gap:6px;
+    transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .tool-btn:hover { background:rgba(255,255,255,0.1); transform:translateY(-1px); }
+  .edit-btn.active { background:linear-gradient(135deg,#16a34a,#15803d); border-color:transparent; color:#fff; }
+  .clear-btn:hover { background:rgba(248,113,113,0.15); border-color:rgba(248,113,113,0.4); color:#fca5a5; }
+  /* Editable state */
+  body.editing .editable {
+    outline:1px dashed rgba(96,165,250,0.6);
+    outline-offset:3px;
+    border-radius:4px;
+    cursor:text;
+    transition:background 0.15s;
+  }
+  body.editing .editable:hover { background:rgba(96,165,250,0.08); }
+  body.editing .editable:focus { outline:2px solid #60a5fa; background:rgba(96,165,250,0.12); }
+  /* Analysis panel */
+  .analysis-panel {
+    display:none;
+    background:var(--bg2);
+    border-bottom:1px solid var(--border);
+    padding:18px 40px;
+  }
+  .analysis-head {
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:14px;font-weight:700;color:#60a5fa;margin-bottom:14px;
+  }
+  .analysis-close {
+    background:none;border:none;color:var(--text2);font-size:16px;cursor:pointer;
+    width:28px;height:28px;border-radius:6px;transition:all 0.2s;
+  }
+  .analysis-close:hover { background:rgba(255,255,255,0.08);color:#fff; }
+  .analysis-body { font-size:13px;color:#cbd5e1;line-height:1.9; }
+  .analysis-grid {
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:14px;
+  }
+  .analysis-cell {
+    background:rgba(255,255,255,0.04);border:1px solid var(--border);
+    border-radius:8px;padding:10px 14px;
+  }
+  .analysis-cell .k { font-size:11px;color:var(--text2);margin-bottom:4px; }
+  .analysis-cell .v { font-size:14px;font-weight:700;color:#fff; }
+  .analysis-actions { margin-top:14px;display:flex;gap:10px;flex-wrap:wrap; }
+  .analysis-apply {
+    background:linear-gradient(135deg,#16a34a,#15803d);border:none;color:#fff;
+    padding:9px 22px;border-radius:8px;font-family:'Cairo',sans-serif;
+    font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;
+  }
+  .analysis-apply:hover { transform:translateY(-1px);box-shadow:0 4px 12px rgba(22,163,74,0.4); }
+  .import-status {
+    font-size:12px; color:var(--text2);
+    background:rgba(255,255,255,0.05);
+    border:1px dashed var(--border);
+    border-radius:8px;
+    padding:6px 14px;
+    flex:1;
+  }
+
+  /* TABS */
+  .tabs-bar {
+    background:var(--bg2);
+    padding:0 40px;
+    display:flex;
+    gap:0;
+    border-bottom:1px solid var(--border);
+    position:sticky;top:0;z-index:100;
+  }
+  .tab-btn {
+    padding:14px 20px;
+    background:none;border:none;
+    color:var(--text2);
+    font-family:'Cairo',sans-serif;
+    font-size:13px;font-weight:600;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .tab-btn.active { color:#60a5fa; border-bottom-color:#60a5fa; }
+  .tab-btn:hover { color:#fff; }
+
+  /* MAIN CONTENT */
+  .main { padding:32px 40px; max-width:1400px; margin:0 auto; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* SECTION TITLE */
+  .section-title {
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:24px;
+  }
+  .section-title .icon {
+    width:40px;height:40px;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+  }
+  .section-title h2 {
+    font-size:20px;font-weight:800;
+    color:#fff;
+  }
+  .section-title p { font-size:13px; color:var(--text2); margin-top:2px; }
+
+  /* DOMAIN CARDS */
+  .domains-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:32px;
+  }
+  .domain-card {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.2s;
+    cursor:pointer;
+  }
+  .domain-card:hover { transform:translateY(-3px); }
+  .domain-card::before {
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+  }
+  .domain-card.tamayuz::before { background:linear-gradient(90deg,#1a8c4e,#34d399); }
+  .domain-card.taqadum::before { background:linear-gradient(90deg,#2563eb,#60a5fa); }
+  .domain-card.intilaq::before { background:linear-gradient(90deg,#d97706,#fbbf24); }
+  .domain-card.tahyia::before { background:linear-gradient(90deg,#dc2626,#f87171); }
+
+  .domain-card .emoji { font-size:28px; margin-bottom:10px; display:block; }
+  .domain-card .name { font-size:14px; font-weight:700; color:#fff; margin-bottom:14px; }
+  .domain-card .score-ring {
+    position:relative; width:90px;height:90px;
+    margin:0 auto 12px;
+  }
+  .domain-card .score-ring svg { transform:rotate(-90deg); }
+  .domain-card .score-ring .score-text {
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-size:18px;font-weight:900;line-height:1;
+    color:#fff;
+  }
+  .domain-card .level-tag {
+    font-size:11px;font-weight:600;
+    padding:4px 10px;border-radius:12px;
+    display:inline-block;
+  }
+  .level-tag.tamayuz { background:var(--tamayuz-light); color:var(--tamayuz); }
+  .level-tag.taqadum { background:var(--taqadum-light); color:var(--taqadum); }
+  .level-tag.intilaq { background:var(--intilaq-light); color:#92400e; }
+  .level-tag.tahyia { background:var(--tahyia-light); color:var(--tahyia); }
+
+  /* OVERVIEW CHARTS ROW */
+  .charts-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:32px;
+  }
+  .chart-card {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+  }
+  .chart-card h3 {
+    font-size:14px;font-weight:700;color:#fff;
+    margin-bottom:16px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .chart-wrap { position:relative; height:220px; }
+
+  /* PERFORMANCE TABLE */
+  .perf-legend {
+    display:flex;gap:16px;flex-wrap:wrap;
+    margin-bottom:20px;
+  }
+  .perf-legend-item {
+    display:flex;align-items:center;gap:6px;
+    font-size:12px;color:var(--text2);
+  }
+  .perf-legend-item .dot {
+    width:12px;height:12px;border-radius:3px;
+  }
+
+  /* INDICATORS TABLE */
+  .indicators-section { margin-bottom:40px; }
+  .domain-header {
+    background: linear-gradient(135deg, var(--bg2), var(--bg3));
+    border: 1px solid var(--border);
+    border-radius:12px 12px 0 0;
+    padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .domain-header h3 {
+    font-size:15px;font-weight:800;color:#fff;
+    display:flex;align-items:center;gap:8px;
+  }
+  .domain-header .domain-score {
+    font-size:22px;font-weight:900;
+  }
+
+  .standard-block {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-top:none;
+    padding:0;
+  }
+  .standard-block:last-child { border-radius:0 0 12px 12px; }
+  .standard-header {
+    padding:10px 20px;
+    background:rgba(255,255,255,0.03);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .standard-header .std-name { font-size:13px; font-weight:700; color:var(--text2); }
+  .standard-header .std-score { font-size:14px; font-weight:800; }
+
+  .indicator-row {
+    display:grid;
+    grid-template-columns: 60px 1fr 120px 100px;
+    align-items:center;
+    gap:12px;
+    padding:12px 20px;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    transition:background 0.15s;
+  }
+  .indicator-row:hover { background:rgba(255,255,255,0.03); }
+  .indicator-row:last-child { border-bottom:none; }
+  .ind-code {
+    font-size:10px;font-weight:700;
+    color:var(--text2);
+    font-family:monospace;
+    text-align:center;
+    background:rgba(255,255,255,0.06);
+    border-radius:6px;
+    padding:4px 6px;
+    line-height:1.4;
+  }
+  .ind-name { font-size:13px; color:var(--text); line-height:1.5; }
+  .ind-bar-wrap {
+    display:flex;align-items:center;gap:8px;
+  }
+  .ind-bar {
+    flex:1;
+    height:6px;
+    background:rgba(255,255,255,0.08);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .ind-bar-fill {
+    height:100%;
+    border-radius:3px;
+    transition:width 1s ease;
+  }
+  .ind-pct {
+    font-size:13px;font-weight:800;
+    min-width:46px;
+    text-align:left;
+  }
+  .ind-level {
+    font-size:10px;font-weight:700;
+    padding:4px 8px;
+    border-radius:8px;
+    text-align:center;
+    white-space:nowrap;
+  }
+
+  /* IMPROVEMENT PLAN */
+  .improvement-card {
+    background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.03));
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius:10px;
+    padding:12px 16px;
+    margin-top:6px;
+    margin-right:76px;
+    margin-bottom:8px;
+  }
+  .improvement-card .imp-title {
+    font-size:11px;font-weight:700;
+    color:#fca5a5;
+    display:flex;align-items:center;gap:6px;
+    margin-bottom:6px;
+  }
+  .improvement-card .imp-text {
+    font-size:12px;color:rgba(255,255,255,0.7);
+    line-height:1.7;
+  }
+
+  /* STAKEHOLDERS */
+  .stakeholders-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:32px;
+  }
+  .stakeholder-card {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+  }
+  .stakeholder-card h3 {
+    font-size:14px;font-weight:700;
+    color:#fff;margin-bottom:16px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .s-row {
+    display:flex;align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .s-row .s-name { font-size:12px; color:var(--text2); min-width:90px; }
+  .s-row .s-bar {
+    flex:1;height:8px;
+    background:rgba(255,255,255,0.08);
+    border-radius:4px;overflow:hidden;
+  }
+  .s-row .s-fill { height:100%;border-radius:4px; }
+  .s-row .s-pct { font-size:12px;font-weight:700;min-width:36px;text-align:left; }
+
+  /* NAVES RESULTS */
+  .naves-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:24px;
+  }
+  .naves-card {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+  }
+  .naves-card .subject { font-size:13px;color:var(--text2);margin-bottom:12px; }
+  .naves-card .score { font-size:36px;font-weight:900;line-height:1; }
+  .naves-card .level { font-size:11px;margin-top:8px; }
+
+  /* SUMMARY STATS */
+  .stats-row {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:32px;
+  }
+  .stat-card {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:16px;
+    text-align:center;
+  }
+  .stat-card .stat-num {
+    font-size:32px;font-weight:900;line-height:1;
+    margin-bottom:4px;
+  }
+  .stat-card .stat-label { font-size:12px;color:var(--text2); }
+
+  /* FOOTER */
+  .footer {
+    background:var(--bg2);
+    border-top:1px solid var(--border);
+    padding:20px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:40px;
+  }
+  .footer-left { font-size:12px;color:var(--text2); }
+  .footer-right {
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;
+    color:var(--text2);
+  }
+  .footer-right a {
+    color:#60a5fa;
+    text-decoration:none;
+    font-weight:600;
+    display:flex;align-items:center;gap:4px;
+    transition:color 0.2s;
+  }
+  .footer-right a:hover { color:#93c5fd; }
+  .designer-credit {
+    background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(26,140,78,0.15));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius:10px;
+    padding:10px 18px;
+    display:flex;align-items:center;gap:8px;
+    font-size:13px;
+  }
+
+  /* PERFORMANCE YEAR */
+  .year-chart {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:32px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn {
+    from{opacity:0;transform:translateY(10px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .tab-panel.active { animation:fadeIn 0.3s ease; }
+
+  /* RESPONSIVE */
+  @media(max-width:1100px) {
+    .domains-grid { grid-template-columns:repeat(2,1fr); }
+    .charts-row { grid-template-columns:1fr; }
+    .stakeholders-grid { grid-template-columns:1fr; }
+    .naves-grid { grid-template-columns:1fr; }
+    .stats-row { grid-template-columns:repeat(2,1fr); }
+  }
+  @media(max-width:700px) {
+    .hero-main { flex-direction:column; gap:16px; }
+    .hero-top, .info-strip, .main, .import-section, .tabs-bar { padding-right:16px; padding-left:16px; }
+    .domains-grid { grid-template-columns:1fr; }
+    .stats-row { grid-template-columns:repeat(2,1fr); }
+    .indicator-row { grid-template-columns:50px 1fr; }
+    .ind-bar-wrap, .ind-level { display:none; }
+  }
+
+  .color-tamayuz { color:#34d399; }
+  .color-taqadum { color:#60a5fa; }
+  .color-intilaq { color:#fbbf24; }
+  .color-tahyia { color:#f87171; }
+  .fill-tamayuz { background:linear-gradient(90deg,#1a8c4e,#34d399); }
+  .fill-taqadum { background:linear-gradient(90deg,#1d4ed8,#60a5fa); }
+  .fill-intilaq { background:linear-gradient(90deg,#b45309,#fbbf24); }
+  .fill-tahyia { background:linear-gradient(90deg,#991b1b,#f87171); }
+
+  .highlight-box {
+    background:rgba(245,158,11,0.1);
+    border:1px solid rgba(245,158,11,0.3);
+    border-radius:10px;
+    padding:14px 18px;
+    margin-bottom:20px;
+    font-size:13px;
+    color:rgba(255,255,255,0.8);
+    line-height:1.8;
+  }
+  .highlight-box strong { color:#fbbf24; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-logo">
+      <div class="icon">🏫</div>
+      <div class="hero-logo-text">
+        <strong>منصة التقويم المدرسي الخارجي</strong>
+        هيئة تقويم التعليم والتدريب - برنامج تميز
+      </div>
+    </div>
+    <div class="hero-badge editable" id="reportBadge">📅 تقرير 2025م (نسخة محدثة)</div>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-title">
+      <div class="label">تقرير التقويم الخارجي للمدرسة</div>
+      <h1 class="editable" id="schoolName">المتوسطة الثلاثون بالمدينة</h1>
+      <div class="sub editable" id="schoolSub">الإدارة العامة للتعليم بمنطقة المدينة المنورة &nbsp;|&nbsp; مدرسة بنات &nbsp;|&nbsp; المرحلة المتوسطة</div>
+    </div>
+    <div class="hero-score-card">
+      <div class="score-val editable" id="overallScore">79%</div>
+      <div class="score-label">الأداء العام للمدرسة</div>
+      <div class="level-badge" id="overallLevel">🔵 مستوى التقدم</div>
+    </div>
+  </div>
+
+  <div class="info-strip">
+    <div class="info-item"><span class="icon">🔢</span><span class="key">الرقم الوزاري:&nbsp;</span><span class="val editable" id="ministryNo">S-41876</span></div>
+    <div class="info-item"><span class="icon" id="studentsIcon">👩‍🎓</span><span class="key" id="studentsLabel">عدد الطالبات:&nbsp;</span><span class="val editable" id="studentsCount">618</span></div>
+    <div class="info-item"><span class="icon">👩‍🏫</span><span class="key">المعلمون:&nbsp;</span><span class="val editable" id="teachersCount">29</span></div>
+    <div class="info-item"><span class="icon">🏢</span><span class="key">الإداريون:&nbsp;</span><span class="val editable" id="adminsCount">17</span></div>
+    <div class="info-item"><span class="icon">👤</span><span class="key">الوكلاء:&nbsp;</span><span class="val editable" id="deputiesCount">2</span></div>
+    <div class="info-item"><span class="icon">📋</span><span class="key">تاريخ التقويم:&nbsp;</span><span class="val editable" id="evalDate">26/04/2024</span></div>
+    <div class="info-item"><span class="icon">📊</span><span class="key">نوع المدرسة:&nbsp;</span><span class="val editable" id="schoolType">حكومي - مشترك أساسي</span></div>
+  </div>
+</div>
+
+<!-- ===== IMPORT SECTION ===== -->
+<div class="import-section">
+  <span class="import-label">📂 استيراد تقرير PDF جديد:</span>
+  <button class="import-btn" onclick="document.getElementById('fileInput').click()">
+    ⬆ رفع ملف PDF
+  </button>
+  <input type="file" id="fileInput" accept=".pdf" onchange="handlePDF(event)">
+  <button class="tool-btn edit-btn" id="editToggle" onclick="toggleEdit()">✏️ تفعيل التعديل</button>
+  <button class="tool-btn clear-btn" onclick="clearAll()">🗑️ مسح</button>
+  <div class="import-status" id="importStatus">يمكنك رفع أي تقرير تقويم مدرسي بنفس النمط لاستخراج بياناته وتحليله تلقائياً، أو تفعيل التعديل لتغيير الأسماء والتواريخ والمعلومات يدوياً</div>
+</div>
+
+<!-- ===== PDF ANALYSIS PANEL ===== -->
+<div class="analysis-panel" id="analysisPanel">
+  <div class="analysis-head">
+    <span>🔍 نتيجة تحليل ملف PDF المستورد</span>
+    <button class="analysis-close" onclick="document.getElementById('analysisPanel').style.display='none'">✕</button>
+  </div>
+  <div class="analysis-body" id="analysisBody"></div>
+  <div class="analysis-actions" id="analysisActions"></div>
+</div>
+
+<!-- ===== TABS ===== -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="showTab('overview',this)">📊 النظرة العامة</button>
+  <button class="tab-btn" onclick="showTab('domain1',this)">🏛 الإدارة المدرسية</button>
+  <button class="tab-btn" onclick="showTab('domain2',this)">📚 التعليم والتعلم</button>
+  <button class="tab-btn" onclick="showTab('domain3',this)">🎓 نواتج التعلم</button>
+  <button class="tab-btn" onclick="showTab('domain4',this)">🏗 البيئة المدرسية</button>
+  <button class="tab-btn" onclick="showTab('stakeholders',this)">👥 أصحاب المصلحة</button>
+  <button class="tab-btn" onclick="showTab('plans',this)">📝 خطط التحسين</button>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main">
+
+<!-- ====== TAB: OVERVIEW ====== -->
+<div class="tab-panel active" id="tab-overview">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(37,99,235,0.2)">📊</div>
+    <div>
+      <h2>ملخص نتائج المدرسة</h2>
+      <p>الأداء الإجمالي وفق مجالات ومعايير التقويم المدرسي</p>
+    </div>
+  </div>
+
+  <!-- DOMAIN CARDS -->
+  <div class="domains-grid">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <linearGradient id="gTamayuz" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a8c4e"/><stop offset="100%" stop-color="#34d399"/></linearGradient>
+        <linearGradient id="gTaqadum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient>
+        <linearGradient id="gIntilaq" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#d97706"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient>
+        <linearGradient id="gTahyia" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#dc2626"/><stop offset="100%" stop-color="#f87171"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="domain-card tamayuz" id="domainCard1" onclick="showTab('domain1', document.querySelectorAll('.tab-btn')[1])">
+      <span class="emoji">🏛</span>
+      <div class="name">الإدارة المدرسية</div>
+      <div class="score-ring">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="7"/>
+          <circle id="ring1" cx="45" cy="45" r="38" fill="none" stroke="url(#gTamayuz)" stroke-width="7"
+            stroke-dasharray="238.76" stroke-dashoffset="22.68" stroke-linecap="round"/>
+        </svg>
+        <div class="score-text" id="score1">90.5%</div>
+      </div>
+      <span class="level-tag tamayuz" id="tag1">🌟 تميز</span>
+    </div>
+    <div class="domain-card taqadum" id="domainCard2" onclick="showTab('domain2', document.querySelectorAll('.tab-btn')[2])">
+      <span class="emoji">📚</span>
+      <div class="name">التعليم والتعلم</div>
+      <div class="score-ring">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="7"/>
+          <circle id="ring2" cx="45" cy="45" r="38" fill="none" stroke="url(#gTaqadum)" stroke-width="7"
+            stroke-dasharray="238.76" stroke-dashoffset="54.91" stroke-linecap="round"/>
+        </svg>
+        <div class="score-text" id="score2">77%</div>
+      </div>
+      <span class="level-tag taqadum" id="tag2">🔵 تقدم</span>
+    </div>
+    <div class="domain-card intilaq" id="domainCard3" onclick="showTab('domain3', document.querySelectorAll('.tab-btn')[3])">
+      <span class="emoji">🎓</span>
+      <div class="name">نواتج التعلم</div>
+      <div class="score-ring">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="7"/>
+          <circle id="ring3" cx="45" cy="45" r="38" fill="none" stroke="url(#gIntilaq)" stroke-width="7"
+            stroke-dasharray="238.76" stroke-dashoffset="67.23" stroke-linecap="round"/>
+        </svg>
+        <div class="score-text" id="score3">71.75%</div>
+      </div>
+      <span class="level-tag intilaq" id="tag3">🟡 انطلاق</span>
+    </div>
+    <div class="domain-card taqadum" id="domainCard4" onclick="showTab('domain4', document.querySelectorAll('.tab-btn')[4])">
+      <span class="emoji">🏗</span>
+      <div class="name">البيئة المدرسية</div>
+      <div class="score-ring">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="7"/>
+          <circle id="ring4" cx="45" cy="45" r="38" fill="none" stroke="url(#gTaqadum)" stroke-width="7"
+            stroke-dasharray="238.76" stroke-dashoffset="38.80" stroke-linecap="round"/>
+        </svg>
+        <div class="score-text" id="score4">83.75%</div>
+      </div>
+      <span class="level-tag taqadum" id="tag4">🔵 تقدم</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num color-tamayuz" id="cntTamayuz">11</div>
+      <div class="stat-label">✅ مؤشرات تميز (90%+)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num color-taqadum" id="cntTaqadum">10</div>
+      <div class="stat-label">🔵 مؤشرات تقدم (75-90%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num color-intilaq" id="cntIntilaq">11</div>
+      <div class="stat-label">🟡 مؤشرات تحسين (50-75%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num color-tahyia" id="cntTahyia">1</div>
+      <div class="stat-label">🔴 نقاط ضعف (أقل من 50%)</div>
+    </div>
+  </div>
+
+  <!-- CHARTS ROW -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>📊 أداء المدرسة وفق المجالات</h3>
+      <div class="chart-wrap"><canvas id="chartDomains"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>📈 أداء المدرسة عبر السنوات</h3>
+      <div class="chart-wrap"><canvas id="chartYears"></canvas></div>
+    </div>
+  </div>
+
+  <!-- PERFORMANCE LEGEND -->
+  <div class="perf-legend">
+    <div class="perf-legend-item"><div class="dot" style="background:#34d399"></div> تميز (90%+)</div>
+    <div class="perf-legend-item"><div class="dot" style="background:#60a5fa"></div> تقدم (75-90%)</div>
+    <div class="perf-legend-item"><div class="dot" style="background:#fbbf24"></div> انطلاق (50-75%)</div>
+    <div class="perf-legend-item"><div class="dot" style="background:#f87171"></div> تهيئة (أقل 50%)</div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="highlight-box">
+    <strong>🌟 أبرز نقاط التميز:</strong> تطبيق التقويم الذاتي (99.25%) • تحليل نتائج التقويم وتوظيفها (99.25%) • الاعتزاز بالقيم والهوية الوطنية (98.00%) • تنظيم مبنى المدرسة (98.25%) • الأمن والسلامة (98.75%) • دعم تنفيذ المناهج (90.75%)<br>
+    <strong>⚠ نقطة الضعف الوحيدة:</strong> تنمية مهارات التفكير العليا لدى المتعلمين (49.50%) — تحتاج تدخلاً جوهرياً عاجلاً
+  </div>
+
+  <!-- OVERVIEW STANDARDS CHART -->
+  <div class="chart-card" style="margin-bottom:24px">
+    <h3>📊 أداء المدرسة وفق المعايير الكاملة</h3>
+    <div class="chart-wrap" style="height:300px"><canvas id="chartStandards"></canvas></div>
+  </div>
+</div>
+
+<!-- ====== TAB: DOMAIN 1 ====== -->
+<div class="tab-panel" id="tab-domain1">
+  <div class="indicators-section">
+    <div class="domain-header" style="background:linear-gradient(135deg,rgba(26,140,78,0.2),rgba(26,140,78,0.05));border-color:rgba(26,140,78,0.4)">
+      <h3>🏛 الإدارة المدرسية</h3>
+      <div class="domain-score color-tamayuz">90.50% <span class="level-tag tamayuz" style="font-size:10px;margin-right:8px">تميز</span></div>
+    </div>
+
+    <!-- Standard: التخطيط -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <span class="std-name">📋 معيار التخطيط</span>
+        <span class="std-score color-taqadum">83.00%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-1-1</div>
+        <div class="ind-name">تضع المدرسة خطة تشغيلية مكتملة العناصر وفق أهداف تطويرية محددة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:88.5%"></div></div>
+          <div class="ind-pct color-taqadum">88.50%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-1-1</div>
+        <div class="ind-name">تتابع المدرسة تنفيذ خطتها وتطورها بما يضمن تحقيق أهدافها</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:80.5%"></div></div>
+          <div class="ind-pct color-taqadum">80.50%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+    </div>
+
+    <!-- Standard: قيادة العملية التعليمية -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <span class="std-name">🎯 معيار قيادة العملية التعليمية</span>
+        <span class="std-score color-tamayuz">87.00%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-2-1</div>
+        <div class="ind-name">تعزز المدرسة القيم الإسلامية والهوية الوطنية</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:83.75%"></div></div>
+          <div class="ind-pct color-taqadum">83.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-2-1</div>
+        <div class="ind-name">تلتزم المدرسة بقيم مهنة التعليم وأخلاقياتها</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:94.5%"></div></div>
+          <div class="ind-pct color-tamayuz">94.50%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-2-1</div>
+        <div class="ind-name">توفر المدرسة مناخاً آمناً للتعلم والنمو نفسياً واجتماعياً</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:90.25%"></div></div>
+          <div class="ind-pct color-tamayuz">90.25%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">4-1-2-1</div>
+        <div class="ind-name">تنشر المدرسة قواعد السلوك والمواظبة وتتابع تطبيقها</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:92.75%"></div></div>
+          <div class="ind-pct color-tamayuz">92.75%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">5-1-2-1</div>
+        <div class="ind-name">توفر المدرسة برامج وأنشطة تربوية داعمة للسلوك الإيجابي</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:89.75%"></div></div>
+          <div class="ind-pct color-taqadum">89.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">6-1-2-1</div>
+        <div class="ind-name">توفر المدرسة برامج وأنشطة إثرائية غير صفية لتطوير مواهب المتعلمين</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:73.75%"></div></div>
+          <div class="ind-pct color-intilaq">73.75%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة تطبيق أساليب للكشف عن مواهب المتعلمين وقدراتهم، وتحديد احتياجاتهم، وتحفيزهم على المشاركة في مقاييس موهبة، وتوفير أنشطة إثرائية غير صفية متنوعة ترتبط بنتائج تقويم مواهبهم وقدراتهم، وتلبي احتياجاتهم المستقبلية، وتتابع تطبيقها بأساليب مبتكرة وتقدم لهم الحوافز التشجيعية لدعم تميزهم وتحقق مستويات متقدمة في المسابقات الوطنية والدولية.</div>
+      </div>
+    </div>
+
+    <!-- Standard: المجتمع المدرسي -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <span class="std-name">🤝 معيار المجتمع المدرسي</span>
+        <span class="std-score color-taqadum">81.50%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-3-1</div>
+        <div class="ind-name">تعزز المدرسة بناء العلاقات الإيجابية والتعاون في المجتمع المدرسي</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:82%"></div></div>
+          <div class="ind-pct color-taqadum">82.00%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-3-1</div>
+        <div class="ind-name">تعزز المدرسة مشاركة الأسرة في تعلم أبنائهم والتحضير لمستقبلهم</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:84.75%"></div></div>
+          <div class="ind-pct color-taqadum">84.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-3-1</div>
+        <div class="ind-name">تعزز المدرسة الشراكة المجتمعية لدعم التعلم والتأثير الإيجابي في المجتمع المحلي</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:74%"></div></div>
+          <div class="ind-pct color-intilaq">74.00%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة توفير فرص للتواصل مع المجتمع المحلي بطرق متنوعة، واستثمار إمكانات المؤسسات الوطنية لدعم تعلم المتعلمين وتلبية احتياجات ذوي الإعاقة والموهوبين، وإقامة الأنشطة والفعاليات التوعوية للمجتمع المحلي بطرق مبتكرة وإتاحة إمكاناتها لخدمته.</div>
+      </div>
+    </div>
+
+    <!-- Standard: التطوير المؤسسي -->
+    <div class="standard-block" style="border-radius:0 0 12px 12px">
+      <div class="standard-header">
+        <span class="std-name">🔧 معيار التطوير المؤسسي</span>
+        <span class="std-score color-taqadum">82.50%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-4-1</div>
+        <div class="ind-name">تشجع المدرسة منسوبيها للحصول على الرخصة المهنية</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:68.5%"></div></div>
+          <div class="ind-pct color-intilaq">68.50%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة توفير أنشطة وبرامج توعوية متنوعة تشجع منسوبيها وتحفزهم للمبادرة في الحصول على الرخصة المهنية، وتتابع تقدمهم المهني بانتظام وفق الرتب المهنية للمعلمين.</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-4-1</div>
+        <div class="ind-name">تدعم المدرسة التطوير المهني لمنسوبيها وفقاً لنتائج تقويم الأداء الوظيفي</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:75%"></div></div>
+          <div class="ind-pct color-taqadum">75.00%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-4-1</div>
+        <div class="ind-name">تطبق المدرسة التقويم الذاتي المبني على المعايير المعتمدة من الهيئة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:99.25%"></div></div>
+          <div class="ind-pct color-tamayuz">99.25%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">4-1-4-1</div>
+        <div class="ind-name">تنفذ المدرسة خطة للتحسين بناء على نتائج التقويم المدرسي وتتابعها</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:83.75%"></div></div>
+          <div class="ind-pct color-taqadum">83.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB: DOMAIN 2 ====== -->
+<div class="tab-panel" id="tab-domain2">
+  <div class="indicators-section">
+    <div class="domain-header" style="background:linear-gradient(135deg,rgba(37,99,235,0.2),rgba(37,99,235,0.05));border-color:rgba(37,99,235,0.4)">
+      <h3>📚 التعليم والتعلم</h3>
+      <div class="domain-score color-taqadum">77.00% <span class="level-tag taqadum" style="font-size:10px;margin-right:8px">تقدم</span></div>
+    </div>
+
+    <!-- Standard: بناء خبرات التعلم -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <span class="std-name">🧠 معيار بناء خبرات التعلم</span>
+        <span class="std-score color-intilaq">67.00%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-1-2</div>
+        <div class="ind-name">توفر المدرسة فرصاً متكافئة للتعلم تلبي احتياجات المتعلمين بمن فيهم ذوو الإعاقة والموهوبون</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:59.75%"></div></div>
+          <div class="ind-pct color-intilaq">59.75%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة توفير فرص تعلم متكافئة تقدم لجميع المتعلمين، وتستجيب لاحتياجاتهم المختلفة ومنهم ذوو الإعاقة والموهوبون، إضافة إلى متابعة الالتزام بذلك بانتظام، وتوفير الوصول الشامل لكل الفئات من أجل تعلم ثري ذي جودة عالية.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">2-1-1-2</div>
+        <div class="ind-name">تدعم المدرسة تنفيذ المناهج لتحقيق نواتج التعلم المستهدفة وفق الخطة الدراسية</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:90.75%"></div></div>
+          <div class="ind-pct color-tamayuz">90.75%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-1-2</div>
+        <div class="ind-name">تنوع المدرسة في استراتيجيات التدريس لتلبية احتياجات المتعلمين ودعم تعلمهم</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:59.25%"></div></div>
+          <div class="ind-pct color-intilaq">59.25%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة العمل على بناء خبرات تعلم ثرية للمتعلمين تشجع البحث والتجريب وتطبق استراتيجيات تدريس متنوعة وفاعلة تراعي اهتماماتهم والفروق الفردية بينهم، وتلبي احتياجاتهم المتنوعة لتحقيق التوقعات العالية لنواتج التعلم المستهدفة وفقاً لخصائص المرحلة العمرية وقدراتهم ومنهم ذوو الإعاقة والموهوبون.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">4-1-1-2</div>
+        <div class="ind-name">تفعل المدرسة التعلم الإلكتروني لتلبية احتياجات المتعلمين ودعم تعلمهم</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:64.25%"></div></div>
+          <div class="ind-pct color-intilaq">64.25%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة توفير المصادر والتجهيزات التقنية اللازمة لتلبية احتياجات جميع المتعلمين ودعم تعلمهم، وأن تصمم أنشطة متنوعة ومبتكرة تدمج التعلم الصفي والتعلم الإلكتروني في جميع الفصول الدراسية ضمن التعليم المدرسي اليومي وللطوارئ.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">5-1-1-2</div>
+        <div class="ind-name">توفر المدرسة أنشطة تعلم تطبيقية ترتبط بحياة المتعلمين</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:61.25%"></div></div>
+          <div class="ind-pct color-intilaq">61.25%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة ربط خبرات المتعلمين بواقع حياتهم، وتقديم أنشطة تطبيقية تشجعهم على البحث وإجراء التجارب العلمية والاستقصاء للوصول إلى المعرفة، وتطبيقها في مواقف جديدة.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">6-1-1-2</div>
+        <div class="ind-name">تنمي المدرسة المهارات القرائية والعددية الأساسية لدى المتعلمين</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:72.5%"></div></div>
+          <div class="ind-pct color-intilaq">72.50%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة تعزيز مهارات القراءة والكتابة والمهارات العددية الأساسية لدى المتعلمين من خلال عمليات التعليم والتعلم الصفية وغير الصفية، والأنشطة الإثرائية المبتكرة، وإعطاء الأولوية لتعلم مهارات القراءة والكتابة في جميع المراحل عبر خطة مركزة طويلة المدى، وتتابع تنفيذها.</div>
+      </div>
+
+      <div class="indicator-row" style="background:rgba(239,68,68,0.06)">
+        <div class="ind-code">7-1-1-2</div>
+        <div class="ind-name">تنمي المدرسة مهارات التفكير العليا لدى المتعلمين</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tahyia" style="width:49.5%"></div></div>
+          <div class="ind-pct color-tahyia">49.50%</div>
+        </div>
+        <div class="ind-level level-tag tahyia">⚠ تهيئة</div>
+      </div>
+      <div class="improvement-card" style="border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.1)">
+        <div class="imp-title" style="color:#fca5a5">🚨 نقطة ضعف - تحتاج تدخلاً عاجلاً</div>
+        <div class="imp-text">يُتوقع من المدرسة توفير أساليب وأنشطة تعلم متنوعة ومتميزة تستهدف تنمية مهارات التفكير العليا لدى جميع المتعلمين وتركز على مهارات التحليل، والاستنتاج والتقويم والإبداع، وحل المشكلات من خلال العمليات الصفية وغير الصفية، وتوفر أنشطة إثرائية متنوعة ومبتكرة لتنميتها لديهم، وتقومها، وتطورها.<br><br>
+        <strong style="color:#fca5a5">خطة التحسين المقترحة:</strong><br>
+        ١. تدريب المعلمين على استراتيجيات التفكير العليا (بلوم، المنظمون المرئيون، حل المشكلات)<br>
+        ٢. دمج أسئلة التفكير النقدي في جميع المواد والدروس اليومية<br>
+        ٣. تصميم مهام أدائية تتطلب التحليل والتركيب والتقييم<br>
+        ٤. تفعيل مجتمعات التعلم المهنية للمعلمين حول تنمية التفكير العليا<br>
+        ٥. قياس الأثر دورياً عبر أسئلة الاختبارات المصنفة وفق مستويات بلوم</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">8-1-1-2</div>
+        <div class="ind-name">تنمي المدرسة المهارات العاطفية والاجتماعية لدى المتعلمين</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:77.25%"></div></div>
+          <div class="ind-pct color-taqadum">77.25%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">9-1-1-2</div>
+        <div class="ind-name">تنمي المدرسة المهارات الرقمية لدى المتعلمين</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:65%"></div></div>
+          <div class="ind-pct color-intilaq">65.00%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة تعزيز مهارات استخدام التقنية الرقمية لدى المتعلمين والقدرة على التعامل مع البيانات عبر الإنترنت، وتوفير فرص ثرية من خبرات التعلم لتنمية قدراتهم على استخدام التطبيقات التقنية، وتوظيف البرمجيات في البحث والوصول إلى مصادر المعرفة الموثوقة لدعم تعلمهم.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">10-1-1-2</div>
+        <div class="ind-name">تعزز المدرسة دافعية المتعلمين للتعلم والاستمتاع به</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:66%"></div></div>
+          <div class="ind-pct color-intilaq">66.00%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة توفير بيئة تعلم تحقق الرفاه للمتعلمين، وتثير الفضول لديهم، وتشجعهم على حب الاستطلاع، وتطبق أساليب تحفيز وأنشطة تراعي ميولهم واهتماماتهم، وتزيد من دافعيتهم نحو التعلم والاستمتاع به.</div>
+      </div>
+    </div>
+
+    <!-- Standard: تقويم التعلم -->
+    <div class="standard-block" style="border-radius:0 0 12px 12px">
+      <div class="standard-header">
+        <span class="std-name">📝 معيار تقويم التعلم</span>
+        <span class="std-score color-taqadum">82.50%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-2-2</div>
+        <div class="ind-name">تقوّم المدرسة أداء المتعلمين باستخدام أساليب وأدوات تقويم متنوعة وفاعلة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:67.25%"></div></div>
+          <div class="ind-pct color-intilaq">67.25%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة تطبيق أساليب وأدوات تقويم فاعلة ومتنوعة تشخيصية وتكوينية وختامية لدعم التعلم والتجريب المستمر للوصول إلى ممارسات أكثر تميزاً، والتأكد من أن جميع معلمي المدرسة يتمتعون بنفس القدر من المهارة في إجراء التقويمات والتنويع في أساليبها، وتظهر التمايز في مستويات أداء المتعلمين، وتشجعهم على المشاركة في تقويم أدائهم وتحسينه.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">2-1-2-2</div>
+        <div class="ind-name">تحلل المدرسة نتائج التقويم وتوظفها في تحسين نواتج التعلم بانتظام</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:99.25%"></div></div>
+          <div class="ind-pct color-tamayuz">99.25%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-2-2</div>
+        <div class="ind-name">تقدم المدرسة التغذية الراجعة للمتعلمين بانتظام</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:85.75%"></div></div>
+          <div class="ind-pct color-taqadum">85.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB: DOMAIN 3 ====== -->
+<div class="tab-panel" id="tab-domain3">
+  <div class="indicators-section">
+    <div class="domain-header" style="background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(245,158,11,0.05));border-color:rgba(245,158,11,0.4)">
+      <h3>🎓 نواتج التعلم</h3>
+      <div class="domain-score color-intilaq">71.75% <span class="level-tag intilaq" style="font-size:10px;margin-right:8px">انطلاق</span></div>
+    </div>
+
+    <!-- Standard: التحصيل التعليمي -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <span class="std-name">📖 معيار التحصيل التعليمي (نافس)</span>
+        <span class="std-score color-intilaq">73.50%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-1-3</div>
+        <div class="ind-name">يحقق المتعلمون نتائج متقدمة في مجال القراءة وفقاً للاختبارات الوطنية (نافس)</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:77.78%"></div></div>
+          <div class="ind-pct color-taqadum">77.78%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-1-3</div>
+        <div class="ind-name">يحقق المتعلمون نتائج متقدمة في مجال الرياضيات وفقاً للاختبارات الوطنية (نافس)</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:66.02%"></div></div>
+          <div class="ind-pct color-intilaq">66.02%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة العمل على رفع نسبة المتعلمين الذين يحققون مستويات متقدمة في نواتج التعلم لمجال الرياضيات، وتحليل بيانات الاختبارات الوطنية لتحديد الفجوة بين أداء المدرسة والأداء على المستوى الوطني، واتخاذ القرارات التعليمية المناسبة بشأن البرامج العلاجية أو الإثرائية لتحقيق التميز واستدامته.</div>
+      </div>
+
+      <div class="indicator-row">
+        <div class="ind-code">3-1-1-3</div>
+        <div class="ind-name">يحقق المتعلمون نتائج متقدمة في مجال العلوم وفقاً للاختبارات الوطنية (نافس)</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:77.57%"></div></div>
+          <div class="ind-pct color-taqadum">77.57%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+    </div>
+
+    <!-- Standard: التطور الشخصي -->
+    <div class="standard-block" style="border-radius:0 0 12px 12px">
+      <div class="standard-header">
+        <span class="std-name">🌱 معيار التطور الشخصي والصحي والاجتماعي</span>
+        <span class="std-score color-tamayuz">90.75%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-2-3</div>
+        <div class="ind-name">يظهر المتعلمون الاعتزاز بالقيم والهوية الوطنية</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:98%"></div></div>
+          <div class="ind-pct color-tamayuz">98.00%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-2-3</div>
+        <div class="ind-name">يظهر المتعلمون اتجاهات إيجابية نحو ذواتهم</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:93.75%"></div></div>
+          <div class="ind-pct color-tamayuz">93.75%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-2-3</div>
+        <div class="ind-name">يظهر المتعلمون التزاماً بالممارسات الصحية السليمة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:89.25%"></div></div>
+          <div class="ind-pct color-taqadum">89.25%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">4-1-2-3</div>
+        <div class="ind-name">يشارك المتعلمون في الأنشطة المجتمعية والأعمال التطوعية</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-intilaq" style="width:73.5%"></div></div>
+          <div class="ind-pct color-intilaq">73.50%</div>
+        </div>
+        <div class="ind-level level-tag intilaq">انطلاق</div>
+      </div>
+      <div class="improvement-card">
+        <div class="imp-title">⚡ خطة التحسين المقترحة</div>
+        <div class="imp-text">يُتوقع من المدرسة تصميم برامج وأنشطة نوعية تحفز المتعلمين على المشاركة في الأعمال التطوعية لخدمة المجتمع، ودعم مشاركتهم فيها بإيجابية، وتوظيف ما تعلموه في إيجاد حلول مبتكرة تعزز الشعور بالمسؤولية.</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">5-1-2-3</div>
+        <div class="ind-name">يلتزم المتعلمون بقواعد السلوك والانضباط المدرسي</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:97.5%"></div></div>
+          <div class="ind-pct color-tamayuz">97.50%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">6-1-2-3</div>
+        <div class="ind-name">يظهر المتعلمون القدرة على البحث والتعلم الذاتي</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:86%"></div></div>
+          <div class="ind-pct color-taqadum">86.00%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">7-1-2-3</div>
+        <div class="ind-name">يظهر المتعلمون اعتزازاً بثقافتهم واحتراماً للتنوع الثقافي في المجتمع</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:95.75%"></div></div>
+          <div class="ind-pct color-tamayuz">95.75%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB: DOMAIN 4 ====== -->
+<div class="tab-panel" id="tab-domain4">
+  <div class="indicators-section">
+    <div class="domain-header" style="background:linear-gradient(135deg,rgba(26,140,78,0.2),rgba(26,140,78,0.05));border-color:rgba(26,140,78,0.4)">
+      <h3>🏗 البيئة المدرسية</h3>
+      <div class="domain-score color-taqadum">83.75% <span class="level-tag taqadum" style="font-size:10px;margin-right:8px">تقدم</span></div>
+    </div>
+
+    <!-- Standard: المبنى المدرسي -->
+    <div class="standard-block">
+      <div class="standard-header">
+        <span class="std-name">🏢 معيار المبنى المدرسي</span>
+        <span class="std-score color-taqadum">89.75%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-1-4</div>
+        <div class="ind-name">تنظيم مبنى المدرسة ملائم لعدد المتعلمين والمرحلة العمرية</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:98.25%"></div></div>
+          <div class="ind-pct color-tamayuz">98.25%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-1-4</div>
+        <div class="ind-name">تتوافر فصول ومعامل ملائمة للعملية التعليمية تلبي احتياجات المتعلمين بمن فيهم ذوو الإعاقة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:84.75%"></div></div>
+          <div class="ind-pct color-taqadum">84.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-1-4</div>
+        <div class="ind-name">تلبي المرافق والخدمات المساندة احتياجات المتعلمين بمن فيهم ذوو الإعاقة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:87.5%"></div></div>
+          <div class="ind-pct color-taqadum">87.50%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+    </div>
+
+    <!-- Standard: الأمن والسلامة -->
+    <div class="standard-block" style="border-radius:0 0 12px 12px">
+      <div class="standard-header">
+        <span class="std-name">🛡 معيار الأمن والسلامة</span>
+        <span class="std-score color-tamayuz">91.00%</span>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">1-1-2-4</div>
+        <div class="ind-name">تتوافر في فصول المدرسة ومعاملها وجميع مرافقها متطلبات الأمن والسلامة</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-tamayuz" style="width:98.75%"></div></div>
+          <div class="ind-pct color-tamayuz">98.75%</div>
+        </div>
+        <div class="ind-level level-tag tamayuz">تميز</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">2-1-2-4</div>
+        <div class="ind-name">تعمل المدرسة على صيانة جميع مرافق المبنى وتجهيزاته بانتظام</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:87.75%"></div></div>
+          <div class="ind-pct color-taqadum">87.75%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+      <div class="indicator-row">
+        <div class="ind-code">3-1-2-4</div>
+        <div class="ind-name">تعمل المدرسة على نظافة المبنى المدرسي وجميع مرافقه بانتظام</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill fill-taqadum" style="width:86%"></div></div>
+          <div class="ind-pct color-taqadum">86.00%</div>
+        </div>
+        <div class="ind-level level-tag taqadum">تقدم</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB: STAKEHOLDERS ====== -->
+<div class="tab-panel" id="tab-stakeholders">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(245,158,11,0.2)">👥</div>
+    <div>
+      <h2>آراء أصحاب المصلحة</h2>
+      <p>نتائج استطلاع آراء المتعلمين وأولياء الأمور والمعلمين حول أداء المدرسة</p>
+    </div>
+  </div>
+
+  <div class="stakeholders-grid">
+    <div class="stakeholder-card">
+      <h3>👩‍🎓 استبانة المتعلم</h3>
+      <div class="s-row">
+        <div class="s-name">الإدارة المدرسية</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:82%"></div></div>
+        <div class="s-pct color-taqadum">82%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">التعليم والتعلم</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:80%"></div></div>
+        <div class="s-pct color-taqadum">80%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">نواتج التعلم</div>
+        <div class="s-bar"><div class="s-fill fill-tamayuz" style="width:90%"></div></div>
+        <div class="s-pct color-tamayuz">90%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">البيئة المدرسية</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:77%"></div></div>
+        <div class="s-pct color-taqadum">77%</div>
+      </div>
+    </div>
+
+    <div class="stakeholder-card">
+      <h3>👨‍👩‍👧 استبانة ولي الأمر</h3>
+      <div class="s-row">
+        <div class="s-name">الإدارة المدرسية</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:82%"></div></div>
+        <div class="s-pct color-taqadum">82%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">التعليم والتعلم</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:80%"></div></div>
+        <div class="s-pct color-taqadum">80%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">نواتج التعلم</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:88%"></div></div>
+        <div class="s-pct color-taqadum">88%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">البيئة المدرسية</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:88%"></div></div>
+        <div class="s-pct color-taqadum">88%</div>
+      </div>
+    </div>
+
+    <div class="stakeholder-card">
+      <h3>👩‍🏫 استبانة المعلم</h3>
+      <div class="s-row">
+        <div class="s-name">الإدارة المدرسية</div>
+        <div class="s-bar"><div class="s-fill fill-tamayuz" style="width:95%"></div></div>
+        <div class="s-pct color-tamayuz">95%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">التعليم والتعلم</div>
+        <div class="s-bar"><div class="s-fill fill-tamayuz" style="width:94%"></div></div>
+        <div class="s-pct color-tamayuz">94%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">نواتج التعلم</div>
+        <div class="s-bar"><div class="s-fill fill-tamayuz" style="width:94%"></div></div>
+        <div class="s-pct color-tamayuz">94%</div>
+      </div>
+      <div class="s-row">
+        <div class="s-name">البيئة المدرسية</div>
+        <div class="s-bar"><div class="s-fill fill-taqadum" style="width:89%"></div></div>
+        <div class="s-pct color-taqadum">89%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h3>📊 مقارنة آراء أصحاب المصلحة وفق المجالات</h3>
+    <div class="chart-wrap" style="height:260px"><canvas id="chartStakeholders"></canvas></div>
+  </div>
+
+  <!-- NAVES Section -->
+  <div class="section-title" style="margin-top:32px">
+    <div class="icon" style="background:rgba(245,158,11,0.2)">🎯</div>
+    <div>
+      <h2>أداء المدرسة وفق اختبارات نافس</h2>
+      <p>نتائج الاختبارات الوطنية في القراءة والرياضيات والعلوم</p>
+    </div>
+  </div>
+  <div class="naves-grid">
+    <div class="naves-card">
+      <div class="subject">📖 القراءة</div>
+      <div class="score color-taqadum">77.78%</div>
+      <div class="level level-tag taqadum">تقدم</div>
+    </div>
+    <div class="naves-card">
+      <div class="subject">🔢 الرياضيات</div>
+      <div class="score color-intilaq">66.02%</div>
+      <div class="level level-tag intilaq">انطلاق</div>
+    </div>
+    <div class="naves-card">
+      <div class="subject">🔬 العلوم الطبيعية</div>
+      <div class="score color-taqadum">77.57%</div>
+      <div class="level level-tag taqadum">تقدم</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB: PLANS ====== -->
+<div class="tab-panel" id="tab-plans">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(239,68,68,0.2)">📝</div>
+    <div>
+      <h2>خطط التحسين الشاملة</h2>
+      <p>ملخص كل نقاط الضعف ونقاط التحسين مع الخطط المقترحة لرفع الأداء</p>
+    </div>
+  </div>
+
+  <!-- WEAKNESS -->
+  <div style="margin-bottom:24px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <div style="background:#991b1b;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;color:#fff">🚨 نقاط الضعف (أقل من 50%)</div>
+    </div>
+    <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px">
+      <div style="font-size:14px;font-weight:700;color:#fca5a5;margin-bottom:12px">⚠ 7-1-1-2 — تنمية مهارات التفكير العليا لدى المتعلمين &nbsp; <span class="level-tag tahyia">49.50%</span></div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.9">
+        <strong style="color:#fbbf24">المشكلة:</strong> المؤشر تحقق بدرجة أقل من المتوقع (تهيئة)، وهو الوحيد في هذا المستوى.<br>
+        <strong style="color:#fbbf24">الخطة المقترحة:</strong><br>
+        ✅ <strong>التدريب:</strong> تدريب جميع المعلمين على استراتيجيات تنمية التفكير العليا (بلوم، الخرائط الذهنية، العصف الذهني، الاستقصاء)<br>
+        ✅ <strong>التخطيط:</strong> إدراج أسئلة وأنشطة تفكير عليا في جميع الخطط الدرسية اليومية<br>
+        ✅ <strong>التنفيذ:</strong> تصميم مهام أدائية متنوعة تركز على التحليل والتركيب والتقييم والإبداع وحل المشكلات<br>
+        ✅ <strong>المتابعة:</strong> رصد وتقويم أداء المتعلمين في مهارات التفكير العليا دورياً عبر اختبارات مصنّفة<br>
+        ✅ <strong>الإثراء:</strong> تفعيل الأنشطة الإثرائية اللاصفية كمسابقات الإبداع والتفكير النقدي والأولمبياد<br>
+        ✅ <strong>الشراكة:</strong> الاستعانة بخبرات الجهات المتخصصة ومجتمعات التعلم المهنية لتطوير ممارسات التدريس
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPROVEMENT POINTS -->
+  <div style="margin-bottom:24px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <div style="background:#92400e;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;color:#fff">🟡 نقاط التحسين (50% - 75%)</div>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div id="plan-list"></div>
+    </div>
+  </div>
+
+  <!-- EXCELLENCE -->
+  <div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <div style="background:var(--tamayuz);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;color:#fff">🌟 نقاط التميز والقوة (75% فأعلى)</div>
+    </div>
+    <div style="background:rgba(26,140,78,0.08);border:1px solid rgba(26,140,78,0.3);border-radius:12px;padding:20px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 99.25%</div>
+          تطبيق التقويم الذاتي المبني على المعايير المعتمدة
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 99.25%</div>
+          تحليل نتائج التقويم وتوظيفها في تحسين نواتج التعلم بانتظام
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 98.75%</div>
+          متطلبات الأمن والسلامة في فصول ومعامل المدرسة
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 98.25%</div>
+          تنظيم مبنى المدرسة الملائم لعدد المتعلمين والمرحلة العمرية
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 98.00%</div>
+          اعتزاز المتعلمين بالقيم والهوية الوطنية
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 97.50%</div>
+          التزام المتعلمين بقواعد السلوك والانضباط المدرسي
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 95.75%</div>
+          اعتزاز المتعلمين بثقافتهم واحترامهم للتنوع الثقافي
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 94.50%</div>
+          التزام المدرسة بقيم مهنة التعليم وأخلاقياتها
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 93.75%</div>
+          إظهار المتعلمين اتجاهات إيجابية نحو ذواتهم
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 92.75%</div>
+          نشر قواعد السلوك والمواظبة ومتابعة تطبيقها
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 91.00%</div>
+          الأمن والسلامة في جميع مرافق المدرسة
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 90.75%</div>
+          دعم تنفيذ المناهج لتحقيق نواتج التعلم
+        </div>
+        <div style="background:rgba(26,140,78,0.1);border-radius:8px;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7">
+          <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:4px">تميز • 90.25%</div>
+          توفير مناخ آمن للتعلم والنمو نفسياً واجتماعياً
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="footer-left">
+    منصة التقويم المدرسي الخارجي &nbsp;|&nbsp; المتوسطة الثلاثون بالمدينة &nbsp;|&nbsp; 2025م<br>
+    مستويات الأداء: تميز (90%+) | تقدم (75-90%) | انطلاق (50-75%) | تهيئة (أقل 50%)
+  </div>
+  <div class="footer-right">
+    <div class="designer-credit">
+      <span>🎨 تصميم د/ فواز</span>
+      <span style="color:var(--text2)">•</span>
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+        ✈ تفضل للمزيد هنا
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============= TABS =============
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  // Re-init charts if needed
+  if(id==='overview') initOverviewCharts();
+  if(id==='stakeholders') initStakeholdersChart();
+}
+
+// ============= COLOR HELPERS =============
+function getLevel(pct) {
+  if(pct >= 90) return {cls:'tamayuz', label:'تميز', color:'#34d399'};
+  if(pct >= 75) return {cls:'taqadum', label:'تقدم', color:'#60a5fa'};
+  if(pct >= 50) return {cls:'intilaq', label:'انطلاق', color:'#fbbf24'};
+  return {cls:'tahyia', label:'تهيئة', color:'#f87171'};
+}
+
+// ============= BUILD PLANS LIST =============
+const improvementIndicators = [
+  {code:'1-1-1-2', name:'توفير فرص متكافئة للتعلم لجميع المتعلمين بمن فيهم ذوو الإعاقة والموهوبون', pct:59.75, plan:'توفير فرص تعلم متكافئة تستجيب للاحتياجات المختلفة، وتوفير الوصول الشامل لكل الفئات، ومتابعة الالتزام بانتظام.'},
+  {code:'3-1-1-2', name:'التنوع في استراتيجيات التدريس لتلبية احتياجات المتعلمين', pct:59.25, plan:'تطبيق استراتيجيات تدريس متنوعة تراعي الفروق الفردية والاهتمامات وتلبي الاحتياجات المتنوعة.'},
+  {code:'5-1-1-2', name:'توفير أنشطة تعلم تطبيقية ترتبط بحياة المتعلمين', pct:61.25, plan:'ربط خبرات المتعلمين بواقعهم وتقديم أنشطة تطبيقية تشجع البحث والتجريب.'},
+  {code:'4-1-1-2', name:'تفعيل التعلم الإلكتروني لتلبية احتياجات المتعلمين', pct:64.25, plan:'توفير التجهيزات التقنية وتصميم أنشطة مبتكرة تدمج التعلم الصفي والإلكتروني.'},
+  {code:'9-1-1-2', name:'تنمية المهارات الرقمية لدى المتعلمين', pct:65.00, plan:'تعزيز مهارات استخدام التقنية وتوفير فرص ثرية لتنمية القدرات الرقمية.'},
+  {code:'10-1-1-2', name:'تعزيز دافعية المتعلمين للتعلم والاستمتاع به', pct:66.00, plan:'توفير بيئة تعلم محفزة تراعي الميول والاهتمامات وتزيد الدافعية.'},
+  {code:'2-1-1-3', name:'نتائج الرياضيات وفق الاختبارات الوطنية (نافس)', pct:66.02, plan:'تحليل بيانات الاختبارات لتحديد الفجوة وتنفيذ برامج علاجية وإثرائية.'},
+  {code:'1-1-2-2', name:'تقويم أداء المتعلمين بأساليب وأدوات متنوعة', pct:67.25, plan:'تطبيق أساليب تقويم متنوعة تشخيصية وتكوينية وختامية وتشجيع المتعلمين على المشاركة.'},
+  {code:'1-1-4-1', name:'تشجيع المنسوبين للحصول على الرخصة المهنية', pct:68.50, plan:'توفير برامج توعوية تحفيزية ومتابعة التقدم المهني وفق الرتب المهنية.'},
+  {code:'6-1-1-2', name:'تنمية المهارات القرائية والعددية الأساسية', pct:72.50, plan:'تعزيز مهارات القراءة والكتابة عبر خطة طويلة المدى وأنشطة إثرائية مبتكرة.'},
+  {code:'3-1-3-1', name:'الشراكة المجتمعية لدعم التعلم والتأثير الإيجابي', pct:74.00, plan:'توفير فرص تواصل مع المجتمع المحلي واستثمار إمكانات المؤسسات الوطنية.'},
+  {code:'6-1-2-1', name:'برامج وأنشطة إثرائية غير صفية لتطوير مواهب المتعلمين', pct:73.75, plan:'تطبيق أساليب للكشف عن المواهب وتوفير أنشطة إثرائية مرتبطة بنتائج التقويم.'},
+  {code:'4-1-2-3', name:'مشاركة المتعلمين في الأنشطة المجتمعية والأعمال التطوعية', pct:73.50, plan:'تصميم برامج نوعية تحفز المتعلمين على التطوع وخدمة المجتمع.'},
+];
+
+function buildPlanList() {
+  const container = document.getElementById('plan-list');
+  if(!container) return;
+  let html = '';
+  improvementIndicators.forEach(item => {
+    const lv = getLevel(item.pct);
+    html += `<div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px 18px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div style="font-size:13px;font-weight:700;color:#fff">${item.name}</div>
+        <span class="level-tag ${lv.cls}" style="white-space:nowrap;margin-right:12px">${item.pct}% • ${lv.label}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden">
+          <div style="width:${item.pct}%;height:100%;border-radius:3px;background:${lv.color}"></div>
+        </div>
+        <div style="font-size:10px;font-family:monospace;color:var(--text2)">${item.code}</div>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7">⚡ ${item.plan}</div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+buildPlanList();
+
+// ============= CHARTS =============
+let chartsInit = false;
+let stakeholdersChartInit = false;
+let domainsChart = null;
+
+function barColors(arr){
+  return arr.map(v => {
+    if(v>=90) return 'rgba(52,211,153,0.7)';
+    if(v>=75) return 'rgba(96,165,250,0.7)';
+    if(v>=50) return 'rgba(251,191,36,0.7)';
+    return 'rgba(248,113,113,0.7)';
+  });
+}
+function barBorders(arr){
+  return arr.map(v => {
+    if(v>=90) return '#34d399';
+    if(v>=75) return '#60a5fa';
+    if(v>=50) return '#fbbf24';
+    return '#f87171';
+  });
+}
+
+function initOverviewCharts() {
+  if(chartsInit) return;
+  chartsInit = true;
+
+  const opts = {
+    plugins:{ legend:{ labels:{ color:'#94a3b8', font:{family:'Cairo',size:11} } } },
+    scales:{
+      x:{ ticks:{color:'#94a3b8',font:{family:'Cairo',size:11}}, grid:{color:'rgba(255,255,255,0.05)'} },
+      y:{ ticks:{color:'#94a3b8',font:{family:'Cairo',size:11}}, grid:{color:'rgba(255,255,255,0.05)'}, min:0, max:100 }
+    }
+  };
+
+  // DOMAINS
+  domainsChart = new Chart(document.getElementById('chartDomains'), {
+    type:'bar',
+    data:{
+      labels:['الإدارة المدرسية','التعليم والتعلم','نواتج التعلم','البيئة المدرسية'],
+      datasets:[{
+        label:'النسبة %',
+        data:[90.50, 77.00, 71.75, 83.75],
+        backgroundColor:['rgba(52,211,153,0.7)','rgba(96,165,250,0.7)','rgba(251,191,36,0.7)','rgba(52,211,153,0.7)'],
+        borderColor:['#34d399','#60a5fa','#fbbf24','#34d399'],
+        borderWidth:2,
+        borderRadius:6
+      }]
+    },
+    options:{...opts, plugins:{...opts.plugins, legend:{display:false}}}
+  });
+
+  // YEARS
+  new Chart(document.getElementById('chartYears'), {
+    type:'line',
+    data:{
+      labels:['2024','2025','2026','2027','2028','2029','2030'],
+      datasets:[{
+        label:'الأداء العام %',
+        data:[79,79,null,null,null,null,null],
+        borderColor:'#60a5fa',
+        backgroundColor:'rgba(96,165,250,0.1)',
+        pointBackgroundColor:'#60a5fa',
+        pointRadius:5,
+        fill:true,
+        tension:0.4
+      }]
+    },
+    options:{...opts}
+  });
+
+  // STANDARDS
+  new Chart(document.getElementById('chartStandards'), {
+    type:'bar',
+    data:{
+      labels:['التخطيط','قيادة العملية','المجتمع','التطوير المؤسسي','بناء خبرات','تقويم التعلم','التحصيل','التطور الشخصي','المبنى','الأمن والسلامة'],
+      datasets:[{
+        label:'النسبة %',
+        data:[83,87,81.5,82.5,67,82.5,73.5,90.75,89.75,91],
+        backgroundColor:[
+          'rgba(96,165,250,0.7)','rgba(52,211,153,0.7)','rgba(96,165,250,0.7)','rgba(96,165,250,0.7)',
+          'rgba(251,191,36,0.7)','rgba(96,165,250,0.7)',
+          'rgba(251,191,36,0.7)','rgba(52,211,153,0.7)',
+          'rgba(52,211,153,0.7)','rgba(52,211,153,0.7)'
+        ],
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:'rgba(255,255,255,0.2)'
+      }]
+    },
+    options:{
+      ...opts,
+      indexAxis:'y',
+      plugins:{...opts.plugins,legend:{display:false}},
+      scales:{
+        x:{ticks:{color:'#94a3b8',font:{family:'Cairo',size:10}},grid:{color:'rgba(255,255,255,0.05)'},min:0,max:100},
+        y:{ticks:{color:'#94a3b8',font:{family:'Cairo',size:10}},grid:{color:'rgba(255,255,255,0.03)'}}
+      }
+    }
+  });
+}
+
+function initStakeholdersChart() {
+  if(stakeholdersChartInit) return;
+  stakeholdersChartInit = true;
+  new Chart(document.getElementById('chartStakeholders'), {
+    type:'radar',
+    data:{
+      labels:['الإدارة المدرسية','التعليم والتعلم','نواتج التعلم','البيئة المدرسية'],
+      datasets:[
+        {label:'المتعلم', data:[82,80,90,77], borderColor:'#60a5fa', backgroundColor:'rgba(96,165,250,0.15)', pointBackgroundColor:'#60a5fa'},
+        {label:'ولي الأمر', data:[82,80,88,88], borderColor:'#34d399', backgroundColor:'rgba(52,211,153,0.15)', pointBackgroundColor:'#34d399'},
+        {label:'المعلم', data:[95,94,94,89], borderColor:'#fbbf24', backgroundColor:'rgba(251,191,36,0.15)', pointBackgroundColor:'#fbbf24'},
+      ]
+    },
+    options:{
+      plugins:{legend:{labels:{color:'#94a3b8',font:{family:'Cairo',size:12}}}},
+      scales:{r:{
+        ticks:{color:'#94a3b8',backdropColor:'transparent',font:{size:10}},
+        grid:{color:'rgba(255,255,255,0.08)'},
+        pointLabels:{color:'#cbd5e1',font:{family:'Cairo',size:12}},
+        min:0,max:100
+      }}
+    }
+  });
+}
+
+// Init on load
+window.addEventListener('load', () => {
+  initOverviewCharts();
+  restoreDomains();
+});
+
+// ============= EDIT MODE + PERSISTENCE =============
+const STORAGE_KEY = 'schoolReportEdits_v1';
+const GENDER_KEY = 'schoolReportGender_v1';
+const DOMAINS_KEY = 'schoolReportDomains_v1';
+const EDITABLE_IDS = ['reportBadge','schoolName','schoolSub','overallScore','overallLevel',
+  'ministryNo','studentsCount','teachersCount','adminsCount','deputiesCount','evalDate','schoolType',
+  'cntTamayuz','cntTaqadum','cntIntilaq','cntTahyia'];
+let editMode = false;
+
+function toggleEdit() {
+  editMode = !editMode;
+  document.body.classList.toggle('editing', editMode);
+  const btn = document.getElementById('editToggle');
+  EDITABLE_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.setAttribute('contenteditable', editMode ? 'true' : 'false');
+  });
+  if(editMode) {
+    btn.classList.add('active');
+    btn.textContent = '✅ حفظ التعديلات';
+    document.getElementById('importStatus').innerHTML =
+      '✏️ <strong>وضع التعديل مفعّل</strong> — انقر على أي اسم أو تاريخ أو معلومة (المحاطة بإطار أزرق) لتغييرها، ثم اضغط «حفظ التعديلات».';
+  } else {
+    btn.classList.remove('active');
+    btn.textContent = '✏️ تفعيل التعديل';
+    saveEdits();
+    document.getElementById('importStatus').innerHTML = '💾 تم حفظ التعديلات بنجاح. ستبقى محفوظة عند إعادة فتح الملف على هذا الجهاز.';
+  }
+}
+
+function saveEdits() {
+  const data = {};
+  EDITABLE_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) data[id] = el.innerHTML;
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e){}
+}
+
+function loadEdits() {
+  try { const g = localStorage.getItem(GENDER_KEY); if(g) applyGenderLabel(g); } catch(e){}
+  let data;
+  try { data = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch(e){ return; }
+  if(!data) return;
+  EDITABLE_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && data[id] !== undefined) el.innerHTML = data[id];
+  });
+}
+
+function clearAll() {
+  if(!confirm('هل تريد مسح جميع البيانات والمدخلات نهائياً؟ سيتم تفريغ كل الحقول.')) return;
+  // Empty every editable field
+  EDITABLE_IDS.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = ''; });
+  // Reset students label/icon to default
+  applyGenderLabel('');
+  // Reset the four domain summary cards + the domains chart
+  for(let i=1;i<=4;i++) updateDomainCard(i, null);
+  setDomainsChart([0,0,0,0]);
+  // Persist the cleared state so it survives a page reload
+  try {
+    localStorage.removeItem(GENDER_KEY);
+    localStorage.setItem(DOMAINS_KEY, JSON.stringify([null,null,null,null]));
+  } catch(e){}
+  saveEdits();
+  // Clear import/analysis UI
+  lastAnalysis = null;
+  const panel = document.getElementById('analysisPanel'); if(panel) panel.style.display = 'none';
+  const body = document.getElementById('analysisBody'); if(body) body.innerHTML = '';
+  const actions = document.getElementById('analysisActions'); if(actions) actions.innerHTML = '';
+  const st = document.getElementById('importStatus');
+  if(st) st.innerHTML = '🧹 تم مسح جميع البيانات والمدخلات. يمكنك استيراد تقرير جديد أو إدخال البيانات يدوياً عبر «تفعيل التعديل».';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ============= PDF IMPORT =============
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let lastAnalysis = null;
+
+async function handlePDF(event) {
+  const file = event.target.files[0];
+  if(!file) return;
+  const status = document.getElementById('importStatus');
+  status.textContent = '⏳ جارٍ قراءة الملف وتحليله...';
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    // Clone per attempt: pdf.js may transfer/detach the underlying buffer.
+    const loadPdf = (opts)=> pdfjsLib.getDocument(Object.assign({data:new Uint8Array(arrayBuffer.slice(0))}, opts||{})).promise;
+    let pdf;
+    try {
+      pdf = await loadPdf();
+    } catch(workerErr) {
+      // Fallback: if the worker can't be reached, read on the main thread,
+      // then restore the worker URL so later imports use it again.
+      const origWorkerSrc = pdfjsLib.GlobalWorkerOptions.workerSrc;
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+      try {
+        pdf = await loadPdf();
+      } finally {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = origWorkerSrc;
+      }
+    }
+    let fullText = '';
+    for(let i=1; i<=pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const tc = await page.getTextContent();
+      fullText += tc.items.map(s=>s.str).join(' ') + '\n';
+    }
+    const logical = buildLogicalText(fullText);
+    const analysis = analyzeReport(logical, file.name, pdf.numPages);
+    lastAnalysis = analysis;
+    renderAnalysis(analysis);
+    status.innerHTML = `✅ تم تحليل <strong>${file.name}</strong> (${pdf.numPages} صفحة). راجع النتائج في لوحة التحليل بالأسفل، ثم اضغط «تطبيق البيانات على التقرير».`;
+  } catch(e) {
+    const reason = (e && e.message) ? e.message : 'سبب غير معروف';
+    status.textContent = '❌ تعذّر قراءة الملف (' + reason + '). تأكد أن الملف PDF نصي (وليس صورة ممسوحة ضوئياً) وأنك متصل بالإنترنت لتحميل أداة القراءة.';
+  }
+  event.target.value = '';
+}
+
+// ---- Extraction helpers ----
+function cleanNum(s){ return parseFloat(String(s).replace(/[٪%]/g,'').replace(',', '.').trim()); }
+
+// PDF.js returns Arabic text as presentation-form glyphs in reversed (visual)
+// word order. NFKC restores base letters; stripping bidi marks + reversing the
+// token order reconstructs logical reading order so our patterns can match.
+function buildLogicalText(raw){
+  let t = raw.normalize('NFKC').replace(/[\u200B-\u200F\u202A-\u202E\u2066-\u2069]/g,'');
+  return t.split(/\s+/).filter(Boolean).reverse().join(' ');
+}
+
+function analyzeReport(rev, fileName, pages){
+  const str = (re)=>{ const m = rev.match(re); return m ? m[1].trim() : ''; };
+  const pct = (re)=>{ const m = rev.match(re); return m ? cleanNum(m[1]) : null; };
+
+  const ministryNo = str(/([A-Za-z]-\d{3,7})/);
+
+  // School name: between "المرحلة الدراسية" and the ministry code + gender.
+  // Works whether or not the name starts with "ال" (e.g. "متوسطة سعد بن الربيع").
+  let schoolName = str(/الدراسية\s+([\u0600-\u06FF][\u0600-\u06FF ]{3,45}?)\s+[A-Za-z]-\d{3,7}\s+(?:بنين|بنات)/);
+  if(!schoolName) schoolName = str(/((?:ال)?(?:متوسطة|ابتدائية|ثانوية|روضة)[\u0600-\u06FF ]{2,45}?)\s+[A-Za-z]-\d{3,7}\s+(?:بنات|بنين)/);
+  if(!schoolName) schoolName = str(/((?:ال)?(?:متوسطة|ابتدائية|ثانوية)[\u0600-\u06FF ]{2,45}?)\s+(?:الإدارة|الرقم)/);
+
+  const gender = str(/[A-Za-z]-\d{3,7}\s+(?:[\u0600-\u06FF]+)?\s*(بنات|بنين)/);
+
+  // School type = government type + independence (e.g. "حكومي - مشترك أساسي" or "حكومي - مستقل")
+  const govt = str(/(حكومي|أهلي|عالمي)\s+اسم المدرسة/);
+  const indep = str(/[A-Za-z]-\d{3,7}\s+[\u0600-\u06FF]+\s+(?:بنين|بنات)\s+(مشترك أساسي|مشتركة|مستقلة|مستقل|مشترك)/);
+  const schoolType = [govt, indep].filter(Boolean).join(' - ');
+
+  // Education administration, e.g. "الإدارة العامة للتعليم بمنطقة المدينة المنورة".
+  // Capture the ب-prefixed phrase, stopping at the next digit or a known field label
+  // so it works whether or not a number immediately follows.
+  let eduAdmin = str(/((?:الإدارة العامة للتعليم|إدارة التعليم)\s+ب[\u0600-\u06FF]+(?:\s+[\u0600-\u06FF]+){0,4}?)(?=\s+(?:\d|المرحلة|حكومي|أهلي|عالمي|اسم المدرسة|مكتب|نوع المدرسة|عدد|الرقم))/);
+  if(!eduAdmin) eduAdmin = str(/((?:الإدارة العامة للتعليم|إدارة التعليم)\s+ب[\u0600-\u06FF]+(?:\s+[\u0600-\u06FF]+){0,3})/);
+
+  // School stage (المرحلة) from the explicit label or, as fallback, the school name
+  let stage = str(/(المرحلة\s+(?:المتوسطة|الابتدائية|الثانوية))/);
+  if(!stage){
+    if(/متوسط/.test(schoolName)) stage = 'المرحلة المتوسطة';
+    else if(/ابتدائ/.test(schoolName)) stage = 'المرحلة الابتدائية';
+    else if(/ثانوي/.test(schoolName)) stage = 'المرحلة الثانوية';
+    else if(/روض/.test(schoolName)) stage = 'مرحلة رياض الأطفال';
+  }
+
+  let overall = pct(/الأداء العام للمدرسة[\s\S]{0,90}?(\d{1,3}(?:\.\d+)?)\s*%/);
+
+  // 4 domain percentages following "وفق المجالات ... المدرسية"
+  // emitted in logical order: [الإدارة, التعليم, نواتج, البيئة]
+  let domains = [
+    {name:'الإدارة المدرسية', value:NaN},
+    {name:'التعليم والتعلم', value:NaN},
+    {name:'نواتج التعلم', value:NaN},
+    {name:'البيئة المدرسية', value:NaN}
+  ];
+  const dm = rev.match(/وفق المجالات[\s\S]{0,120}?المدرسية\s+((?:\d{1,3}(?:\.\d+)?%\s*){4})/);
+  if(dm){
+    const vals = [...dm[1].matchAll(/(\d{1,3}(?:\.\d+)?)%/g)].map(x=>cleanNum(x[1]));
+    if(vals.length>=4) domains.forEach((d,i)=>d.value=vals[i]);
+  }
+
+  // Eval date stored as yyyy/mm/dd -> show as dd/mm/yyyy
+  let evalDate = '';
+  const ed = rev.match(/تاريخ تطبيق التقويم\s+(\d{4})\/(\d{2})\/(\d{2})/);
+  if(ed) evalDate = `${ed[3]}/${ed[2]}/${ed[1]}`;
+  if(!evalDate){
+    const d2 = rev.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+    if(d2) evalDate = d2[1];
+  }
+
+  // Report year = most recent "20XXم" mentioned
+  const years = [...rev.matchAll(/(20\d{2})\s*م/g)].map(m=>+m[1]).filter(y=>y>=2015 && y<=2030);
+  const year = years.length ? String(Math.max(...years)) : '';
+
+  // Counts: students/teachers/deputies triple, admins single
+  let students='', teachers='', deputies='', admins='';
+  const trip = rev.match(/الإدارية\s+(\d{2,5})\s+(\d{1,4})\s+(\d{1,3})\b/);
+  if(trip){ students=trip[1]; teachers=trip[2]; deputies=trip[3]; }
+  const adm = rev.match(/بيانات المدرسة\s+\d+\s+\d+\s+(\d{1,4})\s+عدد/);
+  if(adm) admins = adm[1];
+
+  const allScores = [...rev.matchAll(/(\d{1,3}(?:[.,]\d{1,2})?)\s*[٪%]/g)]
+    .map(m=>cleanNum(m[1])).filter(v=>!isNaN(v) && v>=0 && v<=100);
+  if(overall==null && allScores.length){
+    overall = +(allScores.reduce((a,b)=>a+b,0)/allScores.length).toFixed(2);
+  }
+
+  return {
+    fileName, pages,
+    schoolName, ministryNo, students, teachers, admins, deputies, schoolType, gender,
+    eduAdmin, stage,
+    evalDate, year,
+    overall: overall!=null ? cleanNum(overall) : null,
+    domains,
+    scoreCount: allScores.length,
+    allScores
+  };
+}
+
+function levelText(pct){
+  if(pct>=90) return '🟢 مستوى التميز';
+  if(pct>=75) return '🔵 مستوى التقدم';
+  if(pct>=50) return '🟡 مستوى الانطلاق';
+  return '🔴 مستوى التهيئة';
+}
+
+// ---- Domain summary cards (the four score rings) ----
+const RING_C = 238.76; // circumference = 2 * PI * r (r=38)
+const DOMAIN_LEVELS = [
+  {min:90, cls:'tamayuz', tag:'🌟 تميز',  grad:'gTamayuz'},
+  {min:75, cls:'taqadum', tag:'🔵 تقدم',  grad:'gTaqadum'},
+  {min:50, cls:'intilaq', tag:'🟡 انطلاق', grad:'gIntilaq'},
+  {min:0,  cls:'tahyia',  tag:'🔴 تهيئة', grad:'gTahyia'}
+];
+function domainLevel(v){ for(const l of DOMAIN_LEVELS){ if(v>=l.min) return l; } return DOMAIN_LEVELS[DOMAIN_LEVELS.length-1]; }
+
+// Update one domain card (idx 1..4). value=null/NaN clears it back to empty state.
+function updateDomainCard(idx, value){
+  const card  = document.getElementById('domainCard'+idx);
+  const ring  = document.getElementById('ring'+idx);
+  const score = document.getElementById('score'+idx);
+  const tag   = document.getElementById('tag'+idx);
+  if(!card || !ring || !score || !tag) return;
+  if(value===null || value===undefined || isNaN(value)){
+    ring.setAttribute('stroke-dashoffset', RING_C.toFixed(2));
+    ring.setAttribute('stroke', 'rgba(255,255,255,0.15)');
+    score.textContent = '—';
+    tag.textContent = '—';
+    tag.className = 'level-tag';
+    card.className = 'domain-card';
+    return;
+  }
+  const v = Math.max(0, Math.min(100, value));
+  const li = domainLevel(v);
+  ring.setAttribute('stroke-dashoffset', (RING_C*(1 - v/100)).toFixed(2));
+  ring.setAttribute('stroke', 'url(#'+li.grad+')');
+  score.textContent = value + '%';
+  tag.textContent = li.tag;
+  tag.className = 'level-tag ' + li.cls;
+  card.className = 'domain-card ' + li.cls;
+}
+
+// Push 4 values into the domains bar chart (0 for empty slots).
+function setDomainsChart(vals){
+  if(!domainsChart) return;
+  domainsChart.data.datasets[0].data = vals;
+  domainsChart.data.datasets[0].backgroundColor = barColors(vals);
+  domainsChart.data.datasets[0].borderColor = barBorders(vals);
+  domainsChart.update();
+}
+
+// Restore saved domain values (cards + chart) after the chart is initialised.
+function restoreDomains(){
+  let arr;
+  try { arr = JSON.parse(localStorage.getItem(DOMAINS_KEY) || 'null'); } catch(e){ return; }
+  if(!Array.isArray(arr)) return;
+  for(let i=0;i<4;i++) updateDomainCard(i+1, arr[i]);
+  setDomainsChart(arr.map(v => (v===null || v===undefined || isNaN(v)) ? 0 : v));
+}
+
+function renderAnalysis(a){
+  const panel = document.getElementById('analysisPanel');
+  const body = document.getElementById('analysisBody');
+  const actions = document.getElementById('analysisActions');
+  const cell = (k,v)=> v ? `<div class="analysis-cell"><div class="k">${k}</div><div class="v">${v}</div></div>` : '';
+  let grid = '<div class="analysis-grid">';
+  grid += cell('اسم المدرسة', a.schoolName);
+  grid += cell('الرقم الوزاري', a.ministryNo);
+  grid += cell(String(a.gender||'').includes('بنين') ? 'عدد الطلاب' : 'عدد الطالبات', a.students);
+  grid += cell('المعلمون', a.teachers);
+  grid += cell('الإداريون', a.admins);
+  grid += cell('الوكلاء', a.deputies);
+  grid += cell('نوع المدرسة', a.schoolType);
+  grid += cell('إدارة التعليم', a.eduAdmin);
+  grid += cell('المرحلة الدراسية', a.stage);
+  grid += cell('تاريخ التقويم', a.evalDate);
+  grid += cell('سنة التقرير', a.year);
+  grid += cell('الأداء العام', a.overall!=null ? a.overall+'%' : '');
+  a.domains.forEach(d=>{ if(!isNaN(d.value)) grid += cell(d.name, d.value+'%'); });
+  grid += '</div>';
+
+  const found = [a.schoolName,a.ministryNo,a.students,a.teachers,a.overall].filter(Boolean).length;
+  let note = `<div style="margin-bottom:6px">تم استخراج <strong>${a.scoreCount}</strong> نسبة مئوية من <strong>${a.pages}</strong> صفحة.</div>`;
+  if(found < 2){
+    note += '<div style="color:#fbbf24">⚠️ لم يتم التعرف على معظم الحقول تلقائياً. قد يكون تنسيق هذا التقرير مختلفاً — يمكنك تطبيق المتاح ثم تعديل الباقي يدوياً عبر زر «تفعيل التعديل».</div>';
+  }
+
+  body.innerHTML = note + grid;
+  actions.innerHTML = '<button class="analysis-apply" onclick="applyAnalysis()">⬇ تطبيق البيانات على التقرير</button>';
+  panel.style.display = 'block';
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function setText(id, val){
+  if(val===undefined || val===null || val==='') return;
+  const el = document.getElementById(id);
+  if(el) el.textContent = val;
+}
+
+function applyGenderLabel(gender){
+  const isBoys = String(gender||'').includes('بنين');
+  const lbl = document.getElementById('studentsLabel');
+  const icon = document.getElementById('studentsIcon');
+  if(lbl) lbl.innerHTML = (isBoys ? 'عدد الطلاب' : 'عدد الطالبات') + ':&nbsp;';
+  if(icon) icon.textContent = isBoys ? '👨\u200d🎓' : '👩\u200d🎓';
+}
+
+function applyAnalysis(){
+  const a = lastAnalysis;
+  if(!a) return;
+  setText('schoolName', a.schoolName);
+  setText('ministryNo', a.ministryNo);
+  applyGenderLabel(a.gender);
+  try{ if(a.gender) localStorage.setItem(GENDER_KEY, a.gender); else localStorage.removeItem(GENDER_KEY); }catch(e){}
+  setText('studentsCount', a.students);
+  setText('teachersCount', a.teachers);
+  setText('adminsCount', a.admins);
+  setText('deputiesCount', a.deputies);
+  setText('schoolType', a.schoolType);
+  const subParts = [a.eduAdmin, a.gender ? ('مدرسة ' + a.gender) : '', a.stage].filter(Boolean);
+  const subEl = document.getElementById('schoolSub');
+  if(subEl && subParts.length) subEl.textContent = subParts.join('  |  ');
+  setText('evalDate', a.evalDate);
+  if(a.year) setText('reportBadge', '📅 تقرير ' + a.year + 'م (مستورد)');
+  if(a.overall!=null){
+    setText('overallScore', a.overall + '%');
+    setText('overallLevel', levelText(a.overall));
+  }
+  // Update domain summary cards + chart from the imported domains
+  const valid = a.domains.filter(d=>!isNaN(d.value));
+  if(valid.length){
+    const cardVals = a.domains.map(d=>isNaN(d.value)?null:d.value);
+    cardVals.forEach((v,i)=>updateDomainCard(i+1, v));
+    setDomainsChart(cardVals.map(v=>v===null?0:v));
+    try { localStorage.setItem(DOMAINS_KEY, JSON.stringify(cardVals)); } catch(e){}
+  }
+  saveEdits();
+  document.getElementById('importStatus').innerHTML =
+    '✅ تم تطبيق البيانات المستوردة على التقرير وحفظها. راجعها وعدّل أي حقل عبر زر «تفعيل التعديل».';
+  document.getElementById('analysisPanel').style.display = 'none';
+}
+
+// Restore saved edits on load
+loadEdits();
+</script>
+</body>
+</html>
