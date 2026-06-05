@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>منصة لغتي التفاعلية - عرض ومسابقة</title>
+<style>
+:root{--bg:#f7f7fb;--ink:#243044;--muted:#667085;--brand:#52677a;--brand2:#d89c74;--soft:#fff7ef;--card:#ffffff;--ok:#13936d;--bad:#cf3d3d;--warn:#d9a441;--line:#e7eaf0;--shadow:0 16px 45px rgba(36,48,68,.12);--r:24px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 15% 10%,#ffe8db 0 220px,transparent 221px),radial-gradient(circle at 90% 0,#dce9e2 0 260px,transparent 261px),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.75}button,input,select{font:inherit}.wrap{width:min(1180px,94vw);margin:auto}.hero{padding:38px 0 18px}.heroBox{position:relative;overflow:hidden;background:linear-gradient(135deg,#243044,#52677a 56%,#d89c74);border-radius:34px;padding:34px;color:white;box-shadow:var(--shadow)}.heroBox:before{content:"";position:absolute;inset:auto -80px -110px auto;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.14)}.heroBox h1{margin:0 0 8px;font-size:clamp(26px,4vw,52px);letter-spacing:-1px}.heroBox p{margin:0;color:#f5f7fb;max-width:850px}.heroMeta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(8px)}.topActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{border:0;border-radius:16px;padding:11px 16px;background:var(--brand);color:white;cursor:pointer;box-shadow:0 8px 18px rgba(36,48,68,.12);transition:.2s}.btn:hover{transform:translateY(-2px)}.btn.alt{background:white;color:var(--brand)}.btn.gold{background:var(--brand2);color:#fff}.btn.ghost{background:#f4f6f8;color:var(--ink);box-shadow:none;border:1px solid var(--line)}.grid{display:grid;gap:18px}.layout{grid-template-columns:280px 1fr;align-items:start;margin:20px 0 38px}.side{position:sticky;top:12px;background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);backdrop-filter:blur(10px)}.navBtn{display:flex;width:100%;justify-content:space-between;align-items:center;margin:7px 0;padding:11px 13px;border-radius:15px;border:1px solid transparent;background:transparent;color:var(--ink);cursor:pointer}.navBtn.active,.navBtn:hover{background:var(--soft);border-color:#f0d8ca}.small{font-size:13px;color:var(--muted)}.credit{margin-top:16px;padding:13px;border-radius:18px;background:#f8fafc;border:1px dashed #d6dce4;font-size:13px}.credit a{color:var(--brand);font-weight:700;text-decoration:none}.main{min-width:0}.section{display:none;animation:fade .25s ease}.section.active{display:block}@keyframes fade{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}.card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}.titleRow{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.titleRow h2,.card h3{margin:0}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.lessonGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson{border:1px solid var(--line);background:#fff;border-radius:22px;padding:17px;position:relative;overflow:hidden}.lesson:before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:linear-gradient(var(--brand2),#d8e4dc)}.lesson h3{margin:0 0 8px;color:var(--brand)}.lesson ul{margin:8px 0 0;padding:0 20px}.tag{display:inline-flex;margin:4px 0 8px;padding:5px 10px;border-radius:999px;background:#edf2f7;color:#415268;font-size:12px;font-weight:700}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{background:linear-gradient(180deg,#fff,#fbfcfd);border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center}.step b{display:block;color:var(--brand);font-size:18px}.table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:18px;border:1px solid var(--line)}.table th,.table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.table th{background:#f1f5f9;text-align:right}.table tr:last-child td{border-bottom:0}.quizHead{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}.scoreBox{display:flex;gap:8px;flex-wrap:wrap}.scoreBox span{background:#f1f5f9;padding:8px 12px;border-radius:999px}.progress{height:12px;background:#edf2f7;border-radius:999px;overflow:hidden;margin:14px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand2),var(--ok));transition:.25s}.question{font-size:24px;font-weight:800;margin:18px 0}.answers{display:grid;gap:10px}.answer{width:100%;text-align:right;border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;cursor:pointer;transition:.18s}.answer:hover{transform:translateX(-4px);border-color:#cbd5e1}.answer.correct{background:#e9fbf4;border-color:#9ee1c9}.answer.wrong{background:#fff0f0;border-color:#f3b2b2}.explain{display:none;margin-top:14px;padding:14px;border-radius:18px;background:#f8fafc;border:1px solid var(--line)}.popup{position:fixed;inset:0;display:none;place-items:center;background:rgba(20,25,34,.28);z-index:20}.popCard{background:white;border-radius:32px;padding:30px;min-width:min(430px,88vw);text-align:center;box-shadow:0 28px 70px rgba(0,0,0,.22);animation:pop .25s ease}.popCard h2{font-size:34px;margin:0 0 8px}.popCard.ok h2{color:var(--ok)}.popCard.bad h2{color:var(--bad)}@keyframes pop{from{transform:scale(.86);opacity:.3}to{transform:scale(1);opacity:1}}.confetti{position:fixed;top:-20px;width:10px;height:14px;background:var(--brand2);animation:fall 1.25s linear forwards;z-index:30}@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.1}}.searchBox{display:flex;gap:10px;margin-bottom:15px}.searchBox input{flex:1;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:white}.badge{font-weight:800;color:#fff;background:var(--brand2);border-radius:999px;padding:4px 10px;font-size:12px}.printOnly{display:none}.footer{padding:24px 0 40px;text-align:center;color:var(--muted)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{position:relative;top:auto}.cards,.lessonGrid,.flow{grid-template-columns:1fr}.question{font-size:20px}.heroBox{padding:24px}}
+@media print{body{background:white}.hero,.side,.topActions,.quizHead .btn,.footer,.popup{display:none!important}.layout{display:block;margin:0}.wrap{width:100%;margin:0}.section{display:block!important;page-break-inside:avoid}.card,.lesson{box-shadow:none;border-color:#ccc}.main{width:100%}.printOnly{display:block}.noPrint{display:none!important}@page{size:A4 portrait;margin:10mm}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap heroBox">
+    <h1>منصة لغتي التفاعلية</h1>
+    <p>عرض تعليمي منظم لمهارات لغتي، ثم مسابقة تفاعلية بنظام نقاط وتغذية راجعة فورية. يعني ما عاد فيه “ذاكرت بس نسيت”؛ المنصة بتقفطك بابتسامة 😄</p>
+    <div class="heroMeta">
+      <span class="pill">📘 الصف الثالث متوسط - الفصل الثاني</span>
+      <span class="pill">📗 الصف السادس الابتدائي - مهارات نحوية وإملائية</span>
+      <span class="pill">🎯 عرض + تحدي</span>
+      <span class="pill">💾 حفظ تقدم محلي</span>
+    </div>
+    <div class="topActions">
+      <button class="btn alt" onclick="showSection('showcase')">ابدأ العرض التوضيحي</button>
+      <button class="btn gold" onclick="showSection('quiz')">ادخل التحدي الآن</button>
+      <button class="btn" onclick="window.print()">طباعة ملخص العرض</button>
+    </div>
+  </div>
+</header>
+<div class="wrap layout grid">
+  <aside class="side">
+    <b>قائمة المنصة</b>
+    <button class="navBtn active" data-sec="showcase" onclick="showSection('showcase')"><span>الشق الأول: العرض</span><span>👁️</span></button>
+    <button class="navBtn" data-sec="quiz" onclick="showSection('quiz')"><span>الشق الثاني: المسابقة</span><span>⚡</span></button>
+    <button class="navBtn" data-sec="maps" onclick="showSection('maps')"><span>خرائط سريعة</span><span>🧭</span></button>
+    <button class="navBtn" data-sec="settings" onclick="showSection('settings')"><span>الإعدادات</span><span>⚙️</span></button>
+    <div class="small">آخر درجة محفوظة: <b id="savedScore">0</b></div>
+    <div class="credit">
+      <b>تصميم د/فواز</b><br>
+      تفضل للمزيد هنا<br>
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a>
+    </div>
+  </aside>
+  <main class="main">
+    <section id="showcase" class="section active">
+      <div class="card">
+        <div class="titleRow"><div><h2>الشق الأول: عرض توضيحي شيق وواضح</h2><div class="small">المحتوى مرتب في بطاقات: إملاء، صرف، أساليب، نحو، همزات، وإعراب.</div></div><span class="badge">عرض</span></div>
+        <div class="grid cards">
+          <div class="step"><b>1</b>افهم القاعدة</div><div class="step"><b>2</b>شاهد المثال</div><div class="step"><b>3</b>اختبر نفسك</div>
+        </div>
+      </div>
+      <div class="searchBox noPrint"><input id="lessonSearch" placeholder="ابحث داخل الدروس: المستثنى، النعت، الهمزة..." oninput="filterLessons()"><button class="btn ghost" onclick="document.getElementById('lessonSearch').value='';filterLessons()">مسح</button></div>
+      <div id="lessons" class="grid lessonGrid"></div>
+    </section>
+    <section id="quiz" class="section">
+      <div class="card">
+        <div class="quizHead"><div><h2>الشق الثاني: مسابقة الإثارة</h2><div class="small">اختر الإجابة، وستظهر رسالة تشجيعية للصحيح وتنبيه لطيف للخطأ.</div></div><div class="scoreBox"><span>السؤال: <b id="qNo">1</b>/<b id="qTotal">0</b></span><span>النقاط: <b id="score">0</b></span><span>أفضل نتيجة: <b id="best">0</b></span></div></div>
+        <div class="progress"><div id="bar" class="bar"></div></div>
+        <div class="titleRow noPrint"><select id="cat" onchange="restartQuiz()"><option value="all">كل المهارات</option><option>الإملاء</option><option>الصرف</option><option>النحو</option><option>الأساليب</option><option>الهمزات والإعراب</option></select><div><button class="btn gold" onclick="randomChallenge()">تحدي عشوائي</button><button class="btn ghost" onclick="restartQuiz()">إعادة</button></div></div>
+        <div id="question" class="question"></div>
+        <div id="answers" class="answers"></div>
+        <div id="explain" class="explain"></div>
+        <div class="topActions"><button id="nextBtn" class="btn" onclick="nextQuestion()" style="display:none">السؤال التالي</button></div>
+      </div>
+    </section>
+    <section id="maps" class="section">
+      <div class="card"><h2>خرائط سريعة للحفظ</h2><p class="small">تلخيص شديد الاختصار قبل الاختبار.</p><div id="quickMaps" class="grid lessonGrid"></div></div>
+    </section>
+    <section id="settings" class="section">
+      <div class="card"><h2>الإعدادات</h2><table class="table"><tr><th>الخيار</th><th>الإجراء</th></tr><tr><td>حفظ التقدم</td><td>يتم تلقائيًا داخل المتصفح.</td></tr><tr><td>تصفير النتائج</td><td><button class="btn ghost" onclick="resetStorage()">تصفير</button></td></tr><tr><td>الطباعة</td><td>زر الطباعة في أعلى المنصة يطبع ملخص العرض دون عناصر التحكم.</td></tr></table><div class="credit"><b>تصميم د/فواز</b><br>تفضل للمزيد هنا<br><a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a></div></div>
+    </section>
+  </main>
+</div>
+<div id="popup" class="popup"><div id="popCard" class="popCard"><h2 id="popTitle"></h2><p id="popMsg"></p><button class="btn" onclick="closePopup()">متابعة</button></div></div>
+<footer class="footer">منصة تعليمية تعمل محليًا داخل المتصفح - لا تحتاج اتصال إنترنت بعد فتح الملف.</footer>
+<script>
+const lessons=[
+{cat:'الإملاء',title:'رسم بعض الكلمات الموصولة خطًا',points:['الظروف مع إذ المنونة تكتب موصولة: وقتئذ، حينئذ، عندئذ، يومئذ، ساعتئذ.','حب + ذا = حبذا.','حروف الجر مع مَن: فيمن، ممن، عمن.','حروف الجر مع ما الاستفهامية: فيم، مم، عم؛ وتحذف ألف ما بعد حرف الجر.','أن/إن/كي + لا: ألا، إلا، لكيلا، لئلا.'],ex:'عمّ = عن + ما الاستفهامية.'},
+{cat:'الصرف',title:'صيغ المبالغة',points:['اسم مشتق يدل على كثرة وقوع الفعل من صاحبه.','أشهر الأوزان: فعّال، مِفعال، فعِل، فعول، فعيل.','أمثلة: حلّاف، مقدام، حذر، شكور، سميع.'],ex:'عليم على وزن فعيل، وصبور على وزن فعول.'},
+{cat:'الأساليب',title:'اسم التفضيل',points:['يصاغ غالبًا من الفعل الثلاثي على وزن أفعل.','يتكون أسلوب التفضيل من: مفضل، اسم تفضيل، مفضل عليه.','يدل على اشتراك شيئين في صفة وزيادة أحدهما فيها.'],ex:'العلم أنفع من المال.'},
+{cat:'النحو',title:'المستثنى',points:['هو إخراج الاسم الواقع بعد أداة الاستثناء من حكم ما قبلها.','الأركان: المستثنى منه، أداة الاستثناء، المستثنى.','الأدوات: إلا، غير، سوى، خلا، عدا، حاشا.','أنواعه: تام مثبت، تام منفي، ناقص منفي/مفرغ.'],ex:'حضر الطلاب إلا خالدًا.'},
+{cat:'الإملاء',title:'رسم بعض الكلمات المفصولة خطًا',points:['أن المخففة + لا النافية تفصل: أن لا.','إن الشرطية + لم النافية تفصل: إن لم.','من الاستفهامية أو الموصولة قد تفصل مع حروف الجر حسب السياق: من منا، من في السماوات.'],ex:'أشهد أن لا إله إلا الله.'},
+{cat:'الصرف',title:'اسم الزمان واسم المكان',points:['اسمان مشتقان للدلالة على زمان حدوث الفعل أو مكانه.','من الثلاثي يأتيان غالبًا على وزن مَفعَل أو مَفعِل.','من غير الثلاثي: نأتي بالمضارع، نقلب حرف المضارعة ميمًا مضمومة، ونكسر ما قبل الآخر.'],ex:'يلعب ← ملعب، يستقبل ← مستقبل.'},
+{cat:'النحو',title:'النعت',points:['اسم يدل على صفة في اسم قبله يسمى المنعوت.','النعت يتبع المنعوت في الإعراب والتذكير والتأنيث والإفراد والتثنية والجمع والتعريف والتنكير.','أنواعه: نعت مفرد، نعت جملة اسمية، نعت جملة فعلية.','نعت الجملة يحتاج رابطًا يعود على المنعوت.'],ex:'كافأت العامل النشيط.'},
+{cat:'الهمزات والإعراب',title:'همزة الوصل والقطع',points:['همزة القطع تنطق في أول الكلام ووسطه.','همزة الوصل تنطق في أول الكلام ولا تنطق في وصله.','كل الحروف همزتها قطع ما عدا أل التعريف.','من أسماء الوصل السماعية: اسم، ابن، ابنة، امرؤ، امرأة، اثنان، اثنتان.'],ex:'أخذ: قطع، اخرج: وصل.'},
+{cat:'الهمزات والإعراب',title:'الهمزة المتوسطة والمتطرفة',points:['المتوسطة ترسم حسب أقوى الحركتين غالبًا: الكسرة ثم الضمة ثم الفتحة ثم السكون.','المتطرفة ترسم حسب حركة ما قبلها: فتح على ألف، ضم على واو، كسر على ياء، سكون أو مد على السطر.'],ex:'خطأ، تكافؤ، شاطئ، سماء.'},
+{cat:'النحو',title:'كان وأخواتها / إن وأخواتها',points:['كان وأخواتها أفعال ناسخة ترفع الاسم وتنصب الخبر.','إن وأخواتها حروف ناسخة تنصب الاسم وترفع الخبر.','من كان وأخواتها: كان، صار، ليس، أصبح.','من إن وأخواتها: إن، أن، كأن، ليت، لعل، لكن.'],ex:'كان الجوُّ صحوًا، إن الجوَّ صحوٌ.'},
+{cat:'الصرف',title:'اسم الفاعل واسم المفعول',points:['اسم الفاعل يدل على من قام بالفعل، ويصاغ من الثلاثي على وزن فاعل.','اسم المفعول يدل على من وقع عليه الفعل، ويصاغ من الثلاثي على وزن مفعول.','من غير الثلاثي: نأتي بالمضارع ونبدل حرف المضارعة ميمًا مضمومة مع كسر ما قبل الآخر لاسم الفاعل وفتحه لاسم المفعول.'],ex:'كتب: كاتب/مكتوب، أنجز: مُنجِز/مُنجَز.'},
+{cat:'الهمزات والإعراب',title:'الهمزة المتوسطة - قاعدة الكرسي الأقوى',points:['ترتيب قوة الحركات: الكسرة، الضمة، الفتحة، السكون.','الكسرة يناسبها الياء، والضمة يناسبها الواو، والفتحة يناسبها الألف، والسكون غالبًا على السطر حسب الموضع.'],ex:'سُئل، فئة، مؤمن.'}
+];
+const maps=[
+['الموصل والمفصول','موصول: وقتئذ، حينئذ، عمّ، فيم، مم. مفصول: أن لا، إن لم، من منا، من في.'],
+['المشتقات','صيغ المبالغة، اسم الزمان والمكان، اسم الفاعل، اسم المفعول كلها أسماء مشتقة وليست توابع.'],
+['الاستثناء','تام مثبت: واجب النصب. تام منفي: يجوز النصب أو البدل. ناقص منفي: يعرب حسب موقعه.'],
+['النعت','يتبع المنعوت في أربع: الإعراب، العدد، النوع، التعريف/التنكير.'],
+['الهمزات','قطع: تنطق دائمًا. وصل: تسقط في الوصل. المتطرفة حسب ما قبلها.'],
+['الإعراب','الرفع: الضمة/الألف/الواو/ثبوت النون. النصب: الفتحة/الألف/الياء/الكسرة/حذف النون. الجر: الكسرة/الياء/الفتحة. الجزم: السكون/الحذف.']
+];
+const quiz=[
+{cat:'الإملاء',q:'ما الرسم الصحيح لـ وقت + إذ؟',a:['وقت إذ','وقتئذ','وقتن إذ','وقذت'],c:1,e:'الظروف إذا اتصلت بـ إذ المنونة تكتب موصولة: وقتئذ.'},
+{cat:'الإملاء',q:'كلمة “عمّ” تحليلها الصحيح هو:',a:['على + ما','عن + ما الاستفهامية','عن + من','عند + ما'],c:1,e:'عمّ أصلها: عن + ما الاستفهامية، وتحذف ألف ما بعد حرف الجر.'},
+{cat:'الإملاء',q:'أي عبارة صحيحة؟',a:['أن المخففة مع لا تكتب: ألاّ دائمًا','إن الشرطية مع لم تكتب مفصولة: إن لم','من في تكتب موصولة دائمًا','ما الاستفهامية لا تحذف ألفها بعد حرف الجر'],c:1,e:'إن الشرطية + لم النافية تفصلان: إن لم.'},
+{cat:'الصرف',q:'صيغ المبالغة تدل على:',a:['وقوع الفعل مرة واحدة','كثرة وقوع الفعل من صاحبه','زمن الفعل فقط','مكان الفعل فقط'],c:1,e:'صيغة المبالغة اسم مشتق يدل على كثرة الفعل.'},
+{cat:'الصرف',q:'أي وزن من أوزان صيغ المبالغة؟',a:['مفعول','فعّال','فاعل','أفعل'],c:1,e:'من أوزانها: فعّال، مفعال، فعل، فعول، فعيل.'},
+{cat:'الصرف',q:'كلمة “سميع” على وزن:',a:['فعول','فعيل','مفعال','فعّال'],c:1,e:'سميع على وزن فعيل.'},
+{cat:'الأساليب',q:'اسم التفضيل من الفعل الثلاثي غالبًا يصاغ على وزن:',a:['فاعل','مفعول','أفعل','مفعال'],c:2,e:'الغالب في اسم التفضيل أن يأتي على وزن أفعل.'},
+{cat:'الأساليب',q:'في جملة: “العلم أنفع من المال” اسم التفضيل هو:',a:['العلم','أنفع','المال','من'],c:1,e:'أنفع هو اللفظ الدال على المفاضلة.'},
+{cat:'النحو',q:'المستثنى هو:',a:['صفة لما قبله','إخراج الاسم الواقع بعد أداة الاستثناء من حكم ما قبلها','اسم يدل على الزمن','فعل ناسخ'],c:1,e:'هذا هو تعريف المستثنى في القاعدة.'},
+{cat:'النحو',q:'أداة الاستثناء في: حضر الطلاب إلا خالدًا هي:',a:['حضر','الطلاب','إلا','خالدًا'],c:2,e:'إلا هي أداة الاستثناء.'},
+{cat:'النحو',q:'أي مما يلي من أدوات الاستثناء؟',a:['لكن','سوى','ليت','صار'],c:1,e:'سوى من أدوات الاستثناء، وتعرب مثل غير غالبًا.'},
+{cat:'النحو',q:'النعت يتبع المنعوت في:',a:['الإعراب فقط','التذكير والتأنيث فقط','الإعراب والعدد والنوع والتعريف والتنكير','الزمن والمكان'],c:2,e:'النعت تابع يطابق منعوته في هذه الجوانب.'},
+{cat:'النحو',q:'في “كافأت العامل النشيط” النعت هو:',a:['كافأت','العامل','النشيط','لا يوجد نعت'],c:2,e:'النشيط صفة للعامل.'},
+{cat:'الصرف',q:'اسم المكان من “لعب” هو:',a:['ملعب','لاعب','ملعوب','ألعاب'],c:0,e:'لعب ← ملعب على وزن مفعل.'},
+{cat:'الصرف',q:'اسم الفاعل من “كتب” هو:',a:['مكتوب','كاتب','كتاب','مكتب'],c:1,e:'من الثلاثي يصاغ اسم الفاعل على وزن فاعل: كاتب.'},
+{cat:'الصرف',q:'اسم المفعول من “كتب” هو:',a:['كاتب','مكتوب','كتابة','مكتب'],c:1,e:'اسم المفعول يدل على من وقع عليه الفعل: مكتوب.'},
+{cat:'النحو',q:'كان وأخواتها تعمل عملها في الجملة الاسمية فتـ:',a:['تنصب الاسم وترفع الخبر','ترفع الاسم وتنصب الخبر','ترفع الاثنين','تنصب الاثنين'],c:1,e:'كان ترفع الاسم وتنصب الخبر.'},
+{cat:'النحو',q:'إن وأخواتها تعمل عملها فتـ:',a:['ترفع الاسم وتنصب الخبر','تنصب الاسم وترفع الخبر','تجزم الفعل','تجر الاسم'],c:1,e:'إن تنصب الاسم وترفع الخبر.'},
+{cat:'الهمزات والإعراب',q:'همزة القطع:',a:['تنطق في أول الكلام فقط','لا تنطق أبدًا','تنطق في أول الكلام ووسطه','تأتي في أل التعريف فقط'],c:2,e:'همزة القطع تنطق ابتداءً ووصلاً.'},
+{cat:'الهمزات والإعراب',q:'همزة الوصل:',a:['تنطق في أول الكلام ولا تنطق في وصله','تنطق دائمًا','ترسم على واو دائمًا','لا تأتي في الأفعال'],c:0,e:'همزة الوصل تنطق عند البدء وتسقط في الوصل.'},
+{cat:'الهمزات والإعراب',q:'الهمزة المتطرفة في “سماء” كتبت على السطر لأن ما قبلها:',a:['مفتوح','مضموم','مكسور','حرف مد'],c:3,e:'إذا سبقها حرف مد كتبت على السطر.'},
+{cat:'الهمزات والإعراب',q:'أقوى الحركات عند رسم الهمزة المتوسطة هي:',a:['الفتحة','الكسرة','الضمة','السكون'],c:1,e:'ترتيب القوة: الكسرة ثم الضمة ثم الفتحة ثم السكون.'},
+{cat:'الهمزات والإعراب',q:'علامة جر جمع المذكر السالم هي:',a:['الضمة','الفتحة','الياء','الألف'],c:2,e:'المثنى وجمع المذكر السالم يجران بالياء.'},
+{cat:'الإملاء',q:'أي كلمة موصولة صحيحة؟',a:['من ذا','حبذا','أن لا','إن لم'],c:1,e:'حب + ذا = حبذا.'}
+];
+let list=[],idx=0,score=0,answered=false;
+function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.navBtn').forEach(b=>b.classList.toggle('active',b.dataset.sec===id));}
+function renderLessons(){const box=document.getElementById('lessons');box.innerHTML=lessons.map((l,i)=>`<article class="lesson" data-txt="${(l.cat+' '+l.title+' '+l.points.join(' ')).toLowerCase()}"><span class="tag">${l.cat}</span><h3>${l.title}</h3><ul>${l.points.map(p=>`<li>${p}</li>`).join('')}</ul><p><b>مثال:</b> ${l.ex}</p></article>`).join('');document.getElementById('quickMaps').innerHTML=maps.map(m=>`<div class="lesson"><h3>${m[0]}</h3><p>${m[1]}</p></div>`).join('');}
+function filterLessons(){const q=document.getElementById('lessonSearch').value.trim().toLowerCase();document.querySelectorAll('#lessons .lesson').forEach(el=>el.style.display=el.dataset.txt.includes(q)?'block':'none');}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function restartQuiz(){const cat=document.getElementById('cat').value;list=shuffle(quiz.filter(x=>cat==='all'||x.cat===cat));idx=0;score=0;answered=false;document.getElementById('score').textContent=score;document.getElementById('qTotal').textContent=list.length;showQuestion();}
+function randomChallenge(){document.getElementById('cat').value='all';list=shuffle(quiz).slice(0,10);idx=0;score=0;answered=false;document.getElementById('score').textContent=score;document.getElementById('qTotal').textContent=list.length;showQuestion();}
+function showQuestion(){answered=false;document.getElementById('nextBtn').style.display='none';document.getElementById('explain').style.display='none';if(idx>=list.length){finishQuiz();return}const item=list[idx];document.getElementById('qNo').textContent=idx+1;document.getElementById('bar').style.width=(idx/list.length*100)+'%';document.getElementById('question').innerHTML=`<span class="tag">${item.cat}</span><br>${item.q}`;document.getElementById('answers').innerHTML=item.a.map((ans,i)=>`<button class="answer" onclick="choose(${i})">${ans}</button>`).join('');}
+function choose(i){if(answered)return;answered=true;const item=list[idx],btns=[...document.querySelectorAll('.answer')];btns[item.c].classList.add('correct');if(i!==item.c)btns[i].classList.add('wrong');const ok=i===item.c;if(ok){score+=10;confetti();showPopup('ok','يا سلام عليك!','إجابة صحيحة.. واضح المذاكرة شغالة مو ديكور.');}else{showPopup('bad','حظ أوفر!','قريبة، لكن القاعدة قالت: لا تلف ولا تدور.');}document.getElementById('score').textContent=score;document.getElementById('explain').style.display='block';document.getElementById('explain').innerHTML='<b>التغذية الراجعة:</b> '+item.e;document.getElementById('nextBtn').style.display='inline-block';localStorage.setItem('lughati_last_score',score);document.getElementById('savedScore').textContent=score;}
+function nextQuestion(){idx++;showQuestion()}
+function finishQuiz(){document.getElementById('bar').style.width='100%';let best=Math.max(Number(localStorage.getItem('lughati_best')||0),score);localStorage.setItem('lughati_best',best);document.getElementById('best').textContent=best;document.getElementById('question').innerHTML='انتهت الجولة 🎉';document.getElementById('answers').innerHTML=`<div class="card" style="box-shadow:none"><h3>درجتك: ${score} من ${list.length*10}</h3><p>${score>=list.length*8?'ممتاز.. اختبرت القواعد وما تركتها تختبرك.':'تحتاج جولة ثانية، والقواعد ما تزعل من التكرار.'}</p></div>`;document.getElementById('nextBtn').style.display='none';}
+function showPopup(type,t,m){const p=document.getElementById('popup'),c=document.getElementById('popCard');c.className='popCard '+type;document.getElementById('popTitle').textContent=t;document.getElementById('popMsg').textContent=m;p.style.display='grid';setTimeout(closePopup,1200)}
+function closePopup(){document.getElementById('popup').style.display='none'}
+function confetti(){for(let i=0;i<28;i++){const d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'vw';d.style.background=['#d89c74','#52677a','#13936d','#d9a441'][Math.floor(Math.random()*4)];d.style.animationDelay=Math.random()*.25+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),1500)}}
+function resetStorage(){localStorage.removeItem('lughati_last_score');localStorage.removeItem('lughati_best');document.getElementById('savedScore').textContent='0';document.getElementById('best').textContent='0';alert('تم تصفير النتائج. صفحة بيضاء جديدة مثل دفتر أول يوم.');}
+renderLessons();document.getElementById('savedScore').textContent=localStorage.getItem('lughati_last_score')||0;document.getElementById('best').textContent=localStorage.getItem('lughati_best')||0;restartQuiz();
+</script>
+</body>
+</html>
