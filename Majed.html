@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إطار تحسين التدريس — منطقة المدينة المنورة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;--navy2:#132847;--navy3:#1a3358;
+  --gold:#C9A84C;--gold2:#E8C66A;--gold3:#F5DFA0;--gold4:rgba(201,168,76,0.15);
+  --teal:#1A7B6B;--teal2:#25A896;
+  --blue:#185FA5;--blue2:#378add;
+  --red:#C0392B;--green:#1E8449;--green2:#27ae60;
+  --white:#FFFFFF;--cream:#FDF8EE;
+  --text-primary:rgba(255,255,255,0.92);
+  --text-secondary:rgba(255,255,255,0.65);
+  --text-muted:rgba(255,255,255,0.4);
+  --border:rgba(255,255,255,0.08);
+  --border-gold:rgba(201,168,76,0.25);
+  --card-bg:rgba(255,255,255,0.04);
+  --card-hover:rgba(255,255,255,0.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;background:var(--navy);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;right:0;left:0;z-index:100;background:rgba(11,31,58,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-gold);padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nav-logo-text{font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;color:var(--white);line-height:1.3}
+.nav-logo-sub{font-size:10px;color:var(--text-muted);font-weight:400}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-secondary);cursor:pointer;transition:.2s;border:none;background:transparent;font-family:'Tajawal',sans-serif}
+.nav-tab:hover{background:var(--card-bg);color:var(--text-primary)}
+.nav-tab.active{background:var(--gold4);color:var(--gold2);border:1px solid var(--border-gold)}
+
+/* PAGE SECTIONS */
+.page-section{display:none;padding-top:60px;min-height:100vh}
+.page-section.active{display:block}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#0d2444 0%,#0B1F3A 40%,#091629 100%);padding:64px 24px 48px;text-align:center;position:relative;overflow:hidden}
+.hero-geo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-geo-circle{position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,0.08)}
+.hero-geo-circle:nth-child(1){width:600px;height:600px;top:-200px;right:-200px}
+.hero-geo-circle:nth-child(2){width:400px;height:400px;bottom:-100px;left:-150px}
+.hero-geo-circle:nth-child(3){width:200px;height:200px;top:50%;right:10%}
+.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold4);border:1px solid var(--border-gold);color:var(--gold2);font-size:12px;font-weight:600;padding:7px 18px;border-radius:20px;letter-spacing:.5px;margin-bottom:24px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+.hero h1{font-family:'Cairo',sans-serif;font-size:clamp(22px,4vw,36px);font-weight:900;color:var(--white);line-height:1.45;margin-bottom:12px}
+.hero h1 em{color:var(--gold2);font-style:normal;position:relative}
+.hero h1 em::after{content:'';position:absolute;bottom:-4px;right:0;left:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-sub{font-size:15px;color:var(--text-secondary);line-height:1.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Cairo',sans-serif;font-size:28px;font-weight:900;color:var(--gold2);line-height:1}
+.hero-stat-label{font-size:11px;color:var(--text-muted);margin-top:4px}
+.hero-divider{width:1px;background:var(--border-gold);align-self:stretch;margin:4px 0}
+
+/* MAIN WRAPPER */
+.main{max-width:1200px;margin:0 auto;padding:32px 24px 60px}
+
+/* SECTION HEADER */
+.sec-header{margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.sec-header-line{flex:1;height:1px;background:var(--border-gold)}
+.sec-header-label{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:2px;white-space:nowrap;padding:0 4px}
+
+/* CARDS */
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;transition:.2s}
+.card:hover{background:var(--card-hover);border-color:var(--border-gold)}
+
+/* ABSTRACT */
+.abstract-box{background:linear-gradient(135deg,rgba(201,168,76,0.07),rgba(201,168,76,0.02));border:1px solid var(--border-gold);border-radius:18px;padding:28px 32px;position:relative;overflow:hidden;margin-bottom:32px}
+.abstract-box::before{content:'"';position:absolute;top:8px;right:20px;font-size:80px;color:rgba(201,168,76,0.1);font-family:Georgia,serif;line-height:1;pointer-events:none}
+.abstract-box p{font-size:14.5px;color:var(--text-secondary);line-height:2.1;position:relative;z-index:1}
+.abstract-box p strong{color:var(--gold2);font-weight:700}
+
+/* SAMPLE STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:32px}
+.stat-box{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;transition:.2s;cursor:default}
+.stat-box:hover{transform:translateY(-3px);border-color:var(--border-gold);background:var(--card-hover)}
+.stat-box-icon{font-size:24px;margin-bottom:8px}
+.stat-box-num{font-family:'Cairo',sans-serif;font-size:30px;font-weight:900;line-height:1;margin-bottom:4px}
+.stat-box-label{font-size:12px;color:var(--text-muted);line-height:1.5}
+
+/* PROFILE CHARTS */
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px}
+.profile-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:20px 24px}
+.profile-card-title{font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;color:var(--gold2);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.bar-item{margin-bottom:12px}
+.bar-item-header{display:flex;justify-content:space-between;margin-bottom:5px}
+.bar-item-label{font-size:12px;color:var(--text-secondary)}
+.bar-item-val{font-size:12px;font-weight:700;color:var(--gold2)}
+.bar-track{background:rgba(255,255,255,0.08);border-radius:4px;height:9px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
+
+/* METHODOLOGY */
+.method-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px}
+.method-box{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;transition:.2s}
+.method-box:hover{border-color:var(--border-gold);transform:translateY(-2px)}
+.method-icon{width:52px;height:52px;border-radius:50%;background:var(--gold4);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:24px}
+.method-name{font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px}
+.method-desc{font-size:11.5px;color:var(--text-muted);line-height:1.7}
+
+/* DOMAINS */
+.domains-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px}
+.domain-card{background:var(--card-bg);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:.25s}
+.domain-card:hover{transform:translateY(-4px);border-color:var(--border-gold)}
+.domain-card-header{padding:18px 20px 14px;display:flex;align-items:center;gap:14px}
+.domain-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.d1-color{background:rgba(201,168,76,0.18);border:1px solid rgba(201,168,76,0.3)}
+.d2-color{background:rgba(26,123,107,0.2);border:1px solid rgba(26,123,107,0.3)}
+.d3-color{background:rgba(55,138,221,0.18);border:1px solid rgba(55,138,221,0.3)}
+.d4-color{background:rgba(192,57,43,0.18);border:1px solid rgba(192,57,43,0.3)}
+.domain-card-title{font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;color:var(--white)}
+.domain-card-num{font-size:11px;color:var(--text-muted);margin-top:2px}
+.domain-card-body{padding:0 20px 20px}
+.domain-score-wrap{margin-bottom:14px}
+.domain-score-bar{background:rgba(255,255,255,0.08);border-radius:5px;height:10px;overflow:hidden;margin-bottom:6px}
+.domain-score-fill{height:100%;border-radius:5px;transition:width 1.5s ease}
+.fill-gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.fill-teal{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.fill-blue{background:linear-gradient(90deg,#1a5fa0,var(--blue2))}
+.fill-red{background:linear-gradient(90deg,#8b2020,var(--red))}
+.domain-score-meta{display:flex;justify-content:space-between;align-items:center}
+.domain-score-label{font-size:11px;color:var(--text-muted)}
+.domain-score-val{font-size:16px;font-weight:700;font-family:'Cairo',sans-serif;color:var(--gold2)}
+.domain-items{list-style:none;border-top:1px solid var(--border);padding-top:12px}
+.domain-items li{font-size:12px;color:var(--text-secondary);padding:5px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.domain-items li:last-child{border-bottom:none}
+.domain-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+/* CHART */
+.chart-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:32px}
+.chart-card-title{font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:20px;text-align:center}
+
+/* FINDINGS */
+.findings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:32px}
+.finding-box{background:var(--card-bg);border-radius:14px;padding:18px 20px;border-right:4px solid;transition:.2s}
+.finding-box:hover{background:var(--card-hover)}
+.finding-box.gold{border-color:var(--gold)}
+.finding-box.teal{border-color:var(--teal2)}
+.finding-box.blue{border-color:var(--blue2)}
+.finding-box.green{border-color:var(--green2)}
+.finding-box-icon{font-size:26px;margin-bottom:10px}
+.finding-box-title{font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:8px}
+.finding-box-text{font-size:12.5px;color:var(--text-secondary);line-height:1.9}
+
+/* RECS */
+.recs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:32px}
+.rec-box{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:18px;transition:.2s}
+.rec-box:hover{border-color:var(--border-gold);background:var(--card-hover);transform:translateY(-2px)}
+.rec-num{font-family:'Cairo',sans-serif;font-size:32px;font-weight:900;color:rgba(201,168,76,0.2);line-height:1;margin-bottom:8px}
+.rec-text{font-size:12.5px;color:var(--text-secondary);line-height:1.9}
+
+/* STUDIES */
+.study-list{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.study-item{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;transition:.2s}
+.study-item:hover{border-color:var(--border-gold);background:var(--card-hover)}
+.study-year{padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;white-space:nowrap;min-width:52px;text-align:center;line-height:1.2}
+.study-info{}
+.study-title{font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:5px}
+.study-result{font-size:12px;color:var(--text-secondary);line-height:1.7}
+
+/* PRINT SECTION */
+@media print{
+  nav,.nav-tabs{display:none!important}
+  .page-section{display:block!important;padding-top:0!important}
+  body{background:#fff;color:#000}
+  .hero{background:#0B1F3A!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* SUMMARY SCORE */
+.score-summary{background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.04));border:1px solid var(--border-gold);border-radius:16px;padding:24px;text-align:center;margin-bottom:32px}
+.score-summary-title{font-size:13px;color:var(--text-muted);margin-bottom:8px}
+.score-summary-num{font-family:'Cairo',sans-serif;font-size:52px;font-weight:900;color:var(--gold2);line-height:1;margin-bottom:4px}
+.score-summary-out{font-size:16px;color:var(--text-muted)}
+.score-summary-badge{display:inline-block;margin-top:10px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);color:#27ae60;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:700}
+
+/* PRINT BTN */
+.btn-print{position:fixed;bottom:24px;left:24px;z-index:200;background:var(--gold);color:var(--navy);border:none;padding:12px 22px;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(201,168,76,0.4);transition:.2s}
+.btn-print:hover{background:var(--gold2);transform:translateY(-2px)}
+
+/* FOOTER */
+.site-footer{background:rgba(0,0,0,0.3);border-top:2px solid var(--gold);padding:24px;text-align:center;margin-top:16px}
+.site-footer-brand{font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;color:var(--gold2);margin-bottom:4px}
+.site-footer-sub{font-size:12px;color:var(--text-muted)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeUp .5s ease both}
+.anim-1{animation-delay:.1s}.anim-2{animation-delay:.2s}.anim-3{animation-delay:.3s}.anim-4{animation-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero h1{font-size:20px}
+  .nav-tabs{display:none}
+  .main{padding:16px 14px 40px}
+  .hero-stats{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">📚</div>
+      <div>
+        <div class="nav-logo-text">إطار تحسين التدريس</div>
+        <div class="nav-logo-sub">منطقة المدينة المنورة — 1447هـ</div>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('overview')">نظرة عامة</button>
+      <button class="nav-tab" onclick="showSection('sample')">العينة</button>
+      <button class="nav-tab" onclick="showSection('domains')">المجالات</button>
+      <button class="nav-tab" onclick="showSection('findings')">النتائج</button>
+      <button class="nav-tab" onclick="showSection('recs')">التوصيات</button>
+      <button class="nav-tab" onclick="showSection('studies')">الدراسات السابقة</button>
+    </div>
+  </div>
+</nav>
+
+<!-- BTN PRINT -->
+<button class="btn-print" onclick="window.print()">🖨️ طباعة</button>
+
+<!-- ===================== OVERVIEW ===================== -->
+<section class="page-section active" id="overview">
+  <div class="hero">
+    <div class="hero-geo">
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> بحث علمي ميداني — 1447هـ</div>
+      <h1>أثر تطبيق <em>إطار تحسين التدريس</em><br>على مدارس المدينة المنورة</h1>
+      <p class="hero-sub">من وجهة نظر المعلمين والمعلمات ومديري ومديرات المدارس<br>فريق التدريس — الإدارة العامة للتعليم بمنطقة المدينة المنورة</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:var(--gold2)">205</div>
+          <div class="hero-stat-label">مشاركاً في الدراسة</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:#27ae60">2.91</div>
+          <div class="hero-stat-label">المتوسط العام / 3</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:var(--blue2)">4</div>
+          <div class="hero-stat-label">مجالات رئيسة</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:var(--teal2)">20</div>
+          <div class="hero-stat-label">فقرة في الاستبانة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- ABSTRACT -->
+    <div class="sec-header">
+      <div class="sec-header-line"></div>
+      <div class="sec-header-label">ملخص الدراسة</div>
+      <div class="sec-header-line"></div>
+    </div>
+    <div class="abstract-box anim">
+      <p>هدفت هذه الدراسة إلى التعرف على <strong>أثر تطبيق إطار تحسين التدريس</strong> في عينة من مدارس منطقة المدينة المنورة، والكشف عن مستوى إسهامه في <strong>تطوير الممارسات التدريسية وتحسين جودة عمليتَي التعليم والتعلم</strong>. اعتمدت الدراسة المنهج الوصفي المسحي، وطُبِّقت استبانة ثلاثية تضمنت <strong>أربعة مجالات</strong>: ثقافة التدريس — التخطيط للتدريس — تنفيذ التدريس — تقويم التدريس، بمجموع 20 فقرة. وأظهرت النتائج أن الإطار أسهم بدرجة <strong>مرتفعة جداً</strong> في تعزيز الممارسات التدريسية وتحسين جودة التعليم في جميع المجالات.</p>
+    </div>
+
+    <!-- SCORE SUMMARY -->
+    <div class="score-summary anim anim-1">
+      <div class="score-summary-title">المتوسط العام لجميع مجالات الدراسة</div>
+      <div class="score-summary-num">2.91</div>
+      <div class="score-summary-out">من أصل 3 درجات (مقياس ليكرت الثلاثي)</div>
+      <div class="score-summary-badge">✅ مستوى مرتفع جداً — نسبة موافقة تتجاوز 97%</div>
+    </div>
+
+    <!-- METHODOLOGY -->
+    <div class="sec-header">
+      <div class="sec-header-line"></div>
+      <div class="sec-header-label">منهجية الدراسة</div>
+      <div class="sec-header-line"></div>
+    </div>
+    <div class="method-row">
+      <div class="method-box anim anim-1">
+        <div class="method-icon">🔍</div>
+        <div class="method-name">المنهج الوصفي المسحي</div>
+        <div class="method-desc">دراسة الظاهرة ووصفها كمياً وكيفياً كما توجد في الواقع</div>
+      </div>
+      <div class="method-box anim anim-2">
+        <div class="method-icon">📋</div>
+        <div class="method-name">أداة الاستبانة</div>
+        <div class="method-desc">20 فقرة في 4 مجالات — مقياس ليكرت الثلاثي (موافق / محايد / غير موافق)</div>
+      </div>
+      <div class="method-box anim anim-3">
+        <div class="method-icon">📊</div>
+        <div class="method-name">التحليل الإحصائي</div>
+        <div class="method-desc">متوسطات حسابية وانحرافات معيارية واختبار الفروق بين استجابات العينة</div>
+      </div>
+      <div class="method-box anim anim-4">
+        <div class="method-icon">✅</div>
+        <div class="method-name">التحكيم والصدق</div>
+        <div class="method-desc">عُرضت الاستبانة على محكمين مختصين للتأكد من الصدق والثبات</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="site-footer-brand">الإدارة العامة للتعليم — المدينة المنورة</div>
+    <div class="site-footer-sub">فريق التدريس — الشؤون التعليمية — العام الدراسي 1447هـ</div>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE ===================== -->
+<section class="page-section" id="sample">
+  <div class="hero" style="padding:48px 24px 36px">
+    <div class="hero-geo">
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> خصائص عينة الدراسة</div>
+      <h1>205 مشاركاً ومشاركة</h1>
+      <p class="hero-sub">معلمون ومعلمات ومديرو ومديرات مدارس التعليم العام بمنطقة المدينة المنورة</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="stats-row">
+      <div class="stat-box anim">
+        <div class="stat-box-icon">👥</div>
+        <div class="stat-box-num" style="color:var(--gold2)">205</div>
+        <div class="stat-box-label">إجمالي عينة الدراسة</div>
+      </div>
+      <div class="stat-box anim anim-1">
+        <div class="stat-box-icon">🏆</div>
+        <div class="stat-box-num" style="color:var(--teal2)">88.3%</div>
+        <div class="stat-box-label">رتبة معلم ممارس — الغالبة</div>
+      </div>
+      <div class="stat-box anim anim-2">
+        <div class="stat-box-icon">⏳</div>
+        <div class="stat-box-num" style="color:var(--green2)">96.6%</div>
+        <div class="stat-box-label">خبرة أكثر من 10 سنوات</div>
+      </div>
+      <div class="stat-box anim anim-3">
+        <div class="stat-box-icon">🎓</div>
+        <div class="stat-box-num" style="color:var(--blue2)">95.1%</div>
+        <div class="stat-box-label">مؤهل بكالوريوس</div>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <!-- رتبة المعلم -->
+      <div class="profile-card anim">
+        <div class="profile-card-title">رتبة المعلم/ة</div>
+        <div class="bar-item">
+          <div class="bar-item-header"><span class="bar-item-label">معلم ممارس</span><span class="bar-item-val" style="color:var(--gold2)">88.3% (181)</span></div>
+          <div class="bar-track"><div class="bar-fill fill-gold" style="width:88.3%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-item-header"><span class="bar-item-label">معلم متقدم</span><span class="bar-item-val" style="color:var(--teal2)">10.7% (22)</span></div>
+          <div class="bar-track"><div class="bar-fill fill-teal" style="width:10.7%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-item-header"><span class="bar-item-label">معلم خبير</span><span class="bar-item-val" style="color:var(--red)">1.0% (2)</span></div>
+          <div class="bar-track"><div class="bar-fill fill-red" style="width:1%"></div></div>
+        </div>
+        <div style="margin-top:16px;height:180px;position:relative">
+          <canvas id="chartRank" role="img" aria-label="مخطط دائري لرتب المعلمين">ممارس 88.3%، متقدم 10.7%، خبير 1%</canvas>
+        </div>
+      </div>
+
+      <!-- المرحلة الدراسية -->
+      <div class="profile-card anim anim-1">
+        <div class="profile-card-title">المرحلة الدراسية</div>
+        <div class="bar-item">
+          <div class="bar-item-header"><span class="bar-item-label">متوسط</span><span class="bar-item-val" style="color:var(--gold2)">42.0% (86)</span></div>
+          <div class="bar-track"><div class="bar-fill fill-gold" style="width:42%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-item-header"><span class="bar-item-label">ابتدائي</span><span class="bar-item-val" style="color:var(--blue2)">41.0% (84)</span></div>
+          <div class="bar-track"><div class="bar-fill fill-blue" style="width:41%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-item-header"><span class="bar-item-label">ثانوي</span><span class="bar-item-val" style="color:var(--teal2)">17.1% (35)</span></div>
+          <div class="bar-track"><div class="bar-fill fill-teal" style="width:17.1%"></div></div>
+        </div>
+        <div style="margin-top:16px;height:180px;position:relative">
+          <canvas id="chartStage" role="img" aria-label="مخطط دائري للمراحل الدراسية">متوسط 42%، ابتدائي 41%، ثانوي 17.1%</canvas>
+        </div>
+      </div>
+
+      <!-- المؤهل العلمي -->
+      <div class="profile-card anim anim-2">
+        <div class="profile-card-title">المؤهل العلمي وسنوات الخبرة</div>
+        <div style="margin-bottom:18px">
+          <div class="bar-item">
+            <div class="bar-item-header"><span class="bar-item-label">بكالوريوس</span><span class="bar-item-val" style="color:var(--gold2)">95.1% (195)</span></div>
+            <div class="bar-track"><div class="bar-fill fill-gold" style="width:95.1%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-item-header"><span class="bar-item-label">ماجستير</span><span class="bar-item-val" style="color:var(--teal2)">4.9% (10)</span></div>
+            <div class="bar-track"><div class="bar-fill fill-teal" style="width:4.9%"></div></div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:14px">
+          <div class="profile-card-title" style="margin-bottom:12px">سنوات الخبرة</div>
+          <div class="bar-item">
+            <div class="bar-item-header"><span class="bar-item-label">أكثر من 10 سنوات</span><span class="bar-item-val" style="color:var(--green2)">96.6% (198)</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:96.6%;background:linear-gradient(90deg,#1a6b2a,var(--green2))"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-item-header"><span class="bar-item-label">5 – 10 سنوات</span><span class="bar-item-val" style="color:var(--blue2)">2.4% (5)</span></div>
+            <div class="bar-track"><div class="bar-fill fill-blue" style="width:2.4%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-item-header"><span class="bar-item-label">أقل من 5 سنوات</span><span class="bar-item-val" style="color:var(--red)">1.0% (2)</span></div>
+            <div class="bar-track"><div class="bar-fill fill-red" style="width:1%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer">
+    <div class="site-footer-brand">الإدارة العامة للتعليم — المدينة المنورة</div>
+    <div class="site-footer-sub">فريق التدريس — الشؤون التعليمية — العام الدراسي 1447هـ</div>
+  </div>
+</section>
+
+<!-- ===================== DOMAINS ===================== -->
+<section class="page-section" id="domains">
+  <div class="hero" style="padding:48px 24px 36px">
+    <div class="hero-geo">
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> المجالات الأربعة</div>
+      <h1>نتائج تطبيق <em>إطار تحسين التدريس</em></h1>
+      <p class="hero-sub">تحليل تفصيلي لمجالات الإطار الأربعة بالمتوسطات الحسابية والانحرافات المعيارية</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="domains-grid">
+      <!-- D1 -->
+      <div class="domain-card anim" style="border-color:rgba(201,168,76,0.3)">
+        <div class="domain-card-header">
+          <div class="domain-card-icon d1-color">🏛️</div>
+          <div>
+            <div class="domain-card-title">ثقافة التدريس</div>
+            <div class="domain-card-num">المجال الأول — بناء ثقافة صفية إيجابية</div>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="domain-score-wrap">
+            <div class="domain-score-bar"><div class="domain-score-fill fill-gold" id="d1bar" style="width:0%"></div></div>
+            <div class="domain-score-meta">
+              <span class="domain-score-label">درجة التأثير (إجمالي: 14.62)</span>
+              <span class="domain-score-val">2.92 / 3</span>
+            </div>
+          </div>
+          <ul class="domain-items">
+            <li><span class="domain-dot" style="background:var(--gold)"></span>بناء ثقافة تدريسية داعمة للتعلم العميق <strong style="color:var(--gold2);margin-right:auto;font-size:11px">(2.96)</strong></li>
+            <li><span class="domain-dot" style="background:var(--gold)"></span>توفير بيئة صفية آمنة وداعمة للتعلم <strong style="color:var(--gold2);margin-right:auto;font-size:11px">(2.92)</strong></li>
+            <li><span class="domain-dot" style="background:var(--gold)"></span>تعزيز العلاقات الإيجابية بين المعلم والطالب <strong style="color:var(--gold2);margin-right:auto;font-size:11px">(2.92)</strong></li>
+            <li><span class="domain-dot" style="background:var(--gold)"></span>المحافظة على وقت التدريس <strong style="color:var(--gold2);margin-right:auto;font-size:11px">(2.90)</strong></li>
+            <li><span class="domain-dot" style="background:var(--gold)"></span>زيادة فاعلية أنشطة التعلم <strong style="color:var(--gold2);margin-right:auto;font-size:11px">(2.91)</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D2 -->
+      <div class="domain-card anim anim-1" style="border-color:rgba(26,123,107,0.3)">
+        <div class="domain-card-header">
+          <div class="domain-card-icon d2-color">📐</div>
+          <div>
+            <div class="domain-card-title">التخطيط للتدريس</div>
+            <div class="domain-card-num">المجال الثاني — تخطيط الدروس</div>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="domain-score-wrap">
+            <div class="domain-score-bar"><div class="domain-score-fill fill-teal" id="d2bar" style="width:0%"></div></div>
+            <div class="domain-score-meta">
+              <span class="domain-score-label">درجة التأثير (إجمالي: 14.52)</span>
+              <span class="domain-score-val" style="color:var(--teal2)">2.90 / 3</span>
+            </div>
+          </div>
+          <ul class="domain-items">
+            <li><span class="domain-dot" style="background:var(--teal2)"></span>تحديد الأهداف التعليمية بصورة دقيقة <strong style="color:var(--teal2);margin-right:auto;font-size:11px">(2.90)</strong></li>
+            <li><span class="domain-dot" style="background:var(--teal2)"></span>التركيز على مهارات التفكير العليا <strong style="color:var(--teal2);margin-right:auto;font-size:11px">(2.89)</strong></li>
+            <li><span class="domain-dot" style="background:var(--teal2)"></span>اختيار استراتيجيات التدريس الفاعلة <strong style="color:var(--teal2);margin-right:auto;font-size:11px">(2.91)</strong></li>
+            <li><span class="domain-dot" style="background:var(--teal2)"></span>مراعاة الفروق الفردية عند التخطيط <strong style="color:var(--teal2);margin-right:auto;font-size:11px">(2.90)</strong></li>
+            <li><span class="domain-dot" style="background:var(--teal2)"></span>تصميم أنشطة تعليمية متنوعة <strong style="color:var(--teal2);margin-right:auto;font-size:11px">(2.91)</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D3 -->
+      <div class="domain-card anim anim-2" style="border-color:rgba(55,138,221,0.3)">
+        <div class="domain-card-header">
+          <div class="domain-card-icon d3-color">⚡</div>
+          <div>
+            <div class="domain-card-title">تنفيذ التدريس</div>
+            <div class="domain-card-num">المجال الثالث — الأداء الصفي الفعلي</div>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="domain-score-wrap">
+            <div class="domain-score-bar"><div class="domain-score-fill fill-blue" id="d3bar" style="width:0%"></div></div>
+            <div class="domain-score-meta">
+              <span class="domain-score-label">درجة التأثير (إجمالي: 14.58)</span>
+              <span class="domain-score-val" style="color:var(--blue2)">2.92 / 3</span>
+            </div>
+          </div>
+          <ul class="domain-items">
+            <li><span class="domain-dot" style="background:var(--blue2)"></span>تنويع أساليب التدريس <strong style="color:var(--blue2);margin-right:auto;font-size:11px">(2.91)</strong></li>
+            <li><span class="domain-dot" style="background:var(--blue2)"></span>مشاركة الطالب الفاعلة وتعزيز التواصل <strong style="color:var(--blue2);margin-right:auto;font-size:11px">(2.92)</strong></li>
+            <li><span class="domain-dot" style="background:var(--blue2)"></span>توظيف الأسئلة لتنمية التفكير العليا <strong style="color:var(--blue2);margin-right:auto;font-size:11px">(2.93)</strong></li>
+            <li><span class="domain-dot" style="background:var(--blue2)"></span>إدارة زمن التدريس بصورة منظمة <strong style="color:var(--blue2);margin-right:auto;font-size:11px">(2.91)</strong></li>
+            <li><span class="domain-dot" style="background:var(--blue2)"></span>ربط الدرس بواقع الطالب وخبراتهم <strong style="color:var(--blue2);margin-right:auto;font-size:11px">(2.90)</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D4 -->
+      <div class="domain-card anim anim-3" style="border-color:rgba(192,57,43,0.3)">
+        <div class="domain-card-header">
+          <div class="domain-card-icon d4-color">🎯</div>
+          <div>
+            <div class="domain-card-title">تقويم التدريس</div>
+            <div class="domain-card-num">المجال الرابع — قياس وتقييم التعلم</div>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="domain-score-wrap">
+            <div class="domain-score-bar"><div class="domain-score-fill fill-red" id="d4bar" style="width:0%"></div></div>
+            <div class="domain-score-meta">
+              <span class="domain-score-label">درجة التأثير (إجمالي: 14.58)</span>
+              <span class="domain-score-val" style="color:#e74c3c">2.91 / 3</span>
+            </div>
+          </div>
+          <ul class="domain-items">
+            <li><span class="domain-dot" style="background:#e74c3c"></span>استخدام أدوات تقويم متنوعة <strong style="color:#e74c3c;margin-right:auto;font-size:11px">(2.95)</strong></li>
+            <li><span class="domain-dot" style="background:#e74c3c"></span>تقديم تغذية راجعة بناءة للطالب <strong style="color:#e74c3c;margin-right:auto;font-size:11px">(2.94)</strong></li>
+            <li><span class="domain-dot" style="background:#e74c3c"></span>متابعة تقدم الطالب بشكل مستمر <strong style="color:#e74c3c;margin-right:auto;font-size:11px">(2.91)</strong></li>
+            <li><span class="domain-dot" style="background:#e74c3c"></span>قياس تحقق الأهداف التعليمية بدقة <strong style="color:#e74c3c;margin-right:auto;font-size:11px">(2.89)</strong></li>
+            <li><span class="domain-dot" style="background:#e74c3c"></span>توظيف نتائج التقويم في تحسين التدريس <strong style="color:#e74c3c;margin-right:auto;font-size:11px">(2.88)</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHART -->
+    <div class="sec-header">
+      <div class="sec-header-line"></div>
+      <div class="sec-header-label">مقارنة المجالات</div>
+      <div class="sec-header-line"></div>
+    </div>
+    <div class="chart-card anim">
+      <div class="chart-card-title">متوسطات المجالات الأربعة (من 3 درجات)</div>
+      <div style="position:relative;height:280px">
+        <canvas id="chartDomains" role="img" aria-label="مخطط أعمدة لمتوسطات المجالات الأربعة">ثقافة 2.92، تخطيط 2.90، تنفيذ 2.92، تقويم 2.91</canvas>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer">
+    <div class="site-footer-brand">الإدارة العامة للتعليم — المدينة المنورة</div>
+    <div class="site-footer-sub">فريق التدريس — الشؤون التعليمية — العام الدراسي 1447هـ</div>
+  </div>
+</section>
+
+<!-- ===================== FINDINGS ===================== -->
+<section class="page-section" id="findings">
+  <div class="hero" style="padding:48px 24px 36px">
+    <div class="hero-geo">
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> نتائج الدراسة</div>
+      <h1>أبرز <em>ما كشفت عنه</em> الدراسة</h1>
+      <p class="hero-sub">النتائج التفصيلية لمجالات إطار تحسين التدريس الأربعة</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="findings-grid">
+      <div class="finding-box gold anim">
+        <div class="finding-box-icon">🏅</div>
+        <div class="finding-box-title">أثر مرتفع في جميع المجالات</div>
+        <div class="finding-box-text">أسهم إطار تحسين التدريس بدرجة مرتفعة جداً في تعزيز الممارسات التدريسية، إذ تراوحت متوسطات المجالات بين (2.89 – 2.96) من أصل 3 درجات، وهو مستوى يشير إلى نجاح واضح في تطبيق الإطار.</div>
+      </div>
+      <div class="finding-box teal anim anim-1">
+        <div class="finding-box-icon">🌟</div>
+        <div class="finding-box-title">أعلى تأثير: ثقافة التدريس والتنفيذ</div>
+        <div class="finding-box-text">تصدّر مجالا ثقافة التدريس وتنفيذ التدريس بمتوسط (2.92)، مما يعكس الأثر المباشر والملموس للإطار في البيئة الصفية اليومية وتحسين التفاعل بين المعلم والطالب.</div>
+      </div>
+      <div class="finding-box blue anim anim-2">
+        <div class="finding-box-icon">📐</div>
+        <div class="finding-box-title">اتساق الاستجابات ووحدة الرأي</div>
+        <div class="finding-box-text">جاءت الانحرافات المعيارية منخفضة جداً (0.216 – 0.322)، مما يدل على درجة عالية من الاتساق في استجابات عينة الدراسة ويعكس قناعة موحدة بفاعلية الإطار.</div>
+      </div>
+      <div class="finding-box green anim anim-3">
+        <div class="finding-box-icon">💡</div>
+        <div class="finding-box-title">الأداة التقويمية: أعلى أثر في التنويع</div>
+        <div class="finding-box-text">حققت فقرة "استخدام أدوات تقويم متنوعة" أعلى متوسط في مجال التقويم (2.95)، فيما جاءت "توظيف نتائج التقويم في تحسين التدريس" أدنى (2.88)، مشيرةً للحاجة لمزيد من الدعم.</div>
+      </div>
+      <div class="finding-box gold anim">
+        <div class="finding-box-icon">📈</div>
+        <div class="finding-box-title">نسبة الموافقة العامة: 97.2%</div>
+        <div class="finding-box-text">بلغ مجموع متوسطات مجال تنفيذ التدريس (14.58) من أصل (15) درجة، بما يعادل نسبة موافقة 97.2% — وهي أعلى نسبة بين المجالات الأربعة.</div>
+      </div>
+      <div class="finding-box teal anim anim-1">
+        <div class="finding-box-icon">🤝</div>
+        <div class="finding-box-title">اتجاهات إيجابية نحو الإطار</div>
+        <div class="finding-box-text">أظهرت النتائج وجود اتجاهات إيجابية واضحة لدى جميع أفراد العينة نحو إطار تحسين التدريس بوصفه أداةً فاعلة لتطوير الأداء المدرسي وتحقيق نواتج تعلم أفضل.</div>
+      </div>
+    </div>
+
+    <!-- RADAR CHART -->
+    <div class="sec-header">
+      <div class="sec-header-line"></div>
+      <div class="sec-header-label">الرسم البياني الشعاعي</div>
+      <div class="sec-header-line"></div>
+    </div>
+    <div class="chart-card anim">
+      <div class="chart-card-title">مقارنة شاملة لمجالات الإطار</div>
+      <div style="position:relative;height:300px;max-width:400px;margin:0 auto">
+        <canvas id="chartRadar" role="img" aria-label="مخطط شعاعي للمجالات الأربعة">ثقافة 2.92، تخطيط 2.90، تنفيذ 2.92، تقويم 2.91</canvas>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer">
+    <div class="site-footer-brand">الإدارة العامة للتعليم — المدينة المنورة</div>
+    <div class="site-footer-sub">فريق التدريس — الشؤون التعليمية — العام الدراسي 1447هـ</div>
+  </div>
+</section>
+
+<!-- ===================== RECS ===================== -->
+<section class="page-section" id="recs">
+  <div class="hero" style="padding:48px 24px 36px">
+    <div class="hero-geo">
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> توصيات الدراسة</div>
+      <h1>توصيات <em>فريق البحث</em></h1>
+      <p class="hero-sub">في ضوء نتائج الدراسة الميدانية — 8 توصيات رئيسة ومقترحات لدراسات مستقبلية</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="recs-grid">
+      <div class="rec-box anim"><div class="rec-num">01</div><div class="rec-text">التوسع في تطبيق إطار تحسين التدريس في جميع المدارس لما أظهرته النتائج من أثر إيجابي واضح في تطوير الممارسات التدريسية وتحسين جودة التعليم.</div></div>
+      <div class="rec-box anim anim-1"><div class="rec-num">02</div><div class="rec-text">تعزيز برامج التنمية المهنية للمعلمين المرتبطة بممارسات الإطار مع التركيز على التطبيق العملي داخل الصفوف الدراسية.</div></div>
+      <div class="rec-box anim anim-2"><div class="rec-num">03</div><div class="rec-text">تدريب المعلمين على تصميم الأسئلة الصفية التي تنمي مهارات التفكير العليا وتوظيفها باستمرار أثناء تنفيذ الدروس.</div></div>
+      <div class="rec-box anim anim-3"><div class="rec-num">04</div><div class="rec-text">دعم المعلمين في تنويع استراتيجيات التدريس والأنشطة التعليمية بما يناسب احتياجات الطلاب وقدراتهم، وربطها بواقعهم.</div></div>
+      <div class="rec-box anim"><div class="rec-num">05</div><div class="rec-text">تطوير آليات التخطيط بما يضمن دقة صياغة الأهداف التعليمية وارتباطها بنواتج التعلم ومهارات القرن الحادي والعشرين.</div></div>
+      <div class="rec-box anim anim-1"><div class="rec-num">06</div><div class="rec-text">الاستمرار في دعم تطبيق الإطار ميدانياً من خلال فرق التدريس في إدارات التعليم لضمان استدامة الممارسات الفاعلة.</div></div>
+      <div class="rec-box anim anim-2"><div class="rec-num">07</div><div class="rec-text">تعزيز ثقافة التقويم والتحسين المستمر داخل المدارس من خلال الاستفادة من نتائج تطبيق الإطار في تطوير الخطط التعليمية.</div></div>
+      <div class="rec-box anim anim-3"><div class="rec-num">08</div><div class="rec-text">تشجيع تبادل الخبرات والتجارب الناجحة بين المدارس والمعلمين، ونشر الممارسات المتميزة على نطاق أوسع.</div></div>
+    </div>
+
+    <div class="sec-header">
+      <div class="sec-header-line"></div>
+      <div class="sec-header-label">مقترحات لدراسات مستقبلية</div>
+      <div class="sec-header-line"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+        <span style="font-size:20px;flex-shrink:0">🔬</span>
+        <span style="font-size:13px;color:var(--text-secondary);line-height:1.9">إجراء دراسات تقيس أثر تطبيق إطار تحسين التدريس على نواتج تعلم الطالب والتحصيل الدراسي مباشرة.</span>
+      </div>
+      <div class="card" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+        <span style="font-size:20px;flex-shrink:0">🚧</span>
+        <span style="font-size:13px;color:var(--text-secondary);line-height:1.9">الكشف عن المعوقات والتحديات التي تواجه تطبيق إطار تحسين التدريس في المدارس.</span>
+      </div>
+      <div class="card" style="padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+        <span style="font-size:20px;flex-shrink:0">⚖️</span>
+        <span style="font-size:13px;color:var(--text-secondary);line-height:1.9">إجراء دراسات مقارنة بين المدارس ذات مستويات التطبيق المرتفعة والمنخفضة للإطار للتعرف على العوامل المؤثرة.</span>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer">
+    <div class="site-footer-brand">الإدارة العامة للتعليم — المدينة المنورة</div>
+    <div class="site-footer-sub">فريق التدريس — الشؤون التعليمية — العام الدراسي 1447هـ</div>
+  </div>
+</section>
+
+<!-- ===================== STUDIES ===================== -->
+<section class="page-section" id="studies">
+  <div class="hero" style="padding:48px 24px 36px">
+    <div class="hero-geo">
+      <div class="hero-geo-circle"></div>
+      <div class="hero-geo-circle"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span> الإطار النظري والدراسات السابقة</div>
+      <h1>الدراسات <em>السابقة ذات الصلة</em></h1>
+      <p class="hero-sub">خمس دراسات علمية مرتبة زمنياً — من 2016م إلى 2025م</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="study-list">
+      <div class="study-item anim">
+        <div class="study-year" style="background:rgba(201,168,76,0.15);color:var(--gold2);border:1px solid var(--border-gold)">2016<br>م</div>
+        <div class="study-info">
+          <div class="study-title">فاعلية المتابعة التأملية في تحسين الأداء التدريسي</div>
+          <div class="study-result">منهج شبه تجريبي — بطاقة ملاحظة للأداء — أظهرت فروقاً ذات دلالة إحصائية لصالح التطبيق البعدي في مهارات التخطيط والتنفيذ والتقويم. تؤكد أهمية التأمل المهني المنظم كمدخل فاعل لتحسين الممارسات التدريسية.</div>
+        </div>
+      </div>
+      <div class="study-item anim anim-1">
+        <div class="study-year" style="background:rgba(26,123,107,0.18);color:var(--teal2);border:1px solid rgba(26,123,107,0.3)">2019<br>م</div>
+        <div class="study-info">
+          <div class="study-title">أثر برنامج تدريبي قائم على المعايير المهنية للمعلمين في تنمية الممارسات التدريسية</div>
+          <div class="study-result">منهج تجريبي — بطاقة ملاحظة واختبار أداء — تحسن ملحوظ في تنويع الاستراتيجيات وإدارة الصف وتحفيز المتعلمين. تدعم فكرة أن الالتزام بالمعايير المهنية يُحسِّن مباشرةً جودة الممارسات التدريسية.</div>
+        </div>
+      </div>
+      <div class="study-item anim anim-2">
+        <div class="study-year" style="background:rgba(55,138,221,0.18);color:var(--blue2);border:1px solid rgba(55,138,221,0.3)">2021<br>م</div>
+        <div class="study-info">
+          <div class="study-title">دور الممارسات التدريسية القائمة على التقنية الرقمية في تحسين نواتج التعلم</div>
+          <div class="study-result">منهج وصفي تحليلي — استبانة — أظهرت أن توظيف التقنية الرقمية يُحسِّن التفاعل الصفي ويُنمِّي مهارات التفكير ويرفع مستوى التحصيل. تؤكد أن تحسين الممارسات أصبح مرتبطاً بالتقنيات الحديثة.</div>
+        </div>
+      </div>
+      <div class="study-item anim anim-3">
+        <div class="study-year" style="background:rgba(192,57,43,0.18);color:#e74c3c;border:1px solid rgba(192,57,43,0.3)">2023<br>م</div>
+        <div class="study-info">
+          <div class="study-title">تحسين الممارسات التدريسية لمعلمي التربية الإسلامية في ضوء استراتيجيات التعلم الممتع</div>
+          <div class="study-result">منهج شبه تجريبي — بطاقة ملاحظة واستبانة اتجاهات — أثبتت فاعلية التعلم الممتع في إثارة الدافعية وتنويع العرض وتحقيق التفاعل الإيجابي. تعزز أهمية تنويع الاستراتيجيات.</div>
+        </div>
+      </div>
+      <div class="study-item anim">
+        <div class="study-year" style="background:rgba(39,174,96,0.18);color:var(--green2);border:1px solid rgba(39,174,96,0.3)">2025<br>م</div>
+        <div class="study-info">
+          <div class="study-title">درجة توافر الممارسات التدريسية الحديثة لدى المعلمين في ضوء المستجدات التربوية</div>
+          <div class="study-result">منهج وصفي تحليلي — استبانة — جاءت الممارسات بدرجة متوسطة مع فروق دالة إحصائياً تعزى لمتغيري الخبرة والتدريب. تكشف عن فجوة بين التوجهات الحديثة والتطبيق الفعلي، مما يؤكد الحاجة لأطر منظمة.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRAME DEFINITION -->
+    <div class="sec-header">
+      <div class="sec-header-line"></div>
+      <div class="sec-header-label">تعريف المصطلحات الرئيسة</div>
+      <div class="sec-header-line"></div>
+    </div>
+    <div class="method-row">
+      <div class="method-box anim">
+        <div class="method-icon">📖</div>
+        <div class="method-name">إطار تحسين التدريس</div>
+        <div class="method-desc">إطار شامل صادر من وزارة التعليم يوجه جهود المعلمين نحو الممارسات التي تُحقق التعلم العميق</div>
+      </div>
+      <div class="method-box anim anim-1">
+        <div class="method-icon">🔄</div>
+        <div class="method-name">تحسين التدريس</div>
+        <div class="method-desc">عملية منهجية مستمرة مخطط لها تهدف إلى رفع جودة الممارسات التعليمية داخل الصف</div>
+      </div>
+      <div class="method-box anim anim-2">
+        <div class="method-icon">🏫</div>
+        <div class="method-name">ثقافة التدريس</div>
+        <div class="method-desc">المفاهيم والقيم والمعتقدات والسلوك السائدة في المدرسة وتؤثر على كيفية التعليم والتعلم</div>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer">
+    <div class="site-footer-brand">الإدارة العامة للتعليم — المدينة المنورة</div>
+    <div class="site-footer-sub">فريق التدريس — الشؤون التعليمية — العام الدراسي 1447هـ</div>
+  </div>
+</section>
+
+<script>
+// NAV
+function showSection(id){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const order = ['overview','sample','domains','findings','recs','studies'];
+  const idx = order.indexOf(id);
+  if(tabs[idx]) tabs[idx].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>initCharts(id),100);
+}
+
+let chartsInit = {};
+
+function initCharts(section){
+  if(chartsInit[section]) return;
+  chartsInit[section] = true;
+
+  // Animate domain bars
+  if(section==='domains'){
+    setTimeout(()=>{
+      const d = [{id:'d1bar',w:97.3},{id:'d2bar',w:96.8},{id:'d3bar',w:97.3},{id:'d4bar',w:97}];
+      d.forEach(x=>{const el=document.getElementById(x.id);if(el)el.style.width=x.w+'%'});
+    },200);
+
+    const ctx = document.getElementById('chartDomains');
+    if(ctx && !ctx._chartjs){
+      new Chart(ctx,{
+        type:'bar',
+        data:{
+          labels:['ثقافة التدريس','التخطيط','التنفيذ','التقويم'],
+          datasets:[{
+            label:'المتوسط الحسابي',
+            data:[2.92,2.90,2.92,2.91],
+            backgroundColor:['rgba(201,168,76,0.7)','rgba(26,123,107,0.7)','rgba(55,138,221,0.7)','rgba(192,57,43,0.7)'],
+            borderColor:['#C9A84C','#1A7B6B','#378add','#C0392B'],
+            borderWidth:2,borderRadius:8,borderSkipped:false
+          }]
+        },
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          plugins:{legend:{display:false},tooltip:{callbacks:{label:v=>'المتوسط: '+v.raw+' / 3'}}},
+          scales:{
+            y:{min:2.85,max:3,ticks:{color:'rgba(255,255,255,0.5)',font:{size:11},callback:v=>v.toFixed(2)},grid:{color:'rgba(255,255,255,0.06)'},border:{color:'transparent'}},
+            x:{ticks:{color:'rgba(255,255,255,0.7)',font:{family:'Tajawal',size:12}},grid:{display:false},border:{color:'transparent'}}
+          }
+        }
+      });
+    }
+  }
+
+  if(section==='sample'){
+    const r = document.getElementById('chartRank');
+    if(r && !r._chartjs){
+      new Chart(r,{type:'doughnut',data:{
+        labels:['ممارس','متقدم','خبير'],
+        datasets:[{data:[88.3,10.7,1],backgroundColor:['#C9A84C','#1A7B6B','#C0392B'],borderWidth:0,hoverOffset:4}]
+      },options:{responsive:true,maintainAspectRatio:false,cutout:'65%',
+        plugins:{legend:{display:true,position:'bottom',labels:{color:'rgba(255,255,255,0.7)',font:{family:'Tajawal',size:12},padding:12}},
+        tooltip:{callbacks:{label:v=>v.label+': '+v.raw+'%'}}}}});
+    }
+    const s = document.getElementById('chartStage');
+    if(s && !s._chartjs){
+      new Chart(s,{type:'doughnut',data:{
+        labels:['متوسط','ابتدائي','ثانوي'],
+        datasets:[{data:[42,41,17.1],backgroundColor:['#C9A84C','#378add','#1A7B6B'],borderWidth:0,hoverOffset:4}]
+      },options:{responsive:true,maintainAspectRatio:false,cutout:'65%',
+        plugins:{legend:{display:true,position:'bottom',labels:{color:'rgba(255,255,255,0.7)',font:{family:'Tajawal',size:12},padding:12}},
+        tooltip:{callbacks:{label:v=>v.label+': '+v.raw+'%'}}}}});
+    }
+  }
+
+  if(section==='findings'){
+    const rdr = document.getElementById('chartRadar');
+    if(rdr && !rdr._chartjs){
+      new Chart(rdr,{type:'radar',data:{
+        labels:['ثقافة التدريس','التخطيط للتدريس','تنفيذ التدريس','تقويم التدريس'],
+        datasets:[{
+          label:'المتوسط الحسابي',
+          data:[2.92,2.90,2.92,2.91],
+          backgroundColor:'rgba(201,168,76,0.2)',
+          borderColor:'#C9A84C',
+          pointBackgroundColor:'#E8C66A',
+          pointBorderColor:'#fff',
+          pointHoverBackgroundColor:'#fff',
+          pointHoverBorderColor:'#C9A84C',
+          borderWidth:2,pointRadius:5
+        }]
+      },options:{
+        responsive:true,maintainAspectRatio:false,
+        scales:{r:{min:2.85,max:3,ticks:{display:false,stepSize:0.05},grid:{color:'rgba(255,255,255,0.1)'},angleLines:{color:'rgba(255,255,255,0.1)'},pointLabels:{color:'rgba(255,255,255,0.8)',font:{family:'Tajawal',size:12}}}},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:v=>v.raw+' / 3'}}}
+      }});
+    }
+  }
+}
+
+// Init on overview
+setTimeout(()=>{
+  // nothing needed on first load
+},300);
+</script>
+</body>
+</html>
