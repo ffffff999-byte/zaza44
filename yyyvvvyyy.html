@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص مهارات لغتي – الصفوف الأولية</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Cairo','Arial',sans-serif;background:#fff0f8;color:#1e293b;direction:rtl}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#7c3aed 0%,#db2777 50%,#f59e0b 100%);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.header-inner{max-width:960px;margin:auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-emoji{font-size:2rem;animation:bounce 2s infinite}
+.logo h1{font-size:1.2rem;font-weight:900;background:linear-gradient(90deg,#fde68a,#fbcfe8,#a5f3fc,#d9f99d,#fde68a);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+.logo p{font-size:.65rem;color:rgba(255,255,255,.65)}
+.settings-btn{background:rgba(255,255,255,.15);border:none;color:#fff;width:38px;height:38px;border-radius:10px;font-size:1.1rem;cursor:pointer;transition:.2s}
+.settings-btn:hover{background:rgba(255,255,255,.25)}
+.tabs{display:flex;gap:6px;padding:0 16px 8px;max-width:960px;margin:0 auto}
+.tab-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:12px 12px 0 0;border:none;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.2s}
+.tab-btn.active{background:#fff;color:#7c3aed}
+.tab-btn:not(.active){background:rgba(255,255,255,.15);color:rgba(255,255,255,.8)}
+.tab-btn:not(.active):hover{background:rgba(255,255,255,.25)}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* HERO */
+.pres-hero{text-align:center;padding:28px 16px 14px}
+.pres-hero h2{font-size:1.8rem;font-weight:900;color:#1e293b}
+.pres-hero p{color:#64748b;margin-top:6px;font-size:.9rem}
+.teacher-badge{display:inline-block;background:linear-gradient(135deg,#fce7f3,#ede9fe);border:1px solid #c084fc;color:#7c3aed;font-size:.8rem;font-weight:600;padding:6px 18px;border-radius:999px;margin-top:10px}
+.subtitle-badge{display:inline-block;background:linear-gradient(135deg,#db2777,#7c3aed);color:#fff;font-size:.75rem;font-weight:700;padding:4px 14px;border-radius:999px;margin-top:8px}
+
+/* UNITS GRID */
+.units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;max-width:960px;margin:14px auto;padding:0 16px}
+.unit-card{border-radius:18px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.1);background:#fff;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;border:1px solid rgba(0,0,0,.06);animation:slideUp .4s ease-out both}
+.unit-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,.15)}
+.card-top{padding:18px 18px 14px;color:#fff;position:relative;overflow:hidden}
+.card-top::before{content:'';position:absolute;top:-20px;left:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1)}
+.card-emoji{font-size:2.5rem;margin-bottom:8px;position:relative;z-index:1}
+.card-title{font-size:1rem;font-weight:800;line-height:1.3;position:relative;z-index:1}
+.card-body{padding:12px}
+.card-desc{color:#64748b;font-size:.8rem;line-height:1.6;margin-bottom:10px}
+.card-btn{width:100%;padding:10px;border-radius:12px;border:none;color:#fff;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.2s}
+.card-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* DETAIL */
+.detail-hero{padding:26px 16px 20px;color:#fff}
+.detail-hero-inner{max-width:760px;margin:auto}
+.back-btn{background:rgba(255,255,255,.2);border:none;color:#fff;padding:7px 16px;border-radius:10px;font-family:inherit;font-size:.82rem;cursor:pointer;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.back-btn:hover{background:rgba(255,255,255,.3)}
+.detail-content{max-width:760px;margin:0 auto;padding:14px;padding-bottom:40px}
+.section-card{background:#fff;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:10px;overflow:hidden;border:1px solid #f1f5f9;animation:slideUp .4s ease-out both}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;transition:background .2s;gap:12px}
+.section-header:hover{background:#faf5ff}
+.section-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
+.section-title{font-weight:700;color:#1e293b;flex:1;font-size:.93rem}
+.section-arrow{color:#94a3b8;font-size:.85rem;transition:transform .2s;flex-shrink:0}
+.section-arrow.open{transform:rotate(180deg)}
+.section-body{padding:0 16px 14px;display:none}
+.section-body.open{display:block}
+
+/* CONTENT BLOCKS */
+.rule-box{padding:12px 14px;border-radius:12px;margin-bottom:10px;border-right:4px solid}
+.rule-title{font-weight:700;font-size:.86rem;margin-bottom:6px}
+.rule-list{list-style:none}
+.rule-list li{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:.84rem;color:#374151;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.05)}
+.rule-list li:last-child{border-bottom:none}
+.rule-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.example-box{padding:11px 14px;border-radius:10px;margin-bottom:8px;border-right:3px solid}
+.example-main{font-weight:700;font-size:.95rem;color:#1e293b;margin-bottom:3px}
+.example-exp{font-size:.78rem;color:#64748b}
+.note-box{background:#fef9c3;border:1px solid #fde047;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.82rem;color:#92400e;display:flex;gap:8px;align-items:flex-start}
+.golden-rule{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:12px;padding:12px 14px;margin:10px 0;font-size:.85rem}
+.golden-rule-title{font-weight:900;color:#92400e;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.golden-list{list-style:none}
+.golden-list li{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:.84rem;color:#374151}
+.golden-list li::before{content:'✦';color:#f59e0b;flex-shrink:0}
+.summary-box{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:12px;padding:12px 14px;margin-top:10px}
+.summary-title{font-weight:700;color:#15803d;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.pill-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{padding:5px 12px;border-radius:999px;font-size:.8rem;font-weight:600;border:1px solid}
+.letters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;margin-top:8px}
+.letter-box{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;border:2px solid}
+.big-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.big-ex-item{background:#f8fafc;border-radius:12px;padding:10px 14px;border:1px solid #e2e8f0;font-size:.88rem;font-weight:600;color:#1e293b;display:flex;align-items:center;gap:8px}
+.ex-arrow{color:#94a3b8;font-size:.8rem}
+.table-wrap{overflow-x:auto;margin-top:8px}
+.compare-table{width:100%;border-collapse:collapse;font-size:.82rem;border-radius:10px;overflow:hidden}
+.compare-table th{padding:8px 12px;font-weight:700;text-align:center}
+.compare-table td{padding:7px 12px;border-bottom:1px solid #f1f5f9;text-align:center}
+.compare-table tr:last-child td{border-bottom:none}
+.tamark-box{display:flex;align-items:center;gap:12px;background:#fce7f3;border-radius:12px;padding:14px;margin:10px 0;justify-content:center}
+.tamark-big{font-size:2rem;font-weight:900;color:#db2777;background:#fff;border-radius:8px;padding:4px 14px;border:2px solid #db2777}
+
+/* QUIZ */
+.quiz-header{background:linear-gradient(135deg,#7c3aed 0%,#db2777 100%);color:#fff;padding:18px 16px}
+.quiz-header-inner{max-width:680px;margin:auto}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.quiz-counter{font-size:.82rem;color:rgba(255,255,255,.75)}
+.score-badge{background:rgba(255,255,255,.2);border-radius:30px;padding:5px 14px;display:flex;align-items:center;gap:5px;font-weight:700;font-size:.9rem}
+.progress-track{width:100%;height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;margin-bottom:12px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#fde68a,#fb923c);border-radius:999px;transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+.cat-filters{display:flex;gap:6px;flex-wrap:wrap}
+.cat-btn{padding:4px 10px;border-radius:999px;border:none;font-family:inherit;font-size:.7rem;font-weight:600;cursor:pointer;transition:.2s}
+.cat-btn.active{background:#fde68a;color:#1e293b}
+.cat-btn:not(.active){background:rgba(255,255,255,.2);color:#fff}
+.cat-btn:not(.active):hover{background:rgba(255,255,255,.3)}
+.quiz-body{max-width:680px;margin:20px auto;padding:0 16px}
+.question-card{background:#fff;border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,.1);padding:20px;margin-bottom:14px;border:1px solid #ede9fe;animation:slideUp .4s ease-out}
+.q-cat{background:#ede9fe;color:#7c3aed;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+.q-text{font-size:1.05rem;font-weight:700;color:#1e293b;line-height:1.6}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt-btn{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:2px solid #e2e8f0;background:#fff;width:100%;text-align:right;font-family:inherit;font-size:.88rem;font-weight:600;color:#374151;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1)}
+.opt-btn:hover:not(:disabled){border-color:#7c3aed;background:#faf5ff;transform:translateX(-3px)}
+.opt-btn:disabled{cursor:not-allowed}
+.opt-btn.correct{border-color:#10b981;background:#ecfdf5;color:#065f46;animation:pulseG 1.5s infinite}
+.opt-btn.wrong{border-color:#ef4444;background:#fef2f2;color:#991b1b;animation:shakeX .5s,pulseR 1.5s infinite .5s}
+.opt-btn.dim{border-color:#f1f5f9;background:#f8fafc;color:#94a3b8;opacity:.6}
+.opt-letter{width:32px;height:32px;border-radius:50%;background:#f1f5f9;color:#64748b;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;transition:.2s}
+.opt-btn.correct .opt-letter{background:#10b981;color:#fff}
+.opt-btn.wrong .opt-letter{background:#ef4444;color:#fff}
+.feedback-box{border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:10px;animation:slideUp .3s ease-out}
+.correct-fb{background:#ecfdf5;border:1px solid #6ee7b7}
+.wrong-fb{background:#fffbeb;border:1px solid #fcd34d}
+.fb-icon{font-size:1.3rem;flex-shrink:0}
+.fb-label{font-weight:700;color:#1e293b;margin-bottom:3px;font-size:.88rem}
+.fb-text{color:#4b5563;font-size:.82rem;line-height:1.6}
+.next-btn{width:100%;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 4px 15px rgba(124,58,237,.3)}
+.next-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(124,58,237,.4)}
+
+/* RESULT */
+.result-wrap{min-height:calc(100vh - 200px);display:flex;align-items:center;justify-content:center;padding:24px}
+.result-card{background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.15);padding:36px 28px;max-width:400px;width:100%;text-align:center;animation:bounceIn .5s cubic-bezier(.34,1.56,.64,1)}
+.result-emoji{font-size:4.5rem;margin-bottom:10px;display:block;animation:bounce 2s infinite}
+.result-title{font-size:1.6rem;font-weight:900;color:#1e293b;margin-bottom:4px}
+.result-sub{color:#64748b;margin-bottom:20px;font-size:.88rem}
+.score-circle{width:120px;height:120px;border-radius:50%;border:7px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.score-num{font-size:2.2rem;font-weight:900}
+.score-denom{color:#94a3b8;font-size:.8rem}
+.grade-badge{display:inline-block;padding:8px 22px;border-radius:14px;color:#fff;font-size:1rem;font-weight:700;margin-bottom:12px}
+.pct-text{color:#64748b;font-size:.85rem;margin-bottom:16px}
+.pct-bar-track{width:100%;height:12px;background:#f1f5f9;border-radius:999px;overflow:hidden;margin-bottom:24px}
+.pct-bar-fill{height:100%;border-radius:999px;transition:width 1.5s cubic-bezier(.34,1.56,.64,1)}
+.restart-btn{width:100%;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 4px 15px rgba(124,58,237,.3)}
+.restart-btn:hover{transform:translateY(-2px)}
+
+/* POPUP */
+.fb-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:200;pointer-events:none}
+.fb-popup{padding:28px 36px;border-radius:22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:popIn .5s cubic-bezier(.34,1.56,.64,1);min-width:240px}
+.fb-popup.ok{background:linear-gradient(135deg,#34d399,#10b981)}
+.fb-popup.no{background:linear-gradient(135deg,#fb923c,#ef4444)}
+.pop-emoji{font-size:3.5rem;margin-bottom:8px;display:block;animation:bounce 1s infinite}
+.pop-text{color:#fff;font-size:1.3rem;font-weight:700;line-height:1.4}
+
+/* CONFETTI */
+.cfp{position:fixed;border-radius:2px;animation:cfall linear forwards;pointer-events:none;z-index:999}
+
+/* SETTINGS */
+.sett-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:none;align-items:flex-start;justify-content:flex-end;padding:16px}
+.sett-overlay.open{display:flex}
+.sett-panel{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.2);width:270px;margin-top:65px;padding:18px;animation:slideUp .3s ease-out}
+.sett-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sett-top h3{font-size:.95rem;font-weight:700;color:#1e293b}
+.sett-close{background:none;border:none;font-size:1.1rem;color:#94a3b8;cursor:pointer}
+.sett-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f8fafc}
+.sett-item:last-of-type{border-bottom:none}
+.sett-icon{font-size:1.1rem}
+.sett-label{font-size:.82rem;font-weight:600;color:#374151}
+.sett-val{font-size:.72rem;color:#94a3b8;margin-top:1px}
+.sett-footer{margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9;text-align:center}
+.sett-footer p{font-size:.75rem;color:#94a3b8}
+.sett-footer .author{color:#7c3aed;font-weight:700}
+.sett-footer a{color:#3b82f6;font-size:.75rem;text-decoration:none}
+
+/* FOOTER */
+footer{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;text-align:center;padding:14px;font-size:.8rem}
+footer .author{color:#fde68a;font-weight:700}
+footer a{color:#fecdd3;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* ANIMATIONS */
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes slideUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes bounceIn{0%{transform:scale(0);opacity:0}50%{transform:scale(1.15)}70%{transform:scale(.95)}100%{transform:scale(1);opacity:1}}
+@keyframes popIn{0%{transform:scale(.4) rotate(-5deg);opacity:0}60%{transform:scale(1.1) rotate(3deg);opacity:1}80%{transform:scale(.95) rotate(-1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px) rotate(-2deg)}40%{transform:translateX(8px) rotate(2deg)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulseG{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.3)}50%{box-shadow:0 0 0 8px rgba(16,185,129,0)}}
+@keyframes pulseR{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.3)}50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes floatStar{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-70px) scale(1.5);opacity:0}}
+@media(max-width:600px){.units-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-emoji">✏️</div>
+      <div>
+        <h1>ملخص مهارات لغتي</h1>
+        <p>الصفوف الأولية – الابتدائية</p>
+      </div>
+    </div>
+    <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-pres" onclick="switchTab('pres')">📖 العرض التوضيحي</button>
+    <button class="tab-btn" id="tab-quiz" onclick="switchTab('quiz')">🏆 مسابقة الإثارة</button>
+  </div>
+</header>
+
+<!-- SETTINGS -->
+<div class="sett-overlay" id="settOverlay" onclick="closeSettings(event)">
+  <div class="sett-panel">
+    <div class="sett-top"><h3>⚙️ الإعدادات</h3><button class="sett-close" onclick="toggleSettings()">✕</button></div>
+    <div class="sett-item"><span class="sett-icon">📚</span><div><div class="sett-label">المادة</div><div class="sett-val">مهارات لغتي – الصفوف الأولية</div></div></div>
+    <div class="sett-item"><span class="sett-icon">👩‍🏫</span><div><div class="sett-label">المعلمة</div><div class="sett-val">أميرة عبد الصاعدي</div></div></div>
+    <div class="sett-item"><span class="sett-icon">📋</span><div><div class="sett-label">الموضوعات</div><div class="sett-val">9 موضوعات تعليمية شاملة</div></div></div>
+    <div class="sett-item"><span class="sett-icon">❓</span><div><div class="sett-label">أسئلة المسابقة</div><div class="sett-val">25 سؤالاً متنوعاً</div></div></div>
+    <div class="sett-footer">
+      <p>تصميم <span class="author">د/فواز</span></p>
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📱 تفضل للمزيد هنا</a>
+    </div>
+  </div>
+</div>
+
+<!-- PRESENTATION PAGE -->
+<div class="page active" id="page-pres">
+  <div class="pres-hero">
+    <h2>✏️ ملخص مهارات لغتي</h2>
+    <p>الصفوف الأولية – مكتب شرق جدة الابتدائية</p>
+    <div class="teacher-badge">👩‍🏫 المعلمة: أميرة عبد الصاعدي</div><br>
+    <div class="subtitle-badge">🎯 اختر موضوعاً لتبدأ المراجعة</div>
+  </div>
+  <div class="units-grid" id="unitsGrid"></div>
+  <div style="max-width:960px;margin:0 auto 40px;padding:0 16px">
+    <div style="background:linear-gradient(135deg,#faf5ff,#fce7f3);border-radius:18px;padding:18px;border:1px solid #c084fc">
+      <div style="font-size:.95rem;font-weight:700;color:#7c3aed;margin-bottom:12px">💡 نصيحة: التعلم رحلة ممتعة – أنجزي كل موضوع وجربي المسابقة!</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>🎯</span><span style="font-size:.8rem;color:#374151">ابدئي بفهم التعريف</span></div>
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>📝</span><span style="font-size:.8rem;color:#374151">راجعي الأمثلة</span></div>
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>🏆</span><span style="font-size:.8rem;color:#374151">اختبري نفسك في المسابقة</span></div>
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>🌟</span><span style="font-size:.8rem;color:#374151">احرصي على العلامة الكاملة</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PAGE -->
+<div class="page" id="page-detail">
+  <div class="detail-hero" id="detailHero">
+    <div class="detail-hero-inner">
+      <button class="back-btn" onclick="showPres()">→ العودة للموضوعات</button>
+      <div id="detailEmoji" style="font-size:3rem;margin-bottom:8px"></div>
+      <h2 id="detailTitle" style="font-size:1.5rem;font-weight:900;margin-bottom:4px"></h2>
+      <p id="detailSub" style="opacity:.8;font-size:.85rem"></p>
+    </div>
+  </div>
+  <div class="detail-content" id="detailContent"></div>
+</div>
+
+<!-- QUIZ PAGE -->
+<div class="page" id="page-quiz">
+  <div class="quiz-header">
+    <div class="quiz-header-inner">
+      <div class="quiz-meta">
+        <div class="quiz-counter" id="qCounter">سؤال 1 من 25</div>
+        <div class="score-badge"><span>⭐</span><span id="scoreDis">0 نقطة</span></div>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+      <div class="cat-filters" id="catFilters"></div>
+    </div>
+  </div>
+  <div class="quiz-body">
+    <div class="question-card" id="qCard">
+      <div class="q-cat" id="qCat"></div>
+      <div class="q-text" id="qText"></div>
+    </div>
+    <div class="options" id="optsContainer"></div>
+    <div id="fbSection" style="display:none;margin-top:14px"></div>
+  </div>
+</div>
+
+<!-- RESULT PAGE -->
+<div class="page" id="page-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <span class="result-emoji" id="resEmoji">🌟</span>
+      <h2 class="result-title">انتهت المسابقة!</h2>
+      <p class="result-sub">إليك نتيجتك النهائية</p>
+      <div class="score-circle" id="resCircle">
+        <span class="score-num" id="resScore">0</span>
+        <span class="score-denom" id="resTotal">من 25</span>
+      </div>
+      <div class="grade-badge" id="resBadge">ممتاز</div>
+      <p class="pct-text" id="resPct"></p>
+      <div class="pct-bar-track"><div class="pct-bar-fill" id="resFill" style="width:0%"></div></div>
+      <button class="restart-btn" onclick="restartQuiz()">🔄 أعد المسابقة مجدداً</button>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="fb-overlay" id="fbOverlay" style="display:none">
+  <div class="fb-popup" id="fbPopup">
+    <span class="pop-emoji" id="popEmoji">🌟</span>
+    <div class="pop-text" id="popText"></div>
+  </div>
+</div>
+
+<footer>
+  تصميم <span class="author">د/فواز</span> &nbsp;|&nbsp;
+  تفضل للمزيد هنا <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📱 Telegram</a>
+</footer>
+
+<script>
+// ============================================================
+// UNITS DATA
+// ============================================================
+const units = [
+  {
+    id:'tarqeem', emoji:'✍️', cat:'مهارات الكتابة',
+    title:'علامات الترقيم',
+    grad:'linear-gradient(135deg,#db2777,#9f1239)',
+    color:'#db2777',
+    desc:'تعرَّفي على علامات الترقيم وأماكن استخدامها في الكتابة',
+    sections:[
+      {
+        title:'ما هي علامات الترقيم؟',
+        content:[
+          {type:'golden',title:'تعريف:',items:['علامات الترقيم هي رموز تُكتب أثناء الكتابة لتوضيح المعنى وتنظيم النص.']}
+        ]
+      },
+      {
+        title:'علامات الترقيم وأماكنها',
+        content:[
+          {type:'trqeem',items:[
+            {sign:':', name:'النقطتان', rule:'بعد القول ما يدل على التقسيم والتنويع.', ex:'قال المعلم: افتحوا كتبكم.'},
+            {sign:'،', name:'الفاصلة', rule:'بين الجمل المتعاطفة.', ex:'جاء عليٌّ، ومحمدٌ، وأحمدٌ.'},
+            {sign:'؛', name:'الفاصلة المنقوطة', rule:'لبيان السبب والتعليل.', ex:'غابت الشمس؛ فأضاء القمر.'},
+            {sign:'.', name:'النقطة', rule:'نهاية الجملة والفقرة والنص.', ex:'اللغة العربية لغة القرآن الكريم.'},
+            {sign:'!', name:'التعجب', rule:'بعد جملة التعجب.', ex:'ما أجمل السماء!'},
+            {sign:'؟', name:'الاستفهام', rule:'بعد السؤال.', ex:'كيف حالك؟'}
+          ]}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          '(:) بعد القول والتقسيم.',
+          '(،) بين الجمل المتعاطفة.',
+          '(؛) للسبب والتعليل.',
+          '(.) نهاية الجملة والنص.',
+          '(!) بعد التعجب.',
+          '(؟) بعد السؤال.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'risala', emoji:'💌', cat:'مهارات الكتابة',
+    title:'عناصر رسالة الشكر',
+    grad:'linear-gradient(135deg,#ec4899,#db2777)',
+    color:'#ec4899',
+    desc:'تعلَّمي كيف تكتبين رسالة شكر صحيحة بعناصرها الكاملة',
+    sections:[
+      {
+        title:'ما هي رسالة الشكر؟',
+        content:[
+          {type:'golden',title:'تعريف:',items:['رسالة الشكر: رسالة نعبّر فيها عن امتناننا وشكرنا لشخص ما.']}
+        ]
+      },
+      {
+        title:'عناصر رسالة الشكر الستة',
+        content:[
+          {type:'risa3',items:[
+            {n:'1', title:'البسملة', ex:'بسم الله الرحمن الرحيم.'},
+            {n:'2', title:'المرسَل إليه', ex:'إلى المعلمة الفاضلة...'},
+            {n:'3', title:'التحية', ex:'السلام عليكم ورحمة الله وبركاته.'},
+            {n:'4', title:'المحتوى أو النص أو الغرض', ex:'أكتب إليكم شاكرةً...'},
+            {n:'5', title:'الخاتمة (دعاء)', ex:'بارك الله فيكم وجزاكم الله خيراً.'},
+            {n:'6', title:'اسم المرسِل والتاريخ', ex:'المحبة لكم: ... / التاريخ: ...'}
+          ]}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          '1. البسملة.',
+          '2. المرسَل إليه.',
+          '3. التحية (السلام عليكم ورحمة الله وبركاته).',
+          '4. المحتوى أو الغرض من الرسالة.',
+          '5. الخاتمة وتكون دعاء.',
+          '6. اسم المرسِل والتاريخ.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'taanis', emoji:'🌸', cat:'الصرف',
+    title:'علامات تأنيث الاسم + ال القمرية والشمسية',
+    grad:'linear-gradient(135deg,#f59e0b,#d97706)',
+    color:'#f59e0b',
+    desc:'تعرَّفي على علامات تأنيث الاسم وتمييز ال القمرية من الشمسية',
+    sections:[
+      {
+        title:'أولاً: علامات تأنيث الاسم',
+        content:[
+          {type:'golden',title:'القاعدة:',items:['علامات التأنيث تكون في آخر الاسم المؤنث وهي ثلاث علامات:']}
+          ,{type:'tamark3',items:[
+            {sign:'ة', name:'التاء المربوطة', ex:'مدرسة – فاطمة – سيارة'},
+            {sign:'اء', name:'الألف والهمزة', ex:'حسناء – صفراء – سماء'},
+            {sign:'ى', name:'الألف المقصورة', ex:'ليلى – سلمى – كبرى'}
+          ]}
+        ]
+      },
+      {
+        title:'ثانياً: ال القمرية وال الشمسية',
+        content:[
+          {type:'two-tabs',
+           tab1:{color:'#0369a1',bg:'#eff6ff',title:'ال القمرية 🌙',
+             items:['تُكتب وتُنطق (تُظهر).','علامتها السكون على اللام.','أمثلة: القمر – الكتاب – الولد.'],
+             letters:['أ','ب','ج','ح','خ','ع','غ','ف','ق','ك','م','ه','و','ي']},
+           tab2:{color:'#f59e0b',bg:'#fffbeb',title:'ال الشمسية ☀️',
+             items:['تُكتب ولا تُنطق (تُدغم).','علامتها الشدة على الحرف التالي.','أمثلة: الشمس – النور – الطالب.'],
+             letters:['ت','ث','د','ذ','ر','ز','س','ش','ص','ض','ط','ظ','ل','ن']}}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'علامات التأنيث: التاء المربوطة (ة) / الألف والهمزة (اء) / الألف المقصورة (ى).',
+          'ال القمرية: تُكتب وتُنطق، علامتها السكون، حروفها: أبجد هوز حطي كلمن فعص قرشت.',
+          'ال الشمسية: تُكتب ولا تُنطق، علامتها الشدة، حروفها: ت ث د ذ ر ز س ش ص ض ط ظ ل ن.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'taa', emoji:'☁️', cat:'الإملاء',
+    title:'التاء المربوطة والمفتوحة',
+    grad:'linear-gradient(135deg,#0891b2,#0369a1)',
+    color:'#0891b2',
+    desc:'تمييز التاء المربوطة (ة) عن التاء المفتوحة (ت) في الكتابة',
+    sections:[
+      {
+        title:'أولاً: التاء المربوطة (ة)',
+        content:[
+          {type:'rule',color:'#0891b2',title:'التاء المربوطة:',items:[
+            'تُكتب: ة (مربوطة).',
+            'تُلفظ: (ها) عند الوقف عليها بالسكون.',
+            'تُلفظ: (تاء) عند الوصل.',
+            'توجد في آخر الأسماء المؤنثة.'
+          ]},
+          {type:'examples',color:'#0891b2',items:[
+            {a:'نخلة – زهرة – مدرسة',b:'نقف عليها: نخلَه، زهرَه، مدرسَه.'},
+            {a:'فاطمة – حليمة – خديجة',b:'أسماء مؤنثة بالتاء المربوطة.'}
+          ]}
+        ]
+      },
+      {
+        title:'ثانياً: التاء المفتوحة (ت)',
+        content:[
+          {type:'rule',color:'#7c3aed',title:'التاء المفتوحة:',items:[
+            'تُكتب: ت (مفتوحة).',
+            'تُلفظ: (تاء) دائماً في الوصل والوقف.',
+            'توجد في آخر الأفعال أو في جمع المؤنث السالم.'
+          ]},
+          {type:'examples',color:'#7c3aed',items:[
+            {a:'قالَت – كتبَت – رسمَت',b:'تاء الفاعل في الفعل الماضي.'},
+            {a:'الطالبات – المعلمات – المسلمات',b:'جمع المؤنث السالم.'}
+          ]},
+          {type:'note',text:'الفرق السريع: قف على الكلمة بالسكون – إذا نطقت (ها) فهي مربوطة، وإذا نطقت (ت) فهي مفتوحة.'}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'التاء المربوطة (ة): تُكتب مربوطة، تُلفظ ها عند الوقف. مثل: نخلة.',
+          'التاء المفتوحة (ت): تُكتب مفتوحة، تُلفظ تاء دائماً. مثل: قالت.',
+          'الاختبار: قف على الكلمة بالسكون وانظر كيف تنطقها.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'kalam', emoji:'🗣️', cat:'النحو',
+    title:'أقسام الكلام',
+    grad:'linear-gradient(135deg,#7c3aed,#4c1d95)',
+    color:'#7c3aed',
+    desc:'تعلَّمي الأقسام الثلاثة للكلام العربي: الاسم والفعل والحرف',
+    sections:[
+      {
+        title:'أولاً: الفعل',
+        content:[
+          {type:'golden',title:'الفعل:',items:['كلمة تدل على عمل يحدث في زمن معين.']},
+          {type:'three-types',items:[
+            {color:'#7c3aed',title:'الفعل الماضي',sub:'ما دلَّ على زمن مضى',ex:'كَتَبَ – رَسَمَ – خاطَتْ – ذهبَ'},
+            {color:'#0891b2',title:'الفعل المضارع',sub:'يبدأ بحروف (نأتي) ويدل على الحاضر أو المستقبل',ex:'يكتبُ – يرسمُ – تخيطُ – تذهبُ'},
+            {color:'#059669',title:'فعل الأمر',sub:'يدل على طلب عمل في المستقبل',ex:'اكتُبْ – ارسُمْ – اذهَبْ'}
+          ]},
+          {type:'note',text:'حروف المضارعة مجموعة في كلمة (نَأْتِي): ن أ ت ي. إذا كان الفاعل مؤنثاً: المضارع يبدأ بتاء المضارع والماضي يلحق آخره تاء التأنيث. مثل: تكتبُ سعادُ الدرسَ – كتبَتْ سعادُ الدرسَ.'}
+        ]
+      },
+      {
+        title:'ثانياً: الاسم',
+        content:[
+          {type:'golden',title:'الاسم:',items:['كلمة تدل على إنسان أو حيوان أو نبات أو جماد أو مكان أو صفة.']},
+          {type:'asma-types',items:[
+            {icon:'👤',label:'إنسان',ex:'محمد – فاطمة – عمر'},
+            {icon:'🦁',label:'حيوان',ex:'أسد – قطة – عصفور'},
+            {icon:'🌿',label:'نبات',ex:'تفاح – نخلة – وردة'},
+            {icon:'📚',label:'جماد',ex:'كتاب – قلم – حجر'},
+            {icon:'🌍',label:'بلاد',ex:'الأردن – جدة – الرياض'},
+            {icon:'🎨',label:'صفة',ex:'طويل – جميل – كبير'}
+          ]}
+        ]
+      },
+      {
+        title:'ثالثاً: الحرف',
+        content:[
+          {type:'rule',color:'#d97706',title:'حروف الجر:',items:['تجر الاسم الذي بعدها: من – إلى – على – في – عن – بـ – لـ']},
+          {type:'rule',color:'#d97706',title:'حروف الربط:',items:['و – ثم – ف – أو']}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'الكلام ثلاثة أقسام: فعل – اسم – حرف.',
+          'الفعل ثلاثة أنواع: ماضٍ – مضارع – أمر.',
+          'الاسم يدل على: إنسان أو حيوان أو نبات أو جماد أو بلاد أو صفة.',
+          'الحرف: لا يُفهم معناه إلا مع غيره.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'zuruf', emoji:'🗺️', cat:'النحو',
+    title:'ظرفا الزمان والمكان',
+    grad:'linear-gradient(135deg,#059669,#047857)',
+    color:'#059669',
+    desc:'تمييز ظرف الزمان عن ظرف المكان مع أمثلة متنوعة',
+    sections:[
+      {
+        title:'ظرف الزمان',
+        content:[
+          {type:'golden',title:'ظرف الزمان:',items:['كلمة تدل على زمن وتُجاب عن السؤال: متى؟']},
+          {type:'pill-list',color:'#0891b2',pills:['صباحاً','مساءً','ظهراً','يوماً','ساعةً','دقيقةً','شهراً','ليلاً','أمس','غداً']}
+        ]
+      },
+      {
+        title:'ظرف المكان',
+        content:[
+          {type:'golden',title:'ظرف المكان:',items:['كلمة تدل على مكان وتُجاب عن السؤال: أين؟']},
+          {type:'pill-list',color:'#059669',pills:['أمامَ','خلفَ','فوقَ','تحتَ','قريبَ','بعيدَ','بجانبَ','يمينَ','يسارَ','وسطَ']}
+        ]
+      },
+      {
+        title:'الفرق بين ظرف الزمان والمكان',
+        content:[
+          {type:'examples',color:'#059669',items:[
+            {a:'جلستُ أمامَ المدرسة.',b:'أمامَ: ظرف مكان (أين جلست؟)'},
+            {a:'درستُ صباحاً.',b:'صباحاً: ظرف زمان (متى درستِ؟)'},
+            {a:'لعبتُ خلفَ البيت.',b:'خلفَ: ظرف مكان'},
+            {a:'أتيتُ مساءً.',b:'مساءً: ظرف زمان'}
+          ]},
+          {type:'note',text:'تذكري: ظرف الزمان → متى؟ | ظرف المكان → أين؟'}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'ظرف الزمان: يدل على الزمن. السؤال: متى؟ مثل: صباحاً – ليلاً – أمس.',
+          'ظرف المكان: يدل على المكان. السؤال: أين؟ مثل: أمام – خلف – فوق – تحت.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'asalib', emoji:'🎭', cat:'الأساليب اللغوية',
+    title:'الأساليب اللغوية (التفضيل – التعجب – القسم – الشرط – التمني والترجي)',
+    grad:'linear-gradient(135deg,#b45309,#92400e)',
+    color:'#b45309',
+    desc:'تعلَّمي خمسة أساليب لغوية مهمة مع تعريفها وأمثلتها',
+    sections:[
+      {
+        title:'أولاً: أسلوب التفضيل',
+        content:[
+          {type:'golden',title:'التعريف:',items:['التفضيل بين شيئين يزيد أحدهما على الآخر.','يكون على وزن (أفعل).']},
+          {type:'examples',color:'#b45309',items:[
+            {a:'أنا أطولُ من أختي.',b:'أطول: اسم تفضيل على وزن أَفعَل من (طال).'},
+            {a:'الفيلُ أضخمُ من الغزال.',b:'أضخم: اسم تفضيل من (ضَخُمَ).'},
+            {a:'الذهبُ أغلى من الفضة.',b:'أغلى: اسم تفضيل من (غَلا).'}
+          ]}
+        ]
+      },
+      {
+        title:'ثانياً: أسلوب التعجب',
+        content:[
+          {type:'golden',title:'التعريف:',items:['التعجب: الانبهار والاندهاش من أمر ما.','يُبنى على صيغة: ما + أفعل + المتعجَّب منه + !']},
+          {type:'examples',color:'#0891b2',items:[
+            {a:'ما أجملَ البحر!',b:'التعجب من جمال البحر.'},
+            {a:'ما أرتبَ الكتاب!',b:'التعجب من ترتيب الكتاب.'},
+            {a:'ما أطيبَ الهواء!',b:'التعجب من طيب الهواء.'}
+          ]}
+        ]
+      },
+      {
+        title:'ثالثاً: أسلوب القسم',
+        content:[
+          {type:'golden',title:'التعريف:',items:['القسم: التوكيد والتأكيد باسم الله أو بشيء عظيم.','أدواته: (و – ت – ب) + المقسوم به + لام التوكيد + المقسوم عليه.']},
+          {type:'examples',color:'#7c3aed',items:[
+            {a:'والله لأنصرنَّ الحق.',b:'حرف القسم: الواو. المقسوم به: الله.'},
+            {a:'والله أنَّ الحق واضح.',b:''},
+            {a:'والله لن أهمل واجباتي.',b:''}
+          ]}
+        ]
+      },
+      {
+        title:'رابعاً: أسلوب الشرط',
+        content:[
+          {type:'golden',title:'التعريف:',items:['الشرط: ربط جملتين بحيث تتوقف الثانية على الأولى.','أداة الشرط (مَن – إنْ) + فعل الشرط + جواب الشرط.']},
+          {type:'examples',color:'#059669',items:[
+            {a:'مَن يعملْ يفزْ.',b:'مَن: أداة الشرط. يعمل: فعل الشرط. يفز: جواب الشرط.'},
+            {a:'إنْ تعملْ تفزْ.',b:'إنْ: أداة الشرط. تعمل: فعل الشرط. تفز: جواب الشرط.'}
+          ]}
+        ]
+      },
+      {
+        title:'خامساً: أسلوب التمني والترجي',
+        content:[
+          {type:'two-tabs',
+           tab1:{color:'#db2777',bg:'#fce7f3',title:'التمني (ليت)',
+             items:['طلب حدوث أمر محبب متوقع الحدوث أو قريب.','الأداة: ليت.'],
+             ex:['ليت المدرسة تعود.','ليتني أكون متفوقة.']},
+           tab2:{color:'#7c3aed',bg:'#ede9fe',title:'الترجي (لعل)',
+             items:['طلب حدوث أمر محبب مستبعد الحدوث أو بعيد.','الأداة: لعل.'],
+             ex:['لعل مرض كورونا يزول.','لعل الحروب تنتهي.']}}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'التفضيل: وزن أَفعَل. مثل: أطول – أكبر.',
+          'التعجب: ما + أفعل + ...!. مثل: ما أجملَ السماء!',
+          'القسم: و/ت/ب + الله + لأفعلنَّ...',
+          'الشرط: أداة (مَن/إنْ) + فعل الشرط + جوابه.',
+          'التمني (ليت): أمر قريب. الترجي (لعل): أمر بعيد.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'istithna', emoji:'⚡', cat:'النحو',
+    title:'أدوات الاستثناء',
+    grad:'linear-gradient(135deg,#0f766e,#0d9488)',
+    color:'#0f766e',
+    desc:'تعلَّمي أسلوب الاستثناء وأركانه وأدواته مع أمثلة',
+    sections:[
+      {
+        title:'ما هو الاستثناء؟',
+        content:[
+          {type:'golden',title:'التعريف:',items:['الاستثناء: إخراج شيء من حكم عام.','مثال: أحب جميع الألوان إلا اللون الأزرق.']}
+        ]
+      },
+      {
+        title:'أركان أسلوب الاستثناء',
+        content:[
+          {type:'rule',color:'#0f766e',title:'ثلاثة أركان:',items:[
+            '1. المستثنى منه: الشيء العام (جميع الألوان).',
+            '2. أداة الاستثناء: (إلا – غير).',
+            '3. المستثنى: الشيء المُخرَج (الأزرق).'
+          ]},
+          {type:'examples',color:'#0f766e',items:[
+            {a:'أحب جميع الألوان إلا اللون الأزرق.',b:'المستثنى منه: جميع الألوان | الأداة: إلا | المستثنى: الأزرق.'},
+            {a:'أكلت وجبتي غير الفاكهة.',b:'المستثنى منه: وجبتي | الأداة: غير | المستثنى: الفاكهة.'}
+          ]}
+        ]
+      },
+      {
+        title:'أدوات الاستثناء',
+        content:[
+          {type:'pill-list',color:'#0f766e',pills:['إلا','غير','سوى','ما عدا','ما خلا','حاشا']}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'الاستثناء: إخراج شيء من حكم عام.',
+          'أركانه: مستثنى منه + أداة الاستثناء + مستثنى.',
+          'أشهر أدواته: إلا – غير – سوى.',
+          'مثال: قرأت الكتب إلا كتاباً واحداً.'
+        ]}]
+      }
+    ]
+  },
+  {
+    id:'mushtaqat', emoji:'🔧', cat:'الصرف',
+    title:'المشتقات (الفاعل – المفعول – المبالغة – الآلة – اسم الزمان والمكان)',
+    grad:'linear-gradient(135deg,#6d28d9,#5b21b6)',
+    color:'#6d28d9',
+    desc:'تعلَّمي أنواع المشتقات من اسم الفاعل والمفعول وصيغ المبالغة واسم الآلة',
+    sections:[
+      {
+        title:'أولاً: اسم الفاعل واسم المفعول',
+        content:[
+          {type:'golden',title:'تعريف:',items:['اسمان من المشتقات مأخوذان من لفظ الفعل.']},
+          {type:'three-types',items:[
+            {color:'#6d28d9',title:'الفعل',sub:'وزن (فَعَل)',ex:'كَتَبَ – سَبَحَ – صَامَ'},
+            {color:'#0891b2',title:'اسم الفاعل',sub:'وزن (فَاعِل)',ex:'كَاتِب – سَابِح – صَائِم'},
+            {color:'#059669',title:'اسم المفعول',sub:'وزن (مَفعول)',ex:'مَكتوب – مَسبوح – مَصوم'}
+          ]},
+          {type:'note',text:'مؤنث اسم الفاعل: تلحقه التاء المربوطة (ة). مثال: كاتبة – سابحة – صائمة.'}
+        ]
+      },
+      {
+        title:'ثانياً: صيغة المبالغة',
+        content:[
+          {type:'golden',title:'تعريف:',items:['من المشتقات على وزن (فَعَّال) للدلالة على الكثير والمبالغة.']},
+          {type:'examples',color:'#db2777',items:[
+            {a:'حَرَثَ → حَرَّاث',b:'وزن فَعَّال'},
+            {a:'زَرَعَ → زَرَّاع',b:'وزن فَعَّال'},
+            {a:'فَهِمَ → فَهَّام',b:'وزن فَعَّال'},
+            {a:'غَفَرَ → غَفَّار',b:'وزن فَعَّال (من أسماء الله الحسنى)'}
+          ]}
+        ]
+      },
+      {
+        title:'ثالثاً: اسم الآلة',
+        content:[
+          {type:'golden',title:'تعريف:',items:['اسم مشتق للدلالة على الآلة المستخدمة للفعل.','وزنه الأساسي: مِفعَال']},
+          {type:'examples',color:'#b45309',items:[
+            {a:'حَرَثَ → مِحراث',b:'الآلة التي تحرث.'},
+            {a:'رَسَمَ → مِرسام',b:'الآلة التي ترسم.'},
+            {a:'نَشَرَ → مِنشار',b:'الآلة التي تنشر.'},
+            {a:'فَتَحَ → مِفتاح',b:'الآلة التي تفتح.'}
+          ]},
+          {type:'note',text:'وله أوزان أخرى مثل: مِفعَل (مِبرد) / مِفعَلة (مِكنسة).'}
+        ]
+      },
+      {
+        title:'رابعاً: اسم الزمان والمكان',
+        content:[
+          {type:'golden',title:'تعريف:',items:['اسمان مشتقان من الفعل يدلان على زمان أو مكان الحدث.']},
+          {type:'table',headers:['الفعل','اسم الزمان/المكان','الوزن'],rows:[
+            ['نَزَلَ','مَنزِل','مَفعِل – مكسور العين'],
+            ['كَتَبَ','مَكتَب','مَفعَل – مفتوح العين'],
+            ['رَمَى','مَرمَى','مَفعَل – مفتوح العين']
+          ]},
+          {type:'note',text:'اسم الزمان/المكان يشبه ظرف الزمان والمكان ولكنه مشتق من الفعل.'}
+        ]
+      },
+      {
+        title:'الخلاصة',
+        content:[{type:'summary',items:[
+          'اسم الفاعل: وزن فَاعِل. مثل: كاتب – قارئ.',
+          'اسم المفعول: وزن مَفعول. مثل: مكتوب – مقروء.',
+          'صيغة المبالغة: وزن فَعَّال. مثل: زرَّاع – فهَّام.',
+          'اسم الآلة: وزن مِفعال. مثل: مِفتاح – مِنشار.',
+          'اسم الزمان/المكان: مَفعِل أو مَفعَل. مثل: مَنزِل – مَكتَب.'
+        ]}]
+      }
+    ]
+  }
+];
+
+// ============================================================
+// QUIZ DATA
+// ============================================================
+const questions = [
+  // علامات الترقيم
+  {q:'أي علامة ترقيم توضع بعد السؤال؟',opts:['النقطة (.)','علامة الاستفهام (؟)','الفاصلة (،)','التعجب (!)'],correct:1,exp:'علامة الاستفهام (؟) تُوضع دائماً بعد جملة السؤال.',cat:'علامات الترقيم'},
+  {q:'أين تُوضع الفاصلة (،)؟',opts:['نهاية الجملة','بعد السؤال','بين الجمل المتعاطفة','بعد القول'],correct:2,exp:'الفاصلة تُوضع بين الجمل المتعاطفة للفصل بينها.',cat:'علامات الترقيم'},
+  {q:'أين تُوضع النقطتان (:)؟',opts:['بعد التعجب','بعد القول وما يدل على التقسيم','بين الجمل','نهاية النص'],correct:1,exp:'النقطتان (:) تأتيان بعد القول أو ما يدل على التقسيم والتنويع.',cat:'علامات الترقيم'},
+  {q:'أي علامة توضع نهاية الجملة والفقرة؟',opts:['الفاصلة (،)','الاستفهام (؟)','النقطة (.)','التعجب (!)'],correct:2,exp:'النقطة (.) توضع في نهاية الجملة والفقرة والنص.',cat:'علامات الترقيم'},
+  // رسالة الشكر
+  {q:'ما أول عنصر في رسالة الشكر؟',opts:['اسم المرسل','المحتوى','البسملة','التحية'],correct:2,exp:'أول عنصر في رسالة الشكر هو البسملة: بسم الله الرحمن الرحيم.',cat:'رسالة الشكر'},
+  {q:'ما العنصر الأخير في رسالة الشكر؟',opts:['التحية','المحتوى','البسملة','اسم المرسل والتاريخ'],correct:3,exp:'آخر عنصر في رسالة الشكر هو اسم المرسل والتاريخ.',cat:'رسالة الشكر'},
+  {q:'كم عدد عناصر رسالة الشكر؟',opts:['3','4','6','8'],correct:2,exp:'عناصر رسالة الشكر ستة: البسملة – المرسل إليه – التحية – المحتوى – الخاتمة – اسم المرسل والتاريخ.',cat:'رسالة الشكر'},
+  // تأنيث الاسم وال
+  {q:'أي منها علامة تأنيث؟',opts:['الألف في أول الكلمة','التاء المربوطة في آخر الكلمة','النون في آخر الكلمة','الواو في وسط الكلمة'],correct:1,exp:'التاء المربوطة (ة) في آخر الاسم هي إحدى علامات التأنيث الثلاث.',cat:'تأنيث الاسم وال'},
+  {q:'كلمة (حسناء) علامة تأنيثها:',opts:['تاء مربوطة','ألف مقصورة (ى)','ألف وهمزة (اء)','لا علامة'],correct:2,exp:'حسناء: علامة التأنيث هي الألف والهمزة (اء) في آخر الكلمة.',cat:'تأنيث الاسم وال'},
+  {q:'ال في كلمة (الشمس) هي:',opts:['ال القمرية','ال الشمسية','ال التعريف العادية','لا يوجد فرق'],correct:1,exp:'ال الشمسية: تُكتب ولا تُنطق، وحرف الشين من حروف ال الشمسية.',cat:'تأنيث الاسم وال'},
+  {q:'ال في كلمة (القمر) هي:',opts:['ال الشمسية','ال القمرية','ال مجهولة','لا تأثير لها'],correct:1,exp:'ال القمرية: تُكتب وتُنطق، وحرف القاف من حروف ال القمرية.',cat:'تأنيث الاسم وال'},
+  // التاء
+  {q:'في كلمة (نخلة) التاء هي:',opts:['تاء مفتوحة','تاء مربوطة','تاء فاعل','تاء تأنيث'],correct:1,exp:'نخلة: التاء مربوطة لأنها عند الوقف تُنطق (ها): نخلَه.',cat:'التاء المربوطة والمفتوحة'},
+  {q:'في كلمة (قالَت) التاء هي:',opts:['تاء مربوطة','تاء مفتوحة','تاء التأنيث الساكنة','ب وج'],correct:1,exp:'قالت: التاء مفتوحة لأنها تُنطق دائماً (ت) ولا تتحول إلى (ه).',cat:'التاء المربوطة والمفتوحة'},
+  {q:'كيف تتحقق من نوع التاء؟',opts:['ننظر إلى شكلها فقط','نقف على الكلمة بالسكون – إذا نطقنا (ها) فهي مربوطة','نسأل المعلم','بالحفظ فقط'],correct:1,exp:'الاختبار السريع: قف على الكلمة بالسكون. مربوطة → تُنطق (ها). مفتوحة → تُنطق (ت).',cat:'التاء المربوطة والمفتوحة'},
+  // أقسام الكلام
+  {q:'أقسام الكلام في اللغة العربية:',opts:['فعل واسم فقط','فعل وحرف فقط','فعل واسم وحرف','اسم وحرف وظرف'],correct:2,exp:'أقسام الكلام ثلاثة: الفعل والاسم والحرف.',cat:'أقسام الكلام'},
+  {q:'كلمة (يكتبُ) هي:',opts:['اسم','فعل ماضٍ','فعل مضارع','حرف'],correct:2,exp:'يكتبُ: فعل مضارع يبدأ بحرف المضارعة (ي).',cat:'أقسام الكلام'},
+  {q:'حروف المضارعة مجموعة في كلمة:',opts:['أتين','نأتي','يأتن','تأنا'],correct:1,exp:'حروف المضارعة مجموعة في كلمة (نَأْتِي): ن – أ – ت – ي.',cat:'أقسام الكلام'},
+  {q:'إذا كان فاعل الفعل الماضي مؤنثاً يلحق آخر الفعل:',opts:['واو الجماعة','تاء التأنيث الساكنة','نون النسوة','ألف الاثنين'],correct:1,exp:'إذا كان الفاعل مؤنثاً يلحق آخر الماضي تاء التأنيث الساكنة. مثل: كتبَت سعادُ.',cat:'أقسام الكلام'},
+  // ظرفا الزمان والمكان
+  {q:'كلمة (صباحاً) هي:',opts:['ظرف مكان','ظرف زمان','اسم فاعل','فعل ماضٍ'],correct:1,exp:'صباحاً: ظرف زمان يدل على وقت الصباح. السؤال: متى؟',cat:'ظرفا الزمان والمكان'},
+  {q:'كلمة (أمامَ) هي:',opts:['ظرف زمان','فعل','ظرف مكان','اسم'],correct:2,exp:'أمامَ: ظرف مكان يدل على الجهة الأمامية. السؤال: أين؟',cat:'ظرفا الزمان والمكان'},
+  // الأساليب اللغوية
+  {q:'أسلوب التفضيل يكون على وزن:',opts:['فاعل','مفعول','أفعل','فعَّال'],correct:2,exp:'اسم التفضيل يكون على وزن (أَفعَل). مثل: أكبر – أجمل – أطول.',cat:'الأساليب اللغوية'},
+  {q:'أسلوب التعجب يُبنى على صيغة:',opts:['أفعل + ما + ...','ما + أفعل + ...!','إنَّ + الاسم + ...','ليت + ...'],correct:1,exp:'أسلوب التعجب: ما + أفعلَ + المتعجب منه + ! مثال: ما أجملَ البحر!',cat:'الأساليب اللغوية'},
+  {q:'أداة التمني هي:',opts:['لعل','إن','ليت','لا'],correct:2,exp:'أداة التمني: ليت. مثل: ليت المدرسة تعود.',cat:'الأساليب اللغوية'},
+  // المشتقات
+  {q:'اسم الفاعل من (كَتَبَ) هو:',opts:['مكتوب','كاتب','كتَّاب','مِكتاب'],correct:1,exp:'اسم الفاعل من (كتب) هو (كاتب) على وزن فاعل.',cat:'المشتقات'},
+  {q:'اسم الآلة من (فَتَحَ) هو:',opts:['فاتح','مفتوح','مِفتاح','فَتَّاح'],correct:2,exp:'اسم الآلة من (فتح) هو (مِفتاح) على وزن مِفعال.',cat:'المشتقات'}
+];
+
+// ============================================================
+// HELPERS
+// ============================================================
+const letters=['أ','ب','ج','د'];
+const okMsgs=['ممتازة! أحسنتِ! 🌟','رائعة! إجابة صحيحة! ✨','عظيم! أنتِ نجمة! 🏆','بارك الله فيكِ! 💫','جميل جداً! 🎯','أنتِ فخر لغتنا! 🌸'];
+const noMsgs=['حاولي مرة أخرى! 💪','لا تستسلمي! 🌱','التعلم رحلة! 📚','ستنجحين المرة القادمة! 🎈'];
+const cfColors=['#f59e0b','#ef4444','#8b5cf6','#3b82f6','#10b981','#f97316','#ec4899','#db2777'];
+let curQ=0, score=0, answered=false, selCat=null;
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+
+function switchTab(t){
+  ['pres','quiz'].forEach(id=>{document.getElementById('tab-'+id).classList.toggle('active',id===t);});
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+t).classList.add('active');
+  if(t==='quiz'){curQ=0;score=0;answered=false;renderCatFilters();renderQ();}
+}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showPres(){showPage('page-pres');document.getElementById('tab-pres').classList.add('active');document.getElementById('tab-quiz').classList.remove('active');}
+function toggleSettings(){document.getElementById('settOverlay').classList.toggle('open');}
+function closeSettings(e){if(e.target===document.getElementById('settOverlay'))toggleSettings();}
+
+// ============================================================
+// PRESENTATION
+// ============================================================
+function renderUnits(){
+  const g=document.getElementById('unitsGrid');
+  units.forEach((u,i)=>{
+    const c=document.createElement('div');
+    c.className='unit-card';
+    c.style.animationDelay=(i*70)+'ms';
+    c.innerHTML=`
+      <div class="card-top" style="background:${u.grad}">
+        <div class="card-emoji">${u.emoji}</div>
+        <div class="card-title">${u.title}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">${u.desc}</div>
+        <div style="font-size:.68rem;color:${u.color};font-weight:600;margin-bottom:8px">📌 ${u.cat}</div>
+        <button class="card-btn" style="background:${u.color}">استعرضي الدرس ←</button>
+      </div>`;
+    c.addEventListener('click',()=>openUnit(u));
+    g.appendChild(c);
+  });
+}
+
+function openUnit(u){
+  document.getElementById('detailHero').style.background=u.grad;
+  document.getElementById('detailEmoji').textContent=u.emoji;
+  document.getElementById('detailTitle').textContent=u.title;
+  document.getElementById('detailSub').textContent=u.cat;
+  const dc=document.getElementById('detailContent');
+  dc.innerHTML='';
+  u.sections.forEach((sec,si)=>{
+    const sc=document.createElement('div');
+    sc.className='section-card';
+    sc.style.animationDelay=(si*80)+'ms';
+    sc.innerHTML=`
+      <div class="section-header" onclick="toggleSec(this)">
+        <div class="section-num" style="background:${u.color}">${si+1}</div>
+        <div class="section-title">${sec.title}</div>
+        <div class="section-arrow${si===0?' open':''}">▼</div>
+      </div>
+      <div class="section-body${si===0?' open':''}">${buildContent(sec.content,u.color)}</div>`;
+    dc.appendChild(sc);
+  });
+  showPage('page-detail');
+}
+
+function buildContent(content,color){
+  return content.map(c=>{
+    if(c.type==='rule') return `
+      <div class="rule-box" style="background:${c.color}12;border-color:${c.color}">
+        <div class="rule-title" style="color:${c.color}">${c.title}</div>
+        <ul class="rule-list">${c.items.map(i=>`<li><div class="rule-dot" style="background:${c.color}"></div><div>${i}</div></li>`).join('')}</ul>
+      </div>`;
+    if(c.type==='examples') return `
+      <div style="margin-top:8px">${c.items.map(e=>`<div class="example-box" style="background:${c.color}10;border-color:${c.color}"><div class="example-main">${e.a}</div>${e.b?`<div class="example-exp">${e.b}</div>`:''}</div>`).join('')}</div>`;
+    if(c.type==='note') return `<div class="note-box">⚠️ <span>${c.text}</span></div>`;
+    if(c.type==='golden') return `
+      <div class="golden-rule">
+        <div class="golden-rule-title">👑 ${c.title}</div>
+        <ul class="golden-list">${c.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+      </div>`;
+    if(c.type==='summary') return `
+      <div class="summary-box">
+        <div class="summary-title">✅ الخلاصة</div>
+        <ul class="rule-list">${c.items.map(i=>`<li><div class="rule-dot" style="background:#10b981"></div><div>${i}</div></li>`).join('')}</ul>
+      </div>`;
+    if(c.type==='trqeem') return `
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+        ${c.items.map(t=>`
+          <div style="display:flex;align-items:center;gap:10px;background:#f8fafc;border-radius:12px;padding:10px 14px;border:1px solid #e2e8f0">
+            <div style="font-size:1.5rem;font-weight:900;color:#db2777;width:32px;text-align:center;flex-shrink:0">${t.sign}</div>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:.88rem;color:#1e293b">${t.name}</div>
+              <div style="font-size:.78rem;color:#64748b">${t.rule}</div>
+              <div style="font-size:.8rem;color:#7c3aed;font-style:italic;margin-top:2px">${t.ex}</div>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    if(c.type==='risa3') return `
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+        ${c.items.map(r=>`
+          <div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#fce7f3,#fdf4ff);border-radius:12px;padding:10px 14px;border:1px solid #f9a8d4">
+            <div style="width:28px;height:28px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">${r.n}</div>
+            <div><div style="font-weight:700;font-size:.88rem;color:#1e293b">${r.title}</div><div style="font-size:.78rem;color:#64748b">${r.ex}</div></div>
+          </div>`).join('')}
+      </div>`;
+    if(c.type==='tamark3') return `
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;justify-content:center">
+        ${c.items.map(t=>`
+          <div style="background:#fff;border:2px solid #db2777;border-radius:14px;padding:14px;text-align:center;min-width:120px;flex:1">
+            <div style="font-size:2rem;font-weight:900;color:#db2777">${t.sign}</div>
+            <div style="font-weight:700;font-size:.82rem;color:#1e293b;margin-top:4px">${t.name}</div>
+            <div style="font-size:.75rem;color:#64748b;margin-top:4px">${t.ex}</div>
+          </div>`).join('')}
+      </div>`;
+    if(c.type==='two-tabs'){
+      const t1=c.tab1,t2=c.tab2;
+      const has_ex=t1.ex||t2.ex;
+      return `
+        <div class="two-col" style="margin-top:10px">
+          <div style="background:${t1.bg};border-radius:12px;padding:12px;border:1px solid ${t1.color}30">
+            <div style="font-weight:700;color:${t1.color};margin-bottom:8px;font-size:.9rem">${t1.title}</div>
+            <ul class="rule-list">${t1.items.map(i=>`<li><div class="rule-dot" style="background:${t1.color}"></div><div>${i}</div></li>`).join('')}</ul>
+            ${t1.letters?`<div style="margin-top:8px"><div style="font-size:.75rem;font-weight:600;color:${t1.color};margin-bottom:4px">حروفها:</div><div style="display:flex;flex-wrap:wrap;gap:4px">${t1.letters.map(l=>`<span style="background:${t1.color};color:#fff;border-radius:6px;padding:3px 7px;font-size:.8rem;font-weight:700">${l}</span>`).join('')}</div></div>`:''}
+            ${t1.ex?`<div style="margin-top:8px;display:flex;flex-direction:column;gap:4px">${t1.ex.map(e=>`<div style="background:#fff;border-radius:8px;padding:5px 10px;font-size:.82rem;font-weight:600;color:${t1.color};border:1px solid ${t1.color}30">${e}</div>`).join('')}</div>`:''}
+          </div>
+          <div style="background:${t2.bg};border-radius:12px;padding:12px;border:1px solid ${t2.color}30">
+            <div style="font-weight:700;color:${t2.color};margin-bottom:8px;font-size:.9rem">${t2.title}</div>
+            <ul class="rule-list">${t2.items.map(i=>`<li><div class="rule-dot" style="background:${t2.color}"></div><div>${i}</div></li>`).join('')}</ul>
+            ${t2.letters?`<div style="margin-top:8px"><div style="font-size:.75rem;font-weight:600;color:${t2.color};margin-bottom:4px">حروفها:</div><div style="display:flex;flex-wrap:wrap;gap:4px">${t2.letters.map(l=>`<span style="background:${t2.color};color:#fff;border-radius:6px;padding:3px 7px;font-size:.8rem;font-weight:700">${l}</span>`).join('')}</div></div>`:''}
+            ${t2.ex?`<div style="margin-top:8px;display:flex;flex-direction:column;gap:4px">${t2.ex.map(e=>`<div style="background:#fff;border-radius:8px;padding:5px 10px;font-size:.82rem;font-weight:600;color:${t2.color};border:1px solid ${t2.color}30">${e}</div>`).join('')}</div>`:''}
+          </div>
+        </div>`;
+    }
+    if(c.type==='three-types') return `
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:8px">
+        ${c.items.map(t=>`
+          <div style="background:${t.color}10;border-radius:12px;padding:12px;border:1px solid ${t.color}30;text-align:center">
+            <div style="font-weight:700;color:${t.color};margin-bottom:4px;font-size:.9rem">${t.title}</div>
+            <div style="font-size:.75rem;color:#64748b;margin-bottom:6px">${t.sub}</div>
+            <div style="font-size:.85rem;font-weight:600;color:#1e293b">${t.ex}</div>
+          </div>`).join('')}
+      </div>`;
+    if(c.type==='asma-types') return `
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px">
+        ${c.items.map(t=>`
+          <div style="background:#fdf4ff;border-radius:12px;padding:10px;text-align:center;border:1px solid #e9d5ff">
+            <div style="font-size:1.5rem">${t.icon}</div>
+            <div style="font-weight:700;color:#7c3aed;font-size:.82rem;margin-top:4px">${t.label}</div>
+            <div style="font-size:.75rem;color:#64748b;margin-top:3px">${t.ex}</div>
+          </div>`).join('')}
+      </div>`;
+    if(c.type==='pill-list') return `
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+        ${c.pills.map(p=>`<span style="background:${c.color}15;color:${c.color};border:1px solid ${c.color}40;border-radius:999px;padding:5px 14px;font-size:.82rem;font-weight:700">${p}</span>`).join('')}
+      </div>`;
+    if(c.type==='table') return `
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead style="background:${color}15"><tr>${c.headers.map(h=>`<th style="color:${color}">${h}</th>`).join('')}</tr></thead>
+          <tbody>${c.rows.map((r,i)=>`<tr style="background:${i%2===0?'#f8fafc':'#fff'}">${r.map(d=>`<td>${d}</td>`).join('')}</tr>`).join('')}</tbody>
+        </table>
+      </div>`;
+    return '';
+  }).join('');
+}
+
+function toggleSec(header){
+  const body=header.nextElementSibling;
+  const arrow=header.querySelector('.section-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ============================================================
+// QUIZ
+// ============================================================
+function getQs(){return selCat?questions.filter(q=>q.cat===selCat):questions;}
+function renderCatFilters(){
+  const cats=[...new Set(questions.map(q=>q.cat))];
+  const el=document.getElementById('catFilters');
+  el.innerHTML=cats.map(c=>`<button class="cat-btn${selCat===c?' active':''}" onclick="setCat('${c.replace(/'/g,"\\'")}')">${c}</button>`).join('');
+}
+function setCat(c){selCat=selCat===c?null:c;curQ=0;score=0;answered=false;renderCatFilters();renderQ();}
+function renderQ(){
+  const qs=getQs();
+  if(curQ>=qs.length){showResult();return;}
+  const q=qs[curQ];
+  document.getElementById('qCounter').textContent=`سؤال ${curQ+1} من ${qs.length}`;
+  document.getElementById('scoreDis').textContent=`${score} نقطة`;
+  document.getElementById('progFill').style.width=`${(curQ/qs.length)*100}%`;
+  document.getElementById('qCat').textContent=q.cat;
+  document.getElementById('qText').textContent=q.q;
+  const oc=document.getElementById('optsContainer');
+  oc.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='opt-btn';
+    b.innerHTML=`<span class="opt-letter">${letters[i]}</span><span>${o}</span>`;
+    b.addEventListener('click',()=>selectAns(i));
+    oc.appendChild(b);
+  });
+  document.getElementById('fbSection').style.display='none';
+  answered=false;
+  document.getElementById('qCard').style.animation='none';
+  setTimeout(()=>{document.getElementById('qCard').style.animation='slideUp .4s ease-out';},10);
+}
+function selectAns(idx){
+  if(answered)return;
+  answered=true;
+  const q=getQs()[curQ];
+  const ok=idx===q.correct;
+  if(ok)score++;
+  document.querySelectorAll('.opt-btn').forEach((b,i)=>{
+    b.disabled=true;
+    const l=b.querySelector('.opt-letter');
+    if(i===q.correct){b.classList.add('correct');l.textContent='✓';}
+    else if(i===idx&&!ok){b.classList.add('wrong');l.textContent='✗';}
+    else b.classList.add('dim');
+  });
+  showPopup(ok?rnd(okMsgs):rnd(noMsgs),ok);
+  if(ok){launchConf();spawnStars(document.querySelectorAll('.opt-btn')[idx]);}
+  const fb=document.getElementById('fbSection');
+  fb.style.display='block';
+  fb.innerHTML=`
+    <div class="feedback-box ${ok?'correct-fb':'wrong-fb'}">
+      <span class="fb-icon">${ok?'💡':'📖'}</span>
+      <div>
+        <div class="fb-label">${ok?'إجابة صحيحة!':'الإجابة الصحيحة:'}</div>
+        <div class="fb-text">${q.exp}</div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="nextQ()">${curQ<getQs().length-1?'السؤال التالي ←':'اعرضي النتيجة 🏆'}</button>`;
+}
+function nextQ(){curQ++;renderQ();document.getElementById('scoreDis').textContent=`${score} نقطة`;}
+function showResult(){
+  showPage('page-result');
+  const total=getQs().length,pct=Math.round((score/total)*100);
+  const g=pct>=90?{l:'ممتازة 🏆',c:'#10b981',e:'🌟'}:pct>=75?{l:'جيدة جداً 🎯',c:'#3b82f6',e:'✨'}:pct>=60?{l:'جيدة 📚',c:'#f59e0b',e:'👍'}:{l:'تحتاجين مراجعة 💪',c:'#ef4444',e:'📖'};
+  document.getElementById('resEmoji').textContent=g.e;
+  document.getElementById('resScore').textContent=score;
+  document.getElementById('resScore').style.color=g.c;
+  document.getElementById('resTotal').textContent=`من ${total}`;
+  document.getElementById('resCircle').style.borderColor=g.c;
+  document.getElementById('resBadge').textContent=g.l;
+  document.getElementById('resBadge').style.background=g.c;
+  document.getElementById('resPct').textContent=`أجبتِ على ${score} سؤالاً بشكل صحيح (${pct}%)`;
+  const f=document.getElementById('resFill');f.style.background=g.c;f.style.width='0%';
+  setTimeout(()=>{f.style.width=pct+'%';},200);
+  if(pct>=60)launchConf();
+}
+function restartQuiz(){showPage('page-quiz');curQ=0;score=0;answered=false;renderCatFilters();renderQ();}
+function showPopup(msg,ok){
+  const o=document.getElementById('fbOverlay'),p=document.getElementById('fbPopup');
+  document.getElementById('popEmoji').textContent=ok?'🌸':'💪';
+  document.getElementById('popText').textContent=msg;
+  p.className='fb-popup '+(ok?'ok':'no');
+  o.style.display='flex';
+  setTimeout(()=>{o.style.display='none';},2000);
+}
+function launchConf(){
+  for(let i=0;i<60;i++){
+    const p=document.createElement('div');p.className='cfp';
+    p.style.cssText=`left:${Math.random()*100}vw;top:-${Math.random()*20}px;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${cfColors[Math.floor(Math.random()*cfColors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.5}s;`;
+    document.body.appendChild(p);setTimeout(()=>p.remove(),4000);
+  }
+}
+function spawnStars(btn){
+  if(!btn)return;
+  const r=btn.getBoundingClientRect();
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.textContent='⭐';
+    s.style.cssText=`position:fixed;z-index:9999;pointer-events:none;font-size:1.2rem;left:${r.left+r.width/2+(Math.random()-.5)*100}px;top:${r.top+r.height/2}px;animation:floatStar 1s ease-out forwards;animation-delay:${i*.05}s;`;
+    document.body.appendChild(s);setTimeout(()=>s.remove(),1200);
+  }
+}
+renderUnits();
+</script>
+</body>
+</html>
