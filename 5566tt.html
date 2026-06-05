@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إطار تحسين التدريس – بوسترات فخمة كاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C; --gold-light: #F0D285; --gold-pale: #FDF6E3;
+  --navy: #0D1B3E; --navy-mid: #1A2F60; --navy-soft: #243B72;
+  --teal: #0E7490; --teal-light: #22D3EE; --cream: #FAFAF7;
+  --white: #FFFFFF; --green: #1A7A4A; --purple: #5B2D8E;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Tajawal',sans-serif; background:#ECEAE5; direction:rtl; }
+
+/* NAV */
+.nav-bar {
+  position:sticky; top:0; z-index:999;
+  background:var(--navy); padding:10px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 4px 20px rgba(0,0,0,0.4); flex-wrap:wrap; gap:8px;
+}
+.nav-bar h1 { color:var(--gold); font-size:0.85rem; font-weight:700; white-space:nowrap; }
+.nav-pills { display:flex; gap:6px; flex-wrap:wrap; }
+.nav-pill {
+  background:transparent; border:1px solid rgba(201,168,76,0.35);
+  color:var(--gold-light); padding:4px 12px; border-radius:20px;
+  font-family:'Tajawal',sans-serif; font-size:0.7rem; cursor:pointer; transition:all .3s;
+}
+.nav-pill:hover,.nav-pill.active { background:var(--gold); color:var(--navy); font-weight:700; }
+
+/* WRAPPER */
+.pw { max-width:1200px; margin:0 auto; padding:36px 18px; display:flex; flex-direction:column; gap:48px; }
+
+/* POSTER BASE */
+.poster {
+  width:100%; border-radius:18px; overflow:hidden;
+  box-shadow:0 16px 50px rgba(0,0,0,0.3); position:relative;
+  opacity:0; transform:translateY(24px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.poster.visible { opacity:1; transform:translateY(0); }
+
+/* ── SECTION TITLE SLIDE ── */
+.sec-title {
+  background:linear-gradient(135deg, var(--navy-mid), var(--navy));
+  padding:50px 60px; display:flex; align-items:center; gap:24px;
+  border-right:6px solid var(--gold);
+}
+.sec-title .st-num {
+  font-size:5rem; font-weight:900; color:rgba(201,168,76,0.15);
+  font-family:'Amiri',serif; line-height:1; flex-shrink:0;
+}
+.sec-title h2 { font-size:2.2rem; font-weight:900; color:var(--white); }
+.sec-title h2 span { color:var(--gold); }
+.sec-title p { font-size:0.88rem; color:rgba(255,255,255,0.5); margin-top:8px; }
+
+/* ── COVER ── */
+.cover {
+  background:var(--navy); min-height:540px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:60px 40px;
+}
+.cover::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.15) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 60% at 80% 100%,rgba(14,116,144,.18) 0%,transparent 60%);
+}
+.cover .orn { font-size:1.8rem; color:var(--gold); letter-spacing:16px; margin-bottom:18px; position:relative; z-index:2; }
+.cover .sub-tag { font-size:.75rem; color:var(--gold); letter-spacing:4px; text-transform:uppercase; margin-bottom:14px; position:relative; z-index:2; }
+.cover h1 { font-size:clamp(2.2rem,6vw,4rem); font-weight:900; color:#fff; line-height:1.2; position:relative; z-index:2; margin-bottom:20px; }
+.cover h1 span { color:var(--gold); }
+.cover .gline { width:110px; height:3px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 22px; position:relative; z-index:2; }
+.cover .desc { font-size:1.05rem; color:rgba(255,255,255,.7); max-width:580px; line-height:1.9; position:relative; z-index:2; margin-bottom:36px; }
+.cover .meta { display:flex; gap:36px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2; }
+.cover .meta-i { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.cover .meta-i span:first-child { font-size:.7rem; color:var(--gold); letter-spacing:2px; text-transform:uppercase; }
+.cover .meta-i span:last-child { font-size:.95rem; color:#fff; font-weight:600; }
+.cg { position:absolute; border:1px solid rgba(201,168,76,.12); border-radius:50%; }
+
+/* ── AGENDA ── */
+.agenda { background:var(--cream); display:grid; grid-template-columns:260px 1fr; min-height:420px; }
+.agenda-side { background:var(--navy-mid); padding:44px 28px; display:flex; flex-direction:column; justify-content:space-between; align-items:center; }
+.agenda-side .st { font-size:1.4rem; font-weight:900; color:var(--gold); writing-mode:vertical-rl; letter-spacing:5px; }
+.agenda-side .bnum { font-size:5rem; font-weight:900; color:rgba(201,168,76,.1); font-family:'Amiri',serif; }
+.agenda-body { padding:44px 44px 44px 36px; }
+.tag { display:inline-block; background:var(--gold); color:var(--navy); font-size:.72rem; font-weight:800; padding:3px 12px; border-radius:4px; letter-spacing:2px; margin-bottom:18px; }
+.agenda-body h2 { font-size:1.8rem; font-weight:900; color:var(--navy); margin-bottom:28px; }
+.ag-list { display:flex; flex-direction:column; gap:12px; }
+.ag-item { display:flex; align-items:center; gap:14px; padding:13px 18px; background:#fff; border-radius:10px; border-right:4px solid var(--gold); box-shadow:0 2px 8px rgba(0,0,0,.06); transition:transform .2s; }
+.ag-item:hover { transform:translateX(-4px); }
+.ag-n { width:34px; height:34px; border-radius:50%; background:var(--navy); color:var(--gold); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.85rem; flex-shrink:0; }
+.ag-t { font-size:.9rem; font-weight:600; color:var(--navy); }
+
+/* ── WHY TEACHING ── */
+.why { background:var(--navy); overflow:hidden; }
+.why-top { background:linear-gradient(135deg,var(--navy-mid),var(--navy)); padding:36px 46px 26px; border-bottom:2px solid rgba(201,168,76,.25); position:relative; }
+.why-top::after { content:'❝'; position:absolute; left:28px; top:18px; font-size:5rem; color:rgba(201,168,76,.06); font-family:Georgia,serif; line-height:1; }
+.why-top h2 { font-size:1.6rem; font-weight:900; color:var(--gold); margin-bottom:5px; }
+.why-top p { font-size:.8rem; color:rgba(255,255,255,.45); }
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,.05); }
+.why-card { background:rgba(255,255,255,.03); padding:28px 32px; display:flex; gap:18px; transition:background .3s; }
+.why-card:hover { background:rgba(201,168,76,.05); }
+.why-card.full { grid-column:span 2; }
+.wi { width:48px; height:48px; flex-shrink:0; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+.why-card:nth-child(1) .wi { background:rgba(201,168,76,.15); }
+.why-card:nth-child(2) .wi { background:rgba(14,116,144,.2); }
+.why-card:nth-child(3) .wi { background:rgba(91,45,142,.2); }
+.why-card:nth-child(4) .wi { background:rgba(26,122,74,.2); }
+.why-card:nth-child(5) .wi { background:rgba(192,57,43,.2); }
+.why-card h3 { font-size:.95rem; font-weight:800; color:var(--gold); margin-bottom:7px; }
+.why-card p { font-size:.8rem; color:rgba(255,255,255,.7); line-height:1.85; }
+.why-card em { color:var(--gold-light); font-style:normal; font-weight:600; }
+
+/* ── METHODOLOGY ── */
+.method-card { background:var(--cream); }
+.method-hdr { background:var(--navy); padding:36px 48px 28px; border-bottom:3px solid var(--gold); }
+.method-hdr h2 { font-size:1.7rem; font-weight:900; color:var(--gold); }
+.method-hdr p { font-size:.82rem; color:rgba(255,255,255,.5); margin-top:6px; }
+.method-body { padding:36px 48px; display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
+.m-item { background:#fff; border-radius:14px; padding:22px 16px; text-align:center; box-shadow:0 3px 12px rgba(0,0,0,.07); border-top:3px solid var(--gold); transition:transform .2s; }
+.m-item:hover { transform:translateY(-4px); }
+.m-icon { font-size:1.8rem; margin-bottom:10px; }
+.m-item p { font-size:.8rem; color:var(--navy); font-weight:600; line-height:1.7; }
+
+/* ── GOALS ── */
+.goals { background:linear-gradient(160deg,#0a1628,#1a2f5e 50%,#0a1628); padding:46px; position:relative; overflow:hidden; }
+.goals::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
+.goals-head { text-align:center; margin-bottom:38px; position:relative; z-index:2; }
+.goals-head .ey { font-size:.72rem; color:var(--gold); letter-spacing:4px; text-transform:uppercase; margin-bottom:10px; display:block; }
+.goals-head h2 { font-size:2rem; font-weight:900; color:#fff; }
+.goals-head h2 span { color:var(--gold); }
+.goals-head .intro { max-width:680px; margin:14px auto 0; font-size:.85rem; color:rgba(255,255,255,.6); line-height:1.9; }
+.goals-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; position:relative; z-index:2; }
+.g-obj { background:rgba(255,255,255,.05); border:1px solid rgba(201,168,76,.2); border-radius:14px; padding:26px 16px; text-align:center; transition:all .3s; }
+.g-obj:hover { background:rgba(201,168,76,.1); border-color:var(--gold); transform:translateY(-5px); box-shadow:0 8px 24px rgba(201,168,76,.2); }
+.g-num { width:42px; height:42px; border-radius:50%; background:var(--gold); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.05rem; margin:0 auto 14px; }
+.g-obj p { font-size:.8rem; color:rgba(255,255,255,.8); line-height:1.8; font-weight:500; }
+
+/* ── COMPONENTS ── */
+.comp-card { background:var(--navy); padding:46px; }
+.comp-card h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:8px; }
+.comp-card p { color:rgba(255,255,255,.5); font-size:.82rem; margin-bottom:30px; }
+.comp-note { background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.25); border-radius:14px; padding:24px 28px; }
+.comp-note p { color:rgba(255,255,255,.75); font-size:.88rem; line-height:2; margin-bottom:0; }
+
+/* ── PHASES ── */
+.phases { background:var(--cream); overflow:hidden; }
+.phases-hdr { background:var(--navy); padding:36px 46px 26px; display:flex; align-items:center; justify-content:space-between; }
+.phases-hdr h2 { font-size:1.6rem; font-weight:900; color:var(--gold); }
+.phases-hdr p { font-size:.8rem; color:rgba(255,255,255,.5); margin-top:5px; }
+.phases-badge { background:var(--gold); color:var(--navy); font-size:.78rem; font-weight:800; padding:7px 18px; border-radius:26px; }
+.phases-body { padding:36px 46px 46px; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.ph-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,.08); transition:transform .3s,box-shadow .3s; }
+.ph-card:hover { transform:translateY(-5px); box-shadow:0 10px 28px rgba(0,0,0,.14); }
+.ph-top { padding:20px; text-align:center; }
+.ph-card:nth-child(1) .ph-top { background:linear-gradient(135deg,#0D1B3E,#1A2F60); }
+.ph-card:nth-child(2) .ph-top { background:linear-gradient(135deg,#0E5555,#0E7490); }
+.ph-card:nth-child(3) .ph-top { background:linear-gradient(135deg,#4A1A6E,#7B3FAF); }
+.ph-card:nth-child(4) .ph-top { background:linear-gradient(135deg,#1A4A2A,#2D8A4E); }
+.ph-icon { font-size:2rem; margin-bottom:8px; }
+.ph-title { font-size:1rem; font-weight:800; color:var(--gold); }
+.ph-body { padding:18px; }
+.ph-b { display:flex; align-items:flex-start; gap:7px; margin-bottom:9px; font-size:.8rem; color:#333; line-height:1.7; }
+.ph-b::before { content:'◈'; color:var(--gold); flex-shrink:0; margin-top:2px; font-size:.65rem; }
+
+/* ── STATS ── */
+.stats-poster { background:linear-gradient(135deg,#0D1B3E,#1A3055 40%,#0E3D55); padding:46px; position:relative; overflow:hidden; }
+.stats-poster::after { content:''; position:absolute; bottom:-90px; left:-90px; width:360px; height:360px; border-radius:50%; border:1px solid rgba(201,168,76,.08); }
+.sp-head { text-align:center; margin-bottom:38px; }
+.sp-head h2 { font-size:1.9rem; font-weight:900; color:var(--gold); margin-bottom:7px; }
+.sp-head p { color:rgba(255,255,255,.5); font-size:.82rem; }
+.s-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:32px; }
+.s-card { background:rgba(255,255,255,.06); border:1px solid rgba(201,168,76,.22); border-radius:14px; padding:28px 18px; text-align:center; position:relative; z-index:2; }
+.s-num { font-size:3rem; font-weight:900; color:var(--gold); line-height:1; margin-bottom:5px; font-family:'Amiri',serif; }
+.s-lbl { font-size:.8rem; color:rgba(255,255,255,.65); line-height:1.6; }
+.s-card.feat { background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.05)); border-color:var(--gold); }
+.s-card.feat .s-num { font-size:3.6rem; color:var(--gold-light); }
+.tbl-wrap { background:rgba(255,255,255,.04); border-radius:13px; overflow:hidden; position:relative; z-index:2; }
+.dtbl { width:100%; border-collapse:collapse; }
+.dtbl th { background:rgba(201,168,76,.18); color:var(--gold); padding:13px 14px; font-size:.8rem; font-weight:800; text-align:center; letter-spacing:1px; }
+.dtbl td { padding:11px 14px; text-align:center; color:rgba(255,255,255,.8); font-size:.8rem; border-bottom:1px solid rgba(255,255,255,.04); }
+.dtbl tr:hover td { background:rgba(201,168,76,.04); }
+.dtbl .tot td { color:var(--gold); font-weight:800; }
+
+/* ── EXPANSION ── */
+.expansion { background:var(--cream); display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
+.exp-left { background:var(--navy-mid); padding:46px 38px; display:flex; flex-direction:column; justify-content:center; }
+.exp-right { padding:46px 46px; }
+.tl { display:flex; flex-direction:column; gap:0; }
+.tl-item { display:flex; gap:18px; position:relative; padding-bottom:28px; }
+.tl-item::after { content:''; position:absolute; right:17px; top:42px; bottom:0; width:2px; background:rgba(201,168,76,.22); }
+.tl-item:last-child::after { display:none; }
+.tl-item:last-child { padding-bottom:0; }
+.tl-dot { width:36px; height:36px; flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.78rem; font-weight:800; color:var(--navy); position:relative; z-index:2; }
+.tl-item:nth-child(1) .tl-dot { background:rgba(201,168,76,.45); }
+.tl-item:nth-child(2) .tl-dot { background:var(--gold); }
+.tl-item:nth-child(3) .tl-dot { background:var(--gold-light); box-shadow:0 0 18px rgba(201,168,76,.4); }
+.tl-text { padding-top:4px; }
+.tl-yr { font-size:.68rem; color:var(--gold); letter-spacing:2px; margin-bottom:3px; }
+.tl-cnt { font-size:1.4rem; font-weight:900; color:#fff; }
+.tl-desc { font-size:.75rem; color:rgba(255,255,255,.5); margin-top:2px; }
+.exp-right h2 { font-size:1.6rem; font-weight:900; color:var(--navy); margin-bottom:7px; }
+.exp-right .sub { font-size:.82rem; color:#666; margin-bottom:24px; }
+.reg-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+.reg-card { background:#fff; border-radius:11px; padding:14px; border-right:3px solid var(--gold); box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.reg-n { font-size:.82rem; font-weight:700; color:var(--navy); margin-bottom:7px; }
+.bar-w { background:#f0f0f0; border-radius:4px; height:5px; overflow:hidden; margin-bottom:4px; }
+.bar { height:100%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:4px; }
+.reg-nums { display:flex; justify-content:space-between; font-size:.7rem; color:#999; }
+
+/* ── PRACTICES OVERVIEW ── */
+.prac-ov { background:var(--navy); padding:46px; }
+.pov-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:32px; flex-wrap:wrap; gap:16px; }
+.pov-head h2 { font-size:1.8rem; font-weight:900; color:var(--gold); }
+.pov-head p { color:rgba(255,255,255,.4); font-size:.78rem; margin-top:4px; }
+.mini-row { display:flex; gap:10px; flex-wrap:wrap; }
+.mstat { background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.28); border-radius:9px; padding:9px 16px; text-align:center; }
+.mstat .n { font-size:1.3rem; font-weight:900; color:var(--gold); }
+.mstat .l { font-size:.67rem; color:rgba(255,255,255,.5); }
+.prac-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+.pc { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:22px 18px; transition:all .3s; }
+.pc:hover { background:rgba(201,168,76,.08); border-color:rgba(201,168,76,.35); transform:translateY(-4px); }
+.pc-icon { font-size:1.8rem; margin-bottom:12px; }
+.pc-t { font-size:.9rem; font-weight:800; color:var(--gold); margin-bottom:9px; }
+.pc ul { list-style:none; }
+.pc ul li { font-size:.75rem; color:rgba(255,255,255,.7); padding:3px 0; line-height:1.7; }
+.pc ul li::before { content:'← '; color:var(--gold); font-size:.6rem; }
+
+/* ── IMPROVEMENT DETAILS ── */
+.improv { background:var(--cream); padding:46px; }
+.improv h2 { font-size:1.8rem; font-weight:900; color:var(--navy); margin-bottom:28px; }
+.improv-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.im-card { background:#fff; border-radius:14px; padding:22px; box-shadow:0 3px 12px rgba(0,0,0,.07); border-top:3px solid var(--gold); }
+.im-card h3 { font-size:.9rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.im-card p { font-size:.78rem; color:#555; line-height:1.8; }
+
+/* ── FORUM ── */
+.forum { background:var(--navy); padding:46px; }
+.forum h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:10px; }
+.forum .desc-txt { font-size:.85rem; color:rgba(255,255,255,.6); line-height:1.9; margin-bottom:28px; max-width:720px; }
+.forum-items { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.fi { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:20px; }
+.fi-num { width:36px; height:36px; border-radius:50%; background:var(--gold); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:.85rem; margin-bottom:12px; }
+.fi h3 { font-size:.85rem; font-weight:800; color:var(--gold-light); margin-bottom:8px; }
+.fi p { font-size:.78rem; color:rgba(255,255,255,.65); line-height:1.8; }
+
+/* ── PROTECT TIME ── */
+.protect { background:var(--cream); padding:46px; }
+.protect h2 { font-size:1.8rem; font-weight:900; color:var(--navy); margin-bottom:8px; }
+.protect .science-note { background:var(--navy); color:var(--gold-light); border-radius:12px; padding:16px 22px; font-size:.85rem; line-height:1.8; margin-bottom:28px; border-right:4px solid var(--gold); }
+.protect-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.prot-card { background:#fff; border-radius:14px; padding:22px; box-shadow:0 3px 12px rgba(0,0,0,.07); border-bottom:3px solid var(--gold); }
+.prot-card h3 { font-size:.9rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.prot-card p { font-size:.78rem; color:#555; line-height:1.8; }
+
+/* ── TWINNING ── */
+.twin { background:var(--navy); padding:46px; }
+.twin h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:10px; }
+.twin .def { font-size:.85rem; color:rgba(255,255,255,.6); line-height:1.9; margin-bottom:26px; max-width:700px; border-right:3px solid var(--gold); padding-right:16px; }
+.twin-items { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.tw-item { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:20px; }
+.tw-num { font-size:2rem; font-weight:900; color:rgba(201,168,76,.2); font-family:'Amiri',serif; margin-bottom:8px; }
+.tw-item p { font-size:.8rem; color:rgba(255,255,255,.72); line-height:1.85; }
+
+/* ── COLLABORATIVE LESSONS ── */
+.collab { background:var(--cream); padding:46px; }
+.collab h2 { font-size:1.8rem; font-weight:900; color:var(--navy); margin-bottom:8px; }
+.collab .intro { font-size:.85rem; color:#555; line-height:1.9; margin-bottom:28px; max-width:720px; }
+.lesson-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.lesson-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,.08); }
+.lc-hdr { padding:14px 18px; }
+.lesson-card:nth-child(1) .lc-hdr { background:linear-gradient(135deg,var(--navy),var(--navy-soft)); }
+.lesson-card:nth-child(2) .lc-hdr { background:linear-gradient(135deg,#0E5555,var(--teal)); }
+.lesson-card:nth-child(3) .lc-hdr { background:linear-gradient(135deg,#4A1A6E,var(--purple)); }
+.lesson-card:nth-child(4) .lc-hdr { background:linear-gradient(135deg,#3D1A00,#8B4A00); }
+.lesson-card:nth-child(5) .lc-hdr { background:linear-gradient(135deg,#1A3A00,var(--green)); }
+.lc-hdr h3 { font-size:.85rem; font-weight:800; color:var(--gold); }
+.lc-body { padding:16px 18px; }
+.lc-body li { font-size:.78rem; color:#444; line-height:1.8; padding:3px 0; }
+.lc-body li::before { content:'✦ '; color:var(--gold); font-size:.55rem; }
+.lc-body ul { list-style:none; }
+
+/* ── WATAN ── */
+.watan { background:linear-gradient(135deg,var(--navy),#1a3a6e); padding:44px; display:flex; align-items:center; gap:40px; }
+.watan-icon { font-size:4rem; flex-shrink:0; }
+.watan-text h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:10px; }
+.watan-text p { font-size:.88rem; color:rgba(255,255,255,.75); line-height:2; max-width:700px; }
+
+/* ── IMPACT ── */
+.impact { background:var(--cream); overflow:hidden; }
+.impact-banner { background:linear-gradient(90deg,var(--navy),var(--navy-soft)); padding:28px 46px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.impact-banner h2 { font-size:1.6rem; font-weight:900; color:var(--gold); }
+.impact-banner p { font-size:.8rem; color:rgba(255,255,255,.5); margin-top:4px; }
+.impact-body { padding:36px 46px; display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+.impact-list { display:flex; flex-direction:column; gap:14px; }
+.imp-item { display:grid; grid-template-columns:46px 1fr; gap:14px; align-items:center; background:#fff; border-radius:12px; padding:14px 18px; box-shadow:0 2px 8px rgba(0,0,0,.06); border-bottom:2px solid transparent; transition:all .3s; }
+.imp-item:hover { border-bottom-color:var(--gold); transform:translateX(-3px); }
+.imp-ico { width:46px; height:46px; border-radius:11px; background:var(--navy); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+.imp-text h4 { font-size:.88rem; font-weight:800; color:var(--navy); margin-bottom:3px; }
+.imp-text p { font-size:.76rem; color:#666; line-height:1.75; }
+.survey-box { background:var(--navy); border-radius:14px; padding:28px; }
+.survey-box blockquote { font-family:'Amiri',serif; font-size:1rem; color:rgba(255,255,255,.85); line-height:2.2; margin-bottom:18px; border-right:3px solid var(--gold); padding-right:16px; }
+.survey-box cite { font-size:.72rem; color:var(--gold); font-style:normal; }
+.s-bars { display:flex; flex-direction:column; gap:12px; margin-top:20px; }
+.s-b { display:flex; flex-direction:column; gap:5px; }
+.s-b .lbl { font-size:.75rem; color:rgba(255,255,255,.7); }
+.s-bw { height:7px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; }
+.s-bf { height:100%; border-radius:4px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); }
+.s-b .pct { font-size:.72rem; color:var(--gold); font-weight:700; }
+
+/* ── SUPPORT TEAM ── */
+.support { background:var(--navy); padding:46px; }
+.support h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:28px; }
+.support-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.sup-card { background:rgba(255,255,255,.05); border:1px solid rgba(201,168,76,.2); border-radius:14px; padding:24px 18px; text-align:center; transition:all .3s; }
+.sup-card:hover { background:rgba(201,168,76,.08); border-color:var(--gold); transform:translateY(-4px); }
+.sup-ico { font-size:2rem; margin-bottom:12px; }
+.sup-card p { font-size:.82rem; color:rgba(255,255,255,.75); line-height:1.8; font-weight:500; }
+
+/* ── CHALLENGES ── */
+.challenges { background:var(--cream); padding:46px; }
+.ch-head { margin-bottom:34px; text-align:center; }
+.ch-head h2 { font-size:1.9rem; font-weight:900; color:var(--navy); margin-bottom:7px; }
+.ch-head p { color:#666; font-size:.82rem; }
+.ch-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.ch-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,.07); transition:all .3s; }
+.ch-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,.12); }
+.ch-top { padding:18px; display:flex; align-items:center; gap:12px; }
+.ch-card:nth-child(1) .ch-top { background:linear-gradient(135deg,#0D1B3E,#1A2F60); }
+.ch-card:nth-child(2) .ch-top { background:linear-gradient(135deg,#3D0000,#8B0000); }
+.ch-card:nth-child(3) .ch-top { background:linear-gradient(135deg,#1A3D1A,#2E7D32); }
+.ch-card:nth-child(4) .ch-top { background:linear-gradient(135deg,#2D1B69,#4A2F8F); }
+.ch-card:nth-child(5) .ch-top { background:linear-gradient(135deg,#1A3D50,#0E7490); }
+.ch-nbig { font-size:1.8rem; font-weight:900; color:rgba(255,255,255,.18); font-family:'Amiri',serif; }
+.ch-title { font-size:.95rem; font-weight:800; color:var(--gold); }
+.ch-body { padding:16px 18px; display:flex; flex-direction:column; gap:9px; }
+.ch-row { font-size:.78rem; line-height:1.75; }
+.ch-row strong { font-size:.68rem; color:#999; display:block; margin-bottom:2px; text-transform:uppercase; letter-spacing:1px; }
+.ch-row span { color:#444; }
+.ch-sol { background:rgba(201,168,76,.07); border-right:3px solid var(--gold); padding:9px 11px; border-radius:0 8px 8px 0; margin-top:3px; }
+.ch-sol strong { color:var(--gold) !important; }
+
+/* ── SURVEY GOALS ── */
+.surv-goals { background:var(--navy); padding:46px; }
+.surv-goals h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:28px; }
+.sg-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.sg-item { background:rgba(255,255,255,.05); border:1px solid rgba(201,168,76,.22); border-radius:14px; padding:24px; display:flex; gap:16px; }
+.sg-num { width:44px; height:44px; flex-shrink:0; border-radius:50%; background:var(--gold); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.1rem; }
+.sg-item p { font-size:.85rem; color:rgba(255,255,255,.78); line-height:1.9; padding-top:8px; }
+
+/* ── SATISFACTION RESULTS ── */
+.sat-res { background:var(--navy); padding:46px; }
+.sat-res h2 { font-size:1.9rem; font-weight:900; color:var(--gold); text-align:center; margin-bottom:8px; }
+.sat-res .sub { text-align:center; color:rgba(255,255,255,.5); font-size:.82rem; margin-bottom:36px; }
+.sat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:34px; }
+.sat-c { background:rgba(255,255,255,.04); border:1px solid rgba(201,168,76,.2); border-radius:16px; padding:28px 22px; text-align:center; }
+.sat-c h3 { font-size:.82rem; color:rgba(255,255,255,.6); margin-bottom:18px; font-weight:500; }
+.donut-w { position:relative; width:110px; height:110px; margin:0 auto 14px; }
+.donut-w svg { transform:rotate(-90deg); }
+.donut-ctr { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.donut-ctr .dp { font-size:1.3rem; font-weight:900; color:var(--gold); }
+.donut-ctr .ds { font-size:.6rem; color:rgba(255,255,255,.5); }
+.sat-leg { display:flex; flex-direction:column; gap:5px; }
+.leg-r { display:flex; align-items:center; justify-content:space-between; font-size:.72rem; color:rgba(255,255,255,.7); }
+.ldot { width:7px; height:7px; border-radius:50%; display:inline-block; margin-left:5px; }
+.kpoints { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.kp { background:rgba(201,168,76,.07); border:1px solid rgba(201,168,76,.18); border-radius:11px; padding:18px 14px; text-align:center; }
+.kp .ki { font-size:1.4rem; margin-bottom:8px; }
+.kp p { font-size:.78rem; color:rgba(255,255,255,.75); line-height:1.7; }
+
+/* ── KEY FINDINGS ── */
+.findings { background:var(--cream); padding:46px; }
+.findings h2 { font-size:1.8rem; font-weight:900; color:var(--navy); margin-bottom:8px; }
+.findings .note { font-size:.85rem; color:#555; line-height:1.9; margin-bottom:26px; max-width:800px; }
+.find-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.find-card { background:#fff; border-radius:14px; padding:22px; box-shadow:0 3px 12px rgba(0,0,0,.07); border-top:3px solid var(--gold); }
+.find-card h3 { font-size:.9rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.find-card p { font-size:.78rem; color:#555; line-height:1.8; }
+
+/* ── CULTURAL SHIFT ── */
+.cult { background:var(--navy); padding:46px; }
+.cult h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:28px; }
+.cult-tri { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.ct-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:28px; text-align:center; transition:all .3s; }
+.ct-card:hover { background:rgba(201,168,76,.08); border-color:var(--gold); transform:translateY(-4px); }
+.ct-num { font-size:3.5rem; font-weight:900; color:rgba(201,168,76,.2); font-family:'Amiri',serif; margin-bottom:8px; }
+.ct-card h3 { font-size:1rem; font-weight:800; color:var(--gold); }
+
+/* ── CONCLUSION ── */
+.concl { background:linear-gradient(135deg,var(--navy-mid),var(--navy)); padding:46px; }
+.concl h2 { font-size:1.7rem; font-weight:900; color:var(--gold); margin-bottom:20px; }
+.concl-txt { background:rgba(201,168,76,.06); border-right:4px solid var(--gold); border-radius:0 14px 14px 0; padding:22px 26px; }
+.concl-txt p { font-size:.9rem; color:rgba(255,255,255,.82); line-height:2.2; font-family:'Amiri',serif; }
+
+/* ── RESEARCH ── */
+.research { background:var(--navy); padding:46px; }
+.research h2 { font-size:1.9rem; font-weight:900; color:var(--gold); text-align:center; margin-bottom:8px; }
+.research .sub { text-align:center; color:rgba(255,255,255,.5); font-size:.82rem; margin-bottom:34px; }
+.res-row { display:grid; grid-template-columns:1fr 2fr; gap:26px; margin-bottom:26px; }
+.res-col h3 { font-size:.87rem; color:var(--gold); font-weight:700; margin-bottom:14px; letter-spacing:1px; }
+.start-pts { display:flex; flex-direction:column; gap:11px; }
+.sp { background:rgba(255,255,255,.05); border-right:3px solid var(--gold); border-radius:0 10px 10px 0; padding:13px 15px; font-size:.78rem; color:rgba(255,255,255,.75); line-height:1.85; }
+.sp strong { color:var(--gold); display:block; margin-bottom:3px; }
+.res-domains { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+.rd { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09); border-radius:12px; padding:18px 13px; text-align:center; transition:all .3s; }
+.rd:hover { background:rgba(201,168,76,.09); border-color:var(--gold); }
+.rd:nth-child(1) { border-top:3px solid #C9A84C; }
+.rd:nth-child(2) { border-top:3px solid #0E7490; }
+.rd:nth-child(3) { border-top:3px solid #7B3FAF; }
+.rd:nth-child(4) { border-top:3px solid #2D8A4E; }
+.rd .ri { font-size:1.5rem; margin-bottom:9px; }
+.rd p { font-size:.78rem; font-weight:700; color:rgba(255,255,255,.85); line-height:1.65; }
+.res-meth { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:10px; }
+.rm { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:17px 15px; }
+.rm h4 { font-size:.73rem; color:var(--gold); margin-bottom:7px; letter-spacing:1px; font-weight:700; }
+.rm p { font-size:.76rem; color:rgba(255,255,255,.65); line-height:1.85; }
+
+/* ── RESEARCH DOMAINS DETAIL ── */
+.res-detail { background:var(--cream); padding:46px; }
+.res-detail h2 { font-size:1.8rem; font-weight:900; color:var(--navy); margin-bottom:28px; }
+.detail-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.det-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,.07); }
+.det-card:nth-child(1) .det-hdr { background:linear-gradient(135deg,var(--navy),var(--navy-soft)); }
+.det-card:nth-child(2) .det-hdr { background:linear-gradient(135deg,var(--teal),#0a5068); }
+.det-card:nth-child(3) .det-hdr { background:linear-gradient(135deg,var(--purple),#3d1a6e); }
+.det-card:nth-child(4) .det-hdr { background:linear-gradient(135deg,var(--green),#0f4a2a); }
+.det-hdr { padding:18px; text-align:center; }
+.det-hdr .di { font-size:1.8rem; margin-bottom:8px; }
+.det-hdr h3 { font-size:.85rem; font-weight:800; color:var(--gold); }
+.det-body { padding:16px; }
+.det-body p { font-size:.78rem; color:#444; line-height:1.85; }
+
+/* ── IMPORTANCE ── */
+.importance { background:var(--navy); padding:46px; }
+.importance h2 { font-size:1.8rem; font-weight:900; color:var(--gold); margin-bottom:28px; }
+.imp-points { display:flex; flex-direction:column; gap:16px; }
+.imp-pt { display:flex; align-items:flex-start; gap:18px; background:rgba(255,255,255,.05); border-radius:14px; padding:20px 22px; border-right:4px solid var(--gold); }
+.ip-num { font-size:1.5rem; font-weight:900; color:rgba(201,168,76,.3); font-family:'Amiri',serif; flex-shrink:0; }
+.ip-text { font-size:.85rem; color:rgba(255,255,255,.78); line-height:1.9; }
+
+/* ── CLOSING ── */
+.closing { background:var(--navy); min-height:320px; padding:56px 46px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; }
+.closing::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 70% at 50% 100%,rgba(201,168,76,.11),transparent 60%); }
+.closing .cl-orn { font-size:2.2rem; color:var(--gold); letter-spacing:18px; margin-bottom:18px; position:relative; z-index:2; }
+.closing h2 { font-size:2.2rem; font-weight:900; color:#fff; margin-bottom:8px; position:relative; z-index:2; }
+.closing h2 span { color:var(--gold); }
+.closing p { font-size:.88rem; color:rgba(255,255,255,.55); max-width:480px; line-height:1.9; position:relative; z-index:2; }
+
+/* CONTROLS */
+.controls { position:fixed; bottom:24px; left:24px; z-index:999; }
+.cbtn { background:var(--navy); color:var(--gold); border:1px solid rgba(201,168,76,.4); padding:9px 18px; border-radius:10px; font-family:'Tajawal',sans-serif; font-size:.8rem; cursor:pointer; font-weight:700; box-shadow:0 4px 14px rgba(0,0,0,.3); transition:all .2s; }
+.cbtn:hover { background:var(--gold); color:var(--navy); }
+.scr-top { position:fixed; bottom:24px; right:24px; z-index:999; width:42px; height:42px; border-radius:50%; background:var(--gold); color:var(--navy); border:none; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 14px rgba(201,168,76,.4); display:flex; align-items:center; justify-content:center; font-weight:900; }
+
+@media(max-width:768px){
+  .agenda,.expansion{grid-template-columns:1fr;}
+  .why-grid,.goals-grid,.method-body,.prac-grid,.phases-body,.improv-grid,.forum-items,.twin-items,.lesson-grid,.protect-grid,.support-grid,.ch-grid,.sg-grid,.sat-grid,.find-grid,.cult-tri,.res-row,.res-domains,.res-meth,.detail-grid,.kpoints{grid-template-columns:1fr;}
+  .agenda-side,.exp-left{display:none;}
+}
+@media print{
+  .nav-bar,.controls,.scr-top{display:none!important;}
+  .poster{box-shadow:none;page-break-after:always;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <h1>🎓 إطار تحسين التدريس – كامل</h1>
+  <div class="nav-pills">
+    <button class="nav-pill" onclick="gto('s1')">الغلاف</button>
+    <button class="nav-pill" onclick="gto('s2')">المحاور</button>
+    <button class="nav-pill" onclick="gto('s4')">لماذا</button>
+    <button class="nav-pill" onclick="gto('s5')">الأهداف</button>
+    <button class="nav-pill" onclick="gto('s7')">المنهجية</button>
+    <button class="nav-pill" onclick="gto('s8')">المراحل</button>
+    <button class="nav-pill" onclick="gto('s12')">إحصائيات</button>
+    <button class="nav-pill" onclick="gto('s13')">التوسع</button>
+    <button class="nav-pill" onclick="gto('s16')">الممارسات</button>
+    <button class="nav-pill" onclick="gto('s18')">التحسين</button>
+    <button class="nav-pill" onclick="gto('s19')">المنتدى</button>
+    <button class="nav-pill" onclick="gto('s20')">الوقت</button>
+    <button class="nav-pill" onclick="gto('s21')">التوأمة</button>
+    <button class="nav-pill" onclick="gto('s22')">تشاركية</button>
+    <button class="nav-pill" onclick="gto('s26')">الأثر</button>
+    <button class="nav-pill" onclick="gto('s28')">الدعم</button>
+    <button class="nav-pill" onclick="gto('s29')">التحديات</button>
+    <button class="nav-pill" onclick="gto('s35')">الرضا</button>
+    <button class="nav-pill" onclick="gto('s44')">الخلاصة</button>
+    <button class="nav-pill" onclick="gto('s45')">البحث</button>
+    <button class="nav-pill" onclick="gto('s53')">الختام</button>
+  </div>
+</nav>
+
+<div class="pw">
+
+<!-- ═══ S1: COVER ═══ -->
+<div class="poster cover" id="s1">
+  <div class="cg" style="width:220px;height:220px;top:-80px;right:-80px;"></div>
+  <div class="cg" style="width:180px;height:180px;bottom:-70px;left:-70px;"></div>
+  <div class="orn">✦ ✦ ✦</div>
+  <div class="sub-tag">الإدارة العامة للتعليم – منطقة المدينة المنورة</div>
+  <h1>إطار <span>تحسين</span> التدريس</h1>
+  <div class="gline"></div>
+  <p class="desc">منهجية شاملة لتطوير الممارسات التدريسية وبناء ثقافة مدرسية فاعلة<br>تُحدث أثراً حقيقياً في تعلّم الطلاب</p>
+  <div class="meta">
+    <div class="meta-i"><span>الفريق</span><span>فريق التدريس بالمنطقة</span></div>
+    <div class="meta-i"><span>التاريخ</span><span>26 شوال 1447هـ</span></div>
+    <div class="meta-i"><span>المرحلة</span><span>التطبيق والتوسع</span></div>
+  </div>
+</div>
+
+<!-- ═══ S2: AGENDA ═══ -->
+<div class="poster agenda" id="s2">
+  <div class="agenda-side">
+    <div class="st">موضوع العرض</div>
+    <div class="bnum">02</div>
+  </div>
+  <div class="agenda-body">
+    <span class="tag">محاور العرض</span>
+    <h2>ماذا يتضمن هذا العرض؟</h2>
+    <div class="ag-list">
+      <div class="ag-item"><div class="ag-n">١</div><div class="ag-t">إطار تحسين التدريس (التطبيق والتوسع)</div></div>
+      <div class="ag-item"><div class="ag-n">٢</div><div class="ag-t">الممارسات المتميزة في مدارس إطار تحسين التدريس</div></div>
+      <div class="ag-item"><div class="ag-n">٣</div><div class="ag-t">أثر تطبيق إطار تحسين التدريس على المدرسة</div></div>
+      <div class="ag-item"><div class="ag-n">٤</div><div class="ag-t">نتائج قياس رضا المستفيدين</div></div>
+      <div class="ag-item"><div class="ag-n">٥</div><div class="ag-t">قياس أثر تطبيق إطار تحسين التدريس: خطة بحثية</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S3: SECTION DIVIDER ═══ -->
+<div class="poster sec-title" id="s3">
+  <div class="st-num">١</div>
+  <div><h2>إطار تحسين التدريس<br><span>(التطبيق والتوسع)</span></h2><p>المنهجية والأهداف والمكونات</p></div>
+</div>
+
+<!-- ═══ S4: WHY TEACHING ═══ -->
+<div class="poster why" id="s4">
+  <div class="why-top">
+    <h2>لماذا يُعدّ التدريس العامل الحاسم في جودة التعليم؟</h2>
+    <p>استناداً إلى مرجعيات دولية: اليونسكو · البنك الدولي · OECD · هارفارد · جون هاتي</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="wi">📚</div><div><h3>التدريس يصنع نواتج التعلم</h3><p>تشير تقارير اليونسكو إلى أن الفرق في تحصيل الطلاب لا يعود لما يُدرَّس بقدر ما يعود <em>لكيفية تدريسه</em>؛ فالتدريس الفعّال يحوّل المعرفة إلى فهم عميق ومهارات قابلة للتطبيق.</p></div></div>
+    <div class="why-card"><div class="wi">🎯</div><div><h3>فجوة نواتج التعلم = فجوة في الممارسة</h3><p>يوضح البنك الدولي أن ضعف إتقان المهارات الأساسية يرتبط غالبًا بممارسات تدريس تقليدية <em>لا تراعي الفروق الفردية</em> ولا تركز على الفهم العميق.</p></div></div>
+    <div class="why-card"><div class="wi">📊</div><div><h3>التقييم الفعّال جزء من التدريس</h3><p>تؤكد منظمة OECD أن أفضل الأنظمة التعليمية توظف التقييم كأداة <em>مستمرة داخل الحصة</em>، توجه قرارات المعلم وتُحسن التدريس لحظيًا.</p></div></div>
+    <div class="why-card"><div class="wi">🧠</div><div><h3>المشكلات السلوكية مؤشر على خلل تعليمي</h3><p>أظهرت دراسات هارفارد أن البيئات الصفية التفاعلية تقلل السلوكيات السلبية؛ لأن <em>التدريس الجيد يرفع الدافعية</em> ويضبط الصف تلقائيًا.</p></div></div>
+    <div class="why-card full"><div class="wi">🏆</div><div><h3>أثر المعلم يتجاوز أي عنصر آخر داخل المدرسة</h3><p>يؤكد <em>جون هاتي</em> أن جودة التدريس هي المتغير الأكثر تأثيرًا في تحصيل الطلاب، حيث يمكن لمعلم فعّال أن يُحدث نقلة كبيرة حتى في بيئات تعليمية محدودة الإمكانات. جودة التعليم لا تُبنى خارج الصف… بل تُصنع داخل الحصة الدراسية.</p></div></div>
+  </div>
+</div>
+
+<!-- ═══ S5: GOALS ═══ -->
+<div class="poster goals" id="s5">
+  <div class="goals-head">
+    <span class="ey">الإطار التعليمي</span>
+    <h2>أهداف إطار <span>تحسين التدريس</span></h2>
+    <p class="intro">ومن هنا يأتي هذا الإطار ليعيد توجيه المدرسة نحو تحسين التدريس بوصفه جوهر العمل التعليمي، من خلال تبني مجموعة من الأهداف:</p>
+  </div>
+  <div class="goals-grid">
+    <div class="g-obj"><div class="g-num">١</div><p>بناء ثقافة تدريسية فاعلة للمدرسة</p></div>
+    <div class="g-obj"><div class="g-num">٢</div><p>الملاحظة الموجهة والتأمل الفردي والجماعي لتحسين الأداء التدريسي</p></div>
+    <div class="g-obj"><div class="g-num">٣</div><p>استدامة التحسين المستمر للممارسات التدريسية</p></div>
+    <div class="g-obj"><div class="g-num">٤</div><p>التكامل المنظومي لكافة عناصر المنهج المدرسي</p></div>
+    <div class="g-obj"><div class="g-num">٥</div><p>الاستثمار الأمثل لخبرات المدرسة وجعل المجتمع المدرسي يتعلّم من خبراته</p></div>
+  </div>
+</div>
+
+<!-- ═══ S6: COMPONENTS ═══ -->
+<div class="poster comp-card" id="s6">
+  <h2>مكونات إطار تحسين التدريس</h2>
+  <p>العناصر الأساسية التي يقوم عليها الإطار</p>
+  <div class="comp-note">
+    <p>يقوم الإطار على منظومة متكاملة من المكونات تشمل: <strong style="color:var(--gold)">التخطيط الجيد للدروس</strong> · <strong style="color:var(--gold)">الملاحظة الصفية الموجهة</strong> · <strong style="color:var(--gold)">التأمل المهني</strong> · <strong style="color:var(--gold)">مجتمعات التعلم المهنية</strong> · <strong style="color:var(--gold)">الدروس المصغرة</strong> · <strong style="color:var(--gold)">التغذية الراجعة</strong> · <strong style="color:var(--gold)">التوثيق والاستدامة</strong> — جميعها تصب في خدمة هدف واحد: تطوير الممارسة التدريسية داخل الحصة الدراسية.</p>
+  </div>
+</div>
+
+<!-- ═══ S7: METHODOLOGY ═══ -->
+<div class="poster method-card" id="s7">
+  <div class="method-hdr">
+    <h2>منهجية عمل فريق التدريس</h2>
+    <p>حرص الفريق على نقل الإطار من وثيقة مرجعية إلى ممارسة صفية ملموسة تُحدث أثراً حقيقياً في تعلم الطلاب</p>
+  </div>
+  <div class="method-body">
+    <div class="m-item"><div class="m-icon">📐</div><p>المنهجية المنظمة والمخططة</p></div>
+    <div class="m-item"><div class="m-icon">🤝</div><p>تعزيز العلاقة الإيجابية مع المدارس</p></div>
+    <div class="m-item"><div class="m-icon">🔄</div><p>المرونة والتكيف مع المستجدات</p></div>
+    <div class="m-item"><div class="m-icon">⬆️</div><p>رفع سقف التوقعات من الميدان التربوي</p></div>
+    <div class="m-item"><div class="m-icon">⏳</div><p>التأنّي وعدم استعجال النتائج</p></div>
+  </div>
+</div>
+
+<!-- ═══ S8-11: PHASES ═══ -->
+<div class="poster phases" id="s8">
+  <div class="phases-hdr">
+    <div><h2>منهجية التطبيق – المراحل الأربع</h2><p>من الاستعداد إلى الاستدامة</p></div>
+    <div class="phases-badge">فريق التدريس بالمنطقة</div>
+  </div>
+  <div class="phases-body">
+    <div class="ph-card">
+      <div class="ph-top"><div class="ph-icon">🔧</div><div class="ph-title">أولاً: الاستعداد</div></div>
+      <div class="ph-body">
+        <div class="ph-b">تشكيل فريق التدريس بالمنطقة</div>
+        <div class="ph-b">عقد ورش عمل لأعضاء الفريق</div>
+        <div class="ph-b">تحديد مدارس العينة</div>
+        <div class="ph-b">لقاء تعريفي لمديري ومديرات المدارس</div>
+      </div>
+    </div>
+    <div class="ph-card">
+      <div class="ph-top"><div class="ph-icon">🌱</div><div class="ph-title">ثانياً: التهيئة</div></div>
+      <div class="ph-body">
+        <div class="ph-b">التعريف بالإطار لمنسوبي المدارس</div>
+        <div class="ph-b">تطبيق أداة التشخيص وتحليل النتائج</div>
+        <div class="ph-b">بناء الفرق (متجانسة وغير متجانسة)</div>
+        <div class="ph-b">دعم الخطط الزمنية (ساعة ونصف أسبوعياً)</div>
+        <div class="ph-b">بناء الخطة عبر حلقات نقاش وورش</div>
+      </div>
+    </div>
+    <div class="ph-card">
+      <div class="ph-top"><div class="ph-icon">⚡</div><div class="ph-title">ثالثاً: التطبيق</div></div>
+      <div class="ph-body">
+        <div class="ph-b">تطبيق خطة الدروس المصغرة</div>
+        <div class="ph-b">تبادل الخبرات ضمن المجتمع المدرسي</div>
+        <div class="ph-b">توثيق الممارسات التدريسية المميزة</div>
+        <div class="ph-b">تطبيق خطط الورش واللقاءات</div>
+        <div class="ph-b">تغذية راجعة دورية لفريق الإدارة</div>
+      </div>
+    </div>
+    <div class="ph-card">
+      <div class="ph-top"><div class="ph-icon">♻️</div><div class="ph-title">رابعاً: الاستدامة</div></div>
+      <div class="ph-body">
+        <div class="ph-b">التغذية الراجعة من فريق إدارة التعليم</div>
+        <div class="ph-b">التوجيهات الوزارية المستمرة</div>
+        <div class="ph-b">التغذية الراجعة من فريق المدرسة</div>
+        <div class="ph-b">دعم الاستدامة وفق أهداف الإطار ومبادئه</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S12: STATISTICS ═══ -->
+<div class="poster stats-poster" id="s12">
+  <div class="sp-head"><h2>الإحصائيات العامة للتطبيق</h2><p>العام الدراسي 1447هـ – مدارس العينة العشر</p></div>
+  <div class="s-grid">
+    <div class="s-card"><div class="s-num">10</div><div class="s-lbl">مدرسة<br>(ابتدائي · متوسط · ثانوي)</div></div>
+    <div class="s-card"><div class="s-num">77</div><div class="s-lbl">فريق تدريسي<br>مُشكَّل بالمدارس</div></div>
+    <div class="s-card"><div class="s-num">447</div><div class="s-lbl">معلماً ومعلمة<br>مشاركاً في التطبيق</div></div>
+    <div class="s-card feat"><div class="s-num">100%</div><div class="s-lbl">نسبة تبني الإطار<br>في جميع مدارس العينة</div></div>
+  </div>
+  <div class="tbl-wrap">
+    <table class="dtbl">
+      <thead><tr><th>المرحلة</th><th>عدد المدارس</th><th>عدد الفرق</th><th>المعلمون</th><th>المعلمات</th><th>المجموع</th></tr></thead>
+      <tbody>
+        <tr><td>ابتدائي</td><td>3</td><td>14</td><td>78</td><td>40</td><td>118</td></tr>
+        <tr><td>متوسط</td><td>3</td><td>24</td><td>95</td><td>25</td><td>120</td></tr>
+        <tr><td>ثانوي</td><td>4</td><td>39</td><td>106</td><td>103</td><td>209</td></tr>
+        <tr class="tot"><td>المجموع</td><td>10</td><td>77</td><td>279</td><td>168</td><td>447</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ S13-14: EXPANSION ═══ -->
+<div class="poster expansion" id="s13">
+  <div class="exp-left">
+    <div style="margin-bottom:28px;"><span style="font-size:.72rem;color:var(--gold);letter-spacing:3px;display:block;margin-bottom:9px;">التوسع التدريجي</span><h2 style="font-size:1.5rem;font-weight:900;color:#fff;">مسيرة النمو<br><span style="color:var(--gold);">من 2 إلى 468 مدرسة</span></h2></div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot">١</div><div class="tl-text"><div class="tl-yr">١٤٤٦هـ</div><div class="tl-cnt">مدرستان</div><div class="tl-desc">مرحلة الاختبار الأولي</div></div></div>
+      <div class="tl-item"><div class="tl-dot">٢</div><div class="tl-text"><div class="tl-yr">١٤٤٧هـ</div><div class="tl-cnt">10 مدارس</div><div class="tl-desc">توسع مدروس ومقاس</div></div></div>
+      <div class="tl-item"><div class="tl-dot">٣</div><div class="tl-text"><div class="tl-yr">١٤٤٨هـ (مستهدف)</div><div class="tl-cnt">468 مدرسة</div><div class="tl-desc">تغطية شاملة للمنطقة</div></div></div>
+    </div>
+  </div>
+  <div class="exp-right">
+    <h2>توزيع المدارس المستهدفة 1448هـ</h2>
+    <p class="sub">إجمالي 468 مدرسة – بنين 282 · بنات 186</p>
+    <div class="reg-grid">
+      <div class="reg-card"><div class="reg-n">المدينة المنورة</div><div class="bar-w"><div class="bar" style="width:70%"></div></div><div class="reg-nums"><span>329 مدرسة</span><span>70%</span></div></div>
+      <div class="reg-card"><div class="reg-n">ينبع</div><div class="bar-w"><div class="bar" style="width:20%"></div></div><div class="reg-nums"><span>31 مدرسة</span><span>7%</span></div></div>
+      <div class="reg-card"><div class="reg-n">الحناكية</div><div class="bar-w"><div class="bar" style="width:17%"></div></div><div class="reg-nums"><span>25 مدرسة</span><span>5%</span></div></div>
+      <div class="reg-card"><div class="reg-n">العلا</div><div class="bar-w"><div class="bar" style="width:15%"></div></div><div class="reg-nums"><span>20 مدرسة</span><span>4%</span></div></div>
+      <div class="reg-card"><div class="reg-n">المهد</div><div class="bar-w"><div class="bar" style="width:13%"></div></div><div class="reg-nums"><span>17 مدرسة</span><span>4%</span></div></div>
+      <div class="reg-card"><div class="reg-n">خيبر</div><div class="bar-w"><div class="bar" style="width:10%"></div></div><div class="reg-nums"><span>14 مدرسة</span><span>3%</span></div></div>
+      <div class="reg-card"><div class="reg-n">وادي الفرع</div><div class="bar-w"><div class="bar" style="width:11%"></div></div><div class="reg-nums"><span>15 مدرسة</span><span>3%</span></div></div>
+      <div class="reg-card"><div class="reg-n">بدر</div><div class="bar-w"><div class="bar" style="width:13%"></div></div><div class="reg-nums"><span>17 مدرسة</span><span>4%</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S15: SECTION DIVIDER ═══ -->
+<div class="poster sec-title" id="s15">
+  <div class="st-num">٢</div>
+  <div><h2>الممارسات <span>المتميزة</span> في المدارس</h2><p>أبرز ما حقّقه التطبيق الميداني على أرض الواقع</p></div>
+</div>
+
+<!-- ═══ S16: PRACTICES OVERVIEW ═══ -->
+<div class="poster prac-ov" id="s16">
+  <div class="pov-head">
+    <div><h2>الممارسات المتميزة في مدارس إطار تحسين التدريس</h2><p>خمسة محاور رئيسة للممارسة المتميزة</p></div>
+    <div class="mini-row">
+      <div class="mstat"><div class="n">207</div><div class="l">ورشة عمل</div></div>
+      <div class="mstat"><div class="n">127</div><div class="l">درس مصغر</div></div>
+      <div class="mstat"><div class="n">11</div><div class="l">نقل خبرات خارجي</div></div>
+      <div class="mstat"><div class="n">67</div><div class="l">مستفيد خارجي</div></div>
+      <div class="mstat"><div class="n">34</div><div class="l">لقاء دوري</div></div>
+      <div class="mstat"><div class="n">34</div><div class="l">زيارة استشارية</div></div>
+    </div>
+  </div>
+  <div class="prac-grid">
+    <div class="pc"><div class="pc-icon">🔬</div><div class="pc-t">تشخيص الواقع</div><ul><li>تطبيق أداة التشخيص المعتمدة</li><li>ثقافة التأمل في الممارسات</li><li>أنماط التعلم بمقاييس معتمدة</li></ul></div>
+    <div class="pc"><div class="pc-icon">💡</div><div class="pc-t">تحسين الممارسات وعمليات التدريس</div><ul><li>ميثاق التدريس وثقافة التأمل</li><li>التواصل الفعال والانفتاح المهني</li><li>البُعد عن العزلة المهنية</li></ul></div>
+    <div class="pc"><div class="pc-icon">🏛️</div><div class="pc-t">منتدى التدريس</div><ul><li>حلقات النقاش وورش العمل</li><li>القراءة الموجهة والبحث الإجرائي</li><li>مهارات القرن 21</li></ul></div>
+    <div class="pc"><div class="pc-icon">⏰</div><div class="pc-t">حماية وقت التدريس</div><ul><li>حصر التأخير الصباحي ومعالجته</li><li>حصر غياب الطالبات</li><li>حماية الحصة من التشتت</li></ul></div>
+    <div class="pc"><div class="pc-icon">🤝</div><div class="pc-t">التوأمة المهنية ونقل الخبرات</div><ul><li>ربط المدارس ذات الخبرات المتميزة</li><li>نقل الخبرات خارج المدارس</li><li>الاستفادة من التجارب الناجحة</li></ul></div>
+  </div>
+</div>
+
+<!-- ═══ S18: IMPROVEMENT DETAILS ═══ -->
+<div class="poster improv" id="s18">
+  <h2>تفاصيل تحسين الممارسات التدريسية</h2>
+  <div class="improv-grid">
+    <div class="im-card"><h3>🔍 ميثاق التدريس وثقافة التأمل</h3><p>نشر ثقافة تأمل الممارسات سعياً للتطوير المستمر، وبناء وثيقة مرجعية مشتركة للفريق</p></div>
+    <div class="im-card"><h3>🧩 أنماط التعلم</h3><p>تصنيف الطلاب من خلال مقاييس معتمدة لمراعاة الفروق الفردية وتنويع أساليب التدريس</p></div>
+    <div class="im-card"><h3>🎯 تشخيص الواقع</h3><p>تطبيق أداة التشخيص على أرض الواقع لتحديد نقاط القوة وفرص التطوير بدقة</p></div>
+    <div class="im-card"><h3>💬 التواصل الفعال</h3><p>الانفتاح العقلي والبُعد عن العزلة المهنية، وبناء جسور التواصل بين المعلمين والفرق</p></div>
+  </div>
+</div>
+
+<!-- ═══ S19: FORUM ═══ -->
+<div class="poster forum" id="s19">
+  <h2>منتدى التدريس</h2>
+  <p class="desc-txt">بيئة عملية وتجريبية تتيح للمعلم استكشاف وتطبيق أساليب التدريس وتوظيف التقنيات المبتكرة لتحسين تفاعل الطلاب وتحفيزهم على التعلم، كما يشجع المعلم على الابتكار وتطوير الممارسات التعليمية لتراعي احتياجات وتنوع الطلاب.</p>
+  <div class="forum-items">
+    <div class="fi"><div class="fi-num">١</div><h3>ورش عمل قائمة على التشخيص</h3><p>عادات العقل · التخطيط الجيد للدروس · تنمية الدافعية · الجيل الخامس للتعليم · صعوباتي ليست نهاية الطريق</p></div>
+    <div class="fi"><div class="fi-num">٢</div><h3>حلقات النقاش</h3><p>المفاهيم البديلة في المواد الدراسية · تنمية المهارات باستخدام التعلم القائم على المشاريع</p></div>
+    <div class="fi"><div class="fi-num">٣</div><h3>القراءة الموجهة</h3><p>"مهارات القرن الحادي والعشرين: التعلم للحياة في زمننا"</p></div>
+    <div class="fi"><div class="fi-num">٤</div><h3>البحث الإجرائي</h3><p>"تصور مقترح لتقويم المشاريع في المرحلة الثانوية"</p></div>
+  </div>
+</div>
+
+<!-- ═══ S20: PROTECT TIME ═══ -->
+<div class="poster protect" id="s20">
+  <h2>حماية وقت التدريس</h2>
+  <div class="science-note">أثبتت الدراسات أن الدماغ قد يحتاج ما يقارب الـ20 دقيقة لإعادة التركيز بشكل كامل بعد انقطاع الانتباه — لذا فإن حماية وقت الحصة ليست رفاهية بل ضرورة علمية.</div>
+  <div class="protect-grid">
+    <div class="prot-card"><h3>⏰ التأخير الصباحي</h3><p>حصر حالات التأخير الصباحي وتحليلها ووضع آليات معالجة فعلية تحمي بداية الحصة من الضياع</p></div>
+    <div class="prot-card"><h3>💻 نورة الرقمية والتحول المؤسسي</h3><p>توظيف التحول الرقمي لحماية وقت التدريس وتعزيز الكفاءة المؤسسية في إدارة الحصص</p></div>
+    <div class="prot-card"><h3>🛡️ تجربة الابتدائية الثالثة والستون</h3><p>نموذج ميداني ناجح في حماية وقت الحصة الثانية، يُعدّ تجربة قابلة للتعميم على المدارس الأخرى</p></div>
+  </div>
+</div>
+
+<!-- ═══ S21: TWINNING ═══ -->
+<div class="poster twin" id="s21">
+  <h2>التوأمة المهنية</h2>
+  <p class="def">شراكة استراتيجية تهدف إلى تطوير الأداء من خلال ربط مؤسسة تعليمية أو مهنية (أو فرد) بآخر ذي خبرة واسعة وتجارب ناجحة، لنقل المعرفة وتبادل الخبرات.</p>
+  <div class="twin-items">
+    <div class="tw-item"><div class="tw-num">١</div><p>ثانوية الأميرة نورة بالمدينة المنورة مع ثانوية نورة الجبر بالأحساء — قيادة المشاريع المدرسية نحو نتائج تعليمية متميزة</p></div>
+    <div class="tw-item"><div class="tw-num">٢</div><p>ثانوية خديجة بنت خويلد والثانوية السابعة والأربعون — درس تاريخ: الدولة السعودية الثانية (التأسيس)</p></div>
+    <div class="tw-item"><div class="tw-num">٣</div><p>حضور منتدى التدريس في الابتدائية الثالثة والستون والروضة الملحقة — نقل الخبرة للمرحلة الأساسية</p></div>
+    <div class="tw-item"><div class="tw-num">٤</div><p>ثانوية خديجة بنت خويلد مع ثانوية زينب بنت جحش — درس: منحنى الموقع والزمن (تكامل فيزياء ورياضيات)</p></div>
+  </div>
+</div>
+
+<!-- ═══ S22: COLLABORATIVE LESSONS INTRO ═══ -->
+<div class="poster collab" id="s22">
+  <h2>الدروس التشاركية – مقتطفات من دروس متكاملة</h2>
+  <p class="intro">تعاون المعلمين في تخطيط الدروس وتنفيذها وتقويمها بشكل متكامل بين عدة تخصصات، كتعاون معلمي الدراسات الإسلامية، الرياضيات، التقنية الرقمية، الفنون، الفيزياء، الكيمياء، وعلوم الأرض والفضاء، بالإضافة لمعلم الموهوبين.</p>
+  <div class="lesson-grid">
+    <div class="lesson-card">
+      <div class="lc-hdr"><h3>🌐 لغة إنجليزية + كيمياء (The World of Reading TV)</h3></div>
+      <div class="lc-body"><ul>
+        <li>إثارة الدافعية باستخدام الموسيقى للتعرف على نوعية الأفلام</li>
+        <li>تنمية القيم الوطنية عبر التعرف على معدل الجريمة وعلاقتها بالعقوبات</li>
+        <li>الربط بمادة الكيمياء وآلية الحمض النووي والبصمة الوراثية</li>
+        <li>إنتاج قصة مصورة من عمل الطالبات</li>
+      </ul></div>
+    </div>
+    <div class="lesson-card">
+      <div class="lc-hdr"><h3>🔬 أحياء: الديدان المفلطحة</h3></div>
+      <div class="lc-body"><ul>
+        <li>استخدام النمذجة في تمثيل الجهاز الإخراجي والعصبي</li>
+        <li>الاستخدام الأمثل للصور ومقاطع الفيديو</li>
+        <li>تعزيز الوعي الصحي من خلال آليات الوقاية</li>
+      </ul></div>
+    </div>
+    <div class="lesson-card">
+      <div class="lc-hdr"><h3>📐 رياضيات + فيزياء: القطع المتوسط والارتفاعات</h3></div>
+      <div class="lc-body"><ul>
+        <li>تقديم المعلومات بأكثر من طريقة لتكوين التعلم العميق</li>
+        <li>استخدام النمذجة في أكثر من موضع (الطاولة، الورقة المثلثة، الفراشات)</li>
+        <li>حل التمارين فردياً وجماعياً وعلى السبورة</li>
+      </ul></div>
+    </div>
+    <div class="lesson-card">
+      <div class="lc-hdr"><h3>📜 تاريخ مع الثانوية 47: الدولة السعودية الثانية</h3></div>
+      <div class="lc-body"><ul>
+        <li>اجتماعات مشتركة لتخطيط الدرس والأنشطة</li>
+        <li>توظيف الطريقة العلمية بصورة فاعلة</li>
+        <li>الربط مع مادة الفيزياء (لكل فعل رد فعل)</li>
+        <li>الاستخدام الأمثل للصور في التتبع التاريخي</li>
+      </ul></div>
+    </div>
+    <div class="lesson-card">
+      <div class="lc-hdr"><h3>✍️ اللغة العربية: الفعل المضارع</h3></div>
+      <div class="lc-body"><ul>
+        <li>"وطن يتجدد" – تأليف قصة بأكبر عدد من الأفعال المضارعة</li>
+        <li>"الفاعل يصنع الإنجاز ونائب الفاعل يواصل العطاء"</li>
+        <li>عبارات ملهمة لاستخراج الفاعل ونائبه</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S25: WATAN ═══ -->
+<div class="poster watan" id="s25">
+  <div class="watan-icon">🇸🇦</div>
+  <div class="watan-text">
+    <h2>معاً نتعلم بروح الوطن</h2>
+    <p>يهدف إلى غرس قيمة حب الوطن من خلال تخطيط الدروس والأنشطة الصفية التي تُقدَّم للطالبات داخل الصف، والمشاريع وتقويم المواد الدراسية — ليكون الانتماء الوطني حاضراً في كل موضوع وكل حصة.</p>
+  </div>
+</div>
+
+<!-- ═══ S26: IMPACT RESULTS ═══ -->
+<div class="poster impact" id="s26">
+  <div class="impact-banner">
+    <div><h2>أثر تطبيق الإطار على المعلم والمدرسة</h2><p>من خلال المقابلات وآراء 161 معلماً ومعلمة – أبرز المكتسبات</p></div>
+  </div>
+  <div class="impact-body">
+    <div class="impact-list">
+      <div class="imp-item"><div class="imp-ico">📝</div><div class="imp-text"><h4>تحسّن الممارسات التدريسية</h4><p>اهتمام بالتخطيط والتقويم وتنوع الاستراتيجيات والتقويم التكويني، ونشوء ثقافة التأمل</p></div></div>
+      <div class="imp-item"><div class="imp-ico">🛡️</div><div class="imp-text"><h4>حماية وقت التدريس</h4><p>تبنّي المعلمين حلولاً لحماية الحصة من التشتت وتوجيههم نحو عملهم الأصيل</p></div></div>
+      <div class="imp-item"><div class="imp-ico">🔥</div><div class="imp-text"><h4>ارتفاع دافعية المعلمين</h4><p>منحهم الفرصة لنقل خبراتهم لزملائهم داخل المدرسة وخارجها</p></div></div>
+      <div class="imp-item"><div class="imp-ico">🔗</div><div class="imp-text"><h4>تكامل الجهود</h4><p>تكامل التدريس مع الأنشطة غير الصفية، والمعلمون أكثر قرباً وتشاركاً</p></div></div>
+      <div class="imp-item"><div class="imp-ico">💬</div><div class="imp-text"><h4>بناء ثقافة تدريسية</h4><p>أحاديث المعلمين حول التدريس وتعلم الطلاب أصبحت الثقافة السائدة</p></div></div>
+    </div>
+    <div class="survey-box">
+      <blockquote>تشير النتائج إلى وجود ارتفاع ملحوظ في جميع المكتسبات الأولية التي جرى استطلاع آراء المعلمين بشأنها، حيث جاءت جميعها ضمن مستوى "عالٍ"</blockquote>
+      <cite>— من نتائج استطلاع 161 معلماً ومعلمة · مدارس العينة 1447هـ</cite>
+      <div class="s-bars">
+        <div class="s-b"><div class="lbl">تحسّن تخطيط الدروس</div><div class="s-bw"><div class="s-bf" style="width:88%"></div></div><div class="pct">88%</div></div>
+        <div class="s-b"><div class="lbl">تطوير الممارسات الصفية</div><div class="s-bw"><div class="s-bf" style="width:85%"></div></div><div class="pct">85%</div></div>
+        <div class="s-b"><div class="lbl">تعزيز التعاون المهني</div><div class="s-bw"><div class="s-bf" style="width:92%"></div></div><div class="pct">92%</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S28: SUPPORT TEAM ═══ -->
+<div class="poster support" id="s28">
+  <h2>دعم فريق التدريس للمدارس</h2>
+  <div class="support-grid">
+    <div class="sup-card"><div class="sup-ico">🔄</div><p>المتابعة بانتظام ودورية طوال فترة التطبيق</p></div>
+    <div class="sup-card"><div class="sup-ico">⚡</div><p>الاحترافية وسرعة الاستجابة لمتطلبات المدارس</p></div>
+    <div class="sup-card"><div class="sup-ico">🎯</div><p>الدعم المهني الفعال ووضوح المتطلبات</p></div>
+    <div class="sup-card"><div class="sup-ico">📋</div><p>التغذية الراجعة المفيدة والبنّاءة</p></div>
+  </div>
+</div>
+
+<!-- ═══ S29: CHALLENGES OVERVIEW ═══ -->
+<div class="poster sec-title" id="s29" style="background:linear-gradient(135deg,#1a0505,#3d0000);">
+  <div class="st-num" style="color:rgba(255,100,100,.12);">٣</div>
+  <div><h2 style="color:#fff;">التحديات <span style="color:#ff8080;">الميدانية</span></h2><p>خمسة تحديات واجهها التطبيق وكيفية التعامل معها</p></div>
+</div>
+
+<!-- ═══ S30-34: CHALLENGES DETAIL ═══ -->
+<div class="poster challenges" id="s30">
+  <div class="ch-head"><h2>التحديات الميدانية والحلول المتخذة</h2><p>عقبات التطبيق وكيف تعامل معها فريق التدريس</p></div>
+  <div class="ch-grid">
+    <div class="ch-card">
+      <div class="ch-top"><div class="ch-nbig">١</div><div class="ch-title">مقاومة تغيير الثقافة المؤسسية</div></div>
+      <div class="ch-body">
+        <div class="ch-row"><strong>وصف التحدي</strong><span>لماذا نحتاج للتغيير؟ – صعوبة تقبّل المستجدات</span></div>
+        <div class="ch-row"><strong>الأثر</strong><span>التأخر عن موعد بدء اللقاءات، ضعف التفاعل في النقاش</span></div>
+        <div class="ch-row ch-sol"><strong>الحل</strong><span>التوعية التدريجية + تطبيق أداة تشخيص وتحليل مجال التدريس</span></div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-top"><div class="ch-nbig">٢</div><div class="ch-title">العزلة المهنية</div></div>
+      <div class="ch-body">
+        <div class="ch-row"><strong>وصف التحدي</strong><span>العلاقات بين زملاء العمل من أهم مسببات الرضا والإبداع</span></div>
+        <div class="ch-row"><strong>الأثر</strong><span>تراجع الأداء وضعف الإنتاجية</span></div>
+        <div class="ch-row ch-sol"><strong>الحل</strong><span>بناء فرق تدريس متنوعة: اللغات والحاسب · العلوم · الرياضيات · الصفوف الأولية</span></div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-top"><div class="ch-nbig">٣</div><div class="ch-title">ضعف الالتزام</div></div>
+      <div class="ch-body">
+        <div class="ch-row"><strong>وصف التحدي</strong><span>الالتزام بالواجبات والقدرة على المبادرة</span></div>
+        <div class="ch-row"><strong>الأثر</strong><span>عدم الالتزام بما يتطلبه تطبيق الإطار من إجراءات</span></div>
+        <div class="ch-row ch-sol"><strong>الحل</strong><span>عقد لقاءات دورية + وثيقة التدريس</span></div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-top"><div class="ch-nbig">٤</div><div class="ch-title">وهم الصعوبات</div></div>
+      <div class="ch-body">
+        <div class="ch-row"><strong>وصف التحدي</strong><span>تصور مبالغ فيه أو شعور نفسي بأن المشاكل أكبر مما هي عليه</span></div>
+        <div class="ch-row"><strong>الأثر</strong><span>ضعف الدافعية وتراجع الإقبال</span></div>
+        <div class="ch-row ch-sol"><strong>الحل</strong><span>عقد لقاءات تحفيزية + وثيقة التدريس</span></div>
+      </div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-top"><div class="ch-nbig">٥</div><div class="ch-title">تحديات إدارية</div></div>
+      <div class="ch-body">
+        <div class="ch-row"><strong>وصف التحدي</strong><span>اختلاف الأنصبة بين معلمي المواد المختلفة</span></div>
+        <div class="ch-row"><strong>الأثر</strong><span>امتناع البعض عن الانضمام + صعوبة تنظيم الجدول</span></div>
+        <div class="ch-row ch-sol"><strong>الحل</strong><span>تشكيل الفرق بطريقة عنقودية + احتساب المشاركات ضمن المهام الرسمية</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S35: SECTION DIVIDER ═══ -->
+<div class="poster sec-title" id="s35">
+  <div class="st-num">٤</div>
+  <div><h2>استطلاع رأي <span>المستفيدين</span></h2><p>قياس مستوى الرضا وتحديد فرص التحسين</p></div>
+</div>
+
+<!-- ═══ S36: SURVEY GOALS ═══ -->
+<div class="poster surv-goals" id="s36">
+  <h2>الهدف من الاستطلاع</h2>
+  <div class="sg-grid">
+    <div class="sg-item"><div class="sg-num">١</div><p>قياس مستوى رضا المستفيدين (مديري المدارس والمعلمين) عن إطار تحسين التدريس وفريقه</p></div>
+    <div class="sg-item"><div class="sg-num">٢</div><p>التعرف على أثره في تطوير الممارسات التدريسية، وتحديد فرص التحسين والتطوير المستقبلي</p></div>
+  </div>
+</div>
+
+<!-- ═══ S38: KEY MESSAGE ═══ -->
+<div class="poster concl" id="s38">
+  <h2>دلالة نتائج الرضا المرتفعة</h2>
+  <div class="concl-txt">
+    <p>مستويات الرضا المرتفعة تكسب أهمية مضاعفة لكونها صادرة عن نخبة من التربويين المخضرمين، مما يعكس متانة الإطار وملاءمته للواقع الميداني — وهو مؤشر بالغ الدلالة على صلاحية الإطار للتوسع والتعميم.</p>
+  </div>
+</div>
+
+<!-- ═══ S40: SATISFACTION RESULTS ═══ -->
+<div class="poster sat-res" id="s40">
+  <h2>نتائج استطلاع رأي المستفيدين</h2>
+  <p class="sub">مديرو ومعلمو مدارس العينة – مستويات الرضا التفصيلية</p>
+  <div class="sat-grid">
+    <div class="sat-c">
+      <h3>رضا المعلمين عن إطار التدريس</h3>
+      <div class="donut-w"><svg viewBox="0 0 110 110" width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="12"/><circle cx="55" cy="55" r="46" fill="none" stroke="#C9A84C" stroke-width="12" stroke-dasharray="184 289" stroke-linecap="round"/><circle cx="55" cy="55" r="46" fill="none" stroke="#F0D285" stroke-width="12" stroke-dasharray="340 289" stroke-dashoffset="-184" stroke-linecap="round" opacity=".6"/></svg><div class="donut-ctr"><span class="dp">92%</span><span class="ds">راضٍ فأكثر</span></div></div>
+      <div class="sat-leg">
+        <div class="leg-r"><span><span class="ldot" style="background:#C9A84C"></span>راضٍ جداً</span><span>33%</span></div>
+        <div class="leg-r"><span><span class="ldot" style="background:#F0D285"></span>راضٍ</span><span>59%</span></div>
+        <div class="leg-r"><span><span class="ldot" style="background:rgba(255,255,255,.2)"></span>محايد</span><span>8%</span></div>
+      </div>
+    </div>
+    <div class="sat-c">
+      <h3>رضا المعلمين عن فريق التدريس</h3>
+      <div class="donut-w"><svg viewBox="0 0 110 110" width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="12"/><circle cx="55" cy="55" r="46" fill="none" stroke="#0E7490" stroke-width="12" stroke-dasharray="184 289" stroke-linecap="round"/><circle cx="55" cy="55" r="46" fill="none" stroke="#22D3EE" stroke-width="12" stroke-dasharray="340 289" stroke-dashoffset="-184" stroke-linecap="round" opacity=".6"/></svg><div class="donut-ctr"><span class="dp" style="color:#22D3EE">88%</span><span class="ds">راضٍ فأكثر</span></div></div>
+      <div class="sat-leg">
+        <div class="leg-r"><span><span class="ldot" style="background:#0E7490"></span>راضٍ جداً</span><span>32%</span></div>
+        <div class="leg-r"><span><span class="ldot" style="background:#22D3EE"></span>راضٍ</span><span>56%</span></div>
+        <div class="leg-r"><span><span class="ldot" style="background:rgba(255,255,255,.2)"></span>محايد</span><span>12%</span></div>
+      </div>
+    </div>
+    <div class="sat-c">
+      <h3>رضا المديرين عن الإطار</h3>
+      <div class="donut-w"><svg viewBox="0 0 110 110" width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="12"/><circle cx="55" cy="55" r="46" fill="none" stroke="#1A7A4A" stroke-width="12" stroke-dasharray="289 289" stroke-linecap="round"/></svg><div class="donut-ctr"><span class="dp" style="color:#2DD284">100%</span><span class="ds">راضٍ جداً</span></div></div>
+      <div class="sat-leg">
+        <div class="leg-r"><span><span class="ldot" style="background:#2DD284"></span>راضٍ جداً</span><span style="color:#2DD284;font-weight:700">100%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpoints">
+    <div class="kp"><div class="ki">✅</div><p>مفاهيم الإطار واضحة للميدان</p></div>
+    <div class="kp"><div class="ki">📋</div><p>يُحسّن تخطيط الدروس</p></div>
+    <div class="kp"><div class="ki">🏫</div><p>مرتبط بواقع المدرسة</p></div>
+    <div class="kp"><div class="ki">🌟</div><p>يُسهم في تحسين نواتج التعلم</p></div>
+  </div>
+</div>
+
+<!-- ═══ S41: KEY FINDINGS ═══ -->
+<div class="poster findings" id="s41">
+  <h2>توافق الرؤى بين القيادة والميدان</h2>
+  <p class="note">أثبت إطار تحسين التدريس قدرته على إحداث تحول جذري في ثقافة التخطيط والتدريس، محققاً مستويات رضا قياسية — إذ توافقت آراء المديرين والمعلمين على النقاط الأربع التالية:</p>
+  <div class="find-grid">
+    <div class="find-card"><h3>💡 وضوح المفاهيم</h3><p>مفاهيم الإطار واضحة ومفهومة للجميع، وأدواته قابلة للتطبيق الميداني المباشر</p></div>
+    <div class="find-card"><h3>📋 التخطيط</h3><p>الإطار يُحسّن تخطيط الدروس بشكل ملموس ويرتقي بجودة الإعداد المسبق</p></div>
+    <div class="find-card"><h3>🏫 الواقعية</h3><p>الإطار مرتبط بواقع المدرسة وظروفها الفعلية وليس نظرياً مجرداً</p></div>
+    <div class="find-card"><h3>🌟 النواتج</h3><p>يُسهم في تحسين نواتج التعلم وأداء الطلاب على المدى المتوسط والبعيد</p></div>
+  </div>
+</div>
+
+<!-- ═══ S42: CULTURAL SHIFT ═══ -->
+<div class="poster cult" id="s42">
+  <h2>التحول الثقافي الذي أحدثه الإطار</h2>
+  <div class="cult-tri">
+    <div class="ct-card"><div class="ct-num">١</div><h3>التعاون</h3><p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.8;">من العزلة المهنية إلى ثقافة التعاون والتشارك المستدام</p></div>
+    <div class="ct-card"><div class="ct-num">٢</div><h3>التنظيم</h3><p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.8;">من الفردية غير المنظمة إلى العمل المؤسسي المنهجي المنظم</p></div>
+    <div class="ct-card"><div class="ct-num">٣</div><h3>الاستدامة</h3><p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.8;">من الجهد الفردي العابر إلى الثقافة المؤسسية المستدامة</p></div>
+  </div>
+</div>
+
+<!-- ═══ S44: CONCLUSION ═══ -->
+<div class="poster concl" id="s44" style="background:linear-gradient(135deg,var(--navy),var(--navy-soft));">
+  <h2>خلاصة نتائج الاستطلاع</h2>
+  <div class="concl-txt">
+    <p>إطار تحسين التدريس أثبت فعاليته القصوى وحقق رضاً عاماً ممتازاً، من خلال معالجة تحديات (الوقت والأعباء) وتبني مقترحات (التقنية والتحفيز)، مما أسهم في استثمار الطاقة الكامنة الكاملة، محوِّلاً الممارسة التدريسية من مجهود فردي إلى ثقافة مؤسسية مستدامة.</p>
+  </div>
+</div>
+
+<!-- ═══ S45: SECTION DIVIDER ═══ -->
+<div class="poster sec-title" id="s45">
+  <div class="st-num">٥</div>
+  <div><h2>الخطة <span>البحثية</span></h2><p>قياس أثر إطار تحسين التدريس – دراسة علمية ميدانية</p></div>
+</div>
+
+<!-- ═══ S46: RESEARCH STARTING POINTS ═══ -->
+<div class="poster research" id="s46">
+  <h2>الخطة البحثية – قياس أثر الإطار</h2>
+  <p class="sub">دراسة علمية ميدانية لتوثيق فاعلية إطار تحسين التدريس بشكل قابل للقياس والتعميم</p>
+  <div class="res-row">
+    <div class="res-col">
+      <h3>منطلقات البحث</h3>
+      <div class="start-pts">
+        <div class="sp"><strong>المنطلق الأساس</strong>التدريس بوصفه المحور الرئيس في تجويد العملية التعليمية</div>
+        <div class="sp"><strong>المنطلق المؤسسي</strong>تطبيق الإطار كمنهجية منظمة لتحقيق التكامل وتعزيز الفاعلية القائمة على الأدلة</div>
+        <div class="sp"><strong>المنطلق الاستراتيجي</strong>التوسع في تطبيق إطار تحسين التدريس في مدارس المنطقة كاملة</div>
+      </div>
+    </div>
+    <div class="res-col">
+      <h3>مجالات الدراسة الأربعة</h3>
+      <div class="res-domains">
+        <div class="rd"><div class="ri">🏫</div><p>أثر الإطار على البيئة الصفية الإيجابية</p></div>
+        <div class="rd"><div class="ri">📋</div><p>أثر الإطار على جودة التخطيط للدروس</p></div>
+        <div class="rd"><div class="ri">⚡</div><p>أثر الإطار على جودة تنفيذ التدريس</p></div>
+        <div class="rd"><div class="ri">📊</div><p>أثر الإطار على التقويم وقياس الأثر</p></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3 style="color:var(--gold);font-size:.88rem;margin-bottom:15px;letter-spacing:1px;">المنهج والأداة والمستهدفون</h3>
+    <div class="res-meth">
+      <div class="rm"><h4>المنهج البحثي</h4><p>المنهج الوصفي المسحي – اختير لفاعليته في جمع البيانات وتحليلها بدقة لاستخلاص نتائج واقعية</p></div>
+      <div class="rm"><h4>الأداة المستخدمة</h4><p>استبانة محكّمة من 4 مجالات رئيسة تتضمن 20 فقرة وفق مقياس ليكرت الخماسي</p></div>
+      <div class="rm"><h4>المستهدفون</h4><p>معلمو ومعلمات ومديرو ومديرات مدارس إطار تحسين التدريس بمنطقة المدينة المنورة</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S49: RESEARCH DOMAINS ═══ -->
+<div class="poster res-detail" id="s49">
+  <h2>تفصيل مجالات الأداة البحثية</h2>
+  <div class="detail-grid">
+    <div class="det-card"><div class="det-hdr"><div class="di">🏫</div><h3>البيئة الصفية</h3></div><div class="det-body"><p>قياس أثر الإطار على تعزيز بيئة الصف الإيجابية، بما يشمل التفاعل وإشراك الطلاب والمناخ التعليمي المحفز</p></div></div>
+    <div class="det-card"><div class="det-hdr"><div class="di">📋</div><h3>التخطيط</h3></div><div class="det-body"><p>قياس أثر الإطار على جودة التخطيط للدروس، من حيث الأهداف والاستراتيجيات والتنويع وربط المحتوى بالواقع</p></div></div>
+    <div class="det-card"><div class="det-hdr"><div class="di">⚡</div><h3>التنفيذ</h3></div><div class="det-body"><p>قياس أثر الإطار على جودة تنفيذ التدريس داخل الحصة، بما يشمل إدارة الوقت والتفاعل والتنويع</p></div></div>
+    <div class="det-card"><div class="det-hdr"><div class="di">📊</div><h3>التقويم</h3></div><div class="det-body"><p>قياس أثر الإطار على التقويم وقياس الأثر، مع رصد أبرز التحديات التطبيقية في الميدان</p></div></div>
+  </div>
+</div>
+
+<!-- ═══ S52: IMPORTANCE ═══ -->
+<div class="poster importance" id="s52">
+  <h2>أهمية البحث</h2>
+  <div class="imp-points">
+    <div class="imp-pt"><div class="ip-num">١</div><div class="ip-text">الكشف عن واقع تطبيق إطار تحسين التدريس وفاعليته في جودة الممارسات التدريسية على أرض الواقع</div></div>
+    <div class="imp-pt"><div class="ip-num">٢</div><div class="ip-text">دعم العمليات التطويرية بنتائج موثوقة تساعد في رفع مستوى الأداء التعليمي وتوجيه القرارات</div></div>
+    <div class="imp-pt"><div class="ip-num">٣</div><div class="ip-text">تزويد المكتبة التربوية بمقترحات ونتائج علمية تدعم الدراسات والمبادرات التعليمية المستقبلية</div></div>
+  </div>
+</div>
+
+<!-- ═══ S53: CLOSING ═══ -->
+<div class="poster closing" id="s53">
+  <div class="cl-orn">✦ ✦ ✦</div>
+  <h2>شكراً <span>لكم</span></h2>
+  <p>الإدارة العامة للتعليم بمنطقة المدينة المنورة<br>الشؤون التعليمية – فريق التدريس · 1447هـ</p>
+</div>
+
+</div><!-- end pw -->
+
+<div class="controls"><button class="cbtn" onclick="window.print()">🖨️ طباعة</button></div>
+<button class="scr-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function gto(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.poster').forEach(p=>obs.observe(p));
+const posters=document.querySelectorAll('.poster[id]');
+const pills=document.querySelectorAll('.nav-pill');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  posters.forEach(p=>{if(p.getBoundingClientRect().top<=120)cur=p.id;});
+  pills.forEach(pi=>{pi.classList.remove('active');if(pi.getAttribute('onclick')?.includes(cur))pi.classList.add('active');});
+});
+</script>
+</body>
+</html>
