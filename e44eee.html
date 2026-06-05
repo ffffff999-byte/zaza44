@@ -1,0 +1,3179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة المبادرات التعليمية</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --primary-light: #2471a3;
+    --primary-dark: #154360;
+    --accent: #c0392b;
+    --accent-light: #e74c3c;
+    --gold: #d4ac0d;
+    --gold-light: #f1c40f;
+    --success: #1e8449;
+    --success-light: #27ae60;
+    --warning: #d35400;
+    --warning-light: #e67e22;
+    --info: #1a5276;
+    --bg: #f4f6f9;
+    --bg-card: #ffffff;
+    --text: #1c2833;
+    --text-muted: #626567;
+    --border: #d5d8dc;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== TOP HEADER ===== */
+  .top-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    color: white;
+    padding: 0;
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    border: 2px solid rgba(255,255,255,0.4);
+    flex-shrink: 0;
+  }
+
+  .logo-text h1 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .logo-text p {
+    font-size: 11px;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.6);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn.active {
+    background: var(--gold);
+    border-color: var(--gold-light);
+    color: var(--primary-dark);
+    font-weight: 600;
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main-content {
+    margin-top: 90px;
+    padding: 24px 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    flex: 1;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== PAGE TITLE ===== */
+  .page-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .page-title-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .page-title h2 {
+    font-size: 22px;
+    color: var(--primary-dark);
+    font-weight: 700;
+  }
+
+  .page-title p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ===== STATS GRID ===== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-right: 4px solid var(--primary);
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .stat-card.gold { border-right-color: var(--gold); }
+  .stat-card.green { border-right-color: var(--success); }
+  .stat-card.red { border-right-color: var(--accent); }
+  .stat-card.orange { border-right-color: var(--warning); }
+
+  .stat-icon {
+    font-size: 36px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .stat-info h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1;
+  }
+
+  .stat-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+
+  /* ===== CARD GRID ===== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.25s;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-light);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .card-num {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-blue { background: #d6eaf8; color: #1a5276; }
+  .badge-green { background: #d5f5e3; color: #1e8449; }
+  .badge-orange { background: #fde8d8; color: #d35400; }
+  .badge-red { background: #fadbd8; color: #c0392b; }
+  .badge-purple { background: #e8daef; color: #6c3483; }
+  .badge-gold { background: #fef9e7; color: #b7950b; }
+  .badge-teal { background: #d1f2eb; color: #0e6655; }
+  .badge-dark { background: #d5d8dc; color: #2c3e50; }
+  .badge-pink { background: #fce4ec; color: #880e4f; }
+
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  /* ===== TABLE ===== */
+  .table-wrapper {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+  }
+
+  .table-header-bar {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .table-header-bar h3 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr {
+    background: #eaf0f6;
+  }
+
+  thead th {
+    padding: 11px 14px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--primary-light);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #eaecee;
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: #f0f7fe; }
+  tbody tr:last-child { border-bottom: none; }
+
+  tbody td {
+    padding: 10px 14px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.4;
+  }
+
+  tbody td:first-child { font-weight: 700; color: var(--primary); }
+
+  /* ===== SECTION BOX ===== */
+  .section-box {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .section-box-header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .section-box-header:hover { background: linear-gradient(135deg, #0d2d40, #1a5276); }
+  .section-box-header h3 { font-size: 15px; font-weight: 600; flex: 1; }
+  .section-box-header .arrow { font-size: 12px; transition: transform 0.25s; }
+  .section-box-header.collapsed .arrow { transform: rotate(-90deg); }
+  .section-box-body { padding: 20px; }
+  .section-box-body.hidden { display: none; }
+
+  /* ===== INFO GRID ===== */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .info-item {
+    background: #f8f9fa;
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    border-right: 3px solid var(--primary-light);
+  }
+
+  .info-item label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .info-item .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ===== LIST STYLE ===== */
+  .styled-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .styled-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    background: #f8f9fa;
+    font-size: 13px;
+    line-height: 1.5;
+    border-right: 3px solid var(--primary-light);
+    transition: background 0.15s;
+  }
+
+  .styled-list li:hover { background: #eaf0f6; }
+  .styled-list li::before { content: '●'; color: var(--primary); font-size: 10px; margin-top: 4px; flex-shrink: 0; }
+
+  /* ===== NUMBERED LIST ===== */
+  .numbered-list {
+    counter-reset: item;
+    list-style: none;
+    padding: 0;
+  }
+
+  .numbered-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+    background: #f8f9fa;
+    border-radius: var(--radius-sm);
+    border-right: 3px solid var(--gold);
+  }
+
+  .numbered-list li::before {
+    counter-increment: item;
+    content: counter(item);
+    background: var(--gold);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ===== TWO COL ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INITIATIVE MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    padding: 20px;
+    overflow-y: auto;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 820px;
+    margin: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .modal-header h2 { font-size: 18px; font-weight: 700; }
+  .modal-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.35); }
+
+  .modal-body { padding: 24px; max-height: 75vh; overflow-y: auto; }
+
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .modal-field {
+    background: #f8f9fa;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    border-right: 3px solid var(--primary-light);
+  }
+
+  .modal-field .field-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .modal-field .field-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .modal-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 6px;
+    margin: 18px 0 12px;
+  }
+
+  /* ===== TEAM TABLE ===== */
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .team-table th {
+    background: var(--primary-dark);
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .team-table td {
+    padding: 8px 12px;
+    text-align: center;
+    border-bottom: 1px solid #eaecee;
+  }
+
+  .team-table tr:nth-child(even) { background: #f8f9fa; }
+  .team-table tr:hover { background: #eaf0f6; }
+
+  /* ===== TYPE CARDS ===== */
+  .type-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.25s;
+    text-align: center;
+  }
+
+  .type-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+  .type-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .type-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+  }
+
+  .type-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ===== GLOSSARY ===== */
+  .glossary-item {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    border-right: 5px solid var(--primary);
+    transition: all 0.2s;
+  }
+
+  .glossary-item:hover { transform: translateX(-3px); border-right-color: var(--gold); }
+  .glossary-item h3 { font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+  .glossary-item p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ===== QUOTE ===== */
+  .quote-box {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-box::before {
+    content: '❝';
+    position: absolute;
+    top: -10px; left: 20px;
+    font-size: 80px;
+    opacity: 0.15;
+    font-family: serif;
+  }
+
+  .quote-box p {
+    font-size: 15px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-box .quote-attr {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 8px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .compare-table th {
+    padding: 12px 14px;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 3px solid;
+  }
+
+  .compare-table th:nth-child(1) { background: #eaf0f6; color: var(--primary-dark); border-bottom-color: var(--primary); }
+  .compare-table th:nth-child(2) { background: #d5f5e3; color: #1e8449; border-bottom-color: var(--success); }
+  .compare-table th:nth-child(3) { background: #fde8d8; color: #d35400; border-bottom-color: var(--warning); }
+  .compare-table th:nth-child(4) { background: #e8daef; color: #6c3483; border-bottom-color: #6c3483; }
+
+  .compare-table td {
+    padding: 10px 14px;
+    text-align: center;
+    border-bottom: 1px solid #eaecee;
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: #f0f7fe; }
+
+  /* ===== FLOW CHART ===== */
+  .flow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 10px;
+  }
+
+  .flow-step {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 260px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+  }
+
+  .flow-step:hover { transform: scale(1.02); }
+  .flow-step.alt { background: linear-gradient(135deg, var(--gold), #e6b800); color: #1a1a00; }
+  .flow-step.green { background: linear-gradient(135deg, var(--success), var(--success-light)); }
+
+  .flow-arrow {
+    color: var(--primary-light);
+    font-size: 20px;
+    margin: 4px 0;
+    line-height: 1;
+  }
+
+  .flow-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 700px;
+    margin: 8px 0;
+  }
+
+  .flow-branch {
+    background: linear-gradient(135deg, #eaf0f6, #d6eaf8);
+    border: 2px solid var(--primary-light);
+    color: var(--primary-dark);
+    padding: 12px 10px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ===== SETTINGS ===== */
+  .settings-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .settings-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .settings-card h3 .icon { font-size: 18px; }
+
+  /* ===== FILTER BAR ===== */
+  .filter-bar {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .filter-bar label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 6px;
+  }
+
+  .filter-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* ===== OBJECTIVES GRID ===== */
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .obj-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: all 0.25s;
+    border-top: 4px solid var(--primary);
+  }
+
+  .obj-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .obj-card .obj-icon { font-size: 32px; margin-bottom: 10px; }
+  .obj-card p { font-size: 13px; color: var(--text); font-weight: 600; line-height: 1.5; }
+
+  /* ===== DOMAINS ===== */
+  .domains-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .domain-chip {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+
+  .domain-chip:hover {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, #eaf0f6, #d6eaf8);
+    transform: scale(1.04);
+  }
+
+  .domain-chip .di { font-size: 28px; margin-bottom: 8px; }
+  .domain-chip p { font-size: 13px; font-weight: 600; color: var(--primary-dark); }
+
+  /* ===== ATTRIBUTES ===== */
+  .attr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .attr-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #f8f9fa;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    border-right: 3px solid var(--success);
+  }
+
+  .attr-item .check { color: var(--success); font-size: 16px; flex-shrink: 0; }
+
+  /* ===== BREADCRUMBS ===== */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb span { cursor: pointer; }
+  .breadcrumb span:hover { color: var(--primary); text-decoration: underline; }
+  .breadcrumb .sep { color: #bbb; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--primary-dark);
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+
+  footer a { color: var(--gold-light); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .header-inner { flex-direction: column; gap: 10px; padding: 10px 14px; }
+    .logo-text h1 { font-size: 14px; }
+    .main-content { padding: 14px 12px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .flow-branches { grid-template-columns: 1fr; }
+    .compare-table { font-size: 11px; }
+    table { font-size: 11px; }
+    thead th, tbody td { padding: 7px 8px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .header-nav { gap: 3px; }
+    .nav-btn { padding: 5px 10px; font-size: 11px; }
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar-wrap {
+    background: #eaecee;
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transition: width 1s ease;
+  }
+
+  /* ===== PRINT BUTTON ===== */
+  .print-btn {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+
+  .print-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+  /* ===== EDIT OVERLAY ===== */
+  .edit-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(15,23,42,0.6); backdrop-filter: blur(5px);
+    z-index: 2000; align-items: center; justify-content: center;
+  }
+  .edit-overlay.open { display: flex; }
+  .edit-box {
+    background: white; border-radius: var(--radius); width: min(700px,95vw);
+    max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 28px 64px rgba(0,0,0,0.32);
+    display: flex; flex-direction: column;
+  }
+  .edit-header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    padding: 18px 22px; display: flex; align-items: center; justify-content: space-between;
+    border-radius: var(--radius) var(--radius) 0 0;
+    position: sticky; top: 0; z-index: 1;
+  }
+  .edit-header h3 { color: white; font-size: 16px; margin: 0; }
+  .edit-close {
+    background: rgba(255,255,255,0.2); border: none; color: white;
+    width: 32px; height: 32px; border-radius: 50%; font-size: 16px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .edit-close:hover { background: rgba(255,255,255,0.35); }
+  .edit-body { padding: 22px; }
+  .edit-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .btn-save {
+    background: linear-gradient(135deg, var(--success), var(--success-light));
+    color: white; border: none; padding: 10px 28px;
+    border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 14px; font-family: inherit; font-weight: 700; transition: all 0.2s;
+  }
+  .btn-save:hover { transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+  .btn-cancel {
+    background: #f1f5f9; color: var(--text); border: 1px solid var(--border);
+    padding: 10px 22px; border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 14px; font-family: inherit; transition: background 0.2s;
+  }
+  .btn-cancel:hover { background: #e2e8f0; }
+  .btn-danger {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    color: white; border: none; padding: 10px 18px;
+    border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 14px; font-family: inherit; transition: all 0.2s;
+  }
+  .btn-danger:hover { transform: translateY(-1px); }
+  .add-initiative-btn {
+    display: flex; align-items: center; gap: 10px; justify-content: center;
+    background: linear-gradient(135deg, var(--success), var(--success-light));
+    color: white; border: none; padding: 13px 30px;
+    border-radius: var(--radius); cursor: pointer;
+    font-size: 15px; font-family: inherit; font-weight: 700;
+    margin-bottom: 20px; width: 100%; transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .add-initiative-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .card-actions { display: flex; gap: 6px; margin-top: 8px; }
+  .card-edit-btn, .card-del-btn {
+    flex: 1; padding: 7px 0; border: none; border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 12px; font-family: inherit; font-weight: 600; transition: all 0.18s;
+  }
+  .card-edit-btn  { background: #e8f0fe; color: var(--primary); }
+  .card-del-btn   { background: #fce4e4; color: #c62828; }
+  .card-print-btn { flex: 0 0 36px; background: #f0fdf4; color: #15803d; font-size: 15px; }
+  .card-edit-btn:hover  { background: var(--primary); color: white; }
+  .card-del-btn:hover   { background: #c62828; color: white; }
+  .card-print-btn:hover { background: #15803d; color: white; }
+  .modal-edit-btn {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    color: #1a1000; border: none; padding: 7px 14px;
+    border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 12px; font-family: inherit; font-weight: 700; transition: all 0.2s;
+  }
+  .modal-edit-btn:hover { transform: translateY(-1px); }
+  .year-input-inline {
+    border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+    padding: 6px 10px; font-family: inherit; font-size: 13px;
+    background: #fafbfc; color: var(--text); direction: rtl; width: 160px;
+    transition: border-color 0.2s;
+  }
+  .year-input-inline:focus { outline: none; border-color: var(--primary); }
+
+  /* ===== FORM FIELDS ===== */
+  .form-field-group { margin-bottom: 0; }
+  .form-label { font-size: 12px; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; display: block; }
+  .form-input {
+    width: 100%; box-sizing: border-box;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px; color: var(--text);
+    background: #fafbfc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical; direction: rtl;
+  }
+  .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,92,169,0.12); background: #fff; }
+  .form-input::placeholder { color: var(--text-muted); font-size: 12px; }
+  .form-section-title { font-size: 14px; font-weight: 700; color: var(--primary-dark); margin: 18px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--primary-light); }
+  .form-print-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white; border: none; padding: 9px 22px;
+    border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 13px; font-family: inherit; font-weight: 600;
+    margin-bottom: 18px; transition: all 0.2s;
+  }
+  .form-print-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+  .form-radio-group { display: flex; gap: 10px; align-items: center; justify-content: center; }
+  .form-radio-group label { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 13px; }
+  .editable-cell input[type="text"] {
+    width: 100%; border: none; border-bottom: 1.5px solid var(--border);
+    background: transparent; font-family: inherit; font-size: 12px;
+    padding: 3px 4px; text-align: center; direction: rtl; box-sizing: border-box;
+  }
+  .editable-cell input[type="text"]:focus { outline: none; border-bottom-color: var(--primary); }
+  .modal-print-btn {
+    background: linear-gradient(135deg, var(--success), var(--success-light));
+    color: white; border: none; padding: 7px 16px;
+    border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 12px; font-family: inherit; font-weight: 600; transition: all 0.2s;
+  }
+  .modal-print-btn:hover { transform: translateY(-1px); }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .top-header, .filter-bar, .print-btn, .form-print-btn, .modal-print-btn,
+    .modal-overlay, footer, .no-print { display: none !important; }
+    .main-content { margin-top: 0 !important; }
+    .section { display: none !important; }
+    .section.active { display: block !important; }
+    .section-box-body.hidden { display: block !important; }
+    body { background: white !important; font-size: 12pt; }
+    .section-box { page-break-inside: avoid; break-inside: avoid; margin-bottom: 14px;
+      box-shadow: none !important; border: 1px solid #ccc !important; }
+    .section-box-header { background: #1e5ca9 !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card { page-break-inside: avoid; break-inside: avoid; box-shadow: none !important; border: 1px solid #ccc !important; }
+    .info-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .info-item { page-break-inside: avoid; break-inside: avoid; border: 1px solid #ddd !important; }
+    table { page-break-inside: auto; width: 100% !important; }
+    thead { display: table-header-group; }
+    tr { page-break-inside: avoid; break-inside: avoid; }
+    th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .form-input {
+      border: none !important; border-bottom: 1px solid #666 !important;
+      border-radius: 0 !important; background: transparent !important;
+      box-shadow: none !important; padding: 4px 2px !important; resize: none !important;
+    }
+    .editable-cell input[type="text"] {
+      border: none !important; border-bottom: 1px solid #666 !important;
+    }
+    input[type="radio"] { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h1, h2, h3, h4 { color: black !important; }
+    .badge { border: 1px solid #999 !important; background: white !important; color: black !important; }
+    .stats-grid, .chart-container, .flow-diagram { page-break-inside: avoid; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <div class="logo-icon">🏫</div>
+      <div class="logo-text">
+        <h1>منصة المبادرات التعليمية</h1>
+        <p>منصة المبادرات التعليمية المدرسية</p>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-btn active" onclick="showSection('dashboard')">🏠 الرئيسية</button>
+      <button class="nav-btn" onclick="showSection('initiatives')">📋 المبادرات</button>
+      <button class="nav-btn" onclick="showSection('methodology')">📚 المنهجية</button>
+      <button class="nav-btn" onclick="showSection('types')">🔖 الأنواع</button>
+      <button class="nav-btn" onclick="showSection('glossary')">📖 المصطلحات</button>
+      <button class="nav-btn" onclick="showSection('forms')">📝 النماذج</button>
+      <button class="nav-btn" onclick="showSection('settings')">⚙️ الإعدادات</button>
+    </nav>
+  </div>
+</header>
+
+<div class="main-content">
+
+<!-- ============================= DASHBOARD ============================= -->
+<section id="dashboard" class="section active">
+  <div class="quote-box">
+    <p>«هدفي الأول أن تكون بلادنا نموذجاً ناجحاً ورائداً في العالم على كافة الأصعدة، وسأعمل معكم على تحقيق ذلك»</p>
+    <div class="quote-attr">خادم الحرمين الشريفين الملك سلمان بن عبدالعزيز آل سعود حفظه الله</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">📋</div>
+      <div class="stat-info"><h3 id="stat-total">15</h3><p>إجمالي المبادرات<br>للعام <span class="acad-year">٢٠٢٤/٢٠٢٥م</span></p></div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-icon">🎓</div>
+      <div class="stat-info"><h3>5</h3><p>مبادرات الميدان<br>الأكاديمي والمهني</p></div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-icon">🤝</div>
+      <div class="stat-info"><h3>4</h3><p>مبادرات الميدان<br>التربوي والاجتماعي</p></div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-icon">🌱</div>
+      <div class="stat-info"><h3>3</h3><p>مبادرات الميدان<br>التطوعي والتوعوي</p></div>
+    </div>
+    <div class="stat-card orange">
+      <div class="stat-icon">🏫</div>
+      <div class="stat-info"><h3>6</h3><p>أعضاء الفريق الأساسي<br>لمبادرة دعم المعلم</p></div>
+    </div>
+  </div>
+
+  <div class="page-title">
+    <div class="page-title-icon">📊</div>
+    <div>
+      <h2>لوحة التحكم الرئيسية</h2>
+      <p>نظرة شاملة على المبادرات التعليمية للعام الدراسي <span class="acad-year">٢٠٢٤/٢٠٢٥م</span></p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="section-box">
+        <div class="section-box-header" onclick="toggleBox(this)">
+          <h3>🎯 مجالات المبادرات</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-box-body">
+          <div class="domains-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="domain-chip" onclick="filterByDomain('أكاديمي')">
+              <div class="di">📚</div><p>التحصيل الدراسي</p>
+            </div>
+            <div class="domain-chip" onclick="filterByDomain('مهني')">
+              <div class="di">💼</div><p>الإدارة المدرسية</p>
+            </div>
+            <div class="domain-chip" onclick="filterByDomain('تربوي')">
+              <div class="di">🌟</div><p>التعليم والتعلم</p>
+            </div>
+            <div class="domain-chip" onclick="filterByDomain('بيئة')">
+              <div class="di">🏫</div><p>البيئة المدرسية</p>
+            </div>
+            <div class="domain-chip" onclick="filterByDomain('اجتماعي')">
+              <div class="di">🤝</div><p>الشراكة المجتمعية</p>
+            </div>
+            <div class="domain-chip" onclick="filterByDomain('تطوعي')">
+              <div class="di">❤️</div><p>السلوك والاتجاهات</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-box">
+        <div class="section-box-header" onclick="toggleBox(this)">
+          <h3>📈 نسب الإنجاز حسب المجال</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-box-body">
+          <div style="margin-bottom: 12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+              <span>مهني وأكاديمي</span><span style="font-weight:700;color:var(--primary)">٥ مبادرات</span>
+            </div>
+            <div class="progress-bar-wrap"><div class="progress-bar" style="width:34%"></div></div>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+              <span>تربوي واجتماعي</span><span style="font-weight:700;color:var(--primary)">٥ مبادرات</span>
+            </div>
+            <div class="progress-bar-wrap"><div class="progress-bar" style="width:34%;background:linear-gradient(90deg,var(--success),var(--success-light))"></div></div>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+              <span>تطوعي وتوعوي</span><span style="font-weight:700;color:var(--primary)">٣ مبادرات</span>
+            </div>
+            <div class="progress-bar-wrap"><div class="progress-bar" style="width:20%;background:linear-gradient(90deg,var(--warning),var(--warning-light))"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+              <span>الشراكة المجتمعية</span><span style="font-weight:700;color:var(--primary)">٢ مبادرات</span>
+            </div>
+            <div class="progress-bar-wrap"><div class="progress-bar" style="width:13%;background:linear-gradient(90deg,#6c3483,#a569bd)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-box">
+        <div class="section-box-header" onclick="toggleBox(this)">
+          <h3>📌 الأهداف العامة لبناء المبادرات</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-box-body">
+          <ul class="styled-list">
+            <li>ترسيخ العمل المؤسسي</li>
+            <li>تعزيز العمل التشاركي</li>
+            <li>تفعيل مجتمعات التعلم المهني إحدى الممارسات المثلى</li>
+            <li>تنمية القيم الوطنية والتربوية والاجتماعية</li>
+            <li>معالجة القضايا والتحديات</li>
+            <li>تطوير مجالات الأداء المدرسي</li>
+            <li>استخدام المنهجية العلمية في العمل المؤسسي</li>
+            <li>تعزيز الشراكة المجتمعية بين مؤسسات المجتمع للارتقاء بالأداء المدرسي</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-box">
+        <div class="section-box-header" onclick="toggleBox(this)">
+          <h3>🏅 توزيع المبادرات حسب المستهدفين</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-box-body">
+          <div class="info-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="info-item">
+              <label>الطلبة</label>
+              <div class="value" style="font-size:20px;color:var(--primary)">🎓 ٧</div>
+            </div>
+            <div class="info-item">
+              <label>معلمين/ت</label>
+              <div class="value" style="font-size:20px;color:var(--success)">🏫 ٦</div>
+            </div>
+            <div class="info-item">
+              <label>أولياء أمور</label>
+              <div class="value" style="font-size:20px;color:var(--warning)">👨‍👩‍👧 ١</div>
+            </div>
+            <div class="info-item">
+              <label>جميع المنسوبين</label>
+              <div class="value" style="font-size:20px;color:var(--accent)">🏫 ٥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>📋 ملخص جدول المبادرات <span class="acad-year">٢٠٢٤/٢٠٢٥م</span></h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body" style="padding:0;">
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>م</th>
+              <th>اسم المبادرة</th>
+              <th>المجال</th>
+              <th>المستهدفون</th>
+              <th>آلية التنفيذ</th>
+              <th>التفاصيل</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-table">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= INITIATIVES ============================= -->
+<section id="initiatives" class="section">
+  <div class="page-title">
+    <div class="page-title-icon">📋</div>
+    <div>
+      <h2>المبادرات التعليمية</h2>
+      <p>جميع المبادرات التعليمية للعام الدراسي <span class="acad-year">٢٠٢٤/٢٠٢٥م</span></p>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <label>تصفية حسب:</label>
+    <button class="filter-btn active" id="filter-all-btn" onclick="filterCards('all', this)">الكل</button>
+    <button class="filter-btn" onclick="filterCards('مهني', this)">مهني</button>
+    <button class="filter-btn" onclick="filterCards('أكاديمي', this)">أكاديمي</button>
+    <button class="filter-btn" onclick="filterCards('تربوي', this)">تربوي</button>
+    <button class="filter-btn" onclick="filterCards('اجتماعي', this)">اجتماعي</button>
+    <button class="filter-btn" onclick="filterCards('تطوعي', this)">تطوعي</button>
+    <button class="filter-btn" onclick="filterCards('توعوي', this)">توعوي</button>
+  </div>
+
+  <button class="add-initiative-btn no-print" onclick="openEditOverlay(null)">
+    ➕ إضافة مبادرة جديدة
+  </button>
+
+  <div class="card-grid" id="initiatives-grid"></div>
+</section>
+
+<!-- ============================= METHODOLOGY ============================= -->
+<section id="methodology" class="section">
+  <div class="page-title">
+    <div class="page-title-icon">📚</div>
+    <div>
+      <h2>منهجية بناء المبادرات</h2>
+      <p>الإطار المرجعي والمنهجي لبناء المبادرات في المجتمع التعليمي</p>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>📖 مفهوم المبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div class="two-col">
+        <div>
+          <div class="section-box" style="box-shadow:none;border:1px solid var(--border);margin-bottom:0;">
+            <div class="section-box-header" style="background:linear-gradient(135deg,var(--success-light),var(--success));" onclick="toggleBox(this)">
+              <h3>لغةً</h3><span class="arrow">▼</span>
+            </div>
+            <div class="section-box-body">
+              <p style="font-size:13px;line-height:1.8;color:var(--text-muted)">
+                مبادرة: اسم بادر. مبادرة: سبق إلى اقتراح أمر أو تحقيقه، وفي يده زمام المبادرة أي أن الأمر مفوَّض إليه.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-box" style="box-shadow:none;border:1px solid var(--border);margin-bottom:0;">
+            <div class="section-box-header" style="background:linear-gradient(135deg,var(--warning),var(--warning-light));" onclick="toggleBox(this)">
+              <h3>اصطلاحاً</h3><span class="arrow">▼</span>
+            </div>
+            <div class="section-box-body">
+              <p style="font-size:13px;line-height:1.8;color:var(--text-muted)">
+                ممارسة يقوم بها فرد أو فريق بدافع ذاتي لتغيير الوضع الحالي ومعالجة مشكلاته من خلال طرح أفكار وحلول جديدة قد تكون مبتكرة لم يسبقه إليها أحد.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#eaf0f6,#d6eaf8);border-radius:var(--radius);padding:20px;margin-top:16px;border-right:5px solid var(--primary);">
+        <h4 style="color:var(--primary-dark);font-size:15px;margin-bottom:10px;">🎯 التعريف الإجرائي للمبادرة التربوية</h4>
+        <p style="font-size:13px;line-height:1.9;color:var(--text);">
+          هي فكرة نوعية متميزة وفاعلة (مشروع أو برنامج) لتطوير أو تغيير أو معالجة لمشكلة (ما) في الميدان التربوي بهدف رفع كفاءة الميدان التربوي وإصلاحه وتجويد مخرجاته وأدائه بشكل مُخطَّط ومُنظَّم ضمن فترة زمنية محددة.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>✨ سمات المبادرة الجيدة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div class="attr-grid">
+        <div class="attr-item"><span class="check">✅</span>وجود حاجة للتطوير، أو معالجة بعض القضايا في الميدان التربوي</div>
+        <div class="attr-item"><span class="check">✅</span>محددة الأهداف وقابلة للتطبيق</div>
+        <div class="attr-item"><span class="check">✅</span>مبنية على تخطيط علمي</div>
+        <div class="attr-item"><span class="check">✅</span>تحديد الفترة الزمنية، ومكان التطبيق</div>
+        <div class="attr-item"><span class="check">✅</span>واضحة لجميع المشاركين/ات فيها</div>
+        <div class="attr-item"><span class="check">✅</span>مشاركة جميع المعنيين بمراحل إعدادها وتنفيذها</div>
+        <div class="attr-item"><span class="check">✅</span>تحديد الأدوار والمسؤوليات لجميع المعنيين</div>
+        <div class="attr-item"><span class="check">✅</span>تحديد المتطلبات، والميزانية التقديرية</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>🧱 مرتكزات (منطلقات) بناء المبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <ul class="numbered-list">
+        <li>القيم الإسلامية، والوطنية، والتربوية، والاجتماعية</li>
+        <li>رؤية المملكة العربية السعودية ٢٠٣٠</li>
+        <li>السياسات العليا للتعليم في المملكة العربية السعودية</li>
+        <li>الاحتياجات الفعلية للميدان بكافة فئاته</li>
+        <li>رؤية ورسالة وقيم الإدارة العامة للتعليم بالمنطقة</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>❓ لماذا نبادر؟</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <p style="font-size:13px;line-height:1.8;margin-bottom:16px;background:#f8f9fa;padding:14px;border-radius:var(--radius-sm);border-right:4px solid var(--gold);">
+        لا تولد المبادرات من العدم، غالباً ما ترتبط المبادرة بمشكلة أو فرصة مهمة واجهها الفرد، وبناءً عليه لمعت في ذهنه فكرة لحلها أو الحد من أثرها أو استثمارها.
+      </p>
+      <h4 style="font-size:14px;color:var(--primary-dark);margin-bottom:12px;">الأسئلة الخمسة لتحديد سياق المبادرة:</h4>
+      <div class="info-grid">
+        <div class="info-item" style="border-right-color:var(--primary);">
+          <label>السؤال الأول</label>
+          <div class="value">ما هي القضية أو الفرصة الأساسية التي تعمل عليها المبادرة؟</div>
+        </div>
+        <div class="info-item" style="border-right-color:var(--gold);">
+          <label>السؤال الثاني</label>
+          <div class="value">ما هي العوامل التي ترسم معالم هذه المبادرة؟</div>
+        </div>
+        <div class="info-item" style="border-right-color:var(--success);">
+          <label>السؤال الثالث</label>
+          <div class="value">ما هي النتائج المتوقع تحقيقها؟</div>
+        </div>
+        <div class="info-item" style="border-right-color:var(--warning);">
+          <label>السؤال الرابع</label>
+          <div class="value">من هم المستفيدون المستهدفون من المبادرة؟</div>
+        </div>
+        <div class="info-item" style="border-right-color:var(--accent);">
+          <label>السؤال الخامس</label>
+          <div class="value">ما الجديد الذي ستضيفه هذه المبادرة؟</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>🏛️ إدارة وتنظيم المبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <p style="font-size:13px;line-height:1.8;margin-bottom:16px;color:var(--text-muted);">
+        يتم الإشراف على المبادرة وإدارتها من قبل اللجنة التنفيذية، وأعضائها، ومنسقي/ات المبادرات بمكاتب التعليم، والإدارات المشاركة في بنائها، والتي تكون مسؤولة عن عمليات البناء والتخطيط والتنفيذ والتقويم.
+      </p>
+      <div class="two-col">
+        <div>
+          <h4 style="font-size:14px;color:var(--primary-dark);margin-bottom:10px;border-bottom:2px solid var(--primary-light);padding-bottom:6px;">✦ مهام اللجنة التنفيذية</h4>
+          <ul class="numbered-list">
+            <li>إعداد وإصدار دليل بناء المبادرات والنماذج المتعلقة</li>
+            <li>نشر ثقافة المبادرات والمشروعات، وتمكين منسوبي التعليم من كيفية بنائها</li>
+            <li>استقبال المبادرات وتحكيمها وتقويمها وفق المعايير والضوابط اللازمة بعد إحالتها من قبل صاحب الصلاحية</li>
+            <li>اختيار منسق ومنسقات للمبادرات في مكاتب التعليم والإدارات</li>
+            <li>متابعة منسقي ومُلاك المبادرات في تنفيذ المبادرات بشكل دوري</li>
+            <li>رفع تقرير ختامي لكل مبادرة للجنة الإشرافية</li>
+            <li>المشاركة مع إدارة التخطيط والتطوير في تنفيذ وتفعيل مبادرات التحول الوطني ٢٠٣٠</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size:14px;color:var(--primary-dark);margin-bottom:10px;border-bottom:2px solid var(--gold);padding-bottom:6px;">✦ مهام اللجنة التنسيقية</h4>
+          <ul class="numbered-list" style="--item-color:var(--gold);">
+            <li>المساهمة في نشر ثقافة المبادرات، وأسس بنائها</li>
+            <li>استلام نموذج بناء المبادرات من مقدميها في نطاق الإدارة</li>
+            <li>التحقق من مطابقة المبادرة للمعايير المعتمدة</li>
+            <li>إعداد خطط التحسين لرفع جودة المبادرات</li>
+            <li>التواصل المستمر والفعال مع اللجنة التنفيذية</li>
+            <li>التنسيق والتنظيم بين منفذي المبادرات، والشركاء فيها</li>
+            <li>إعداد تقرير ختامي بما تم إنجازه، ورفعه لجهة الاختصاص</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>🔄 مسار استقبال وتحكيم المبادرات</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div class="flow-container">
+        <div class="flow-step">تعبئة بطاقة المبادرة من قبل مالك المبادرة</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">رفع بطاقة المبادرة للمنسق/المنسقة</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">ترفع للجنة التنفيذية للمبادرات</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-branches">
+          <div class="flow-branch">📗 مبادرة خاصة<br><small>مستوى المدرسة</small></div>
+          <div class="flow-branch">📘 مبادرة عامة<br><small>مستوى الإدارة/المكتب</small></div>
+          <div class="flow-branch">📕 مبادرة نوعية<br><small>نطاق أوسع - ريادية</small></div>
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step alt">اعتماد المبادرة والحصول على قرار التكليف</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">بناء المبادرة وفق النموذج المعتمد</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">تنفيذ المبادرة وتوثيق جميع البرامج والأنشطة</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">متابعة برامج وأنشطة المبادرة</div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step green">إعداد التقرير الختامي للمبادرة ورفعه للجهة المختصة</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>🎯 الأهداف الاستراتيجية لوزارة التعليم ومؤشرات الأداء</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body" style="padding:0;">
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>م</th>
+              <th>الهدف العام</th>
+              <th>أبرز مؤشرات قياس الأداء</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>١</td>
+              <td>تنويع مصادر تمويل مبتكرة، وتحسين الكفاءة المالية لقطاع التعليم</td>
+              <td>معدل (طالب / معلم)</td>
+            </tr>
+            <tr>
+              <td>٢</td>
+              <td>تعزيز قدرة نظام التعليم لتلبية متطلبات التنمية واحتياجات سوق العمل</td>
+              <td>نسبة خريجي الجامعات الملتحقين بسوق العمل خلال ٦ أشهر من التخرج</td>
+            </tr>
+            <tr>
+              <td>٣</td>
+              <td>تعزيز القيم والمهارات للطلبة</td>
+              <td>نسبة الطلاب المشاركين في الأنشطة غير الصفية خارج اليوم الدراسي</td>
+            </tr>
+            <tr>
+              <td>٤</td>
+              <td>رفع مشاركة القطاع الأهلي والخاص في التعليم</td>
+              <td>نسبة الطلبة المسجلين في مدارس التعليم الأهلي</td>
+            </tr>
+            <tr>
+              <td>٥</td>
+              <td>تطوير المناهج وأساليب التعليم والتقويم</td>
+              <td>متوسط نتائج الطلبة في الاختبارات الدولية PIRLS وPISA وTIMSS</td>
+            </tr>
+            <tr>
+              <td>٦</td>
+              <td>تحسين البيئة التعليمية المحفزة للإبداع والابتكار</td>
+              <td>عدد الميداليات والجوائز في المسابقات الدولية والإقليمية</td>
+            </tr>
+            <tr>
+              <td>٧</td>
+              <td>تحسين استقطاب المعلمين وإعدادهم وتأهيلهم وتطويرهم</td>
+              <td>متوسط عدد ساعات التطوير المهني للمعلمين</td>
+            </tr>
+            <tr>
+              <td>٨</td>
+              <td>ضمان التعليم الجيد المنصف والشامل للجميع وتعزيز فرص التعليم مدى الحياة</td>
+              <td>نسبة ذوي الإعاقة، ونسبة القيد في رياض الأطفال</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= TYPES ============================= -->
+<section id="types" class="section">
+  <div class="page-title">
+    <div class="page-title-icon">🔖</div>
+    <div>
+      <h2>أنواع المبادرات</h2>
+      <p>تصنيف المبادرات وأبرز الفروق بينها</p>
+    </div>
+  </div>
+
+  <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div class="type-card" style="border-top:4px solid var(--success);">
+      <div class="type-icon">📗</div>
+      <h3>المبادرة الخاصة</h3>
+      <p>مبادرة ذات نطاق عمل محدود، وتستهدف فئة خاصة كالمدرسة، وبتكلفة مالية منخفضة ومدة زمنية قصيرة، وتتطلب خطة تنفيذية.</p>
+      <div class="card-meta" style="justify-content:center;margin-top:12px;">
+        <span class="badge badge-green">نطاق: المدرسة أو الإدارة</span>
+        <span class="badge badge-green">مدة قصيرة</span>
+        <span class="badge badge-green">تكلفة منخفضة</span>
+      </div>
+    </div>
+    <div class="type-card" style="border-top:4px solid var(--warning);">
+      <div class="type-icon">📘</div>
+      <h3>المبادرة العامة</h3>
+      <p>مبادرة تحتوي على عدد من البرامج والأنشطة التي تستهدف شريحة متنوعة أو إدارة، أو مكتب تعليم. تتطلب موارد مالية وبشرية، ومدة زمنية لا تقل عن عام.</p>
+      <div class="card-meta" style="justify-content:center;margin-top:12px;">
+        <span class="badge badge-orange">نطاق: قسم أو مكتب أو إدارة</span>
+        <span class="badge badge-orange">نصف عام أو أكثر</span>
+        <span class="badge badge-orange">تحتاج دعماً مالياً</span>
+      </div>
+    </div>
+    <div class="type-card" style="border-top:4px solid #6c3483;">
+      <div class="type-icon">📕</div>
+      <h3>المبادرة النوعية</h3>
+      <p>مبادرة ريادية على مستوى الفكرة والتنفيذ وذات أثر كبير، يقوم عليها فريق عمل متنوع الخبرات، وتستهدف قطاعاً عريضاً، ومدة زمنية لا تقل عن عام.</p>
+      <div class="card-meta" style="justify-content:center;margin-top:12px;">
+        <span class="badge badge-purple">نطاق: أوسع - عدة مدارس/منطقة</span>
+        <span class="badge badge-purple">لا تقل عن عام</span>
+        <span class="badge badge-purple">دعم مالي مرتفع</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>⚖️ أبرز الفروق بين أنواع المبادرات</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body" style="padding:0;">
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>المعايير</th>
+              <th>📗 المبادرة الخاصة</th>
+              <th>📘 المبادرة العامة</th>
+              <th>📕 المبادرة النوعية</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700;text-align:right;">نطاق العمل</td>
+              <td>محدود بالمدرسة أو الإدارة</td>
+              <td>مرتبط بقسم أو مكتب أو إدارة</td>
+              <td>أكبر، قد يشمل عدداً من المدارس أو المنطقة أو المكاتب</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;text-align:right;">الفريق</td>
+              <td>أعضاء من المجتمع المدرسي</td>
+              <td>فريق متنوع الخبرات، أغلب أعضائه من الجهة المالكة</td>
+              <td>فريق عمل متنوع الخبرات، من مختلف الأقسام والجهات</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;text-align:right;">المستهدفون</td>
+              <td>أعضاء من المجتمع المدرسي</td>
+              <td>منسوبو مكتب أو إدارة أو قسم</td>
+              <td>قطاع عريض</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;text-align:right;">الزمن</td>
+              <td>مدة قصيرة</td>
+              <td>نصف عام أو أكثر</td>
+              <td>لا تقل عن عام</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;text-align:right;">خطة تنفيذية</td>
+              <td>✅ متطلب</td>
+              <td>✅ متطلب</td>
+              <td>✅ متطلب</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;text-align:right;">الدعم المالي</td>
+              <td>تكلفة منخفضة وقد لا تحتاج</td>
+              <td>تحتاج لدعم مالي</td>
+              <td>تحتاج لدعم مالي</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;text-align:right;">الاعتماد</td>
+              <td>المدير المباشر</td>
+              <td>اعتماد اللجنة التنفيذية والمكتب أو الإدارة</td>
+              <td>اعتماد اللجنة التنفيذية ثم قرار من المدير العام</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>🏷️ أنواع المبادرات حسب الطبيعة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;">
+        <div style="background:linear-gradient(135deg,#d5f5e3,#a9dfbf);border-radius:var(--radius);padding:16px;text-align:center;border:2px solid var(--success);">
+          <div style="font-size:28px;margin-bottom:8px;">🌱</div>
+          <p style="font-size:13px;font-weight:700;color:#1e8449;">تنموية</p>
+          <p style="font-size:11px;color:#555;margin-top:4px;">تطوير وتنمية القدرات</p>
+        </div>
+        <div style="background:linear-gradient(135deg,#d6eaf8,#a9cce3);border-radius:var(--radius);padding:16px;text-align:center;border:2px solid var(--primary-light);">
+          <div style="font-size:28px;margin-bottom:8px;">⭐</div>
+          <p style="font-size:13px;font-weight:700;color:var(--primary);">إثرائية</p>
+          <p style="font-size:11px;color:#555;margin-top:4px;">تعميق المعرفة والخبرة</p>
+        </div>
+        <div style="background:linear-gradient(135deg,#fde8d8,#f0b27a);border-radius:var(--radius);padding:16px;text-align:center;border:2px solid var(--warning);">
+          <div style="font-size:28px;margin-bottom:8px;">🤝</div>
+          <p style="font-size:13px;font-weight:700;color:var(--warning);">تشاركية</p>
+          <p style="font-size:11px;color:#555;margin-top:4px;">تعزيز التعاون المشترك</p>
+        </div>
+        <div style="background:linear-gradient(135deg,#fadbd8,#f1948a);border-radius:var(--radius);padding:16px;text-align:center;border:2px solid var(--accent);">
+          <div style="font-size:28px;margin-bottom:8px;">🔧</div>
+          <p style="font-size:13px;font-weight:700;color:var(--accent);">علاجية</p>
+          <p style="font-size:11px;color:#555;margin-top:4px;">معالجة الإشكاليات والقضايا</p>
+        </div>
+        <div style="background:linear-gradient(135deg,#e8daef,#d2b4de);border-radius:var(--radius);padding:16px;text-align:center;border:2px solid #6c3483;">
+          <div style="font-size:28px;margin-bottom:8px;">❤️</div>
+          <p style="font-size:13px;font-weight:700;color:#6c3483;">تطوعية</p>
+          <p style="font-size:11px;color:#555;margin-top:4px;">خدمة المجتمع والعطاء</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GLOSSARY ============================= -->
+<section id="glossary" class="section">
+  <div class="page-title">
+    <div class="page-title-icon">📖</div>
+    <div>
+      <h2>المصطلحات والمفاهيم</h2>
+      <p>دليل المصطلحات الأساسية في منهجية بناء المبادرات</p>
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <h3>🎯 القضية</h3>
+    <p>هي مشكلة موجودة أو حاجة قائمة أو فرصة متاحة شعر بها الشخص وولّدت في ذهنه فكرة لحلها أو استثمارها.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--gold);">
+    <h3>💡 المبادرة</h3>
+    <p>هي فكرة نوعية متميزة وفاعلة (مشروع أو برنامج) لتطوير أو تغيير أو معالجة لمشكلة (ما) في الميدان التربوي بهدف رفع كفاءة الميدان التربوي وإصلاحه وتجويد مخرجاته وأدائه بشكل مُخطَّط ومُنظَّم ضمن فترة زمنية محددة.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--success);">
+    <h3>📋 خطة العمل</h3>
+    <p>وثيقة مكتوبة تصف العمليات والإجراءات التنفيذية والموارد اللازمة لتحقيق الأهداف المنشودة.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--warning);">
+    <h3>🎯 الأهداف</h3>
+    <p>هو ما يسعى إليه الفرد من أجل تحقيقه، وهو يُمثّل النهاية العمليّة للبداية النظريّة لتحقيق الغايات المرجوة.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--accent);">
+    <h3>➕ القيمة المضافة</h3>
+    <p>الفوائد التي يحصل عليها المستفيد من المبادرة خلال مراحلها.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:#6c3483;">
+    <h3>🔧 الممكنات</h3>
+    <p>الوسائل والأساليب التي يتبعها المبادر للوصول إلى النتائج المرغوبة.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:#0e6655;">
+    <h3>📦 الموارد</h3>
+    <p>الأشياء المحسوسة وغير المحسوسة التي تساعد على تحقيق المُخرجات، منها على سبيل المثال: الموارد المالية، المعلومات، المعرفة، الخبرات وغيرها.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--gold);">
+    <h3>📊 مخرجات المتوقعة</h3>
+    <p>المخرجات هي التي تبيّن مدى نجاح المبادرة في تحقيق أهدافها من خلال العمليات الرئيسة والمؤشرات.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--primary-light);">
+    <h3>📏 مؤشر قياس الأداء</h3>
+    <p>هي معلومات كمّية أو نوعيّة قابلة للقياس تصف نتائج العمل لتقييم الأداء، وما تمَّ تحقيقه من إنجاز من قبل الفرد أو فريق العمل أو العملية.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--accent-light);">
+    <h3>⚠️ إدارة المخاطر</h3>
+    <p>نظام متكامل وشامل لتهيئة البيئة المناسبة والأدوات اللازمة لتوقع ودراسة المخاطر المحتملة وتحديدها وقياسها وتحديد مقدار آثارها المحتملة على خطة المُبادرة ووضع الخطط المناسبة لما يلزم ولما يمكن القيام به لتجنب هذه المخاطر أو كبحها والسيطرة عليها.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--success);">
+    <h3>⏱️ الخطة التنفيذية</h3>
+    <p>هي إطار عمل يتضمن مجموعة من الإجراءات المطلوب تنفيذها في نطاق الأهداف خلال فترة زمنية محددة. وتشمل الأهداف، المخرجات، الأنشطة، التنفيذ، التكلفة المالية، والمخرجات.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:var(--warning);">
+    <h3>📐 مؤشر الأداء</h3>
+    <p>مقياس رقمي يدل على مستوى الأداء في لحظة تاريخية محددة، ويقيس حالة التقدم نحو تحقيق المستهدفات، ويرتبط ارتباطاً وثيقاً بأهداف المبادرة.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:#6c3483;">
+    <h3>📌 المستهدفات</h3>
+    <p>هي قيمة كمية تمثل النتيجة المراد الوصول لها في وقت محدد، وترتبط بمؤشر الأداء. ويتم اقتراح قيمة المستهدفات بناء على تحليل الواقع وقيمة خط الأساس.</p>
+  </div>
+  <div class="glossary-item" style="border-right-color:#0e6655;">
+    <h3>📉 خط الأساس</h3>
+    <p>هو القيمة الحالية للمؤشر عند بدء تنفيذ أنشطة المبادرة، ويتم التوصل لخط الأساس من خلال أدوات القياس.</p>
+  </div>
+</section>
+
+<!-- ============================= FORMS ============================= -->
+<section id="forms" class="section">
+  <div class="page-title">
+    <div class="page-title-icon">📝</div>
+    <div>
+      <h2>النماذج والاستمارات</h2>
+      <p>نماذج بناء المبادرات والتقارير والمتابعة — قابلة للتعبئة والطباعة</p>
+    </div>
+  </div>
+
+  <!-- ===== نموذج 1: الفكرة الأولية ===== -->
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>📄 نموذج الفكرة الأولية للمبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div id="form-initial-idea">
+        <button class="form-print-btn no-print" onclick="printFormById('form-initial-idea','📄 نموذج الفكرة الأولية للمبادرة')">🖨️ طباعة هذا النموذج</button>
+        <div class="info-grid">
+          <div class="info-item form-field-group">
+            <label class="form-label">١. عنوان المبادرة</label>
+            <input type="text" class="form-input" placeholder="يُبتكر لها اسم يميزها عن غيرها ويتوافق مع فكرتها">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٢. فكرة المبادرة</label>
+            <textarea class="form-input" rows="3" placeholder="وصف موجز عن رؤيتكم للمبادرة وسبب اختيارها والمنفعة التي ستحققها"></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٣. الهدف العام للمبادرة</label>
+            <textarea class="form-input" rows="3" placeholder="التغيّر والتحسن الذي تريد إحداثه على الفئة المستهدفة"></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٤. مبررات المبادرة</label>
+            <textarea class="form-input" rows="3" placeholder="المشكلة أو الفرصة التي تسعى المبادرة لمعالجتها مع الحقائق والبيانات الداعمة"></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٥. المستهدفون</label>
+            <textarea class="form-input" rows="2" placeholder="الجهات والفئات المستفيدة من المبادرة مع تحديد أعدادهم"></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٦. أبرز الأنشطة والفعاليات</label>
+            <textarea class="form-input" rows="3" placeholder="برامج تدريبية، ورش عمل، زيارات، محاضرات، ندوات..."></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٧. تاريخ البدء والانتهاء</label>
+            <input type="text" class="form-input" placeholder="من: _________ إلى: _________">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٨. نطاق تطبيق المبادرة</label>
+            <input type="text" class="form-input" placeholder="المدرسة / مجموعة مدارس / المكتب / الإدارة...">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">٩. النواتج المتوقعة</label>
+            <textarea class="form-input" rows="3" placeholder="التغيرات التي تحدث نتيجة لتحقيق الأهداف"></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">١٠. الشركاء</label>
+            <textarea class="form-input" rows="2" placeholder="الأشخاص أو الجهات أو المؤسسات التي سيتم عقد اتفاق معها"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== نموذج 2: استمارة التحكيم ===== -->
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>🔍 استمارة التحكيم الأولية لقبول المبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div id="form-arbitration">
+        <button class="form-print-btn no-print" onclick="printFormById('form-arbitration','🔍 استمارة التحكيم الأولية لقبول المبادرة')">🖨️ طباعة هذا النموذج</button>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr><th>م</th><th>شرط القبول</th><th>نعم</th><th>لا</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>١</td>
+                <td style="text-align:right;">مرتبطة بأحد الأهداف الاستراتيجية لوزارة التعليم</td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb1" value="نعم"> نعم</label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb1" value="لا"> لا</label></div></td>
+              </tr>
+              <tr>
+                <td>٢</td>
+                <td style="text-align:right;">تتصف بجودة الفكرة ووضوحها</td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb2" value="نعم"> نعم</label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb2" value="لا"> لا</label></div></td>
+              </tr>
+              <tr>
+                <td>٣</td>
+                <td style="text-align:right;">محددة الأهداف وقابلة للقياس والتطبيق</td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb3" value="نعم"> نعم</label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb3" value="لا"> لا</label></div></td>
+              </tr>
+              <tr>
+                <td>٤</td>
+                <td style="text-align:right;">محددة الفئة المستهدفة</td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb4" value="نعم"> نعم</label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb4" value="لا"> لا</label></div></td>
+              </tr>
+              <tr>
+                <td>٥</td>
+                <td style="text-align:right;">قابلة للتطبيق ومجدية من الناحية المادية</td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb5" value="نعم"> نعم</label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb5" value="لا"> لا</label></div></td>
+              </tr>
+              <tr>
+                <td>٦</td>
+                <td style="text-align:right;">مدة التنفيذ المقترحة منطقية وقابلة للتحقق</td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb6" value="نعم"> نعم</label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="arb6" value="لا"> لا</label></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:14px;" class="form-field-group">
+          <label class="form-label">ملاحظات المحكّم</label>
+          <textarea class="form-input" rows="3" placeholder="أي ملاحظات أو توصيات إضافية..."></textarea>
+        </div>
+        <div class="info-grid" style="margin-top:14px;">
+          <div class="info-item form-field-group">
+            <label class="form-label">اسم المحكّم</label>
+            <input type="text" class="form-input" placeholder="الاسم الكامل">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">التاريخ</label>
+            <input type="text" class="form-input" placeholder="__ / __ / ____">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== نموذج 3: تقرير الإنجاز ===== -->
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>📊 نموذج تقرير إنجاز المبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div id="form-achievement-report">
+        <button class="form-print-btn no-print" onclick="printFormById('form-achievement-report','📊 نموذج تقرير إنجاز المبادرة')">🖨️ طباعة هذا النموذج</button>
+        <div class="form-section-title">أولاً: معلومات عامة</div>
+        <div class="info-grid" style="margin-bottom:18px;">
+          <div class="info-item form-field-group">
+            <label class="form-label">عنوان المبادرة</label>
+            <input type="text" class="form-input" placeholder="اسم المبادرة">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">جهة المبادرة</label>
+            <input type="text" class="form-input" placeholder="الجهة المنفذة">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">نطاق التطبيق</label>
+            <input type="text" class="form-input" placeholder="النطاق الجغرافي والمؤسسي">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">المستهدفون وعددهم</label>
+            <input type="text" class="form-input" placeholder="الفئات المستفيدة وأعدادهم">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">زمن التطبيق</label>
+            <input type="text" class="form-input" placeholder="من: _________ إلى: _________">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">مسؤول المبادرة</label>
+            <input type="text" class="form-input" placeholder="الاسم والمسمى الوظيفي">
+          </div>
+        </div>
+        <div class="form-section-title">ثانياً: الأنشطة ونسبة الإنجاز</div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th style="min-width:36px;">م</th>
+                <th style="min-width:160px;">النشاط / الفعالية</th>
+                <th>أُنجز</th>
+                <th>قيد الإنجاز</th>
+                <th>لم يُنجز</th>
+                <th style="min-width:120px;">المخرجات المتحققة</th>
+                <th style="min-width:80px;">نسبة الإنجاز</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>١</td>
+                <td class="editable-cell"><input type="text" placeholder="اكتب النشاط..."></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act1"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act1"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act1"></label></div></td>
+                <td class="editable-cell"><input type="text" placeholder="المخرجات..."></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+              </tr>
+              <tr>
+                <td>٢</td>
+                <td class="editable-cell"><input type="text" placeholder="اكتب النشاط..."></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act2"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act2"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act2"></label></div></td>
+                <td class="editable-cell"><input type="text" placeholder="المخرجات..."></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+              </tr>
+              <tr>
+                <td>٣</td>
+                <td class="editable-cell"><input type="text" placeholder="اكتب النشاط..."></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act3"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act3"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act3"></label></div></td>
+                <td class="editable-cell"><input type="text" placeholder="المخرجات..."></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+              </tr>
+              <tr>
+                <td>٤</td>
+                <td class="editable-cell"><input type="text" placeholder="اكتب النشاط..."></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act4"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act4"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act4"></label></div></td>
+                <td class="editable-cell"><input type="text" placeholder="المخرجات..."></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+              </tr>
+              <tr>
+                <td>٥</td>
+                <td class="editable-cell"><input type="text" placeholder="اكتب النشاط..."></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act5"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act5"></label></div></td>
+                <td><div class="form-radio-group"><label><input type="radio" name="act5"></label></div></td>
+                <td class="editable-cell"><input type="text" placeholder="المخرجات..."></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="form-section-title">ثالثاً: التحديات والحلول المقترحة</div>
+        <div class="info-item form-field-group" style="margin-bottom:14px;">
+          <label class="form-label">التحديات التي واجهت تنفيذ أنشطة المبادرة</label>
+          <textarea class="form-input" rows="4" placeholder="يُكتب هنا التحديات والحلول المقترحة..."></textarea>
+        </div>
+        <div class="form-section-title">رابعاً: توقيع المسؤول</div>
+        <div class="info-grid">
+          <div class="info-item form-field-group">
+            <label class="form-label">الاسم</label>
+            <input type="text" class="form-input" placeholder="الاسم الكامل">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">التاريخ</label>
+            <input type="text" class="form-input" placeholder="__ / __ / ____">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== نموذج 4: التقرير الختامي ===== -->
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>📋 التقرير الختامي للمبادرة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div id="form-final-report">
+        <button class="form-print-btn no-print" onclick="printFormById('form-final-report','📋 التقرير الختامي للمبادرة')">🖨️ طباعة هذا النموذج</button>
+        <div class="info-grid">
+          <div class="info-item form-field-group">
+            <label class="form-label">اسم المبادرة</label>
+            <input type="text" class="form-input" placeholder="عنوان المبادرة">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">جهة المبادرة ونطاق التطبيق</label>
+            <input type="text" class="form-input" placeholder="الجهة والنطاق">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">المستهدفون وزمن التطبيق</label>
+            <input type="text" class="form-input" placeholder="الفئات والمدة الزمنية">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">التكلفة المالية الإجمالية</label>
+            <input type="text" class="form-input" placeholder="المبلغ بالريال السعودي">
+          </div>
+        </div>
+        <div class="form-section-title" style="margin-top:14px;">أعداد المستهدفين والمشاركين</div>
+        <div class="info-grid">
+          <div class="info-item form-field-group">
+            <label class="form-label">عدد المستهدفين (طلاب - معلمين - قادة - مشرفين - أولياء أمور - أخرى)</label>
+            <input type="text" class="form-input" placeholder="الأعداد لكل فئة">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">عدد المشاركين في التنفيذ / عدد البرامج والفعاليات</label>
+            <input type="text" class="form-input" placeholder="الإجمالي">
+          </div>
+        </div>
+        <div class="form-section-title">أبرز الشراكات</div>
+        <div class="info-item form-field-group" style="margin-bottom:14px;">
+          <label class="form-label">الجهة التي تم عقد الشراكة معها ونبذة موجزة</label>
+          <textarea class="form-input" rows="3" placeholder="اسم الجهة — وصف الشراكة..."></textarea>
+        </div>
+        <div class="form-section-title">أبرز الأنشطة المنفذة</div>
+        <div class="info-item form-field-group" style="margin-bottom:14px;">
+          <textarea class="form-input" rows="4" placeholder="اذكر الأنشطة والفعاليات التي تم تنفيذها..."></textarea>
+        </div>
+        <div class="form-section-title">أبرز مخرجات المبادرة</div>
+        <div class="info-item form-field-group" style="margin-bottom:14px;">
+          <textarea class="form-input" rows="4" placeholder="اذكر المخرجات والنتائج المحققة..."></textarea>
+        </div>
+        <div class="form-section-title">أبرز التحديات والتوصيات</div>
+        <div class="info-item form-field-group" style="margin-bottom:14px;">
+          <textarea class="form-input" rows="4" placeholder="اذكر التحديات التي واجهت التنفيذ وتوصياتك للمستقبل..."></textarea>
+        </div>
+        <div class="form-section-title">تقييم اللجنة التنفيذية والإشرافية</div>
+        <div class="info-grid">
+          <div class="info-item form-field-group">
+            <label class="form-label">تقييم اللجنة التنفيذية</label>
+            <textarea class="form-input" rows="3" placeholder="رأي اللجنة التنفيذية..."></textarea>
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">تقييم اللجنة الإشرافية</label>
+            <textarea class="form-input" rows="3" placeholder="رأي اللجنة الإشرافية..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== نموذج 5: خطة المتابعة ===== -->
+  <div class="section-box">
+    <div class="section-box-header" onclick="toggleBox(this)">
+      <h3>📈 خطة المتابعة والتقييم المبنية على مؤشرات الأداء</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="section-box-body">
+      <div id="form-monitoring-plan">
+        <button class="form-print-btn no-print" onclick="printFormById('form-monitoring-plan','📈 خطة المتابعة والتقييم المبنية على مؤشرات الأداء')">🖨️ طباعة هذا النموذج</button>
+        <div class="info-grid" style="margin-bottom:16px;">
+          <div class="info-item form-field-group">
+            <label class="form-label">اسم المبادرة</label>
+            <input type="text" class="form-input" placeholder="عنوان المبادرة">
+          </div>
+          <div class="info-item form-field-group">
+            <label class="form-label">العام الدراسي</label>
+            <input type="text" class="form-input" placeholder="____/____م">
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>م</th>
+                <th>الأهداف</th>
+                <th>مؤشرات الأداء</th>
+                <th>الرمز</th>
+                <th>خط الأساس</th>
+                <th>المستهدف ف١</th>
+                <th>المستهدف ف٢</th>
+                <th>مصدر البيانات</th>
+                <th>أداة القياس</th>
+                <th>مستوى البيانات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>١</td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="الهدف..." style="text-align:right;"></td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="المؤشر..." style="text-align:right;"></td>
+                <td class="editable-cell"><input type="text" placeholder="٠١"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="المصدر"></td>
+                <td class="editable-cell"><input type="text" placeholder="الأداة"></td>
+                <td class="editable-cell"><input type="text" placeholder="المستوى"></td>
+              </tr>
+              <tr>
+                <td>٢</td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="الهدف..." style="text-align:right;"></td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="المؤشر..." style="text-align:right;"></td>
+                <td class="editable-cell"><input type="text" placeholder="٠٢"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="المصدر"></td>
+                <td class="editable-cell"><input type="text" placeholder="الأداة"></td>
+                <td class="editable-cell"><input type="text" placeholder="المستوى"></td>
+              </tr>
+              <tr>
+                <td>٣</td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="الهدف..." style="text-align:right;"></td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="المؤشر..." style="text-align:right;"></td>
+                <td class="editable-cell"><input type="text" placeholder="٠٣"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="المصدر"></td>
+                <td class="editable-cell"><input type="text" placeholder="الأداة"></td>
+                <td class="editable-cell"><input type="text" placeholder="المستوى"></td>
+              </tr>
+              <tr>
+                <td>٤</td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="الهدف..." style="text-align:right;"></td>
+                <td class="editable-cell" style="text-align:right;"><input type="text" placeholder="المؤشر..." style="text-align:right;"></td>
+                <td class="editable-cell"><input type="text" placeholder="٠٤"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="%"></td>
+                <td class="editable-cell"><input type="text" placeholder="المصدر"></td>
+                <td class="editable-cell"><input type="text" placeholder="الأداة"></td>
+                <td class="editable-cell"><input type="text" placeholder="المستوى"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SETTINGS ============================= -->
+<section id="settings" class="section">
+  <div class="page-title">
+    <div class="page-title-icon">⚙️</div>
+    <div>
+      <h2>الإعدادات والمعلومات</h2>
+      <p>معلومات المنصة وخيارات الطباعة والتصدير</p>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <h3><span class="icon">🏫</span> معلومات المؤسسة التعليمية</h3>
+    <div class="info-grid">
+      <div class="info-item"><label>الوزارة</label><div class="value">وزارة التعليم</div></div>
+      <div class="info-item"><label>العام الدراسي</label><div class="value"><input type="text" id="year-input" class="year-input-inline" value="٢٠٢٤/٢٠٢٥م" placeholder="مثال: ٢٠٢٤/٢٠٢٥م" onchange="updateAcademicYear(this.value)" title="عدّل العام الدراسي ثم اضغط Enter أو انقر خارج الحقل"></div></div>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <h3><span class="icon">📚</span> المراجع والمصادر</h3>
+    <ul class="styled-list">
+      <li>دليل المبادرات - منهجية بناء المبادرات - إدارة أداء التعليم، قسم الإشراف التربوي</li>
+      <li>دليل بناء المبادرات - اللجنة التنفيذية لبناء المبادرات</li>
+      <li>سجل المبادرات - العام الدراسي <span class="acad-year">٢٠٢٤/٢٠٢٥م</span></li>
+      <li>شركة تطوير: دليل المبادرات، ١٤٣٥هـ</li>
+      <li>رؤية المملكة العربية السعودية ٢٠٣٠</li>
+      <li>الدليل التنظيمي لمدارس التعليم العام، ١٤٤٢هـ</li>
+    </ul>
+  </div>
+
+  <div class="settings-card">
+    <h3><span class="icon">👥</span> فريق إعداد الدليل</h3>
+    <div style="overflow-x:auto;">
+      <table class="team-table">
+        <thead>
+          <tr><th>الدور</th><th>الاسم</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>إعداد</td><td>—</td></tr>
+          <tr><td>إشراف</td><td>—</td></tr>
+          <tr><td>مراجعة وتنقيح</td><td>—</td></tr>
+          <tr><td>تدقيق لغوي</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <h3><span class="icon">🖨️</span> طباعة وتصدير</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+      <button class="print-btn" onclick="window.print()">🖨️ طباعة المنصة</button>
+      <button class="print-btn" style="background:linear-gradient(135deg,var(--success),var(--success-light));" onclick="printSection('initiatives')">📋 طباعة المبادرات</button>
+      <button class="print-btn" style="background:linear-gradient(135deg,var(--gold),#e6b800);color:#1a1a00;" onclick="printSection('methodology')">📚 طباعة المنهجية</button>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;">
+      <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">💾 حفظ واستعادة البيانات</p>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.7;">صدِّر جميع المبادرات والعام الدراسي كملف JSON يمكن استيراده لاحقاً لاستكمال العمل أو نقله لجهاز آخر.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <button class="print-btn" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8);" onclick="exportData()">📤 تصدير البيانات (JSON)</button>
+        <button class="print-btn" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);" onclick="importData()">📥 استيراد البيانات (JSON)</button>
+        <button class="print-btn" style="background:linear-gradient(135deg,#dc2626,#ef4444);" onclick="resetToDefaults()">🔄 إعادة تهيئة البيانات</button>
+      </div>
+    </div>
+  </div>
+  <input type="file" id="import-file-input" accept=".json" style="display:none;" onchange="handleImportFile(this)">
+
+  <div class="settings-card" style="border:2px solid var(--gold);background:linear-gradient(135deg,#fef9e7,#fef3d0);">
+    <h3><span class="icon">✨</span> تصميم د/فواز</h3>
+    <p style="font-size:14px;line-height:1.8;color:var(--text);">
+      تفضل للمزيد هنا: <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" style="color:var(--primary);font-weight:700;text-decoration:underline;">https://t.me/TAqhjT3MFVE1Yzk0</a>
+    </p>
+  </div>
+</section>
+
+</div><!-- end main-content -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modal-box">
+    <div class="modal-header">
+      <h2 id="modal-title">تفاصيل المبادرة</h2>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="modal-edit-btn no-print" onclick="openEditFromModal()">✏️ تعديل</button>
+        <button class="modal-print-btn no-print" onclick="printCurrentInitiative()">🖨️ طباعة</button>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ===== EDIT INITIATIVE OVERLAY ===== -->
+<div class="edit-overlay" id="edit-overlay">
+  <div class="edit-box">
+    <div class="edit-header">
+      <h3 id="edit-overlay-title">➕ إضافة مبادرة جديدة</h3>
+      <button class="edit-close" onclick="closeEditOverlay()">✕</button>
+    </div>
+    <div class="edit-body">
+      <div class="info-grid" style="margin-bottom:14px;">
+        <div class="info-item form-field-group" style="grid-column:span 2;">
+          <label class="form-label">اسم المبادرة *</label>
+          <input type="text" id="edit-name" class="form-input" placeholder="أدخل اسم المبادرة">
+        </div>
+        <div class="info-item form-field-group">
+          <label class="form-label">المجال *</label>
+          <select id="edit-domain" class="form-input">
+            <option value="أكاديمي">أكاديمي</option>
+            <option value="مهني">مهني</option>
+            <option value="تربوي">تربوي</option>
+            <option value="اجتماعي">اجتماعي</option>
+            <option value="تطوعي">تطوعي</option>
+            <option value="توعوي">توعوي</option>
+            <option value="بيئة">بيئة</option>
+          </select>
+        </div>
+        <div class="info-item form-field-group">
+          <label class="form-label">المستهدفون</label>
+          <input type="text" id="edit-target" class="form-input" placeholder="الفئة المستهدفة">
+        </div>
+        <div class="info-item form-field-group" style="grid-column:span 2;">
+          <label class="form-label">آلية التنفيذ</label>
+          <input type="text" id="edit-method" class="form-input" placeholder="أسلوب التنفيذ">
+        </div>
+      </div>
+      <div class="info-item form-field-group" style="margin-bottom:14px;">
+        <label class="form-label">وصف المبادرة</label>
+        <textarea id="edit-description" class="form-input" rows="4" placeholder="وصف تفصيلي للمبادرة وأهدافها..."></textarea>
+      </div>
+      <div class="info-item form-field-group" style="margin-bottom:6px;">
+        <label class="form-label">مهام الفريق — اكتب مهمة في كل سطر</label>
+        <textarea id="edit-tasks" class="form-input" rows="4" placeholder="المهمة الأولى&#10;المهمة الثانية&#10;المهمة الثالثة..."></textarea>
+      </div>
+      <div class="edit-actions">
+        <button class="btn-danger" id="edit-delete-btn" onclick="deleteInitiativeFromOverlay()" style="display:none;margin-left:auto;">🗑️ حذف المبادرة</button>
+        <button class="btn-cancel" onclick="closeEditOverlay()">إلغاء</button>
+        <button class="btn-save" onclick="saveEditOverlay()">💾 حفظ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>منصة المبادرات التعليمية المدرسية</p>
+  <p style="margin-top:6px;">تصميم د/فواز · تفضل للمزيد هنا: <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a></p>
+</footer>
+
+<script>
+// ========== DATA ==========
+const DEFAULT_INITIATIVES = [
+  {
+    id: 1,
+    name: "سلسلة دورات دعم المعلم الرقمي",
+    domain: "مهني",
+    target: "معلمين/ت - إداريين/ت",
+    method: "دورات حضورية وعن بعد",
+    badgeClass: "badge-blue",
+    description: "مبادرة تهدف إلى دعم وتطوير الكفاءة الرقمية للمعلمين/ت والإداريين/ت من خلال سلسلة دورات تدريبية متنوعة حضورية وعن بعد.",
+    team: [
+      { name: "—", role: "مديرة المدارس", status: "رئيسة" },
+      { name: "—", role: "وكيلة شؤون تعليمية وطالبية", status: "مقررة" },
+      { name: "—", role: "معلم/ة", status: "عضو" },
+      { name: "—", role: "معلم/ة", status: "عضو" },
+      { name: "—", role: "معلم/ة", status: "عضو" },
+      { name: "—", role: "معلم/ة", status: "عضو" }
+    ],
+    tasks: [
+      "حصر الاحتياج التدريبي الرقمي",
+      "تحديد تطلعات الفريق الرقمي",
+      "إعداد حقائب تدريب وفق البرامج التي تخدم المعلم الرقمي",
+      "وضع خطط مدروسة ومجدولة للتنفيذ"
+    ],
+    authority: "القرار: بناءً على الصلاحيات الممنوحة وفق قرار معالي وزير التعليم رقم ٣٧٦١٧١٦٨ وتاريخ ١٤٣٧/٠٤/٠١هـ"
+  },
+  {
+    id: 2,
+    name: "نادي أبجد",
+    domain: "أكاديمي",
+    target: "الطلبة",
+    method: "مجتمع تعليمي",
+    badgeClass: "badge-green",
+    description: "نادي يهدف إلى تعزيز مهارات اللغة العربية وتنمية الحس اللغوي لدى الطلبة من خلال أنشطة وبرامج متنوعة.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 3,
+    name: "نادي ماث واي",
+    domain: "أكاديمي",
+    target: "الطلبة",
+    method: "مجتمع تعليمي",
+    badgeClass: "badge-green",
+    description: "نادي متخصص في الرياضيات يهدف إلى تنمية التفكير الرياضي وتعزيز محبة الرياضيات لدى الطلبة من خلال أساليب تعليمية مبتكرة.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 4,
+    name: "نادي علماء ملهمون",
+    domain: "أكاديمي",
+    target: "الطلبة",
+    method: "مجتمع تعليمي",
+    badgeClass: "badge-green",
+    description: "نادي علمي يهدف إلى إلهام الطلبة في مجالات العلوم والبحث وتنمية الفضول العلمي وروح الاستكشاف والاكتشاف.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 5,
+    name: "نادي الريبوت",
+    domain: "أكاديمي",
+    target: "الطلبة",
+    method: "تعليم مبرمج مصغر",
+    badgeClass: "badge-purple",
+    description: "نادي تقني يهدف إلى تعريف الطلبة بعالم الروبوتيك والبرمجة وتنمية التفكير المنطقي والإبداع التقني.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 6,
+    name: "المؤلفة قلوبهم",
+    domain: "تربوي",
+    target: "أولياء أمور",
+    method: "لقاءات",
+    badgeClass: "badge-orange",
+    description: "مبادرة تهدف إلى تعزيز العلاقة بين المدرسة وأولياء الأمور وكسب ثقتهم وتفعيل مشاركتهم في العملية التعليمية من خلال لقاءات هادفة.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 7,
+    name: "سورة العصر منهج حياة",
+    domain: "تربوي",
+    target: "جميع المنسوبين",
+    method: "لقاءات - نشرات - تثقيف",
+    badgeClass: "badge-gold",
+    description: "مبادرة تربوية إيمانية تهدف إلى ترسيخ القيم والمبادئ الإسلامية من خلال التدبر في سورة العصر وتطبيق مضامينها في الحياة العملية اليومية.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 8,
+    name: "مبادرة سند",
+    domain: "اجتماعي",
+    target: "جميع المنسوبين",
+    method: "لقاءات - نشرات - تثقيف",
+    badgeClass: "badge-teal",
+    description: "مبادرة اجتماعية تهدف إلى تعزيز روح التكافل والتعاون والدعم المتبادل بين جميع المنسوبين وتنمية ثقافة الانتماء المؤسسي.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 9,
+    name: "التدريب والتطوير الموازي لتعزيز قدرات المعلمين/ت",
+    domain: "مهني",
+    target: "معلمين/ت - إداريين/ت",
+    method: "ورش تدريبية - لقاءات",
+    badgeClass: "badge-blue",
+    description: "مبادرة مهنية تهدف إلى الارتقاء بمستوى أداء المعلمين/ت والإداريين/ت من خلال برامج تدريب وتطوير مهني متوازٍ يلبي الاحتياجات الفعلية للميدان التربوي.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 10,
+    name: "رسول الرحمة",
+    domain: "تربوي",
+    target: "معلمين/ت",
+    method: "لقاءات",
+    badgeClass: "badge-gold",
+    description: "مبادرة تربوية إيمانية تهدف إلى تعزيز الاقتداء بالنبي محمد صلى الله عليه وسلم في التعامل مع الطلبة وتبني قيم الرحمة والرفق في البيئة التعليمية.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 11,
+    name: "محمية المدرسة",
+    domain: "اجتماعي",
+    target: "شراكة مجتمعية",
+    method: "خطابات للمعنيين",
+    badgeClass: "badge-teal",
+    description: "مبادرة شراكة مجتمعية تهدف إلى بناء شبكة دعم مجتمعية وتعزيز حماية المدرسة والمحافظة على بيئتها التعليمية المتميزة.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 12,
+    name: "الجوالة والخدمات العامة",
+    domain: "تطوعي",
+    target: "الطلبة",
+    method: "تحديد الطلبة المعنيين وتكليفهم بالمهام",
+    badgeClass: "badge-red",
+    description: "مبادرة تطوعية تهدف إلى تنمية روح المواطنة والخدمة المجتمعية لدى الطلبة من خلال برامج الجوالة والأنشطة التطوعية المنظمة.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 13,
+    name: "فريق العمل الرقمي",
+    domain: "تطوعي",
+    target: "معلمين/ت - الطلبة",
+    method: "مجموعة عمل رقمي",
+    badgeClass: "badge-purple",
+    description: "مبادرة رقمية تطوعية تهدف إلى تشكيل فريق رقمي متطوع من المعلمين/ت والطلبة لتعزيز التحول الرقمي في البيئة المدرسية وتقديم الدعم التقني.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 14,
+    name: "مدرستي آمنة",
+    domain: "توعوي",
+    target: "جميع المنسوبين",
+    method: "خطط إخلاء - خطط طوارئ",
+    badgeClass: "badge-red",
+    description: "مبادرة توعوية تهدف إلى رفع ثقافة السلامة والأمان لدى جميع منسوبي المدارس من خلال إعداد وتفعيل خطط الإخلاء والطوارئ وتدريب الجميع عليها.",
+    team: [],
+    tasks: [],
+    authority: ""
+  },
+  {
+    id: 15,
+    name: "مبادرة مستدام",
+    domain: "اجتماعي",
+    target: "جميع المنسوبين",
+    method: "نشرات توعوية",
+    badgeClass: "badge-teal",
+    description: "مبادرة اجتماعية بيئية تهدف إلى ترسيخ ثقافة الاستدامة والحفاظ على البيئة والموارد في الوسط المدرسي من خلال حملات توعوية ونشرات تثقيفية.",
+    team: [],
+    tasks: [],
+    authority: ""
+  }
+];
+
+// Load from localStorage (persists edits across page reloads)
+let initiatives;
+try {
+  const saved = localStorage.getItem('initiatives');
+  initiatives = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_INITIATIVES));
+} catch(e) {
+  initiatives = JSON.parse(JSON.stringify(DEFAULT_INITIATIVES));
+}
+
+function saveInitiatives() {
+  try { localStorage.setItem('initiatives', JSON.stringify(initiatives)); } catch(e) {}
+}
+
+// ========== RENDER ==========
+function getBadgeColor(domain) {
+  const map = {
+    'مهني': 'badge-blue',
+    'أكاديمي': 'badge-green',
+    'تربوي': 'badge-gold',
+    'اجتماعي': 'badge-teal',
+    'تطوعي': 'badge-purple',
+    'توعوي': 'badge-red'
+  };
+  return map[domain] || 'badge-dark';
+}
+
+function renderDashboardTable() {
+  const tbody = document.getElementById('dashboard-table');
+  tbody.innerHTML = initiatives.map(i => `
+    <tr>
+      <td>${i.id}</td>
+      <td style="text-align:right;font-weight:600;">${i.name}</td>
+      <td><span class="badge ${getBadgeColor(i.domain)}">${i.domain}</span></td>
+      <td style="font-size:12px;">${i.target}</td>
+      <td style="font-size:12px;">${i.method}</td>
+      <td style="white-space:nowrap;">
+        <button onclick="openModal(${i.id})" style="background:var(--primary);color:white;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-family:inherit;margin-left:4px;">تفاصيل</button>
+        <button onclick="openEditOverlay(${i.id})" class="no-print" style="background:var(--success);color:white;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-family:inherit;">تعديل</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderInitiativeCards() {
+  const grid = document.getElementById('initiatives-grid');
+  grid.innerHTML = initiatives.map(i => `
+    <div class="card" data-domain="${i.domain}">
+      <div class="card-header" style="cursor:pointer;" onclick="openModal(${i.id})">
+        <div class="card-num">${i.id}</div>
+        <div class="card-title">${i.name}</div>
+        <span class="badge ${getBadgeColor(i.domain)}">${i.domain}</span>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);line-height:1.6;cursor:pointer;" onclick="openModal(${i.id})">${(i.description||'').substring(0,100)}...</p>
+      <div class="card-meta">
+        <span class="meta-item">👥 ${i.target}</span>
+        <span class="meta-item">⚙️ ${i.method}</span>
+      </div>
+      <div style="margin-top:10px;">
+        <button onclick="openModal(${i.id})" style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;border:none;padding:7px 18px;border-radius:var(--radius-sm);cursor:pointer;font-size:12px;font-family:inherit;width:100%;font-weight:600;margin-bottom:6px;">عرض التفاصيل الكاملة ←</button>
+        <div class="card-actions no-print">
+          <button class="card-edit-btn" onclick="openEditOverlay(${i.id})">✏️ تعديل</button>
+          <button class="card-print-btn" onclick="printInitiativeById(${i.id})" title="طباعة المبادرة">🖨️</button>
+          <button class="card-del-btn" onclick="confirmDelete(${i.id})">🗑️ حذف</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderAll() {
+  renderDashboardTable();
+  renderInitiativeCards();
+  const el = document.getElementById('stat-total');
+  if (el) el.textContent = initiatives.length;
+  const fb = document.getElementById('filter-all-btn');
+  if (fb) fb.textContent = `الكل (${initiatives.length})`;
+}
+
+// ========== MODAL ==========
+let currentOpenModalId = null;
+
+function getInitiativeBodyHtml(init) {
+  let teamHtml = '';
+  if (init.team && init.team.length > 0) {
+    teamHtml = `
+      <div class="modal-section-title">👥 الفريق المكلف بتنفيذ المبادرة</div>
+      <table class="team-table">
+        <thead><tr><th>م</th><th>الاسم</th><th>المسمى الوظيفي</th><th>الصفة</th></tr></thead>
+        <tbody>
+          ${init.team.map((m, idx) => `
+            <tr>
+              <td>${idx + 1}</td>
+              <td style="font-weight:600;">${m.name}</td>
+              <td>${m.role}</td>
+              <td><span class="badge ${m.status === 'رئيسة' ? 'badge-red' : m.status === 'مقررة' ? 'badge-orange' : 'badge-blue'}">${m.status}</span></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+  let tasksHtml = '';
+  if (init.tasks && init.tasks.length > 0) {
+    tasksHtml = `
+      <div class="modal-section-title">📌 مهام الفريق</div>
+      <ul class="styled-list">
+        ${init.tasks.map(t => `<li>${t}</li>`).join('')}
+      </ul>
+    `;
+  }
+  let authorityHtml = '';
+  if (init.authority) {
+    authorityHtml = `
+      <div style="background:#fef9e7;border-radius:6px;padding:12px;margin-top:16px;border-right:4px solid #e6b800;font-size:12px;color:#666;">
+        📜 ${init.authority}
+      </div>
+    `;
+  }
+  return `
+    <div class="modal-grid">
+      <div class="modal-field">
+        <div class="field-label">المجال</div>
+        <div class="field-value"><span class="badge ${getBadgeColor(init.domain)}">${init.domain}</span></div>
+      </div>
+      <div class="modal-field">
+        <div class="field-label">المستهدفون</div>
+        <div class="field-value">${init.target}</div>
+      </div>
+      <div class="modal-field">
+        <div class="field-label">آلية التنفيذ</div>
+        <div class="field-value">${init.method}</div>
+      </div>
+    </div>
+    <div class="modal-section-title">📋 وصف المبادرة</div>
+    <p style="font-size:13px;line-height:1.8;background:#f8f9fa;padding:14px;border-radius:6px;border-right:4px solid #4a90d9;">
+      ${init.description}
+    </p>
+    ${teamHtml}${tasksHtml}${authorityHtml}
+  `;
+}
+
+function openModal(id) {
+  currentOpenModalId = id;
+  const init = initiatives.find(i => i.id === id);
+  if (!init) return;
+  document.getElementById('modal-title').textContent = `${init.id}. ${init.name}`;
+  document.getElementById('modal-body').innerHTML = getInitiativeBodyHtml(init);
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeEditOverlay(); } });
+
+// ========== EDIT OVERLAY ==========
+let editingId = null;
+
+function openEditOverlay(id) {
+  editingId = id;
+  const deleteBtn = document.getElementById('edit-delete-btn');
+  if (id === null) {
+    document.getElementById('edit-overlay-title').textContent = '➕ إضافة مبادرة جديدة';
+    document.getElementById('edit-name').value = '';
+    document.getElementById('edit-domain').value = 'أكاديمي';
+    document.getElementById('edit-target').value = '';
+    document.getElementById('edit-method').value = '';
+    document.getElementById('edit-description').value = '';
+    document.getElementById('edit-tasks').value = '';
+    deleteBtn.style.display = 'none';
+  } else {
+    const init = initiatives.find(i => i.id === id);
+    if (!init) return;
+    document.getElementById('edit-overlay-title').textContent = `✏️ تعديل: ${init.name}`;
+    document.getElementById('edit-name').value = init.name;
+    document.getElementById('edit-domain').value = init.domain;
+    document.getElementById('edit-target').value = init.target || '';
+    document.getElementById('edit-method').value = init.method || '';
+    document.getElementById('edit-description').value = init.description || '';
+    document.getElementById('edit-tasks').value = (init.tasks || []).join('\n');
+    deleteBtn.style.display = 'inline-flex';
+  }
+  document.getElementById('edit-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openEditFromModal() {
+  const id = currentOpenModalId;
+  closeModal();
+  setTimeout(() => openEditOverlay(id), 150);
+}
+
+function closeEditOverlay() {
+  document.getElementById('edit-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function saveEditOverlay() {
+  const name = document.getElementById('edit-name').value.trim();
+  if (!name) { alert('⚠️ يرجى إدخال اسم المبادرة'); return; }
+  const domain = document.getElementById('edit-domain').value;
+  const target = document.getElementById('edit-target').value.trim();
+  const method = document.getElementById('edit-method').value.trim();
+  const description = document.getElementById('edit-description').value.trim();
+  const tasksRaw = document.getElementById('edit-tasks').value.trim();
+  const tasks = tasksRaw ? tasksRaw.split('\n').map(t => t.trim()).filter(t => t) : [];
+
+  if (editingId === null) {
+    const newId = initiatives.length > 0 ? Math.max(...initiatives.map(i => i.id)) + 1 : 1;
+    initiatives.push({
+      id: newId, name, domain, target, method,
+      badgeClass: getBadgeColor(domain),
+      description: description || `مبادرة ${name}`,
+      team: [], tasks, authority: ''
+    });
+  } else {
+    const idx = initiatives.findIndex(i => i.id === editingId);
+    if (idx !== -1) {
+      initiatives[idx] = {
+        ...initiatives[idx],
+        name, domain, target, method,
+        description: description || initiatives[idx].description,
+        tasks, badgeClass: getBadgeColor(domain)
+      };
+    }
+  }
+  saveInitiatives();
+  renderAll();
+  closeEditOverlay();
+}
+
+function deleteInitiativeFromOverlay() {
+  const init = initiatives.find(i => i.id === editingId);
+  if (!init) return;
+  if (!confirm(`هل تريد حذف المبادرة: "${init.name}"؟`)) return;
+  initiatives = initiatives.filter(i => i.id !== editingId);
+  saveInitiatives();
+  renderAll();
+  closeEditOverlay();
+}
+
+function confirmDelete(id) {
+  const init = initiatives.find(i => i.id === id);
+  if (!init) return;
+  if (!confirm(`هل تريد حذف المبادرة: "${init.name}"؟`)) return;
+  initiatives = initiatives.filter(i => i.id !== id);
+  saveInitiatives();
+  renderAll();
+}
+
+// ========== ACADEMIC YEAR ==========
+let academicYear = '';
+
+function updateAcademicYear(value) {
+  value = value.trim();
+  if (!value) return;
+  academicYear = value;
+  try { localStorage.setItem('academicYear', value); } catch(e) {}
+  document.querySelectorAll('.acad-year').forEach(el => el.textContent = value);
+}
+
+// ========== NAV ==========
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => {
+    if (b.getAttribute('onclick').includes(`'${id}'`)) b.classList.add('active');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ========== FILTER ==========
+function filterCards(domain, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#initiatives-grid .card').forEach(card => {
+    if (domain === 'all' || card.dataset.domain === domain) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function filterByDomain(domain) {
+  showSection('initiatives');
+  setTimeout(() => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#initiatives-grid .card').forEach(card => {
+      if (card.dataset.domain === domain) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }, 200);
+}
+
+// ========== TOGGLE BOX ==========
+function toggleBox(header) {
+  header.classList.toggle('collapsed');
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+}
+
+// ========== PRINT FORM (popup window) ==========
+function printFormById(formId, title) {
+  const formEl = document.getElementById(formId);
+  if (!formEl) return;
+
+  // Clone and sync current values
+  const clone = formEl.cloneNode(true);
+  const origTA  = [...formEl.querySelectorAll('textarea')];
+  const origInp = [...formEl.querySelectorAll('input[type="text"]')];
+  const origRad = [...formEl.querySelectorAll('input[type="radio"]')];
+  [...clone.querySelectorAll('textarea')].forEach((el, i) => { if (origTA[i]) el.value = origTA[i].value; });
+  [...clone.querySelectorAll('input[type="text"]')].forEach((el, i) => { if (origInp[i]) el.value = origInp[i].value; });
+  [...clone.querySelectorAll('input[type="radio"]')].forEach((el, i) => { if (origRad[i]) el.checked = origRad[i].checked; });
+  clone.querySelectorAll('.form-print-btn, .no-print').forEach(el => el.remove());
+
+  const pw = window.open('', '_blank', 'width=950,height=750');
+  pw.document.write(`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Tajawal',sans-serif;direction:rtl;padding:18mm 14mm;font-size:12pt;color:#111;background:#fff;}
+h2{font-size:15pt;color:#1e5ca9;margin-bottom:14px;padding-bottom:7px;border-bottom:2.5px solid #1e5ca9;text-align:center;}
+.form-label{font-size:10pt;font-weight:700;color:#1e3a6e;margin-bottom:5px;display:block;}
+.form-input{width:100%;border:none;border-bottom:1px solid #666;background:transparent;font-family:inherit;font-size:11pt;padding:4px 2px;display:block;min-height:26px;resize:none;}
+textarea.form-input{min-height:48px;}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;}
+.info-item{background:#f6f7f9;border-radius:6px;padding:10px;border:1px solid #ddd;page-break-inside:avoid;}
+.form-section-title{font-size:11pt;font-weight:700;color:#1e3a6e;margin:14px 0 9px;padding-bottom:4px;border-bottom:2px solid #4a90d9;}
+table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:10pt;}
+th{background:#1e5ca9;color:#fff;padding:7px;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+td{border:1px solid #bbb;padding:5px;text-align:center;vertical-align:middle;}
+.editable-cell input[type="text"]{width:100%;border:none;border-bottom:1px solid #888;font-family:inherit;font-size:10pt;padding:2px;background:transparent;}
+.form-radio-group{display:flex;gap:10px;justify-content:center;}
+.form-radio-group label{display:flex;align-items:center;gap:3px;}
+input[type="radio"]{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+@media print{
+  body{padding:10mm;}
+  .info-item{page-break-inside:avoid;break-inside:avoid;}
+  tr{page-break-inside:avoid;break-inside:avoid;}
+  thead{display:table-header-group;}
+}
+</style>
+</head>
+<body>
+<h2>${title}</h2>
+${clone.innerHTML}
+<script>
+document.fonts.ready.then(function(){window.print();window.close();});
+<\/script>
+</body>
+</html>`);
+  pw.document.close();
+}
+
+// ========== PRINT SINGLE INITIATIVE (by id — from card) ==========
+function printInitiativeById(id) {
+  const init = initiatives.find(i => i.id === id);
+  if (!init) return;
+  const title = `${init.id}. ${init.name}`;
+  const body  = getInitiativeBodyHtml(init);
+  _openInitiativePrintWindow(title, body);
+}
+
+// ========== PRINT INITIATIVE (from modal) ==========
+function printCurrentInitiative() {
+  const title = document.getElementById('modal-title').textContent;
+  const body  = document.getElementById('modal-body').innerHTML;
+  _openInitiativePrintWindow(title, body);
+}
+
+function _openInitiativePrintWindow(title, body) {
+  const pw = window.open('', '_blank', 'width=970,height=780');
+  pw.document.write(`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Tajawal',sans-serif;direction:rtl;padding:14mm 14mm 10mm;font-size:12pt;color:#111;background:#fff;}
+h2{font-size:15pt;color:#1e5ca9;margin-bottom:14px;padding-bottom:7px;border-bottom:2.5px solid #1e5ca9;page-break-after:avoid;}
+.modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.modal-field{background:#f6f7f9;border-radius:6px;padding:10px;border:1px solid #ddd;page-break-inside:avoid;}
+.field-label{font-size:10pt;color:#666;margin-bottom:4px;}
+.field-value{font-weight:600;font-size:12pt;}
+.modal-section-title{font-size:12pt;font-weight:700;color:#1e3a6e;margin:16px 0 10px;padding-bottom:5px;border-bottom:2px solid #4a90d9;page-break-after:avoid;}
+table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:10pt;page-break-inside:auto;}
+thead{display:table-header-group;}
+th{background:#1e5ca9;color:#fff;padding:7px;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+td{border:1px solid #bbb;padding:6px;text-align:center;vertical-align:middle;}
+tr{page-break-inside:avoid;}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:10pt;font-weight:600;border:1px solid #999;background:#fff;}
+.styled-list{padding-right:22px;line-height:2.2;page-break-inside:avoid;}
+.styled-list li{page-break-inside:avoid;}
+p{font-size:12pt;line-height:1.9;background:#f6f7f9;padding:12px;border-radius:6px;border-right:4px solid #4a90d9;page-break-inside:avoid;}
+@page{margin:10mm 14mm;}
+@media print{body{padding:0;}}
+</style>
+</head>
+<body>
+<h2>${title}</h2>
+${body}
+<script>document.fonts.ready.then(function(){window.print();window.close();});<\/script>
+</body>
+</html>`);
+  pw.document.close();
+}
+
+// ========== EXPORT / IMPORT ==========
+function exportData() {
+  const data = {
+    version: '1.0',
+    platform: 'منصة المبادرات التعليمية',
+    academicYear,
+    exportDate: new Date().toLocaleDateString('ar-SA'),
+    initiatives
+  };
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob(['\uFEFF' + json], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const yr = (academicYear || 'data').replace(/\//g, '_').replace(/[^\w\u0600-\u06FF_-]/g, '');
+  a.download = `مبادرات_${yr}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importData() {
+  document.getElementById('import-file-input').click();
+}
+
+function handleImportFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.initiatives || !Array.isArray(data.initiatives)) {
+        alert('⚠️ الملف غير صالح — تأكد أنه ملف مُصدَّر من هذه المنصة.');
+        return;
+      }
+      if (!confirm(`سيتم استيراد ${data.initiatives.length} مبادرة وسيُستبدل الوضع الحالي. هل تريد المتابعة؟`)) return;
+      initiatives = data.initiatives;
+      saveInitiatives();
+      if (data.academicYear) {
+        academicYear = data.academicYear;
+        try { localStorage.setItem('academicYear', academicYear); } catch(e) {}
+        const yi = document.getElementById('year-input');
+        if (yi) yi.value = academicYear;
+        document.querySelectorAll('.acad-year').forEach(el => el.textContent = academicYear);
+      }
+      renderAll();
+      alert(`✅ تم الاستيراد بنجاح — ${initiatives.length} مبادرة`);
+    } catch(err) {
+      alert('⚠️ خطأ في قراءة الملف — تأكد أن الملف بصيغة JSON صحيحة.');
+    }
+    input.value = '';
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+
+function resetToDefaults() {
+  if (!confirm('سيتم حذف جميع التعديلات والعودة للمبادرات الأصلية (١٥ مبادرة). هل تريد المتابعة؟')) return;
+  initiatives = JSON.parse(JSON.stringify(DEFAULT_INITIATIVES));
+  saveInitiatives();
+  renderAll();
+  alert('✅ تمت إعادة التهيئة إلى المبادرات الأصلية.');
+}
+
+// ========== PRINT SECTION ==========
+function printSection(id) {
+  showSection(id);
+  setTimeout(() => window.print(), 300);
+}
+
+// ========== INIT ==========
+// Academic year
+academicYear = localStorage.getItem('academicYear') || '٢٠٢٤/٢٠٢٥م';
+const _yi = document.getElementById('year-input');
+if (_yi) _yi.value = academicYear;
+document.querySelectorAll('.acad-year').forEach(el => el.textContent = academicYear);
+
+// Edit overlay — close on background click
+document.getElementById('edit-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeEditOverlay();
+});
+
+renderAll();
+
+// Animate progress bars on load
+setTimeout(() => {
+  document.querySelectorAll('.progress-bar').forEach(bar => {
+    const width = bar.style.width;
+    bar.style.width = '0';
+    setTimeout(() => { bar.style.width = width; }, 100);
+  });
+}, 500);
+</script>
+</body>
+</html>
