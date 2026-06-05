@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة المبادرات المدرسية التفاعلية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b3e;--navy2:#122255;--gold:#c9922a;--gold2:#f0b84a;--goldp:#fdf3e3;--teal:#1a7a6e;--teal2:#22a090;--red:#c0392b;--green:#1e8449;--blue:#1a5276;--bg:#f8f6f0;--gray:#e8e4dc;--gm:#9a9080;--shad:0 4px 24px rgba(13,27,62,.13);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Tajawal,sans-serif;background:var(--bg);color:#1a1208;direction:rtl;}
+.sh{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,#1a3a7a);color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+.sh-top{display:flex;align-items:center;justify-content:space-between;padding:13px 28px;border-bottom:1px solid rgba(201,146,42,.25);flex-wrap:wrap;gap:10px;}
+.sh-brand{display:flex;align-items:center;gap:14px;}
+.sh-logo{width:52px;height:52px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 12px rgba(201,146,42,.4);flex-shrink:0;}
+.sh-titles h1{font-size:1.35rem;font-weight:900;color:var(--gold2);line-height:1.2;}
+.sh-titles p{font-size:.79rem;color:rgba(255,255,255,.7);margin-top:2px;}
+.sh-meta{font-size:.77rem;color:rgba(255,255,255,.65);line-height:1.8;text-align:left;}
+.mnav{display:flex;gap:2px;padding:0 20px;background:rgba(0,0,0,.18);overflow-x:auto;}
+.ntab{padding:10px 16px;font-size:.83rem;font-weight:600;color:rgba(255,255,255,.72);cursor:pointer;border:none;background:transparent;font-family:Tajawal,sans-serif;white-space:nowrap;border-bottom:3px solid transparent;transition:all .25s;}
+.ntab:hover{color:var(--gold2);}
+.ntab.active{color:var(--gold2);border-bottom-color:var(--gold);background:rgba(201,146,42,.1);}
+.mc{max-width:1280px;margin:0 auto;padding:26px 22px 60px;}
+.sp{display:none;}
+.sp.active{display:block;}
+.hero{background:linear-gradient(135deg,var(--navy),#1e3d7a 50%,var(--teal));border-radius:14px;padding:38px 44px;color:#fff;margin-bottom:26px;position:relative;overflow:hidden;}
+.hero::after{content:"🏫";position:absolute;bottom:-10px;left:25px;font-size:130px;opacity:.07;pointer-events:none;}
+.hero h2{font-size:1.85rem;font-weight:900;color:var(--gold2);margin-bottom:9px;font-family:Amiri,serif;}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.85);max-width:680px;line-height:1.75;}
+.hstats{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.hstat{background:rgba(255,255,255,.12);border:1px solid rgba(201,146,42,.3);border-radius:8px;padding:13px 20px;text-align:center;min-width:105px;}
+.hstat .num{font-size:1.85rem;font-weight:900;color:var(--gold2);display:block;}
+.hstat .lbl{font-size:.76rem;color:rgba(255,255,255,.75);}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:17px;margin-bottom:26px;}
+.card{background:#fff;border-radius:14px;box-shadow:var(--shad);overflow:hidden;transition:transform .22s,box-shadow .22s;border:1px solid var(--gray);}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 34px rgba(13,27,62,.18);}
+.ch{padding:15px 17px 11px;display:flex;align-items:center;gap:11px;}
+.ci{width:43px;height:43px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.ct{font-size:.97rem;font-weight:800;color:var(--navy);}
+.cs{font-size:.77rem;color:var(--gm);margin-top:2px;}
+.cb{padding:0 17px 15px;}
+.cb p{font-size:.87rem;color:#444;line-height:1.7;}
+.stitle{font-size:1.25rem;font-weight:900;color:var(--navy);margin-bottom:15px;padding-bottom:9px;border-bottom:3px solid var(--gold);display:flex;align-items:center;gap:9px;}
+.ib{background:#fff;border-radius:14px;border:1px solid var(--gray);box-shadow:var(--shad);margin-bottom:20px;overflow:hidden;}
+.ibh{padding:13px 19px;background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff;font-size:.97rem;font-weight:800;display:flex;align-items:center;gap:9px;}
+.ibb{padding:17px 19px;}
+.fl{list-style:none;padding:0;}
+.fl li{padding:8px 0;border-bottom:1px solid var(--gray);font-size:.89rem;display:flex;align-items:flex-start;gap:9px;line-height:1.65;color:#333;}
+.fl li:last-child{border-bottom:none;}
+.fl li::before{content:"◆";color:var(--gold);font-size:.61rem;margin-top:5px;flex-shrink:0;}
+.ft{width:100%;border-collapse:collapse;font-size:.86rem;}
+.ft thead th{background:var(--navy);color:#fff;padding:10px 12px;text-align:right;font-weight:700;font-size:.83rem;}
+.ft tbody tr:nth-child(even){background:var(--goldp);}
+.ft tbody tr:hover{background:#fef9f0;}
+.ft tbody td{padding:10px 12px;border-bottom:1px solid var(--gray);vertical-align:top;line-height:1.5;}
+.tn{background:var(--navy);color:#fff;width:25px;height:25px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:800;}
+.acc{margin-bottom:10px;}
+.ach{background:#fff;border:1px solid var(--gray);border-radius:8px;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:.92rem;color:var(--navy);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.ach:hover{background:var(--goldp);border-color:var(--gold);}
+.ach.open{background:var(--navy);color:#fff;border-color:var(--navy);border-radius:8px 8px 0 0;}
+.aa{transition:transform .25s;font-size:.98rem;}
+.ach.open .aa{transform:rotate(180deg);}
+.acb{display:none;background:#fff;border:1px solid var(--gray);border-top:none;border-radius:0 0 8px 8px;padding:17px 19px;}
+.acb.open{display:block;}
+.ctbl{width:100%;border-collapse:collapse;font-size:.85rem;}
+.ctbl th{padding:11px 11px;text-align:center;font-weight:800;font-size:.87rem;color:#fff;}
+.ctbl th:nth-child(1){background:#555;}
+.ctbl th:nth-child(2){background:var(--teal);}
+.ctbl th:nth-child(3){background:var(--blue);}
+.ctbl th:nth-child(4){background:var(--gold);}
+.ctbl td{padding:10px 11px;border-bottom:1px solid var(--gray);text-align:center;vertical-align:middle;}
+.ctbl td:first-child{font-weight:700;background:var(--goldp);text-align:right;color:var(--navy);}
+.ctbl tr:nth-child(even) td:not(:first-child){background:#f9f9f9;}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:13px;margin-bottom:22px;}
+.si{background:#fff;border-radius:8px;border:1px solid var(--gray);padding:14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.sl{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;font-weight:900;margin:0 auto 8px;color:#fff;}
+.si:nth-child(1) .sl{background:#e74c3c;}
+.si:nth-child(2) .sl{background:#3498db;}
+.si:nth-child(3) .sl{background:#2ecc71;}
+.si:nth-child(4) .sl{background:#9b59b6;}
+.si:nth-child(5) .sl{background:var(--gold);}
+.sn{font-weight:800;color:var(--navy);font-size:.89rem;margin-bottom:4px;}
+.sd{font-size:.77rem;color:#666;line-height:1.55;}
+.fi{border:1.5px solid var(--gray);border-radius:8px;padding:9px 12px;font-family:Tajawal,sans-serif;font-size:.88rem;color:#1a1208;background:var(--goldp);transition:border-color .2s;width:100%;}
+.fi:focus{outline:none;border-color:var(--gold);background:#fff;}
+textarea.fi{resize:vertical;min-height:73px;}
+.fr{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:13px;margin-bottom:13px;}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:13px;}
+.flbl{font-size:.81rem;font-weight:700;color:var(--navy);}
+.fnode{background:#fff;border:2px solid var(--navy);border-radius:8px;padding:11px 22px;font-weight:700;font-size:.88rem;color:var(--navy);text-align:center;min-width:220px;box-shadow:var(--shad);}
+.fnode.fs{background:var(--navy);color:#fff;border-radius:50px;}
+.fnode.fe{background:var(--teal);color:#fff;border-radius:50px;border-color:var(--teal);}
+.fnode.fd{background:var(--goldp);border-color:var(--gold);}
+.farr{font-size:1.45rem;color:var(--gold);margin:3px 0;}
+.ic{background:#fff;border-radius:14px;border:1px solid var(--gray);box-shadow:var(--shad);overflow:hidden;margin-bottom:17px;}
+.ich{padding:13px 19px;display:flex;align-items:center;justify-content:space-between;gap:11px;flex-wrap:wrap;background:linear-gradient(90deg,var(--navy),#1e3a7a);color:#fff;}
+.inum{width:35px;height:35px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.93rem;font-weight:900;color:#fff;flex-shrink:0;}
+.itit{font-size:.98rem;font-weight:800;}
+.ityp{font-size:.76rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 10px;}
+.icb{padding:15px 19px;}
+.img{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:10px;margin-bottom:13px;}
+.imi{background:var(--goldp);border-radius:8px;padding:9px 12px;border-right:3px solid var(--gold);}
+.iml{font-size:.72rem;color:var(--gm);font-weight:700;display:block;margin-bottom:3px;}
+.imv{font-size:.89rem;font-weight:700;color:var(--navy);}
+.tmt{width:100%;border-collapse:collapse;font-size:.85rem;}
+.tmt th{background:var(--teal);color:#fff;padding:9px 12px;text-align:right;font-weight:700;}
+.tmt td{padding:9px 12px;border-bottom:1px solid var(--gray);vertical-align:middle;}
+.tmt tr:nth-child(even) td{background:#f5faf9;}
+.rb{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.73rem;font-weight:700;}
+.rr{background:#fef0e0;color:var(--gold);border:1px solid var(--gold);}
+.rm{background:#e8f4fd;color:var(--blue);border:1px solid var(--blue);}
+.ra{background:#eaf6ee;color:var(--green);border:1px solid var(--green);}
+.og{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:14px;margin-bottom:22px;}
+.oc{background:#fff;border-radius:8px;border-right:4px solid var(--gold);box-shadow:0 2px 10px rgba(0,0,0,.07);padding:14px 16px;transition:border-color .2s,transform .2s;}
+.oc:hover{border-color:var(--teal);transform:translateX(-3px);}
+.on{display:inline-flex;width:26px;height:26px;background:var(--navy);color:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:.76rem;font-weight:900;margin-bottom:6px;}
+.ot{font-size:.88rem;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.oi{font-size:.78rem;color:#555;line-height:1.6;}
+.pw{background:var(--gray);border-radius:20px;overflow:hidden;height:10px;margin:5px 0;}
+.pb{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .8s ease;}
+.tl{position:relative;padding-right:26px;}
+.tl::before{content:"";position:absolute;right:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--teal));}
+.tli{position:relative;margin-bottom:17px;padding-right:18px;}
+.tli::before{content:"";position:absolute;right:-23px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 3px rgba(201,146,42,.3);}
+.tli h4{font-size:.91rem;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.tli p{font-size:.83rem;color:#555;line-height:1.6;}
+.fb{display:inline-block;padding:2px 9px;border-radius:20px;font-size:.72rem;font-weight:700;white-space:nowrap;}
+.fb-m{background:#e8f4fd;color:#1a5276;border:1px solid #1a5276;}
+.fb-a{background:#eaf6ee;color:#1e8449;border:1px solid #1e8449;}
+.fb-t{background:#fef0e0;color:var(--gold);border:1px solid var(--gold);}
+.fb-s{background:#f0eaf8;color:#6c3483;border:1px solid #6c3483;}
+.fb-v{background:#e9f7f7;color:var(--teal);border:1px solid var(--teal);}
+.fb-w{background:#fde8e8;color:var(--red);border:1px solid var(--red);}
+.ilt{width:100%;border-collapse:collapse;font-size:.85rem;}
+.ilt thead th{background:var(--navy);color:#fff;padding:10px 11px;text-align:right;font-weight:700;}
+.ilt tbody tr{transition:background .15s;cursor:pointer;}
+.ilt tbody tr:hover{background:var(--goldp);}
+.ilt tbody td{padding:10px 11px;border-bottom:1px solid var(--gray);vertical-align:middle;}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;align-items:center;justify-content:center;padding:18px;}
+.mo.open{display:flex;}
+.mb{background:#fff;border-radius:14px;max-width:660px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:fu .3s;}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.mh{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:16px 19px;display:flex;align-items:center;justify-content:space-between;gap:11px;position:sticky;top:0;border-radius:14px 14px 0 0;}
+.mc2{background:rgba(255,255,255,.15);border:none;color:#fff;width:29px;height:29px;border-radius:50%;cursor:pointer;font-size:.97rem;display:flex;align-items:center;justify-content:center;}
+.mc2:hover{background:rgba(255,255,255,.3);}
+.mbody{padding:19px;}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:11px 24px;border-radius:50px;font-size:.87rem;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:9999;transition:transform .35s;border:2px solid var(--gold);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.btnp{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-family:Tajawal,sans-serif;font-size:.91rem;font-weight:700;cursor:pointer;transition:background .2s;}
+.btnp:hover{background:var(--teal);}
+.btnt{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-family:Tajawal,sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;}
+.sf{background:var(--navy);color:rgba(255,255,255,.75);text-align:center;padding:17px 22px;font-size:.83rem;margin-top:36px;}
+.sf a{color:var(--gold2);text-decoration:none;font-weight:700;}
+.sf a:hover{text-decoration:underline;}
+.fdiv{border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;}
+@media(max-width:768px){
+  .sh-top{padding:10px 13px;}
+  .mc{padding:14px 9px 50px;}
+  .hero{padding:20px 16px;}
+  .hero h2{font-size:1.3rem;}
+  .cgrid{grid-template-columns:1fr;}
+  .fr{grid-template-columns:1fr;}
+  .sgrid{grid-template-columns:repeat(2,1fr);}
+  .ctbl th,.ctbl td{padding:7px 6px;font-size:.77rem;}
+}
+@media print{
+  .sh,.sf,.mnav,.print-hide{display:none!important;}
+  .sp{display:block!important;}
+  body{background:#fff;}
+}
+
+/* ======= طباعة مبادرة منفردة ======= */
+@media print {
+  body * { visibility: hidden !important; }
+  #print-area, #print-area * { visibility: visible !important; }
+  #print-area {
+    position: absolute !important;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    visibility: visible !important;
+  }
+  .no-print { display: none !important; }
+  @page {
+    size: A4 portrait;
+    margin: 14mm 12mm 14mm 12mm;
+  }
+}
+.print-card {
+  font-family: Tajawal, sans-serif;
+  direction: rtl;
+  color: #1a1208;
+}
+.print-card-header {
+  background: linear-gradient(135deg, #0d1b3e, #1a3a7a);
+  color: #fff;
+  padding: 16px 22px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.print-card-num {
+  width: 38px; height: 38px;
+  background: #c9922a;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 900; color: #fff; flex-shrink: 0;
+}
+.print-card-title { font-size: 1.1rem; font-weight: 900; }
+.print-card-sub { font-size: .8rem; color: rgba(255,255,255,.75); margin-top: 3px; }
+.print-card-body { padding: 18px 22px; border: 1px solid #e8e4dc; border-top: none; border-radius: 0 0 10px 10px; background: #fff; }
+.print-meta-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+.print-meta-item { background: #fdf3e3; border-radius: 7px; padding: 9px 12px; border-right: 3px solid #c9922a; }
+.print-meta-label { font-size: .72rem; color: #9a9080; font-weight: 700; display: block; margin-bottom: 3px; }
+.print-meta-value { font-size: .9rem; font-weight: 700; color: #0d1b3e; }
+.print-prog-bar { background: #e8e4dc; border-radius: 20px; height: 12px; margin: 5px 0; overflow: hidden; }
+.print-prog-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #1a7a6e, #c9922a); }
+.print-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 10px; }
+.print-table th { background: #0d1b3e; color: #fff; padding: 9px 11px; text-align: right; font-weight: 700; }
+.print-table td { padding: 9px 11px; border-bottom: 1px solid #e8e4dc; vertical-align: top; line-height: 1.5; }
+.print-table tr:nth-child(even) td { background: #fdf3e3; }
+.print-footer { text-align: center; margin-top: 20px; padding-top: 12px; border-top: 2px solid #c9922a; font-size: .8rem; color: #9a9080; }
+</style>
+</head>
+<body>
+
+<header class="sh">
+  <div class="sh-top">
+    <div class="sh-brand">
+      <div class="sh-logo">🚀</div>
+      <div class="sh-titles">
+        <h1>منصة المبادرات المدرسية التفاعلية</h1>
+        <p>الإدارة العامة للتعليم</p>
+      </div>
+    </div>
+    <div class="sh-meta">
+      
+      
+    </div>
+  </div>
+  <nav class="mnav">
+    <button class="ntab active"  onclick="showTab('ov',this)">🏠 الرئيسية</button>
+    <button class="ntab"         onclick="showTab('df',this)">📖 مفهوم المبادرة</button>
+    <button class="ntab"         onclick="showTab('in',this)">📋 جدول المبادرات</button>
+    <button class="ntab"         onclick="showTab('ro',this)">👥 الأدوار والفرق</button>
+    <button class="ntab"         onclick="showTab('fm',this)">📝 النماذج</button>
+    <button class="ntab"         onclick="showTab('fl',this)">🔄 مسار الاستقبال</button>
+    <button class="ntab"         onclick="showTab('ob',this)">🎯 الأهداف الاستراتيجية</button>
+    <button class="ntab"         onclick="showTab('st',this)">⚙️ الإعدادات</button>
+  </nav>
+</header>
+
+<div class="mc">
+
+<!-- ====== الرئيسية ====== -->
+<section id="tab-ov" class="sp active">
+  <div class="hero">
+    <h2>🌟 منصة المبادرات المدرسية التفاعلية</h2>
+    <p>دليل شامل لبناء المبادرات التعليمية وفق معايير الإدارة العامة للتعليم بمنطقة المدينة المنورة. تُعنى هذه المنصة بتنظيم ومتابعة جميع المبادرات المدرسية .</p>
+    <div class="hstats">
+      <div class="hstat"><span class="num">١٥</span><span class="lbl">مبادرة مدرسية</span></div>
+      <div class="hstat"><span class="num">٦</span><span class="lbl">مجالات المبادرات</span></div>
+      <div class="hstat"><span class="num">٣</span><span class="lbl">أنواع المبادرات</span></div>
+      <div class="hstat"><span class="num">٦</span><span class="lbl">أعضاء الفريق التنفيذي</span></div>
+    </div>
+  </div>
+
+  <div class="stitle"><span>🎯</span> الأهداف العامة لبناء المبادرات</div>
+  <div class="cgrid">
+    <div class="card"><div class="ch"><div class="ci" style="background:#eef1fb">🏛️</div><div><div class="ct">ترسيخ العمل المؤسسي</div><div class="cs">الأهداف المحورية</div></div></div><div class="cb"><p>ترسيخ مفاهيم العمل المؤسسي واستخدام المنهجية العلمية في الممارسات التربوية اليومية.</p></div></div>
+    <div class="card"><div class="ch"><div class="ci" style="background:#eaf6ee">🤝</div><div><div class="ct">تعزيز العمل التشاركي</div><div class="cs">الشراكة الفعّالة</div></div></div><div class="cb"><p>تعزيز العمل التشاركي وتفعيل مجتمعات التعلم المهني كأحد الممارسات المثلى في الميادين التربوية.</p></div></div>
+    <div class="card"><div class="ch"><div class="ci" style="background:#fef0e0">📚</div><div><div class="ct">تطوير الأداء المدرسي</div><div class="cs">الجودة والتميز</div></div></div><div class="cb"><p>تطوير مجالات الأداء المدرسي ومعالجة القضايا والتحديات بأساليب علمية منظمة ومدروسة.</p></div></div>
+    <div class="card"><div class="ch"><div class="ci" style="background:#f0eaf8">🌱</div><div><div class="ct">تنمية القيم الوطنية</div><div class="cs">الهوية والانتماء</div></div></div><div class="cb"><p>تنمية القيم الوطنية والتربوية والاجتماعية وفق رؤية المملكة العربية السعودية ٢٠٣٠.</p></div></div>
+    <div class="card"><div class="ch"><div class="ci" style="background:#e6f7f5">🏫</div><div><div class="ct">تعزيز الشراكة المجتمعية</div><div class="cs">المجتمع والمدرسة</div></div></div><div class="cb"><p>تعزيز الشراكة المجتمعية بين مؤسسات المجتمع للارتقاء بالأداء المدرسي وتحقيق التكامل.</p></div></div>
+    <div class="card"><div class="ch"><div class="ci" style="background:#fde8e8">⚙️</div><div><div class="ct">تمكين مهارات التخطيط</div><div class="cs">الكفاءة والفاعلية</div></div></div><div class="cb"><p>تمكين الميدان التربوي من مهارات التخطيط واستخدام المنهجية العلمية في العمل المؤسسي.</p></div></div>
+  </div>
+
+  <div class="stitle"><span>📂</span> مجالات المبادرات المدرسية</div>
+  <div class="cgrid" style="grid-template-columns:repeat(auto-fill,minmax(185px,1fr))">
+    <div class="card" style="border-top:4px solid #1e8449"><div class="ch" style="padding:12px 14px 10px"><div class="ci" style="background:#eaf6ee;font-size:16px">📊</div><div class="ct" style="font-size:.92rem">التحصيل الدراسي</div></div></div>
+    <div class="card" style="border-top:4px solid var(--navy)"><div class="ch" style="padding:12px 14px 10px"><div class="ci" style="background:#eef1fb;font-size:16px">🧠</div><div class="ct" style="font-size:.92rem">السلوك والاتجاهات</div></div></div>
+    <div class="card" style="border-top:4px solid var(--teal)"><div class="ch" style="padding:12px 14px 10px"><div class="ci" style="background:#e6f7f5;font-size:16px">📖</div><div class="ct" style="font-size:.92rem">التعليم والتعلم</div></div></div>
+    <div class="card" style="border-top:4px solid var(--gold)"><div class="ch" style="padding:12px 14px 10px"><div class="ci" style="background:#fef0e0;font-size:16px">🏢</div><div class="ct" style="font-size:.92rem">الإدارة المدرسية</div></div></div>
+    <div class="card" style="border-top:4px solid #6c3483"><div class="ch" style="padding:12px 14px 10px"><div class="ci" style="background:#f0eaf8;font-size:16px">🤝</div><div class="ct" style="font-size:.92rem">الشراكة المجتمعية</div></div></div>
+    <div class="card" style="border-top:4px solid var(--red)"><div class="ch" style="padding:12px 14px 10px"><div class="ci" style="background:#fde8e8;font-size:16px">🌿</div><div class="ct" style="font-size:.92rem">البيئة المدرسية</div></div></div>
+  </div>
+</section>
+
+<!-- ====== مفهوم المبادرة ====== -->
+<section id="tab-df" class="sp">
+  <div class="stitle"><span>📖</span> مفهوم المبادرة وأسسها</div>
+  <div class="ib">
+    <div class="ibh">🔑 تعريف المبادرة</div>
+    <div class="ibb">
+      <p style="font-size:.97rem;line-height:1.85;color:#333;background:var(--goldp);padding:15px 17px;border-radius:8px;border-right:4px solid var(--gold)">
+        <strong>«برنامج أو مشروع يهدف إلى تحقيق مخرجات متفق عليها بين جميع الشركاء (إدارة التعليم ومدارسها)؛ لمعالجة القضايا المشتركة بينهما، أو تطوير جوانب معينة بشكل مخطط ومنظم ضمن فترة زمنية محددة، وتكون من سنة إلى ثلاث سنوات»</strong><br>
+        <span style="font-size:.79rem;color:var(--gm)">— شركة تطوير، دليل المبادرات، ١٤٣٥هـ، ص ١١</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="stitle"><span>✨</span> سمات المبادرة الجيدة</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibb">
+      <ul class="fl">
+        <li>وجود حاجة للتطوير، أو معالجة بعض القضايا في الميدان التربوي.</li>
+        <li>محددة الأهداف وقابلة للتطبيق.</li>
+        <li>مبنية على تخطيط علمي.</li>
+        <li>تحديد الفترة الزمنية، ومكان التطبيق.</li>
+        <li>واضحة لجميع المشاركين والمشاركات فيها.</li>
+        <li>مشاركة جميع المعنيين بمراحل إعدادها وتنفيذها.</li>
+        <li>تحديد الأدوار والمسؤوليات لجميع المعنيين.</li>
+        <li>تحديد المتطلبات، والميزانية التقديرية.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle"><span>🧱</span> مرتكزات بناء المبادرة</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibb">
+      <ul class="fl">
+        <li>القيم الإسلامية، والوطنية، والتربوية، والاجتماعية.</li>
+        <li>رؤية المملكة العربية السعودية ٢٠٣٠.</li>
+        <li>السياسات العليا للتعليم في المملكة العربية السعودية.</li>
+        <li>الاحتياجات الفعلية للميدان بكافة فئاته.</li>
+        <li>رؤية ورسالة وقيم الإدارة العامة للتعليم بالمنطقة.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle"><span>🎯</span> الأهداف الذكية — SMART Goals</div>
+  <div class="sgrid">
+    <div class="si"><div class="sl">S</div><div class="sn">محدد</div><div class="sd">أن يكون الهدف واضحاً ودقيقاً حتى يتسنى للجميع معرفته، ولا يكون هناك لبس أو سوء فهم.</div></div>
+    <div class="si"><div class="sl">M</div><div class="sn">قابل للقياس</div><div class="sd">بحيث يمكن لنا معرفة ما إذا كانت المبادرة قريبة من تحقيق الهدف أم لا.</div></div>
+    <div class="si"><div class="sl">A</div><div class="sn">قابل للتحقيق</div><div class="sd">يجب أن يكون الهدف قابلاً للوصول وسهولة تحقيقه.</div></div>
+    <div class="si"><div class="sl">R</div><div class="sn">واقعي</div><div class="sd">يجب ألا يكون الهدف خيالياً أو يستحيل تحقيقه.</div></div>
+    <div class="si"><div class="sl">T</div><div class="sn">محدد بوقت</div><div class="sd">يجب أن يكون الهدف محدداً بمدة زمنية؛ لكي يصبح للهدف قيمة.</div></div>
+  </div>
+
+  <div class="stitle"><span>📊</span> أنواع المبادرات ومقارنتها</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibb" style="overflow-x:auto">
+      <table class="ctbl">
+        <thead><tr><th>المعايير</th><th>المبادرة الخاصة</th><th>المبادرة العامة</th><th>المبادرة النوعية</th></tr></thead>
+        <tbody>
+          <tr><td>نطاق العمل</td><td>النطاق محدود بالمدرسة أو بالإدارة</td><td>النطاق مرتبط بقسم أو مكتب أو إدارة</td><td>النطاق أكبر، قد يشمل عدداً من المدارس أو المنطقة</td></tr>
+          <tr><td>الفريق</td><td>فريق مكوَّن من أعضاء المجتمع المدرسي</td><td>فريق متنوع الخبرات، أغلب أعضاؤه من الجهة المالكة</td><td>فريق عمل تنوع الخبرات، من مختلف الأقسام والجهات</td></tr>
+          <tr><td>المستهدفون</td><td>أعضاء المجتمع المدرسي</td><td>منسوبو مكتب أو إدارة أو قسم</td><td>قطاع عريض</td></tr>
+          <tr><td>الزمن</td><td>مدة قصيرة</td><td>نصف عام أو أكثر</td><td>لا تقل عن عام</td></tr>
+          <tr><td>خطة تنفيذية</td><td>✅ متطلب</td><td>✅ متطلب</td><td>✅ متطلب</td></tr>
+          <tr><td>الدعم المالي</td><td>التكلفة منخفضة وقد لا تحتاج</td><td>تحتاج لدعم مالي</td><td>تحتاج لدعم مالي مرتفع</td></tr>
+          <tr><td>الاعتماد</td><td>المدير المباشر</td><td>اعتماد اللجنة التنفيذية والمكتب</td><td>اعتماد اللجنة التنفيذية ثم قرار المدير العام</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="stitle"><span>📌</span> المصطلحات الأساسية</div>
+  <div class="ib">
+    <div class="ibb">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+        <div style="background:var(--goldp);border-radius:8px;padding:12px;border-right:3px solid var(--gold)"><div style="font-weight:800;color:var(--navy);margin-bottom:4px">📋 الخطة التنفيذية</div><p style="font-size:.83rem;color:#444;line-height:1.6">إطار عمل يتضمن مجموعة من الإجراءات المطلوب تنفيذها في نطاق الأهداف خلال فترة زمنية محددة.</p></div>
+        <div style="background:#e6f7f5;border-radius:8px;padding:12px;border-right:3px solid var(--teal)"><div style="font-weight:800;color:var(--navy);margin-bottom:4px">📈 مؤشر الأداء</div><p style="font-size:.83rem;color:#444;line-height:1.6">مقياس رقمي يدل على مستوى الأداء في لحظة تاريخية محددة، ويقيس حالة التقدم نحو تحقيق المستهدفات.</p></div>
+        <div style="background:#eef1fb;border-radius:8px;padding:12px;border-right:3px solid var(--navy)"><div style="font-weight:800;color:var(--navy);margin-bottom:4px">🎯 المستهدفات</div><p style="font-size:.83rem;color:#444;line-height:1.6">قيمة كمية تمثل النتيجة المراد الوصول إليها في وقت محدد، وترتبط بمؤشر الأداء.</p></div>
+        <div style="background:#fde8e8;border-radius:8px;padding:12px;border-right:3px solid var(--red)"><div style="font-weight:800;color:var(--navy);margin-bottom:4px">⚠️ المخاطر</div><p style="font-size:.83rem;color:#444;line-height:1.6">الأحداث أو الظروف غير المؤكدة والتي يمكن أن تؤثر على سير المبادرة.</p></div>
+        <div style="background:#eaf6ee;border-radius:8px;padding:12px;border-right:3px solid var(--green)"><div style="font-weight:800;color:var(--navy);margin-bottom:4px">📦 المخرجات</div><p style="font-size:.83rem;color:#444;line-height:1.6">النتائج المباشرة للأهداف التفصيلية.</p></div>
+        <div style="background:#f0eaf8;border-radius:8px;padding:12px;border-right:3px solid #6c3483"><div style="font-weight:800;color:var(--navy);margin-bottom:4px">📏 خط الأساس</div><p style="font-size:.83rem;color:#444;line-height:1.6">القيمة الحالية للمؤشر عند بدء تنفيذ أنشطة المبادرة، ويتم التوصل إليه من خلال أدوات القياس.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== جدول المبادرات ====== -->
+<section id="tab-in" class="sp">
+  <div class="stitle"><span>📋</span> جدول المبادرات</div>
+
+  <!-- شريط الأدوات -->
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;">
+    <button onclick="addInitRow()" style="display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:none;border-radius:8px;padding:11px 22px;font-family:Tajawal,sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(26,122,110,.3)">
+      <span style="font-size:1.1rem">➕</span> إضافة مبادرة جديدة
+    </button>
+    <button onclick="saveAllInit()" style="display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border:none;border-radius:8px;padding:11px 22px;font-family:Tajawal,sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(13,27,62,.25)">
+      <span style="font-size:1.1rem">💾</span> حفظ التعديلات
+    </button>
+    <button onclick="confirmDeleteSelected()" style="display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;border:none;border-radius:8px;padding:11px 20px;font-family:Tajawal,sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(192,57,43,.25)">
+      <span style="font-size:1.1rem">🗑️</span> حذف المحددة
+    </button>
+    <button onclick="exportData()" style="display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,#1e8449,#27ae60);color:#fff;border:none;border-radius:8px;padding:11px 20px;font-family:Tajawal,sans-serif;font-size:.91rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(30,132,73,.25)"><span style="font-size:1.1rem">📤</span> تصدير البيانات</button><button onclick="importData()" style="display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,#6c3483,#8e44ad);color:#fff;border:none;border-radius:8px;padding:11px 20px;font-family:Tajawal,sans-serif;font-size:.91rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(108,52,131,.25)"><span style="font-size:1.1rem">📥</span> استيراد البيانات</button><div style="margin-right:auto;font-size:.83rem;color:var(--gm)" id="initCount"></div>
+  </div>
+
+  <!-- الجدول -->
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibb" style="overflow-x:auto;padding:0">
+      <table class="ilt" id="initTable" style="min-width:820px">
+        <thead>
+          <tr>
+            <th style="width:36px;text-align:center"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" style="width:15px;height:15px;accent-color:var(--gold)"></th>
+            <th style="width:38px">م</th>
+            <th style="min-width:200px">اسم المبادرة</th>
+            <th style="min-width:100px">المجال</th>
+            <th style="min-width:160px">المستهدفون</th>
+            <th style="min-width:180px">آلية التنفيذ</th>
+            <th style="min-width:80px">الإنجاز</th>
+            <th style="width:70px">إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="initTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- نموذج تفاصيل مبادرة محددة -->
+  <div id="detailPanel" style="display:none">
+    <div class="stitle"><span>🔍</span> تفاصيل المبادرة المحددة</div>
+    <div class="ic" id="detailCard"></div>
+  </div>
+
+</section>
+
+<!-- ====== الأدوار والفرق ====== -->
+<section id="tab-ro" class="sp">
+  <div class="stitle"><span>👥</span> الأدوار والمسؤوليات في المبادرات</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibh">🏛️ مهام اللجنة التنفيذية</div>
+    <div class="ibb">
+      <ul class="fl">
+        <li>إعداد وإصدار دليل بناء المبادرات والنماذج المتعلقة.</li>
+        <li>نشر ثقافة المبادرات والمشروعات، وتمكين منسوبي التعليم من كيفية بنائها.</li>
+        <li>استقبال المبادرات وتحكيمها وتقويمها وفق المعايير والضوابط اللازمة بعد إحالتها من صاحب الصلاحية.</li>
+        <li>اختيار منسق ومنسقات للمبادرات في مكاتب التعليم والإدارات.</li>
+        <li>متابعة منسقي ومُلَّاك المبادرات في تنفيذ المبادرات بشكل دوري.</li>
+        <li>رفع تقرير ختامي لكل مبادرة للجنة الإشرافية.</li>
+        <li>المشاركة مع إدارة التخطيط والتطوير في تنفيذ وتفعيل مبادرات التحول الوطني ٢٠٣٠.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibh" style="background:linear-gradient(90deg,var(--teal),var(--teal2))">🔗 مهام اللجنة التنسيقية</div>
+    <div class="ibb">
+      <ul class="fl">
+        <li>المساهمة في نشر ثقافة المبادرات، وأسس بنائها.</li>
+        <li>استلام نموذج بناء المبادرات من مقدميها في نطاق الإدارة.</li>
+        <li>التحقق من مطابقة المبادرة للمعايير المعتمدة.</li>
+        <li>إعداد خطط التحسين لرفع جودة المبادرات.</li>
+        <li>التواصل المستمر والفعال مع اللجنة التنفيذية.</li>
+        <li>التنسيق والتنظيم بين منفذي المبادرات، والشركاء فيها.</li>
+        <li>إعداد تقرير ختامي بما تمَّ إنجازه، ورفعه لجهة الاختصاص.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="stitle"><span>📋</span> فريق مبادرة سلسلة دعم المعلم الرقمي</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibh" style="background:linear-gradient(90deg,var(--gold),#d4a439)">👤 أعضاء الفريق المكلف</div>
+    <div class="ibb" style="overflow-x:auto">
+      <table class="tmt">
+        <thead><tr><th>م</th><th>الاسم</th><th>المسمى الوظيفي</th><th>الصفة</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tn">١</span></td><td><strong>مديرة المدارس</strong></td><td>مديرة المدارس</td><td><span class="rb rr">رئيسة</span></td></tr>
+          <tr><td><span class="tn">٢</span></td><td><strong>وكيلة الشؤون التعليمية</strong></td><td>وكيلة شؤون تعليمية وطلابية</td><td><span class="rb rm">مقررة</span></td></tr>
+          <tr><td><span class="tn">٣</span></td><td>عضو الفريق</td><td>معلمة</td><td><span class="rb ra">عضو</span></td></tr>
+          <tr><td><span class="tn">٤</span></td><td>عضو الفريق</td><td>معلمة</td><td><span class="rb ra">عضو</span></td></tr>
+          <tr><td><span class="tn">٥</span></td><td>عضو الفريق</td><td>معلمة</td><td><span class="rb ra">عضو</span></td></tr>
+          <tr><td><span class="tn">٦</span></td><td>عضو الفريق</td><td>معلمة</td><td><span class="rb ra">عضو</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="stitle"><span>⏰</span> البرنامج الزمني للمبادرة</div>
+  <div class="ib">
+    <div class="ibb">
+      <div style="overflow-x:auto">
+        <table class="ft">
+          <thead><tr><th>اسم المبادرة</th><th>الأهداف</th><th>الجهة المساندة</th><th>مؤشر الأداء</th></tr></thead>
+          <tbody>
+            <tr><td><strong>سلسلة دعم المعلم الرقمي</strong></td><td>تمكين المعلمين/ات من مهارات المعلم الرقمي</td><td>منصة إثرائي</td><td>تمكين ٦٥٪ من المعلمين/ات من استخدام وسائل التقنية</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:13px;padding:12px 14px;background:var(--goldp);border-radius:8px;font-size:.86rem;color:#444;line-height:1.7">
+        <strong>📅 فترة التنفيذ:</strong> عام دراسي كامل | من تاريخ <input class="fi" type="text" value="١٩/٠٥/١٤٤٦هـ" style="display:inline;width:130px;padding:3px 7px;font-size:.85rem"> إلى <input class="fi" type="text" value="١٠/١١/١٤٤٦هـ" style="display:inline;width:130px;padding:3px 7px;font-size:.85rem"><br>
+        <strong>⏱️ توقيت التطبيق:</strong> يوم الخميس من كل أسبوع<br>
+        <strong>📋 المتابعة والتقويم:</strong> يتم جدولة كل تطبيق مع تحديد يوم التنفيذ والمساندة والمنفذ ومعيار الإنجاز
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== النماذج ====== -->
+<section id="tab-fm" class="sp">
+  <div class="stitle"><span>📝</span> نماذج المبادرات</div>
+
+  <div class="acc">
+    <div class="ach" onclick="toggleAcc(this)"><span>📄 نموذج الفكرة الأولية للمبادرة</span><span class="aa">▼</span></div>
+    <div class="acb">
+      <div style="background:var(--goldp);border-radius:7px;padding:10px 13px;margin-bottom:13px;font-size:.85rem;color:#555;border-right:3px solid var(--gold)">⚡ استخدم هذا النموذج لتقديم فكرتك الأولية للمبادرة قبل البناء الكامل.</div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">الاسم</label><input class="fi" type="text" placeholder="اسم صاحب/ة المبادرة"></div>
+        <div class="fg"><label class="flbl">العمل الحالي</label><input class="fi" type="text" placeholder="المسمى الوظيفي"></div>
+        <div class="fg"><label class="flbl">رقم الجوال</label><input class="fi" type="tel" placeholder="05xxxxxxxx"></div>
+        <div class="fg"><label class="flbl">البريد الإلكتروني</label><input class="fi" type="email" placeholder="example@edu.sa"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">اسم المدرسة</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">اسم المكتب</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">اسم القسم</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">اسم الإدارة</label><input class="fi" type="text"></div>
+      </div>
+      <div class="fg"><label class="flbl">١. عنوان المبادرة</label><input class="fi" type="text" placeholder="اكتب عنواناً مميزاً يعبّر عن فكرة المبادرة"></div>
+      <div class="fg"><label class="flbl">٢. فكرة المبادرة</label><textarea class="fi" rows="3" placeholder="وصف موجز عن رؤيتكم للمبادرة وسبب اختياركم لها والمنفعة التي ستحققها"></textarea></div>
+      <div class="fg"><label class="flbl">٣. الهدف العام للمبادرة</label><textarea class="fi" rows="2" placeholder="التغيير والتحسن الذي تريد إحداثه على الفئة المستهدفة"></textarea></div>
+      <div class="fg"><label class="flbl">٤. مبررات المبادرة</label><textarea class="fi" rows="3" placeholder="المشكلة أو الفرصة التي تسعى المبادرة لمعالجتها باستخدام الحقائق المتاحة"></textarea></div>
+      <div class="fg"><label class="flbl">٥. المستهدفون وعددهم</label><textarea class="fi" rows="2" placeholder="الجهات والفئات المستفيدة من هذه المبادرة (الطلاب، المعلمين، الإداريين...)"></textarea></div>
+      <div class="fg"><label class="flbl">٦. أبرز الأنشطة والفعاليات</label><textarea class="fi" rows="2" placeholder="الأنشطة المترابطة المضمنة في المبادرة (برامج تدريبية، ورش عمل، زيارات...)"></textarea></div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">٧. تاريخ البدء</label><input class="fi" type="text" placeholder="يوم / شهر / سنة"></div>
+        <div class="fg"><label class="flbl">تاريخ الانتهاء</label><input class="fi" type="text" placeholder="يوم / شهر / سنة"></div>
+      </div>
+      <div class="fg"><label class="flbl">٨. نطاق تطبيق المبادرة</label><input class="fi" type="text" placeholder="على مستوى المدرسة / مجموعة مدارس / المكتب / الإدارة"></div>
+      <div class="fg"><label class="flbl">٩. النواتج المتوقعة</label><textarea class="fi" rows="2" placeholder="التغيرات التي تحدث نتيجة لتحقيق أهداف المبادرة"></textarea></div>
+      <div class="fg"><label class="flbl">١٠. الشركاء</label><textarea class="fi" rows="2" placeholder="الأشخاص أو الجهات التي سيتم عقد اتفاق معهم (حدد الشريك ودوره)"></textarea></div>
+      <div class="fg"><label class="flbl">١١. ملاحظات</label><textarea class="fi" rows="2"></textarea></div>
+      <button class="btnp" onclick="showToast('تم حفظ النموذج بنجاح ✅')">💾 حفظ النموذج</button>
+    </div>
+  </div>
+
+  <div class="acc" style="margin-top:10px">
+    <div class="ach" onclick="toggleAcc(this)"><span>✅ استمارة تحكيم أولية لقبول المبادرة</span><span class="aa">▼</span></div>
+    <div class="acb">
+      <div class="fg"><label class="flbl">اسم المبادرة</label><input class="fi" type="text" placeholder="عنوان المبادرة المقدمة"></div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">مقدمة من</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">في تاريخ</label><input class="fi" type="text" placeholder="يوم / شهر / سنة"></div>
+      </div>
+      <div style="background:var(--goldp);border-radius:8px;padding:14px;margin-bottom:13px">
+        <div style="font-weight:800;color:var(--navy);margin-bottom:10px;font-size:.92rem">شروط قبول المبادرات الأولية:</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.87rem"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"> مرتبطة بأحد الأهداف الاستراتيجية لوزارة التعليم</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.87rem"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"> تتصف بجودة الفكرة ووضوحها</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.87rem"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"> خالية من الأخطاء العلمية والتربوية</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.87rem"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"> قابلة للتطبيق</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.87rem"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"> محددة البداية والنهاية</label>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">مرئيات المنسق</label>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.86rem"><input type="radio" name="cview" style="accent-color:var(--navy)"> فكرة المبادرة واضحة وجيدة — تُزوَّد بنموذج المبادرات الخاصة</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.86rem"><input type="radio" name="cview" style="accent-color:var(--navy)"> فكرة المبادرة جيدة وواضحة — تُزوَّد بنموذج المبادرات العامة والنوعية</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.86rem"><input type="radio" name="cview" style="accent-color:var(--navy)"> فكرة المبادرة غير ملائمة</label>
+        </div>
+        <textarea class="fi" rows="2" placeholder="أسباب عدم الملاءمة إن وجدت"></textarea>
+      </div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">اسم المنسق</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">التاريخ</label><input class="fi" type="text" placeholder="يوم / شهر / سنة"></div>
+      </div>
+      <button class="btnt" onclick="showToast('تم حفظ استمارة التحكيم ✅')">💾 حفظ الاستمارة</button>
+    </div>
+  </div>
+
+  <div class="acc" style="margin-top:10px">
+    <div class="ach" onclick="toggleAcc(this)"><span>📈 تقرير إنجاز المبادرة</span><span class="aa">▼</span></div>
+    <div class="acb">
+      <div style="background:var(--goldp);border-radius:7px;padding:10px 13px;margin-bottom:13px;font-size:.85rem;color:#555;border-right:3px solid var(--gold)">📅 <strong>تقرير إنجاز للفترة الزمنية:</strong> من .............. إلى ..............</div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">عنوان المبادرة</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">جهة المبادرة</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">نطاق التطبيق</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">المستهدفون</label><input class="fi" type="text"></div>
+      </div>
+      <div style="font-weight:800;color:var(--navy);margin-bottom:8px;font-size:.91rem">الأنشطة ونسبة الإنجاز</div>
+      <div style="overflow-x:auto;margin-bottom:13px">
+        <table class="ft" id="actTable">
+          <thead><tr><th>م</th><th>الأنشطة</th><th>أُنجز</th><th>قيد الإنجاز</th><th>لم يُنجز</th><th>المخرجات</th><th>نسبة الإنجاز</th></tr></thead>
+          <tbody id="actBody">
+            <tr>
+              <td>١</td>
+              <td><input class="fi" type="text" placeholder="اسم النشاط" style="min-width:140px"></td>
+              <td style="text-align:center"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"></td>
+              <td style="text-align:center"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--gold)"></td>
+              <td style="text-align:center"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--red)"></td>
+              <td><input class="fi" type="text" placeholder="المخرجات"></td>
+              <td><input class="fi" type="text" placeholder="٪" style="width:62px"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btnt" onclick="addActRow()" style="margin-bottom:13px">➕ إضافة نشاط</button>
+      <div class="fg"><label class="flbl">التحديات التي واجهت تنفيذ أنشطة المبادرة</label><textarea class="fi" rows="3" placeholder="اذكر التحديات والقرارات والحلول المقترحة"></textarea></div>
+      <div class="fr">
+        <div class="fg"><label class="flbl">مالك/ة المبادرة</label><input class="fi" type="text"></div>
+        <div class="fg"><label class="flbl">منسق/ة المبادرة</label><input class="fi" type="text"></div>
+      </div>
+      <button class="btnp" onclick="showToast('تم حفظ تقرير الإنجاز ✅')">💾 حفظ التقرير</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== مسار الاستقبال ====== -->
+<section id="tab-fl" class="sp">
+  <div class="stitle"><span>🔄</span> مسار استقبال وتحكيم المبادرات</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibb">
+      <p style="font-size:.88rem;color:#555;margin-bottom:17px;line-height:1.7">الإجراء هو مخطط يوضح الخطوات التفصيلية التي تمر بها المبادرة من البداية حتى النهاية لتحقيق أداء أو نتيجة ثابتة.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;padding:14px 0">
+        <div class="fnode fs">🚀 إجراءات استقبال المبادرات</div>
+        <div class="farr">⬇</div>
+        <div class="fnode">📝 تعبئة بطاقة المبادرة من قِبَل مالك المبادرة</div>
+        <div class="farr">⬇</div>
+        <div class="fnode">📤 ترفع للجنة التنفيذية للمبادرات</div>
+        <div class="farr">⬇</div>
+        <div class="fnode">📋 ترفع بطاقة المبادرة للمنسق</div>
+        <div class="farr">⬇</div>
+        <div class="fnode fd">💠 هل تم قبولها؟</div>
+        <div style="display:flex;gap:32px;align-items:flex-start;justify-content:center;margin:8px 0;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="font-size:.76rem;color:var(--red);font-weight:700">لا ❌</div>
+            <div class="fnode fe" style="background:var(--red);border-color:var(--red);font-size:.82rem;min-width:105px">استبعادها</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="font-size:.76rem;color:var(--green);font-weight:700">نعم ✅</div>
+            <div class="fnode fd" style="font-size:.82rem;min-width:155px">تصنيف المبادرة</div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:7px">
+              <div style="background:#e6f7f5;border:2px solid var(--teal);border-radius:7px;padding:8px 11px;font-size:.79rem;font-weight:700;color:var(--teal);text-align:center;min-width:105px">📌 خاصة<br><span style="font-size:.71rem;font-weight:400;color:#444">قالب المبادرات الخاصة</span></div>
+              <div style="background:#eef1fb;border:2px solid var(--navy);border-radius:7px;padding:8px 11px;font-size:.79rem;font-weight:700;color:var(--navy);text-align:center;min-width:105px">📊 عامة<br><span style="font-size:.71rem;font-weight:400;color:#444">اللجنة التنفيذية والمكتب</span></div>
+              <div style="background:var(--goldp);border:2px solid var(--gold);border-radius:7px;padding:8px 11px;font-size:.79rem;font-weight:700;color:var(--gold);text-align:center;min-width:105px">⭐ نوعية<br><span style="font-size:.71rem;font-weight:400;color:#444">اللجنة الإشرافية</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitle"><span>📊</span> مراحل بناء المبادرة وخطواتها</div>
+  <div class="ib">
+    <div class="ibb">
+      <div class="tl">
+        <div class="tli"><h4>المرحلة الأولى: التشخيص والتخطيط</h4><p>تحديد الحاجة التربوية، وبناء الفكرة الأولية، وتعبئة نموذج الفكرة الأولية وتقديمه للمنسق.</p></div>
+        <div class="tli"><h4>المرحلة الثانية: التقييم والتحكيم</h4><p>مراجعة الفكرة من قِبَل اللجنة التنسيقية والتنفيذية، والتحقق من مطابقتها للمعايير المعتمدة.</p></div>
+        <div class="tli"><h4>المرحلة الثالثة: البناء والاعتماد</h4><p>بناء المبادرة وفق النموذج المعتمد، وتشكيل فريق العمل، وإصدار قرار التكليف من المدير المختص.</p></div>
+        <div class="tli"><h4>المرحلة الرابعة: التنفيذ والمتابعة</h4><p>تنفيذ المبادرة وفق الخطة الزمنية، وتوثيق جميع البرامج والأنشطة، ومتابعة دورية منتظمة.</p></div>
+        <div class="tli"><h4>المرحلة الخامسة: التقييم والتقرير الختامي</h4><p>إعداد تقرير ختامي شامل يتضمن المخرجات والتحديات والتوصيات، ورفعه لجهة الاختصاص.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== الأهداف الاستراتيجية ====== -->
+<section id="tab-ob" class="sp">
+  <div class="stitle"><span>🎯</span> الأهداف الاستراتيجية لوزارة التعليم ومؤشرات الأداء</div>
+  <div class="og">
+    <div class="oc"><div class="on">١</div><div class="ot">تنويع مصادر تمويل مبتكرة وتحسين الكفاءة المالية لقطاع التعليم</div><div class="oi">📊 معدل (طالب / معلم)</div></div>
+    <div class="oc"><div class="on">٢</div><div class="ot">تعزيز قدرة نظام التعليم لتلبية متطلبات التنمية واحتياجات سوق العمل</div><div class="oi">📊 نسبة خريجي الجامعات الملتحقين بسوق العمل خلال (٦) أشهر من تاريخ التخرج</div></div>
+    <div class="oc"><div class="on">٣</div><div class="ot">تعزيز القيم والمهارات للطلبة</div><div class="oi">📊 نسبة الطلبة المشاركين في الأنشطة غير الصفية | نسبة الأسر المشاركة في الأنشطة المدرسية</div></div>
+    <div class="oc"><div class="on">٤</div><div class="ot">رفع مشاركة القطاع الأهلي والخاص في التعليم</div><div class="oi">📊 نسبة الطلبة المسجلين في المدارس الأهلية | عدد المباني المدرسية الموفرة من القطاع الخاص</div></div>
+    <div class="oc"><div class="on">٥</div><div class="ot">تطوير المناهج وأساليب التعليم والتقويم</div><div class="oi">📊 متوسط نتائج الطلبة في الاختبارات الدولية PIRLS وPISA وTIMMS للصفوف الرابع والثامن</div></div>
+    <div class="oc"><div class="on">٦</div><div class="ot">تحسين البيئة التعليمية المحفزة للإبداع والابتكار</div><div class="oi">📊 نسبة الطلبة المستفيدين من برامج الموهوبين | عدد الميداليات في المسابقات الدولية والإقليمية</div></div>
+    <div class="oc"><div class="on">٧</div><div class="ot">تحسين استقطاب المعلمين وإعدادهم وتأهيلهم وتطويرهم</div><div class="oi">📊 نسبة المعلمين المجتازين لاختبار (قياس) | متوسط ساعات التطوير المهني للمعلمين والقادة</div></div>
+    <div class="oc"><div class="on">٨</div><div class="ot">ضمان التعليم الجيد المنصف والشامل للجميع وتعزيز فرص التعليم مدى الحياة</div><div class="oi">📊 نسبة الطلبة من ذوي الإعاقة | نسبة الأمية بين الكبار | نسبة القيد في رياض الأطفال</div></div>
+  </div>
+</section>
+
+<!-- ====== الإعدادات ====== -->
+<section id="tab-st" class="sp">
+  <div class="stitle"><span>⚙️</span> إعدادات المنصة</div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibh">🏫 معلومات المدرسة</div>
+    <div class="ibb">
+      <div class="fr">
+        <div class="fg"><label class="flbl">اسم المدرسة</label><input class="fi" type="text" placeholder="اسم المدرسة"></div>
+        <div class="fg"><label class="flbl">اسم المديرة</label><input class="fi" type="text" value="مديرة المدارس"></div>
+        <div class="fg"><label class="flbl">الإدارة</label><input class="fi" type="text" value="إدارة التعليم"></div>
+        <div class="fg"><label class="flbl">العام الدراسي</label><input class="fi" type="text" value="العام الدراسي الحالي"></div>
+      </div>
+      <button class="btnp" onclick="showToast('تم حفظ الإعدادات ✅')">💾 حفظ الإعدادات</button>
+    </div>
+  </div>
+  <div class="ib" style="margin-bottom:20px">
+    <div class="ibh" style="background:linear-gradient(90deg,var(--teal),var(--teal2))">📤 أدوات</div>
+    <div class="ibb">
+      <button onclick="window.print()" style="background:var(--gold);color:#fff;border:none;border-radius:8px;padding:10px 21px;font-family:Tajawal,sans-serif;font-size:.89rem;font-weight:700;cursor:pointer">🖨️ طباعة المنصة</button>
+    </div>
+  </div>
+  <div class="ib">
+    <div class="ibh" style="background:linear-gradient(90deg,#2c3e50,#34495e)">✨ معلومات المنصة</div>
+    <div class="ibb" style="text-align:center;padding:26px 19px">
+      <div style="font-size:2.6rem;margin-bottom:10px">🚀</div>
+      <div style="font-size:1.15rem;font-weight:900;color:var(--navy);margin-bottom:6px">منصة المبادرات المدرسية التفاعلية</div>
+      <div style="font-size:.87rem;color:#666;margin-bottom:17px">نظام متكامل لإدارة وتوثيق المبادرات التعليمية</div>
+      <div style="border-top:1px solid var(--gray);padding-top:19px">
+        <div style="font-size:1.03rem;font-weight:800;color:var(--navy);margin-bottom:5px">تصميم د/فواز</div>
+        <div style="font-size:.86rem;color:var(--gm);margin-bottom:13px">للمزيد من المنصات والأدوات التعليمية</div>
+        <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0088cc,#006ba6);color:#fff;text-decoration:none;padding:12px 27px;border-radius:50px;font-size:.92rem;font-weight:700;box-shadow:0 4px 16px rgba(0,136,204,.35)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+          تفضَّل للمزيد هنا
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end mc -->
+
+<footer class="sf print-hide">
+  <div>منصة المبادرات المدرسية التفاعلية</div>
+  <hr class="fdiv">
+  <div>تصميم د/فواز &nbsp;|&nbsp;<a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضَّل للمزيد هنا 📲</a></div>
+</footer>
+
+<!-- Modal -->
+<div class="mo" id="initModal">
+  <div class="mb">
+    <div class="mh">
+      <div id="modalTitle" style="font-size:.98rem;font-weight:800"></div>
+      <button class="mc2" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mbody" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+<!-- ======= مودال طباعة مبادرة ======= -->
+<div id="print-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:3000;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:14px;max-width:720px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.45);animation:fu .3s">
+    <div style="background:linear-gradient(135deg,#0d1b3e,#1a5276);color:#fff;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;border-radius:14px 14px 0 0;position:sticky;top:0">
+      <div style="font-size:1rem;font-weight:800" id="pm-title">معاينة الطباعة</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="doPrint()" style="background:#c9922a;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-family:Tajawal,sans-serif;font-size:.88rem;font-weight:700;cursor:pointer">🖨️ طباعة</button>
+        <button onclick="closePrintModal()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem">✕</button>
+      </div>
+    </div>
+    <div id="print-area" style="padding:20px"></div>
+  </div>
+</div>
+
+<!-- ======= hidden print area ======= -->
+<div id="print-area-hidden" style="display:none"></div>
+
+<script>
+var nums=['١','٢','٣','٤','٥','٦','٧','٨','٩','١٠','١١','١٢','١٣','١٤','١٥','١٦','١٧','١٨','١٩','٢٠'];
+var fieldNames={m:'مهني',a:'أكاديمي',t:'تربوي',s:'اجتماعي',v:'تطوعي',w:'توعوي',oth:'أخرى'};
+
+var initiatives=[
+  {n:'سلسلة دورات دعم المعلم الرقمي',fc:'m',fl:'مهني',tg:'معلمون/ات، إداريون/ات',mt:'دورات حضورية وعن بُعد'},
+  {n:'نادي أبجد',fc:'a',fl:'أكاديمي',tg:'طلاب وطالبات',mt:'مجتمع تعليمي'},
+  {n:'نادي ماث وي',fc:'a',fl:'أكاديمي',tg:'طلاب وطالبات',mt:'مجتمع تعليمي'},
+  {n:'نادي علماء ملهمون',fc:'a',fl:'أكاديمي',tg:'طلاب وطالبات',mt:'مجتمع تعليمي'},
+  {n:'نادي الريبوت',fc:'a',fl:'أكاديمي',tg:'طلاب وطالبات',mt:'تعليم مبرمج مصغر'},
+  {n:'المؤلفة قلوبهم',fc:'t',fl:'تربوي',tg:'أولياء الأمور',mt:'لقاءات'},
+  {n:'سورة العصر منهج حياة',fc:'t',fl:'تربوي',tg:'جميع المنسوبين/ات',mt:'لقاءات — نشرات — تثقيف'},
+  {n:'مبادرة سند',fc:'s',fl:'اجتماعي',tg:'جميع المنسوبين/ات',mt:'لقاءات — نشرات — تثقيف'},
+  {n:'التدريب والتطوير الموازي لتعزيز قدرات المعلمين/ات',fc:'m',fl:'مهني',tg:'معلمون/ات، إداريون/ات',mt:'ورش تدريبية ولقاءات'},
+  {n:'رسول الرحمة',fc:'t',fl:'تربوي',tg:'معلمون/ات',mt:'للقادة التربويين'},
+  {n:'محمية المدارس',fc:'s',fl:'اجتماعي',tg:'شراكة',mt:'خطابات للمعنيين'},
+  {n:'الجوالة والخدمات العامة',fc:'v',fl:'تطوعي',tg:'طلاب وطالبات',mt:'تحديد الطلاب والطالبات المعنيين وتكليفهم'},
+  {n:'فريق العمل الرقمي',fc:'v',fl:'تطوعي',tg:'معلمون/ات وطلاب وطالبات',mt:'مجموعة عمل رقمي'},
+  {n:'مدرستي أمنة',fc:'w',fl:'توعوي',tg:'جميع المنسوبين/ات',mt:'خطط إخلاء وطوارئ'},
+  {n:'مبادرة مستدام',fc:'s',fl:'اجتماعي',tg:'جميع المنسوبين/ات',mt:'نشرات'}
+];
+
+var prog = new Array(30).fill(0);
+
+function toAr(n){
+  var a=['١','٢','٣','٤','٥','٦','٧','٨','٩','١٠','١١','١٢','١٣','١٤','١٥','١٦','١٧','١٨','١٩','٢٠'];
+  return a[n-1] || String(n);
+}
+
+function fieldOptions(sel){
+  var html='';
+  for(var k in fieldNames){
+    html += '<option value="'+k+'"'+(sel===k?' selected':'')+'>'+fieldNames[k]+'</option>';
+  }
+  return html;
+}
+
+function renderTable(){
+  var tb = document.getElementById('initTbody');
+  if(!tb) return;
+  var rows = initiatives.map(function(i,idx){
+    return '<tr id="irow'+idx+'">'
+      +'<td style="text-align:center"><input type="checkbox" class="row-cb" data-idx="'+idx+'" style="width:15px;height:15px;accent-color:var(--gold)"></td>'
+      +'<td style="text-align:center;font-weight:800;color:var(--navy)">'+toAr(idx+1)+'</td>'
+      +'<td><input class="fi" type="text" value="'+escH(i.n)+'" onchange="initiatives['+idx+'].n=this.value" style="min-width:180px;font-weight:700"></td>'
+      +'<td><select class="fi" onchange="initiatives['+idx+'].fc=this.value;initiatives['+idx+'].fl=fieldNames[this.value]" style="min-width:90px">'+fieldOptions(i.fc)+'</select></td>'
+      +'<td><input class="fi" type="text" value="'+escH(i.tg)+'" onchange="initiatives['+idx+'].tg=this.value" style="min-width:140px"></td>'
+      +'<td><input class="fi" type="text" value="'+escH(i.mt)+'" onchange="initiatives['+idx+'].mt=this.value" style="min-width:155px"></td>'
+      +'<td style="min-width:90px">'
+        +'<div class="pw"><div class="pb" id="pb'+idx+'" style="width:'+prog[idx]+'%"></div></div>'
+        +'<div style="display:flex;align-items:center;gap:4px;margin-top:3px">'
+          +'<input type="range" min="0" max="100" value="'+prog[idx]+'" style="flex:1;accent-color:var(--teal)" oninput="updProg('+idx+',this.value)">'
+          +'<span id="pl'+idx+'" style="font-size:.71rem;font-weight:700;color:var(--navy);min-width:28px">'+prog[idx]+'٪</span>'
+        +'</div>'
+      +'</td>'
+      +'<td style="text-align:center;white-space:nowrap">'
+        +'<button onclick="showDetail('+idx+')" title="تفاصيل" style="background:var(--navy);color:#fff;border:none;border-radius:6px;width:28px;height:28px;cursor:pointer;margin-left:2px;font-size:.85rem">👁</button>'
+        +'<button onclick="printInit('+idx+')" title="طباعة" style="background:var(--teal);color:#fff;border:none;border-radius:6px;width:28px;height:28px;cursor:pointer;margin-left:2px;font-size:.85rem">🖨</button>'
+        +'<button onclick="deleteRow('+idx+')" title="حذف" style="background:var(--red);color:#fff;border:none;border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:.85rem">✕</button>'
+      +'</td>'
+      +'</tr>';
+  }).join('');
+  tb.innerHTML = rows;
+  updateCount();
+}
+
+function escH(s){
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function updProg(idx,val){
+  prog[idx] = parseInt(val);
+  var pb=document.getElementById('pb'+idx);
+  var pl=document.getElementById('pl'+idx);
+  if(pb) pb.style.width = val+'%';
+  if(pl) pl.textContent = val+'٪';
+  var dpb=document.getElementById('dpb'+idx);
+  var dpl=document.getElementById('dpl'+idx);
+  if(dpb) dpb.style.width = val+'%';
+  if(dpl) dpl.textContent = val+'٪';
+}
+
+function addInitRow(){
+  initiatives.push({n:'اسم المبادرة الجديدة',fc:'m',fl:'مهني',tg:'المستهدفون',mt:'آلية التنفيذ'});
+  prog.push(0);
+  renderTable();
+  var newRow = document.getElementById('irow'+(initiatives.length-1));
+  if(newRow){
+    newRow.scrollIntoView({behavior:'smooth',block:'center'});
+    var inp = newRow.querySelector('input[type="text"]');
+    if(inp){ inp.select(); inp.focus(); }
+  }
+  showToast('✅ تمت إضافة مبادرة جديدة — عدِّل بياناتها مباشرة');
+}
+
+function deleteRow(idx){
+  if(!confirm('هل تريد حذف هذه المبادرة؟')) return;
+  initiatives.splice(idx,1);
+  prog.splice(idx,1);
+  hideDetail();
+  renderTable();
+  showToast('🗑️ تم حذف المبادرة');
+}
+
+function confirmDeleteSelected(){
+  var cbs = document.querySelectorAll('.row-cb:checked');
+  if(cbs.length===0){ showToast('⚠️ لم تحدد أي مبادرة'); return; }
+  if(!confirm('هل تريد حذف '+cbs.length+' مبادرة محددة؟')) return;
+  var idxs = Array.from(cbs).map(function(c){return parseInt(c.dataset.idx);}).sort(function(a,b){return b-a;});
+  idxs.forEach(function(i){ initiatives.splice(i,1); prog.splice(i,1); });
+  hideDetail();
+  renderTable();
+  showToast('🗑️ تم الحذف');
+}
+
+function toggleSelectAll(cb){
+  document.querySelectorAll('.row-cb').forEach(function(c){ c.checked=cb.checked; });
+}
+
+function saveAllInit(){
+  showToast('💾 تم حفظ جميع التعديلات بنجاح ✅');
+}
+
+function updateCount(){
+  var el = document.getElementById('initCount');
+  if(el) el.textContent = 'إجمالي المبادرات: ' + initiatives.length;
+}
+
+function showDetail(idx){
+  var i = initiatives[idx];
+  var panel = document.getElementById('detailPanel');
+  var card  = document.getElementById('detailCard');
+  if(!panel || !card) return;
+  card.innerHTML =
+    '<div class="ich">'
+      +'<div style="display:flex;align-items:center;gap:11px">'
+        +'<div class="inum">'+toAr(idx+1)+'</div>'
+        +'<div>'
+          +'<div class="itit">'+escH(i.n)+'</div>'
+          +'<div style="font-size:.77rem;color:rgba(255,255,255,.7);margin-top:2px">'+escH(i.fl)+'</div>'
+        +'</div>'
+      +'</div>'
+      +'<span class="ityp">✏️ قابل للتعديل</span>'
+    +'</div>'
+    +'<div class="icb">'
+      +'<div class="fr" style="margin-bottom:13px">'
+        +'<div class="fg"><label class="flbl">اسم المبادرة</label>'
+          +'<input class="fi" type="text" value="'+escH(i.n)+'" onchange="initiatives['+idx+'].n=this.value;renderTable()" style="font-weight:700"></div>'
+        +'<div class="fg"><label class="flbl">المجال</label>'
+          +'<select class="fi" onchange="initiatives['+idx+'].fc=this.value;initiatives['+idx+'].fl=fieldNames[this.value];renderTable()">'+fieldOptions(i.fc)+'</select></div>'
+        +'<div class="fg"><label class="flbl">المستهدفون</label>'
+          +'<input class="fi" type="text" value="'+escH(i.tg)+'" onchange="initiatives['+idx+'].tg=this.value;renderTable()"></div>'
+        +'<div class="fg"><label class="flbl">آلية التنفيذ</label>'
+          +'<input class="fi" type="text" value="'+escH(i.mt)+'" onchange="initiatives['+idx+'].mt=this.value;renderTable()"></div>'
+      +'</div>'
+      +'<div style="font-weight:700;color:var(--navy);margin-bottom:7px;font-size:.89rem">📊 نسبة الإنجاز</div>'
+      +'<div style="display:flex;align-items:center;gap:9px">'
+        +'<div class="pw" style="flex:1"><div class="pb" id="dpb'+idx+'" style="width:'+prog[idx]+'%"></div></div>'
+        +'<span id="dpl'+idx+'" style="font-size:.83rem;font-weight:700;color:var(--navy);min-width:36px">'+prog[idx]+'٪</span>'
+      +'</div>'
+      +'<input type="range" min="0" max="100" value="'+prog[idx]+'" style="width:100%;margin-top:8px;accent-color:var(--teal)" oninput="updProg('+idx+',this.value)">'
+      +'<div style="display:flex;gap:10px;margin-top:14px">'
+        +'<button onclick="saveAllInit()" class="btnp" style="flex:1">💾 حفظ</button>'
+        +'<button onclick="deleteRow('+idx+')" style="flex:1;background:var(--red);color:#fff;border:none;border-radius:8px;padding:10px;font-family:Tajawal,sans-serif;font-size:.91rem;font-weight:700;cursor:pointer">🗑️ حذف</button>'
+        +'<button onclick="hideDetail()" style="flex:1;background:var(--gm);color:#fff;border:none;border-radius:8px;padding:10px;font-family:Tajawal,sans-serif;font-size:.91rem;font-weight:700;cursor:pointer">✖ إغلاق</button>'
+      +'</div>'
+    +'</div>';
+  panel.style.display = 'block';
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function hideDetail(){
+  var panel = document.getElementById('detailPanel');
+  if(panel) panel.style.display='none';
+}
+
+/* ===== Modal ===== */
+function openModal(idx){
+  showDetail(idx);
+}
+
+function closeModal(){
+  document.getElementById('initModal').classList.remove('open');
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var m = document.getElementById('initModal');
+  if(m) m.addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+});
+
+/* ===== Tab navigation ===== */
+function showTab(name,btn){
+  document.querySelectorAll('.sp').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.ntab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ===== Accordion ===== */
+function toggleAcc(header){
+  var body = header.nextElementSibling;
+  var isOpen = header.classList.contains('open');
+  document.querySelectorAll('.ach').forEach(function(h){
+    h.classList.remove('open');
+    h.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen){ header.classList.add('open'); body.classList.add('open'); }
+}
+
+/* ===== Toast ===== */
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+/* ===== Activity rows ===== */
+var actCount = 1;
+function addActRow(){
+  actCount++;
+  var row = document.createElement('tr');
+  row.innerHTML =
+    '<td>'+toAr(actCount)+'</td>'
+    +'<td><input class="fi" type="text" placeholder="اسم النشاط" style="min-width:140px"></td>'
+    +'<td style="text-align:center"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)"></td>'
+    +'<td style="text-align:center"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--gold)"></td>'
+    +'<td style="text-align:center"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--red)"></td>'
+    +'<td><input class="fi" type="text" placeholder="المخرجات"></td>'
+    +'<td><input class="fi" type="text" placeholder="٪" style="width:62px"></td>';
+  document.getElementById('actBody').appendChild(row);
+}
+
+/* ===== Init on load ===== */
+
+/* ======= طباعة مبادرة منفردة ======= */
+function printInit(idx){
+  var i = initiatives[idx];
+  var p = prog[idx] || 0;
+
+  var metaRows = [
+    ['المجال', i.fl || '—'],
+    ['المستهدفون', i.tg || '—'],
+    ['آلية التنفيذ', i.mt || '—'],
+    ['نسبة الإنجاز', p + '٪'],
+  ];
+
+  var metaHTML = metaRows.map(function(r){
+    return '<div class="print-meta-item"><span class="print-meta-label">'+r[0]+'</span><span class="print-meta-value">'+escH(r[1])+'</span></div>';
+  }).join('');
+
+  var progHTML =
+    '<div style="margin-bottom:14px">'
+    +'<div style="font-weight:700;color:#0d1b3e;margin-bottom:5px;font-size:.88rem">📊 نسبة الإنجاز: '+p+'٪</div>'
+    +'<div class="print-prog-bar"><div class="print-prog-fill" style="width:'+p+'%"></div></div>'
+    +'</div>';
+
+  var card =
+    '<div class="print-card">'
+    +'<div class="print-card-header">'
+      +'<div class="print-card-num">'+toAr(idx+1)+'</div>'
+      +'<div><div class="print-card-title">'+escH(i.n)+'</div><div class="print-card-sub">مبادرة '+escH(i.fl)+'</div></div>'
+    +'</div>'
+    +'<div class="print-card-body">'
+      +'<div class="print-meta-grid">'+metaHTML+'</div>'
+      +progHTML
+    +'</div>'
+    +'<div class="print-footer">منصة المبادرات المدرسية التفاعلية &nbsp;|&nbsp; تصميم د/فواز</div>'
+    +'</div>';
+
+  document.getElementById('pm-title').textContent = 'معاينة: ' + i.n;
+  document.getElementById('print-area').innerHTML = card;
+  document.getElementById('print-area-hidden').innerHTML = card;
+
+  var pm = document.getElementById('print-modal');
+  pm.style.display = 'flex';
+}
+
+function doPrint(){
+  window.print();
+}
+
+function closePrintModal(){
+  document.getElementById('print-modal').style.display = 'none';
+}
+
+/* ======= تصدير البيانات ======= */
+function exportData(){
+  var data = {
+    version: '1.0',
+    exported: new Date().toISOString(),
+    initiatives: initiatives,
+    progress: prog.slice(0, initiatives.length)
+  };
+  var json = JSON.stringify(data, null, 2);
+  var blob = new Blob([json], {type:'application/json;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'بيانات_المبادرات.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('📥 تم تصدير البيانات بنجاح');
+}
+
+/* ======= استيراد البيانات ======= */
+function importData(){
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      try {
+        var data = JSON.parse(ev.target.result);
+        if(!data.initiatives || !Array.isArray(data.initiatives)){
+          showToast('⚠️ الملف غير صالح'); return;
+        }
+        initiatives.length = 0;
+        data.initiatives.forEach(function(i){ initiatives.push(i); });
+        if(data.progress){
+          for(var x=0;x<data.progress.length;x++) prog[x] = data.progress[x]||0;
+        }
+        renderTable();
+        showToast('✅ تم استيراد '+initiatives.length+' مبادرة بنجاح');
+      } catch(err){
+        showToast('⚠️ خطأ في قراءة الملف');
+      }
+    };
+    reader.readAsText(file,'utf-8');
+  };
+  input.click();
+}
+
+window.onload = function(){ renderTable(); };
+</script>
+</body>
+</html>
