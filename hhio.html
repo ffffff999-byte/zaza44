@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مذكرة الطالب المتفوق – الصف السادس الابتدائي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Cairo','Arial',sans-serif;background:#f0f4ff;color:#1e293b;direction:rtl}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#1e3a8a 0%,#4c1d95 50%,#831843 100%);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.header-inner{max-width:960px;margin:auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-emoji{font-size:2rem}
+.logo h1{font-size:1.2rem;font-weight:900;background:linear-gradient(90deg,#fbbf24,#f87171,#a78bfa,#60a5fa,#34d399,#fbbf24);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+.logo p{font-size:.65rem;color:rgba(255,255,255,.6)}
+.settings-btn{background:rgba(255,255,255,.15);border:none;color:#fff;width:38px;height:38px;border-radius:10px;font-size:1.1rem;cursor:pointer;transition:.2s}
+.settings-btn:hover{background:rgba(255,255,255,.25)}
+.tabs{display:flex;gap:6px;padding:0 16px 8px;max-width:960px;margin:0 auto}
+.tab-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:12px 12px 0 0;border:none;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.2s}
+.tab-btn.active{background:#fff;color:#3730a3}
+.tab-btn:not(.active){background:rgba(255,255,255,.15);color:rgba(255,255,255,.8)}
+.tab-btn:not(.active):hover{background:rgba(255,255,255,.25)}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* PRESENTATION */
+.pres-hero{text-align:center;padding:30px 16px 16px}
+.pres-hero h2{font-size:1.8rem;font-weight:900;color:#1e293b}
+.pres-hero p{color:#64748b;margin-top:6px;font-size:.9rem}
+.subtitle-badge{display:inline-block;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:.75rem;font-weight:700;padding:4px 14px;border-radius:999px;margin-top:8px}
+.units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;max-width:960px;margin:16px auto;padding:0 16px}
+.unit-card{border-radius:18px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.1);background:#fff;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;border:1px solid rgba(0,0,0,.06);animation:slideUp .4s ease-out both}
+.unit-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,.15)}
+.card-top{padding:20px 20px 16px;color:#fff}
+.card-emoji{font-size:2.5rem;margin-bottom:8px}
+.card-title{font-size:1.1rem;font-weight:800;line-height:1.3}
+.card-tag{font-size:.7rem;opacity:.8;margin-top:4px}
+.card-body{padding:14px}
+.card-desc{color:#64748b;font-size:.82rem;line-height:1.6}
+.card-parts{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.card-part-badge{font-size:.65rem;padding:3px 10px;border-radius:999px;border:1px solid;font-weight:600}
+.card-btn{margin-top:12px;width:100%;padding:10px;border-radius:12px;border:none;color:#fff;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.2s}
+.card-btn:hover{opacity:.9}
+
+/* DETAIL */
+.detail-hero{padding:30px 16px 24px;color:#fff}
+.detail-hero-inner{max-width:760px;margin:auto}
+.back-btn{background:rgba(255,255,255,.2);border:none;color:#fff;padding:7px 16px;border-radius:10px;font-family:inherit;font-size:.82rem;cursor:pointer;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.back-btn:hover{background:rgba(255,255,255,.3)}
+.detail-content{max-width:760px;margin:0 auto;padding:16px;padding-bottom:40px}
+.section-card{background:#fff;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:12px;overflow:hidden;border:1px solid #f1f5f9;animation:slideUp .4s ease-out both}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;transition:background .2s;gap:12px}
+.section-header:hover{background:#f8fafc}
+.section-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
+.section-title{font-weight:700;color:#1e293b;flex:1;font-size:.95rem}
+.section-arrow{color:#94a3b8;font-size:.85rem;transition:transform .2s;flex-shrink:0}
+.section-arrow.open{transform:rotate(180deg)}
+.section-body{padding:0 18px 16px;display:none}
+.section-body.open{display:block}
+.rule-box{padding:12px 16px;border-radius:12px;margin-bottom:10px;border-right:4px solid}
+.rule-title{font-weight:700;font-size:.88rem;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.rule-list{list-style:none;space-y:4px}
+.rule-list li{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:.85rem;color:#374151;line-height:1.6;border-bottom:1px solid rgba(0,0,0,.05)}
+.rule-list li:last-child{border-bottom:none}
+.rule-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.example-box{padding:12px 14px;border-radius:10px;margin-bottom:8px;border-right:3px solid}
+.example-main{font-weight:700;font-size:1rem;color:#1e293b;margin-bottom:3px}
+.example-exp{font-size:.78rem;color:#64748b}
+.note-box{background:#fef9c3;border:1px solid #fde047;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.82rem;color:#92400e;display:flex;gap:8px;align-items:flex-start}
+.compare-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;border-radius:10px;overflow:hidden}
+.compare-table th{padding:8px 12px;font-weight:700;text-align:center}
+.compare-table td{padding:7px 12px;border-bottom:1px solid #f1f5f9;text-align:center}
+.compare-table tr:last-child td{border-bottom:none}
+.golden-rule{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:12px;padding:12px 16px;margin:10px 0;font-size:.85rem}
+.golden-rule-title{font-weight:900;color:#92400e;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.steps-list{counter-reset:step;list-style:none}
+.steps-list li{counter-increment:step;display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:.85rem;color:#374151}
+.steps-list li::before{content:counter(step);width:22px;height:22px;border-radius:50%;background:#3b82f6;color:#fff;font-weight:700;font-size:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.parts-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.part-btn{padding:5px 14px;border-radius:999px;border:2px solid;font-family:inherit;font-size:.75rem;font-weight:700;cursor:pointer;transition:.2s}
+.part-btn.active{color:#fff}
+.part-btn:not(.active){background:#fff}
+.part-content{display:none}
+.part-content.active{display:block}
+.examples-title{font-size:.78rem;font-weight:700;color:#94a3b8;margin:12px 0 8px;display:flex;align-items:center;gap:6px}
+.weights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:8px}
+.weight-item{background:#f8fafc;border-radius:10px;padding:10px;text-align:center;border:1px solid #e2e8f0}
+.weight-form{font-size:1.1rem;font-weight:900;color:#3b82f6}
+.weight-example{font-size:.78rem;color:#64748b;margin-top:3px}
+.hamza-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+.hamza-case{border-radius:10px;padding:10px;font-size:.82rem}
+.hamza-case-title{font-weight:700;margin-bottom:4px;font-size:.88rem}
+.hamza-examples{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.hamza-example{background:rgba(255,255,255,.6);padding:2px 8px;border-radius:999px;font-size:.75rem;font-weight:600}
+.summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1px solid #6ee7b7;border-radius:12px;padding:12px 16px;margin-top:10px}
+.summary-title{font-weight:700;color:#065f46;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+
+/* QUIZ */
+.quiz-header{background:linear-gradient(135deg,#5b21b6 0%,#4338ca 100%);color:#fff;padding:20px 16px}
+.quiz-header-inner{max-width:680px;margin:auto}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.quiz-counter{font-size:.82rem;color:rgba(255,255,255,.75)}
+.score-badge{background:rgba(255,255,255,.2);border-radius:30px;padding:5px 14px;display:flex;align-items:center;gap:5px;font-weight:700;font-size:.9rem}
+.progress-track{width:100%;height:8px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;margin-bottom:12px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#fbbf24,#f97316);border-radius:999px;transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+.cat-filters{display:flex;gap:6px;flex-wrap:wrap}
+.cat-btn{padding:4px 12px;border-radius:999px;border:none;font-family:inherit;font-size:.72rem;font-weight:600;cursor:pointer;transition:.2s}
+.cat-btn.active{background:#fbbf24;color:#1e293b}
+.cat-btn:not(.active){background:rgba(255,255,255,.2);color:#fff}
+.cat-btn:not(.active):hover{background:rgba(255,255,255,.3)}
+.quiz-body{max-width:680px;margin:20px auto;padding:0 16px}
+.question-card{background:#fff;border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,.1);padding:20px;margin-bottom:16px;border:1px solid #e0e7ff;animation:slideUp .4s ease-out}
+.q-cat{background:#ede9fe;color:#5b21b6;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+.q-text{font-size:1.05rem;font-weight:700;color:#1e293b;line-height:1.6}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt-btn{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:2px solid #e2e8f0;background:#fff;width:100%;text-align:right;font-family:inherit;font-size:.88rem;font-weight:600;color:#374151;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1)}
+.opt-btn:hover:not(:disabled){border-color:#8b5cf6;background:#f5f3ff;transform:translateX(-3px)}
+.opt-btn:disabled{cursor:not-allowed}
+.opt-btn.correct{border-color:#10b981;background:#ecfdf5;color:#065f46;animation:pulseG 1.5s infinite}
+.opt-btn.wrong{border-color:#ef4444;background:#fef2f2;color:#991b1b;animation:shakeX .5s,pulseR 1.5s infinite .5s}
+.opt-btn.dim{border-color:#f1f5f9;background:#f8fafc;color:#94a3b8;opacity:.6}
+.opt-letter{width:32px;height:32px;border-radius:50%;background:#f1f5f9;color:#64748b;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;transition:.2s}
+.opt-btn.correct .opt-letter{background:#10b981;color:#fff}
+.opt-btn.wrong .opt-letter{background:#ef4444;color:#fff}
+.feedback-box{border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:10px;animation:slideUp .3s ease-out}
+.correct-fb{background:#ecfdf5;border:1px solid #6ee7b7}
+.wrong-fb{background:#fffbeb;border:1px solid #fcd34d}
+.fb-icon{font-size:1.3rem;flex-shrink:0}
+.fb-label{font-weight:700;color:#1e293b;margin-bottom:3px;font-size:.88rem}
+.fb-text{color:#4b5563;font-size:.82rem;line-height:1.6}
+.next-btn{width:100%;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#5b21b6,#4338ca);color:#fff;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 4px 15px rgba(91,33,182,.3)}
+.next-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(91,33,182,.4)}
+
+/* RESULT */
+.result-wrap{min-height:calc(100vh - 200px);display:flex;align-items:center;justify-content:center;padding:24px}
+.result-card{background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.15);padding:36px 28px;max-width:400px;width:100%;text-align:center;animation:bounceIn .5s cubic-bezier(.34,1.56,.64,1)}
+.result-emoji{font-size:4.5rem;margin-bottom:10px;display:block;animation:bounce 2s infinite}
+.result-title{font-size:1.6rem;font-weight:900;color:#1e293b;margin-bottom:4px}
+.result-sub{color:#64748b;margin-bottom:20px;font-size:.88rem}
+.score-circle{width:120px;height:120px;border-radius:50%;border:7px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.score-num{font-size:2.2rem;font-weight:900}
+.score-denom{color:#94a3b8;font-size:.8rem}
+.grade-badge{display:inline-block;padding:8px 22px;border-radius:14px;color:#fff;font-size:1rem;font-weight:700;margin-bottom:12px}
+.pct-text{color:#64748b;font-size:.85rem;margin-bottom:16px}
+.pct-bar-track{width:100%;height:12px;background:#f1f5f9;border-radius:999px;overflow:hidden;margin-bottom:24px}
+.pct-bar-fill{height:100%;border-radius:999px;transition:width 1.5s cubic-bezier(.34,1.56,.64,1)}
+.restart-btn{width:100%;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#5b21b6,#4338ca);color:#fff;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 4px 15px rgba(91,33,182,.3)}
+.restart-btn:hover{transform:translateY(-2px)}
+
+/* FEEDBACK POPUP */
+.fb-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:200;pointer-events:none}
+.fb-popup{padding:28px 36px;border-radius:22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:popIn .5s cubic-bezier(.34,1.56,.64,1);min-width:240px;position:relative}
+.fb-popup.ok{background:linear-gradient(135deg,#34d399,#10b981)}
+.fb-popup.no{background:linear-gradient(135deg,#fb923c,#ef4444)}
+.pop-emoji{font-size:3.5rem;margin-bottom:8px;display:block;animation:bounce 1s infinite}
+.pop-text{color:#fff;font-size:1.3rem;font-weight:700;line-height:1.4}
+.pop-deco{position:absolute;top:-10px;right:-10px;font-size:1.8rem;animation:spin 2s linear infinite}
+
+/* CONFETTI */
+.cfp{position:fixed;border-radius:2px;animation:cfall linear forwards;pointer-events:none;z-index:999}
+
+/* SETTINGS */
+.sett-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:none;align-items:flex-start;justify-content:flex-end;padding:16px}
+.sett-overlay.open{display:flex}
+.sett-panel{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.2);width:270px;margin-top:65px;padding:18px;animation:slideUp .3s ease-out}
+.sett-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sett-top h3{font-size:.95rem;font-weight:700;color:#1e293b}
+.sett-close{background:none;border:none;font-size:1.1rem;color:#94a3b8;cursor:pointer}
+.sett-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f8fafc}
+.sett-item:last-of-type{border-bottom:none}
+.sett-icon{font-size:1.1rem}
+.sett-label{font-size:.82rem;font-weight:600;color:#374151}
+.sett-val{font-size:.72rem;color:#94a3b8;margin-top:1px}
+.sett-footer{margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9;text-align:center}
+.sett-footer p{font-size:.75rem;color:#94a3b8}
+.sett-footer .author{color:#7c3aed;font-weight:700}
+.sett-footer a{color:#3b82f6;font-size:.75rem;text-decoration:none}
+.sett-footer a:hover{text-decoration:underline}
+
+/* FOOTER */
+footer{background:linear-gradient(135deg,#1e3a8a,#4c1d95);color:#fff;text-align:center;padding:14px;font-size:.8rem}
+footer .author{color:#fbbf24;font-weight:700}
+footer a{color:#93c5fd;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* ANIMATIONS */
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes slideUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes bounceIn{0%{transform:scale(0);opacity:0}50%{transform:scale(1.15)}70%{transform:scale(.95)}100%{transform:scale(1);opacity:1}}
+@keyframes popIn{0%{transform:scale(.4) rotate(-5deg);opacity:0}60%{transform:scale(1.1) rotate(3deg);opacity:1}80%{transform:scale(.95) rotate(-1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px) rotate(-2deg)}40%{transform:translateX(8px) rotate(2deg)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseG{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.3)}50%{box-shadow:0 0 0 8px rgba(16,185,129,0)}}
+@keyframes pulseR{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.3)}50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes floatStar{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-70px) scale(1.5);opacity:0}}
+@media(max-width:600px){.units-grid{grid-template-columns:1fr}.hamza-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-emoji">📖</div>
+      <div>
+        <h1>مذكرة الطالب المتفوق</h1>
+        <p>الصف السادس الابتدائي – مادة لغتي</p>
+      </div>
+    </div>
+    <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-pres" onclick="switchTab('pres')">📖 العرض التوضيحي</button>
+    <button class="tab-btn" id="tab-quiz" onclick="switchTab('quiz')">🏆 مسابقة الإثارة</button>
+  </div>
+</header>
+
+<!-- SETTINGS -->
+<div class="sett-overlay" id="settOverlay" onclick="closeSettings(event)">
+  <div class="sett-panel">
+    <div class="sett-top"><h3>⚙️ الإعدادات</h3><button class="sett-close" onclick="toggleSettings()">✕</button></div>
+    <div class="sett-item"><span class="sett-icon">📚</span><div><div class="sett-label">المادة</div><div class="sett-val">لغة عربية – الصف السادس الابتدائي</div></div></div>
+    <div class="sett-item"><span class="sett-icon">📋</span><div><div class="sett-label">الوحدات</div><div class="sett-val">7 وحدات دراسية كاملة</div></div></div>
+    <div class="sett-item"><span class="sett-icon">❓</span><div><div class="sett-label">أسئلة المسابقة</div><div class="sett-val">25 سؤالاً متنوعاً</div></div></div>
+    <div class="sett-item"><span class="sett-icon">⏱️</span><div><div class="sett-label">الوقت</div><div class="sett-val">بدون قيود زمنية</div></div></div>
+    <div class="sett-item"><span class="sett-icon">🏆</span><div><div class="sett-label">نظام النقاط</div><div class="sett-val">نقطة لكل إجابة صحيحة</div></div></div>
+    <div class="sett-item"><span class="sett-icon">✨</span><div><div class="sett-label">المؤثرات</div><div class="sett-val">كونفيتي + نجوم + انبثاق</div></div></div>
+    <div class="sett-footer">
+      <p>تصميم <span class="author">د/فواز</span></p>
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📱 تفضل للمزيد هنا</a>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: PRESENTATION -->
+<div class="page active" id="page-pres">
+  <div class="pres-hero">
+    <h2>📖 العرض التوضيحي</h2>
+    <p>مذكرة شاملة لجميع دروس لغتي للصف السادس</p>
+    <div class="subtitle-badge">🎓 اختر وحدة لتبدأ المراجعة</div>
+  </div>
+  <div class="units-grid" id="unitsGrid"></div>
+  <div style="max-width:960px;margin:0 auto 40px;padding:0 16px">
+    <div style="background:linear-gradient(135deg,#eff6ff,#f5f3ff);border-radius:18px;padding:20px;border:1px solid #dbeafe">
+      <div style="font-size:1rem;font-weight:700;color:#1e293b;margin-bottom:12px;display:flex;align-items:center;gap:8px">💡 نصائح للمذاكرة</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>🎯</span><span style="font-size:.8rem;color:#374151">ابدأ بالقاعدة الذهبية في كل درس</span></div>
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>📝</span><span style="font-size:.8rem;color:#374151">راجع الأمثلة وطبّقها بنفسك</span></div>
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>🔄</span><span style="font-size:.8rem;color:#374151">قارن بين الأفعال الناسخة والحروف الناسخة</span></div>
+        <div style="background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)"><span>🏆</span><span style="font-size:.8rem;color:#374151">اختبر نفسك في قسم المسابقة بعد كل وحدة</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PAGE -->
+<div class="page" id="page-detail">
+  <div class="detail-hero" id="detailHero">
+    <div class="detail-hero-inner">
+      <button class="back-btn" onclick="showPres()">→ العودة للوحدات</button>
+      <div id="detailEmoji" style="font-size:3rem;margin-bottom:8px"></div>
+      <h2 id="detailTitle" style="font-size:1.6rem;font-weight:900;margin-bottom:4px"></h2>
+      <p id="detailSub" style="opacity:.8;font-size:.85rem"></p>
+    </div>
+  </div>
+  <div class="detail-content" id="detailContent"></div>
+</div>
+
+<!-- QUIZ PAGE -->
+<div class="page" id="page-quiz">
+  <div class="quiz-header">
+    <div class="quiz-header-inner">
+      <div class="quiz-meta">
+        <div class="quiz-counter" id="qCounter">سؤال 1 من 25</div>
+        <div class="score-badge"><span>⭐</span><span id="scoreDis">0 نقطة</span></div>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+      <div class="cat-filters" id="catFilters"></div>
+    </div>
+  </div>
+  <div class="quiz-body">
+    <div class="question-card" id="qCard">
+      <div class="q-cat" id="qCat"></div>
+      <div class="q-text" id="qText"></div>
+    </div>
+    <div class="options" id="optsContainer"></div>
+    <div id="fbSection" style="display:none;margin-top:14px"></div>
+  </div>
+</div>
+
+<!-- RESULT PAGE -->
+<div class="page" id="page-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <span class="result-emoji" id="resEmoji">🌟</span>
+      <h2 class="result-title">انتهت المسابقة!</h2>
+      <p class="result-sub">إليك نتيجتك النهائية</p>
+      <div class="score-circle" id="resCircle">
+        <span class="score-num" id="resScore">0</span>
+        <span class="score-denom" id="resTotal">من 25</span>
+      </div>
+      <div class="grade-badge" id="resBadge">ممتاز</div>
+      <p class="pct-text" id="resPct"></p>
+      <div class="pct-bar-track"><div class="pct-bar-fill" id="resFill" style="width:0%"></div></div>
+      <button class="restart-btn" onclick="restartQuiz()">🔄 أعد المسابقة مجدداً</button>
+    </div>
+  </div>
+</div>
+
+<!-- FEEDBACK POPUP -->
+<div class="fb-overlay" id="fbOverlay" style="display:none">
+  <div class="fb-popup" id="fbPopup">
+    <span class="pop-emoji" id="popEmoji">🌟</span>
+    <div class="pop-text" id="popText"></div>
+    <span class="pop-deco" id="popDeco"></span>
+  </div>
+</div>
+
+<footer>
+  تصميم <span class="author">د/فواز</span> &nbsp;|&nbsp;
+  تفضل للمزيد هنا <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📱 Telegram</a>
+</footer>
+
+<script>
+// =================== UNITS DATA ===================
+const units = [
+  {
+    id:'aalah', title:'الصنف اللغوي – اسم الآلة', emoji:'🔧',
+    color:'#0369a1', grad:'linear-gradient(135deg,#0284c7,#075985)',
+    sub:'الصف السادس الابتدائي', cat:'اسم الآلة',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: ما اسم الآلة؟',
+            content:[
+              {type:'rule', color:'#0284c7', title:'التعريف:', items:[
+                'اسم الآلة هو اسم مشتق من الفعل الثلاثي، يدل على الأداة التي نؤدي بها الفعل.',
+                'مثال: فَتَحَ الباب بالمِفتاح.',
+                'ملاحظة الكلمات: مِفتاح – مِسطرة – طابعة – طابعة'
+              ]},
+              {type:'example', color:'#0284c7', items:[
+                {a:'فَتَحَ الباب بالمِفتاح', b:'مفتاح = اسم الآلة التي يُفتح بها'},
+                {a:'وضعتُ المسطرة في الحقيبة', b:'مسطرة = اسم الآلة التي يُقاس بها'},
+                {a:'طبعتُ الورقة بالطابعة', b:'طابعة = اسم الآلة التي تطبع'}
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: مراجعة الميزان الصرفي',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'الميزان الصرفي:', items:[
+                'يتكون من الحروف (ف – ع – ل).',
+                'أي حرف زائد في الكلمة: نزيده في الميزان بنفس الترتيب والحركة.'
+              ]},
+              {type:'examples2col', items:[
+                {word:'فَاتِح',wz:'فَاعِل'},{word:'مَفتُوح',wz:'مَفعُول'}
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: أوزان اسم الآلة (الأهم في الدرس)',
+            content:[
+              {type:'weights', items:[
+                {form:'مِفعَال',ex:'مِفتاح ← فَتَح',note:'زيادة الميم والألف'},
+                {form:'مِفعَلَة',ex:'مِلعقة ← لَعِق',note:'زيادة الميم والتاء'},
+                {form:'فَعَّالَة',ex:'سَمَّاعة ← سَمِع',note:'التشديد في العين'},
+                {form:'مِفعَل',ex:'مِصعَد ← صَعِد',note:'زيادة الميم'},
+                {form:'فَاعِلَة',ex:'حَاسِبة ← حَسَب',note:'وزن فاعلة'},
+                {form:'فَاعُول',ex:'حَاسُوب ← حَسَب',note:'وزن فاعول'}
+              ]},
+              {type:'note', text:'⚠️ الميزان الصرفي ينسخ الحركات والتشديد. الحركات والتشديد في الكلمة تنتقل إلى الميزان.'}
+            ]
+          },
+          {
+            title:'رابعاً: أنواع اسم الآلة',
+            content:[
+              {type:'compare2', color1:'#0284c7', color2:'#7c3aed',
+               title1:'النوع الأول: اسم آلة مشتق (قياسي)',
+               title2:'النوع الثاني: اسم آلة جامد (سماعي)',
+               items1:['له فعل ثلاثي.','له وزن معروف نقيس عليه.','أمثلة: نَشَرَ ← مِنشار، حَصَدَ ← حَصَّادة'],
+               items2:['ليس له فعل اشتُق منه.','سُمع عن العرب كما هو.','أمثلة: سِكين، قَلَم، فَأس، رُمح']}
+            ]
+          },
+          {
+            title:'خامساً: الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                'اسم الآلة: يدل على الأداة التي نستخدمها للفعل.',
+                'له أوزان مشهورة: مِفعَال – مِفعَل – مِفعَلَة – فَعَّالَة – فَاعِلَة – فَاعُول.',
+                'ينقسم إلى: مشتق (له فعل وأوزان) / جامد (ليس له فعل مثل: قلم، سكين).'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'أولاً: مراجعة المفاهيم الأساسية',
+            content:[
+              {type:'rule', color:'#0284c7', title:'الاشتقاق:', items:[
+                'هو أخذ كلمة جديدة من كلمة أصلية (فعل) للتعبير عن معنى جديد.',
+                'مثال: شَرَحَ ← شارح (اسم فاعل) ← مشروح (اسم مفعول) ← مِشرَح (اسم آلة)',
+                'التعريف النهائي: اسم الآلة هو اسم مشتق من الفعل الثلاثي، يدل على الأداة التي تؤدي بها الفعل.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: تدريب عملي – الميزان الصرفي',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'الأوزان الثلاثة الرئيسية:', items:[
+                'مِفتاح: الوزن: مِفعال – الملاحظة: زيادة الميم والألف',
+                'مِلعقة: الوزن: مِفعَلة – الملاحظة: كسر الميم وسكون اللام',
+                'سَمَّاعة: الوزن: فَعَّالة – الملاحظة: الشدة في الكلمة تُنقل إلى الميزان'
+              ]},
+              {type:'examples2col', items:[
+                {word:'طَحَن ← مَطحَنَة',wz:'مِفعَلَة'},{word:'نَظَر ← مِنظار',wz:'مِفعال'},
+                {word:'حَرَث ← مِحراث',wz:'مِفعال'},{word:'نَشَر ← مِنشار',wz:'مِفعال'},
+                {word:'غَسَل ← غَسَّالة',wz:'فَعَّالة'},{word:'شَرَط ← مِشرَط',wz:'مِفعَل'}
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: حل تدريبات الكتاب',
+            content:[
+              {type:'rule', color:'#059669', title:'(ب) استخراج اسم الآلة من الجمل:', items:[
+                'نُزعت المسامير من اللعبة ← اسم الآلة: المسامير (جمع مسمار)',
+                'استمعت إلى الأخبار من المذياع ← اسم الآلة: المذياع',
+                'في المعرض الكتابي عُدَّاد إلكتروني ← اسم الآلة: عُدَّاد (على وزن فُعَّال)',
+                'القلم رمز يرفع وعي المجتمع ← القلم (اسم آلة جامد)'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                'اسم الآلة: يدل على الأداة التي نستخدمها للفعل.',
+                'ينقسم إلى: مشتق (له فعل وأوزان) / جامد (ليس له فعل ووزن قياسي).',
+                'من أهم أوزانه: مِفعَال – مِفعَل – مِفعَلَة – فَعَّالَة – فَاعُول.'
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id:'kan', title:'الأفعال الناسخة – كان وأخواتها', emoji:'⚖️',
+    color:'#7c3aed', grad:'linear-gradient(135deg,#6d28d9,#4c1d95)',
+    sub:'الصف السادس الابتدائي', cat:'كان وأخواتها',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: ما هي الأفعال الناسخة؟',
+            content:[
+              {type:'rule', color:'#6d28d9', title:'التعريف:', items:[
+                'هي أفعال تدخل على الجملة الاسمية فتُغيِّر حكمها.',
+                'أفرادها: كان – صار – ليس'
+              ]},
+              {type:'note', text:'سُمِّيت أفعالاً ناسخة لأنها تنسخ (تُغير) حكم المبتدأ والخبر الأصلي.'}
+            ]
+          },
+          {
+            title:'ثانياً: ماذا تفعل بالجملة الاسمية؟ (القاعدة الذهبية)',
+            content:[
+              {type:'golden', title:'القاعدة الذهبية:', items:[
+                'الجملة الاسمية = مبتدأ مرفوع + خبر مرفوع',
+                'عند دخول كان وأخواتها:',
+                'المبتدأ → يبقى مرفوعاً ويتغير اسمه إلى (اسم كان)',
+                'الخبر → يصبح منصوباً ويتغير اسمه إلى (خبر كان)'
+              ]},
+              {type:'example', color:'#6d28d9', items:[
+                {a:'الاختلافُ أمرٌ طبيعي (قبل دخول كان)', b:'مبتدأ + خبر (كلاهما مرفوع)'},
+                {a:'كان الاختلافُ أمراً طبيعياً (بعد دخول كان)', b:'اسم كان (مرفوع) + خبر كان (منصوب)'}
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: معاني الأفعال الناسخة',
+            content:[
+              {type:'rule', color:'#059669', title:'المعاني الثلاثة:', items:[
+                'كان: تفيد اتصاف المبتدأ بالخبر في الزمن الماضي. مثال: كان الاختلافُ أمراً طبيعياً.',
+                'صار: تفيد التحوُّل من حال إلى حال. مثال: صار الماء ثلجاً.',
+                'ليس: تفيد النفي. مثال: ليس التوافقُ شرطاً.'
+              ]}
+            ]
+          },
+          {
+            title:'سادساً: ملخص سريع للحفظ',
+            content:[
+              {type:'summary', items:[
+                'عند دخول (كان، صار، ليس) على الجملة الاسمية:',
+                'الاسم الذي بعدها مباشرة: اسمها → مرفوع.',
+                'الكلمة التي تُخبر عنه: خبرها → منصوب.',
+                'جملة للحفظ: "كان الجوُّ جميلاً" – الجوُّ: اسم كان مرفوع. جميلاً: خبر كان منصوب.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'ثانياً: خريطة العلامات الإعرابية',
+            content:[
+              {type:'rule', color:'#6d28d9', title:'أولاً: علامات رفع اسم كان:', items:[
+                'الضمة: للمفرد وجمع التكسير وجمع المؤنث السالم. مثال: كان الرسولُ...',
+                'الألف: للمثنى. مثال: كان الطالبان مجتهدَين.',
+                'الواو: لجمع المذكر السالم والأسماء الخمسة. مثال: كان أبوك...'
+              ]},
+              {type:'rule', color:'#dc2626', title:'ثانياً: علامات نصب خبر كان:', items:[
+                'الفتحة: للمفرد وجمع التكسير. مثال: كان الرسولُ... خيرَ الناس.',
+                'الياء: للمثنى وجمع المذكر السالم. مثال: كانت الخلافةُ سنتين.',
+                'الكسرة: لجمع المؤنث السالم. مثال: صارت الأمهاتُ فخوراتٍ.',
+                'الألف: للأسماء الخمسة. مثال: كان أبو بكر ذا خلق.'
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: تدريبات وتطبيقات محلولة',
+            content:[
+              {type:'table', headers:['الجملة','الفعل','الاسم','الخبر'],
+               rows:[
+                 ['كان الرسول أحسن الناس خلقاً','كان','الرسولُ (مرفوع بالضمة)','أحسنَ (منصوب بالفتحة)'],
+                 ['كانت خلافةُ أبي بكر سنتين','كانت','خلافةُ (مرفوع بالضمة)','سنتين (منصوب بالياء لأنه مثنى)'],
+                 ['صار المتميزون من الطلاب قادةً','صار','المتميزون (مرفوع بالواو)','قادةً (منصوب بالفتحة)'],
+                 ['ليس الحسنُ والحسينُ حفيدين لعمر','ليس','الحسنُ (مرفوع بالضمة)','حفيدين (منصوب بالياء لأنه مثنى)']
+               ]}
+            ]
+          },
+          {
+            title:'رابعاً: حذف الناسخ وإعادة الجملة لأصلها',
+            content:[
+              {type:'rule', color:'#059669', title:'أمثلة على الحذف:', items:[
+                'ليس المطرُ غزيرًا ← المطرُ غزيرٌ',
+                'صارت الأبنيةُ عاليةً ← الأبنيةُ عاليةٌ',
+                'كانت الأمهاتُ فخوراتٍ ← الأمهاتُ فخوراتٌ'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: نصيحة أخيرة',
+            content:[
+              {type:'note', text:'⚠️ انتبه لجمع المؤنث السالم: إذا جاء خبراً لـ (كان)، يُنصب بالكسرة. مثال: كانت الطالباتُ مجتهداتٍ.'}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثالث',
+        sections:[
+          {
+            title:'ثالثاً: تدريب (شارك في الإعراب)',
+            content:[
+              {type:'rule', color:'#6d28d9', title:'نموذج إعراب: كَانَ الجَوُّ صَحواً', items:[
+                'كانَ: فعل ماض ناسخ مبني على الفتح.',
+                'الجوُّ: اسم كان مرفوع وعلامة رفعه الضمة الظاهرة على آخره.',
+                'صَحواً: خبر كان منصوب وعلامة نصبه الفتحة الظاهرة على آخره.'
+              ]},
+              {type:'rule', color:'#dc2626', title:'نموذج إعراب: لَيْسَ الغِشُّ مَقبُولاً', items:[
+                'لَيْسَ: فعل ماض ناسخ مبني على الفتح.',
+                'الغِشُّ: اسم ليس مرفوع وعلامة رفعه الضمة الظاهرة على آخره.',
+                'مَقبُولاً: خبر ليس منصوب وعلامة نصبه الفتحة الظاهرة على آخره.'
+              ]}
+            ]
+          },
+          {
+            title:'رابعاً: التحدي الكبير – إعراب جمع المذكر السالم',
+            content:[
+              {type:'rule', color:'#059669', title:'صَارَ المُجتَهِدُونَ فَاعِلِينَ في المُجتَمَع', items:[
+                'صَارَ: فعل ماض ناسخ مبني على الفتح.',
+                'المُجتَهِدُونَ: اسم صار مرفوع وعلامة رفعه الواو لأنه جمع مذكر سالم.',
+                'فَاعِلِينَ: خبر صار منصوب وعلامة نصبه الياء لأنه جمع مذكر سالم.',
+                'في: حرف جر.',
+                'المُجتَمَع: اسم مجرور وعلامة جره الكسرة.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: ملخص العلامات الإعرابية',
+            content:[
+              {type:'compare2', color1:'#6d28d9', color2:'#dc2626',
+               title1:'علامات رفع اسم كان:',
+               title2:'علامات نصب خبر كان:',
+               items1:['الضمة: المفرد، جمع التكسير، جمع المؤنث السالم','الألف: المثنى','الواو: جمع المذكر السالم، الأسماء الخمسة'],
+               items2:['الفتحة: المفرد، جمع التكسير','الياء: المثنى، جمع المذكر السالم','الكسرة: جمع المؤنث السالم','الألف: الأسماء الخمسة']}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الرابع',
+        sections:[
+          {
+            title:'أولاً: الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                'الأفعال الناسخة: كان – صار – ليس. تدخل على الجملة الاسمية.',
+                'التغيير الذي يحدث: المبتدأ → يبقى مرفوعاً (اسم كان). الخبر → يتحول إلى منصوب (خبر كان).',
+                'معاني الأفعال: كان=الماضي، صار=التحول، ليس=النفي.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: نشاط (أدخل الفعل الناسخ) – نموذج',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'الجملة الأصلية:', items:[
+                '"عَبدُ الله الربيعةُ طبيبٌ ماهرٌ."',
+                'بعد دخول صار: "صَارَ عَبدُ الله الربيعةُ طبيباً ماهراً."',
+                'الملاحظة: كلمة (طبيبٌ) كانت خبراً مرفوعاً، ثم أصبحت (طبيباً) خبر صار منصوباً بالفتحة.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: نصيحة أخيرة للتميز',
+            content:[
+              {type:'rule', color:'#059669', title:'تذكّر دائماً:', items:[
+                'ركّز دائماً على الخبر لأنه أكثر عنصر يتغير.',
+                'تأكد من علامة نصبه: فتحة للمفرد وجمع التكسير، ياء للمثنى وجمع المذكر السالم، كسرة لجمع المؤنث السالم.',
+                'مثال: "كانت الطبيباتُ ماهراتٍ" – ماهراتٍ: خبر كان منصوب بالكسرة لأنه جمع مؤنث سالم.'
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id:'inna', title:'الحروف الناسخة – إنَّ وأخواتها', emoji:'🔑',
+    color:'#0d9488', grad:'linear-gradient(135deg,#0f766e,#065f46)',
+    sub:'الصف السادس الابتدائي', cat:'إن وأخواتها',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: من هم إنَّ وأخواتها؟',
+            content:[
+              {type:'rule', color:'#0f766e', title:'أفرادها:', items:[
+                'إنَّ – كأنَّ – لَيت – لَعَلَّ – لَكِنَّ'
+              ]},
+              {type:'rule', color:'#0f766e', title:'ماذا تفعل؟ (القاعدة الذهبية)', items:[
+                'الجملة الاسمية = مبتدأ مرفوع + خبر مرفوع',
+                'عند دخول إنَّ وأخواتها:',
+                'المبتدأ → يصبح منصوباً ويتغير اسمه إلى (اسم إنَّ)',
+                'الخبر → يبقى مرفوعاً ويتغير اسمه إلى (خبر إنَّ)'
+              ]},
+              {type:'example', color:'#0f766e', items:[
+                {a:'الكتابُ مفيدٌ (قبل دخول إنَّ)', b:'مبتدأ مرفوع + خبر مرفوع'},
+                {a:'إنَّ الكتابَ مفيدٌ (بعد دخول إنَّ)', b:'الكتابَ: اسم إنَّ منصوب بالفتحة. مفيدٌ: خبر إنَّ مرفوع بالضمة.'}
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: معاني الحروف الناسخة',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'المعاني:', items:[
+                'إنَّ: تفيد التوكيد. مثال: إنَّ التقنية سلاحٌ.',
+                'كأنَّ: تفيد التشبيه. مثال: كأنَّ الآباء شموعٌ.',
+                'لَيت: تفيد التمني للشيء الصعب. مثال: لَيتَ المريبين مدركون.',
+                'لَعَلَّ: تفيد الترجي للشيء الممكن. مثال: لَعَلَّ الآباء حريصون.'
+              ]}
+            ]
+          },
+          {
+            title:'خريطة علامات نصب اسم إنَّ',
+            content:[
+              {type:'rule', color:'#dc2626', title:'علامات نصب اسم إنَّ:', items:[
+                'الفتحة: للمفرد وجمع التكسير. مثال: إنَّ الجوَّ بارد.',
+                'الياء: للمثنى وجمع المذكر السالم. مثال: لَيتَ المشاركين متعاونون.',
+                'الكسرة: لجمع المؤنث السالم. مثال: إنَّ الأمهاتِ حنونات.',
+                'الألف: للأسماء الخمسة. مثال: لَعَلَّ أباك قائد.'
+              ]}
+            ]
+          },
+          {
+            title:'ملخص إعراب إنَّ',
+            content:[
+              {type:'summary', items:[
+                'إنَّ وأخواتها: تنصب الاسم، وترفع الخبر.',
+                'مثال للحفظ: "إنَّ اللهَ غفورٌ" – اللهَ: اسم إنَّ منصوب. غفورٌ: خبر إنَّ مرفوع.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'التدريب التطبيقي الأول (تحويل الكلمات)',
+            content:[
+              {type:'table', headers:['الكلمة','الجملة بعد دخول الحرف الناسخ','سبب النصب'],
+               rows:[
+                 ['القراءةَ','إنَّ القراءةَ المفتاحُ المعرفة.','نُصبت بالفتحة لأنها مفرد'],
+                 ['المثقفين','كأنَّ المثقفين مشاعلُ نور.','نُصبت بالياء لأنه جمع مذكر سالم'],
+                 ['الصديقَين','لعلَّ الصديقَين يتفقان.','نُصبت بالياء لأنه مثنى'],
+                 ['أُخواتٍ','إنَّ أخَك متميزٌ.','نُصبت بالألف لأنه من الأسماء الخمسة'],
+                 ['الصفحاتِ','ليتَ الصفحاتِ ملوَّنة.','نُصبت بالكسرة لأنه جمع مؤنث سالم']
+               ]}
+            ]
+          },
+          {
+            title:'الجدول الإعرابي الشامل',
+            content:[
+              {type:'table', headers:['الجملة','الاسم (منصوب)','الخبر (مرفوع)'],
+               rows:[
+                 ['إنَّ الرحلةَ ممتعةٌ','الرحلةَ (منصوب بالفتحة)','ممتعةٌ (مرفوع بالضمة)'],
+                 ['كأنَّ القراءةَ سفرٌ','القراءةَ (منصوب بالفتحة)','سفرٌ (مرفوع بالضمة)'],
+                 ['لعلَّ المكتبتَين قريبتان','المكتبتَين (منصوب بالياء)','قريبتان (مرفوع بالألف)'],
+                 ['ليتَ الزائرين مدركون','الزائرين (منصوب بالياء)','مدركون (مرفوع بالواو)'],
+                 ['كأنَّ المكتباتِ موائد','المكتباتِ (منصوب بالكسرة)','موائدُ (مرفوع بالضمة)'],
+                 ['إنَّ أبا حفص كنيةٌ','أبا (منصوب بالألف)','كنيةٌ (مرفوع بالضمة)']
+               ]}
+            ]
+          },
+          {
+            title:'الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                '1. حدَّد نوع الكلمة بعد الحرف الناسخ (اسم أو خبر).',
+                '2. اختر علامة النصب المناسبة لاسمها.',
+                '3. ابقِ الخبر مرفوعاً دائماً.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثالث',
+        sections:[
+          {
+            title:'أولاً: مراجعة القواعد الأساسية',
+            content:[
+              {type:'rule', color:'#0f766e', title:'الحروف الناسخة: إنَّ – كأنَّ – ليت – لعلَّ', items:[
+                'عملها: تدخل على الجملة الاسمية، فتنصب المبتدأ وترفع الخبر.',
+                'علامات نصب الاسم: الفتحة (للمفرد وجمع التكسير)، الكسرة (لجمع المؤنث السالم)، الياء (للمثنى وجمع المذكر السالم)، الألف (للأسماء الخمسة)'
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: مقارنة هامة – كان وأخواتها × إنَّ وأخواتها',
+            content:[
+              {type:'compare2', color1:'#6d28d9', color2:'#0f766e',
+               title1:'كان وأخواتها:',
+               title2:'إنَّ وأخواتها:',
+               items1:['أفعال ناسخة.','ترفع المبتدأ، وتنصب الخبر.'],
+               items2:['حروف ناسخة.','تنصب المبتدأ، وترفع الخبر.']},
+              {type:'note', text:'وجه التشابه: كلاهما يدخلان على الجملة الاسمية. الخلاصة: إنَّ عمل إنَّ وأخواتها عكس عمل كان وأخواتها تماماً.'}
+            ]
+          },
+          {
+            title:'رابعاً: نماذج الإعراب (التطبيق العملي)',
+            content:[
+              {type:'rule', color:'#0f766e', title:'النموذج الأول (مفرد): إنَّ القراءةَ مفيدةٌ', items:[
+                'إنَّ: حرف ناسخ يفيد التوكيد.',
+                'القراءةَ: اسم إنَّ منصوب وعلامة نصبه الفتحة.',
+                'مفيدةٌ: خبر إنَّ مرفوع وعلامة رفعه الضمة.'
+              ]},
+              {type:'rule', color:'#7c3aed', title:'النموذج الثاني (مثنى): كأنَّ الورقتَين جناحان', items:[
+                'كأنَّ: حرف ناسخ يفيد التشبيه.',
+                'الورقتَين: اسم كأنَّ منصوب وعلامة نصبه الياء لأنه مثنى.',
+                'جناحان: خبر كأنَّ مرفوع وعلامة رفعه الألف لأنه مثنى.'
+              ]},
+              {type:'rule', color:'#0d9488', title:'النموذج الثالث (جمع مؤنث سالم): لعلَّ المكتباتِ مزدحمةٌ', items:[
+                'لعلَّ: حرف ناسخ يفيد الترجي.',
+                'المكتباتِ: اسم لعلَّ منصوب وعلامة نصبه الكسرة لأنه جمع مؤنث سالم.',
+                'مزدحمةٌ: خبر لعلَّ مرفوع وعلامة رفعه الضمة.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: نصيحة ذهبية للطالب',
+            content:[
+              {type:'summary', items:[
+                'عند الإعراب: 1) حدَّد الموقع الإعرابي (اسم أو خبر). 2) حدَّد الحالة (منصوب أو مرفوع). 3) اختر العلامة الصحيحة حسب نوع الكلمة.'
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id:'mushtaqat', title:'المشتقات – اسم الفاعل واسم المفعول', emoji:'🌳',
+    color:'#059669', grad:'linear-gradient(135deg,#059669,#065f46)',
+    sub:'الصف السادس الابتدائي', cat:'المشتقات',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: ما معنى المشتقات والاشتقاق؟',
+            content:[
+              {type:'rule', color:'#059669', title:'التعريفات:', items:[
+                'الاشتقاق: هو أخذ كلمة جديدة من كلمة أخرى، مع بقاء الحروف الأصلية، للدلالة على معنى جديد.',
+                'الجذر: الفعل الأصلي. الفروع: الكلمات المشتقة منه.',
+                'مثال: من (كَتَبَ): كاتب – مكتوب – كتاب – مكتبة – كُتَيِّب.'
+              ]},
+              {type:'example', color:'#059669', items:[
+                {a:'من (دَرَسَ): دارس – مدروس – مدرسة – دراسة – مدرِّس', b:'كلها مشتقة من الجذر (درس)'}
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: اسم الفاعل واسم المفعول (القاعدة الذهبية)',
+            content:[
+              {type:'compare2', color1:'#059669', color2:'#7c3aed',
+               title1:'اسم الفاعل:',
+               title2:'اسم المفعول:',
+               items1:['يدل على من قام بالفعل.','يُشتق من الفعل الثلاثي.','وزنه: فاعِل.','أمثلة: ظافِر من (ظَفَر)، حامِل من (حَمَل)'],
+               items2:['يدل على من وقع عليه الفعل.','يُشتق من الفعل الثلاثي.','وزنه: مفعول.','أمثلة: مَنصور من (نَصَر)، مَحمول من (حَمَل)']}
+            ]
+          },
+          {
+            title:'ثالثاً: أمثلة تدريبية',
+            content:[
+              {type:'rule', color:'#0284c7', title:'أمثلة من الجمل:', items:[
+                'حَمَلَ الطالبُ الحقيبة ← الطالب: حامِل (اسم فاعل) | الحقيبة: مَحمولة (اسم مفعول)',
+                'رَفَعَ اللاعبُ الأثقالَ ← اللاعب: رافِع (اسم فاعل) | الأثقال: مَرفوعة (اسم مفعول)',
+                'رَسَمَتِ الفتاةُ المَنظرَ ← الفتاة: راسِمة (اسم فاعل) | المنظر: مَرسوم (اسم مفعول)'
+              ]},
+              {type:'note', text:'ملاحظة: كلمة (طالب) اسم فاعل، وتبقى اسم فاعل عند: طالبان – طالبون – طالبات.'}
+            ]
+          },
+          {
+            title:'رابعاً: الميزان الصرفي (فَعَل)',
+            content:[
+              {type:'golden', title:'الميزان الصرفي هو: فَعَّلَ', items:[
+                'توزيع الحروف: الفاء: الحرف الأول. العين: الحرف الثاني. اللام: الحرف الثالث.',
+                'تطبيق على الفعل (حَمَلَ): حَمَلَ → فَعَلَ.',
+                'اسم الفاعل: حامِل → على وزن فاعِل (إضافة ألف بعد الحرف الأول).',
+                'اسم المفعول: مَحمولٌ → على وزن مفعول (إضافة ميم في البداية وواو قبل الأخير).'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                'علم النحو: يهتم بآخر الكلمة (الإعراب).',
+                'علم الصرف: يهتم ببنية الكلمة وحروفها (الاشتقاق).',
+                'اسم الفاعل: يدل على من قام بالفعل، ووزنه (فاعل).',
+                'اسم المفعول: يدل على من وقع عليه الفعل، ووزنه (مفعول).'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'أولاً: تمهيد – الجذر والفروع (مراجعة)',
+            content:[
+              {type:'rule', color:'#059669', title:'أمثلة:', items:[
+                'كَتَبَ ← كاتب، مكتوب، كتاب، مكتبة',
+                'دَرَسَ ← دارس، مدروس، مدرسة، مُدرِّس',
+                'الاشتقاق: هو أخذ كلمة جديدة من كلمة أصلية للتعبير عن معنى جديد.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: التدريب الأول – الفرق بين اسم الفاعل واسم المفعول',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'القاعدة الذهبية:', items:[
+                'اسم الفاعل: على وزن فاعِل. اسم المفعول: على وزن مَفعول.'
+              ]},
+              {type:'examples2col', items:[
+                {word:'عَزَفَ ← عازف',wz:'فاعل'},{word:'عَلِمَ ← عالم',wz:'فاعل'},
+                {word:'خَرَجَ ← خارج',wz:'فاعل'},{word:'صَعِدَ ← صاعد',wz:'فاعل'},
+                {word:'أَذِنَ ← مَأذون',wz:'مفعول'},{word:'غَرَسَ ← مَغروس',wz:'مفعول'},
+                {word:'طَبَعَ ← مَطبوع',wz:'مفعول'},{word:'نَقَلَ ← مَنقول',wz:'مفعول'}
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: التدريب الثاني – عائلة الكلمة (الاشتقاق)',
+            content:[
+              {type:'rule', color:'#0284c7', title:'من الفعل (يطلب): المفرد: طالب – الطالبة. المثنى: طالبان – طالبتان. الجمع: طالبون – طالبات', items:[]}
+            ]
+          },
+          {
+            title:'سادساً: الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                'اسم الفاعل: يدل على من قام بالفعل، ووزنه (فاعل).',
+                'اسم المفعول: يدل على من وقع عليه الفعل، ووزنه (مفعول).',
+                'الميزان الصرفي: (ف – ع – ل)، وأي حرف زائد في الكلمة يقابله حرف زائد في الميزان.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثالث',
+        sections:[
+          {
+            title:'أولاً: مراجعة المفاهيم الأساسية',
+            content:[
+              {type:'rule', color:'#059669', title:'الفرق بين المشتقات:', items:[
+                'اسم الفاعل: يدل على من قام بالفعل، ووزنه (فاعل).',
+                'اسم المفعول: يدل على من وقع عليه الفعل، ووزنه (مفعول).',
+                'الميزان الصرفي: الفاء=الحرف الأول، العين=الثاني، اللام=الثالث.'
+              ]},
+              {type:'table', headers:['اسم فاعل','اسم مفعول'],
+               rows:[
+                 ['فاهم','مفهوم'],['دارس','مدروس'],['مشهود','مشهود'],
+                 ['ناظر','منظور'],['كاتب','مكتوب']
+               ]}
+            ]
+          },
+          {
+            title:'ثانياً: الميزان الصرفي (التطبيق العملي)',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'مثال: رَفَعَ', items:[
+                'الفعل الماضي: رَفَعَ → على وزن فَعَلَ.',
+                'اسم فاعل: رافِع → على وزن فاعِل (بزيادة ألف). مرفوع على وزن مفعول.',
+                'اسم مفعول: مَرفوعٌ → على وزن مفعول (بزيادة ميم وواو).',
+                'ملاحظة: علم النحو: يهتم بآخر الكلمة (الإعراب). علم الصرف: يهتم ببنية الكلمة واشتقاقها.'
+              ]}
+            ]
+          },
+          {
+            title:'رابعاً: فقرة التفكير الناقد',
+            content:[
+              {type:'rule', color:'#dc2626', title:'الفرق بين: "جاء طالبٌ" و"الدرس مكتوبٌ"', items:[
+                'طالب: إعراباً: فاعل مرفوع. صرفياً: اسم فاعل.',
+                'مكتوبٌ: إعراباً: خبر مرفوع. صرفياً: اسم مفعول.'
+              ]},
+              {type:'note', text:'الفرق بين كلمة (عامِل): عامِل مجدٌّ → اسم فاعل. الناس يعاملوك كما تحب → فعل أمر.'}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الرابع',
+        sections:[
+          {
+            title:'أولاً: مراجعة سريعة (تثبيت القواعد)',
+            content:[
+              {type:'rule', color:'#059669', title:'القواعد المهمة:', items:[
+                'اسم الفاعل: يدل على من قام بالشيء، ويأتي على وزن (فاعِل).',
+                'اسم المفعول: يدل على من وقع عليه الشيء، ويأتي على وزن (مفعول)، وغالباً يبدأ بميم مفتوحة.',
+                'طالبٌ حامِل / لاعبٌ رافِع / رجلٌ عالِم',
+                'الحقيبةُ مَحمولةٌ / الأثقالُ مَرفوعةٌ / الخبرُ مَعلومٌ'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: لعبة الذكاء (اسم المفعول فقط)',
+            content:[
+              {type:'rule', color:'#7c3aed', title:'الكلمات الملونة اسم مفعول:', items:[
+                'منظور، معلوم، منصور، مكتوب – مرفوع',
+                'التمييز المهم: النحو: يهتم بالإعراب. الصرف: يهتم ببنية الكلمة واشتقاقها.'
+              ]}
+            ]
+          },
+          {
+            title:'رابعاً: الخلاصة النهائية',
+            content:[
+              {type:'summary', items:[
+                'اسم الفاعل: يدل على من قام بالشيء، ويأتي على وزن (فاعِل).',
+                'اسم المفعول: يدل على من وقع عليه الشيء، ويأتي على وزن (مفعول).',
+                'التمييز المهم: النحو: يهتم بآخر الكلمة (الإعراب). الصرف: يهتم ببنية الكلمة واشتقاقها.'
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id:'hamzamut', title:'الهمزة المتطرفة', emoji:'✍️',
+    color:'#dc2626', grad:'linear-gradient(135deg,#dc2626,#991b1b)',
+    sub:'الصف السادس الابتدائي', cat:'الهمزة المتطرفة',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: ما هي الهمزة المتطرفة؟',
+            content:[
+              {type:'rule', color:'#dc2626', title:'التعريف:', items:[
+                'هي الهمزة التي تأتي في آخر الكلمة (في الطرف).',
+                'أمثلة: صحراء – شاطئ – لؤلؤ.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: القاعدة الذهبية',
+            content:[
+              {type:'golden', title:'القاعدة الذهبية:', items:[
+                'في الهمزة المتطرفة ننظر فقط إلى حركة الحرف الذي قبل الهمزة.',
+                'حركة الحرف السابق هي التي تحدد شكل الهمزة.'
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: أشكال الهمزة المتطرفة ومتى نستخدمها',
+            content:[
+              {type:'hamza', items:[
+                {bg:'#ede9fe',title:'قبلها كسرة → على الياء (ئ)',examples:['شاطئ','هادئ','قارئ','مبادئ']},
+                {bg:'#fce7f3',title:'قبلها ضمة → على الواو (ؤ)',examples:['لؤلؤ','يجرؤ','تكافؤ','تباطؤ']},
+                {bg:'#fef9c3',title:'قبلها سكون أو مد (اي) → على السطر',examples:['شيء','دفء','جزء','بطء','سماء','وضوء','عشاء']},
+                {bg:'#dcfce7',title:'قبلها فتحة → على الألف (أ)',examples:['نشأ','ملجأ','يقرأ','مبدأ']}
+              ]},
+              {type:'note', text:'ملاحظة: حروف المد تُعدّ حروفاً ساكنة، لذلك تُكتب الهمزة بعدها على السطر.'}
+            ]
+          },
+          {
+            title:'خامساً: ملخص سريع للحفظ',
+            content:[
+              {type:'summary', items:[
+                'عند كتابة همزة في آخر الكلمة:',
+                'كسرة قبلها → على الياء.',
+                'ضمة قبلها → على الواو.',
+                'فتحة قبلها → على الألف.',
+                'سكون أو مد قبلها → على السطر.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'أولاً: تذكُّر سريع بالقاعدة الذهبية',
+            content:[
+              {type:'rule', color:'#dc2626', title:'ملخص الحركات:', items:[
+                'قبلها كسرة → تُكتب على الياء. مثال: شاطئ.',
+                'قبلها ضمة → تُكتب على الواو. مثال: لؤلؤ.',
+                'قبلها فتحة → تُكتب على الألف. مثال: نشأ.',
+                'قبلها سكون أو حرف مد → تُكتب على السطر. أمثلة: دِفء – سَماء – وُضوء.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: تصحيح الأخطاء الشائعة',
+            content:[
+              {type:'table', headers:['الخطأ','الصحيح','السبب'],
+               rows:[
+                 ['شيئ','شيء','لأن ما قبل الهمزة ساكن'],
+                 ['خطئ','خطأ','لأن ما قبل الهمزة مفتوح'],
+                 ['أسمي','اسمي','همزة وصل هي الصواب'],
+                 ['سألت','سأَلت','همزة متوسطة وما قبلها مفتوح'],
+                 ['أستأذنت','استأذنت','همزة متوسطة وما قبلها مفتوح'],
+                 ['مسؤول','مسؤول','همزة متوسطة مضمومة وما قبلها مكسور'],
+                 ['جزئين','جُزأَين','الهمزة مفتوحة وقبلها سكون']
+               ]}
+            ]
+          },
+          {
+            title:'ثالثاً: ملخص الحركات وما يناسبها',
+            content:[
+              {type:'summary', items:[
+                'الكسرة → يناسبها الياء.',
+                'الضمة → يناسبها الواو.',
+                'الفتحة → يناسبها الألف.',
+                'السكون → يناسبه السطر.'
+              ]}
+            ]
+          },
+          {
+            title:'رابعاً: نصيحة المعلم الأخيرة',
+            content:[
+              {type:'note', text:'انطق الحرف الذي قبل الهمزة بوضوح. لا تخلط بين: الهمزة المتطرفة (آخر الكلمة) والهمزة المتوسطة (وسط الكلمة). انتبه للتاء المربوطة ولا تكتبها هاء في كلمات مثل: قصة – حفلة.'}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id:'hamzamid', title:'الهمزة المتوسطة', emoji:'🪑',
+    color:'#b45309', grad:'linear-gradient(135deg,#b45309,#92400e)',
+    sub:'الصف السادس الابتدائي', cat:'الهمزة المتوسطة',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: ما هي الهمزة المتوسطة؟',
+            content:[
+              {type:'rule', color:'#b45309', title:'التعريف:', items:[
+                'هي الهمزة التي تأتي في وسط الكلمة، أي: ليست في أول الكلمة، وليست في آخرها.',
+                'مثال: مِئذنة – سؤال – مأذون'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: أشكال الهمزة المتوسطة (كراسيها)',
+            content:[
+              {type:'rule', color:'#b45309', title:'الأشكال الأربعة:', items:[
+                'على الياء (ئـ): مثال: مِئذنة',
+                'على الواو (ؤ): مثال: سؤال',
+                'على الألف (أ/إ): مثال: سأل',
+                'على السطر (ء): مثال: قراءة'
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: القاعدة الذهبية (لعبة الأقوى)',
+            content:[
+              {type:'golden', title:'لاختيار كرسي الهمزة المتوسطة، نقارن بين:', items:[
+                'حركة الهمزة نفسها.',
+                'حركة الحرف الذي قبلها.',
+                'ثم نختار الحركة الأقوى.',
+                'ترتيب الحركات من الأقوى إلى الأضعف:',
+                '1. الكسرة → كرسيها الياء (الأقوى)',
+                '2. الضمة → كرسيها الواو (ثاني أقوى)',
+                '3. الفتحة → كرسيها الألف',
+                '4. السكون → يناسبه السطر (الأضعف)'
+              ]}
+            ]
+          },
+          {
+            title:'رابعاً: أمثلة من الفيديو (للفهم)',
+            content:[
+              {type:'rule', color:'#0284c7', title:'أمثلة مفصّلة:', items:[
+                'مِئذنة: الهمزة ساكنة وما قبلها مكسور → الكسرة أقوى → كُتبت على الياء.',
+                'سُؤال: الهمزة مفتوحة وما قبلها مضموم → الضمة أقوى من الفتحة → كُتبت على الواو.',
+                'مؤمِن: الهمزة ساكنة وما قبلها مضموم → الضمة أقوى → كُتبت على الواو.',
+                'يأكُل: الهمزة ساكنة وما قبلها مفتوح → الفتحة أقوى من السكون → كُتبت على الألف.',
+                'يُبئِسُ: الهمزة مكسورة وما قبلها مضموم → الكسرة أقوى → كُتبت على الياء.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: حالة خاصة – الهمزة على السطر',
+            content:[
+              {type:'note', text:'تُكتب الهمزة المتوسطة على السطر في حالتين: إذا كانت الهمزة مفتوحة وقبلها ألف ساكنة. مثال: قراءة. إذا كانت الهمزة مفتوحة وقبلها واو ساكنة. مثال: مروءة.'}
+            ]
+          },
+          {
+            title:'سادساً: الخلاصة (للحفظ)',
+            content:[
+              {type:'summary', items:[
+                'عند كتابة همزة في وسط الكلمة:',
+                'إذا كانت الكسرة هي الأقوى → تكتب على الياء.',
+                'إذا كانت الضمة هي الأقوى → تكتب على الواو.',
+                'إذا كانت الفتحة هي الأقوى → تكتب على الألف.',
+                'إذا كانت مفتوحة وقبلها حرف مد → تكتب على السطر.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'أولاً: مراجعة سريعة (القاعدة الذهبية)',
+            content:[
+              {type:'rule', color:'#b45309', title:'خطوات كتابة الهمزة المتوسطة (لعبة الأقوى):', items:[
+                '1. نحدد حركة الهمزة.',
+                '2. نحدد حركة الحرف الذي قبلها.',
+                '3. نقارن بين الحركتين.',
+                '4. نختار كرسي الحركة الأقوى.'
+              ]},
+              {type:'golden', title:'سلم القوة:', items:[
+                'الكسرة (ِ) ← الياء – الأقوى',
+                'الضمة (ُ) ← الواو',
+                'الفتحة (َ) ← الألف',
+                'السكون (ْ) ← السطر – الأضعف'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: تمارين (اختر الإجابة الصحيحة)',
+            content:[
+              {type:'rule', color:'#0284c7', title:'تمرين ركّب الكلمة:', items:[
+                'يَتَفَاءَل: الهمزة مفتوحة وقبلها ألف مد ← حالة خاصة → تُكتب على السطر.',
+                'يُؤس: الهمزة ساكنة وقبلها مضموم → الضمة أقوى → تُكتب على الواو.',
+                'تَطمَئِن: الهمزة مكسورة وقبلها مفتوح → الكسرة أقوى → تُكتب على الياء.',
+                'هناءة: الهمزة مفتوحة وقبلها ألف مد ← حالة خاصة → تُكتب على السطر.',
+                'كأس: الهمزة ساكنة وقبلها مفتوح → الفتحة أقوى من السكون → تُكتب على الألف.',
+                'رُؤيا: الهمزة ساكنة وقبلها مضموم → الضمة أقوى → تُكتب على الواو.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: ملخص ونصيحة أخيرة',
+            content:[
+              {type:'summary', items:[
+                'السر في كتابة الهمزة المتوسطة هو: التشكيل الصحيح.',
+                'عند الإملاء: انطق الكلمة ببطء، حدَّد حركة الهمزة وما قبلها، اكتب الهمزة على كرسي الحركة الأقوى، طبِّق سلم القوة.'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثالث والرابع',
+        sections:[
+          {
+            title:'المراجعة النهائية (الخريطة الذهنية)',
+            content:[
+              {type:'hamza', items:[
+                {bg:'#ede9fe',title:'على السطر (ء): إذا كانت مفتوحة أو قبلها ألف أو واو ساكنة',examples:['قراءة','مروءة','براءة']},
+                {bg:'#dcfce7',title:'على الألف (أ): إذا كانت مفتوحة أو قبلها فتحة',examples:['رأس','سأل','تأسف']},
+                {bg:'#fce7f3',title:'على الواو (ؤ): إذا كانت مضمومة أو قبلها ضمة',examples:['سؤال','لؤلؤ','مؤمن']},
+                {bg:'#fef9c3',title:'على الياء (ئـ): إذا كانت مكسورة أو قبلها كسرة',examples:['مئذنة','بئر','رئة']}
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: تدريب (1) – اختر الكلمة الصحيحة',
+            content:[
+              {type:'rule', color:'#b45309', title:'تطبيقات:', items:[
+                '«يساعده ... للفقراء في ميزان حسناتكم»: الكلمة مبتدأ مرفوع، الهمزة مضمومة → على الواو → عطاؤكم.',
+                '«(يساعده ... أبنائه – أبناءه)»: الكلمة فاعل مرفوع، الهمزة مضمومة → على الواو → أبناؤه.'
+              ]},
+              {type:'note', text:'تنبيه: يتغير رسم الهمزة بتغير موقع الكلمة: عطاؤكم (رفع) – عطاءكم (جر) – عطاءَكم (نصب).'}
+            ]
+          },
+          {
+            title:'ثالثاً: تدريب (2) – الإملاء',
+            content:[
+              {type:'rule', color:'#059669', title:'تفسير كتابة الهمزة:', items:[
+                'هَدأَت: الهمزة مفتوحة وقبلها مفتوح → الفتحة أقوى → تُكتب على الألف.',
+                'بَراءَة: الهمزة مفتوحة وقبلها ألف مد ← حالة خاصة → تُكتب على السطر.',
+                'رِئَة: قبل الهمزة كسرة → تُكتب على الياء.',
+                'مُؤلِم: قبل الهمزة ضمة → تُكتب على الواو.',
+                'مَدائن: الهمزة مكسورة → تُكتب على الياء.',
+                'تأسَّف: الهمزة مفتوحة وقبلها مفتوح → تُكتب على الألف.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: نصيحة المعلم الأخيرة',
+            content:[
+              {type:'summary', items:[
+                'لإتقان كتابة الهمزة المتوسطة: افهم المعنى والإعراب. انطق الكلمة بحركاتها. طبِّق قاعدة «الأقوى يفوز».'
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id:'hamzawslqt', title:'همزتا الوصل والقطع + ابن وابنة', emoji:'🔗',
+    color:'#4f46e5', grad:'linear-gradient(135deg,#4338ca,#3730a3)',
+    sub:'الصف السادس الابتدائي', cat:'همزة الوصل والقطع',
+    parts:[
+      {
+        label:'الجزء الأول',
+        sections:[
+          {
+            title:'أولاً: الفرق بين همزة الوصل وهمزة القطع',
+            content:[
+              {type:'compare2', color1:'#dc2626', color2:'#6b7280',
+               title1:'1. همزة القطع (القوية) أ',
+               title2:'2. همزة الوصل (الخفية) ا',
+               items1:['شكلها: تُرسم ألفاً فوقها أو تحتها همزة (أ / إ / أ).','نطقها: تُنطق دائماً في أول الكلام ووسطه.','مواضعها في الأسماء: جميع الأسماء في اللغة العربية ما عدا سبعة أسماء.','مواضعها في الحروف: جميع الحروف عدا (ال) التعريف.','مواضعها في الأفعال: الفعل الماضي الثلاثي (أكَل)، والماضي الرباعي وأمره (أسلَم).'],
+               items2:['شكلها: تُرسم ألفاً بدون همزة (ا).','نطقها: تُنطق في بداية الكلام فقط، وتسقط عند الوصل.','مواضعها في الأسماء السبعة: اسم، ابن، ابنة، امرأة، امرؤ، اثنان، اثنتان.','مواضعها في الحروف: فقط (ال) التعريف.','مواضعها في الأفعال: أمر الثلاثي (اكتُب)، والخماسي (انتظَر)، والسداسي (استفهِم).']}
+            ]
+          },
+          {
+            title:'ثانياً: القاعدة الذهبية للتفريق (خدعة حرف الواو 9)',
+            content:[
+              {type:'golden', title:'نضع حرف (و) قبل الكلمة ونطقها:', items:[
+                'إذا نُطقت الهمزة بوضوح → همزة قطع. مثال: وأحمد. ← الهمزة تُنطق → همزة قطع.',
+                'إذا اختفت الهمزة → همزة وصل. مثال: واستغفر. ← اختفت الهمزة → همزة وصل.'
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: أحكام كلمتَي (ابن) و(ابنة)',
+            content:[
+              {type:'compare2', color1:'#dc2626', color2:'#059669',
+               title1:'متى نحذف الألف ونكتب (بن)؟',
+               title2:'متى نُثبت الألف ونكتب (ابن)؟',
+               items1:['إذا وقعت بين علمين، وكان الثاني والداً للأول، ولم تكن في أول السطر.','مثال: عثمان بن عفان.','إذا جاءت بعد أداة النداء (يا). مثال: يا بن آدم.'],
+               items2:['إذا وقعت في أول السطر.','إذا لم تقع بين علمين. مثال: جاء ابن محمد.','إذا جاءت بين فعل واسم. مثال: الزبير ابن العوام.','إذا جاءت في أول السطر.']}
+            ]
+          },
+          {
+            title:'رابعاً: ملخص سريع للحفظ',
+            content:[
+              {type:'summary', items:[
+                'همزة القطع: تُكتب (أ / إ / أ) وتُنطق دائماً.',
+                'همزة الوصل: تُكتب (ا) وتسقط عند الوصل.',
+                'الأسماء السبعة: همزتها وصل دائماً (اسم – ابن – ابنة – امرأة – امرؤ – اثنان – اثنتان).'
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثاني',
+        sections:[
+          {
+            title:'أولاً: مراجعة سريعة (أساسيات الدرس)',
+            content:[
+              {type:'rule', color:'#4338ca', title:'همزة القطع (أ / إ / أ):', items:[
+                'تُنطق وتُكتب دائماً. أمثلة: أحمد – إبراهيم.'
+              ]},
+              {type:'rule', color:'#6b7280', title:'همزة الوصل (ا):', items:[
+                'تُنطق في بداية الكلام فقط وتسقط عند الوصل. مثال: استغفر.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: أهم قاعدة للحفظ – الأسماء السبعة',
+            content:[
+              {type:'golden', title:'الأسماء التي همزتها وصل دائماً:', items:[
+                'اسم – ابن – ابنة – امرأة – امرؤ – اثنان – اثنتان'
+              ]}
+            ]
+          },
+          {
+            title:'ثالثاً: قواعد كتابة (ابن) و(ابنة)',
+            content:[
+              {type:'compare2', color1:'#dc2626', color2:'#059669',
+               title1:'متى تُحذف الألف ونكتب (بن)؟',
+               title2:'متى تُثبت الألف ونكتب (ابن)؟',
+               items1:['إذا وقعت بين علمين وكان الثاني والداً للأول، ولم تكن في أول السطر.','مثال: عمر بن عبد العزيز.','إذا جاءت بعد أداة النداء. مثال: يا بن زيد.'],
+               items2:['إذا جاءت في أول السطر.','إذا لم تقع بين علمين.','مثال: جاء ابن تيمية.','عبادة ابن الصامت.']}
+            ]
+          },
+          {
+            title:'رابعاً: تطبيقات عملية (حل تمارين الكتاب)',
+            content:[
+              {type:'rule', color:'#4338ca', title:'تمرين (1): صنِّف الكلمات (وصل أم قطع)', items:[
+                'همزة قطع: أخ – أُسرتي – إبراهيم – أذهب – إلى',
+                'همزة وصل: استغفر – امرأة – احتار – اثنان – الناس'
+              ]},
+              {type:'rule', color:'#059669', title:'تمرين (2): املأ الفراغ بـ (ابن) أو (بن)', items:[
+                '- عمر ___ عبد العزيز. (بن – لأنها بين علمين)',
+                '- ابن تيمية. (ابن – لأنها في أول السطر)',
+                '- يا بن زيد. (بن – بعد أداة النداء)',
+                '- عبادة ابن الصامت. (ابن – لأنها بين فعل واسم)',
+                '- عبد الله بن سلام. (بن – بين علمين)'
+              ]}
+            ]
+          },
+          {
+            title:'سادساً: نصيحة أخيرة للطالب',
+            content:[
+              {type:'note', text:'انتبه لكلمة (ابن): إذا جاءت بين اسم الابن واسم أبيه في السطر نفسه، تُحذف الألف فوراً وتُكتب (بن).'}
+            ]
+          }
+        ]
+      },
+      {
+        label:'الجزء الثالث',
+        sections:[
+          {
+            title:'أولاً: مراجعة – كيف أفرق بين همزة الوصل والقطع؟',
+            content:[
+              {type:'golden', title:'قاعدة الواو للتفريق:', items:[
+                'نضع حرف (و) قبل الكلمة وننطقها:',
+                'إذا نُطقت الهمزة بوضوح → همزة قطع. مثال: وأحمد.',
+                'إذا اختفت الهمزة عند الوصل → همزة وصل. مثال: واستغفر.'
+              ]}
+            ]
+          },
+          {
+            title:'ثانياً: ملخص القواعد (من حوار الهمزتين)',
+            content:[
+              {type:'table', headers:['الفئة','همزة القطع','همزة الوصل'],
+               rows:[
+                 ['أولاً: الأسماء','جميع الأسماء في اللغة العربية (أمثلة: أحمد – أمل – إبراهيم).','سبعة أسماء فقط يجب حفظها (اسم – ابن – ابنة – امرأة – امرؤ – اثنان – اثنتان).'],
+                 ['ثانياً: الحروف','جميع الحروف (أمثلة: إن – إلى – أو – إلا).','همزة وصل: فقط (ال) التعريف. (أمثلة: الكتاب – القلم).'],
+                 ['ثالثاً: الأفعال','الفعل الماضي الثلاثي (أكل)، والرباعي والماضي (أسلم) وأمره.','الفعل الخماسي (اشترى)، والسداسي (استقبل)، وأمر الفعل الثلاثي (اكتب).']
+               ]}
+            ]
+          },
+          {
+            title:'رابعاً: الأنشطة والتدريبات (كما وردت في الدرس)',
+            content:[
+              {type:'rule', color:'#4338ca', title:'نشاط (1): جدول الأفعال', items:[
+                'أفعال خماسية (وصل): اشترى – انتظر – استمع.',
+                'أفعال سداسية (وصل): استقبل – استفهم – استغفر.'
+              ]},
+              {type:'rule', color:'#059669', title:'نشاط (2): الواجب المنزلي – المقارنة بين الهمزتين', items:[
+                'أوجه الشبه: كلاهما تأتيان في أول الكلمة.',
+                'أوجه الاختلاف: همزة القطع: ترسم (أ / إ) وتُنطق دائماً. همزة الوصل: تُرسم (ا) وتسقط عند الوصل.'
+              ]}
+            ]
+          },
+          {
+            title:'خامساً: نصيحة للمذاكرة',
+            content:[
+              {type:'summary', items:[
+                'ثبِّت المعلومة جيداً بحفظ: الأسماء السبعة.',
+                'قاعدة (ابن) خاصةً إذا جاءت في أول السطر؛ لأنها من المواضع المهمة في الاختبارات.'
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// =================== QUIZ DATA ===================
+const questions = [
+  // اسم الآلة
+  {q:'ما هو اسم الآلة في الجملة: (فَتَحَ الباب بالمِفتاح)؟',opts:['فَتَحَ','الباب','المِفتاح','بـ'],correct:2,exp:'المِفتاح هو اسم الآلة التي يُفتح بها الباب، وهو على وزن مِفعَال',cat:'اسم الآلة'},
+  {q:'على أي وزن جاءت كلمة (غَسَّالة)؟',opts:['مِفعَال','مِفعَلَة','فَعَّالَة','مِفعَل'],correct:2,exp:'غسَّالة على وزن فَعَّالَة، وهي آلة الغسيل',cat:'اسم الآلة'},
+  {q:'أي الكلمات التالية اسم آلة جامد (سماعي)؟',opts:['مِنشار','حَصَّادة','غَسَّالة','سِكين'],correct:3,exp:'سِكين اسم آلة جامد لأنه ليس له فعل ثلاثي يُشتق منه',cat:'اسم الآلة'},
+  {q:'ما الوزن الصرفي لكلمة (مِصعَد)؟',opts:['مِفعَال','مِفعَل','فَعَّالَة','مِفعَلَة'],correct:1,exp:'مِصعَد على وزن مِفعَل (ميم + سكون الحرف الثاني)',cat:'اسم الآلة'},
+  // كان وأخواتها
+  {q:'ما الذي يحدث للخبر عند دخول (كان) على الجملة الاسمية؟',opts:['يبقى مرفوعاً','يصبح منصوباً','يصبح مجروراً','يُحذف'],correct:1,exp:'الخبر يصبح منصوباً ويُسمى (خبر كان)',cat:'كان وأخواتها'},
+  {q:'ما معنى الفعل الناسخ (ليس)؟',opts:['التحوُّل من حال إلى حال','اتصاف المبتدأ بالخبر في الماضي','النفي','التشبيه'],correct:2,exp:'ليس: تفيد النفي. مثال: ليس الغشُّ مقبولاً.',cat:'كان وأخواتها'},
+  {q:'في الجملة: (كان الطالبان مجتهدَين)، ما علامة نصب (مجتهدَين)؟',opts:['الفتحة','الياء','الكسرة','الألف'],correct:1,exp:'مجتهدَين منصوب بالياء لأنه مثنى',cat:'كان وأخواتها'},
+  {q:'ما اسم (كان) في الجملة: (كان المتميزون قادةً)؟',opts:['كان','المتميزون','قادةً','المجتمع'],correct:1,exp:'المتميزون: اسم كان مرفوع بالواو لأنه جمع مذكر سالم',cat:'كان وأخواتها'},
+  {q:'ماذا يُسمى المبتدأ بعد دخول (كان) عليه؟',opts:['خبر كان','اسم كان','نائب الفاعل','المفعول به'],correct:1,exp:'المبتدأ يبقى مرفوعاً ويتغير اسمه إلى (اسم كان)',cat:'كان وأخواتها'},
+  // إن وأخواتها
+  {q:'ماذا يحدث للمبتدأ عند دخول (إنَّ) عليه؟',opts:['يبقى مرفوعاً','يصبح منصوباً','يصبح مجروراً','يُحذف'],correct:1,exp:'المبتدأ يصبح منصوباً ويُسمى (اسم إنَّ)',cat:'إن وأخواتها'},
+  {q:'ما معنى الحرف الناسخ (لَيت)؟',opts:['التوكيد','التشبيه','التمني للشيء الصعب','الترجي للشيء الممكن'],correct:2,exp:'لَيت: تفيد التمني للشيء الصعب. مثال: ليت المريبين مدركون.',cat:'إن وأخواتها'},
+  {q:'ما علامة نصب (المكتباتِ) في الجملة: (كأنَّ المكتباتِ موائد)؟',opts:['الفتحة','الياء','الكسرة','الألف'],correct:2,exp:'المكتباتِ: اسم كأنَّ منصوب بالكسرة لأنه جمع مؤنث سالم',cat:'إن وأخواتها'},
+  {q:'ما الفرق بين (كان) و(إنَّ)؟',opts:['لا فرق بينهما','كان ترفع الاسم وتنصب الخبر, وإنَّ تنصب الاسم وترفع الخبر','كان للأفعال وإنَّ للحروف','كان للماضي وإنَّ للحاضر'],correct:1,exp:'كان: ترفع الاسم وتنصب الخبر. إنَّ: تنصب الاسم وترفع الخبر.',cat:'إن وأخواتها'},
+  // المشتقات
+  {q:'ما وزن اسم الفاعل من الفعل الثلاثي؟',opts:['مفعول','فاعِل','فَعَّال','مِفعال'],correct:1,exp:'اسم الفاعل من الفعل الثلاثي على وزن (فاعِل)',cat:'المشتقات'},
+  {q:'ما اسم الفاعل من الفعل (كَتَبَ)؟',opts:['مكتوب','كتابة','كاتِب','مكتب'],correct:2,exp:'كاتِب: اسم الفاعل من (كَتَبَ) على وزن فاعِل',cat:'المشتقات'},
+  {q:'ما اسم المفعول من الفعل (نَصَرَ)؟',opts:['ناصر','نصر','نصير','مَنصور'],correct:3,exp:'مَنصور: اسم المفعول من (نَصَرَ) على وزن مَفعول',cat:'المشتقات'},
+  {q:'في الجملة: (حَمَلَ الطالبُ الحقيبة)، من هو اسم المفعول؟',opts:['حَمَلَ','الطالب','الحقيبة','حامل'],correct:2,exp:'الحقيبة هي ما وقع عليه فعل الحمل، فاسم مفعولها (مَحمولة)',cat:'المشتقات'},
+  // الهمزة المتطرفة
+  {q:'ما شكل الهمزة في كلمة (شاطئ)؟',opts:['على الألف','على الواو','على الياء','على السطر'],correct:2,exp:'شاطئ: ما قبل الهمزة مكسور → تُكتب على الياء',cat:'الهمزة المتطرفة'},
+  {q:'لماذا كُتبت الهمزة في (لُؤلُؤ) على الواو؟',opts:['لأن ما قبلها مكسور','لأن ما قبلها مفتوح','لأن ما قبلها مضموم','لأن ما قبلها ساكن'],correct:2,exp:'لؤلؤ: ما قبل الهمزة مضموم → تُكتب على الواو',cat:'الهمزة المتطرفة'},
+  {q:'ما شكل الهمزة في كلمة (نَشَأ)؟',opts:['على الياء','على الواو','على الألف','على السطر'],correct:2,exp:'نشأ: ما قبل الهمزة مفتوح → تُكتب على الألف',cat:'الهمزة المتطرفة'},
+  {q:'لماذا كُتبت الهمزة في (شيء) على السطر؟',opts:['لأن ما قبلها مكسور','لأن ما قبلها مضموم','لأن ما قبلها ساكن','لأن ما قبلها مفتوح'],correct:2,exp:'شيء: ما قبل الهمزة حرف مد (ساكن) → تُكتب على السطر',cat:'الهمزة المتطرفة'},
+  // الهمزة المتوسطة
+  {q:'ما ترتيب الحركات من الأقوى إلى الأضعف في الهمزة المتوسطة؟',opts:['الضمة ثم الكسرة ثم الفتحة ثم السكون','الكسرة ثم الضمة ثم الفتحة ثم السكون','الفتحة ثم الكسرة ثم الضمة ثم السكون','السكون ثم الفتحة ثم الضمة ثم الكسرة'],correct:1,exp:'الترتيب: الكسرة (الأقوى) ← الضمة ← الفتحة ← السكون (الأضعف)',cat:'الهمزة المتوسطة'},
+  {q:'لماذا كُتبت الهمزة في كلمة (سُؤَال) على الواو؟',opts:['لأن الهمزة مكسورة','لأن ما قبل الهمزة مضموم والضمة أقوى من الفتحة','لأن ما قبل الهمزة مفتوح','لأن الهمزة ساكنة'],correct:1,exp:'سؤال: الهمزة مفتوحة وما قبلها مضموم. الضمة أقوى من الفتحة → تُكتب على الواو.',cat:'الهمزة المتوسطة'},
+  // همزة الوصل والقطع
+  {q:'ما نوع الهمزة في كلمة (اكتُب)؟',opts:['همزة قطع','همزة وصل','همزة متوسطة','همزة متطرفة'],correct:1,exp:'اكتُب: همزة وصل لأنها أمر فعل ثلاثي، تسقط عند الوصل',cat:'همزة الوصل والقطع'},
+  {q:'ما الأسماء السبعة التي همزتها وصل؟',opts:['أحمد – أمل – أم','اسم – ابن – ابنة – امرأة – امرؤ – اثنان – اثنتان','إبراهيم – إسماعيل – إسحاق','أب – أخ – حَم – هَن – فو – ذو'],correct:1,exp:'الأسماء السبعة همزتها وصل دائماً: اسم – ابن – ابنة – امرأة – امرؤ – اثنان – اثنتان.',cat:'همزة الوصل والقطع'}
+];
+
+// =================== HELPERS ===================
+const letters=['أ','ب','ج','د'];
+const okMsgs=['أحسنتَ! ممتاز! 🌟','رائع! إجابة صحيحة! ✨','عظيم! أنت نجم! 🏆','بارك الله فيك! مثالية! 💫','ممتاز جداً! 🎯','جميل! أنت فخر لغتنا! 🌺'];
+const noMsgs=['حاول مرة أخرى! 💪','لا تستسلم! أنت قادر! 🌱','التعلم رحلة، حاول ثانية! 📚','ستنجح في المرة القادمة! 🎈'];
+const cfColors=['#f59e0b','#ef4444','#8b5cf6','#3b82f6','#10b981','#f97316','#ec4899'];
+let curQ=0, score=0, answered=false, selCat=null;
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+
+// =================== TAB / PAGE ===================
+function switchTab(t){
+  ['pres','quiz'].forEach(id=>{
+    document.getElementById('tab-'+id).classList.toggle('active',id===t);
+  });
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+t).classList.add('active');
+  if(t==='quiz'){curQ=0;score=0;answered=false;renderCatFilters();renderQ();}
+}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showPres(){showPage('page-pres');document.getElementById('tab-pres').classList.add('active');document.getElementById('tab-quiz').classList.remove('active');}
+
+// =================== SETTINGS ===================
+function toggleSettings(){document.getElementById('settOverlay').classList.toggle('open');}
+function closeSettings(e){if(e.target===document.getElementById('settOverlay'))toggleSettings();}
+
+// =================== PRESENTATION ===================
+function renderUnits(){
+  const g=document.getElementById('unitsGrid');
+  units.forEach((u,i)=>{
+    const c=document.createElement('div');
+    c.className='unit-card';
+    c.style.animationDelay=(i*70)+'ms';
+    const partsHtml=u.parts.map(p=>`<span class="card-part-badge" style="color:${u.color};border-color:${u.color}20;background:${u.color}10">${p.label}</span>`).join('');
+    c.innerHTML=`
+      <div class="card-top" style="background:${u.grad}">
+        <div class="card-emoji">${u.emoji}</div>
+        <div class="card-title">${u.title}</div>
+        <div class="card-tag">📍 ${u.sub}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-parts">${partsHtml}</div>
+        <button class="card-btn" style="background:${u.color}">استعرض الوحدة ←</button>
+      </div>`;
+    c.addEventListener('click',()=>openUnit(u));
+    g.appendChild(c);
+  });
+}
+
+function openUnit(u){
+  document.getElementById('detailHero').style.background=u.grad;
+  document.getElementById('detailEmoji').textContent=u.emoji;
+  document.getElementById('detailTitle').textContent=u.title;
+  document.getElementById('detailSub').textContent=u.sub;
+  const dc=document.getElementById('detailContent');
+  dc.innerHTML='';
+  if(u.parts.length>1){
+    const nav=document.createElement('div');
+    nav.className='parts-nav';
+    u.parts.forEach((p,pi)=>{
+      const b=document.createElement('button');
+      b.className='part-btn'+(pi===0?' active':'');
+      b.style.cssText=`color:${pi===0?'#fff':u.color};background:${pi===0?u.color:'#fff'};border-color:${u.color}`;
+      b.textContent=p.label;
+      b.addEventListener('click',()=>{
+        nav.querySelectorAll('.part-btn').forEach(x=>{x.classList.remove('active');x.style.cssText=`color:${u.color};background:#fff;border-color:${u.color}`;});
+        b.classList.add('active');b.style.cssText=`color:#fff;background:${u.color};border-color:${u.color}`;
+        dc.querySelectorAll('.part-content').forEach((x,xi)=>x.classList.toggle('active',xi===pi));
+      });
+      nav.appendChild(b);
+    });
+    dc.appendChild(nav);
+  }
+  u.parts.forEach((p,pi)=>{
+    const pc=document.createElement('div');
+    pc.className='part-content'+(pi===0?' active':'');
+    p.sections.forEach((sec,si)=>{
+      const sc=document.createElement('div');
+      sc.className='section-card';
+      sc.style.animationDelay=(si*80)+'ms';
+      sc.innerHTML=`
+        <div class="section-header" onclick="toggleSec(this)">
+          <div class="section-num" style="background:${u.color}">${si+1}</div>
+          <div class="section-title">${sec.title}</div>
+          <div class="section-arrow${si===0?' open':''}">▼</div>
+        </div>
+        <div class="section-body${si===0?' open':''}">${buildContent(sec.content,u.color)}</div>`;
+      pc.appendChild(sc);
+    });
+    dc.appendChild(pc);
+  });
+  showPage('page-detail');
+}
+
+function buildContent(content,color){
+  return content.map(c=>{
+    if(c.type==='rule') return `
+      <div class="rule-box" style="background:${c.color}10;border-color:${c.color}">
+        <div class="rule-title" style="color:${c.color}">${c.title}</div>
+        <ul class="rule-list">${c.items.map(i=>`<li><div class="rule-dot" style="background:${c.color}"></div><div>${i}</div></li>`).join('')}</ul>
+      </div>`;
+    if(c.type==='example') return `
+      <div class="examples-title">✏️ أمثلة تطبيقية</div>
+      ${c.items.map(e=>`<div class="example-box" style="background:${c.color}10;border-color:${c.color}"><div class="example-main">${e.a}</div><div class="example-exp">${e.b}</div></div>`).join('')}`;
+    if(c.type==='examples2col') return `
+      <div class="weights-grid">${c.items.map(e=>`<div class="weight-item"><div class="weight-form">${e.word}</div><div class="weight-example">الوزن: ${e.wz}</div></div>`).join('')}</div>`;
+    if(c.type==='weights') return `
+      <div class="weights-grid">${c.items.map(e=>`<div class="weight-item"><div class="weight-form">${e.form}</div><div class="weight-example">${e.ex}</div>${e.note?`<div style="font-size:.65rem;color:#94a3b8;margin-top:2px">${e.note}</div>`:''}</div>`).join('')}</div>`;
+    if(c.type==='note') return `<div class="note-box">⚠️ <span>${c.text}</span></div>`;
+    if(c.type==='golden') return `
+      <div class="golden-rule">
+        <div class="golden-rule-title">👑 ${c.title}</div>
+        <ol class="steps-list">${c.items.map(i=>`<li>${i}</li>`).join('')}</ol>
+      </div>`;
+    if(c.type==='summary') return `
+      <div class="summary-box">
+        <div class="summary-title">✅ الخلاصة</div>
+        <ul class="rule-list">${c.items.map(i=>`<li><div class="rule-dot" style="background:#10b981"></div><div>${i}</div></li>`).join('')}</ul>
+      </div>`;
+    if(c.type==='compare2') return `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+        <div class="rule-box" style="background:${c.color1}10;border-color:${c.color1}">
+          <div class="rule-title" style="color:${c.color1}">${c.title1}</div>
+          <ul class="rule-list">${c.items1.map(i=>`<li><div class="rule-dot" style="background:${c.color1}"></div><div>${i}</div></li>`).join('')}</ul>
+        </div>
+        <div class="rule-box" style="background:${c.color2}10;border-color:${c.color2}">
+          <div class="rule-title" style="color:${c.color2}">${c.title2}</div>
+          <ul class="rule-list">${c.items2.map(i=>`<li><div class="rule-dot" style="background:${c.color2}"></div><div>${i}</div></li>`).join('')}</ul>
+        </div>
+      </div>`;
+    if(c.type==='table') return `
+      <table class="compare-table">
+        <thead style="background:${color}15"><tr>${c.headers.map(h=>`<th style="color:${color}">${h}</th>`).join('')}</tr></thead>
+        <tbody>${c.rows.map((r,i)=>`<tr style="background:${i%2===0?'#f8fafc':'#fff'}">${r.map(d=>`<td>${d}</td>`).join('')}</tr>`).join('')}</tbody>
+      </table>`;
+    if(c.type==='hamza') return `
+      <div class="hamza-grid">${c.items.map(h=>`
+        <div class="hamza-case" style="background:${h.bg}">
+          <div class="hamza-case-title">${h.title}</div>
+          <div class="hamza-examples">${h.examples.map(e=>`<span class="hamza-example">${e}</span>`).join('')}</div>
+        </div>`).join('')}</div>`;
+    return '';
+  }).join('');
+}
+
+function toggleSec(header){
+  const body=header.nextElementSibling;
+  const arrow=header.querySelector('.section-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// =================== QUIZ ===================
+function getQs(){return selCat?questions.filter(q=>q.cat===selCat):questions;}
+function renderCatFilters(){
+  const cats=[...new Set(questions.map(q=>q.cat))];
+  const el=document.getElementById('catFilters');
+  el.innerHTML=cats.map(c=>`<button class="cat-btn${selCat===c?' active':''}" onclick="setCat('${c}')">${c}</button>`).join('');
+}
+function setCat(c){selCat=selCat===c?null:c;curQ=0;score=0;answered=false;renderCatFilters();renderQ();}
+function renderQ(){
+  const qs=getQs();
+  if(curQ>=qs.length){showResult();return;}
+  const q=qs[curQ];
+  document.getElementById('qCounter').textContent=`سؤال ${curQ+1} من ${qs.length}`;
+  document.getElementById('scoreDis').textContent=`${score} نقطة`;
+  document.getElementById('progFill').style.width=`${(curQ/qs.length)*100}%`;
+  document.getElementById('qCat').textContent=q.cat;
+  document.getElementById('qText').textContent=q.q;
+  const oc=document.getElementById('optsContainer');
+  oc.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='opt-btn';
+    b.innerHTML=`<span class="opt-letter">${letters[i]}</span><span>${o}</span>`;
+    b.addEventListener('click',()=>selectAns(i));
+    oc.appendChild(b);
+  });
+  document.getElementById('fbSection').style.display='none';
+  answered=false;
+  document.getElementById('qCard').style.animation='none';
+  setTimeout(()=>{document.getElementById('qCard').style.animation='slideUp .4s ease-out';},10);
+}
+function selectAns(idx){
+  if(answered)return;
+  answered=true;
+  const q=getQs()[curQ];
+  const ok=idx===q.correct;
+  if(ok)score++;
+  document.querySelectorAll('.opt-btn').forEach((b,i)=>{
+    b.disabled=true;
+    const l=b.querySelector('.opt-letter');
+    if(i===q.correct){b.classList.add('correct');l.textContent='✓';}
+    else if(i===idx&&!ok){b.classList.add('wrong');l.textContent='✗';}
+    else b.classList.add('dim');
+  });
+  showPopup(ok?rnd(okMsgs):rnd(noMsgs),ok);
+  if(ok){launchConf();spawnStars(document.querySelectorAll('.opt-btn')[idx]);}
+  const fb=document.getElementById('fbSection');
+  fb.style.display='block';
+  fb.innerHTML=`
+    <div class="feedback-box ${ok?'correct-fb':'wrong-fb'}">
+      <span class="fb-icon">${ok?'💡':'📖'}</span>
+      <div>
+        <div class="fb-label">${ok?'إجابة صحيحة!':'الإجابة الصحيحة:'}</div>
+        <div class="fb-text">${q.exp}</div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="nextQ()">${curQ<getQs().length-1?'السؤال التالي ←':'اعرض النتيجة 🏆'}</button>`;
+}
+function nextQ(){curQ++;renderQ();document.getElementById('scoreDis').textContent=`${score} نقطة`;}
+function showResult(){
+  showPage('page-result');
+  const total=getQs().length,pct=Math.round((score/total)*100);
+  const g=pct>=90?{l:'ممتاز 🏆',c:'#10b981',e:'🌟'}:pct>=75?{l:'جيد جداً 🎯',c:'#3b82f6',e:'✨'}:pct>=60?{l:'جيد 📚',c:'#f59e0b',e:'👍'}:{l:'يحتاج مراجعة 💪',c:'#ef4444',e:'📖'};
+  document.getElementById('resEmoji').textContent=g.e;
+  document.getElementById('resScore').textContent=score;
+  document.getElementById('resScore').style.color=g.c;
+  document.getElementById('resTotal').textContent=`من ${total}`;
+  document.getElementById('resCircle').style.borderColor=g.c;
+  document.getElementById('resBadge').textContent=g.l;
+  document.getElementById('resBadge').style.background=g.c;
+  document.getElementById('resPct').textContent=`أجبت على ${score} سؤالاً بشكل صحيح (${pct}%)`;
+  const f=document.getElementById('resFill');f.style.background=g.c;f.style.width='0%';
+  setTimeout(()=>{f.style.width=pct+'%';},200);
+  if(pct>=60)launchConf();
+}
+function restartQuiz(){showPage('page-quiz');curQ=0;score=0;answered=false;renderCatFilters();renderQ();}
+function showPopup(msg,ok){
+  const o=document.getElementById('fbOverlay'),p=document.getElementById('fbPopup');
+  document.getElementById('popEmoji').textContent=ok?'🌟':'💪';
+  document.getElementById('popText').textContent=msg;
+  document.getElementById('popDeco').textContent=ok?'✨':'';
+  p.className='fb-popup '+(ok?'ok':'no');
+  o.style.display='flex';
+  setTimeout(()=>{o.style.display='none';},2000);
+}
+function launchConf(){
+  for(let i=0;i<60;i++){
+    const p=document.createElement('div');p.className='cfp';
+    p.style.cssText=`left:${Math.random()*100}vw;top:-${Math.random()*20}px;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${cfColors[Math.floor(Math.random()*cfColors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.5}s;`;
+    document.body.appendChild(p);setTimeout(()=>p.remove(),4000);
+  }
+}
+function spawnStars(btn){
+  if(!btn)return;
+  const r=btn.getBoundingClientRect();
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.textContent='⭐';
+    s.style.cssText=`position:fixed;z-index:9999;pointer-events:none;font-size:1.2rem;left:${r.left+r.width/2+(Math.random()-.5)*100}px;top:${r.top+r.height/2}px;animation:floatStar 1s ease-out forwards;animation-delay:${i*.05}s;`;
+    document.body.appendChild(s);setTimeout(()=>s.remove(),1200);
+  }
+}
+// =================== INIT ===================
+renderUnits();
+</script>
+</body>
+</html>
