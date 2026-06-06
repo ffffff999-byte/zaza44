@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جداول مواصفات اللغة العربية — الفصل الدراسي الثاني ١٤٤٧هـ</title>
+<style>
+:root{
+  --primary:#5d2d00;--secondary:#8b4513;--accent:#c97c2e;
+  --gold:#d4a017;--teal:#00695c;--blue:#1565c0;
+  --green:#2e7d32;--red:#c62828;--purple:#6a1b9a;
+  --indigo:#283593;--brown:#6d4c41;
+  --bg:#fdf6ec;--card:#fff;--text:#2a1a0a;--muted:#795548;
+  --border:#e8d5b7;--shadow:0 4px 24px rgba(93,45,0,.10);--radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Cairo',Arial,sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#3e1a00 0%,#6d3a00 45%,#5d2d00 100%);padding:48px 24px 72px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M40 20c0-5.5-4.5-10-10-10S20 14.5 20 20s4.5 10 10 10 10-4.5 10-10zm0 40c0-5.5-4.5-10-10-10S20 54.5 20 60s4.5 10 10 10 10-4.5 10-10zm20-20c0-5.5-4.5-10-10-10S40 34.5 40 40s4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;padding:6px 22px;font-size:13px;margin-bottom:16px;backdrop-filter:blur(8px);position:relative;z-index:1}
+.hero h1{color:#fff;font-size:clamp(20px,4vw,34px);font-weight:900;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.3);position:relative;z-index:1}
+.hero h2{color:rgba(255,255,255,.82);font-size:clamp(13px,2vw,17px);font-weight:400;margin-bottom:28px;position:relative;z-index:1}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;z-index:1}
+.chip{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+
+/* NAV */
+.nav-wrap{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1280px;margin:0 auto}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:14px 20px;color:rgba(255,255,255,.6);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-size:13.5px;font-weight:700;transition:all .25s;user-select:none}
+.nav-tab:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
+.nav-tab.active{color:#fff;border-bottom-color:#ffd54f;background:rgba(255,213,79,.1)}
+
+/* CONTAINER */
+.container{max-width:1280px;margin:0 auto;padding:32px 20px 72px}
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sec-title{font-size:22px;font-weight:900;color:var(--primary);margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--accent);display:flex;align-items:center;gap:10px}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:24px;border:1px solid var(--border)}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(93,45,0,.14);transition:all .2s}
+.card-title{font-size:16px;font-weight:800;color:var(--primary);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-bottom:26px}
+.stat{background:var(--card);border-radius:var(--radius);padding:22px 14px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--accent);transition:transform .2s}
+.stat:hover{transform:translateY(-3px)}
+.stat.gold{border-top-color:var(--gold)}.stat.blue{border-top-color:var(--blue)}
+.stat.purple{border-top-color:var(--purple)}.stat.green{border-top-color:var(--green)}
+.stat.red{border-top-color:var(--red)}.stat.teal{border-top-color:var(--teal)}
+.stat-val{font-size:30px;font-weight:900;color:var(--primary);line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11.5px;color:var(--muted);font-weight:700}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px;min-width:500px}
+th{background:var(--primary);color:#fff;padding:13px 14px;text-align:center;font-weight:700;font-size:12.5px}
+th.th-r{text-align:right}
+th.th-k{background:#1565c0}th.th-t{background:#2e7d32}th.th-s{background:#c62828}
+th.th-m{background:#6a1b9a}th.th-dk{background:#263238}
+td{padding:11px 14px;text-align:center;border-bottom:1px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fdf8f0}
+tr:hover td{background:#fef3e2;transition:background .15s}
+.tr-total td{background:#fef3e2 !important;font-weight:900;color:var(--primary)}
+td.lbl{text-align:right;font-weight:700;font-size:13px}
+.val-k{color:#1565c0;font-weight:800}.val-t{color:#2e7d32;font-weight:800}
+.val-s{color:#c62828;font-weight:800}.val-m{color:#6a1b9a;font-weight:800}
+td.pct{font-size:11px;color:var(--muted)}
+
+/* GRADE TABS */
+.grade-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.grade-tab{padding:9px 20px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;border:2px solid transparent;transition:all .2s;user-select:none}
+.grade-tab.g4{background:#e3f2fd;color:#1565c0;border-color:#1565c0}
+.grade-tab.g4.active,.grade-tab.g4:hover{background:#1565c0;color:#fff}
+.grade-tab.g6{background:#fff3e0;color:#e65100;border-color:#e65100}
+.grade-tab.g6.active,.grade-tab.g6:hover{background:#e65100;color:#fff}
+.grade-tab.gm3{background:#f3e5f5;color:#6a1b9a;border-color:#6a1b9a}
+.grade-tab.gm3.active,.grade-tab.gm3:hover{background:#6a1b9a;color:#fff}
+.grade-panel{display:none}
+.grade-panel.active{display:block;animation:fadeIn .3s ease}
+
+/* PROGRESS */
+.pbar-wrap{display:flex;border-radius:8px;overflow:hidden;height:24px;width:100%;background:#f0e8dc}
+.pbar-k{background:#1565c0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+.pbar-t{background:#2e7d32;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+.pbar-s{background:#c62828;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.lchip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700}
+.ldot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* OBJECTIVE CARDS */
+.obj-card{background:#fffbf5;border:1px solid var(--border);border-right:5px solid;border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.obj-card h4{font-size:13px;font-weight:800;margin-bottom:10px}
+.goals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.goal-col h5{font-size:11.5px;font-weight:800;margin-bottom:6px;padding:4px 10px;border-radius:6px;display:inline-block}
+.goal-col ul{list-style:none;padding:0}
+.goal-col li{font-size:12px;line-height:1.8;padding:2px 0;display:flex;gap:6px}
+.goal-col li::before{content:'◆';font-size:8px;margin-top:5px;flex-shrink:0;opacity:.7}
+
+/* INFO BOX */
+.info-box{padding:14px 18px;border-radius:10px;font-size:13.5px;line-height:1.85;margin-bottom:18px}
+.info-brown{background:#fdf0e0;border-right:4px solid #8b4513;color:#3a1a0a}
+.info-blue{background:#e3f2fd;border-right:4px solid #1565c0;color:#1a2a3a}
+.info-orange{background:#fff3e0;border-right:4px solid #e65100;color:#2a1a0a}
+.info-purple{background:#f3e5f5;border-right:4px solid #6a1b9a;color:#2a0a3a}
+.info-gold{background:#fff8e1;border-right:4px solid #f5a623;color:#3a2a0a}
+.info-green{background:#e8f5e9;border-right:4px solid #2e7d32;color:#0a2a0a}
+
+/* BADGE */
+.unit-badge{display:inline-block;padding:4px 14px;border-radius:50px;font-size:11.5px;font-weight:800;color:#fff;margin-bottom:12px}
+
+/* FOOTER */
+.footer{text-align:center;padding:28px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+.tg-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0088cc,#00b4d8);color:#fff;padding:11px 26px;border-radius:50px;text-decoration:none;font-weight:800;font-size:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,136,204,.35)}
+.tg-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,136,204,.45)}
+
+@media(max-width:640px){.hero{padding:28px 14px 52px}.container{padding:18px 12px 56px}.card{padding:16px}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📖 جداول المواصفات — اللغة العربية</div>
+  <h1>جداول مواصفات اختبار اللغة العربية</h1>
+  <h2>الفصل الدراسي الثاني — ١٤٤٧ هـ</h2>
+  <div class="hero-chips">
+    <div class="chip">📖 لغتي الخالدة</div>
+    <div class="chip">🏫 ابتدائي ومتوسط</div>
+    <div class="chip">📋 ٣ صفوف دراسية</div>
+    <div class="chip">⭐ ٤٠ درجة لكل صف</div>
+    <div class="chip">📅 الفصل الثاني ١٤٤٧ هـ</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs" id="mainNav">
+    <div class="nav-tab active" onclick="showMain('overview')">📊 نظرة عامة</div>
+    <div class="nav-tab" onclick="showMain('primary')">🔵 المرحلة الابتدائية</div>
+    <div class="nav-tab" onclick="showMain('intermediate')">🟣 المرحلة المتوسطة</div>
+    <div class="nav-tab" onclick="showMain('compare')">📈 مقارنة المراحل</div>
+    <div class="nav-tab" onclick="showMain('objectives')">🎯 الأهداف التعليمية</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════ OVERVIEW ══════════════════ -->
+<div class="section active" id="sec-overview">
+  <div class="sec-title">📊 نظرة عامة — مادة اللغة العربية</div>
+
+  <div class="stats-grid">
+    <div class="stat gold"><div class="stat-val">٤٠</div><div class="stat-lbl">درجة الاختبار</div></div>
+    <div class="stat blue"><div class="stat-val">٣</div><div class="stat-lbl">صفوف دراسية</div></div>
+    <div class="stat"><div class="stat-val">٢</div><div class="stat-lbl">مراحل دراسية</div></div>
+    <div class="stat purple"><div class="stat-val">٣٥–٣٧</div><div class="stat-lbl">إجمالي الفقرات</div></div>
+    <div class="stat green"><div class="stat-val">٦</div><div class="stat-lbl">مكوّنات لغوية</div></div>
+    <div class="stat red"><div class="stat-val">٣</div><div class="stat-lbl">مستويات معرفية</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 ملخص شامل — جميع الصفوف الدراسية</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:180px">الصف</th>
+            <th>المرحلة</th>
+            <th>الحصص</th>
+            <th>المكونات</th>
+            <th class="th-k">معرفة<br><small>فق / در</small></th>
+            <th class="th-t">تطبيق<br><small>فق / در</small></th>
+            <th class="th-s">استدلال<br><small>فق / در</small></th>
+            <th class="th-m">مجموع<br><small>فق / در</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">الصف الرابع ابتدائي</td>
+            <td><span style="background:#1565c0;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>٤٠</td><td>٥</td>
+            <td class="val-k">١٠ / ١١</td><td class="val-t">١٦ / ١٨</td><td class="val-s">٩ / ١١</td><td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف السادس ابتدائي</td>
+            <td><span style="background:#e65100;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>٤٠</td><td>٦</td>
+            <td class="val-k">٩ / ١٠</td><td class="val-t">١٤ / ١٥</td><td class="val-s">١٢ / ١٥</td><td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف الثالث متوسط</td>
+            <td><span style="background:#6a1b9a;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">متوسط</span></td>
+            <td>٦٦</td><td>٦</td>
+            <td class="val-k">١١ / ١١</td><td class="val-t">١٤ / ١٦</td><td class="val-s">١٢ / ١٣</td><td class="val-m">٣٧ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Distribution cards -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px">
+    <div class="card" style="border-top:5px solid #1565c0;margin-bottom:0">
+      <div class="card-title" style="color:#1565c0">🔵 الرابع ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#1565c0;font-weight:700">معرفة ١١/٤٠</span><span>٢٧٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:27%">٢٧٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#2e7d32;font-weight:700">تطبيق ١٨/٤٠</span><span>٤٥٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:45%">٤٥٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#c62828;font-weight:700">استدلال ١١/٤٠</span><span>٢٧٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:27%">٢٧٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #e65100;margin-bottom:0">
+      <div class="card-title" style="color:#e65100">🟠 السادس ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#1565c0;font-weight:700">معرفة ١٠/٤٠</span><span>٢٥٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:25%">٢٥٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#2e7d32;font-weight:700">تطبيق ١٥/٤٠</span><span>٣٧٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:37%">٣٧٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#c62828;font-weight:700">استدلال ١٥/٤٠</span><span>٣٧٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:37%">٣٧٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #6a1b9a;margin-bottom:0">
+      <div class="card-title" style="color:#6a1b9a">🟣 الثالث متوسط — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#1565c0;font-weight:700">معرفة ١١/٤٠</span><span>٢٨٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:28%">٢٨٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#2e7d32;font-weight:700">تطبيق ١٦/٤٠</span><span>٤٠٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:40%">٤٠٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#c62828;font-weight:700">استدلال ١٣/٤٠</span><span>٣٢٪</span></div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:32%">٣٢٪</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📚 المكوّنات اللغوية المشتركة</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+      <div style="padding:14px;background:#e3f2fd;border-radius:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">📖</div>
+        <div style="font-weight:800;color:#1565c0;font-size:13px">فهم المقروء</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">الأعلى وزنًا في جميع الصفوف</div>
+      </div>
+      <div style="padding:14px;background:#fff3e0;border-radius:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">🔤</div>
+        <div style="font-weight:800;color:#e65100;font-size:13px">الوظيفة النحوية</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">نحو وصرف وإعراب</div>
+      </div>
+      <div style="padding:14px;background:#f3e5f5;border-radius:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">💬</div>
+        <div style="font-weight:800;color:#6a1b9a;font-size:13px">الأسلوب اللغوي</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">أساليب التعبير اللغوي</div>
+      </div>
+      <div style="padding:14px;background:#e8f5e9;border-radius:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">🔠</div>
+        <div style="font-weight:800;color:#2e7d32;font-size:13px">الصنف اللغوي</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">مشتقات ومصادر</div>
+      </div>
+      <div style="padding:14px;background:#fff8e1;border-radius:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">✍️</div>
+        <div style="font-weight:800;color:#f57f17;font-size:13px">الظاهرة الإملائية</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">قواعد الإملاء والكتابة</div>
+      </div>
+      <div style="padding:14px;background:#fce4ec;border-radius:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">🖊️</div>
+        <div style="font-weight:800;color:#c2185b;font-size:13px">الرسم الكتابي</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">خطي النسخ والرقعة</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PRIMARY ══════════════════ -->
+<div class="section" id="sec-primary">
+  <div class="sec-title">🔵 المرحلة الابتدائية — جداول المواصفات</div>
+
+  <div class="grade-tabs">
+    <div class="grade-tab g4 active" onclick="showGrade('g4')">الصف الرابع ابتدائي</div>
+    <div class="grade-tab g6" onclick="showGrade('g6')">الصف السادس ابتدائي</div>
+  </div>
+
+  <!-- ── FOURTH GRADE ── -->
+  <div class="grade-panel active" id="panel-g4">
+    <div class="info-box info-blue">
+      <strong>📋 الصف الرابع ابتدائي — لغتي الجميلة — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+      إجمالي الحصص: ٤٠ &nbsp;|&nbsp; عدد الفقرات: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠ &nbsp;|&nbsp; إجمالي الأهداف: ١٠٠ هدف تعليمي
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 الأوزان النسبية الإجمالية — الرابع ابتدائي</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px">
+        <div style="text-align:center;padding:18px 12px;background:#e3f2fd;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#1565c0">٢٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+          <div style="font-size:11px;color:#888">٢٧ هدف / ١٠ فقرات / ١١ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#e8f5e9;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٦٪</div>
+          <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+          <div style="font-size:11px;color:#888">٤٦ هدف / ١٦ فقرة / ١٨ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#ffebee;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#c62828">٢٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+          <div style="font-size:11px;color:#888">٢٧ هدف / ٩ فقرات / ١١ درجة</div>
+        </div>
+      </div>
+      <div class="pbar-wrap" style="height:32px">
+        <div class="pbar-k" style="width:27%">معرفة ٢٧٪</div>
+        <div class="pbar-t" style="width:46%">تطبيق ٤٦٪</div>
+        <div class="pbar-s" style="width:27%">استدلال ٢٧٪</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 جدول مواصفات الاختبار — الصف الرابع ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r" style="min-width:160px">المكوّن اللغوي</th>
+              <th>الحصص</th>
+              <th>نسبة الفصل</th>
+              <th class="th-k" style="font-size:11px">معرفة%<br>فق / در</th>
+              <th class="th-t" style="font-size:11px">تطبيق%<br>فق / در</th>
+              <th class="th-s" style="font-size:11px">استدلال%<br>فق / در</th>
+              <th class="th-m">مجموع<br>فق / در</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lbl">فهم المقروء والنصوص</td><td>١٤</td><td>٣٥٪</td>
+              <td class="val-k">٢٥٪<br>٣ / ٣.٥</td>
+              <td class="val-t">٣٣٪<br>٤ / ٤.٥</td>
+              <td class="val-s">٤٣٪<br>٥ / ٦</td>
+              <td class="val-m">١٢ / ١٤</td>
+            </tr>
+            <tr>
+              <td class="lbl">الأسلوب اللغوي</td><td>٣</td><td>٧.٥٪</td>
+              <td class="val-k">٢٠٪<br>١ / ٠.٦</td>
+              <td class="val-t">٤٠٪<br>١ / ١.٢</td>
+              <td class="val-s">٤٠٪<br>١ / ١.٢</td>
+              <td class="val-m">٣ / ٣</td>
+            </tr>
+            <tr>
+              <td class="lbl">الظاهرة الإملائية</td><td>١٠</td><td>٢٥٪</td>
+              <td class="val-k">٢٨٪<br>٢ / ٢.٨</td>
+              <td class="val-t">٦١٪<br>٦ / ٦.١</td>
+              <td class="val-s">١١٪<br>١ / ١.١</td>
+              <td class="val-m">٩ / ١٠</td>
+            </tr>
+            <tr>
+              <td class="lbl">الوظيفة النحوية</td><td>١٠</td><td>٢٥٪</td>
+              <td class="val-k">٢٩٪<br>٣ / ٢.٩</td>
+              <td class="val-t">٥٦٪<br>٥ / ٥.٦</td>
+              <td class="val-s">١٥٪<br>١ / ١.٥</td>
+              <td class="val-m">٩ / ١٠</td>
+            </tr>
+            <tr>
+              <td class="lbl">الرسم الكتابي (خط النسخ)</td><td>٣</td><td>٧.٥٪</td>
+              <td class="val-k">٣٣٪<br>١ / ١</td>
+              <td class="val-t">٣٣٪<br>١ / ١</td>
+              <td class="val-s">٣٣٪<br>١ / ١</td>
+              <td class="val-m">٣ / ٣</td>
+            </tr>
+            <tr class="tr-total">
+              <td class="lbl">مجموع الفقرات / الدرجات</td><td>٤٠</td><td>١٠٠٪</td>
+              <td class="val-k">٢٧٪<br>١٠ / ١١</td>
+              <td class="val-t">٤٥٪<br>١٦ / ١٨</td>
+              <td class="val-s">٢٧٪<br>٩ / ١١</td>
+              <td class="val-m">٣٥ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 التوزيع النسبي لأهداف الاختبار — فصل بفصل</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">فهم المقروء (١٤ حصة) — ٢٥٪ معرفة | ٣٣٪ تطبيق | ٤٣٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:25%">٢٥٪</div><div class="pbar-t" style="width:33%">٣٣٪</div><div class="pbar-s" style="width:43%">٤٣٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الأسلوب اللغوي (٣ حصص) — ٢٠٪ معرفة | ٤٠٪ تطبيق | ٤٠٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:20%">٢٠٪</div><div class="pbar-t" style="width:40%">٤٠٪</div><div class="pbar-s" style="width:40%">٤٠٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الظاهرة الإملائية (١٠ حصص) — ٢٨٪ معرفة | ٦١٪ تطبيق | ١١٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:28%">٢٨٪</div><div class="pbar-t" style="width:61%">تطبيق ٦١٪</div><div class="pbar-s" style="width:11%">١١٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الوظيفة النحوية (١٠ حصص) — ٢٩٪ معرفة | ٥٦٪ تطبيق | ١٥٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:29%">٢٩٪</div><div class="pbar-t" style="width:56%">تطبيق ٥٦٪</div><div class="pbar-s" style="width:15%">١٥٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الرسم الكتابي (٣ حصص) — ٣٣٪ معرفة | ٣٣٪ تطبيق | ٣٣٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:34%">٣٣٪</div><div class="pbar-s" style="width:33%">٣٣٪</div></div></div>
+      </div>
+      <div class="legend" style="margin-top:14px;margin-bottom:0">
+        <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة</div>
+        <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+        <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIXTH GRADE ── -->
+  <div class="grade-panel" id="panel-g6">
+    <div class="info-box info-orange">
+      <strong>📋 الصف السادس ابتدائي — لغتي الجميلة — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+      إجمالي الحصص: ٤٠ &nbsp;|&nbsp; عدد الفقرات: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠ &nbsp;|&nbsp; إجمالي الأهداف: ١٠٤ أهداف
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 الأوزان النسبية الإجمالية — السادس ابتدائي</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px">
+        <div style="text-align:center;padding:18px 12px;background:#e3f2fd;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#1565c0">٢٦٪</div>
+          <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+          <div style="font-size:11px;color:#888">٢٨ هدف / ٩ فقرات / ١٠ درجات</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#e8f5e9;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#2e7d32">٣٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+          <div style="font-size:11px;color:#888">٣٨ هدف / ١٤ فقرة / ١٥ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#ffebee;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#c62828">٣٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+          <div style="font-size:11px;color:#888">٣٨ هدف / ١٢ فقرة / ١٥ درجة</div>
+        </div>
+      </div>
+      <div class="pbar-wrap" style="height:32px">
+        <div class="pbar-k" style="width:26%">معرفة ٢٦٪</div>
+        <div class="pbar-t" style="width:37%">تطبيق ٣٧٪</div>
+        <div class="pbar-s" style="width:37%">استدلال ٣٧٪</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 جدول مواصفات الاختبار — الصف السادس ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r" style="min-width:160px">المكوّن اللغوي</th>
+              <th>الحصص</th>
+              <th>نسبة الفصل</th>
+              <th class="th-k" style="font-size:11px">معرفة%<br>فق / در</th>
+              <th class="th-t" style="font-size:11px">تطبيق%<br>فق / در</th>
+              <th class="th-s" style="font-size:11px">استدلال%<br>فق / در</th>
+              <th class="th-m">مجموع<br>فق / در</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lbl">فهم المقروء والنصوص</td><td>١٢</td><td>٣٠٪</td>
+              <td class="val-k">٢٢٪<br>٣ / ٣</td>
+              <td class="val-t">٣٧٪<br>٤ / ٥</td>
+              <td class="val-s">٤١٪<br>٥ / ٥</td>
+              <td class="val-m">١٢ / ١٣</td>
+            </tr>
+            <tr>
+              <td class="lbl">الوظيفة النحوية</td><td>٩</td><td>٢٢٪</td>
+              <td class="val-k">٣٣٪<br>٢ / ٢</td>
+              <td class="val-t">٢٩٪<br>٢ / ٢</td>
+              <td class="val-s">٣٨٪<br>٢ / ٣</td>
+              <td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الأسلوب اللغوي</td><td>٤</td><td>١٠٪</td>
+              <td class="val-k">٣٣٪<br>١ / ١</td>
+              <td class="val-t">٢٧٪<br>١ / ١</td>
+              <td class="val-s">٤٠٪<br>١ / ١</td>
+              <td class="val-m">٣ / ٣</td>
+            </tr>
+            <tr>
+              <td class="lbl">الصنف اللغوي</td><td>٤</td><td>١٠٪</td>
+              <td class="val-k">٢٥٪<br>١ / ٢</td>
+              <td class="val-t">٥٦٪<br>٣ / ٣</td>
+              <td class="val-s">١٩٪<br>١ / ١</td>
+              <td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الظاهرة الإملائية</td><td>٨</td><td>٢٠٪</td>
+              <td class="val-k">٢١٪<br>١ / ٢</td>
+              <td class="val-t">٤٧٪<br>٣ / ٣</td>
+              <td class="val-s">٣٢٪<br>٢ / ٢</td>
+              <td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الرسم الكتابي (خط النسخ)</td><td>٣</td><td>٧.٥٪</td>
+              <td class="val-k">٣٣٪<br>١ / ١</td>
+              <td class="val-t">٣٣٪<br>١ / ١.٥</td>
+              <td class="val-s">٣٣٪<br>١ / ١.٥</td>
+              <td class="val-m">٣ / ٤</td>
+            </tr>
+            <tr class="tr-total">
+              <td class="lbl">مجموع الفقرات / الدرجات</td><td>٤٠</td><td>١٠٠٪</td>
+              <td class="val-k">٢٦٪<br>٩ / ١٠</td>
+              <td class="val-t">٣٧٪<br>١٤ / ١٥</td>
+              <td class="val-s">٣٧٪<br>١٢ / ١٥</td>
+              <td class="val-m">٣٥ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 التوزيع النسبي لأهداف الاختبار — فصل بفصل</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">فهم المقروء (١٢ حصة) — ٢٢٪ معرفة | ٣٧٪ تطبيق | ٤١٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:22%">٢٢٪</div><div class="pbar-t" style="width:37%">٣٧٪</div><div class="pbar-s" style="width:41%">٤١٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الوظيفة النحوية (٩ حصص) — ٣٣٪ معرفة | ٢٩٪ تطبيق | ٣٨٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:29%">٢٩٪</div><div class="pbar-s" style="width:38%">٣٨٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الأسلوب اللغوي (٤ حصص) — ٣٣٪ معرفة | ٢٧٪ تطبيق | ٤٠٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:27%">٢٧٪</div><div class="pbar-s" style="width:40%">٤٠٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الصنف اللغوي (٤ حصص) — ٢٥٪ معرفة | ٥٦٪ تطبيق | ١٩٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:25%">٢٥٪</div><div class="pbar-t" style="width:56%">تطبيق ٥٦٪</div><div class="pbar-s" style="width:19%">١٩٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الظاهرة الإملائية (٨ حصص) — ٢١٪ معرفة | ٤٧٪ تطبيق | ٣٢٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:21%">٢١٪</div><div class="pbar-t" style="width:47%">٤٧٪</div><div class="pbar-s" style="width:32%">٣٢٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الرسم الكتابي (٣ حصص) — ٣٣٪ معرفة | ٣٣٪ تطبيق | ٣٣٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:34%">٣٣٪</div><div class="pbar-s" style="width:33%">٣٣٪</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ INTERMEDIATE ══════════════════ -->
+<div class="section" id="sec-intermediate">
+  <div class="sec-title">🟣 المرحلة المتوسطة — جداول المواصفات</div>
+
+  <div class="info-box info-purple">
+    <strong>📋 الصف الثالث متوسط — لغتي الخالدة — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+    إجمالي الحصص: ٦٦ &nbsp;|&nbsp; عدد الفقرات: ٣٧ &nbsp;|&nbsp; درجة الاختبار: ٤٠ &nbsp;|&nbsp; إجمالي الأهداف: ١٧٦ هدف تعليمي
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 الأوزان النسبية الإجمالية للأهداف — الثالث متوسط</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px">
+      <div style="text-align:center;padding:18px 12px;background:#e3f2fd;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#1565c0">٢٨٪</div>
+        <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+        <div style="font-size:11px;color:#888">٥٠ هدف / ١١ فقرة / ١١ درجة</div>
+      </div>
+      <div style="text-align:center;padding:18px 12px;background:#e8f5e9;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٠٪</div>
+        <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+        <div style="font-size:11px;color:#888">٧١ هدف / ١٤ فقرة / ١٦ درجة</div>
+      </div>
+      <div style="text-align:center;padding:18px 12px;background:#ffebee;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#c62828">٣١٪</div>
+        <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+        <div style="font-size:11px;color:#888">٥٥ هدف / ١٢ فقرة / ١٣ درجة</div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="height:32px">
+      <div class="pbar-k" style="width:28%">معرفة ٢٨٪</div>
+      <div class="pbar-t" style="width:40%">تطبيق ٤٠٪</div>
+      <div class="pbar-s" style="width:32%">استدلال ٣٢٪</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 جدول مواصفات الاختبار — الصف الثالث متوسط</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:170px">المكوّن اللغوي</th>
+            <th>الحصص</th>
+            <th>نسبة الفصل</th>
+            <th class="th-k" style="font-size:11px">معرفة%<br>فق / در</th>
+            <th class="th-t" style="font-size:11px">تطبيق%<br>فق / در</th>
+            <th class="th-s" style="font-size:11px">استدلال%<br>فق / در</th>
+            <th class="th-m">مجموع<br>فق / در</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">فهم المقروء والنصوص</td><td>٢١</td><td>٣٢٪</td>
+            <td class="val-k">٢٥٪<br>٣ / ٣</td>
+            <td class="val-t">٣١٪<br>٣ / ٤</td>
+            <td class="val-s">٤٤٪<br>٥ / ٦</td>
+            <td class="val-m">١١ / ١٣</td>
+          </tr>
+          <tr>
+            <td class="lbl">الوظيفة النحوية</td><td>١٢</td><td>١٨٪</td>
+            <td class="val-k">٢٤٪<br>٢ / ٢</td>
+            <td class="val-t">٤٨٪<br>٢ / ٣</td>
+            <td class="val-s">٢٩٪<br>٢ / ٢</td>
+            <td class="val-m">٦ / ٧</td>
+          </tr>
+          <tr>
+            <td class="lbl">الأسلوب اللغوي</td><td>٧</td><td>١١٪</td>
+            <td class="val-k">٣٢٪<br>١ / ١</td>
+            <td class="val-t">٤٣٪<br>٢ / ٢</td>
+            <td class="val-s">٢٥٪<br>١ / ١</td>
+            <td class="val-m">٤ / ٤</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصنف اللغوي</td><td>١٠</td><td>١٥٪</td>
+            <td class="val-k">٣٣٪<br>٢ / ٢</td>
+            <td class="val-t">٤٩٪<br>٣ / ٣</td>
+            <td class="val-s">١٨٪<br>١ / ١</td>
+            <td class="val-m">٦ / ٦</td>
+          </tr>
+          <tr>
+            <td class="lbl">الظاهرة الإملائية</td><td>١١</td><td>١٧٪</td>
+            <td class="val-k">٢٦٪<br>٢ / ٢</td>
+            <td class="val-t">٤٣٪<br>٣ / ٣</td>
+            <td class="val-s">٣٠٪<br>٢ / ٢</td>
+            <td class="val-m">٧ / ٧</td>
+          </tr>
+          <tr>
+            <td class="lbl">الرسم الكتابي (خط الرقعة)</td><td>٥</td><td>٧.٦٪</td>
+            <td class="val-k">٣٣٪<br>١ / ١</td>
+            <td class="val-t">٣٣٪<br>١ / ١</td>
+            <td class="val-s">٣٣٪<br>١ / ١</td>
+            <td class="val-m">٣ / ٣</td>
+          </tr>
+          <tr class="tr-total">
+            <td class="lbl">مجموع الفقرات / الدرجات</td><td>٦٦</td><td>١٠٠٪</td>
+            <td class="val-k">٢٨٪<br>١١ / ١١</td>
+            <td class="val-t">٤٠٪<br>١٤ / ١٦</td>
+            <td class="val-s">٣٢٪<br>١٢ / ١٣</td>
+            <td class="val-m">٣٧ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 التوزيع النسبي — فصل بفصل</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">فهم المقروء (٢١ حصة) — ٢٥٪ معرفة | ٣١٪ تطبيق | ٤٤٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:25%">٢٥٪</div><div class="pbar-t" style="width:31%">٣١٪</div><div class="pbar-s" style="width:44%">٤٤٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الوظيفة النحوية (١٢ حصة) — ٢٤٪ معرفة | ٤٨٪ تطبيق | ٢٩٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:24%">٢٤٪</div><div class="pbar-t" style="width:48%">٤٨٪</div><div class="pbar-s" style="width:29%">٢٩٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الأسلوب اللغوي (٧ حصص) — ٣٢٪ معرفة | ٤٣٪ تطبيق | ٢٥٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:32%">٣٢٪</div><div class="pbar-t" style="width:43%">٤٣٪</div><div class="pbar-s" style="width:25%">٢٥٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الصنف اللغوي (١٠ حصص) — ٣٣٪ معرفة | ٤٩٪ تطبيق | ١٨٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:49%">٤٩٪</div><div class="pbar-s" style="width:18%">١٨٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الظاهرة الإملائية (١١ حصة) — ٢٦٪ معرفة | ٤٣٪ تطبيق | ٣٠٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:26%">٢٦٪</div><div class="pbar-t" style="width:44%">٤٣٪</div><div class="pbar-s" style="width:30%">٣٠٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الرسم الكتابي (٥ حصص) — ٣٣٪ معرفة | ٣٣٪ تطبيق | ٣٣٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:34%">٣٣٪</div><div class="pbar-s" style="width:33%">٣٣٪</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ COMPARE ══════════════════ -->
+<div class="section" id="sec-compare">
+  <div class="sec-title">📈 مقارنة المراحل الدراسية</div>
+
+  <div class="card">
+    <div class="card-title">📋 مقارنة شاملة بين الصفوف الثلاثة</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r"></th>
+            <th colspan="3" class="th-k">الرابع ابتدائي</th>
+            <th colspan="3" style="background:#e65100">السادس ابتدائي</th>
+            <th colspan="3" style="background:#6a1b9a">الثالث متوسط</th>
+          </tr>
+          <tr>
+            <th class="th-dk th-r">المستوى</th>
+            <th class="th-dk" style="font-size:10px">فقرات</th>
+            <th class="th-dk" style="font-size:10px">درجات</th>
+            <th class="th-dk" style="font-size:10px">نسبة</th>
+            <th class="th-dk" style="font-size:10px">فقرات</th>
+            <th class="th-dk" style="font-size:10px">درجات</th>
+            <th class="th-dk" style="font-size:10px">نسبة</th>
+            <th class="th-dk" style="font-size:10px">فقرات</th>
+            <th class="th-dk" style="font-size:10px">درجات</th>
+            <th class="th-dk" style="font-size:10px">نسبة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl val-k">المعرفة</td>
+            <td class="val-k">١٠</td><td class="val-k">١١</td><td class="val-k pct">٢٧٪</td>
+            <td class="val-k">٩</td><td class="val-k">١٠</td><td class="val-k pct">٢٥٪</td>
+            <td class="val-k">١١</td><td class="val-k">١١</td><td class="val-k pct">٢٨٪</td>
+          </tr>
+          <tr>
+            <td class="lbl val-t">التطبيق</td>
+            <td class="val-t">١٦</td><td class="val-t">١٨</td><td class="val-t pct">٤٥٪</td>
+            <td class="val-t">١٤</td><td class="val-t">١٥</td><td class="val-t pct">٣٧٪</td>
+            <td class="val-t">١٤</td><td class="val-t">١٦</td><td class="val-t pct">٤٠٪</td>
+          </tr>
+          <tr>
+            <td class="lbl val-s">الاستدلال</td>
+            <td class="val-s">٩</td><td class="val-s">١١</td><td class="val-s pct">٢٧٪</td>
+            <td class="val-s">١٢</td><td class="val-s">١٥</td><td class="val-s pct">٣٧٪</td>
+            <td class="val-s">١٢</td><td class="val-s">١٣</td><td class="val-s pct">٣٢٪</td>
+          </tr>
+          <tr class="tr-total">
+            <td class="lbl">المجموع</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٧</td><td>٤٠</td><td>١٠٠٪</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 الرسم التوضيحي — توزيع درجات المستويات المعرفية</div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#1565c0;margin-bottom:6px">الصف الرابع ابتدائي — معرفة ٢٧٪ | تطبيق ٤٥٪ | استدلال ٢٧٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:27%">١١</div><div class="pbar-t" style="width:46%">١٨</div><div class="pbar-s" style="width:27%">١١</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#e65100;margin-bottom:6px">الصف السادس ابتدائي — معرفة ٢٥٪ | تطبيق ٣٧٪ | استدلال ٣٧٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:25%">١٠</div><div class="pbar-t" style="width:38%">١٥</div><div class="pbar-s" style="width:37%">١٥</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#6a1b9a;margin-bottom:6px">الصف الثالث متوسط — معرفة ٢٨٪ | تطبيق ٤٠٪ | استدلال ٣٢٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:28%">١١</div><div class="pbar-t" style="width:40%">١٦</div><div class="pbar-s" style="width:32%">١٣</div></div>
+      </div>
+    </div>
+    <div class="legend" style="margin-top:14px;margin-bottom:0">
+      <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة (الأرقام = الدرجات)</div>
+      <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+      <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 مقارنة توزيع المكوّنات اللغوية بين الصفوف</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:160px">المكوّن اللغوي</th>
+            <th>الرابع<br><small>فق / در</small></th>
+            <th>السادس<br><small>فق / در</small></th>
+            <th>ث. متوسط<br><small>فق / در</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">فهم المقروء والنصوص</td>
+            <td class="val-k">١٢ / ١٤</td><td class="val-t">١٢ / ١٣</td><td class="val-s">١١ / ١٣</td>
+          </tr>
+          <tr>
+            <td class="lbl">الوظيفة النحوية</td>
+            <td class="val-k">٩ / ١٠</td><td class="val-t">٦ / ٧</td><td class="val-s">٦ / ٧</td>
+          </tr>
+          <tr>
+            <td class="lbl">الأسلوب اللغوي</td>
+            <td class="val-k">٣ / ٣</td><td class="val-t">٣ / ٣</td><td class="val-s">٤ / ٤</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصنف اللغوي</td>
+            <td class="val-k">— / —</td><td class="val-t">٥ / ٦</td><td class="val-s">٦ / ٦</td>
+          </tr>
+          <tr>
+            <td class="lbl">الظاهرة الإملائية</td>
+            <td class="val-k">٩ / ١٠</td><td class="val-t">٦ / ٧</td><td class="val-s">٧ / ٧</td>
+          </tr>
+          <tr>
+            <td class="lbl">الرسم الكتابي</td>
+            <td class="val-k">٣ / ٣</td><td class="val-t">٣ / ٤</td><td class="val-s">٣ / ٣</td>
+          </tr>
+          <tr class="tr-total">
+            <td class="lbl">المجموع</td>
+            <td>٣٥ / ٤٠</td><td>٣٥ / ٤٠</td><td>٣٧ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💡 ملاحظات تحليلية مقارنة</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+      <div class="info-box info-blue" style="margin-bottom:0"><strong>📖 فهم المقروء:</strong><br>يستأثر بأكبر حصة في جميع الصفوف (١١–١٢ فقرة / ١٣–١٤ درجة). يُعدّ الركيزة الأساسية لاختبار اللغة العربية، ويركز على الاستدلال والتحليل بنسبة تتجاوز ٤٠٪ في بعض الصفوف.</div>
+      <div class="info-box info-orange" style="margin-bottom:0"><strong>🔤 النحو والإملاء:</strong><br>يرتفع وزن التطبيق في الظاهرة الإملائية (٤٣–٦١٪) والوظيفة النحوية (٤٨–٥٦٪)، مما يعكس أهمية التطبيق العملي لقواعد اللغة على حساب الحفظ النظري.</div>
+      <div class="info-box info-purple" style="margin-bottom:0"><strong>🟣 المرحلة المتوسطة:</strong><br>ارتفاع ملحوظ في وزن الاستدلال في فهم المقروء (٤٤٪)، كما تُقدّم الثالث متوسط ٣٧ فقرة (أكثر من الابتدائي) مع نفس الدرجة الكلية ٤٠، مما يعني درجات أصغر لكل فقرة.</div>
+      <div class="info-box info-gold" style="margin-bottom:0"><strong>⭐ الرسم الكتابي:</strong><br>توزيع متوازن (٣٣٪ لكل مستوى) في جميع الصفوف. الفرق الجوهري: الرابع والسادس يدرسان خط النسخ، بينما الثالث متوسط يدرس خط الرقعة.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ OBJECTIVES ══════════════════ -->
+<div class="section" id="sec-objectives">
+  <div class="sec-title">🎯 الأهداف التعليمية التفصيلية</div>
+
+  <div class="info-box info-brown">📌 تتضمن هذه القسم الأهداف التعليمية المستخرجة من تحليل محتوى المقرر، مصنّفةً حسب المستويات المعرفية الثلاثة لكل مكوّن لغوي في كل صف.</div>
+
+  <div class="grade-tabs">
+    <div class="grade-tab g4 active" onclick="showObj('o4')">الرابع ابتدائي</div>
+    <div class="grade-tab g6" onclick="showObj('o6')">السادس ابتدائي</div>
+    <div class="grade-tab gm3" onclick="showObj('om3')">الثالث متوسط</div>
+  </div>
+
+  <!-- ─── 4th Grade Objectives ─── -->
+  <div class="grade-panel active" id="panel-o4">
+    <div class="obj-card" style="border-right-color:#1565c0">
+      <h4 style="color:#1565c0">📖 فهم المقروء والنصوص — ١٤ حصة | م=١٠ أهداف | ت=١٣ هدف | س=١٧ هدف</h4>
+      <div class="goals-grid">
+        <div class="goal-col">
+          <h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة (١٠ أهداف)</h5>
+          <ul>
+            <li><span>تعرّف معاني الكلمات من خلال الترادف / التضاد / السياق</span></li>
+            <li><span>التعرف على المفاهيم والمصطلحات في النص</span></li>
+            <li><span>الإجابة عن أسئلة مباشرة واردة في النص</span></li>
+            <li><span>ترتيب الأحداث حسب ورودها في النص</span></li>
+            <li><span>تحديد الفكرة الرئيسة في النص</span></li>
+            <li><span>تحديد نوع النص (إرشادي، حواري، قصصي)</span></li>
+            <li><span>تحديد الشخصيات والأعداد والأماكن</span></li>
+            <li><span>تحديد الفكرة المحورية للنص الشعري</span></li>
+            <li><span>تحديد قائل النص</span></li>
+            <li><span>تفسير مفردة وفق السياق</span></li>
+          </ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق (١٣ هدف)</h5>
+          <ul>
+            <li><span>وصف الشخصيات المذكورة في النص</span></li>
+            <li><span>استنتاج معاني الكلمات المتفقة لفظًا</span></li>
+            <li><span>استنتاج معاني الكلمات غير المألوفة</span></li>
+            <li><span>الربط بين حدث أو شخصية أو زمان أو مكان</span></li>
+            <li><span>تفسير العلاقات (السبب والنتيجة / التشابه والاختلاف)</span></li>
+            <li><span>التمييز بين الأسباب والنتائج</span></li>
+            <li><span>استنتاج الأفكار الرئيسة والفرعية</span></li>
+            <li><span>التمييز بين الأفكار الأساسية والثانوية</span></li>
+            <li><span>استنتاج القيم والاتجاهات في النص</span></li>
+            <li><span>توظيف المفردات في جمل أخرى</span></li>
+            <li><span>التعبير عن معنى ورد في النص بأسلوب الطالب</span></li>
+            <li><span>اختيار التعبير الأجمل أو الأصح</span></li>
+            <li><span>تقديم فهم شامل (خرائط المفاهيم / التلخيص)</span></li>
+          </ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#ffebee;color:#c62828">💡 الاستدلال (١٧ هدف)</h5>
+          <ul>
+            <li><span>إبداء الرأي حول فكرة أو قضية مع التعليل</span></li>
+            <li><span>إصدار الأحكام حول الأفكار والشخصيات</span></li>
+            <li><span>تحديد مواطن الجمال من خلال السياق</span></li>
+            <li><span>اقتراح عناوين جديدة لفقرات النص</span></li>
+            <li><span>كتابة نهاية مغايرة للنص</span></li>
+            <li><span>التنبؤ بالأحداث بناءً على فرضيات</span></li>
+            <li><span>تقييم رأي الكاتب بالحجج المقدمة</span></li>
+            <li><span>تقييم دوافع الشخصيات وأفعالها</span></li>
+            <li><span>التفريق بين الحقيقة والرأي</span></li>
+            <li><span>اقتراح حل آخر للمشكلة</span></li>
+            <li><span>استخراج معاني ضمنية مع أدلة</span></li>
+            <li><span>التفريق بين معنيين بالاستناد إلى النص</span></li>
+            <li><span>تعليل للأسباب غير المعلنة في النص</span></li>
+            <li><span>ربط الظاهرة الموجودة في النص بالواقع</span></li>
+            <li><span>إبداء الرأي المعلل حول فكرة في النص</span></li>
+            <li><span>التمييز بين السلوكات الإيجابية والسلبية</span></li>
+            <li><span>التنبؤ بأحداث بناءً على فرضيات محددة</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#e65100">
+      <h4 style="color:#e65100">💬 الأسلوب اللغوي — ٣ حصص | (أسلوبا الأمر والنهي والاستفهام)</h4>
+      <div class="goals-grid">
+        <div class="goal-col">
+          <h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد أسلوب الأمر</span></li><li><span>تحديد أسلوب النهي</span></li><li><span>تحديد أسلوب الاستفهام وأداته</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>توظيف علامات الترقيم المناسبة</span></li><li><span>التمثيل لأسلوب الأمر في جمل مفيدة</span></li><li><span>التمثيل لأسلوب النهي في جمل مفيدة</span></li><li><span>التمييز بين أسلوبي الأمر والنهي</span></li><li><span>التمثيل لأسلوب الاستفهام بإحدى أدواته</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>التعبير عن معانٍ متعددة بأسلوب الأمر</span></li><li><span>التعبير عن معانٍ متعددة بأسلوب النهي</span></li><li><span>تصويب الخطأ في أسلوب الأمر أو النهي</span></li><li><span>تحويل الجملة إلى أسلوب استفهام</span></li><li><span>التعبير عن معنى بأسلوب الأمر أو النهي</span></li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#f57f17">
+      <h4 style="color:#f57f17">✍️ الظاهرة الإملائية — ١٠ حصص | (دخول أل / الألف اللينة / حروف الجر)</h4>
+      <div class="goals-grid">
+        <div class="goal-col">
+          <h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد صورة كتابة الكلمة المبدوءة بلام بعد دخول أل</span></li><li><span>تعرُّف إدخال اللام المكسورة على الكلمات المبدوءة بأل</span></li><li><span>تحديد الألف اللينة في آخر الفعل والاسم والحرف</span></li><li><span>تحديد المحذوف من الكلمات بعد دخول اللام</span></li><li><span>تحديد حروف الجر التي تدخل على (ما) الاستفهامية</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>رسم الكلمات المبدوءة باللام بعد دخول (أل)</span></li><li><span>رسم الكلمات المبدوءة بأل بعد دخول اللام المكسورة</span></li><li><span>رسم الألف اللينة في آخر الفعل والاسم والحرف</span></li><li><span>كتابة (ما) الاستفهامية بعد حروف الجر</span></li><li><span>كتابة (من) الاستفهامية بعد حرفي الجر (من، عن)</span></li><li><span>رسم الكلمات المبدوءة بأل بعد دخول الباء/الفاء/الكاف</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>تصويب الخطأ الإملائي في الكلمات المبدوءة بأل</span></li><li><span>تصويب الأخطاء في كتابة الألف اللينة</span></li><li><span>تصويب الأخطاء الإملائية في الكلمات المبدوءة بأل بعد الباء/الفاء/الكاف</span></li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#2e7d32">
+      <h4 style="color:#2e7d32">🔤 الوظيفة النحوية — ١٠ حصص | (أنواع الجموع / المفعول المطلق / أنواع المعارف)</h4>
+      <div class="goals-grid">
+        <div class="goal-col">
+          <h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة (١٠ أهداف)</h5>
+          <ul><li><span>تحديد جمع المذكر السالم</span></li><li><span>تحديد جمع المؤنث السالم</span></li><li><span>تحديد جمع التكسير</span></li><li><span>تصنيف الأسماء حسب الدلالة العددية</span></li><li><span>تحديد المفعول المطلق وأوزانه</span></li><li><span>تحديد المعارف وأنواعها</span></li><li><span>تحديد الضمائر المنفصلة وأنواعها</span></li><li><span>تحديد أسماء الإشارة</span></li><li><span>تحديد الأسماء الموصولة</span></li><li><span>التمييز بين الأسماء الموصولة وأسماء الإشارة</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق (١٩ هدف)</h5>
+          <ul><li><span>استعمال جمع المؤنث السالم في جملة</span></li><li><span>استعمال جمع التكسير في جملة</span></li><li><span>استعمال جمع المذكر السالم في جملة</span></li><li><span>تمييز المفعول المطلق في عبارات معطاة</span></li><li><span>ضبط المفعول المطلق في عبارات</span></li><li><span>صياغة مفعول مطلق من أفعال معطاة</span></li><li><span>تكوين جملة تحتوي على مفعول مطلق</span></li><li><span>تحويل الاسم النكرة إلى معرفة</span></li><li><span>إنشاء جمل تحوي أعلامًا</span></li><li><span>استعمال الضمير المنفصل في جمل</span></li><li><span>استعمال أسماء الإشارة في جمل</span></li><li><span>استعمال الأسماء الموصولة في جمل</span></li><li><span>الضبط الصحيح للضمير وأسماء الإشارة والموصولة</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#ffebee;color:#c62828">💡 الاستدلال (٥ أهداف)</h5>
+          <ul><li><span>المقارنة بين أنواع الجموع</span></li><li><span>إعراب جمع المذكر والمؤنث السالم والتكسير</span></li><li><span>إعراب المفعول المطلق في عبارة</span></li><li><span>إعطاء أمثلة لأنواع المعارف</span></li><li><span>توضيح نوع المعرفة والتمثيل عليها</span></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 6th Grade Objectives ─── -->
+  <div class="grade-panel" id="panel-o6">
+    <div class="obj-card" style="border-right-color:#e65100">
+      <h4 style="color:#e65100">📖 فهم المقروء والنصوص — ١٢ حصة | م=٦ | ت=١٠ | س=١١ | مجموع=٢٧</h4>
+      <div class="goals-grid">
+        <div class="goal-col">
+          <h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة (٦ أهداف)</h5>
+          <ul><li><span>تحديد معاني الكلمات من خلال السياق</span></li><li><span>تحديد المفاهيم والمصطلحات في النص</span></li><li><span>الإجابة على أسئلة مباشرة</span></li><li><span>تحديد الفكرة الرئيسة</span></li><li><span>تحديد الشخصيات والأعداد والأماكن</span></li><li><span>تفسير مفردة وفق السياق</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق (١٠ أهداف)</h5>
+          <ul><li><span>وصف الشخصيات المذكورة في النص</span></li><li><span>استنتاج معاني الكلمات المتفقة لفظًا</span></li><li><span>الربط بين حدث أو شخصية أو زمان</span></li><li><span>تفسير العلاقات (السبب والنتيجة)</span></li><li><span>التنبؤ بالأحداث بناءً على فرضيات</span></li><li><span>استنتاج رأي الكاتب بالحجج المقدمة</span></li><li><span>تقييم دوافع الشخصيات</span></li><li><span>التعبير عن معنى ورد في النص</span></li><li><span>استنتاج الأفكار الرئيسة من النص الشعري</span></li><li><span>تمييز التعبير الأجمل مع التعليل</span></li></ul>
+        </div>
+        <div class="goal-col">
+          <h5 style="background:#ffebee;color:#c62828">💡 الاستدلال (١١ هدف)</h5>
+          <ul><li><span>إبداء الرأي حول فكرة مع التعليل</span></li><li><span>إصدار الأحكام حول الأفكار والشخصيات</span></li><li><span>تمييز مواطن الجمال من خلال السياق</span></li><li><span>اقتراح عناوين جديدة لفقرات النص</span></li><li><span>كتابة نهاية مغايرة للنص</span></li><li><span>تمييز معاني ضمنية مع أدلة</span></li><li><span>التفريق بين معنيين بالاستناد للنص</span></li><li><span>تعليل للأسباب غير المعلنة</span></li><li><span>ربط الظاهرة في النص بالواقع</span></li><li><span>إبداء الرأي المعلل حول فكرة</span></li><li><span>إبداء الرأي حول أثر تطبيق الاستراتيجية القرائية</span></li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#6a1b9a">
+      <h4 style="color:#6a1b9a">🔤 الوظيفة النحوية — ٩ حصص | (رفع / نصب / جزم الفعل المضارع)</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد الفعل المضارع الصحيح الآخر</span></li><li><span>تحديد الفعل المضارع المعتل الآخر</span></li><li><span>تحديد الأفعال الخمسة</span></li><li><span>تحديد الفعل المضارع المرفوع والمنصوب والمجزوم</span></li><li><span>تحديد حروف النصب وحروف الجزم</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>تصنيف الأفعال المضارعة حسب آخرها</span></li><li><span>ضبط علامة رفع الفعل المضارع بحسب نوعه</span></li><li><span>التمثيل بجمل لأفعال مرفوعة / منصوبة / مجزومة</span></li><li><span>ضبط علامة نصب الفعل المضارع بحسب نوعه</span></li><li><span>ضبط علامة جزم الفعل المضارع بحسب نوعه</span></li><li><span>إعراب الفعل المضارع في حالاته الثلاث</span></li><li><span>تصويب الخطأ النحوي مع ذكر السبب</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>التمييز بين الحالات الإعرابية من خلال سياقات لغوية</span></li><li><span>التمييز بين الأدوات التي تدخل على الفعل المضارع</span></li><li><span>تفسير سبب العلامة الإعرابية الفرعية بدلًا من الأصلية</span></li><li><span>إعراب الفعل المضارع إعرابًا صحيحًا</span></li></ul></div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#00695c">
+      <h4 style="color:#00695c">💬 الأسلوب اللغوي — ٤ حصص | (أسلوبا الشرط والتوكيد)</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد أسلوب الشرط وأدواته وأركانه</span></li><li><span>تحديد أساليب التوكيد</span></li><li><span>تحديد شروط استخدام ألفاظ (كل - نفس وعين)</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>التمثيل لأسلوب الشرط في جملة مفيدة</span></li><li><span>استعمال أسلوب الشرط استعمالًا صحيحًا</span></li><li><span>استعمال أسلوب التوكيد بـ(كل - نفس وعين)</span></li><li><span>الضبط الصحيح للمؤكد</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>تصويب الخطأ في استعمال أسلوب الشرط</span></li><li><span>التعبير عن معانٍ بأسلوب الشرط</span></li><li><span>تصويب الخطأ في استعمال التوكيد</span></li><li><span>المقارنة بين ألفاظ التوكيد المتصلة وغير المتصلة بضمير</span></li><li><span>التعبير عن معنى بأسلوب التوكيد</span></li><li><span>التعليل لضبط المؤكد</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 3rd Intermediate Objectives ─── -->
+  <div class="grade-panel" id="panel-om3">
+    <div class="obj-card" style="border-right-color:#6a1b9a">
+      <h4 style="color:#6a1b9a">📖 فهم المقروء والنصوص الشعرية — ٢١ حصة | م=١٥ | ت=١٨ | س=٢٦ | مجموع=٥٩</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة (١٥ هدف)</h5>
+          <ul><li><span>تحديد معاني الكلمات (الترادف / التضاد / السياق)</span></li><li><span>تحديد المفاهيم والمصطلحات في النص</span></li><li><span>الإجابة عن أسئلة مباشرة</span></li><li><span>تحديد الفكرة الرئيسة الصريحة</span></li><li><span>تحديد الشخصيات والأحداث والأماكن</span></li><li><span>التمييز بين الأسباب والنتائج</span></li><li><span>استنتاج الأفكار الرئيسة والفرعية</span></li><li><span>التمييز بين الأفكار الأساسية والثانوية</span></li><li><span>توظيف المفردات في جمل أخرى</span></li><li><span>تحديد نوع النص</span></li><li><span>تفسير مفردة وفق السياق</span></li><li><span>شرح معنى البيت الشعري</span></li><li><span>تحديد قائل النص</span></li><li><span>استخراج مواطن الجمال في النص</span></li><li><span>تعديد استراتيجيات زيادة التركيز والفهم</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق (١٨ هدف)</h5>
+          <ul><li><span>وصف الشخصيات المذكورة في النص</span></li><li><span>استنتاج معاني الكلمات المتفقة لفظًا</span></li><li><span>استنتاج معاني الكلمات غير المألوفة</span></li><li><span>الربط بين حدث أو شخصية أو زمان</span></li><li><span>تفسير العلاقات (السبب والنتيجة)</span></li><li><span>التنبؤ بالأحداث بناءً على فرضيات</span></li><li><span>استنتاج رأي الكاتب بالحجج</span></li><li><span>تقييم دوافع الشخصيات</span></li><li><span>التفريق بين الحقيقة والرأي</span></li><li><span>التعبير عن معنى بأسلوب الطالب</span></li><li><span>استعمال معنى في سياق آخر</span></li><li><span>استنتاج الفكرة الرئيسة والفرعية في النص الشعري</span></li><li><span>المقارنة بين التعبيرات لاختيار الأجمل</span></li><li><span>تطبيق استراتيجية التلخيص بهيكل السمكة</span></li><li><span>تطبيق التلخيص بالخرائط المعرفية</span></li><li><span>تطبيق مهارة التلخيص بالرسم الشجري</span></li><li><span>تطبيق على استراتيجية (الجدول الذاتي / التساؤل الذاتي)</span></li><li><span>ربط الظاهرة بالواقع</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال (٢٦ هدف)</h5>
+          <ul><li><span>إبداء الرأي حول فكرة مع التعليل</span></li><li><span>إصدار الأحكام حول الأفكار والشخصيات</span></li><li><span>تمييز مواطن الجمال من خلال السياق</span></li><li><span>اقتراح عناوين جديدة لفقرات النص</span></li><li><span>اقتراح نهاية مغايرة للنص</span></li><li><span>اقتراح حلول أخرى للمشكلة</span></li><li><span>تقدير القيم والاتجاهات في النص</span></li><li><span>استخراج معاني ضمنية مع أدلة</span></li><li><span>التفريق بين معنيين بالاستناد للنص</span></li><li><span>تعليل للأسباب غير المعلنة</span></li><li><span>إبداء الرأي المعلل حول ظاهرة في النص</span></li><li><span>التعبير عن الإحساس بمواطن الجمال</span></li><li><span>الحكم على أثر تطبيق استراتيجية الفهم</span></li><li><span>إبداء الرأي حول أثر التلخيص بالخرائط المعرفية</span></li><li><span>الحكم على أثر استراتيجية الرسم الشجري</span></li></ul></div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#c62828">
+      <h4 style="color:#c62828">🔤 الوظيفة النحوية — ١٢ حصة | (النعت / العطف / البدل) | م=٥ | ت=١٠ | س=٦</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد النعت وأنواعه وأركانه</span></li><li><span>تحديد أقسام النعت (الإفراد/التثنية/الجمع/التذكير/التأنيث)</span></li><li><span>تحديد العطف وحروفه ودلالاتها</span></li><li><span>تحديد شروط العطف بـ(حتى)</span></li><li><span>تحديد البدل وأنواعه</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>التمثيل للنعت في جمل مفيدة</span></li><li><span>استخراج النعت والمنعوت في جمل</span></li><li><span>تصنيف المنعوت من حيث الإفراد والتثنية والجمع</span></li><li><span>تحويل النعت المفرد إلى جملة فعلية أو اسمية</span></li><li><span>الضبط الصحيح للمعطوف والمعطوف عليه</span></li><li><span>التمثيل للعطف في جمل مفيدة</span></li><li><span>تصنيف العطف في جمل (اسم على اسم / فعل على فعل)</span></li><li><span>التمثيل لحروف العطف وفق دلالاتها</span></li><li><span>تمييز أنواع البدل</span></li><li><span>التمثيل للبدل حسب نوعه</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>إعراب النعت إعرابًا صحيحًا</span></li><li><span>تصويب الخطأ في استعمال النعت</span></li><li><span>إعراب العطف إعرابًا صحيحًا</span></li><li><span>المقارنة بين واو العطف وواو الحال</span></li><li><span>تصويب الخطأ في استعمال حرف العطف</span></li><li><span>إعراب البدل إعرابًا صحيحًا</span></li></ul></div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#1565c0">
+      <h4 style="color:#1565c0">💬 الأسلوب اللغوي — ٧ حصص | (الاستثناء / التعجب / العدد) | م=٩ | ت=١٢ | س=٧</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد الاستثناء وأركانه وأدواته</span></li><li><span>تحديد أسلوب التعجب وشروط صياغته</span></li><li><span>تحديد أنواع أسلوب التعجب (القياسي/السماعي)</span></li><li><span>تحديد وزن صيغتي التعجب في الجملة</span></li><li><span>تحديد أسلوب العدد وأنواع الأعداد</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>ضبط أركان الجملة الاستثنائية</span></li><li><span>التمثيل لجمل بأسلوب الاستثناء</span></li><li><span>تمييز الأدوات (عدا/خلا/حاشا) كحروف أو أسماء</span></li><li><span>تمييز الجمل التعجبية من النصوص</span></li><li><span>تمييز الأوزان الصحيحة لأسلوب التعجب</span></li><li><span>التمثيل بجمل بالتعجب السماعي والقياسي</span></li><li><span>التمثيل بجمل على العدد</span></li><li><span>الضبط الصحيح للعدد</span></li><li><span>تحويل أرقام إلى صياغة لفظية</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>التعبير عن معنى بأسلوب الاستثناء</span></li><li><span>تصويب الخطأ الإعرابي في جمل الاستثناء</span></li><li><span>المقارنة بين أدوات الاستثناء</span></li><li><span>تصويب ضبط صيغتي التعجب</span></li><li><span>التعبير عن معانٍ بصيغتي التعجب</span></li><li><span>تصويب الخطأ في ضبط أسلوب التعجب القياسي</span></li><li><span>تصويب الأخطاء في كتابة الأعداد</span></li></ul></div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#2e7d32">
+      <h4 style="color:#2e7d32">🔠 الصنف اللغوي — ١٠ حصص | (أسماء الزمان والمكان / اسم الآلة / المصادر) | م=١١ | ت=١٦ | س=٦</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد اسمي الزمان والمكان</span></li><li><span>تحديد صيغتيهما (مَفعَل، مَفعِل)</span></li><li><span>صياغة أسماء الزمان والمكان من أفعال</span></li><li><span>تمييز اسمي الزمان والمكان عن اسم المفعول</span></li><li><span>تحديد اسم الآلة وأنواعه وكيفية اشتقاقه</span></li><li><span>تحديد قاعدة اشتقاق اسم الآلة</span></li><li><span>تحديد المصادر وأنواعها وأوزانها</span></li><li><span>تحديد المصادر الثلاثية السماعية</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>التمييز بين اسمي الزمان والمكان (وزن واحد)</span></li><li><span>التمييز بين اسمي الزمان والمكان (وزن مختلف)</span></li><li><span>التمثيل لاسمي الزمان والمكان في جمل</span></li><li><span>توظيف اسمي الزمان والمكان في جمل</span></li><li><span>صياغة اسم الآلة من الأفعال</span></li><li><span>تحويل صيغ اسم الآلة إلى أفعالها</span></li><li><span>التمثيل لاسم الآلة بجمل مفيدة</span></li><li><span>التمييز بين المشتق والجامد من أسماء الآلة</span></li><li><span>التمييز بين القياسي والسماعي من أسماء الآلة</span></li><li><span>صياغة المصادر من أفعال</span></li><li><span>التمثيل للمصادر بأنواعها في جمل</span></li><li><span>تمييز القياسي والسماعي من المصادر</span></li><li><span>التمييز بين مصادر الثلاثية والرباعية والخماسية</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>تحليل دلالات اسمي الزمان والمكان حسب السياق</span></li><li><span>المقارنة بين صياغة اسمي الزمان والمكان</span></li><li><span>تصويب الخطأ في اسم الآلة</span></li><li><span>التعبير عن معنى باستخدام اسم الآلة المناسب</span></li><li><span>تصويب الخطأ في صياغة المصادر</span></li><li><span>المقارنة بين المصادر وأنواعها</span></li></ul></div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#f57f17">
+      <h4 style="color:#f57f17">✍️ الظاهرة الإملائية — ١١ حصة | (كلمات مفصولة / ألف وواو زائدة / حروف محذوفة) | م=٦ | ت=١٠ | س=٧</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد كتابة الكلمات المفصولة بالشكل الصحيح</span></li><li><span>تمييز (أنْ) المخففة عن (إنّ)</span></li><li><span>تحديد مواضع زيادة الألف في الكلمات</span></li><li><span>تحديد مواضع زيادة الواو في الكلمات</span></li><li><span>تصنيف الكلمات التي فيها ألف/واو زائدة</span></li><li><span>تحديد المواضع التي يحذف فيها حرف من الكلمة</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>رسم الكلمات المفصولة خطًا رسمًا صحيحًا</span></li><li><span>تصويب الكلمات المفصولة في الجمل</span></li><li><span>رسم الكلمات التي فيها ألف زائدة</span></li><li><span>رسم الكلمات التي فيها واو زائدة</span></li><li><span>رسم الكلمات التي يحذف فيها حرف من أول/وسط/آخر الكلمة</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>المقارنة بين الكلمات الموصولة والمفصولة</span></li><li><span>تصويب الأخطاء في الكلمات التي فيها ألف/واو زائدة</span></li><li><span>تعليل سبب زيادة بعض الحروف في الكلمات</span></li><li><span>تصويب الأخطاء في كتابة الكلمات التي حذفت بعض حروفها</span></li><li><span>تعليل سبب حذف بعض الحروف من الكلمات</span></li><li><span>تمييز زيادة الواو وسطًا وزيادتها طرفًا</span></li></ul></div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#c2185b">
+      <h4 style="color:#c2185b">🖊️ الرسم الكتابي (خط الرقعة) — ٥ حصص | م=٤ | ت=٥ | س=٣</h4>
+      <div class="goals-grid">
+        <div class="goal-col"><h5 style="background:#e3f2fd;color:#1565c0">🧠 المعرفة</h5>
+          <ul><li><span>تحديد مهارات خط الرقعة من القواعد السابقة</span></li><li><span>تمييز خط الرقعة عن غيره من الخطوط</span></li><li><span>تحديد قواعد رسم الآية أو الحديث أو بيت الشعر</span></li><li><span>تعرّف قواعد رسم اللوحات الإرشادية</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#e8f5e9;color:#2e7d32">⚙️ التطبيق</h5>
+          <ul><li><span>كتابة عبارات صحيحة وفق قواعد خط الرقعة</span></li><li><span>نسخ الجمل المكتوبة بخط الرقعة</span></li><li><span>رسم الآيات أو الأحاديث أو أبيات الشعر بخط الرقعة</span></li><li><span>رسم اللوحات الإرشادية والإعلانات بخط الرقعة</span></li></ul></div>
+        <div class="goal-col"><h5 style="background:#ffebee;color:#c62828">💡 الاستدلال</h5>
+          <ul><li><span>تصويب الخطأ في كلمات مكتوبة وفق النظام السطري</span></li><li><span>تصويب الخطأ وفق صورة الحروف وقواعد الكتابة</span></li><li><span>اكتشاف الأخطاء في اللوحات الإرشادية</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="margin-bottom:8px;font-size:15px;font-weight:700;color:var(--primary)">
+    جداول مواصفات اللغة العربية — الفصل الثاني ١٤٤٧ هـ
+  </div>
+  <div style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px">🎨 تصميم د / فواز &nbsp;—&nbsp; تفضل للمزيد هنا</div>
+  <a class="tg-btn" href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.008 9.455c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.871.766z"/></svg>
+    للمزيد من التصاميم — تيليجرام
+  </a>
+</div>
+
+<script>
+function showMain(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  const idx=['overview','primary','intermediate','compare','objectives'].indexOf(id);
+  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+}
+function showGrade(id){
+  document.querySelectorAll('#sec-primary .grade-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#sec-primary .grade-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelector('#sec-primary .grade-tab.'+id).classList.add('active');
+}
+function showObj(id){
+  ['o4','o6','om3'].forEach(x=>{const p=document.getElementById('panel-'+x);if(p)p.classList.remove('active');});
+  document.querySelectorAll('#sec-objectives .grade-tab').forEach(t=>t.classList.remove('active'));
+  const p=document.getElementById('panel-'+id);if(p)p.classList.add('active');
+  const map={o4:'g4',o6:'g6',om3:'gm3'};
+  const btn=document.querySelector('#sec-objectives .grade-tab.'+map[id]);
+  if(btn)btn.classList.add('active');
+}
+</script>
+</body>
+</html>
