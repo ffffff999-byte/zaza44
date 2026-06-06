@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جداول مواصفات العلوم — الفصل الدراسي الثاني ١٤٤٧هـ</title>
+<style>
+:root{
+  --primary:#1a3a2a;--secondary:#2e7d32;--accent:#43a047;
+  --gold:#f5a623;--teal:#00695c;--blue:#1565c0;
+  --purple:#6a1b9a;--red:#c62828;--orange:#e65100;
+  --indigo:#283593;--cyan:#00838f;
+  --bg:#f0f5f1;--card:#fff;--text:#1a2332;--muted:#607d8b;
+  --border:#d6e8d8;--shadow:0 4px 24px rgba(26,92,42,.10);--radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Cairo',Arial,sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 45%,#00695c 100%);padding:48px 24px 72px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='15' cy='15' r='8'/%3E%3Ccircle cx='45' cy='45' r='8'/%3E%3Ccircle cx='45' cy='15' r='4'/%3E%3Ccircle cx='15' cy='45' r='4'/%3E%3C/g%3E%3C/svg%3E")}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;padding:6px 22px;font-size:13px;margin-bottom:16px;backdrop-filter:blur(8px);position:relative;z-index:1}
+.hero h1{color:#fff;font-size:clamp(20px,4vw,34px);font-weight:900;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.25);position:relative;z-index:1}
+.hero h2{color:rgba(255,255,255,.82);font-size:clamp(13px,2vw,17px);font-weight:400;margin-bottom:28px;position:relative;z-index:1}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;z-index:1}
+.chip{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+
+/* NAV */
+.nav-wrap{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1280px;margin:0 auto}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:14px 20px;color:rgba(255,255,255,.6);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-size:13.5px;font-weight:700;transition:all .25s;user-select:none}
+.nav-tab:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
+.nav-tab.active{color:#fff;border-bottom-color:#69f0ae;background:rgba(105,240,174,.1)}
+
+/* CONTAINER */
+.container{max-width:1280px;margin:0 auto;padding:32px 20px 72px}
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sec-title{font-size:22px;font-weight:900;color:var(--primary);margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--accent);display:flex;align-items:center;gap:10px}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:24px;border:1px solid var(--border)}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,92,42,.14);transition:all .2s}
+.card-title{font-size:16px;font-weight:800;color:var(--primary);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-bottom:26px}
+.stat{background:var(--card);border-radius:var(--radius);padding:22px 14px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--accent);transition:transform .2s}
+.stat:hover{transform:translateY(-3px)}
+.stat.gold{border-top-color:var(--gold)}.stat.blue{border-top-color:var(--blue)}
+.stat.purple{border-top-color:var(--purple)}.stat.orange{border-top-color:var(--orange)}
+.stat.teal{border-top-color:var(--teal)}.stat.red{border-top-color:var(--red)}
+.stat-val{font-size:30px;font-weight:900;color:var(--primary);line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11.5px;color:var(--muted);font-weight:700}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px;min-width:480px}
+th{background:var(--primary);color:#fff;padding:13px 14px;text-align:center;font-weight:700;font-size:12.5px}
+th.th-r{text-align:right}
+th.th-k{background:#1565c0}th.th-t{background:#2e7d32}th.th-s{background:#c62828}
+th.th-m{background:#6a1b9a}th.th-dk{background:#263238}
+td{padding:11px 14px;text-align:center;border-bottom:1px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#f6fbf6}
+tr:hover td{background:#e8f5e9;transition:background .15s}
+.tr-total td{background:#e8f5e9 !important;font-weight:900;color:var(--primary)}
+td.lbl{text-align:right;font-weight:700;font-size:13px}
+.val-k{color:#1565c0;font-weight:800}.val-t{color:#2e7d32;font-weight:800}
+.val-s{color:#c62828;font-weight:800}.val-m{color:#6a1b9a;font-weight:800}
+td.pct{font-size:11px;color:var(--muted)}
+
+/* GRADE TABS */
+.grade-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.grade-tab{padding:9px 20px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;border:2px solid transparent;transition:all .2s;user-select:none}
+.grade-tab.g4{background:#e3f2fd;color:#1565c0;border-color:#1565c0}
+.grade-tab.g4.active,.grade-tab.g4:hover{background:#1565c0;color:#fff}
+.grade-tab.g6{background:#fff3e0;color:#e65100;border-color:#e65100}
+.grade-tab.g6.active,.grade-tab.g6:hover{background:#e65100;color:#fff}
+.grade-tab.gm3{background:#f3e5f5;color:#6a1b9a;border-color:#6a1b9a}
+.grade-tab.gm3.active,.grade-tab.gm3:hover{background:#6a1b9a;color:#fff}
+
+.grade-panel{display:none}
+.grade-panel.active{display:block;animation:fadeIn .3s ease}
+
+/* PROGRESS */
+.pbar-wrap{display:flex;border-radius:8px;overflow:hidden;height:24px;width:100%;background:#f0f0f0}
+.pbar-k{background:#1565c0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+.pbar-t{background:#2e7d32;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+.pbar-s{background:#c62828;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.lchip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700}
+.ldot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* OBJECTIVE CARDS */
+.obj-card{background:#fafff9;border:1px solid var(--border);border-right:5px solid;border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.obj-card h4{font-size:13px;font-weight:800;margin-bottom:8px}
+.obj-list{list-style:none;padding:0}
+.obj-list li{font-size:12.5px;line-height:1.85;padding:3px 0;display:flex;gap:8px}
+.obj-list li::before{content:'◆';font-size:9px;margin-top:5px;flex-shrink:0}
+
+/* INFO BOX */
+.info-box{padding:14px 18px;border-radius:10px;font-size:13.5px;line-height:1.85;margin-bottom:18px}
+.info-green{background:#e8f5e9;border-right:4px solid #2e7d32;color:#1a3a1a}
+.info-blue{background:#e3f2fd;border-right:4px solid #1565c0;color:#1a2a3a}
+.info-orange{background:#fff3e0;border-right:4px solid #e65100;color:#2a1a0a}
+.info-purple{background:#f3e5f5;border-right:4px solid #6a1b9a;color:#2a0a3a}
+.info-gold{background:#fff8e1;border-right:4px solid #f5a623;color:#3a2a0a}
+.info-teal{background:#e0f2f1;border-right:4px solid #00695c;color:#0a2a2a}
+
+/* UNIT BADGE */
+.unit-badge{display:inline-block;padding:4px 14px;border-radius:50px;font-size:11.5px;font-weight:800;color:#fff;margin-bottom:12px}
+
+/* FOOTER */
+.footer{text-align:center;padding:28px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+.tg-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0088cc,#00b4d8);color:#fff;padding:11px 26px;border-radius:50px;text-decoration:none;font-weight:800;font-size:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,136,204,.35)}
+.tg-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,136,204,.45)}
+
+@media(max-width:640px){
+  .hero{padding:28px 14px 52px}
+  .container{padding:18px 12px 56px}
+  .card{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🔬 جداول المواصفات — مادة العلوم</div>
+  <h1>جداول مواصفات اختبار مادة العلوم</h1>
+  <h2>الفصل الدراسي الثاني — ١٤٤٧ هـ</h2>
+  <div class="hero-chips">
+    <div class="chip">🔬 العلوم</div>
+    <div class="chip">🏫 ابتدائي ومتوسط</div>
+    <div class="chip">📋 ٣ صفوف دراسية</div>
+    <div class="chip">⭐ ٤٠ درجة لكل صف</div>
+    <div class="chip">📅 الفصل الثاني ١٤٤٧ هـ</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs" id="mainNav">
+    <div class="nav-tab active" onclick="showMain('overview')">📊 نظرة عامة</div>
+    <div class="nav-tab" onclick="showMain('primary')">🔵 المرحلة الابتدائية</div>
+    <div class="nav-tab" onclick="showMain('intermediate')">🟢 المرحلة المتوسطة</div>
+    <div class="nav-tab" onclick="showMain('compare')">📈 مقارنة المراحل</div>
+    <div class="nav-tab" onclick="showMain('content')">🎯 تحليل المحتوى</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════ OVERVIEW ══════════════════ -->
+<div class="section active" id="sec-overview">
+  <div class="sec-title">📊 نظرة عامة — مادة العلوم الفصل الثاني</div>
+
+  <div class="stats-grid">
+    <div class="stat gold"><div class="stat-val">٤٠</div><div class="stat-lbl">درجة الاختبار</div></div>
+    <div class="stat blue"><div class="stat-val">٣</div><div class="stat-lbl">صفوف دراسية</div></div>
+    <div class="stat"><div class="stat-val">٢</div><div class="stat-lbl">مراحل دراسية</div></div>
+    <div class="stat purple"><div class="stat-val">٣٥</div><div class="stat-lbl">إجمالي الفقرات</div></div>
+    <div class="stat teal"><div class="stat-val">٣</div><div class="stat-lbl">مستويات أهداف</div></div>
+    <div class="stat red"><div class="stat-val">٥–٦</div><div class="stat-lbl">فصول لكل صف</div></div>
+  </div>
+
+  <!-- Summary table -->
+  <div class="card">
+    <div class="card-title">📋 ملخص شامل — جميع الصفوف الدراسية</div>
+    <div class="legend">
+      <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة</div>
+      <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+      <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:180px">الصف الدراسي</th>
+            <th>المرحلة</th>
+            <th>الحصص</th>
+            <th>الفصول</th>
+            <th class="th-k">معرفة<br><small>فق / در</small></th>
+            <th class="th-t">تطبيق<br><small>فق / در</small></th>
+            <th class="th-s">استدلال<br><small>فق / در</small></th>
+            <th class="th-m">مجموع<br><small>فق / در</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">الصف الرابع ابتدائي</td>
+            <td><span style="background:#1565c0;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>٥٦</td><td>٥</td>
+            <td class="val-k">١٣ / ١٤</td><td class="val-t">١٧ / ١٧</td><td class="val-s">٥ / ٩</td><td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف السادس ابتدائي</td>
+            <td><span style="background:#e65100;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>٦٦</td><td>٦</td>
+            <td class="val-k">١٤ / ١٥</td><td class="val-t">١٥ / ١٨</td><td class="val-s">٦ / ٧</td><td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف الثالث متوسط</td>
+            <td><span style="background:#2e7d32;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">متوسط</span></td>
+            <td>٦٦</td><td>٦</td>
+            <td class="val-k">١٠ / ١٢</td><td class="val-t">١٧ / ٢٠</td><td class="val-s">٨ / ٨</td><td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Distribution cards -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px">
+    <div class="card" style="border-top:5px solid #1565c0;margin-bottom:0">
+      <div class="card-title" style="color:#1565c0">🔵 الرابع ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#1565c0;font-weight:700">معرفة ١٤/٤٠</span><span>٣٥٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-k" style="width:35%">٣٥٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#2e7d32;font-weight:700">تطبيق ١٧/٤٠</span><span>٤٢٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-t" style="width:42%">٤٢٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#c62828;font-weight:700">استدلال ٩/٤٠</span><span>٢٣٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-s" style="width:23%">٢٣٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #e65100;margin-bottom:0">
+      <div class="card-title" style="color:#e65100">🟠 السادس ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#1565c0;font-weight:700">معرفة ١٥/٤٠</span><span>٣٧٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-k" style="width:37%">٣٧٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#2e7d32;font-weight:700">تطبيق ١٨/٤٠</span><span>٤٥٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-t" style="width:45%">٤٥٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#c62828;font-weight:700">استدلال ٧/٤٠</span><span>١٧٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-s" style="width:17%">١٧٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #2e7d32;margin-bottom:0">
+      <div class="card-title" style="color:#2e7d32">🟢 الثالث متوسط — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#1565c0;font-weight:700">معرفة ١٢/٤٠</span><span>٣٠٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-k" style="width:30%">٣٠٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#2e7d32;font-weight:700">تطبيق ٢٠/٤٠</span><span>٥٠٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-t" style="width:50%">٥٠٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#c62828;font-weight:700">استدلال ٨/٤٠</span><span>٢٠٪</span></div>
+        <div class="pbar-wrap" style="height:20px"><div class="pbar-s" style="width:20%">٢٠٪</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💡 قراءة تحليلية في الأوزان النسبية</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+      <div class="info-box info-blue" style="margin-bottom:0"><strong>مستوى المعرفة:</strong><br>يتراوح بين ٣٠٪ (الثالث متوسط) و٣٧٪ (السادس ابتدائي). يقيس قدرة الطالب على تذكر المصطلحات والمفاهيم والحقائق العلمية الأساسية.</div>
+      <div class="info-box info-green" style="margin-bottom:0"><strong>مستوى التطبيق:</strong><br>يُهيمن بنسبة ٤٢–٥٠٪ في جميع الصفوف. يرتفع بصورة ملحوظة في الثالث متوسط (٥٠٪)، مع التركيز على تطبيق المفاهيم في سياقات علمية واقعية.</div>
+      <div class="info-box" style="background:#ffebee;border-right:4px solid #c62828;color:#1a2a2a;margin-bottom:0"><strong>مستوى الاستدلال:</strong><br>يتصاعد من ١٧٪ (السادس ابتدائي) إلى ٢٣٪ (الرابع ابتدائي)، ثم ٢٠٪ في المتوسط، مما يعكس متطلبات التحليل والاستنتاج العلمي.</div>
+      <div class="info-box info-gold" style="margin-bottom:0"><strong>توزيع الفقرات:</strong><br>٣٥ فقرة لجميع الصفوف مع ثبات درجة الاختبار عند ٤٠. توزيع الفقرات بين الفصول يتناسب مع عدد حصص كل فصل ووزنه النسبي.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PRIMARY ══════════════════ -->
+<div class="section" id="sec-primary">
+  <div class="sec-title">🔵 المرحلة الابتدائية — جداول المواصفات</div>
+
+  <div class="grade-tabs">
+    <div class="grade-tab g4 active" onclick="showGrade('g4')">الصف الرابع ابتدائي</div>
+    <div class="grade-tab g6" onclick="showGrade('g6')">الصف السادس ابتدائي</div>
+  </div>
+
+  <!-- ── FOURTH GRADE ── -->
+  <div class="grade-panel active" id="panel-g4">
+    <div class="info-box info-blue">
+      <strong>📋 الصف الرابع ابتدائي — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+      المادة: علوم &nbsp;|&nbsp; إجمالي الحصص: ٥٦ &nbsp;|&nbsp; عدد الفقرات: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠ &nbsp;|&nbsp; مجموع الأهداف: ١٠٢ هدف
+    </div>
+
+    <!-- Overall percentages -->
+    <div class="card">
+      <div class="card-title">📊 الأوزان النسبية الإجمالية للأهداف — الرابع ابتدائي</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px">
+        <div style="text-align:center;padding:18px 12px;background:#e3f2fd;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#1565c0">٣٦٪</div>
+          <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+          <div style="font-size:11px;color:#888">٣٧ هدف / ١٤ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#e8f5e9;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٦٪</div>
+          <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+          <div style="font-size:11px;color:#888">٤٧ هدف / ١٧ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#ffebee;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#c62828">١٨٪</div>
+          <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+          <div style="font-size:11px;color:#888">١٨ هدف / ٩ درجات</div>
+        </div>
+      </div>
+      <div class="pbar-wrap" style="height:32px">
+        <div class="pbar-k" style="width:36%">معرفة ٣٦٪</div>
+        <div class="pbar-t" style="width:46%">تطبيق ٤٦٪</div>
+        <div class="pbar-s" style="width:18%">استدلال ١٨٪</div>
+      </div>
+    </div>
+
+    <!-- Spec table -->
+    <div class="card">
+      <div class="card-title">📋 جدول المواصفات — الرابع ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:30px">الفصل</th>
+              <th class="th-r" style="min-width:160px">المحتوى</th>
+              <th>الحصص</th>
+              <th class="th-k" style="font-size:11px">معرفة%<br>فق / در</th>
+              <th class="th-t" style="font-size:11px">تطبيق%<br>فق / در</th>
+              <th class="th-s" style="font-size:11px">استدلال%<br>فق / در</th>
+              <th class="th-m">مجموع<br>فق / در</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٦</td>
+              <td class="lbl">موارد الأرض</td><td>٨</td>
+              <td class="val-k">١٤٪<br>٢ / ٢</td>
+              <td class="val-t">١٢٪<br>٢ / ٢</td>
+              <td class="val-s">١٦٪<br>١ / ٢</td>
+              <td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٧</td>
+              <td class="lbl">النظام الشمسي والفضاء</td><td>٨</td>
+              <td class="val-k">١٤٪<br>١ / ٢</td>
+              <td class="val-t">٢١٪<br>٣ / ٣</td>
+              <td class="val-s">٢٢٪<br>١ / ١</td>
+              <td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٨</td>
+              <td class="lbl">قياس المادة وتغيرها</td><td>١٢</td>
+              <td class="val-k">٢٤٪<br>٣ / ٣</td>
+              <td class="val-t">١٧٪<br>٣ / ٣</td>
+              <td class="val-s">٢٨٪<br>١ / ٢</td>
+              <td class="val-m">٧ / ٨</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٩</td>
+              <td class="lbl">القوى</td><td>١٤</td>
+              <td class="val-k">١٤٪<br>٤ / ٤</td>
+              <td class="val-t">١٥٪<br>٤ / ٤</td>
+              <td class="val-s">١٢٪<br>١ / ٢</td>
+              <td class="val-m">٩ / ١٠</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">١٠</td>
+              <td class="lbl">الطاقة</td><td>١٤</td>
+              <td class="val-k">٣٤٪<br>٣ / ٣</td>
+              <td class="val-t">٣٥٪<br>٥ / ٥</td>
+              <td class="val-s">٢٢٪<br>١ / ٢</td>
+              <td class="val-m">٩ / ١٠</td>
+            </tr>
+            <tr class="tr-total">
+              <td colspan="2" class="lbl">المجموع</td><td>٥٦</td>
+              <td class="val-k">١٠٠٪<br>١٣ / ١٤</td>
+              <td class="val-t">١٠٠٪<br>١٧ / ١٧</td>
+              <td class="val-s">١٠٠٪<br>٥ / ٩</td>
+              <td class="val-m">٣٥ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Per-chapter bars -->
+    <div class="card">
+      <div class="card-title">📊 التوزيع النسبي للأهداف — فصل بفصل</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٦ — موارد الأرض (٨ حصة) — معرفة ١٤٪ | تطبيق ١٢٪ | استدلال ١٦٪</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:52%">معرفة ٥٢٪</div><div class="pbar-t" style="width:37%">تطبيق ٣٧٪</div><div class="pbar-s" style="width:11%">١١٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٧ — النظام الشمسي والفضاء (٨ حصة) — معرفة ١٤٪ | تطبيق ٢١٪ | استدلال ٢٢٪</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:25%">٢٥٪</div><div class="pbar-t" style="width:57%">تطبيق ٥٧٪</div><div class="pbar-s" style="width:18%">١٨٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٨ — قياس المادة وتغيرها (١٢ حصة) — معرفة ٢٤٪ | تطبيق ١٧٪ | استدلال ٢٨٪</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:43%">٤٣٪</div><div class="pbar-t" style="width:42%">٤٢٪</div><div class="pbar-s" style="width:15%">١٥٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٩ — القوى (١٤ حصة) — معرفة ١٤٪ | تطبيق ١٥٪ | استدلال ١٢٪</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:44%">٤٤٪</div><div class="pbar-t" style="width:45%">٤٥٪</div><div class="pbar-s" style="width:11%">١١٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١٠ — الطاقة (١٤ حصة) — معرفة ٣٤٪ | تطبيق ٣٥٪ | استدلال ٢٢٪</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:55%">تطبيق ٥٥٪</div><div class="pbar-s" style="width:12%">١٢٪</div></div></div>
+      </div>
+      <div class="legend" style="margin-top:14px;margin-bottom:0">
+        <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة</div>
+        <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+        <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIXTH GRADE ── -->
+  <div class="grade-panel" id="panel-g6">
+    <div class="info-box info-orange">
+      <strong>📋 الصف السادس ابتدائي — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+      المادة: علوم &nbsp;|&nbsp; إجمالي الحصص: ٦٦ &nbsp;|&nbsp; عدد الفقرات: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 الأوزان النسبية الإجمالية — السادس ابتدائي</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px">
+        <div style="text-align:center;padding:18px 12px;background:#e3f2fd;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#1565c0">٣٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+          <div style="font-size:11px;color:#888">١٤ فقرة / ١٥ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#e8f5e9;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٥٪</div>
+          <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+          <div style="font-size:11px;color:#888">١٥ فقرة / ١٨ درجة</div>
+        </div>
+        <div style="text-align:center;padding:18px 12px;background:#ffebee;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#c62828">١٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+          <div style="font-size:11px;color:#888">٦ فقرات / ٧ درجات</div>
+        </div>
+      </div>
+      <div class="pbar-wrap" style="height:32px">
+        <div class="pbar-k" style="width:37%">معرفة ٣٧٪</div>
+        <div class="pbar-t" style="width:46%">تطبيق ٤٦٪</div>
+        <div class="pbar-s" style="width:17%">استدلال ١٧٪</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 جدول المواصفات — الصف السادس ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:30px">الفصل</th>
+              <th class="th-r" style="min-width:180px">المحتوى</th>
+              <th>الحصص</th>
+              <th class="th-k" style="font-size:11px">معرفة%<br>فق / در</th>
+              <th class="th-t" style="font-size:11px">تطبيق%<br>فق / در</th>
+              <th class="th-s" style="font-size:11px">استدلال%<br>فق / در</th>
+              <th class="th-m">مجموع<br>فق / در</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٧</td>
+              <td class="lbl">نظام الأرض والشمس والقمر</td><td>١٠</td>
+              <td class="val-k">٤٤٪<br>٢ / ٢</td><td class="val-t">٤٤٪<br>٢ / ٣</td><td class="val-s">١٢٪<br>١ / ١</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٨</td>
+              <td class="lbl">النظام الشمسي والنجوم والمجرات</td><td>١٠</td>
+              <td class="val-k">٣٨٪<br>١ / ١</td><td class="val-t">٤٦٪<br>٢ / ٢</td><td class="val-s">١٦٪<br>١ / ١</td><td class="val-m">٤ / ٤</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">٩</td>
+              <td class="lbl">الخصائص الفيزيائية للمادة</td><td>١٢</td>
+              <td class="val-k">٤٠٪<br>٣ / ٣</td><td class="val-t">٤٠٪<br>٣ / ٣</td><td class="val-s">٢٠٪<br>١ / ٢</td><td class="val-m">٧ / ٨</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">١٠</td>
+              <td class="lbl">التغيرات الكيميائية</td><td>١٢</td>
+              <td class="val-k">٣٥٪<br>٢ / ٢</td><td class="val-t">٥٣٪<br>٣ / ٤</td><td class="val-s">١٢٪<br>١ / ١</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">١١</td>
+              <td class="lbl">الحركة</td><td>١٢</td>
+              <td class="val-k">٤٢٪<br>٣ / ٣</td><td class="val-t">٣٧٪<br>٢ / ٣</td><td class="val-s">٢١٪<br>١ / ١</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td style="font-weight:900;color:var(--primary)">١٢</td>
+              <td class="lbl">الكهرباء</td><td>١٠</td>
+              <td class="val-k">٤٧٪<br>٣ / ٤</td><td class="val-t">٤٢٪<br>٣ / ٣</td><td class="val-s">١١٪<br>١ / ١</td><td class="val-m">٧ / ٨</td>
+            </tr>
+            <tr class="tr-total">
+              <td colspan="2" class="lbl">مجموع الفقرات / الدرجات</td><td>٦٦</td>
+              <td class="val-k">١٤ / ١٥</td><td class="val-t">١٥ / ١٨</td><td class="val-s">٦ / ٧</td><td class="val-m">٣٥ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 التوزيع النسبي للأهداف — فصل بفصل</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٧ — نظام الأرض والشمس والقمر (١٠ حصة) — ٤٤٪ معرفة | ٤٤٪ تطبيق | ١٢٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:44%">٤٤٪</div><div class="pbar-t" style="width:44%">٤٤٪</div><div class="pbar-s" style="width:12%">١٢٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٨ — النظام الشمسي والنجوم والمجرات (١٠ حصة) — ٣٨٪ معرفة | ٤٦٪ تطبيق | ١٦٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:38%">٣٨٪</div><div class="pbar-t" style="width:46%">٤٦٪</div><div class="pbar-s" style="width:16%">١٦٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٩ — الخصائص الفيزيائية للمادة (١٢ حصة) — ٤٠٪ معرفة | ٤٠٪ تطبيق | ٢٠٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:40%">٤٠٪</div><div class="pbar-t" style="width:40%">٤٠٪</div><div class="pbar-s" style="width:20%">٢٠٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١٠ — التغيرات الكيميائية (١٢ حصة) — ٣٥٪ معرفة | ٥٣٪ تطبيق | ١٢٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:35%">٣٥٪</div><div class="pbar-t" style="width:53%">٥٣٪</div><div class="pbar-s" style="width:12%">١٢٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١١ — الحركة (١٢ حصة) — ٤٢٪ معرفة | ٣٧٪ تطبيق | ٢١٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:42%">٤٢٪</div><div class="pbar-t" style="width:37%">٣٧٪</div><div class="pbar-s" style="width:21%">٢١٪</div></div></div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١٢ — الكهرباء (١٠ حصة) — ٤٧٪ معرفة | ٤٢٪ تطبيق | ١١٪ استدلال</div>
+          <div class="pbar-wrap"><div class="pbar-k" style="width:47%">٤٧٪</div><div class="pbar-t" style="width:42%">٤٢٪</div><div class="pbar-s" style="width:11%">١١٪</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ INTERMEDIATE ══════════════════ -->
+<div class="section" id="sec-intermediate">
+  <div class="sec-title">🟢 المرحلة المتوسطة — جدول المواصفات</div>
+
+  <div class="info-box info-green">
+    <strong>📋 الصف الثالث متوسط — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+    المادة: علوم &nbsp;|&nbsp; إجمالي الحصص: ٦٦ &nbsp;|&nbsp; عدد الفقرات: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 الأوزان النسبية الإجمالية — الثالث متوسط</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px">
+      <div style="text-align:center;padding:18px 12px;background:#e3f2fd;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#1565c0">٣٠٪</div>
+        <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+        <div style="font-size:11px;color:#888">١٠ فقرات / ١٢ درجة</div>
+      </div>
+      <div style="text-align:center;padding:18px 12px;background:#e8f5e9;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#2e7d32">٥٠٪</div>
+        <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+        <div style="font-size:11px;color:#888">١٧ فقرة / ٢٠ درجة</div>
+      </div>
+      <div style="text-align:center;padding:18px 12px;background:#ffebee;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#c62828">٢٠٪</div>
+        <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+        <div style="font-size:11px;color:#888">٨ فقرات / ٨ درجات</div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="height:32px">
+      <div class="pbar-k" style="width:30%">معرفة ٣٠٪</div>
+      <div class="pbar-t" style="width:50%">تطبيق ٥٠٪</div>
+      <div class="pbar-s" style="width:20%">استدلال ٢٠٪</div>
+    </div>
+  </div>
+
+  <!-- Unit sections -->
+  <div class="unit-badge" style="background:#00695c">الوحدة الرابعة: الروابط والتفاعلات الكيميائية</div>
+
+  <div class="card">
+    <div class="card-title">📋 جدول المواصفات الكامل — الثالث متوسط</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30px">الفصل</th>
+            <th class="th-r" style="min-width:200px">المحتوى</th>
+            <th>الحصص</th>
+            <th class="th-k" style="font-size:11px">معرفة%<br>فق / در</th>
+            <th class="th-t" style="font-size:11px">تطبيق%<br>فق / در</th>
+            <th class="th-s" style="font-size:11px">استدلال%<br>فق / در</th>
+            <th class="th-m">مجموع<br>فق / در</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Unit 4 -->
+          <tr style="background:#e0f7fa">
+            <td colspan="7" style="text-align:right;font-weight:900;font-size:12px;color:#00695c;padding:8px 14px">🔬 الوحدة الرابعة — الروابط والتفاعلات الكيميائية</td>
+          </tr>
+          <tr>
+            <td style="font-weight:900;color:var(--primary)">٧</td>
+            <td class="lbl">البناء الذري والروابط الكيميائية</td><td>١٢</td>
+            <td class="val-k">٣٦٪<br>١ / ١</td><td class="val-t">٤٥٪<br>٢ / ٢</td><td class="val-s">١٩٪<br>١ / ١</td><td class="val-m">٤ / ٤</td>
+          </tr>
+          <tr>
+            <td style="font-weight:900;color:var(--primary)">٨</td>
+            <td class="lbl">التفاعلات الكيميائية وسرعتها</td><td>١٠</td>
+            <td class="val-k">٤٠٪<br>١ / ١</td><td class="val-t">٥٠٪<br>٢ / ٣</td><td class="val-s">١٠٪<br>١ / ١</td><td class="val-m">٤ / ٥</td>
+          </tr>
+          <!-- Unit 5 -->
+          <tr style="background:#f1f8e9">
+            <td colspan="7" style="text-align:right;font-weight:900;font-size:12px;color:#2e7d32;padding:8px 14px">⚡ الوحدة الخامسة — الحركة والقوة</td>
+          </tr>
+          <tr>
+            <td style="font-weight:900;color:var(--primary)">٩</td>
+            <td class="lbl">الحركة والزخم (كمية الحركة)</td><td>١٣</td>
+            <td class="val-k">٢٥٪<br>٢ / ٣</td><td class="val-t">٥٤٪<br>٥ / ٥</td><td class="val-s">٢١٪<br>٢ / ٢</td><td class="val-m">٩ / ١٠</td>
+          </tr>
+          <tr>
+            <td style="font-weight:900;color:var(--primary)">١٠</td>
+            <td class="lbl">قوانين نيوتن في الحركة</td><td>١٠</td>
+            <td class="val-k">٣٣٪<br>٢ / ٢</td><td class="val-t">٤٥٪<br>٣ / ٣</td><td class="val-s">٢٢٪<br>١ / ٢</td><td class="val-m">٦ / ٧</td>
+          </tr>
+          <tr>
+            <td style="font-weight:900;color:var(--primary)">١١</td>
+            <td class="lbl">الفصل الحادي عشر</td><td>١١</td>
+            <td class="val-k">٤١٪<br>٣ / ٤</td><td class="val-t">٤١٪<br>٣ / ٤</td><td class="val-s">١٨٪<br>٢ / ١</td><td class="val-m">٨ / ٩</td>
+          </tr>
+          <tr>
+            <td style="font-weight:900;color:var(--primary)">١٢</td>
+            <td class="lbl">الفصل الثاني عشر</td><td>١٠</td>
+            <td class="val-k">٣٣٪<br>١ / ١</td><td class="val-t">٥٨٪<br>٢ / ٣</td><td class="val-s">٩٪<br>١ / ١</td><td class="val-m">٤ / ٥</td>
+          </tr>
+          <tr class="tr-total">
+            <td colspan="2" class="lbl">مجموع الفقرات / الدرجات</td><td>٦٦</td>
+            <td class="val-k">١٠ / ١٢</td><td class="val-t">١٧ / ٢٠</td><td class="val-s">٨ / ٨</td><td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bars -->
+  <div class="card">
+    <div class="card-title">📊 التوزيع النسبي — فصل بفصل</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٧ — البناء الذري والروابط (١٢ حصة) — ٣٦٪ معرفة | ٤٥٪ تطبيق | ١٩٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:36%">٣٦٪</div><div class="pbar-t" style="width:45%">٤٥٪</div><div class="pbar-s" style="width:19%">١٩٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٨ — التفاعلات الكيميائية (١٠ حصة) — ٤٠٪ معرفة | ٥٠٪ تطبيق | ١٠٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:40%">٤٠٪</div><div class="pbar-t" style="width:50%">٥٠٪</div><div class="pbar-s" style="width:10%">١٠٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ٩ — الحركة والزخم (١٣ حصة) — ٢٥٪ معرفة | ٥٤٪ تطبيق | ٢١٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:25%">٢٥٪</div><div class="pbar-t" style="width:54%">٥٤٪</div><div class="pbar-s" style="width:21%">٢١٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١٠ — قوانين نيوتن (١٠ حصة) — ٣٣٪ معرفة | ٤٥٪ تطبيق | ٢٢٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:45%">٤٥٪</div><div class="pbar-s" style="width:22%">٢٢٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١١ (١١ حصة) — ٤١٪ معرفة | ٤١٪ تطبيق | ١٨٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:41%">٤١٪</div><div class="pbar-t" style="width:41%">٤١٪</div><div class="pbar-s" style="width:18%">١٨٪</div></div></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:4px">الفصل ١٢ (١٠ حصة) — ٣٣٪ معرفة | ٥٨٪ تطبيق | ٩٪ استدلال</div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:58%">٥٨٪</div><div class="pbar-s" style="width:9%">٩٪</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ COMPARE ══════════════════ -->
+<div class="section" id="sec-compare">
+  <div class="sec-title">📈 مقارنة المراحل الدراسية</div>
+
+  <div class="card">
+    <div class="card-title">📋 مقارنة شاملة — جميع الصفوف</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r"></th>
+            <th colspan="3" class="th-k">الرابع ابتدائي</th>
+            <th colspan="3" style="background:#e65100">السادس ابتدائي</th>
+            <th colspan="3" class="th-t">الثالث متوسط</th>
+          </tr>
+          <tr>
+            <th class="th-dk th-r">المستوى</th>
+            <th class="th-dk" style="font-size:10px">فقرات</th>
+            <th class="th-dk" style="font-size:10px">درجات</th>
+            <th class="th-dk" style="font-size:10px">نسبة</th>
+            <th class="th-dk" style="font-size:10px">فقرات</th>
+            <th class="th-dk" style="font-size:10px">درجات</th>
+            <th class="th-dk" style="font-size:10px">نسبة</th>
+            <th class="th-dk" style="font-size:10px">فقرات</th>
+            <th class="th-dk" style="font-size:10px">درجات</th>
+            <th class="th-dk" style="font-size:10px">نسبة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl val-k">المعرفة</td>
+            <td class="val-k">١٣</td><td class="val-k">١٤</td><td class="val-k pct">٣٥٪</td>
+            <td class="val-k">١٤</td><td class="val-k">١٥</td><td class="val-k pct">٣٧٪</td>
+            <td class="val-k">١٠</td><td class="val-k">١٢</td><td class="val-k pct">٣٠٪</td>
+          </tr>
+          <tr>
+            <td class="lbl val-t">التطبيق</td>
+            <td class="val-t">١٧</td><td class="val-t">١٧</td><td class="val-t pct">٤٢٪</td>
+            <td class="val-t">١٥</td><td class="val-t">١٨</td><td class="val-t pct">٤٥٪</td>
+            <td class="val-t">١٧</td><td class="val-t">٢٠</td><td class="val-t pct">٥٠٪</td>
+          </tr>
+          <tr>
+            <td class="lbl val-s">الاستدلال</td>
+            <td class="val-s">٥</td><td class="val-s">٩</td><td class="val-s pct">٢٣٪</td>
+            <td class="val-s">٦</td><td class="val-s">٧</td><td class="val-s pct">١٧٪</td>
+            <td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s pct">٢٠٪</td>
+          </tr>
+          <tr class="tr-total">
+            <td class="lbl">المجموع</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Visual comparison bars -->
+  <div class="card">
+    <div class="card-title">📊 الرسم التوضيحي — التوزيع النسبي للدرجات</div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#1565c0;margin-bottom:6px">الصف الرابع ابتدائي — معرفة ٣٥٪ | تطبيق ٤٢٪ | استدلال ٢٣٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:35%">١٤</div><div class="pbar-t" style="width:42%">١٧</div><div class="pbar-s" style="width:23%">٩</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#e65100;margin-bottom:6px">الصف السادس ابتدائي — معرفة ٣٧٪ | تطبيق ٤٥٪ | استدلال ١٧٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:37%">١٥</div><div class="pbar-t" style="width:46%">١٨</div><div class="pbar-s" style="width:17%">٧</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#2e7d32;margin-bottom:6px">الصف الثالث متوسط — معرفة ٣٠٪ | تطبيق ٥٠٪ | استدلال ٢٠٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:30%">١٢</div><div class="pbar-t" style="width:50%">٢٠</div><div class="pbar-s" style="width:20%">٨</div></div>
+      </div>
+    </div>
+    <div class="legend" style="margin-top:14px;margin-bottom:0">
+      <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة (الأرقام = الدرجات)</div>
+      <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+      <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+    </div>
+  </div>
+
+  <!-- Number of chapters comparison -->
+  <div class="card">
+    <div class="card-title">📊 مقارنة الحصص وعدد الفصول</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <div style="padding:18px;background:#e3f2fd;border-radius:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:#1565c0;margin-bottom:4px">٥٦ حصة</div>
+        <div style="font-size:13px;font-weight:700;color:#1565c0">الرابع ابتدائي</div>
+        <div style="font-size:11px;color:#888;margin-top:4px">٥ فصول | ٣٥ فقرة | ٤٠ درجة</div>
+        <div style="font-size:11px;color:#888">معدل ١١.٢ حصة/فصل</div>
+      </div>
+      <div style="padding:18px;background:#fff3e0;border-radius:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:#e65100;margin-bottom:4px">٦٦ حصة</div>
+        <div style="font-size:13px;font-weight:700;color:#e65100">السادس ابتدائي</div>
+        <div style="font-size:11px;color:#888;margin-top:4px">٦ فصول | ٣٥ فقرة | ٤٠ درجة</div>
+        <div style="font-size:11px;color:#888">معدل ١١ حصة/فصل</div>
+      </div>
+      <div style="padding:18px;background:#e8f5e9;border-radius:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:#2e7d32;margin-bottom:4px">٦٦ حصة</div>
+        <div style="font-size:13px;font-weight:700;color:#2e7d32">الثالث متوسط</div>
+        <div style="font-size:11px;color:#888;margin-top:4px">٦ فصول | ٣٥ فقرة | ٤٠ درجة</div>
+        <div style="font-size:11px;color:#888">معدل ١١ حصة/فصل</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💡 ملاحظات تحليلية مقارنة</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+      <div class="info-box info-blue" style="margin-bottom:0"><strong>🔵 مستوى المعرفة:</strong><br>الأعلى في السادس ابتدائي (٣٧٪) والأدنى في الثالث متوسط (٣٠٪)، مما يُشير إلى أن المرحلة المتوسطة تُولي اهتمامًا أكبر للتطبيق والتحليل على حساب الحفظ.</div>
+      <div class="info-box info-green" style="margin-bottom:0"><strong>🟢 مستوى التطبيق:</strong><br>يصل إلى أعلى قيمة في الثالث متوسط (٥٠٪)، مما يعكس متطلبات تطبيق المعادلات والقوانين الفيزيائية والكيميائية في حل المسائل العلمية.</div>
+      <div class="info-box" style="background:#ffebee;border-right:4px solid #c62828;color:#1a2a2a;margin-bottom:0"><strong>🔴 مستوى الاستدلال:</strong><br>قيمته الأعلى في الرابع ابتدائي (٢٣٪ درجات) نظرًا لوزن درجات الاستدلال، بينما يرتفع عدد فقرات الاستدلال في الثالث متوسط (٨ فقرات).</div>
+      <div class="info-box info-gold" style="margin-bottom:0"><strong>⭐ ثبات الفقرات:</strong><br>تتساوى جميع الصفوف في ٣٥ فقرة و٤٠ درجة، مما يضمن العدالة في قياس مخرجات التعلم رغم اختلاف مستوى صعوبة المحتوى بين الصفوف.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CONTENT ══════════════════ -->
+<div class="section" id="sec-content">
+  <div class="sec-title">🎯 تحليل المحتوى — الأهداف التعليمية</div>
+
+  <div class="info-box info-teal">
+    📌 تشمل هذه الجداول الأهداف التعليمية الواردة في تحليل المحتوى لكل صف، مصنفةً حسب مستويات الأهداف المعرفية الثلاثة: المعرفة والتطبيق والاستدلال.
+  </div>
+
+  <!-- Grade selector for content -->
+  <div class="grade-tabs">
+    <div class="grade-tab g4 active" onclick="showContent('c4')">الرابع ابتدائي</div>
+    <div class="grade-tab g6" onclick="showContent('c6')">السادس ابتدائي</div>
+    <div class="grade-tab gm3" onclick="showContent('cm3')">الثالث متوسط</div>
+  </div>
+
+  <!-- 4th grade content -->
+  <div class="grade-panel active" id="panel-c4">
+    <!-- Unit 4 -->
+    <div class="unit-badge" style="background:#1565c0">الوحدة الرابعة — الأرض ومواردها</div>
+    <div class="obj-card" style="border-right-color:#1565c0">
+      <h4 style="color:#1565c0">الفصل ٦ — موارد الأرض (المعادن والصخور والماء)</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>التعرف على المعادن</span></li>
+            <li><span>تقديم أمثلة على أنواع الصخور المختلفة</span></li>
+            <li><span>ذكر بعض استخدامات الصخور</span></li>
+            <li><span>التعرف على مفهوم المياه الجوفية</span></li>
+            <li><span>تعداد طرق الحصول على الماء العذب</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>وصف بعض الخصائص المستخدمة في تصنيف الصخور</span></li>
+            <li><span>شرح آلية تكون المياه الجوفية</span></li>
+            <li><span>المقارنة بين الماء المالح والماء العذب</span></li>
+            <li><span>شرح أسباب تلوث الماء</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>تفسير أسباب التنوع الصخري</span></li>
+            <li><span>المقارنة بين الصخور من أوجه مختلفة</span></li>
+            <li><span>تتبع تكون صخر متحول</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unit 5 -->
+    <div class="unit-badge" style="background:#00695c;margin-top:10px">الوحدة الخامسة — الفضاء</div>
+    <div class="obj-card" style="border-right-color:#00695c">
+      <h4 style="color:#00695c">الفصل ٧ — النظام الشمسي والفضاء</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>التعرف على نواتج حركة الأرض</span></li>
+            <li><span>وصف النظام الشمسي</span></li>
+            <li><span>ذكر خصائص الشمس وأهميتها</span></li>
+            <li><span>التعرف على الكويكبات والمذنبات والكواكب القزمة</span></li>
+            <li><span>تعداد كواكب المجموعة الشمسية حسب قربها من الشمس</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>تفسير كيف يسبب دوران الأرض تعاقب الليل والنهار</span></li>
+            <li><span>تتبع أطوار القمر بالرسم التوضيحي</span></li>
+            <li><span>المقارنة بين ظاهرتي الكسوف والخسوف</span></li>
+            <li><span>شرح كيفية حركة الكواكب في النظام الشمسي</span></li>
+            <li><span>المقارنة بين التلسكوبات القديمة والحديثة</span></li>
+            <li><span>المقارنة بين الكواكب الصخرية والغازية</span></li>
+            <li><span>المقارنة بين الشهب والنيازك</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>استقصاء نواتج حركة الكرة الأرضية</span></li>
+            <li><span>تفسير عدم القدرة على الحياة على الكواكب الغازية</span></li>
+            <li><span>تفسير وجود حفر على سطح القمر</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit-badge" style="background:#6a1b9a;margin-top:10px">الوحدة السادسة — المادة</div>
+    <div class="obj-card" style="border-right-color:#6a1b9a">
+      <h4 style="color:#6a1b9a">الفصل ٨ — قياس المادة وتغيرها</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>وصف بعض خواص المادة التي يمكن قياسها</span></li>
+            <li><span>ذكر أمثلة على وحدات القياس</span></li>
+            <li><span>التعرف على مفهوم الكثافة والكتلة والوزن</span></li>
+            <li><span>التعرف على المقصود بالتغير الفيزيائي والكيميائي</span></li>
+            <li><span>تعداد الخصائص الفيزيائية للمادة مع الأمثلة</span></li>
+            <li><span>تعداد الخصائص الكيميائية للمادة مع الأمثلة</span></li>
+            <li><span>التعرف على مفهوم السبيكة وخصائصها</span></li>
+            <li><span>ذكر أمثلة على المخاليط والمحاليل</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>قياس خواص المادة مستخدمًا وحدات قياس صحيحة</span></li>
+            <li><span>حساب كثافة الأجسام المنتظمة وغير المنتظمة</span></li>
+            <li><span>التمييز بين الطفو والغمر</span></li>
+            <li><span>شرح تحولات الماء</span></li>
+            <li><span>المقارنة بين التغيرات الفيزيائية والكيميائية</span></li>
+            <li><span>التمييز بين حالات المادة من أوجه مختلفة</span></li>
+            <li><span>المقارنة بين المحلول والمخلوط</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>تصميم تجربة لدراسة كثافة أنواع مختلفة من المواد</span></li>
+            <li><span>التمييز بين المتغيرات في الاستقصاءات</span></li>
+            <li><span>ملاحظة وتفسير التغيرات الفيزيائية والكيميائية من واقع الحياة</span></li>
+            <li><span>استنتاج أدلة حدوث التغيرات الفيزيائية والكيميائية</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6th grade content -->
+  <div class="grade-panel" id="panel-c6">
+    <div class="unit-badge" style="background:#e65100">الوحدة الرابعة — الفضاء</div>
+    <div class="obj-card" style="border-right-color:#e65100">
+      <h4 style="color:#e65100">الفصل ٧ — نظام الأرض والشمس والقمر</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>التعرف على مفهوم علم الفلك والكون</span></li>
+            <li><span>التعرف على مفهوم منطقة التوقيت المعياري وخط التاريخ الدولي</span></li>
+            <li><span>التعرف على دورة الأرض اليومية والسنوية</span></li>
+            <li><span>التعرف على مفهوم الفوهة وطور القمر والجاذبية</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>حساب الوقت بين مناطق التوقيت المعياري من خلال الخريطة</span></li>
+            <li><span>توضيح كيف تتغير زاوية ميل أشعة الشمس على الأرض في فصول السنة</span></li>
+            <li><span>تفسير الظواهر الناتجة عن حركة الأرض حول محورها وحول الشمس</span></li>
+            <li><span>المقارنة بين المنظار الفلكي الكاسر والعاكس</span></li>
+            <li><span>رسم أطوار القمر — المقارنة بين ظاهرتي خسوف القمر وكسوف الشمس</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>الاستدلال على اختلاف فصول السنة بين نصفي الكرة الأرضية من خلال الرسوم</span></li>
+            <li><span>تفسير حدوث أطوار القمر المختلفة</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#e65100;margin-top:4px">
+      <h4 style="color:#e65100">الفصل ٨ — النظام الشمسي والنجوم والمجرات</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>التعرف على مكونات النظام الشمسي</span></li>
+            <li><span>التعرف على مفهوم المجموعة النجمية</span></li>
+            <li><span>التمثيل على المجموعات النجمية</span></li>
+            <li><span>التعرف على مفهوم السنة الضوئية والسديم</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>تصنيف الكواكب إلى كواكب داخلية وكواكب خارجية</span></li>
+            <li><span>المقارنة بين المذنب والشهاب والنيزك</span></li>
+            <li><span>تصنيف المجرات بناءً على خصائصها</span></li>
+            <li><span>المقارنة بين النجوم من خلال خصائصها</span></li>
+            <li><span>توضيح نظرية الانفجار العظيم وطريقة تشكل الأرض وغلافها الجوي</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>تفسير سبب حركة الكواكب في مدارات</span></li>
+            <li><span>استنتاج دور الجاذبية في تشكل النظام الشمسي</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit-badge" style="background:#6a1b9a;margin-top:10px">الوحدة الخامسة — المادة والقوى</div>
+    <div class="obj-card" style="border-right-color:#6a1b9a">
+      <h4 style="color:#6a1b9a">الفصل ٩ — الخصائص الفيزيائية للمادة</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>التعرف على الخصائص الفيزيائية للمواد</span></li>
+            <li><span>التعرف على مفهوم الكتلة والوزن</span></li>
+            <li><span>التعرف على مفهوم الحجم والكثافة</span></li>
+            <li><span>التعرف على العوامل المؤثرة في الكثافة</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>حساب حجم جسم منتظم أو غير منتظم</span></li>
+            <li><span>المقارنة باستخدام النماذج بين حالات المادة الثلاث</span></li>
+            <li><span>تفسير طفو الأجسام وفق مبدأ أرخميدس</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>الاستدلال على تأثير الكثافة على طفو الأجسام</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3rd intermediate content -->
+  <div class="grade-panel" id="panel-cm3">
+    <div class="unit-badge" style="background:#00695c">الوحدة الرابعة — الروابط والتفاعلات الكيميائية</div>
+    <div class="obj-card" style="border-right-color:#00695c">
+      <h4 style="color:#00695c">الفصل ٧ — البناء الذري والروابط الكيميائية</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>تحديد كيف تترتب الإلكترونات داخل الذرة</span></li>
+            <li><span>تحديد العوامل المؤثرة على اتحاد الذرات</span></li>
+            <li><span>توضيح آلية تكون الرابطة الفلزية</span></li>
+            <li><span>كتابة الرمز والصيغ الكيميائية بطريقة علمية صحيحة</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>مقارنة أعداد الإلكترونات التي تستوعبها مستويات الطاقة في الذرة</span></li>
+            <li><span>رسم نماذج للذرات توضح عدد الإلكترونات في مستوى الطاقة الأخير</span></li>
+            <li><span>التمييز بين الجزيء والمركب</span></li>
+            <li><span>المقارنة بين الروابط الأيونية والروابط التساهمية</span></li>
+            <li><span>التمييز بين الرابطة القطبية والرابطة غير القطبية</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>الربط بين ترتيب الإلكترونات في ذرة العنصر وموقعها في الجدول الدوري</span></li>
+            <li><span>استنتاج موقع العنصر بناءً على خواصه في الجدول الدوري</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#00695c;margin-top:4px">
+      <h4 style="color:#00695c">الفصل ٨ — التفاعلات الكيميائية وسرعتها</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>تحديد إمكانية حدوث التفاعل الكيميائي</span></li>
+            <li><span>التعرف على مكونات المعادلة الكيميائية</span></li>
+            <li><span>وصف سرعة التفاعل الكيميائي</span></li>
+            <li><span>توضيح العلاقة بين طاقة التنشيط وحدوث التفاعل الكيميائي</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>تطبيق قانون حفظ الكتلة</span></li>
+            <li><span>التمييز بين التفاعلات الطاردة للطاقة وبين التفاعلات الماصة لها</span></li>
+            <li><span>كتابة المعادلات الكيميائية الموزونة بطريقة علمية صحيحة</span></li>
+            <li><span>دراسة أثر العوامل على سرعة التفاعلات الكيميائية</span></li>
+            <li><span>المقارنة بين العوامل المحفزة والمثبطات</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>استنتاج نمط العلاقة بين سرعة التفاعل والعوامل المؤثرة بيانيًا أو تجريبيًا</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit-badge" style="background:#2e7d32;margin-top:10px">الوحدة الخامسة — الحركة والقوة</div>
+    <div class="obj-card" style="border-right-color:#2e7d32">
+      <h4 style="color:#2e7d32">الفصل ٩ — الحركة والزخم (كمية الحركة)</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>توضيح المقصود بالمسافة</span></li>
+            <li><span>توضيح المقصود بالسرعة</span></li>
+            <li><span>توضيح المقصود بالسرعة المتجهة</span></li>
+            <li><span>التعرف على مفهوم التسارع</span></li>
+            <li><span>التعرف على مفهوم الزخم (كمية الحركة)</span></li>
+            <li><span>التعرف على مفهومي الكتلة والقصور الذاتي</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>المقارنة بين المسافة والإزاحة</span></li>
+            <li><span>وصف حركة الجسم بناءً على عناصر الحركة الرئيسة</span></li>
+            <li><span>تقديم أمثلة على الإطار المرجعي والمسافة والإزاحة</span></li>
+            <li><span>تحديد قيمة السرعة اللحظية حسابيًا</span></li>
+            <li><span>حساب قيمة السرعة رياضيًا أو بيانيًا</span></li>
+            <li><span>المقارنة بين أنواع التسارع</span></li>
+            <li><span>حساب قيم التسارع رياضيًا أو بيانيًا</span></li>
+            <li><span>دراسة حالات حفظ الزخم — مقارنة أنواع التصادمات</span></li>
+            <li><span>حساب قيمة الزخم لجسم متحرك رياضيًا</span></li>
+            <li><span>تقديم أمثلة على القصور الذاتي من واقع الحياة</span></li>
+            <li><span>شرح العلاقة الرياضية في قانون حفظ الزخم</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>الاستدلال على مقدار السرعة ونوعها من خلال المنحنى البياني</span></li>
+            <li><span>دراسة تأثير التسارع في الحركة</span></li>
+            <li><span>استنتاج العلاقة بين التسارع واتجاه الجسم</span></li>
+            <li><span>الاستدلال على نوع التسارع ومقداره من خلال الرسم البياني</span></li>
+            <li><span>دراسة حركة الأجسام استنادًا إلى قانون حفظ الزخم</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="obj-card" style="border-right-color:#2e7d32;margin-top:4px">
+      <h4 style="color:#2e7d32">الفصل ١٠ — قوانين نيوتن في الحركة</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#1565c0;margin-bottom:6px">🧠 المعرفة</div>
+          <ul class="obj-list" style="color:#1565c0">
+            <li><span>توضيح قانون نيوتن الأول</span></li>
+            <li><span>توضيح قانون نيوتن الثاني</span></li>
+            <li><span>توضيح مفهوم الاحتكاك</span></li>
+            <li><span>وصف الحركة الدائرية</span></li>
+            <li><span>توضيح مفهوم السرعة الحدية</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#2e7d32;margin-bottom:6px">⚙️ التطبيق</div>
+          <ul class="obj-list" style="color:#2e7d32">
+            <li><span>التمييز بين القوة المتزنة والقوة المحصلة</span></li>
+            <li><span>المقارنة بين القوة المتزنة وغير المتزنة</span></li>
+            <li><span>حل مسائل رياضية على قانون نيوتن الثاني</span></li>
+            <li><span>تفسير تأثير الاحتكاك في الحركة</span></li>
+            <li><span>التمييز بين الوزن والكتلة</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#c62828;margin-bottom:6px">💡 الاستدلال</div>
+          <ul class="obj-list" style="color:#c62828">
+            <li><span>تفسير الظواهر الفيزيائية باستخدام قانون نيوتن الأول</span></li>
+            <li><span>استنتاج أثر الاتجاه في محصلة القوى</span></li>
+            <li><span>استنتاج قيمة التسارع من خلال القوة</span></li>
+            <li><span>استنتاج تأثير مقاومة الهواء على السقوط</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="margin-bottom:8px;font-size:15px;font-weight:700;color:var(--primary)">
+    جداول مواصفات العلوم — الفصل الثاني ١٤٤٧ هـ
+  </div>
+  <div style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px">🎨 تصميم د / فواز &nbsp;—&nbsp; تفضل للمزيد هنا</div>
+  <a class="tg-btn" href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.008 9.455c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.871.766z"/></svg>
+    للمزيد من التصاميم — تيليجرام
+  </a>
+</div>
+
+<script>
+function showMain(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  const idx=['overview','primary','intermediate','compare','content'].indexOf(id);
+  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+}
+function showGrade(id) {
+  document.querySelectorAll('.grade-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.grade-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelector('.grade-tab.'+id).classList.add('active');
+}
+function showContent(id) {
+  ['c4','c6','cm3'].forEach(x=>{
+    const p=document.getElementById('panel-'+x);
+    if(p) p.classList.remove('active');
+  });
+  document.querySelectorAll('.grade-tab').forEach(t=>t.classList.remove('active'));
+  const p=document.getElementById('panel-'+id);
+  if(p) p.classList.add('active');
+  const map={c4:'g4',c6:'g6',cm3:'gm3'};
+  const btn=document.querySelector('#sec-content .grade-tab.'+map[id]);
+  if(btn) btn.classList.add('active');
+}
+</script>
+</body>
+</html>
