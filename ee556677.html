@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -460,31 +459,53 @@ tbody td[contenteditable]:focus {
   background:rgba(74,144,217,0.07);border-radius:3px;cursor:text;
 }
 
-/* ══════════════════════════════════════════
-   PRINT STYLES — A4 Portrait Professional
-══════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   PRINT STYLES — A4 Professional · Smart Layout
+   ✦ Portrait  → صفحات المرحلة الواحدة (ابتدائي/متوسط/ثانوي)
+   ✦ Landscape → صفحة "جميع المراحل" (جداول عريضة متعددة)
+══════════════════════════════════════════════════════════════ */
 
-/* Page setup */
+/* ── @page defaults (Portrait — للمراحل الفردية) ─────────── */
 @page {
   size: A4 portrait;
-  margin: 8mm 10mm 8mm 10mm;
+  margin: 8mm 9mm 8mm 9mm;
+}
+
+/* ── صفحة الكل: Landscape لأن جداولها عريضة جداً ─────────── */
+@page landscape-page {
+  size: A4 landscape;
+  margin: 7mm 9mm 7mm 9mm;
 }
 
 @media print {
 
-  /* ── Hide all UI except active page ── */
+  /* ════════════════════════════════════════
+     0 ▸ إجبار ألوان الطباعة الكاملة
+  ════════════════════════════════════════ */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* ════════════════════════════════════════
+     1 ▸ إخفاء عناصر الشاشة
+  ════════════════════════════════════════ */
   #top-bar,
   #stage-nav,
   .row-actions,
-  .btn-ar, .btn-dr,
+  .btn-ar,
+  .btn-dr,
   #credit-footer,
   .edit-hint {
     display: none !important;
   }
 
-  /* ── Body reset to A4 ── */
+  /* ════════════════════════════════════════
+     2 ▸ إعادة ضبط html / body
+  ════════════════════════════════════════ */
   html, body {
-    width: 210mm !important;
+    width: 100% !important;
     height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -492,17 +513,22 @@ tbody td[contenteditable]:focus {
     overflow: visible !important;
     font-size: 9pt !important;
     color: #000 !important;
+    font-family: 'Tajawal', 'Segoe UI', Arial, sans-serif !important;
   }
 
-  /* ── Pages container ── */
+  /* ════════════════════════════════════════
+     3 ▸ حاوية الصفحات
+  ════════════════════════════════════════ */
   #pages-container {
     max-width: 100% !important;
+    width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
   }
 
-  /* ── Hide inactive pages ── */
+  /* ════════════════════════════════════════
+     4 ▸ إخفاء الصفحات غير النشطة
+  ════════════════════════════════════════ */
   .page {
     display: none !important;
   }
@@ -511,16 +537,24 @@ tbody td[contenteditable]:focus {
     width: 100% !important;
   }
 
-  /* ── Print card: full-width, compact ── */
+  /* ════════════════════════════════════════
+     5 ▸ صفحة "جميع المراحل" → Landscape
+  ════════════════════════════════════════ */
+  #page-all {
+    page: landscape-page;
+  }
+
+  /* ════════════════════════════════════════
+     6 ▸ البطاقة الرئيسية (print-card)
+  ════════════════════════════════════════ */
   .print-card {
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
     margin: 0 !important;
-    padding: 4mm 6mm 4mm 6mm !important;
+    padding: 3mm 5mm 3mm 5mm !important;
     width: 100% !important;
-    overflow: hidden !important;
-    page-break-inside: avoid;
+    overflow: visible !important;
     background: #fff !important;
   }
   .print-card::before,
@@ -528,173 +562,310 @@ tbody td[contenteditable]:focus {
     display: none !important;
   }
 
-  /* ── Header ── */
+  /* ════════════════════════════════════════
+     7 ▸ ترويسة الوثيقة
+  ════════════════════════════════════════ */
   .doc-header {
-    margin-bottom: 4mm !important;
-    padding-bottom: 3mm !important;
-    border-bottom-width: 1.5pt !important;
-    gap: 6px !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    gap: 5mm !important;
+    margin-bottom: 3mm !important;
+    padding-bottom: 2.5mm !important;
+    border-bottom: 1.5pt solid #2563ae !important;
   }
   .hline {
-    font-size: 8pt !important;
-    margin-bottom: 1.5px !important;
+    font-size: 7.5pt !important;
+    margin-bottom: 1mm !important;
+    line-height: 1.5 !important;
+  }
+  .hline .lbl {
+    font-weight: 800 !important;
+    font-size: 7.5pt !important;
   }
   .logo-circle {
-    width: 60px !important;
-    height: 60px !important;
+    width: 56px !important;
+    height: 56px !important;
+    border: 2px solid #2563ae !important;
+  }
+  .logo-area {
+    gap: 3px !important;
   }
 
-  /* ── Title blocks ── */
+  /* ════════════════════════════════════════
+     8 ▸ كتل العناوين
+  ════════════════════════════════════════ */
   .main-title-block {
-    padding: 5px 12px !important;
-    margin-bottom: 3px !important;
+    padding: 4px 14px !important;
+    margin-bottom: 2px !important;
     border-radius: 5px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    page-break-after: avoid !important;
   }
   .main-title {
-    font-size: 12pt !important;
+    font-size: 11.5pt !important;
     font-weight: 900 !important;
+    line-height: 1.4 !important;
   }
   .sub-title-block {
-    padding: 4px 12px !important;
-    margin-bottom: 5mm !important;
+    padding: 3px 14px !important;
+    margin-bottom: 4mm !important;
     border-radius: 4px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    page-break-after: avoid !important;
   }
   .sub-title {
-    font-size: 9pt !important;
+    font-size: 8.5pt !important;
+    font-weight: 700 !important;
   }
 
-  /* ── Section headers ── */
+  /* ════════════════════════════════════════
+     9 ▸ رؤوس الأقسام
+  ════════════════════════════════════════ */
   .sec-header {
     padding: 4px 10px !important;
-    margin: 4px 0 4px !important;
-    font-size: 9pt !important;
+    margin: 5px 0 3px !important;
+    font-size: 8.5pt !important;
     border-radius: 4px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+  .sec-header .badge {
+    font-size: 8pt !important;
+    padding: 1px 7px !important;
   }
   .subsec-header {
     padding: 3px 8px !important;
-    margin: 3px 0 3px !important;
+    margin: 3px 0 2px !important;
     font-size: 8pt !important;
     border-radius: 3px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
-  /* ── Tables ── */
+  /* ════════════════════════════════════════
+     10 ▸ الجداول — الركيزة الأساسية
+  ════════════════════════════════════════ */
   .tbl-wrap {
     box-shadow: none !important;
-    margin-bottom: 3px !important;
+    margin-bottom: 2px !important;
     overflow: visible !important;
     border-radius: 3px !important;
+    /* لا نمنع الكسر هنا — نتركه للجدول نفسه */
   }
+
   table {
     width: 100% !important;
     font-size: 7.5pt !important;
     border-collapse: collapse !important;
-    page-break-inside: avoid !important;
     min-width: unset !important;
+    table-layout: fixed !important;
+    word-break: break-word !important;
+  }
+
+  /* عند الجداول العريضة (7 أعمدة) نصغّر الخط قليلاً */
+  table[id^="all-e2"],
+  table[id^="all-h"],
+  table[id^="all-m"] {
+    font-size: 7pt !important;
+  }
+
+  thead {
+    /* تكرار الرأس في كل صفحة عند الكسر الطويل */
+    display: table-header-group !important;
   }
   thead tr {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    break-inside: avoid !important;
   }
   thead th {
-    padding: 3px 5px !important;
+    padding: 3px 4px !important;
     font-size: 7.5pt !important;
     white-space: normal !important;
     word-break: break-word !important;
-  }
-  tbody td {
-    padding: 3px 5px !important;
-    font-size: 7.5pt !important;
-    line-height: 1.3 !important;
-    border: 0.5pt solid #b0c8e0 !important;
-  }
-  tbody tr:nth-child(even) {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    border: 0.5pt solid rgba(255,255,255,0.3) !important;
   }
 
-  /* ── Notes ── */
+  tbody {
+    display: table-row-group !important;
+  }
+  tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  tbody td {
+    padding: 3px 4px !important;
+    font-size: 7.5pt !important;
+    line-height: 1.35 !important;
+    border: 0.5pt solid #b0c8e0 !important;
+    vertical-align: middle !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+  tbody tr:nth-child(even) td {
+    background: #f0f6ff !important;
+  }
+  tbody tr:nth-child(odd) td {
+    background: #ffffff !important;
+  }
+  .td-date {
+    font-weight: 700 !important;
+    color: #1b3f72 !important;
+    white-space: nowrap !important;
+    font-size: 7pt !important;
+  }
+  .td-period {
+    color: #5a7aaa !important;
+    font-size: 7pt !important;
+  }
+  .td-central {
+    color: #c0392b !important;
+    font-weight: 700 !important;
+  }
+
+  /* ════════════════════════════════════════
+     11 ▸ الملاحظات
+  ════════════════════════════════════════ */
   .notes-wrap {
     margin-top: 4px !important;
-    border-width: 1pt !important;
+    border: 1pt solid #a8c8f0 !important;
     border-radius: 3px !important;
     overflow: hidden !important;
+    break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
   .notes-hdr {
-    padding: 3px 8px !important;
+    padding: 3px 9px !important;
     font-size: 8pt !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
   }
   .notes-body {
-    padding: 4px 8px !important;
+    padding: 4px 9px !important;
+    background: #f5f9ff !important;
   }
   .note-item {
     font-size: 7.5pt !important;
     margin-bottom: 2px !important;
-    line-height: 1.4 !important;
+    line-height: 1.45 !important;
+    break-inside: avoid !important;
+  }
+  .note-item [contenteditable] {
+    border-bottom: none !important;
   }
 
-  /* ── Signatures ── */
+  /* ════════════════════════════════════════
+     12 ▸ التوقيعات والختم
+  ════════════════════════════════════════ */
   .sigs {
-    margin-top: 5px !important;
-    padding-top: 5px !important;
-    gap: 8px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5mm !important;
+    margin-top: 4px !important;
+    padding-top: 4px !important;
+    border-top: 1pt dashed #a8c8f0 !important;
+    break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
   .sig-box {
     padding: 5px !important;
+    border: 1pt solid #ccddf5 !important;
     border-radius: 3px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    background: #f5f9ff !important;
+    text-align: center !important;
   }
   .sig-title {
-    font-size: 8pt !important;
-    margin-bottom: 4px !important;
-    padding-bottom: 3px !important;
+    font-size: 7.5pt !important;
+    font-weight: 800 !important;
+    margin-bottom: 3px !important;
+    padding-bottom: 2px !important;
+    border-bottom: 1pt solid #ccddf5 !important;
+    color: #2563ae !important;
   }
   .sig-line {
-    font-size: 7.5pt !important;
-    margin-bottom: 3px !important;
+    font-size: 7pt !important;
+    margin-bottom: 2px !important;
   }
-
-  /* ── Stamp ── */
+  .sig-line .lbl {
+    font-weight: 700 !important;
+  }
+  .sig-line [contenteditable] {
+    border-bottom: 0.5pt solid #ccddf5 !important;
+  }
   .stamp-box {
-    padding: 6px !important;
+    padding: 7px !important;
     font-size: 7.5pt !important;
-    margin-top: 5px !important;
+    margin-top: 4px !important;
     border-radius: 3px !important;
+    border: 1.5pt dashed #a8c8f0 !important;
+    color: #5a7aaa !important;
   }
 
-  /* ── Footer ── */
+  /* ════════════════════════════════════════
+     13 ▸ تذييل الوثيقة
+  ════════════════════════════════════════ */
   .doc-footer {
-    margin-top: 5px !important;
-    padding-top: 4px !important;
-    border-top-width: 1pt !important;
+    margin-top: 4px !important;
+    padding-top: 3px !important;
+    border-top: 1pt solid #2563ae !important;
+    text-align: center !important;
+    break-inside: avoid !important;
   }
   .doc-footer .fs {
-    font-size: 8pt !important;
+    font-size: 7.5pt !important;
+    font-weight: 700 !important;
+    color: #2563ae !important;
   }
 
-  /* ── Force color printing ── */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
+  /* ════════════════════════════════════════
+     14 ▸ قواعد فصل الصفحات الذكية
+  ════════════════════════════════════════ */
+
+  /* لا يُفصل عنوان عن محتواه */
+  .sec-header,
+  .subsec-header,
+  .main-title-block,
+  .sub-title-block {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
-  /* ── Prevent orphan elements ── */
-  h1,h2,h3,h4,h5,h6 { page-break-after: avoid !important; }
-  tr { page-break-inside: avoid !important; }
-  .sec-header, .subsec-header { page-break-after: avoid !important; }
+  /* لا تُقسّم هذه العناصر في منتصفها */
+  .notes-wrap,
+  .sigs,
+  .stamp-box,
+  .doc-footer,
+  .sig-box,
+  .doc-header {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* الصف لا ينكسر */
+  tr, tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* تجنب ترك عنصر وحيد في آخر صفحة */
+  p, .note-item {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+
+  /* ════════════════════════════════════════
+     15 ▸ حسابات الـ contenteditable للطباعة
+  ════════════════════════════════════════ */
+  [contenteditable] {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+  }
+
+  /* ════════════════════════════════════════
+     16 ▸ إخفاء hint اللوجو النصي
+  ════════════════════════════════════════ */
+  .logo-circle .hint,
+  .logo-circle svg:not(:only-child) {
+    display: none !important;
+  }
 
 }
 
@@ -1291,41 +1462,16 @@ function delNote(nbId) {
   if (nb.children.length > 1) nb.removeChild(nb.lastElementChild);
 }
 
-/* ---- Print: auto-scale to fit A4 ---- */
+/* ---- Print: smart A4 — CSS يتكفّل بالتوزيع الذكي ---- */
 function printPage() {
-  const card = document.querySelector('.page.active .print-card');
-  if (!card) { window.print(); return; }
-
-  // Reset any previous scaling
-  card.style.transform = '';
-  card.style.transformOrigin = '';
-
-  // Measure content vs A4 printable height (297mm - 16mm margins = 281mm ~ 1062px at 96dpi)
-  const A4_H_PX = 1062;
-  const A4_W_PX = 756; // 210mm - 20mm margins at 96dpi
-  const cardH = card.scrollHeight;
-  const cardW = card.scrollWidth;
-
-  if (cardH > A4_H_PX) {
-    const scaleH = A4_H_PX / cardH;
-    const scaleW = A4_W_PX / cardW;
-    const scale  = Math.min(scaleH, scaleW, 1);
-    if (scale < 1) {
-      card.style.transform = 'scale(' + scale + ')';
-      card.style.transformOrigin = 'top right';
-      card.style.width = (100 / scale) + '%';
-    }
-  }
-
-  setTimeout(() => {
-    window.print();
-    // Restore after print
-    setTimeout(() => {
-      card.style.transform = '';
-      card.style.transformOrigin = '';
-      card.style.width = '';
-    }, 500);
-  }, 100);
+  // أزل أي تحويل مبكر قد يكون طُبّق سابقاً
+  document.querySelectorAll('.print-card').forEach(c => {
+    c.style.transform = '';
+    c.style.transformOrigin = '';
+    c.style.width = '';
+  });
+  // افتح حوار الطباعة — الـ CSS يختار Portrait/Landscape تلقائياً
+  setTimeout(() => window.print(), 80);
 }
 
 /* ---- Save ---- */
