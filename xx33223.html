@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة الاختبارات التفاعلية - رياضيات الصف الثالث المتوسط</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+
+  :root {
+    --primary: #6c3fc5;
+    --secondary: #f5a623;
+    --accent: #e74c3c;
+    --success: #27ae60;
+    --bg-dark: #0f0c29;
+    --bg-mid: #302b63;
+    --bg-light: #24243e;
+    --card-bg: rgba(255,255,255,0.07);
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-light) 100%);
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* ===== PARTICLES ===== */
+  #particles-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 40px 20px 30px;
+    background: linear-gradient(180deg, rgba(108,63,197,0.4) 0%, transparent 100%);
+  }
+
+  .header-logo {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #FFD700, #FF6B6B, #4ECDC4, #FFD700);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    margin-bottom: 8px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  .header p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  /* ===== SCORE BAR ===== */
+  .score-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,12,41,0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,215,0,0.3);
+    padding: 12px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+
+  .score-item:hover { background: rgba(255,255,255,0.15); }
+  .score-item .icon { font-size: 1.4rem; }
+  .score-item .val { color: var(--gold); font-size: 1.2rem; }
+
+  .score-item.stars .val { color: #FFD700; }
+  .score-item.cups .val { color: #FF6B6B; }
+  .score-item.correct .val { color: #4ECDC4; }
+  .score-item.wrong .val { color: #FF6B6B; }
+
+  /* ===== MAIN CONTENT ===== */
+  .main-content {
+    position: relative;
+    z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .section-title .line {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  /* ===== UNITS GRID ===== */
+  .units-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+  }
+
+  .unit-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .unit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .unit-card:nth-child(1)::before { background: linear-gradient(90deg, #6c3fc5, #a855f7); }
+  .unit-card:nth-child(2)::before { background: linear-gradient(90deg, #f5a623, #f97316); }
+  .unit-card:nth-child(3)::before { background: linear-gradient(90deg, #e74c3c, #ef4444); }
+  .unit-card:nth-child(4)::before { background: linear-gradient(90deg, #27ae60, #22c55e); }
+  .unit-card:nth-child(5)::before { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+  .unit-card:nth-child(6)::before { background: linear-gradient(90deg, #ec4899, #f43f5e); }
+
+  .unit-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255,255,255,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .unit-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .unit-card:nth-child(2) .unit-icon { animation-delay: 0.3s; }
+  .unit-card:nth-child(3) .unit-icon { animation-delay: 0.6s; }
+  .unit-card:nth-child(4) .unit-icon { animation-delay: 0.9s; }
+  .unit-card:nth-child(5) .unit-icon { animation-delay: 1.2s; }
+  .unit-card:nth-child(6) .unit-icon { animation-delay: 1.5s; }
+
+  .unit-card h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .unit-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 18px;
+  }
+
+  .unit-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .unit-card:nth-child(1) .unit-badge { color: #a855f7; border-color: #a855f7; }
+  .unit-card:nth-child(2) .unit-badge { color: #f97316; border-color: #f97316; }
+  .unit-card:nth-child(3) .unit-badge { color: #ef4444; border-color: #ef4444; }
+  .unit-card:nth-child(4) .unit-badge { color: #22c55e; border-color: #22c55e; }
+  .unit-card:nth-child(5) .unit-badge { color: #06b6d4; border-color: #06b6d4; }
+  .unit-card:nth-child(6) .unit-badge { color: #f43f5e; border-color: #f43f5e; }
+
+  .unit-progress {
+    margin-top: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  .unit-progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #6c3fc5, #a855f7);
+    width: 0%;
+    transition: width 1s ease;
+  }
+
+  /* ===== QUIZ MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .quiz-modal {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 25px;
+    width: 100%;
+    max-width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 30px 100px rgba(0,0,0,0.7);
+    animation: modalIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes modalIn {
+    from { transform: scale(0.8) translateY(50px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    padding: 25px 30px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 25px 25px 0 0;
+    z-index: 10;
+  }
+
+  .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .modal-title .icon { font-size: 2rem; }
+  .modal-title h2 { font-size: 1.4rem; font-weight: 800; }
+
+  .close-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .close-btn:hover { background: rgba(231,76,60,0.5); transform: rotate(90deg); }
+
+  /* ===== QUIZ PROGRESS ===== */
+  .quiz-progress {
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .progress-bar-wrap {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6c3fc5, #FFD700);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  .progress-text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  /* ===== QUESTION CARD ===== */
+  .question-container {
+    padding: 25px 30px;
+  }
+
+  .question-num {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), #a855f7);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .question-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.7;
+    color: #fff;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    border-right: 4px solid var(--primary);
+  }
+
+  /* ===== OPTIONS ===== */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .option-btn {
+    background: rgba(255,255,255,0.07);
+    border: 2px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: right;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+  }
+
+  .option-btn:hover:not(:disabled)::before { opacity: 1; }
+
+  .option-btn .opt-letter {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+
+  .option-btn.correct {
+    background: rgba(39,174,96,0.25) !important;
+    border-color: #27ae60 !important;
+    animation: correctPulse 0.5s ease;
+  }
+
+  .option-btn.correct .opt-letter {
+    background: #27ae60;
+  }
+
+  @keyframes correctPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+
+  .option-btn.wrong {
+    background: rgba(231,76,60,0.25) !important;
+    border-color: #e74c3c !important;
+    animation: shake 0.4s ease;
+  }
+
+  .option-btn.wrong .opt-letter {
+    background: #e74c3c;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+
+  .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+  /* ===== NAVIGATION ===== */
+  .quiz-nav {
+    padding: 20px 30px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    gap: 15px;
+  }
+
+  .nav-btn {
+    background: linear-gradient(135deg, var(--primary), #a855f7);
+    border: none;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(108,63,197,0.5); }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .nav-btn.secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+  .nav-btn.secondary:hover { background: rgba(255,255,255,0.2); box-shadow: none; }
+
+  .quiz-score-mini {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .mini-score {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  /* ===== RESULT SCREEN ===== */
+  .result-screen {
+    display: none;
+    padding: 40px 30px;
+    text-align: center;
+  }
+
+  .result-screen.active { display: block; }
+
+  .result-trophy {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    animation: trophyBounce 1s ease-in-out infinite;
+  }
+
+  @keyframes trophyBounce {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+
+  .result-title {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #FFD700, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .result-score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), #a855f7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px auto;
+    box-shadow: 0 0 40px rgba(108,63,197,0.5);
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(108,63,197,0.5); }
+    50% { box-shadow: 0 0 70px rgba(108,63,197,0.8); }
+  }
+
+  .result-score-circle .score-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  .result-score-circle .score-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .result-stars {
+    font-size: 2rem;
+    margin: 15px 0;
+    letter-spacing: 5px;
+  }
+
+  .result-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px;
+    padding: 15px 25px;
+    min-width: 120px;
+  }
+
+  .stat-box .stat-icon { font-size: 1.8rem; margin-bottom: 5px; }
+  .stat-box .stat-val { font-size: 1.5rem; font-weight: 900; color: var(--gold); }
+  .stat-box .stat-lbl { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+  .restart-btn {
+    background: linear-gradient(135deg, #f5a623, #f97316);
+    border: none;
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    transition: all 0.3s;
+    margin-top: 20px;
+  }
+
+  .restart-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245,166,35,0.5); }
+
+  /* ===== TOAST NOTIFICATION ===== */
+  .toast-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .toast {
+    padding: 25px 50px;
+    border-radius: 20px;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    animation: toastAnim 2s ease forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 280px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .toast.success {
+    background: linear-gradient(135deg, #1a5c35, #27ae60);
+    border: 3px solid #2ecc71;
+    color: #fff;
+  }
+
+  .toast.error {
+    background: linear-gradient(135deg, #7b1e1e, #e74c3c);
+    border: 3px solid #ff6b6b;
+    color: #fff;
+  }
+
+  .toast .toast-icon { font-size: 3rem; }
+  .toast .toast-msg { font-size: 1.8rem; }
+  .toast .toast-sub { font-size: 1rem; opacity: 0.85; }
+
+  @keyframes toastAnim {
+    0% { transform: scale(0.5); opacity: 0; }
+    20% { transform: scale(1.1); opacity: 1; }
+    30% { transform: scale(1); }
+    70% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0; }
+  }
+
+  /* ===== CONFETTI ===== */
+  .confetti-piece {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+    z-index: 9998;
+    pointer-events: none;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== LEADERBOARD ===== */
+  .leaderboard {
+    margin-top: 40px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+  }
+
+  .leaderboard h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--gold);
+  }
+
+  .leaderboard-list {
+    list-style: none;
+  }
+
+  .leaderboard-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s;
+  }
+
+  .leaderboard-item:hover { background: rgba(255,255,255,0.1); }
+
+  .rank-badge {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+  }
+
+  .rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+  .rank-2 { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+  .rank-3 { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+  .rank-other { background: rgba(255,255,255,0.15); color: #fff; }
+
+  .lb-name { flex: 1; font-weight: 700; }
+  .lb-score { font-weight: 900; color: var(--gold); font-size: 1.1rem; }
+  .lb-stars { font-size: 1rem; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 20px;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .footer p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s;
+  }
+
+  .footer a:hover { color: #fff; }
+
+  /* ===== SETTINGS PANEL ===== */
+  .settings-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), #a855f7);
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 500;
+    box-shadow: 0 5px 20px rgba(108,63,197,0.5);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .settings-btn:hover { transform: rotate(90deg) scale(1.1); }
+
+  .settings-panel {
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px;
+    z-index: 500;
+    display: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .settings-panel.active { display: block; }
+
+  .settings-panel h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--gold);
+    text-align: center;
+  }
+
+  .setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.9rem;
+  }
+
+  .setting-item:last-child { border-bottom: none; }
+
+  .toggle-switch {
+    width: 45px;
+    height: 24px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .toggle-switch.on { background: var(--primary); }
+
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: left 0.3s;
+  }
+
+  .toggle-switch.on::after { left: 24px; }
+
+  .settings-designer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  .settings-designer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 5px;
+    padding: 6px 15px;
+    background: rgba(255,215,0,0.1);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+
+  .settings-designer a:hover {
+    background: rgba(255,215,0,0.2);
+    color: #fff;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.6rem; }
+    .units-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+    .options-grid { grid-template-columns: 1fr; }
+    .quiz-modal { border-radius: 20px; }
+    .question-text { font-size: 1.1rem; }
+    .score-bar { padding: 10px 15px; gap: 8px; }
+    .score-item { padding: 6px 12px; font-size: 0.85rem; }
+    .toast { padding: 20px 30px; min-width: 220px; }
+    .toast .toast-msg { font-size: 1.4rem; }
+  }
+
+  /* ===== STARS ANIMATION ===== */
+  .star-fly {
+    position: fixed;
+    font-size: 2rem;
+    pointer-events: none;
+    z-index: 9997;
+    animation: starFly 1.5s ease forwards;
+  }
+
+  @keyframes starFly {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0) rotate(360deg) translateY(-100px); opacity: 0; }
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+  ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+  /* ===== LOADING ===== */
+  .loading-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--bg-dark);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: opacity 0.5s;
+  }
+
+  .loading-overlay.hide { opacity: 0; pointer-events: none; }
+
+  .loading-logo { font-size: 4rem; animation: spin 2s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text { font-size: 1.2rem; font-weight: 700; color: rgba(255,255,255,0.8); }
+
+  .loading-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .loading-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    animation: loadFill 1.5s ease forwards;
+  }
+
+  @keyframes loadFill {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-logo">🧮</div>
+  <div class="loading-text">جاري تحميل المنصة...</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+</div>
+
+<!-- Particles Background -->
+<div id="particles-bg"></div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-logo">🏆</div>
+  <h1>منصة الاختبارات التفاعلية</h1>
+  <p>رياضيات الصف الثالث المتوسط — الفصل الدراسي الثاني</p>
+</header>
+
+<!-- Score Bar -->
+<div class="score-bar">
+  <div class="score-item stars">
+    <span class="icon">⭐</span>
+    <span>النجوم:</span>
+    <span class="val" id="totalStars">0</span>
+  </div>
+  <div class="score-item cups">
+    <span class="icon">🏆</span>
+    <span>الكؤوس:</span>
+    <span class="val" id="totalCups">0</span>
+  </div>
+  <div class="score-item correct">
+    <span class="icon">✅</span>
+    <span>صحيح:</span>
+    <span class="val" id="totalCorrect">0</span>
+  </div>
+  <div class="score-item wrong">
+    <span class="icon">❌</span>
+    <span>خطأ:</span>
+    <span class="val" id="totalWrong">0</span>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+  <!-- Units Section -->
+  <div class="section-title">
+    <h2>📚 اختر الوحدة أو الاختبار</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="units-grid" id="unitsGrid">
+    <!-- Units will be generated by JS -->
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h3>🏅 لوحة المتصدرين</h3>
+    <ul class="leaderboard-list" id="leaderboardList">
+      <li class="leaderboard-item" style="justify-content:center; color:rgba(255,255,255,0.4);">
+        أجب على الأسئلة لتظهر هنا في لوحة المتصدرين!
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Quiz Modal -->
+<div class="modal-overlay" id="quizModal">
+  <div class="quiz-modal">
+    <div class="modal-header">
+      <div class="modal-title">
+        <span class="icon" id="modalIcon">📝</span>
+        <h2 id="modalTitle">اسم الاختبار</h2>
+      </div>
+      <button class="close-btn" onclick="closeModal()">✕</button>
+    </div>
+
+    <!-- Quiz Content -->
+    <div id="quizContent">
+      <div class="quiz-progress">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <span class="progress-text" id="progressText">1 / 10</span>
+      </div>
+
+      <div class="question-container" id="questionContainer">
+        <!-- Question will be injected here -->
+      </div>
+
+      <div class="quiz-nav">
+        <div class="quiz-score-mini">
+          <span class="mini-score">⭐ <span id="quizStars">0</span></span>
+          <span class="mini-score">✅ <span id="quizCorrect">0</span></span>
+          <span class="mini-score">❌ <span id="quizWrong">0</span></span>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="nav-btn secondary" id="prevBtn" onclick="prevQuestion()" disabled>
+            ▶ السابق
+          </button>
+          <button class="nav-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+            التالي ◀
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="result-screen" id="resultScreen">
+      <div class="result-trophy" id="resultTrophy">🏆</div>
+      <div class="result-title" id="resultTitle">أداء رائع!</div>
+      <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+      <div class="result-score-circle">
+        <div class="score-num" id="resultScoreNum">0%</div>
+        <div class="score-label">النتيجة</div>
+      </div>
+      <div class="result-stats">
+        <div class="stat-box">
+          <div class="stat-icon">✅</div>
+          <div class="stat-val" id="resCorrect">0</div>
+          <div class="stat-lbl">إجابات صحيحة</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">❌</div>
+          <div class="stat-val" id="resWrong">0</div>
+          <div class="stat-lbl">إجابات خاطئة</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-val" id="resStars">0</div>
+          <div class="stat-lbl">نجوم مكتسبة</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-val" id="resCups">0</div>
+          <div class="stat-lbl">كؤوس مكتسبة</div>
+        </div>
+      </div>
+      <button class="restart-btn" onclick="restartQuiz()">🔄 إعادة الاختبار</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Button -->
+<button class="settings-btn" onclick="toggleSettings()" title="الإعدادات">⚙️</button>
+
+<!-- Settings Panel -->
+<div class="settings-panel" id="settingsPanel">
+  <h4>⚙️ الإعدادات</h4>
+  <div class="setting-item">
+    <span>🔊 الأصوات</span>
+    <div class="toggle-switch on" id="soundToggle" onclick="toggleSetting('sound')"></div>
+  </div>
+  <div class="setting-item">
+    <span>🎊 التأثيرات</span>
+    <div class="toggle-switch on" id="effectsToggle" onclick="toggleSetting('effects')"></div>
+  </div>
+  <div class="setting-item">
+    <span>⏱️ المؤقت</span>
+    <div class="toggle-switch on" id="timerToggle" onclick="toggleSetting('timer')"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>منصة الاختبارات التفاعلية — رياضيات الصف الثالث المتوسط</p>
+</footer>
+
+<script>
+// ===================== DATA =====================
+const UNITS = [
+  {
+    id: 'unit6',
+    icon: '🔢',
+    title: 'الوحدة السادسة',
+    subtitle: 'كثيرات الحدود',
+    color: '#6c3fc5',
+    questions: [
+      {
+        q: 'تبسيط العبارة: (2ك²)(9ك⁴) تعبر عن مساحة دائرة بصورة حد وحيدة',
+        opts: ['18ك⁶', '2ك¹⁸', '18ك¹⁸', '4ك¹⁸'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط العبارة: (5م⁴)(7م⁴ف³)',
+        opts: ['35م⁸ف³', '35م⁴ف⁴', '35م⁴ف', '35م⁴ف³'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط العبارة: (3س)س³',
+        opts: ['3س⁴', '4س³', '3س³', 'س²'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط العبارة: 2[(3²)²]',
+        opts: ['6³', '10⁷', '4³', '3⁸'],
+        ans: 3
+      },
+      {
+        q: 'نعبر عن حجم المجسم بصورة حد وحيدة: 4س² × 2س × 3س',
+        opts: ['12س⁴', '12س⁴', '6س', '9س¹⁶'],
+        ans: 0
+      },
+      {
+        q: 'أي مما يلي لا يُعتبر حداً وحيداً؟',
+        opts: ['س²ص', 'ص س⁵', '6', 'هـ²'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط العبارة: (5ص³)(6ن²ص⁵ب³)',
+        opts: ['30ص⁸ن²ب³', '30ص³ن²ب³', '30ص³ن²ب', '30ص³نب³'],
+        ans: 0
+      },
+      {
+        q: 'ما الصورة القياسية لكثيرة الحدود: 4س³ + 5 - 7س + 2س²؟',
+        opts: ['4س³ + 2س² - 7س + 5', '4س³ - 2س² + 7س + 5', '4س³ + 2س² + 7س - 5', '-4س³ + 2س² + 7س + 5'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط العبارة: (7س² + 9س + 5) - (7س² + 9س + 4)',
+        opts: ['1 + 18س + 5س²', '1 + 2س²', '1 + 9س²', '0 + 18س - 5س²'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط العبارة: (5س²ص)(6ن²ص)(2عص⁶هـ)',
+        opts: ['60س²ص⁸ن²ع', '60ص³ن²ع', '60ص⁸ن²ع', '60ص⁸ن²'],
+        ans: 0
+      }
+    ]
+  },
+  {
+    id: 'unit7',
+    icon: '🔍',
+    title: 'الوحدة السابعة',
+    subtitle: 'تحليل كثيرات الحدود',
+    color: '#f5a623',
+    questions: [
+      {
+        q: 'ما القاسم المشترك الأكبر (ق.م.أ) للحدود الوحيدة: 12س²ص و 18سص؟',
+        opts: ['6سص', '6س²ص', '3سص', '12سص'],
+        ans: 0
+      },
+      {
+        q: 'تحليل العبارة: 6(4ص + س) = 24ص + 6س',
+        opts: ['صحيحة', 'خاطئة', 'أحياناً صحيحة', 'لا يمكن الجزم'],
+        ans: 0
+      },
+      {
+        q: 'حل المعادلة التربيعية: س² + 2س + 1 = 0',
+        opts: ['س = -1', 'س = 1', 'س = 0', 'س = 2'],
+        ans: 0
+      },
+      {
+        q: 'ما الفرق بين مربعين للعبارة: 4س² - 9؟',
+        opts: ['(2س+3)(2س-3)', '(2س-3)²', '(2س+3)²', '(4س+9)(4س-9)'],
+        ans: 0
+      },
+      {
+        q: 'المربع الكامل للعبارة: س² + 6س + 9',
+        opts: ['(س+3)²', '(س-3)²', '(س+9)²', '(س+6)²'],
+        ans: 0
+      },
+      {
+        q: 'تحليل: 2س² + 8س = ؟',
+        opts: ['2س(س+4)', '2(س²+4س)', 'س(2س+8)', 'كل ما سبق صحيح'],
+        ans: 3
+      },
+      {
+        q: 'حل المعادلة: 0 = (7س⁵ص³ف⁶هـ)(4ن+1)',
+        opts: ['ن = -1/4', 'ن = 1/4', 'ن = 4', 'ن = -4'],
+        ans: 0
+      },
+      {
+        q: 'العامل الرئيسي لكثيرة الحدود: 8س⁴ - 5س⁷',
+        opts: ['س⁴(8 - 5س³)', 'س⁷(8س⁻³ - 5)', 'س(8س³ - 5س⁶)', 'لا عامل مشترك'],
+        ans: 0
+      },
+      {
+        q: 'حل المعادلة التربيعية: س² + 5س + 3 = 0 باستخدام القانون العام، المميز يساوي:',
+        opts: ['13', '25', '-7', '1'],
+        ans: 0
+      },
+      {
+        q: 'المعادلة التربيعية: أس² + بس + ج = 0 حيث أ ≠ 0، عدد حلولها الحقيقية عندما المميز > 0 هو:',
+        opts: ['2', '1', '0', 'لا نهاية'],
+        ans: 0
+      }
+    ]
+  },
+  {
+    id: 'unit8',
+    icon: '📈',
+    title: 'الوحدة الثامنة',
+    subtitle: 'الدالة التربيعية',
+    color: '#e74c3c',
+    questions: [
+      {
+        q: 'الصورة العامة للدالة التربيعية هي:',
+        opts: ['د(س) = أس² + بس + ج', 'د(س) = أس + ب', 'د(س) = أس³', 'د(س) = أ/س'],
+        ans: 0
+      },
+      {
+        q: 'إذا كان أ > 0 في الدالة التربيعية، فإن المنحنى يكون:',
+        opts: ['مفتوح للأعلى', 'مفتوح للأسفل', 'خط مستقيم', 'دائرة'],
+        ans: 0
+      },
+      {
+        q: 'محور التماثل للدالة التربيعية د(س) = أس² + بس + ج هو:',
+        opts: ['س = -ب/(2أ)', 'س = ب/(2أ)', 'س = -ج/أ', 'س = أ/ب'],
+        ans: 0
+      },
+      {
+        q: 'رأس المنحنى للدالة د(س) = س² - 4س + 3 هو:',
+        opts: ['(2, -1)', '(-2, 1)', '(2, 1)', '(-2, -1)'],
+        ans: 0
+      },
+      {
+        q: 'المقطع الصادي للدالة د(س) = 2س² + 3س - 5 هو:',
+        opts: ['-5', '3', '2', '5'],
+        ans: 0
+      },
+      {
+        q: 'حل المعادلة التربيعية: س² - 5س + 6 = 0',
+        opts: ['س = 2 أو س = 3', 'س = -2 أو س = -3', 'س = 1 أو س = 6', 'س = -1 أو س = -6'],
+        ans: 0
+      },
+      {
+        q: 'المميز للمعادلة: 2س² - 7س + 5 = 0 يساوي:',
+        opts: ['9', '-9', '49', '-40'],
+        ans: 0
+      },
+      {
+        q: 'إذا كان المميز = 0، فإن عدد الحلول الحقيقية للمعادلة التربيعية هو:',
+        opts: ['1', '2', '0', 'لا نهاية'],
+        ans: 0
+      },
+      {
+        q: 'حل المعادلة: س² + 10س + 25 = 0 بإكمال المربع',
+        opts: ['س = -5', 'س = 5', 'س = -5 أو 5', 'لا حل'],
+        ans: 0
+      },
+      {
+        q: 'القانون العام لحل المعادلة التربيعية أس² + بس + ج = 0 هو:',
+        opts: ['س = (-ب ± √(ب²-4أج)) / (2أ)', 'س = (ب ± √(ب²+4أج)) / (2أ)', 'س = (-ب ± √(ب²-4أج)) / أ', 'س = -ب/2أ'],
+        ans: 0
+      }
+    ]
+  },
+  {
+    id: 'unit9',
+    icon: '📐',
+    title: 'الوحدة التاسعة',
+    subtitle: 'المعادلات الجذرية والمثلثات',
+    color: '#27ae60',
+    questions: [
+      {
+        q: 'نظرية فيثاغورس: في المثلث القائم، مجموع مربعي الضلعين يساوي:',
+        opts: ['مربع الوتر', 'الوتر', 'ضعف الوتر', 'نصف مربع الوتر'],
+        ans: 0
+      },
+      {
+        q: 'في مثلث قائم، الوتر = 13، أحد الضلعين = 5، الضلع الآخر يساوي:',
+        opts: ['12', '8', '10', '11'],
+        ans: 0
+      },
+      {
+        q: 'المسافة بين النقطتين (0,0) و (3,4) تساوي:',
+        opts: ['5', '7', '3', '4'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط التعبير الجذري: √75',
+        opts: ['5√3', '3√5', '25√3', '15√3'],
+        ans: 0
+      },
+      {
+        q: 'حل المعادلة الجذرية: √س = 5',
+        opts: ['س = 25', 'س = 10', 'س = 5', 'س = √5'],
+        ans: 0
+      },
+      {
+        q: 'في المثلث المتشابه، نسبة الأضلاع المتناظرة:',
+        opts: ['متساوية', 'متضاعفة', 'متناسبة', 'متعامدة'],
+        ans: 0
+      },
+      {
+        q: 'جيب الزاوية (sin) في المثلث القائم يساوي:',
+        opts: ['الضلع المقابل / الوتر', 'الضلع المجاور / الوتر', 'الضلع المقابل / الضلع المجاور', 'الوتر / الضلع المقابل'],
+        ans: 0
+      },
+      {
+        q: 'جتا 60° تساوي:',
+        opts: ['1/2', '√3/2', '√3', '1/√2'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط: √(4س²)',
+        opts: ['2|س|', '2س', '4س', '√4 × س'],
+        ans: 0
+      },
+      {
+        q: 'المسافة بين النقطتين (1,2) و (4,6) تساوي:',
+        opts: ['5', '3', '4', '7'],
+        ans: 0
+      }
+    ]
+  },
+  {
+    id: 'unit10',
+    icon: '📊',
+    title: 'الوحدة العاشرة',
+    subtitle: 'الإحصاء والاحتمال',
+    color: '#3b82f6',
+    questions: [
+      {
+        q: 'الفرق بين أكبر قيمة وأصغر قيمة في مجموعة البيانات يُسمى:',
+        opts: ['المدى', 'الوسيط', 'المنوال', 'المتوسط'],
+        ans: 0
+      },
+      {
+        q: 'احتمال الحصول على عدد زوجي عند رمي حجر نرد مرة واحدة:',
+        opts: ['1/2', '1/3', '1/6', '2/3'],
+        ans: 0
+      },
+      {
+        q: 'إذا كان في صندوق 5 كرات حمراء و 3 زرقاء، احتمال سحب كرة حمراء:',
+        opts: ['5/8', '3/8', '5/3', '1/2'],
+        ans: 0
+      },
+      {
+        q: 'الحوادث التي لا يمكن وقوعها معاً تُسمى:',
+        opts: ['متنافية', 'مستقلة', 'مكملة', 'متقاطعة'],
+        ans: 0
+      },
+      {
+        q: 'في دراسة مسحية، المجتمع هو:',
+        opts: ['جميع الأفراد موضع الدراسة', 'جزء من الأفراد', 'المتوسط الحسابي', 'الانحراف المعياري'],
+        ans: 0
+      },
+      {
+        q: 'المتوسط الحسابي للأعداد: 2, 4, 6, 8, 10 يساوي:',
+        opts: ['6', '5', '7', '8'],
+        ans: 0
+      },
+      {
+        q: 'الوسيط للبيانات: 3, 5, 7, 9, 11 يساوي:',
+        opts: ['7', '5', '9', '6'],
+        ans: 0
+      },
+      {
+        q: 'احتمال الحصول على (2 أو 4) عند رمي حجر نرد:',
+        opts: ['2/6', '1/6', '3/6', '4/6'],
+        ans: 0
+      },
+      {
+        q: 'إذا كان احتمال حدوث حادثة = 0.3، فاحتمال عدم حدوثها:',
+        opts: ['0.7', '0.3', '1.3', '0'],
+        ans: 0
+      },
+      {
+        q: 'الانحراف المعياري يقيس:',
+        opts: ['مدى تشتت البيانات', 'مجموع البيانات', 'أكبر قيمة', 'أصغر قيمة'],
+        ans: 0
+      }
+    ]
+  },
+  {
+    id: 'exam1',
+    icon: '📋',
+    title: 'الاختبار الشامل الأول',
+    subtitle: 'جميع الوحدات',
+    color: '#ec4899',
+    questions: [
+      {
+        q: 'تبسيط: 3[(5²)⁷]',
+        opts: ['10⁷', '30⁷', '21⁷', '3⁸'],
+        ans: 0
+      },
+      {
+        q: 'أي مما يلي لا يُعتبر حداً وحيداً؟',
+        opts: ['ص + س', 'ص²س', 'هـ²', '6'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط: (5ص³س)(6ن²ص)(2عص⁶هـ) / (5هـ²ع)',
+        opts: ['2ع²ص³هـ⁶', '2عص³هـ', '2عص⁴هـ²', 'ص⁴هـ²'],
+        ans: 0
+      },
+      {
+        q: 'ينتج مثلا عدد صحيح س مع العدد الذي يليه:',
+        opts: ['س(س+1)', 'س² + 1', '2س + 1', 'س + 2'],
+        ans: 0
+      },
+      {
+        q: 'الصورة القياسية لكثيرة الحدود: 4س³ + 9 + 7س - 2س² هي:',
+        opts: ['4س³ - 2س² + 7س + 9', '4س³ + 2س² - 7س + 9', '4س³ + 2س² + 7س - 9', '-4س³ + 2س² + 7س + 9'],
+        ans: 0
+      },
+      {
+        q: 'في المثلث القائم: الوتر = 25، ضلع = 7، الضلع الآخر يساوي:',
+        opts: ['24', '20', '18', '22'],
+        ans: 0
+      },
+      {
+        q: 'المميز للمعادلة: س² + 10س + 25 = 0 يساوي:',
+        opts: ['0', '25', '-25', '100'],
+        ans: 0
+      },
+      {
+        q: 'احتمال اختيار 4 خيول من 6 للمشاركة في السباق:',
+        opts: ['15', '24', '30', '12'],
+        ans: 0
+      },
+      {
+        q: 'حل المعادلة: 9س² = 25',
+        opts: ['س = ±5/3', 'س = 5/3', 'س = -5/3', 'س = ±3/5'],
+        ans: 0
+      },
+      {
+        q: 'تبسيط التعبير الجذري: √(50)',
+        opts: ['5√2', '25√2', '10√5', '2√5'],
+        ans: 0
+      }
+    ]
+  }
+];
+
+// ===================== STATE =====================
+let totalStars = 0;
+let totalCups = 0;
+let totalCorrect = 0;
+let totalWrong = 0;
+let currentUnit = null;
+let currentQ = 0;
+let answered = [];
+let quizStarsCount = 0;
+let quizCorrectCount = 0;
+let quizWrongCount = 0;
+let settings = { sound: true, effects: true, timer: true };
+let leaderboard = [];
+
+// ===================== INIT =====================
+window.onload = function() {
+  createParticles();
+  renderUnits();
+  setTimeout(() => {
+    document.getElementById('loadingOverlay').classList.add('hide');
+    setTimeout(() => document.getElementById('loadingOverlay').remove(), 600);
+  }, 1800);
+};
+
+// ===================== PARTICLES =====================
+function createParticles() {
+  const bg = document.getElementById('particles-bg');
+  const colors = ['#6c3fc5','#f5a623','#e74c3c','#27ae60','#3b82f6','#FFD700'];
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 40 + 10;
+    p.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      left: ${Math.random() * 100}%;
+      animation-duration: ${Math.random() * 15 + 10}s;
+      animation-delay: ${Math.random() * 10}s;
+    `;
+    bg.appendChild(p);
+  }
+}
+
+// ===================== RENDER UNITS =====================
+function renderUnits() {
+  const grid = document.getElementById('unitsGrid');
+  grid.innerHTML = UNITS.map((u, i) => `
+    <div class="unit-card" onclick="openQuiz('${u.id}')" style="animation-delay:${i*0.1}s">
+      <span class="unit-icon">${u.icon}</span>
+      <h3>${u.title}</h3>
+      <p>${u.subtitle}</p>
+      <span class="unit-badge">${u.questions.length} سؤال</span>
+      <div class="unit-progress">
+        <div class="unit-progress-bar" id="prog_${u.id}"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===================== OPEN QUIZ =====================
+function openQuiz(unitId) {
+  currentUnit = UNITS.find(u => u.id === unitId);
+  if (!currentUnit) return;
+  currentQ = 0;
+  answered = new Array(currentUnit.questions.length).fill(null);
+  quizStarsCount = 0;
+  quizCorrectCount = 0;
+  quizWrongCount = 0;
+
+  document.getElementById('modalIcon').textContent = currentUnit.icon;
+  document.getElementById('modalTitle').textContent = currentUnit.title + ' — ' + currentUnit.subtitle;
+  document.getElementById('quizContent').style.display = 'block';
+  document.getElementById('resultScreen').classList.remove('active');
+  document.getElementById('quizModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  updateQuizScoreMini();
+  renderQuestion();
+}
+
+// ===================== CLOSE MODAL =====================
+function closeModal() {
+  document.getElementById('quizModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ===================== RENDER QUESTION =====================
+function renderQuestion() {
+  const q = currentUnit.questions[currentQ];
+  const total = currentUnit.questions.length;
+  const pct = ((currentQ + 1) / total) * 100;
+
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${currentQ + 1} / ${total}`;
+
+  const letters = ['أ', 'ب', 'ج', 'د'];
+  const isAnswered = answered[currentQ] !== null;
+
+  document.getElementById('questionContainer').innerHTML = `
+    <div class="question-num">سؤال ${currentQ + 1} من ${total}</div>
+    <div class="question-text">${q.q}</div>
+    <div class="options-grid">
+      ${q.opts.map((opt, i) => {
+        let cls = '';
+        if (isAnswered) {
+          if (i === q.ans) cls = 'correct';
+          else if (i === answered[currentQ] && answered[currentQ] !== q.ans) cls = 'wrong';
+        }
+        return `
+          <button class="option-btn ${cls}" onclick="selectAnswer(${i})" ${isAnswered ? 'disabled' : ''}>
+            <span class="opt-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </button>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  document.getElementById('nextBtn').disabled = !isAnswered;
+
+  if (currentQ === total - 1 && isAnswered) {
+    document.getElementById('nextBtn').textContent = 'إنهاء ◀';
+    document.getElementById('nextBtn').disabled = false;
+  } else {
+    document.getElementById('nextBtn').textContent = 'التالي ◀';
+  }
+}
+
+// ===================== SELECT ANSWER =====================
+function selectAnswer(idx) {
+  if (answered[currentQ] !== null) return;
+  const q = currentUnit.questions[currentQ];
+  answered[currentQ] = idx;
+
+  const isCorrect = idx === q.ans;
+
+  if (isCorrect) {
+    quizCorrectCount++;
+    totalCorrect++;
+    quizStarsCount++;
+    totalStars++;
+    if (quizCorrectCount % 3 === 0) {
+      totalCups++;
+    }
+    showToast(true);
+    if (settings.effects) spawnConfetti();
+    flyStars();
+  } else {
+    quizWrongCount++;
+    totalWrong++;
+    showToast(false);
+  }
+
+  updateScoreBar();
+  updateQuizScoreMini();
+  renderQuestion();
+
+  const total = currentUnit.questions.length;
+  document.getElementById('nextBtn').disabled = false;
+  if (currentQ === total - 1) {
+    document.getElementById('nextBtn').textContent = 'إنهاء ◀';
+  }
+}
+
+// ===================== NAVIGATION =====================
+function nextQuestion() {
+  const total = currentUnit.questions.length;
+  if (currentQ < total - 1) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function prevQuestion() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+// ===================== SHOW RESULT =====================
+function showResult() {
+  document.getElementById('quizContent').style.display = 'none';
+  const rs = document.getElementById('resultScreen');
+  rs.classList.add('active');
+
+  const total = currentUnit.questions.length;
+  const pct = Math.round((quizCorrectCount / total) * 100);
+  const cups = Math.floor(quizCorrectCount / 3);
+
+  let trophy = '🏆', title = 'أداء رائع!', stars = '⭐⭐⭐⭐⭐';
+  if (pct < 40) { trophy = '😢'; title = 'حاول مرة أخرى!'; stars = '⭐'; }
+  else if (pct < 60) { trophy = '🙂'; title = 'جيد، استمر!'; stars = '⭐⭐'; }
+  else if (pct < 80) { trophy = '😊'; title = 'جيد جداً!'; stars = '⭐⭐⭐'; }
+  else if (pct < 100) { trophy = '🌟'; title = 'ممتاز!'; stars = '⭐⭐⭐⭐'; }
+  else { trophy = '🏆'; title = 'مثالي! أنت الأفضل!'; stars = '⭐⭐⭐⭐⭐'; }
+
+  document.getElementById('resultTrophy').textContent = trophy;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultStars').textContent = stars;
+  document.getElementById('resultScoreNum').textContent = pct + '%';
+  document.getElementById('resCorrect').textContent = quizCorrectCount;
+  document.getElementById('resWrong').textContent = quizWrongCount;
+  document.getElementById('resStars').textContent = quizStarsCount;
+  document.getElementById('resCups').textContent = cups;
+
+  // Update progress bar
+  const progBar = document.getElementById('prog_' + currentUnit.id);
+  if (progBar) progBar.style.width = pct + '%';
+
+  // Add to leaderboard
+  addToLeaderboard(currentUnit.title, quizCorrectCount, total, quizStarsCount);
+
+  if (pct === 100 && settings.effects) {
+    for (let i = 0; i < 5; i++) setTimeout(() => spawnConfetti(), i * 300);
+  }
+}
+
+// ===================== RESTART =====================
+function restartQuiz() {
+  openQuiz(currentUnit.id);
+}
+
+// ===================== TOAST =====================
+function showToast(correct) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + (correct ? 'success' : 'error');
+
+  if (correct) {
+    toast.innerHTML = `
+      <div class="toast-icon">🌟</div>
+      <div class="toast-msg">يا سلام!</div>
+      <div class="toast-sub">إجابة صحيحة، أحسنت! ⭐</div>
+    `;
+  } else {
+    toast.innerHTML = `
+      <div class="toast-icon">💪</div>
+      <div class="toast-msg">حظ أوفر!</div>
+      <div class="toast-sub">لا بأس، حاول مرة أخرى</div>
+    `;
+  }
+
+  container.innerHTML = '';
+  container.appendChild(toast);
+  setTimeout(() => { if (toast.parentNode) toast.remove(); }, 2100);
+}
+
+// ===================== CONFETTI =====================
+function spawnConfetti() {
+  const colors = ['#FFD700','#FF6B6B','#4ECDC4','#a855f7','#f97316','#22c55e'];
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: -20px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${Math.random() * 2 + 1.5}s;
+      animation-delay: ${Math.random() * 0.5}s;
+      width: ${Math.random() * 10 + 6}px;
+      height: ${Math.random() * 10 + 6}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+    `;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3500);
+  }
+}
+
+// ===================== FLY STARS =====================
+function flyStars() {
+  const emojis = ['⭐', '🌟', '✨'];
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      const star = document.createElement('div');
+      star.className = 'star-fly';
+      star.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      star.style.cssText = `
+        left: ${30 + Math.random() * 40}%;
+        top: ${30 + Math.random() * 30}%;
+        animation-delay: ${i * 0.2}s;
+      `;
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 1700);
+    }, i * 200);
+  }
+}
+
+// ===================== UPDATE UI =====================
+function updateScoreBar() {
+  document.getElementById('totalStars').textContent = totalStars;
+  document.getElementById('totalCups').textContent = totalCups;
+  document.getElementById('totalCorrect').textContent = totalCorrect;
+  document.getElementById('totalWrong').textContent = totalWrong;
+}
+
+function updateQuizScoreMini() {
+  document.getElementById('quizStars').textContent = quizStarsCount;
+  document.getElementById('quizCorrect').textContent = quizCorrectCount;
+  document.getElementById('quizWrong').textContent = quizWrongCount;
+}
+
+// ===================== LEADERBOARD =====================
+function addToLeaderboard(unitName, correct, total, stars) {
+  const pct = Math.round((correct / total) * 100);
+  leaderboard.push({ name: unitName, score: pct, correct, total, stars, time: new Date().toLocaleTimeString('ar') });
+  leaderboard.sort((a, b) => b.score - a.score);
+  if (leaderboard.length > 10) leaderboard = leaderboard.slice(0, 10);
+  renderLeaderboard();
+}
+
+function renderLeaderboard() {
+  const list = document.getElementById('leaderboardList');
+  if (!leaderboard.length) return;
+
+  list.innerHTML = leaderboard.map((item, i) => {
+    const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-other';
+    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
+    return `
+      <li class="leaderboard-item">
+        <div class="rank-badge ${rankClass}">${medal}</div>
+        <span class="lb-name">${item.name}</span>
+        <span class="lb-stars">${'⭐'.repeat(Math.min(item.stars, 5))}</span>
+        <span class="lb-score">${item.score}%</span>
+      </li>
+    `;
+  }).join('');
+}
+
+// ===================== SETTINGS =====================
+function toggleSettings() {
+  document.getElementById('settingsPanel').classList.toggle('active');
+}
+
+function toggleSetting(key) {
+  settings[key] = !settings[key];
+  const el = document.getElementById(key + 'Toggle');
+  el.classList.toggle('on', settings[key]);
+}
+
+// Close settings when clicking outside
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('settingsPanel');
+  const btn = document.querySelector('.settings-btn');
+  if (!panel.contains(e.target) && !btn.contains(e.target)) {
+    panel.classList.remove('active');
+  }
+});
+
+// Close modal on overlay click
+document.getElementById('quizModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
