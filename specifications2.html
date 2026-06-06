@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جدول مواصفات اختبار اللغة الإنجليزية - الصف السادس</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --secondary: #2196f3;
+    --accent: #00bcd4;
+    --gold: #f5a623;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --danger: #f44336;
+    --bg: #f0f4f8;
+    --card: #ffffff;
+    --text: #1a2332;
+    --muted: #607d8b;
+    --border: #e0e8f0;
+    --shadow: 0 4px 24px rgba(26,58,92,0.10);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Cairo', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ─── Header ─── */
+  .hero {
+    background: linear-gradient(135deg, #1a3a5c 0%, #0d47a1 50%, #00bcd4 100%);
+    padding: 48px 32px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    border-radius: 50px;
+    padding: 6px 20px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(8px);
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+  }
+  .hero h2 {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(14px, 2.5vw, 20px);
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .meta-chip {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .meta-chip .icon { font-size: 16px; }
+
+  /* ─── Nav Tabs ─── */
+  .nav-wrap {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 14px 22px;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-tab:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.06); }
+  .nav-tab.active { color: #fff; border-bottom-color: var(--accent); background: rgba(0,188,212,0.12); }
+
+  /* ─── Container ─── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ─── Section ─── */
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ─── Cards ─── */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,58,92,0.14); }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ─── Stats Grid ─── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--accent);
+    transition: transform 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-3px); }
+  .stat-card.gold { border-top-color: var(--gold); }
+  .stat-card.green { border-top-color: var(--success); }
+  .stat-card.orange { border-top-color: var(--warning); }
+  .stat-card.red { border-top-color: var(--danger); }
+  .stat-val {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ─── Tables ─── */
+  .table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: var(--shadow); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    font-size: 14px;
+  }
+  th {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+  th:first-child { border-radius: 0 12px 0 0; }
+  th:last-child { border-radius: 12px 0 0 0; }
+  td {
+    padding: 13px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f7fafd; }
+  tr:hover td { background: #e8f4fd; transition: background 0.2s; }
+  .total-row td { background: #e3f2fd !important; font-weight: 800; color: var(--primary); }
+
+  /* ─── Progress Bars ─── */
+  .progress-row { margin-bottom: 16px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .progress-bar {
+    height: 12px;
+    background: var(--border);
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 1s ease;
+    position: relative;
+  }
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+  }
+
+  /* ─── Instructions ─── */
+  .inst-section { margin-bottom: 28px; }
+  .inst-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #e3f2fd, #e8f5e9);
+    border-radius: 10px;
+    border-right: 4px solid var(--accent);
+  }
+  .inst-list { list-style: none; }
+  .inst-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 16px;
+    margin-bottom: 6px;
+    background: #fafcff;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+    transition: background 0.2s;
+  }
+  .inst-list li:hover { background: #e8f4fd; }
+  .inst-num {
+    min-width: 26px;
+    height: 26px;
+    background: var(--secondary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ─── Test Sections ─── */
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .test-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .test-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,58,92,0.14); }
+  .test-card-header {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .test-card-name {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    direction: ltr;
+    text-align: left;
+  }
+  .test-card-degree {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-weight: 900;
+    font-size: 15px;
+  }
+  .test-card-body { padding: 16px 20px; }
+  .test-card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ─── Unit Cards ─── */
+  .unit-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .unit-header {
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .unit-header:hover { filter: brightness(1.05); }
+  .unit-title-wrap { display: flex; align-items: center; gap: 14px; }
+  .unit-num-badge {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 900; color: #fff;
+    flex-shrink: 0;
+  }
+  .unit-name { color: #fff; font-size: 18px; font-weight: 800; }
+  .unit-en { color: rgba(255,255,255,0.8); font-size: 13px; direction: ltr; text-align: right; }
+  .unit-lessons-badge {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .unit-body { padding: 0 28px 24px; }
+  .unit-body.collapsed { display: none; }
+
+  .lesson-section { margin-top: 20px; }
+  .lesson-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 12px;
+    padding: 8px 14px;
+    background: var(--bg);
+    border-radius: 8px;
+    border-right: 3px solid var(--gold);
+    direction: ltr;
+    text-align: left;
+  }
+  .objective-list { display: flex; flex-direction: column; gap: 8px; }
+  .objective-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    direction: ltr;
+    text-align: left;
+  }
+  .objective-item.knowledge { background: #e3f2fd; border-right: 3px solid #2196f3; }
+  .objective-item.application { background: #e8f5e9; border-right: 3px solid #4caf50; }
+  .objective-item.reasoning { background: #fff3e0; border-right: 3px solid #ff9800; }
+  .obj-tag {
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tag-k { background: #2196f3; color: #fff; }
+  .tag-a { background: #4caf50; color: #fff; }
+  .tag-r { background: #ff9800; color: #fff; }
+
+  /* ─── Footer ─── */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  .footer a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .footer a:hover { text-decoration: underline; }
+  .footer .designer {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .footer .telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0088cc, #00b4d8);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(0,136,204,0.35);
+  }
+  .footer .telegram-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,136,204,0.45); text-decoration: none; }
+
+  /* ─── Chip legend ─── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .legend-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 32px 16px 48px; }
+    .container { padding: 20px 12px 48px; }
+    .card { padding: 18px; }
+    .unit-header { padding: 16px 18px; }
+    .unit-body { padding: 0 18px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 المملكة العربية السعودية — وزارة التعليم</div>
+  <h1>جدول مواصفات اختبار اللغة الإنجليزية</h1>
+  <h2>الصف السادس الابتدائي — الفصل الدراسي الثاني — ١٤٤٧ هـ</h2>
+  <div class="hero-meta">
+    <div class="meta-chip"><span class="icon">📖</span> اللغة الإنجليزية</div>
+    <div class="meta-chip"><span class="icon">🎓</span> الصف السادس</div>
+    <div class="meta-chip"><span class="icon">📅</span> الفصل الثاني — ١٤٤٧ هـ</div>
+    <div class="meta-chip"><span class="icon">⭐</span> ٤٠ درجة</div>
+    <div class="meta-chip"><span class="icon">❓</span> ٦ أسئلة</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showTab('overview')">📊 نظرة عامة</div>
+    <div class="nav-tab" onclick="showTab('spec')">📋 جدول المواصفات</div>
+    <div class="nav-tab" onclick="showTab('tests')">📝 بنود الاختبار</div>
+    <div class="nav-tab" onclick="showTab('units')">📚 أهداف الوحدات</div>
+    <div class="nav-tab" onclick="showTab('instructions')">📌 التعليمات والإرشادات</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ═══ OVERVIEW ═══ -->
+  <div class="section active" id="tab-overview">
+    <div class="section-title">📊 نظرة عامة على الاختبار</div>
+
+    <div class="stats-grid">
+      <div class="stat-card gold">
+        <div class="stat-val">٤٠</div>
+        <div class="stat-label">درجة الاختبار</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">٦</div>
+        <div class="stat-label">عدد الأسئلة</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-val">٧٢</div>
+        <div class="stat-label">إجمالي الأهداف التعليمية</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-val">٤</div>
+        <div class="stat-label">وحدات دراسية</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-val">٣٩</div>
+        <div class="stat-label">أهداف التطبيق</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">٤٨</div>
+        <div class="stat-label">إجمالي الحصص</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 توزيع مستويات الأهداف التعليمية</div>
+      <div class="legend">
+        <div class="legend-chip" style="background:#e3f2fd">
+          <div class="legend-dot" style="background:#2196f3"></div> المعرفة (٢١٪)
+        </div>
+        <div class="legend-chip" style="background:#e8f5e9">
+          <div class="legend-dot" style="background:#4caf50"></div> التطبيق (٥٤٪)
+        </div>
+        <div class="legend-chip" style="background:#fff3e0">
+          <div class="legend-dot" style="background:#ff9800"></div> الاستدلال (٢٥٪)
+        </div>
+      </div>
+
+      <div class="progress-row">
+        <div class="progress-label">
+          <span>المعرفة — Knowledge</span>
+          <span>١٥ هدف / ٢١٪</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:20.83%;background:linear-gradient(90deg,#1565c0,#2196f3)"></div>
+        </div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label">
+          <span>التطبيق — Application</span>
+          <span>٣٩ هدف / ٥٤٪</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:54.17%;background:linear-gradient(90deg,#2e7d32,#4caf50)"></div>
+        </div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label">
+          <span>الاستدلال — Reasoning</span>
+          <span>١٨ هدف / ٢٥٪</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:25%;background:linear-gradient(90deg,#e65100,#ff9800)"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏫 البيانات الأساسية للاختبار</div>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>البيان</th>
+            <th>القيمة</th>
+          </tr>
+          <tr><td>المادة</td><td>اللغة الإنجليزية</td></tr>
+          <tr><td>الصف</td><td>السادس الابتدائي</td></tr>
+          <tr><td>الفصل الدراسي</td><td>الثاني</td></tr>
+          <tr><td>العام الدراسي</td><td>١٤٤٧ هـ</td></tr>
+          <tr><td>عدد الأسئلة</td><td>٦ أسئلة</td></tr>
+          <tr><td>درجة الاختبار</td><td>٤٠ درجة</td></tr>
+          <tr><td>عدد الوحدات</td><td>٤ وحدات (٥ — ٦ — ٧ — ٨)</td></tr>
+          <tr><td>إجمالي الحصص</td><td>٤٨ حصة (١٢ حصة لكل وحدة)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SPEC TABLE ═══ -->
+  <div class="section" id="tab-spec">
+    <div class="section-title">📋 جدول مواصفات الاختبار</div>
+
+    <div class="card">
+      <div class="card-title">📊 توزيع الأهداف التعليمية حسب الوحدات والمستويات</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الوحدة</th>
+              <th style="background:#1565c0">المعرفة</th>
+              <th style="background:#2e7d32">التطبيق</th>
+              <th style="background:#e65100">الاستدلال</th>
+              <th>المجموع</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>الوحدة الخامسة</strong><br><small style="color:#888;direction:ltr">Storylines</small></td>
+              <td style="color:#1565c0;font-weight:700">٣</td>
+              <td style="color:#2e7d32;font-weight:700">١٠</td>
+              <td style="color:#e65100;font-weight:700">٣</td>
+              <td><strong>١٦</strong></td>
+            </tr>
+            <tr>
+              <td><strong>الوحدة السادسة</strong><br><small style="color:#888;direction:ltr">Outdoors Activities</small></td>
+              <td style="color:#1565c0;font-weight:700">٣</td>
+              <td style="color:#2e7d32;font-weight:700">١٠</td>
+              <td style="color:#e65100;font-weight:700">٦</td>
+              <td><strong>١٩</strong></td>
+            </tr>
+            <tr>
+              <td><strong>الوحدة السابعة</strong><br><small style="color:#888;direction:ltr">Trips</small></td>
+              <td style="color:#1565c0;font-weight:700">٥</td>
+              <td style="color:#2e7d32;font-weight:700">١٠</td>
+              <td style="color:#e65100;font-weight:700">٤</td>
+              <td><strong>١٩</strong></td>
+            </tr>
+            <tr>
+              <td><strong>الوحدة الثامنة</strong><br><small style="color:#888;direction:ltr">Outfits</small></td>
+              <td style="color:#1565c0;font-weight:700">٤</td>
+              <td style="color:#2e7d32;font-weight:700">٩</td>
+              <td style="color:#e65100;font-weight:700">٥</td>
+              <td><strong>١٨</strong></td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>المجموع</strong></td>
+              <td style="color:#1565c0;font-weight:900">١٥</td>
+              <td style="color:#2e7d32;font-weight:900">٣٩</td>
+              <td style="color:#e65100;font-weight:900">١٨</td>
+              <td><strong>٧٢</strong></td>
+            </tr>
+            <tr style="background:#fff8e1">
+              <td><strong>الوزن النسبي</strong></td>
+              <td style="color:#1565c0;font-weight:700">٢١٪</td>
+              <td style="color:#2e7d32;font-weight:700">٥٤٪</td>
+              <td style="color:#e65100;font-weight:700">٢٥٪</td>
+              <td><strong>١٠٠٪</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📚 توزيع الحصص والدرجات على الوحدات</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الوحدة</th>
+              <th>عنوان الوحدة</th>
+              <th>عدد الحصص</th>
+              <th>الوزن النسبي للأهداف</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>الخامسة</strong></td>
+              <td style="direction:ltr;text-align:center">Storylines</td>
+              <td>١٢ حصة</td>
+              <td>٢٢٪ (١٦/٧٢)</td>
+            </tr>
+            <tr>
+              <td><strong>السادسة</strong></td>
+              <td style="direction:ltr;text-align:center">Outdoors Activities</td>
+              <td>١٢ حصة</td>
+              <td>٢٦٪ (١٩/٧٢)</td>
+            </tr>
+            <tr>
+              <td><strong>السابعة</strong></td>
+              <td style="direction:ltr;text-align:center">Trips</td>
+              <td>١٢ حصة</td>
+              <td>٢٦٪ (١٩/٧٢)</td>
+            </tr>
+            <tr>
+              <td><strong>الثامنة</strong></td>
+              <td style="direction:ltr;text-align:center">Outfits</td>
+              <td>١٢ حصة</td>
+              <td>٢٥٪ (١٨/٧٢)</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>المجموع</strong></td>
+              <td>—</td>
+              <td>٤٨ حصة</td>
+              <td>١٠٠٪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TESTS ═══ -->
+  <div class="section" id="tab-tests">
+    <div class="section-title">📝 بنود الاختبار وتوزيع الدرجات</div>
+
+    <div class="stats-grid" style="margin-bottom:28px">
+      <div class="stat-card gold"><div class="stat-val">٤٠</div><div class="stat-label">مجموع الدرجات</div></div>
+      <div class="stat-card"><div class="stat-val">٦</div><div class="stat-label">أسئلة</div></div>
+      <div class="stat-card green"><div class="stat-val">٧</div><div class="stat-label">درجات لكل سؤال (٥ أسئلة)</div></div>
+      <div class="stat-card orange"><div class="stat-val">٥</div><div class="stat-label">درجات (Orthography)</div></div>
+    </div>
+
+    <div class="test-grid">
+
+      <div class="test-card">
+        <div class="test-card-header" style="background:linear-gradient(135deg,#1565c0,#1e88e5)">
+          <div class="test-card-name">General Questions</div>
+          <div class="test-card-degree">٧ درجات</div>
+        </div>
+        <div class="test-card-body">
+          <div class="test-card-desc">
+            يقيس هذا السؤال قدرة الطالب على الفهم العام للمفردات والتراكيب المألوفة في الدروس، من خلال أسئلة قصيرة يمكن أن تكون اختيارًا من متعدد أو إكمالًا لجمل بسيطة.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-card-header" style="background:linear-gradient(135deg,#2e7d32,#43a047)">
+          <div class="test-card-name">Guided Composition</div>
+          <div class="test-card-degree">٧ درجات</div>
+        </div>
+        <div class="test-card-body">
+          <div class="test-card-desc">
+            يقيس قدرة الطالب على كتابة تعبير مستند إلى صور أو كلمات أو أسئلة مساعدة أو إكمال مقطع قصير. يُقاس من خلاله استخدام التراكيب الصحيحة (لا يقل عن أربع جمل).
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-card-header" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)">
+          <div class="test-card-name">Reading Short Sentences</div>
+          <div class="test-card-degree">٧ درجات</div>
+        </div>
+        <div class="test-card-body">
+          <div class="test-card-desc">
+            يقيس قدرة الطالب على قراءة قطعة فهم قصيرة مناسبة لمرحلته الدراسية، تتضمن أسئلة تقيس مدى فهمه لما قرأ واستيعابه للمعنى العام للنص.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-card-header" style="background:linear-gradient(135deg,#e65100,#fb8c00)">
+          <div class="test-card-name">Grammar</div>
+          <div class="test-card-degree">٧ درجات</div>
+        </div>
+        <div class="test-card-body">
+          <div class="test-card-desc">
+            يقيس قدرة الطالب على تطبيق القواعد التي تم تدريسها، من خلال أسئلة تطبيقية مثل اختيار الإجابة الصحيحة أو إكمال الجملة.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-card-header" style="background:linear-gradient(135deg,#00695c,#00897b)">
+          <div class="test-card-name">Vocabulary</div>
+          <div class="test-card-degree">٧ درجات</div>
+        </div>
+        <div class="test-card-body">
+          <div class="test-card-desc">
+            يقيس مدى اكتساب الطالب للمفردات الأساسية في المنهج، من خلال مهام مثل مطابقة الكلمة بالصورة أو تعريفها أو استخدامها في جملة صحيحة.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-card-header" style="background:linear-gradient(135deg,#b71c1c,#e53935)">
+          <div class="test-card-name">Orthography</div>
+          <div class="test-card-degree">٥ درجات</div>
+        </div>
+        <div class="test-card-body">
+          <div class="test-card-desc">
+            يقيس قدرة الطالب على كتابة الكلمات بشكل صحيح، على أن تُختار الكلمات من المفردات الواردة في الوحدات الدراسية.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ UNITS ═══ -->
+  <div class="section" id="tab-units">
+    <div class="section-title">📚 الأهداف التعليمية للوحدات الدراسية</div>
+
+    <div class="legend" style="margin-bottom:24px">
+      <div class="legend-chip" style="background:#e3f2fd">
+        <div class="legend-dot" style="background:#2196f3"></div>
+        <span class="obj-tag tag-k">K</span> معرفة
+      </div>
+      <div class="legend-chip" style="background:#e8f5e9">
+        <div class="legend-dot" style="background:#4caf50"></div>
+        <span class="obj-tag tag-a">A</span> تطبيق
+      </div>
+      <div class="legend-chip" style="background:#fff3e0">
+        <div class="legend-dot" style="background:#ff9800"></div>
+        <span class="obj-tag tag-r">R</span> استدلال
+      </div>
+    </div>
+
+    <!-- Unit 5 -->
+    <div class="unit-card">
+      <div class="unit-header" style="background:linear-gradient(135deg,#1565c0,#1e88e5)" onclick="toggleUnit(this)">
+        <div class="unit-title-wrap">
+          <div class="unit-num-badge">٥</div>
+          <div>
+            <div class="unit-name">الوحدة الخامسة</div>
+            <div class="unit-en">Storylines</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="unit-lessons-badge">١٦ هدفاً</div>
+          <div class="unit-lessons-badge">١٢ حصة</div>
+          <span style="color:#fff;font-size:20px">▼</span>
+        </div>
+      </div>
+      <div class="unit-body">
+        <div class="lesson-section">
+          <div class="lesson-title">Grammar</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Complete the sentences in the negative or affirmative form using the past progressive.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Analyze word order to construct grammatically correct sentences in the past progressive tense.</div>
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Choose the correct verb or pronoun to complete the sentences.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Edit the sentences by correcting the underlined errors.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Use how about, why don't, or what about correctly to make suggestions.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Answer yes/no questions in the past progressive tense correctly using short forms.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Vocabulary</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Fill in the blanks with the correct words.</div>
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Match pictures of types of stories with the correct vocabulary words.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Choose the word that fits each definition.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Add the missing letters to spell the given words.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Reading</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Read a short text and answer the comprehension questions.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Combine sentence parts or completions to form meaningful sentences.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Speaking</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Answer different questions about kinds of stories.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Respond to general questions from the Unit Review.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Writing</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Write a short paragraph about one's favourite movie.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Form sentences based on the given pictures.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unit 6 -->
+    <div class="unit-card">
+      <div class="unit-header" style="background:linear-gradient(135deg,#2e7d32,#43a047)" onclick="toggleUnit(this)">
+        <div class="unit-title-wrap">
+          <div class="unit-num-badge">٦</div>
+          <div>
+            <div class="unit-name">الوحدة السادسة</div>
+            <div class="unit-en">Outdoors Activities</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="unit-lessons-badge">١٩ هدفاً</div>
+          <div class="unit-lessons-badge">١٢ حصة</div>
+          <span style="color:#fff;font-size:20px">▼</span>
+        </div>
+      </div>
+      <div class="unit-body">
+        <div class="lesson-section">
+          <div class="lesson-title">Grammar</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Choose the correct verb or pronoun to complete the sentences.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Use the simple past and the past progressive to write about actions or events.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Distinguish between the simple past and the past progressive.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Use when and while with the simple past and past progressive.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Describe two long actions that happened in the past using while.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Complete the sentences with the correct form of the verb.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Edit the sentences by correcting the underlined errors.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Vocabulary</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Match each picture with the correct activity.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Add the missing letters to spell the given words.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Differentiate between indoor and outdoor activities.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Apply the correct suffix (-ing) to base words to form nouns correctly.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Classify words into nouns and adjectives.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Fill in the blanks with the correct words.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Reading</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Read a short text and answer the comprehension questions.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Combine sentence parts or completions to form meaningful sentences.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Speaking</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Answer questions about outdoor activities.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Respond to general questions from the Unit Review.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Writing</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Write a short paragraph about outdoor safety.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Form sentences based on the given pictures.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unit 7 -->
+    <div class="unit-card">
+      <div class="unit-header" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)" onclick="toggleUnit(this)">
+        <div class="unit-title-wrap">
+          <div class="unit-num-badge">٧</div>
+          <div>
+            <div class="unit-name">الوحدة السابعة</div>
+            <div class="unit-en">Trips</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="unit-lessons-badge">١٩ هدفاً</div>
+          <div class="unit-lessons-badge">١٢ حصة</div>
+          <span style="color:#fff;font-size:20px">▼</span>
+        </div>
+      </div>
+      <div class="unit-body">
+        <div class="lesson-section">
+          <div class="lesson-title">Grammar</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Choose the correct verb or pronoun to complete the sentences.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Write sentences in the affirmative or negative form using the present perfect simple.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Analyze word order to construct grammatically correct sentences in the present perfect tense.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Complete the sentences using the present perfect simple.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Complete the sentences with already, just, or yet.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Edit the sentences by correcting the underlined errors.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Vocabulary</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Match each picture to its correct word.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Fill in the blanks with the correct words.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Classify travel words into categories such as places, people, and objects.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Add the missing letters to spell the given words.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Match words to their definitions.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Reading</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Match pictures to their sentences.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Read a short text and answer the comprehension questions.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Combine sentence parts or completions to form meaningful sentences.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Speaking</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>List different ways of traveling.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Respond to general questions from the Unit Review.</div>
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Answer questions about traveling.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Writing</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Write a short paragraph about a field trip.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Form sentences based on the given pictures.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unit 8 -->
+    <div class="unit-card">
+      <div class="unit-header" style="background:linear-gradient(135deg,#b71c1c,#e53935)" onclick="toggleUnit(this)">
+        <div class="unit-title-wrap">
+          <div class="unit-num-badge">٨</div>
+          <div>
+            <div class="unit-name">الوحدة الثامنة</div>
+            <div class="unit-en">Outfits</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="unit-lessons-badge">١٨ هدفاً</div>
+          <div class="unit-lessons-badge">١٢ حصة</div>
+          <span style="color:#fff;font-size:20px">▼</span>
+        </div>
+      </div>
+      <div class="unit-body">
+        <div class="lesson-section">
+          <div class="lesson-title">Grammar</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Choose the correct verb or pronoun to complete the sentences.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Write sentences in the affirmative or negative form using the present perfect simple.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Order the words to make questions using the present perfect simple.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Respond to yes/no questions in the present perfect simple tense correctly using short forms.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Edit the sentences by correcting the underlined errors.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Vocabulary</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Match pictures of outfits or accessories with the correct vocabulary words.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Choose the correct words to fill in the blanks.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Classify words into groups: clothes, materials, and accessories.</div>
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Name common clothing and accessory items.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Add the missing letters to spell the given words.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Apply the correct suffixes (-sion) or (-tion) to base words to form nouns correctly.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Reading</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Read a short text and answer the comprehension questions.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Combine sentence parts or completions to form meaningful sentences.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Speaking</div>
+          <div class="objective-list">
+            <div class="objective-item knowledge"><span class="obj-tag tag-k">K</span>Answer questions about clothes and accessories.</div>
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Answer general questions from the Unit Review.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Justify clothing choices based on the weather or the occasion.</div>
+          </div>
+        </div>
+        <div class="lesson-section">
+          <div class="lesson-title">Writing</div>
+          <div class="objective-list">
+            <div class="objective-item application"><span class="obj-tag tag-a">A</span>Write a short paragraph about fashion or a favourite outfit.</div>
+            <div class="objective-item reasoning"><span class="obj-tag tag-r">R</span>Form sentences based on the given pictures.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ INSTRUCTIONS ═══ -->
+  <div class="section" id="tab-instructions">
+    <div class="section-title">📌 التعليمات والإرشادات</div>
+
+    <div class="card">
+      <div class="inst-section">
+        <div class="inst-title">📖 أولاً: قبل إعداد الاختبار</div>
+        <ul class="inst-list">
+          <li><div class="inst-num">١</div>الاطلاع على المنهج الدراسي والتأكد من شمولية الأهداف التعليمية لجميع المهارات المطلوبة.</li>
+          <li><div class="inst-num">٢</div>تحديد نواتج التعلم المراد قياسها (معرفية – مهارية….).</li>
+          <li><div class="inst-num">٣</div>مراعاة الفروق الفردية بين الطلاب عند إعداد الأسئلة.</li>
+          <li><div class="inst-num">٤</div>اختيار نوع الأسئلة المناسب للمهارة المستهدفة وتنويعها (اختيار من متعدد، صواب/خطأ، أكمل، مقالي…).</li>
+          <li><div class="inst-num">٥</div>توزيع الدرجات بعدالة بين الفقرات بما يتناسب مع الأهمية والصعوبة.</li>
+          <li><div class="inst-num">٦</div>الاستئناس بجدول المواصفات كنموذج إرشادي عند إعداد الأسئلة.</li>
+        </ul>
+      </div>
+
+      <div class="inst-section">
+        <div class="inst-title">✏️ ثانياً: أثناء إعداد الاختبار</div>
+        <ul class="inst-list">
+          <li><div class="inst-num">١</div>صياغة الأسئلة بوضوح وبأسلوب مباشر خالٍ من التعقيد اللغوي.</li>
+          <li><div class="inst-num">٢</div>تجنب التلميحات التي قد تكشف الإجابة ضمن السؤال.</li>
+          <li><div class="inst-num">٣</div>مراعاة زمن الاختبار بحيث يكون مناسبًا لحجم وعدد الأسئلة.</li>
+          <li><div class="inst-num">٤</div>التأكد من تنوع الأسئلة لقياس مستويات التفكير المختلفة (تذكر – فهم – تطبيق – تحليل – تقويم – إبداع).</li>
+          <li><div class="inst-num">٥</div>كتابة تعليمات واضحة لكل جزء من الاختبار.</li>
+          <li><div class="inst-num">٦</div>التأكد من خلو الاختبار من الأخطاء الإملائية والنحوية.</li>
+          <li><div class="inst-num">٧</div>ترتيب الأسئلة من الأسهل إلى الأصعب لتشجيع الطلاب على الاستمرار بثقة.</li>
+          <li><div class="inst-num">٨</div>عدم قياس نفس الهدف أكثر من مرة.</li>
+          <li><div class="inst-num">٩</div>الموازنة بين عدد الأسئلة المقالية والموضوعية.</li>
+        </ul>
+      </div>
+
+      <div class="inst-section">
+        <div class="inst-title">✅ ثالثاً: بعد إعداد الاختبار</div>
+        <ul class="inst-list">
+          <li><div class="inst-num">١</div>مراجعة الورقة أكثر من مرة قبل الطباعة للتأكد من الدقة والصحة.</li>
+          <li><div class="inst-num">٢</div>الالتزام بسرية الاختبار وعدم تداوله قبل موعده.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="margin-bottom:12px;font-size:15px;color:var(--primary);font-weight:700">
+    جدول مواصفات اختبار اللغة الإنجليزية — الصف السادس الابتدائي — الفصل الثاني ١٤٤٧ هـ
+  </div>
+  <div class="designer">
+    🎨 تصميم د / فواز &nbsp;—&nbsp; تفضل للمزيد هنا
+  </div>
+  <div style="margin-top:10px">
+    <a class="telegram-btn" href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.008 9.455c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.871.766z"/></svg>
+      للمزيد من التصاميم — تيليجرام
+    </a>
+  </div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggleUnit(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('span:last-child');
+    if (body.classList.contains('collapsed')) {
+      body.classList.remove('collapsed');
+      arrow.textContent = '▼';
+    } else {
+      body.classList.add('collapsed');
+      arrow.textContent = '▶';
+    }
+  }
+
+  // Animate progress bars on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => { bar.style.width = w; }, 100);
+    });
+  });
+</script>
+</body>
+</html>

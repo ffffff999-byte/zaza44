@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>توزيع درجات اختبار اللغة الإنجليزية — ١٤٤٧ هـ</title>
+<style>
+  :root {
+    --primary:   #1a3a5c;
+    --secondary: #1e88e5;
+    --accent:    #00bcd4;
+    --gold:      #f5a623;
+    --green:     #43a047;
+    --purple:    #8e24aa;
+    --red:       #e53935;
+    --orange:    #fb8c00;
+    --teal:      #00897b;
+    --bg:        #f0f4f8;
+    --card:      #ffffff;
+    --text:      #1a2332;
+    --muted:     #607d8b;
+    --border:    #e0e8f0;
+    --shadow:    0 4px 24px rgba(26,58,92,0.10);
+    --radius:    16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI','Cairo',Arial,sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
+
+  /* ── HERO ── */
+  .hero{background:linear-gradient(135deg,#1a3a5c 0%,#0d47a1 55%,#006064 100%);padding:48px 24px 68px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+  .hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;padding:6px 22px;font-size:13px;margin-bottom:16px;backdrop-filter:blur(8px)}
+  .hero h1{color:#fff;font-size:clamp(20px,4vw,34px);font-weight:900;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+  .hero h2{color:rgba(255,255,255,.82);font-size:clamp(13px,2vw,18px);font-weight:400;margin-bottom:28px}
+  .hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;z-index:1}
+  .chip{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+
+  /* ── NAV ── */
+  .nav-wrap{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+  .nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1280px;margin:0 auto}
+  .nav-tabs::-webkit-scrollbar{display:none}
+  .nav-tab{padding:14px 20px;color:rgba(255,255,255,.6);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-size:13.5px;font-weight:700;transition:all .25s;display:flex;align-items:center;gap:6px}
+  .nav-tab:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
+  .nav-tab.active{color:#fff;border-bottom-color:var(--accent);background:rgba(0,188,212,.12)}
+
+  /* ── CONTAINER ── */
+  .container{max-width:1280px;margin:0 auto;padding:32px 20px 72px}
+
+  /* ── SECTIONS ── */
+  .section{display:none;animation:fadeIn .3s ease}
+  .section.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .sec-title{font-size:22px;font-weight:900;color:var(--primary);margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--accent);display:flex;align-items:center;gap:10px}
+
+  /* ── CARDS ── */
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:24px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,58,92,.14)}
+  .card-title{font-size:16px;font-weight:800;color:var(--primary);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+
+  /* ── STATS ── */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:26px}
+  .stat{background:var(--card);border-radius:var(--radius);padding:22px 14px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--accent);transition:transform .2s}
+  .stat:hover{transform:translateY(-3px)}
+  .stat.gold{border-top-color:var(--gold)}.stat.green{border-top-color:var(--green)}.stat.purple{border-top-color:var(--purple)}.stat.orange{border-top-color:var(--orange)}.stat.teal{border-top-color:var(--teal)}
+  .stat-val{font-size:34px;font-weight:900;color:var(--primary);line-height:1;margin-bottom:6px}
+  .stat-lbl{font-size:12px;color:var(--muted);font-weight:700}
+
+  /* ── TABLES ── */
+  .tbl-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px;min-width:520px}
+  th{background:var(--primary);color:#fff;padding:13px 14px;text-align:center;font-weight:700;font-size:12.5px}
+  th.stage-primary{background:#1565c0}th.stage-intermediate{background:#2e7d32}th.stage-secondary{background:#6a1b9a}
+  th.sub-col{font-size:11px;font-weight:600;opacity:.9}
+  td{padding:12px 14px;text-align:center;border-bottom:1px solid var(--border);color:var(--text)}
+  tr:last-child td{border-bottom:none}
+  tr:nth-child(even) td{background:#f8fafd}
+  tr:hover td{background:#e8f4fd;transition:background .15s}
+  .total-row td{background:#e3f2fd !important;font-weight:900;color:var(--primary)}
+  td.dash{color:#bbb;font-size:12px}
+  td.val{font-weight:800}
+  td.val-p{color:#1565c0;font-weight:800}
+  td.val-i{color:#2e7d32;font-weight:800}
+  td.val-s{color:#6a1b9a;font-weight:800}
+
+  /* ── REGION HEADER ── */
+  .region-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:28px;overflow:hidden;border:1px solid var(--border)}
+  .region-header{padding:18px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;user-select:none;transition:filter .2s}
+  .region-header:hover{filter:brightness(1.05)}
+  .region-badge{min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:900;flex-shrink:0}
+  .region-name-ar{color:#fff;font-size:18px;font-weight:900}
+  .region-meta{color:rgba(255,255,255,.82);font-size:12px;margin-top:2px}
+  .region-toggle{color:#fff;font-size:18px;margin-right:auto;transition:transform .3s}
+  .region-toggle.open{transform:rotate(180deg)}
+  .region-body{padding:0 24px 24px}
+  .region-body.hidden{display:none}
+
+  /* ── STAGE TABS ── */
+  .stage-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;margin-top:20px}
+  .stage-tab{padding:8px 18px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;border:2px solid transparent;transition:all .2s}
+  .stage-tab.primary{background:#e3f2fd;color:#1565c0;border-color:#1565c0}
+  .stage-tab.primary.active,.stage-tab.primary:hover{background:#1565c0;color:#fff}
+  .stage-tab.intermediate{background:#e8f5e9;color:#2e7d32;border-color:#2e7d32}
+  .stage-tab.intermediate.active,.stage-tab.intermediate:hover{background:#2e7d32;color:#fff}
+  .stage-tab.secondary{background:#f3e5f5;color:#6a1b9a;border-color:#6a1b9a}
+  .stage-tab.secondary.active,.stage-tab.secondary:hover{background:#6a1b9a;color:#fff}
+
+  /* ── ITEM DESCRIPTIONS ── */
+  .item-desc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .item-card{border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .2s}
+  .item-card:hover{transform:translateY(-2px)}
+  .item-card-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+  .item-card-name{color:#fff;font-size:15px;font-weight:800;direction:ltr;text-align:left}
+  .item-card-name-ar{color:rgba(255,255,255,.85);font-size:12px;margin-top:2px}
+  .item-card-body{padding:14px 18px;background:var(--card)}
+  .item-card-desc{font-size:13px;color:var(--muted);line-height:1.8}
+  .marks-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .mark-chip{padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800}
+  .mark-p{background:#e3f2fd;color:#1565c0}
+  .mark-i{background:#e8f5e9;color:#2e7d32}
+  .mark-s{background:#f3e5f5;color:#6a1b9a}
+
+  /* ── INSTRUCTIONS ── */
+  .inst-group{margin-bottom:26px}
+  .inst-phase{padding:12px 18px;border-radius:10px;font-size:15px;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:10px;border-right:4px solid var(--accent)}
+  .inst-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .inst-item{display:flex;align-items:flex-start;gap:12px;padding:11px 16px;border-radius:10px;background:#fafcff;border:1px solid var(--border);font-size:13.5px;line-height:1.75;transition:background .2s}
+  .inst-item:hover{background:#e8f4fd}
+  .inst-num{min-width:26px;height:26px;background:var(--secondary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;margin-top:1px}
+
+  /* ── COMPARISON ── */
+  .compare-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--shadow)}
+  .region-label{font-weight:800;font-size:13px}
+  .compare-table th.item-col{text-align:right;min-width:160px}
+
+  /* ── LEGEND ── */
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+  .legend-chip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:12.5px;font-weight:700}
+  .dot{width:10px;height:10px;border-radius:50%}
+
+  /* ── FOOTER ── */
+  .footer{text-align:center;padding:28px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+  .footer a{color:var(--secondary);text-decoration:none;font-weight:700}
+  .footer a:hover{text-decoration:underline}
+  .designer-line{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px}
+  .tg-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0088cc,#00b4d8);color:#fff;padding:11px 26px;border-radius:50px;text-decoration:none;font-weight:800;font-size:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,136,204,.35)}
+  .tg-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,136,204,.45);text-decoration:none}
+
+  @media(max-width:640px){
+    .hero{padding:28px 14px 48px}
+    .container{padding:18px 12px 56px}
+    .card,.region-body{padding:16px}
+    .region-header{padding:14px 16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 المملكة العربية السعودية — وزارة التعليم</div>
+  <h1>توزيع درجات اختبار نهاية الفصل<br>لمادة اللغة الإنجليزية</h1>
+  <h2>للعام الدراسي ١٤٤٧ هـ — ١٤٤٨ هـ &nbsp;|&nbsp; المراحل الابتدائية والمتوسطة والثانوية</h2>
+  <div class="hero-chips">
+    <div class="chip">📖 اللغة الإنجليزية</div>
+    <div class="chip">🏫 ثلاث مراحل دراسية</div>
+    <div class="chip">📍 إدارات تعليمية متعددة</div>
+    <div class="chip">⭐ ٤٠ درجة لكل مرحلة</div>
+    <div class="chip">📅 ١٤٤٧ هـ — ١٤٤٨ هـ</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <div class="nav-tab active"  onclick="showTab('overview','this')">📊 نظرة عامة</div>
+    <div class="nav-tab" onclick="showTab('stages','this')">🏫 المراحل الدراسية</div>
+    <div class="nav-tab" onclick="showTab('regions','this')">📍 الإدارات التعليمية</div>
+    <div class="nav-tab" onclick="showTab('compare','this')">📊 مقارنة الإدارات</div>
+    <div class="nav-tab" onclick="showTab('items','this')">📝 وصف بنود الاختبار</div>
+    <div class="nav-tab" onclick="showTab('instructions','this')">📌 الملاحظات والإرشادات</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div class="section active" id="tab-overview">
+  <div class="sec-title">📊 نظرة عامة شاملة</div>
+
+  <div class="stats-grid">
+    <div class="stat gold"><div class="stat-val">٤٠</div><div class="stat-lbl">درجة الاختبار لكل مرحلة</div></div>
+    <div class="stat"><div class="stat-val">٣</div><div class="stat-lbl">مراحل دراسية</div></div>
+    <div class="stat green"><div class="stat-val">٣</div><div class="stat-lbl">إدارات تعليمية موثقة</div></div>
+    <div class="stat purple"><div class="stat-val">٧</div><div class="stat-lbl">بنود اختبارية</div></div>
+    <div class="stat orange"><div class="stat-val">٩</div><div class="stat-lbl">حد أقصى لفقرات MCQ</div></div>
+    <div class="stat teal"><div class="stat-val">½</div><div class="stat-lbl">درجة لكل فقرة إملاء</div></div>
+  </div>
+
+  <!-- Standard distribution card -->
+  <div class="card">
+    <div class="card-title">📋 التوزيع القياسي — جازان / الحدود الشمالية</div>
+    <div class="legend">
+      <div class="legend-chip" style="background:#e3f2fd"><div class="dot" style="background:#1565c0"></div>المرحلة الابتدائية</div>
+      <div class="legend-chip" style="background:#e8f5e9"><div class="dot" style="background:#2e7d32"></div>المرحلة المتوسطة</div>
+      <div class="legend-chip" style="background:#f3e5f5"><div class="dot" style="background:#6a1b9a"></div>المرحلة الثانوية</div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:right;min-width:180px">بند الاختبار / Test Item</th>
+            <th class="stage-primary">الابتدائية<br><small>ثالث–سادس</small></th>
+            <th class="stage-intermediate">المتوسطة<br><small>أول–ثالث</small></th>
+            <th class="stage-secondary">الثانوية<br><small>أول–ثالث</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">General Questions <span style="color:#888;font-size:12px">— الأسئلة العامة</span></td>
+              <td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition <span style="color:#888;font-size:12px">— التعبير الموجه</span></td>
+              <td class="val-p">٧</td><td class="val-i">٨</td><td class="val-s">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Free Composition <span style="color:#888;font-size:12px">— التعبير الحر</span></td>
+              <td class="dash">—</td><td class="dash">—</td><td class="val-s">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Comprehension <span style="color:#888;font-size:12px">— الفهم القرائي</span></td>
+              <td class="dash">—</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Short Sentences <span style="color:#888;font-size:12px">— قراءة الجمل القصيرة</span></td>
+              <td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar <span style="color:#888;font-size:12px">— القواعد اللغوية</span></td>
+              <td class="val-p">٧</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary <span style="color:#888;font-size:12px">— المفردات</span></td>
+              <td class="val-p">٧</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Orthography / Spelling <span style="color:#888;font-size:12px">— الإملاء</span></td>
+              <td class="val-p">٥</td><td class="val-i">٥</td><td class="dash">—</td></tr>
+          <tr class="total-row">
+            <td style="text-align:right">المجموع — Total</td>
+            <td>٤٠</td><td>٤٠</td><td>٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💡 أبرز الملاحظات العامة</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
+      <div style="padding:16px;background:#e3f2fd;border-radius:12px;border-right:4px solid #1565c0">
+        <div style="font-weight:800;color:#1565c0;margin-bottom:6px">🏫 المرحلة الابتدائية</div>
+        <div style="font-size:13px;line-height:1.8;color:#1a3a5c">٦ بنود اختبارية — لا يوجد فهم قرائي خارج الكتاب ولا تعبير حر. يُضاف بند الأسئلة العامة وقراءة الجمل القصيرة.</div>
+      </div>
+      <div style="padding:16px;background:#e8f5e9;border-radius:12px;border-right:4px solid #2e7d32">
+        <div style="font-weight:800;color:#2e7d32;margin-bottom:6px">🏫 المرحلة المتوسطة</div>
+        <div style="font-size:13px;line-height:1.8;color:#1a3a5c">٥ بنود اختبارية — يُستبدل الأسئلة العامة وقراءة الجمل بالفهم القرائي من خارج الكتاب. درجة القواعد والمفردات ٩.</div>
+      </div>
+      <div style="padding:16px;background:#f3e5f5;border-radius:12px;border-right:4px solid #6a1b9a">
+        <div style="font-weight:800;color:#6a1b9a;margin-bottom:6px">🏫 المرحلة الثانوية</div>
+        <div style="font-size:13px;line-height:1.8;color:#1a3a5c">٥ بنود اختبارية — يُضاف التعبير الحر ويُحذف الإملاء. الدرجات موزعة بالتساوي (٨ درجات لكل بند).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ لا يوجد اختبار شفهي نهائي</div>
+    <div style="font-size:14px;line-height:1.9;color:var(--text);padding:10px 16px;background:#fff8e1;border-radius:10px;border-right:4px solid var(--gold)">
+      لا يوجد اختبار شفهي نهائي (استماع ومحادثة) في جميع المراحل الدراسية (ابتدائي — متوسط — ثانوي). يتم تنفيذه كتقويم مستمر خلال الفصل الدراسي وترصد درجاته ضمن أعمال السنة، مع الاحتفاظ بالسجلات الخاصة به للرجوع إليها عند الحاجة.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ STAGES ═══════════════ -->
+<div class="section" id="tab-stages">
+  <div class="sec-title">🏫 التوزيع حسب المراحل الدراسية</div>
+
+  <!-- PRIMARY -->
+  <div class="card" style="border-top:5px solid #1565c0">
+    <div class="card-title" style="color:#1565c0;font-size:18px">🔵 المرحلة الابتدائية — Primary Stage</div>
+    <div style="margin-bottom:14px;font-size:13.5px;color:var(--muted)">الصفوف: الثالث — الرابع — الخامس — السادس</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:right;min-width:200px">بند الاختبار</th>
+            <th class="stage-primary">جازان / الحدود الشمالية<br><small>3rd–6th Grade</small></th>
+            <th class="stage-primary sub-col">تبوك<br><small>3rd–4th Grade</small></th>
+            <th class="stage-primary sub-col">تبوك<br><small>5th–6th Grade</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">General Questions — الأسئلة العامة</td>
+              <td class="val-p">٧</td><td class="val-p">٨</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Controlled Writing — الكتابة الموجهة<br><small style="color:#aaa;font-size:11px">(تبوك فقط)</small></td>
+              <td class="dash">—</td><td class="val-p">٧</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition — التعبير الموجه</td>
+              <td class="val-p">٧</td><td class="dash">—</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Free Composition — التعبير الحر</td>
+              <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Comprehension — الفهم القرائي</td>
+              <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Short Sentences — قراءة الجمل</td>
+              <td class="val-p">٧</td><td class="val-p">٥</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar — القواعد اللغوية</td>
+              <td class="val-p">٧</td><td class="val-p">٧</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary — المفردات</td>
+              <td class="val-p">٧</td><td class="val-p">٨</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Orthography / Spelling — الإملاء</td>
+              <td class="val-p">٥</td><td class="val-p">٥</td><td class="val-p">٥</td></tr>
+          <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td><td>٤٠</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:#e3f2fd;border-radius:10px;font-size:13px;line-height:1.8;color:#1a3a5c">
+      <strong>ملاحظات الابتدائية:</strong> درجة الاختبار ٤٠. لا يوجد فهم قرائي خارج الكتاب ولا تعبير حر. تبوك تُميّز بين الصفوف ٣–٤ والصفوف ٥–٦ وتضيف بند Controlled Writing للصفوف الدنيا. يُخصص نصف الدرجة (½) لكل فقرة في الإملاء.
+    </div>
+  </div>
+
+  <!-- INTERMEDIATE -->
+  <div class="card" style="border-top:5px solid #2e7d32">
+    <div class="card-title" style="color:#2e7d32;font-size:18px">🟢 المرحلة المتوسطة — Intermediate Stage</div>
+    <div style="margin-bottom:14px;font-size:13.5px;color:var(--muted)">الصفوف: الأول — الثاني — الثالث</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:right;min-width:200px">بند الاختبار</th>
+            <th class="stage-intermediate">جازان / الحدود الشمالية</th>
+            <th class="stage-intermediate">تبوك</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">General Questions — الأسئلة العامة</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition — التعبير الموجه</td><td class="val-i">٨</td><td class="val-i">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Free Composition — التعبير الحر</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Comprehension — الفهم القرائي</td><td class="val-i">٩</td><td class="val-i">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Short Sentences — قراءة الجمل</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar — القواعد اللغوية</td><td class="val-i">٩</td><td class="val-i">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary — المفردات</td><td class="val-i">٩</td><td class="val-i">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Orthography / Spelling — الإملاء</td><td class="val-i">٥</td><td class="val-i">٥</td></tr>
+          <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:#e8f5e9;border-radius:10px;font-size:13px;line-height:1.8;color:#1a3a5c">
+      <strong>ملاحظات المتوسطة:</strong> توزيع موحد بين الإدارات. يختفي بند الأسئلة العامة وقراءة الجمل القصيرة ويُعوَّض بالفهم القرائي (٩ درجات) من نص خارج الكتاب. التعبير الموجه يتطلب مقطعاً متكاملاً لا يقل عن أربع جمل.
+    </div>
+  </div>
+
+  <!-- SECONDARY -->
+  <div class="card" style="border-top:5px solid #6a1b9a">
+    <div class="card-title" style="color:#6a1b9a;font-size:18px">🟣 المرحلة الثانوية — Secondary Stage</div>
+    <div style="margin-bottom:14px;font-size:13.5px;color:var(--muted)">الصفوف: الأول — الثاني — الثالث</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:right;min-width:200px">بند الاختبار</th>
+            <th class="stage-secondary">جازان / الحدود الشمالية</th>
+            <th class="stage-secondary">تبوك</th>
+            <th class="stage-secondary">جدة (مقترح)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">General Questions — الأسئلة العامة</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition — التعبير الموجه</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Free Composition — التعبير الحر</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٥</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Comprehension — الفهم القرائي</td><td class="val-s">٨</td><td class="val-s">٨</td><td style="font-weight:900;color:#c62828">١٠</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Short Sentences — قراءة الجمل</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar — القواعد اللغوية</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary — المفردات</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Orthography / Spelling — الإملاء</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+          <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td><td>٤٠</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:#f3e5f5;border-radius:10px;font-size:13px;line-height:1.8;color:#1a3a5c">
+      <strong>ملاحظة جدة:</strong> إدارة تقويم الأداء المعرفي والمهاري في محافظة جدة اقترحت رفع وزن الفهم القرائي إلى ١٠ درجات بدلاً من ٨، مع تعديل التعبير الموجه إلى ٧ والحر إلى ٥، وذلك لمزيد من الشمولية في تقييم مهارة القراءة لدى طالب الثانوية.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ REGIONS ═══════════════ -->
+<div class="section" id="tab-regions">
+  <div class="sec-title">📍 الإدارات التعليمية</div>
+
+  <!-- جازان + الحدود الشمالية -->
+  <div class="region-card">
+    <div class="region-header" style="background:linear-gradient(135deg,#1565c0,#1e88e5)" onclick="toggleRegion(this)">
+      <div class="region-badge" style="background:rgba(255,255,255,.2)">🌊</div>
+      <div>
+        <div class="region-name-ar">جازان — الحدود الشمالية</div>
+        <div class="region-meta">توزيع مشترك — ثلاث مراحل</div>
+      </div>
+      <div class="region-toggle open">▼</div>
+    </div>
+    <div class="region-body">
+      <div class="tbl-wrap" style="margin-top:16px">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align:right;min-width:190px">بند الاختبار</th>
+              <th class="stage-primary">الابتدائية<br><small>ثالث–سادس</small></th>
+              <th class="stage-intermediate">المتوسطة<br><small>أول–ثالث</small></th>
+              <th class="stage-secondary">الثانوية<br><small>أول–ثالث</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="text-align:right;font-weight:700">General Questions</td><td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Guided Composition</td><td class="val-p">٧</td><td class="val-i">٨</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Free Composition</td><td class="dash">—</td><td class="dash">—</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Reading Comprehension</td><td class="dash">—</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Reading Short Sentences</td><td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Grammar</td><td class="val-p">٧</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Vocabulary</td><td class="val-p">٧</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Orthography / Spelling</td><td class="val-p">٥</td><td class="val-i">٥</td><td class="dash">—</td></tr>
+            <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td><td>٤٠</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- تبوك -->
+  <div class="region-card">
+    <div class="region-header" style="background:linear-gradient(135deg,#2e7d32,#43a047)" onclick="toggleRegion(this)">
+      <div class="region-badge" style="background:rgba(255,255,255,.2)">🏜️</div>
+      <div>
+        <div class="region-name-ar">تبوك</div>
+        <div class="region-meta">تقسيم خاص للابتدائية — الإدارة العامة للتعليم بتبوك</div>
+      </div>
+      <div class="region-toggle open">▼</div>
+    </div>
+    <div class="region-body">
+      <div style="margin-top:16px;padding:12px 16px;background:#fff8e1;border-radius:10px;font-size:13px;color:#e65100;font-weight:700;border-right:4px solid #fb8c00">
+        ⚡ تميُّز تبوك: تُقسّم المرحلة الابتدائية إلى فئتين (٣–٤) و(٥–٦) وتضيف بند Controlled Writing في الصفوف الدنيا.
+      </div>
+      <div class="tbl-wrap" style="margin-top:16px">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align:right;min-width:190px">بند الاختبار</th>
+              <th class="stage-primary sub-col">الابتدائية<br>ثالث–رابع</th>
+              <th class="stage-primary sub-col">الابتدائية<br>خامس–سادس</th>
+              <th class="stage-intermediate">المتوسطة<br>أول–ثالث</th>
+              <th class="stage-secondary">الثانوية<br>أول–ثالث</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="text-align:right;font-weight:700">General Questions</td><td class="val-p">٨</td><td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Controlled Writing ⭐</td><td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Guided Composition</td><td class="dash">—</td><td class="val-p">٧</td><td class="val-i">٨</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Free Composition</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Reading Comprehension</td><td class="dash">—</td><td class="dash">—</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Reading Short Sentences</td><td class="val-p">٥</td><td class="val-p">٧</td><td class="dash">—</td><td class="dash">—</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Grammar</td><td class="val-p">٧</td><td class="val-p">٧</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Vocabulary</td><td class="val-p">٨</td><td class="val-p">٧</td><td class="val-i">٩</td><td class="val-s">٨</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Orthography / Spelling</td><td class="val-p">٥</td><td class="val-p">٥</td><td class="val-i">٥</td><td class="dash">—</td></tr>
+            <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td><td>٤٠</td><td>٤٠</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- جدة -->
+  <div class="region-card">
+    <div class="region-header" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)" onclick="toggleRegion(this)">
+      <div class="region-badge" style="background:rgba(255,255,255,.2)">🏙️</div>
+      <div>
+        <div class="region-name-ar">جدة</div>
+        <div class="region-meta">إدارة تقويم الأداء المعرفي والمهاري — مقترح للثانوية</div>
+      </div>
+      <div class="region-toggle open">▼</div>
+    </div>
+    <div class="region-body">
+      <div style="margin-top:16px;padding:14px 18px;background:#f3e5f5;border-radius:10px;font-size:13.5px;line-height:1.85;color:#1a3a5c;border-right:4px solid #6a1b9a">
+        <strong>📢 رسالة الإدارة:</strong> انطلاقاً من الحرص على شمولية عناصر التقويم الختامي لمادة اللغة الإنجليزية لكافة مهارات اللغة على المرحلة الثانوية، وحيث إن مهارة الفهم القرائي (Reading Comprehension) تمثل جانباً أساسياً في تقويم نواتج التعلم اللغوي إذ تُعدّ من المهارات الجوهرية التي تعكس قدرة الطالب على الفهم والتحليل والاستنتاج، وحيث تزخر مناهج الثانوية بالمفردات الغنية والمصطلحات الأكاديمية والقواعد اللغوية المتقدمة، مما يستدعي رفع وزنها النسبي في التقييم.
+      </div>
+      <div class="tbl-wrap" style="margin-top:16px">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align:right;min-width:200px">بند الاختبار</th>
+              <th class="stage-secondary">الثانوية — المقترح</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="text-align:right;font-weight:700">Guided Composition — التعبير الموجه</td><td class="val-s">٧</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Free Composition — التعبير الحر</td><td class="val-s">٥</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Reading Comprehension — الفهم القرائي</td><td style="font-weight:900;color:#c62828;font-size:15px">١٠</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Grammar — القواعد اللغوية</td><td class="val-s">٩</td></tr>
+            <tr><td style="text-align:right;font-weight:700">Vocabulary — المفردات</td><td class="val-s">٩</td></tr>
+            <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ COMPARE ═══════════════ -->
+<div class="section" id="tab-compare">
+  <div class="sec-title">📊 مقارنة الإدارات — ثلاث مراحل</div>
+
+  <!-- Primary comparison -->
+  <div class="card">
+    <div class="card-title" style="color:#1565c0">🔵 مقارنة المرحلة الابتدائية</div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="item-col" style="text-align:right;background:#37474f">بند الاختبار</th>
+            <th class="stage-primary">جازان / الحدود الشمالية<br><small>ثالث–سادس</small></th>
+            <th class="stage-primary sub-col">تبوك<br><small>ثالث–رابع</small></th>
+            <th class="stage-primary sub-col">تبوك<br><small>خامس–سادس</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">General Questions</td><td class="val-p">٧</td><td class="val-p">٨</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Controlled Writing</td><td class="dash">—</td><td class="val-p">٧</td><td class="dash">—</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition</td><td class="val-p">٧</td><td class="dash">—</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Short Sentences</td><td class="val-p">٧</td><td class="val-p">٥</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar</td><td class="val-p">٧</td><td class="val-p">٧</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary</td><td class="val-p">٧</td><td class="val-p">٨</td><td class="val-p">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Orthography</td><td class="val-p">٥</td><td class="val-p">٥</td><td class="val-p">٥</td></tr>
+          <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td><td>٤٠</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Intermediate comparison -->
+  <div class="card">
+    <div class="card-title" style="color:#2e7d32">🟢 مقارنة المرحلة المتوسطة</div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="item-col" style="text-align:right;background:#37474f">بند الاختبار</th>
+            <th class="stage-intermediate">جازان / الحدود الشمالية</th>
+            <th class="stage-intermediate">تبوك</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition</td><td class="val-i">٨</td><td class="val-i">٨</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Comprehension</td><td class="val-i">٩</td><td class="val-i">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar</td><td class="val-i">٩</td><td class="val-i">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary</td><td class="val-i">٩</td><td class="val-i">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Orthography</td><td class="val-i">٥</td><td class="val-i">٥</td></tr>
+          <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;padding:12px 16px;background:#e8f5e9;border-radius:10px;font-size:13px;color:#2e7d32;font-weight:700">✅ التوزيع موحد في المرحلة المتوسطة بين جميع الإدارات المُوثَّقة.</div>
+  </div>
+
+  <!-- Secondary comparison -->
+  <div class="card">
+    <div class="card-title" style="color:#6a1b9a">🟣 مقارنة المرحلة الثانوية</div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="item-col" style="text-align:right;background:#37474f">بند الاختبار</th>
+            <th class="stage-secondary">جازان / الحدود الشمالية</th>
+            <th class="stage-secondary">تبوك</th>
+            <th class="stage-secondary">جدة (مقترح)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:right;font-weight:700">Guided Composition</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٧</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Free Composition</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٥</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Reading Comprehension</td><td class="val-s">٨</td><td class="val-s">٨</td><td style="font-weight:900;color:#c62828;font-size:15px">١٠ ⬆</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Grammar</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٩</td></tr>
+          <tr><td style="text-align:right;font-weight:700">Vocabulary</td><td class="val-s">٨</td><td class="val-s">٨</td><td class="val-s">٩</td></tr>
+          <tr class="total-row"><td style="text-align:right">المجموع</td><td>٤٠</td><td>٤٠</td><td>٤٠</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;padding:12px 16px;background:#f3e5f5;border-radius:10px;font-size:13px;color:#6a1b9a;font-weight:600">📌 الفرق الوحيد: جدة ترفع درجة الفهم القرائي إلى ١٠ وتُعيد توزيع الدرجات على التعبير الموجه والحر.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ ITEMS ═══════════════ -->
+<div class="section" id="tab-items">
+  <div class="sec-title">📝 وصف بنود الاختبار ومحدداتها</div>
+
+  <div class="item-desc-grid">
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#1565c0,#1e88e5)">
+        <div><div class="item-card-name">General Questions</div><div class="item-card-name-ar">الأسئلة العامة</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس قدرة الطالب على الفهم العام للمفردات والأفكار والموضوعات والتراكيب المألوفة في الدروس من خلال طرح أسئلة قصيرة ومتنوعة أو اختيار من متعدد أو إكمال لجمل بسيطة بما يتوافق مع المحتوى والأهداف.</div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">ابتدائي: ٧–٨</div>
+          <div class="mark-chip mark-i" style="background:#f5f5f5;color:#bbb">متوسط: —</div>
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">ثانوي: —</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#00695c,#00897b)">
+        <div><div class="item-card-name">Controlled Writing</div><div class="item-card-name-ar">الكتابة الموجهة (تبوك — ثالث/رابع)</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">بند خاص بتبوك للصفوف الثالث والرابع. يقيس قدرة الطالب على الكتابة الموجهة وفق إطار محدد يُناسب مستوى الصف الدراسي.</div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">تبوك ثالث/رابع: ٧</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#2e7d32,#43a047)">
+        <div><div class="item-card-name">Guided Composition</div><div class="item-card-name-ar">التعبير الموجه</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس قدرة الطالب على كتابة تعبير مستند إلى صور أو كلمات أو أسئلة مساعدة أو إكمال مقطع قصير. يُقاس من خلاله استخدام التراكيب الصحيحة. لا يقل التعبير المكتوب عن أربع جمل في الابتدائية ومقطع متكامل في المتوسطة والثانوية. تُخصص الدرجات لتشمل البعدين اللفظي والمعرفي (سلامة المفردات — أدوات الترقيم — ترابط الأفكار — الاتساق مع الموضوع).</div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">ابتدائي: ٧</div>
+          <div class="mark-chip mark-i">متوسط: ٨</div>
+          <div class="mark-chip mark-s">ثانوي: ٧–٨</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#e65100,#fb8c00)">
+        <div><div class="item-card-name">Free Composition</div><div class="item-card-name-ar">التعبير الحر</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس قدرة الطالب على كتابة تعبير مستند إلى كلمات أو أسئلة مساعدة لموضوع حر يتناسب مع أهداف المقرر وموضوعاته، بحيث تُقاس من خلاله قدرته على استخدام التراكيب الصحيحة والتعبير عن أفكاره. تُخصص الدرجات لتشمل البعدين اللفظي والمعرفي.</div>
+        <div class="marks-row">
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">ابتدائي: —</div>
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">متوسط: —</div>
+          <div class="mark-chip mark-s">ثانوي: ٥–٨</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)">
+        <div><div class="item-card-name">Reading Comprehension</div><div class="item-card-name-ar">الفهم القرائي</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس قدرة الطالب على قراءة قطعة فهم من خارج الكتاب وتكون مناسبة لأهداف وموضوعات المرحلة الدراسية. تتضمن أسئلة تقيس مدى فهمه لما قرأه واستيعابه للمعنى العام للنص.</div>
+        <div class="marks-row">
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">ابتدائي: —</div>
+          <div class="mark-chip mark-i">متوسط: ٩</div>
+          <div class="mark-chip mark-s">ثانوي: ٨–١٠</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#1565c0,#42a5f5)">
+        <div><div class="item-card-name">Reading Short Sentences</div><div class="item-card-name-ar">قراءة الجمل القصيرة</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس قدرة الطالب على قراءة قطعة فهم قصيرة من خارج الكتاب وتكون مناسبة لمرحلته الدراسية، تتضمن أسئلة تقيس مدى فهمه لما قرأه واستيعابه للمعنى العام للنص.</div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">ابتدائي: ٥–٧</div>
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">متوسط: —</div>
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">ثانوي: —</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#b71c1c,#e53935)">
+        <div><div class="item-card-name">Grammar</div><div class="item-card-name-ar">القواعد اللغوية</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس قدرة الطالب على تطبيق القواعد التي تم تدريسها من خلال أسئلة تطبيقية مثل اختيار الإجابة الصحيحة أو إكمال الجملة أو تنفيذ ما يطلب ما بين الأقواس.</div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">ابتدائي: ٧</div>
+          <div class="mark-chip mark-i">متوسط: ٩</div>
+          <div class="mark-chip mark-s">ثانوي: ٨–٩</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#00695c,#26a69a)">
+        <div><div class="item-card-name">Vocabulary</div><div class="item-card-name-ar">المفردات</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يقيس مدى اكتساب الطالب للمفردات الأساسية في المنهج من خلال مهام مثل مطابقة الكلمة بالصورة، أو تعريفها، أو استخدامها في جملة صحيحة، مع مراعاة مناسبة استخدامها حسب المرحلة (ابتدائي–متوسط–ثانوي). يجب اختيار الصور المناسبة وضوحها في الطباعة إن أُدرجت.</div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">ابتدائي: ٧–٨</div>
+          <div class="mark-chip mark-i">متوسط: ٩</div>
+          <div class="mark-chip mark-s">ثانوي: ٨–٩</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="item-card-head" style="background:linear-gradient(135deg,#4e342e,#795548)">
+        <div><div class="item-card-name">Orthography / Spelling</div><div class="item-card-name-ar">الإملاء</div></div>
+      </div>
+      <div class="item-card-body">
+        <div class="item-card-desc">يختلف هدف هذا السؤال عن سؤال المفردات (Vocabulary). يقيس قدرة الطالب على كتابة الكلمات إملائياً بشكل صحيح. مثل اختيار الحرف الصحيح للكلمة أو اختيار الكلمة الصحيحة إملائياً. تُختار الكلمات من المفردات الواردة في الوحدات الدراسية. <strong>يُخصص نصف الدرجة (½) لكل فقرة.</strong></div>
+        <div class="marks-row">
+          <div class="mark-chip mark-p">ابتدائي: ٥</div>
+          <div class="mark-chip mark-i">متوسط: ٥</div>
+          <div class="mark-chip" style="background:#f5f5f5;color:#bbb;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:800">ثانوي: —</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ INSTRUCTIONS ═══════════════ -->
+<div class="section" id="tab-instructions">
+  <div class="sec-title">📌 الملاحظات والإرشادات العامة</div>
+
+  <div class="card">
+    <div class="inst-group">
+      <div class="inst-phase" style="background:#e3f2fd">📋 المتطلبات الإلزامية عند إعداد الاختبار</div>
+      <ul class="inst-list">
+        <li class="inst-item"><div class="inst-num">١</div>لا يوجد اختبار شفهي نهائي (استماع ومحادثة) في جميع المراحل الدراسية (ابتدائي–متوسط–ثانوي). يتم تنفيذه كتقويم مستمر خلال الفصل الدراسي وترصد درجاته ضمن أعمال السنة مع الاحتفاظ بالسجلات الخاصة به.</li>
+        <li class="inst-item"><div class="inst-num">٢</div>سلامة إعداد أسئلة الاختبار وتطبيق مواصفات الاختبار الجيد.</li>
+        <li class="inst-item"><div class="inst-num">٣</div>التقيد بالمحتوى المقدم لكل صف دراسي والأهداف المحددة للصف.</li>
+        <li class="inst-item"><div class="inst-num">٤</div>شمولية الاختبار لكتاب الطالب والنشاط على حد سواء.</li>
+        <li class="inst-item"><div class="inst-num">٥</div>التقيد بجدول المواصفات.</li>
+        <li class="inst-item"><div class="inst-num">٦</div>تحديد ما لا يقل عن <strong>أربع فقرات</strong> لسؤال الاختيار من متعدد.</li>
+        <li class="inst-item"><div class="inst-num">٧</div>توثيق جميع نتائج ونماذج الأسئلة للمادة في سجلات أعمال الاختبارات مع الحرص على دقة رصد الدرجات في نظام نور.</li>
+        <li class="inst-item"><div class="inst-num">٨</div>التقيد بجميع التعاميم والأدلة واللوائح المنظمة للعمل وكل ما يخص أعمال الاختبارات وتقويم الطالب.</li>
+      </ul>
+    </div>
+
+    <div class="inst-group" style="margin-top:24px">
+      <div class="inst-phase" style="background:#fff3e0">🎯 المحددات الخاصة ببنود الاختبار</div>
+      <ul class="inst-list">
+        <li class="inst-item"><div class="inst-num" style="background:#1565c0">GQ</div><strong>General Questions:</strong> أسئلة قصيرة ومتنوعة تقيس الفهم العام للمفردات والتراكيب المألوفة في الدروس. يمكن أن تكون اختياراً من متعدد أو إكمالاً لجمل بسيطة.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#2e7d32">GC</div><strong>Guided Composition:</strong> لا يقل التعبير المكتوب عن أربع جمل للابتدائية ومقطع متكامل للمتوسطة والثانوية. تُخصص الدرجات لتشمل البعدين اللفظي والمعرفي.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#e65100">FC</div><strong>Free Composition:</strong> موضوع حر يتناسب مع أهداف المقرر. يُقاس من خلاله استخدام التراكيب الصحيحة والتعبير عن الأفكار. للثانوية فقط.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#6a1b9a">RC</div><strong>Reading Comprehension:</strong> قطعة من خارج الكتاب مناسبة لأهداف المرحلة. للمتوسطة والثانوية فقط.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#1e88e5">RS</div><strong>Reading Short Sentences:</strong> قطعة فهم قصيرة مناسبة للمرحلة. للمرحلة الابتدائية فقط.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#b71c1c">GR</div><strong>Grammar:</strong> تطبيق القواعد المدرَّسة عبر اختيار الإجابة الصحيحة أو إكمال الجملة أو تنفيذ ما يطلب ما بين الأقواس.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#00695c">VO</div><strong>Vocabulary:</strong> مطابقة الكلمة بالصورة أو تعريفها أو استخدامها في جملة صحيحة. ضرورة اختيار الصور المناسبة ووضوحها في الطباعة.</li>
+        <li class="inst-item"><div class="inst-num" style="background:#4e342e">SP</div><strong>Orthography / Spelling:</strong> الكلمات تُختار من مفردات الوحدات الدراسية. يُخصص <strong>نصف الدرجة (½)</strong> لكل فقرة. هدفه يختلف عن Vocabulary.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="margin-bottom:10px;font-size:15px;font-weight:700;color:var(--primary)">
+    توزيع درجات اختبار نهاية الفصل — اللغة الإنجليزية ١٤٤٧ هـ
+  </div>
+  <div class="designer-line">🎨 تصميم د / فواز &nbsp;—&nbsp; تفضل للمزيد هنا</div>
+  <div style="margin-top:8px">
+    <a class="tg-btn" href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.008 9.455c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.871.766z"/></svg>
+      للمزيد من التصاميم — تيليجرام
+    </a>
+  </div>
+</div>
+
+<script>
+  function showTab(id, el) {
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    if(event&&event.currentTarget) event.currentTarget.classList.add('active');
+  }
+
+  function toggleRegion(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.region-toggle');
+    if(body.classList.contains('hidden')){
+      body.classList.remove('hidden');
+      arrow.classList.add('open');
+    } else {
+      body.classList.add('hidden');
+      arrow.classList.remove('open');
+    }
+  }
+
+  // Tab click handling
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
