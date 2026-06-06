@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جداول مواصفات الرياضيات — الفصل الدراسي الثاني ١٤٤٧هـ</title>
+<style>
+:root{
+  --primary:#1a3a5c;--secondary:#1e88e5;--accent:#00bcd4;
+  --gold:#f5a623;--green:#2e7d32;--glight:#43a047;
+  --blue:#1565c0;--blight:#1e88e5;
+  --purple:#6a1b9a;--red:#c62828;--orange:#e65100;
+  --teal:#00695c;--indigo:#283593;
+  --bg:#f0f4f8;--card:#fff;--text:#1a2332;--muted:#607d8b;
+  --border:#e0e8f0;--shadow:0 4px 24px rgba(26,58,92,.10);--radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Cairo',Arial,sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d47a1 0%,#1565c0 40%,#00695c 100%);padding:48px 24px 68px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;padding:6px 22px;font-size:13px;margin-bottom:16px;backdrop-filter:blur(8px)}
+.hero h1{color:#fff;font-size:clamp(20px,4vw,34px);font-weight:900;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.hero h2{color:rgba(255,255,255,.82);font-size:clamp(13px,2vw,17px);font-weight:400;margin-bottom:28px}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;z-index:1}
+.chip{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+
+/* NAV */
+.nav-wrap{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1280px;margin:0 auto}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:14px 20px;color:rgba(255,255,255,.6);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-size:13.5px;font-weight:700;transition:all .25s;display:flex;align-items:center;gap:6px;user-select:none}
+.nav-tab:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
+.nav-tab.active{color:#fff;border-bottom-color:var(--accent);background:rgba(0,188,212,.12)}
+
+/* CONTAINER */
+.container{max-width:1280px;margin:0 auto;padding:32px 20px 72px}
+
+/* SECTIONS */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sec-title{font-size:22px;font-weight:900;color:var(--primary);margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--accent);display:flex;align-items:center;gap:10px}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:24px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,58,92,.14)}
+.card-title{font-size:16px;font-weight:800;color:var(--primary);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-bottom:26px}
+.stat{background:var(--card);border-radius:var(--radius);padding:22px 14px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--accent);transition:transform .2s}
+.stat:hover{transform:translateY(-3px)}
+.stat.gold{border-top-color:var(--gold)}.stat.green{border-top-color:var(--green)}
+.stat.purple{border-top-color:var(--purple)}.stat.orange{border-top-color:var(--orange)}
+.stat.teal{border-top-color:var(--teal)}.stat.blue{border-top-color:var(--blue)}
+.stat-val{font-size:32px;font-weight:900;color:var(--primary);line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11.5px;color:var(--muted);font-weight:700}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px;min-width:480px}
+th{background:var(--primary);color:#fff;padding:13px 14px;text-align:center;font-weight:700;font-size:12.5px}
+th.th-r{text-align:right}
+th.th-blue{background:#1565c0}th.th-green{background:#2e7d32}
+th.th-g2{background:#1976d2;font-size:11px}th.th-g3{background:#388e3c;font-size:11px}
+th.th-dark{background:#263238}
+td{padding:11px 14px;text-align:center;border-bottom:1px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#f8fafd}
+tr:hover td{background:#e8f4fd;transition:background .15s}
+.tr-total td{background:#e3f2fd !important;font-weight:900;color:var(--primary)}
+td.lbl{text-align:right;font-weight:700;font-size:13px}
+td.pct{font-size:11px;color:var(--muted)}
+.val-k{color:#1565c0;font-weight:800}  /* معرفة */
+.val-t{color:#2e7d32;font-weight:800}  /* تطبيق */
+.val-s{color:#c62828;font-weight:800}  /* استدلال */
+.val-m{color:#6a1b9a;font-weight:800}  /* مجموع */
+
+/* GRADE TABS */
+.grade-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.grade-tab{padding:8px 18px;border-radius:50px;cursor:pointer;font-size:13px;font-weight:700;border:2px solid transparent;transition:all .2s;user-select:none}
+.grade-tab.g3{background:#e3f2fd;color:#1565c0;border-color:#1565c0}
+.grade-tab.g3.active,.grade-tab.g3:hover{background:#1565c0;color:#fff}
+.grade-tab.g4{background:#e8f5e9;color:#2e7d32;border-color:#2e7d32}
+.grade-tab.g4.active,.grade-tab.g4:hover{background:#2e7d32;color:#fff}
+.grade-tab.g6{background:#fff3e0;color:#e65100;border-color:#e65100}
+.grade-tab.g6.active,.grade-tab.g6:hover{background:#e65100;color:#fff}
+.grade-tab.gm3{background:#f3e5f5;color:#6a1b9a;border-color:#6a1b9a}
+.grade-tab.gm3.active,.grade-tab.gm3:hover{background:#6a1b9a;color:#fff}
+
+/* GRADE PANEL */
+.grade-panel{display:none}
+.grade-panel.active{display:block;animation:fadeIn .3s ease}
+
+/* PROGRESS BAR */
+.pbar-wrap{display:flex;border-radius:8px;overflow:hidden;height:22px;width:100%;background:#f0f0f0}
+.pbar-k{background:#1565c0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;transition:width .6s}
+.pbar-t{background:#2e7d32;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;transition:width .6s}
+.pbar-s{background:#c62828;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;transition:width .6s}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.lchip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700}
+.ldot{width:10px;height:10px;border-radius:50%}
+
+/* COMPARE CARD */
+.compare-grade{margin-bottom:12px;padding:16px;border-radius:12px;border-right:5px solid;background:#fafcff}
+
+/* FOOTER */
+.footer{text-align:center;padding:28px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+.tg-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0088cc,#00b4d8);color:#fff;padding:11px 26px;border-radius:50px;text-decoration:none;font-weight:800;font-size:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,136,204,.35)}
+.tg-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,136,204,.45);text-decoration:none}
+.designer-line{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px}
+
+/* INFO BOX */
+.info-box{padding:14px 18px;border-radius:10px;font-size:13.5px;line-height:1.85;margin-bottom:18px}
+.info-blue{background:#e3f2fd;border-right:4px solid #1565c0;color:#1a3a5c}
+.info-green{background:#e8f5e9;border-right:4px solid #2e7d32;color:#1a3a5c}
+.info-orange{background:#fff3e0;border-right:4px solid #e65100;color:#1a3a5c}
+.info-purple{background:#f3e5f5;border-right:4px solid #6a1b9a;color:#1a3a5c}
+.info-gold{background:#fff8e1;border-right:4px solid #f5a623;color:#1a3a5c}
+
+/* CHAPTER HEADER */
+.chap-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:10px;margin-bottom:12px}
+.chap-badge{padding:4px 14px;border-radius:50px;font-size:12px;font-weight:800;color:#fff}
+
+@media(max-width:640px){
+  .hero{padding:28px 14px 48px}
+  .container{padding:18px 12px 56px}
+  .card{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📐 جداول المواصفات — الرياضيات</div>
+  <h1>جداول مواصفات اختبار مادة الرياضيات</h1>
+  <h2>الفصل الدراسي الثاني — ١٤٤٧ هـ</h2>
+  <div class="hero-chips">
+    <div class="chip">📐 الرياضيات</div>
+    <div class="chip">🏫 ابتدائي ومتوسط</div>
+    <div class="chip">📋 ٤ صفوف دراسية</div>
+    <div class="chip">⭐ ٤٠ درجة لكل صف</div>
+    <div class="chip">📅 الفصل الثاني ١٤٤٧ هـ</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs" id="mainNav">
+    <div class="nav-tab active" onclick="showMain('overview')">📊 نظرة عامة</div>
+    <div class="nav-tab" onclick="showMain('primary')">🔵 المرحلة الابتدائية</div>
+    <div class="nav-tab" onclick="showMain('intermediate')">🟢 المرحلة المتوسطة</div>
+    <div class="nav-tab" onclick="showMain('compare')">📈 مقارنة المراحل</div>
+    <div class="nav-tab" onclick="showMain('objectives')">🎯 توزيع الأهداف</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+<div class="section active" id="sec-overview">
+  <div class="sec-title">📊 نظرة عامة — مادة الرياضيات الفصل الثاني</div>
+
+  <div class="stats-grid">
+    <div class="stat gold"><div class="stat-val">٤٠</div><div class="stat-lbl">درجة الاختبار</div></div>
+    <div class="stat blue"><div class="stat-val">٤</div><div class="stat-lbl">صفوف دراسية</div></div>
+    <div class="stat green"><div class="stat-val">٢</div><div class="stat-lbl">مراحل دراسية</div></div>
+    <div class="stat"><div class="stat-val">٣٣–٣٥</div><div class="stat-lbl">إجمالي الأسئلة</div></div>
+    <div class="stat purple"><div class="stat-val">٣</div><div class="stat-lbl">مستويات أهداف</div></div>
+    <div class="stat teal"><div class="stat-val">٥–٦</div><div class="stat-lbl">فصول المقرر</div></div>
+  </div>
+
+  <!-- Overview comparison table -->
+  <div class="card">
+    <div class="card-title">📋 ملخص مجاميع الأسئلة والدرجات حسب المستوى — كل الصفوف</div>
+    <div class="legend">
+      <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة</div>
+      <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+      <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+      <div class="lchip" style="background:#f3e5f5"><div class="ldot" style="background:#6a1b9a"></div>مجموع</div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:180px">الصف الدراسي</th>
+            <th>المرحلة</th>
+            <th>الحصص</th>
+            <th class="th-blue">معرفة<br><small>أس / در</small></th>
+            <th class="th-green">تطبيق<br><small>أس / در</small></th>
+            <th style="background:#c62828">استدلال<br><small>أس / در</small></th>
+            <th style="background:#6a1b9a">مجموع<br><small>أس / در</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">الصف الثالث ابتدائي</td>
+            <td><span style="background:#1565c0;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>٩٨</td>
+            <td class="val-k">—<br><small>١٣ / ١٤</small></td>
+            <td class="val-t">—<br><small>١٥ / ١٩</small></td>
+            <td class="val-s">—<br><small>٧ / ٧</small></td>
+            <td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف الرابع ابتدائي</td>
+            <td><span style="background:#1565c0;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>١٠٤</td>
+            <td class="val-k">٣٩٪<br><small>١٣ / ١٤</small></td>
+            <td class="val-t">٤٧٪<br><small>١٥ / ١٩</small></td>
+            <td class="val-s">١٤٪<br><small>٧ / ٧</small></td>
+            <td class="val-m">٣٥ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف السادس ابتدائي</td>
+            <td><span style="background:#e65100;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">ابتدائي</span></td>
+            <td>١٠٢</td>
+            <td class="val-k">٣٧٪<br><small>١٢ / ١٥</small></td>
+            <td class="val-t">٤٢٪<br><small>١٥ / ١٧</small></td>
+            <td class="val-s">٢٠٪<br><small>٦ / ٨</small></td>
+            <td class="val-m">٣٣ / ٤٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الصف الثالث متوسط</td>
+            <td><span style="background:#2e7d32;color:#fff;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700">متوسط</span></td>
+            <td>١٠٢</td>
+            <td class="val-k">٣٠٪<br><small>١١ / ١٢</small></td>
+            <td class="val-t">٤٥٪<br><small>١٥ / ١٨</small></td>
+            <td class="val-s">٢٥٪<br><small>٨ / ١٠</small></td>
+            <td class="val-m">٣٤ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Distribution overview -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px">
+    <div class="card" style="border-top:5px solid #1565c0;margin-bottom:0">
+      <div class="card-title" style="color:#1565c0">🔵 الصف الثالث ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#1565c0;font-weight:700">معرفة ١٤ / ٤٠</span>
+          <span>٣٥٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:35%">٣٥٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#2e7d32;font-weight:700">تطبيق ١٩ / ٤٠</span>
+          <span>٤٧٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:47%">٤٧٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#c62828;font-weight:700">استدلال ٧ / ٤٠</span>
+          <span>١٨٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:18%">١٨٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #388e3c;margin-bottom:0">
+      <div class="card-title" style="color:#388e3c">🔵 الصف الرابع ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#1565c0;font-weight:700">معرفة ١٤ / ٤٠</span><span>٣٥٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:35%">٣٥٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#2e7d32;font-weight:700">تطبيق ١٩ / ٤٠</span><span>٤٧٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:47%">٤٧٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#c62828;font-weight:700">استدلال ٧ / ٤٠</span><span>١٨٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:18%">١٨٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #e65100;margin-bottom:0">
+      <div class="card-title" style="color:#e65100">🟠 الصف السادس ابتدائي — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#1565c0;font-weight:700">معرفة ١٥ / ٤٠</span><span>٣٧٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:37%">٣٧٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#2e7d32;font-weight:700">تطبيق ١٧ / ٤٠</span><span>٤٢٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:42%">٤٢٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#c62828;font-weight:700">استدلال ٨ / ٤٠</span><span>٢٠٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:20%">٢٠٪</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="border-top:5px solid #2e7d32;margin-bottom:0">
+      <div class="card-title" style="color:#2e7d32">🟢 الصف الثالث متوسط — توزيع الدرجات</div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#1565c0;font-weight:700">معرفة ١٢ / ٤٠</span><span>٣٠٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-k" style="width:30%">٣٠٪</div></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#2e7d32;font-weight:700">تطبيق ١٨ / ٤٠</span><span>٤٥٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-t" style="width:45%">٤٥٪</div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:#c62828;font-weight:700">استدلال ١٠ / ٤٠</span><span>٢٥٪</span>
+        </div>
+        <div class="pbar-wrap"><div class="pbar-s" style="width:25%">٢٥٪</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💡 قراءة في جداول المواصفات</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+      <div class="info-box info-blue" style="margin-bottom:0"><strong>مستوى المعرفة:</strong><br>يتراوح بين ٣٠٪ (الثالث متوسط) و٣٧٪ (السادس ابتدائي) من إجمالي الدرجات. يعكس حفظ الحقائق وتذكر المفاهيم الأساسية.</div>
+      <div class="info-box info-green" style="margin-bottom:0"><strong>مستوى التطبيق:</strong><br>يستحوذ على النسبة الأعلى في جميع الصفوف (٤٢–٤٧٪)، مما يعكس تركيز المنهج على تطبيق المفاهيم في مسائل من واقع الحياة.</div>
+      <div class="info-box" style="background:#ffebee;border-right:4px solid #c62828;color:#1a3a5c;margin-bottom:0"><strong>مستوى الاستدلال:</strong><br>يرتفع تدريجياً من الابتدائي إلى المتوسط (١٤–٢٥٪)، مما يدل على زيادة متطلبات التفكير الناقد مع المراحل الدراسية.</div>
+      <div class="info-box info-gold" style="margin-bottom:0"><strong>توزيع الأسئلة:</strong><br>يتناسب عدد أسئلة كل فصل مع عدد حصصه الدراسية بصورة متوازنة. الفصل الأكثر حصصاً يحصل على العدد الأكبر من الأسئلة.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PRIMARY ═══════════════════ -->
+<div class="section" id="sec-primary">
+  <div class="sec-title">🔵 المرحلة الابتدائية — جداول المواصفات</div>
+
+  <!-- Grade selector -->
+  <div class="grade-tabs">
+    <div class="grade-tab g3 active" onclick="showGrade('g3')">الصف الثالث ابتدائي</div>
+    <div class="grade-tab g4" onclick="showGrade('g4')">الصف الرابع ابتدائي</div>
+    <div class="grade-tab g6" onclick="showGrade('g6')">الصف السادس ابتدائي</div>
+  </div>
+
+  <!-- ── THIRD GRADE ── -->
+  <div class="grade-panel active" id="panel-g3">
+    <div class="info-box info-blue">
+      <strong>📋 الصف الثالث ابتدائي — الفترة الدراسية الثانية — ١٤٤٧ هـ</strong><br>
+      المادة: رياضيات &nbsp;|&nbsp; إجمالي الحصص: ٩٨ &nbsp;|&nbsp; إجمالي الأسئلة: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠
+    </div>
+
+    <!-- Summary bars -->
+    <div class="card">
+      <div class="card-title">📊 توزيع الدرجات الكلية — مستويات الأهداف</div>
+      <div style="display:grid;gap:12px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px">
+            <span style="color:#1565c0">معرفة — ١٤ درجة</span><span>٣٥٪</span>
+          </div>
+          <div class="pbar-wrap" style="height:28px"><div class="pbar-k" style="width:35%">١٤</div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px">
+            <span style="color:#2e7d32">تطبيق — ١٩ درجة</span><span>٤٧٪</span>
+          </div>
+          <div class="pbar-wrap" style="height:28px"><div class="pbar-t" style="width:47%">١٩</div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px">
+            <span style="color:#c62828">استدلال — ٧ درجة</span><span>١٨٪</span>
+          </div>
+          <div class="pbar-wrap" style="height:28px"><div class="pbar-s" style="width:18%">٧</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 جدول المواصفات — الصف الثالث ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r" style="min-width:160px">فصل المقرر</th>
+              <th>الحصص</th>
+              <th class="th-blue">معرفة<br><small>أسئلة / درجة</small></th>
+              <th class="th-green">تطبيق<br><small>أسئلة / درجة</small></th>
+              <th style="background:#c62828">استدلال<br><small>أسئلة / درجة</small></th>
+              <th style="background:#6a1b9a">المجموع<br><small>أسئلة / درجة</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lbl">الفصل (٦) — القسمة (١)</td><td>١٩</td>
+              <td class="val-k">٤ / ٤</td><td class="val-t">٢ / ٣</td><td class="val-s">١ / ١</td><td class="val-m">٧ / ٨</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٧) — القسمة (٢)</td><td>١٤</td>
+              <td class="val-k">١ / ٢</td><td class="val-t">٣ / ٣</td><td class="val-s">١ / ١</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٨) — القياس</td><td>٢١</td>
+              <td class="val-k">٣ / ٣</td><td class="val-t">٤ / ٥</td><td class="val-s">١ / ١</td><td class="val-m">٨ / ٩</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٩) — الأشكال الهندسية</td><td>١٥</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٢ / ٣</td><td class="val-s">١ / ١</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (١٠) — عرض البيانات وتفسيرها</td><td>١٥</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٢ / ٣</td><td class="val-s">١ / ١</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (١١) — الكسور والأعداد العشرية</td><td>١٤</td>
+              <td class="val-k">١ / ١</td><td class="val-t">٢ / ٢</td><td class="val-s">٢ / ٣</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr class="tr-total">
+              <td class="lbl">المجموع</td><td>٩٨</td>
+              <td>١٣ / ١٤</td><td>١٥ / ١٩</td><td>٧ / ٧</td><td>٣٥ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Chapter objectives -->
+    <div class="card">
+      <div class="card-title">🎯 عدد الأهداف التعليمية حسب المستوى — الثالث ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r" style="min-width:160px">فصل المقرر</th>
+              <th>الحصص</th>
+              <th class="th-blue">أهداف المعرفة</th>
+              <th class="th-green">أهداف التطبيق</th>
+              <th style="background:#c62828">أهداف الاستدلال</th>
+              <th style="background:#6a1b9a">المجموع</th>
+              <th style="background:#37474f">التوزيع النسبي</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lbl">الفصل (٦) — القسمة (١)</td><td>١٩</td>
+              <td class="val-k">٨</td><td class="val-t">٩</td><td class="val-s">١</td><td class="val-m">١٨</td>
+              <td>
+                <div class="pbar-wrap" style="height:16px">
+                  <div class="pbar-k" style="width:44%"></div>
+                  <div class="pbar-t" style="width:50%"></div>
+                  <div class="pbar-s" style="width:6%"></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٧) — القسمة (٢)</td><td>١٤</td>
+              <td class="val-k">٣</td><td class="val-t">١١</td><td class="val-s">٢</td><td class="val-m">١٦</td>
+              <td>
+                <div class="pbar-wrap" style="height:16px">
+                  <div class="pbar-k" style="width:19%"></div>
+                  <div class="pbar-t" style="width:69%"></div>
+                  <div class="pbar-s" style="width:12%"></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٨) — القياس</td><td>٢١</td>
+              <td class="val-k">٨</td><td class="val-t">٧</td><td class="val-s">٣</td><td class="val-m">١٨</td>
+              <td>
+                <div class="pbar-wrap" style="height:16px">
+                  <div class="pbar-k" style="width:44%"></div>
+                  <div class="pbar-t" style="width:39%"></div>
+                  <div class="pbar-s" style="width:17%"></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٩) — الأشكال الهندسية</td><td>١٥</td>
+              <td class="val-k">٤</td><td class="val-t">٧</td><td class="val-s">٣</td><td class="val-m">١٤</td>
+              <td>
+                <div class="pbar-wrap" style="height:16px">
+                  <div class="pbar-k" style="width:29%"></div>
+                  <div class="pbar-t" style="width:50%"></div>
+                  <div class="pbar-s" style="width:21%"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOURTH GRADE ── -->
+  <div class="grade-panel" id="panel-g4">
+    <div class="info-box info-green">
+      <strong>📋 الصف الرابع ابتدائي — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+      المادة: رياضيات &nbsp;|&nbsp; إجمالي الحصص: ١٠٤ &nbsp;|&nbsp; إجمالي الأسئلة: ٣٥ &nbsp;|&nbsp; درجة الاختبار: ٤٠
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 الأوزان النسبية الإجمالية — الصف الرابع ابتدائي</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:14px">
+        <div style="text-align:center;padding:16px;background:#e3f2fd;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#1565c0">٣٩٪</div>
+          <div style="font-size:13px;font-weight:700;color:#1565c0">مستوى المعرفة</div>
+          <div style="font-size:11px;color:#888">١٣ سؤال / ١٤ درجة</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#e8f5e9;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#2e7d32">مستوى التطبيق</div>
+          <div style="font-size:11px;color:#888">١٥ سؤال / ١٩ درجة</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#ffebee;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#c62828">١٤٪</div>
+          <div style="font-size:13px;font-weight:700;color:#c62828">مستوى الاستدلال</div>
+          <div style="font-size:11px;color:#888">٧ أسئلة / ٧ درجات</div>
+        </div>
+      </div>
+      <div class="pbar-wrap" style="height:32px">
+        <div class="pbar-k" style="width:35%">معرفة ٣٩٪</div>
+        <div class="pbar-t" style="width:47%">تطبيق ٤٧٪</div>
+        <div class="pbar-s" style="width:18%">استدلال ١٤٪</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 جدول المواصفات — الصف الرابع ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r" style="min-width:150px">فصل المقرر</th>
+              <th>الحصص</th>
+              <th class="th-blue">الوزن النسبي<br>للمعرفة</th>
+              <th class="th-green">الوزن النسبي<br>للتطبيق</th>
+              <th style="background:#c62828">الوزن النسبي<br>للاستدلال</th>
+              <th class="th-blue" style="font-size:11px">معرفة<br>أس / در</th>
+              <th class="th-green" style="font-size:11px">تطبيق<br>أس / در</th>
+              <th style="background:#c62828;font-size:11px">استدلال<br>أس / در</th>
+              <th style="background:#6a1b9a">مجموع<br>أس / در</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lbl">الفصل (١)</td><td>١٨</td>
+              <td class="val-k pct">٥٩٪</td><td class="val-t pct">٣٥٪</td><td class="val-s pct">٦٪</td>
+              <td class="val-k">٣ / ٤</td><td class="val-t">٢ / ٢</td><td class="val-s">١ / ١</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٢)</td><td>١٨</td>
+              <td class="val-k pct">٣٠٪</td><td class="val-t pct">٦٠٪</td><td class="val-s pct">١٠٪</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٣ / ٤</td><td class="val-s">١ / ١</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٣)</td><td>١٨</td>
+              <td class="val-k pct">١٦٪</td><td class="val-t pct">٧٩٪</td><td class="val-s pct">٥٪</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٣ / ٤</td><td class="val-s">١ / ١</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٤)</td><td>١٨</td>
+              <td class="val-k pct">٤٥٪</td><td class="val-t pct">٤٥٪</td><td class="val-s pct">٩٪</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٣ / ٤</td><td class="val-s">١ / ١</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٥)</td><td>١٨</td>
+              <td class="val-k pct">٢٩٪</td><td class="val-t pct">٣٨٪</td><td class="val-s pct">٣٣٪</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٢ / ٣</td><td class="val-s">٢ / ٢</td><td class="val-m">٦ / ٧</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٦)</td><td>١٤</td>
+              <td class="val-k pct">٥٥٪</td><td class="val-t pct">٣١٪</td><td class="val-s pct">١٤٪</td>
+              <td class="val-k">٢ / ٢</td><td class="val-t">٢ / ٢</td><td class="val-s">١ / ١</td><td class="val-m">٥ / ٥</td>
+            </tr>
+            <tr class="tr-total">
+              <td class="lbl">المجموع</td><td>١٠٤</td>
+              <td class="val-k">٣٩٪</td><td class="val-t">٤٧٪</td><td class="val-s">١٤٪</td>
+              <td class="val-k">١٣ / ١٤</td><td class="val-t">١٥ / ١٩</td><td class="val-s">٧ / ٧</td><td class="val-m">٣٥ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Objective counts -->
+    <div class="card">
+      <div class="card-title">🎯 عدد الأهداف التعليمية حسب المستوى — الرابع ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r">فصل المقرر</th>
+              <th>الحصص</th>
+              <th class="th-blue">معرفة</th>
+              <th class="th-green">تطبيق</th>
+              <th style="background:#c62828">استدلال</th>
+              <th style="background:#6a1b9a">المجموع</th>
+              <th style="background:#37474f">التوزيع</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="lbl">الفصل (١)</td><td>١٨</td><td class="val-k">١٠</td><td class="val-t">٦</td><td class="val-s">١</td><td class="val-m">١٧</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:59%"></div><div class="pbar-t" style="width:35%"></div><div class="pbar-s" style="width:6%"></div></div></td></tr>
+            <tr><td class="lbl">الفصل (٢)</td><td>١٨</td><td class="val-k">٦</td><td class="val-t">١٢</td><td class="val-s">٢</td><td class="val-m">٢٠</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:30%"></div><div class="pbar-t" style="width:60%"></div><div class="pbar-s" style="width:10%"></div></div></td></tr>
+            <tr><td class="lbl">الفصل (٣)</td><td>١٨</td><td class="val-k">٣</td><td class="val-t">١٥</td><td class="val-s">١</td><td class="val-m">١٩</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:16%"></div><div class="pbar-t" style="width:79%"></div><div class="pbar-s" style="width:5%"></div></div></td></tr>
+            <tr><td class="lbl">الفصل (٤)</td><td>١٨</td><td class="val-k">٥</td><td class="val-t">٥</td><td class="val-s">١</td><td class="val-m">١١</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:45%"></div><div class="pbar-t" style="width:45%"></div><div class="pbar-s" style="width:10%"></div></div></td></tr>
+            <tr><td class="lbl">الفصل (٥)</td><td>١٨</td><td class="val-k">٦</td><td class="val-t">٨</td><td class="val-s">٧</td><td class="val-m">٢١</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:29%"></div><div class="pbar-t" style="width:38%"></div><div class="pbar-s" style="width:33%"></div></div></td></tr>
+            <tr><td class="lbl">الفصل (٦)</td><td>١٤</td><td class="val-k">١٦</td><td class="val-t">٩</td><td class="val-s">٤</td><td class="val-m">٢٩</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:55%"></div><div class="pbar-t" style="width:31%"></div><div class="pbar-s" style="width:14%"></div></div></td></tr>
+            <tr class="tr-total"><td class="lbl">المجموع</td><td>١٠٤</td><td class="val-k">٤٦</td><td class="val-t">٥٥</td><td class="val-s">١٦</td><td class="val-m">١١٧</td>
+              <td><div class="pbar-wrap" style="height:16px"><div class="pbar-k" style="width:39%">٣٩٪</div><div class="pbar-t" style="width:47%">٤٧٪</div><div class="pbar-s" style="width:14%">١٤٪</div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIXTH GRADE ── -->
+  <div class="grade-panel" id="panel-g6">
+    <div class="info-box info-orange">
+      <strong>📋 الصف السادس ابتدائي — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+      المادة: رياضيات &nbsp;|&nbsp; إجمالي الحصص: ١٠٢ &nbsp;|&nbsp; إجمالي الأسئلة: ٣٣ &nbsp;|&nbsp; درجة الاختبار: ٤٠
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 الأوزان النسبية الإجمالية — الصف السادس ابتدائي</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:14px">
+        <div style="text-align:center;padding:16px;background:#e3f2fd;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#1565c0">٣٧٪</div>
+          <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+          <div style="font-size:11px;color:#888">١٢ سؤال / ١٥ درجة</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#e8f5e9;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٢٪</div>
+          <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+          <div style="font-size:11px;color:#888">١٥ سؤال / ١٧ درجة</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#ffebee;border-radius:12px">
+          <div style="font-size:28px;font-weight:900;color:#c62828">٢٠٪</div>
+          <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+          <div style="font-size:11px;color:#888">٦ أسئلة / ٨ درجات</div>
+        </div>
+      </div>
+      <div class="pbar-wrap" style="height:32px">
+        <div class="pbar-k" style="width:37%">معرفة ٣٧٪</div>
+        <div class="pbar-t" style="width:43%">تطبيق ٤٣٪</div>
+        <div class="pbar-s" style="width:20%">استدلال ٢٠٪</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 جدول المواصفات — الصف السادس ابتدائي</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="th-r" style="min-width:140px">فصل المقرر</th>
+              <th>الحصص</th>
+              <th class="th-blue">الوزن<br>النسبي للمعرفة</th>
+              <th class="th-green">الوزن<br>النسبي للتطبيق</th>
+              <th style="background:#c62828">الوزن<br>النسبي للاستدلال</th>
+              <th class="th-blue" style="font-size:11px">معرفة<br>أس / در</th>
+              <th class="th-green" style="font-size:11px">تطبيق<br>أس / در</th>
+              <th style="background:#c62828;font-size:11px">استدلال<br>أس / در</th>
+              <th style="background:#6a1b9a">مجموع<br>أس / در</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lbl">الفصل (١)</td><td>٣٠</td>
+              <td class="val-k pct">٤١٪</td><td class="val-t pct">٤١٪</td><td class="val-s pct">١٧٪</td>
+              <td class="val-k">٤ / ٥</td><td class="val-t">٥ / ٦</td><td class="val-s">٢ / ٢</td><td class="val-m">١١ / ١٣</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٢)</td><td>١٥</td>
+              <td class="val-k pct">١٥٪</td><td class="val-t pct">٥٤٪</td><td class="val-s pct">٣١٪</td>
+              <td class="val-k">١ / ١</td><td class="val-t">٣ / ٣</td><td class="val-s">١ / ٢</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٣)</td><td>١٥</td>
+              <td class="val-k pct">٧٠٪</td><td class="val-t pct">١٠٪</td><td class="val-s pct">٢٠٪</td>
+              <td class="val-k">٣ / ٤</td><td class="val-t">١ / ١</td><td class="val-s">١ / ١</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٤)</td><td>١٥</td>
+              <td class="val-k pct">٥٥٪</td><td class="val-t pct">٣٦٪</td><td class="val-s pct">٩٪</td>
+              <td class="val-k">٣ / ٤</td><td class="val-t">٢ / ٢</td><td class="val-s">٠ / ٠</td><td class="val-m">٥ / ٦</td>
+            </tr>
+            <tr>
+              <td class="lbl">الفصل (٥)</td><td>١٩</td>
+              <td class="val-k pct">١٠٪</td><td class="val-t pct">٦٠٪</td><td class="val-s pct">٣٠٪</td>
+              <td class="val-k">١ / ١</td><td class="val-t">٤ / ٥</td><td class="val-s">٢ / ٣</td><td class="val-m">٧ / ٩</td>
+            </tr>
+            <tr class="tr-total">
+              <td class="lbl">المجموع</td><td>١٠٢</td>
+              <td>—</td><td>—</td><td>—</td>
+              <td class="val-k">١٢ / ١٥</td><td class="val-t">١٥ / ١٧</td><td class="val-s">٦ / ٨</td><td class="val-m">٣٣ / ٤٠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Per chapter bars -->
+    <div class="card">
+      <div class="card-title">📊 توزيع الأوزان النسبية — فصل بفصل</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (١) — ٣٠ حصة — ٤١٪ معرفة | ٤١٪ تطبيق | ١٧٪ استدلال</div>
+          <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:41%">٤١٪</div><div class="pbar-t" style="width:42%">٤١٪</div><div class="pbar-s" style="width:17%">١٧٪</div></div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٢) — ١٥ حصة — ١٥٪ معرفة | ٥٤٪ تطبيق | ٣١٪ استدلال</div>
+          <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:15%">١٥٪</div><div class="pbar-t" style="width:54%">٥٤٪</div><div class="pbar-s" style="width:31%">٣١٪</div></div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٣) — ١٥ حصة — ٧٠٪ معرفة | ١٠٪ تطبيق | ٢٠٪ استدلال</div>
+          <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:70%">٧٠٪</div><div class="pbar-t" style="width:10%">١٠٪</div><div class="pbar-s" style="width:20%">٢٠٪</div></div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٤) — ١٥ حصة — ٥٥٪ معرفة | ٣٦٪ تطبيق | ٩٪ استدلال</div>
+          <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:55%">٥٥٪</div><div class="pbar-t" style="width:36%">٣٦٪</div><div class="pbar-s" style="width:9%">٩٪</div></div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٥) — ١٩ حصة — ١٠٪ معرفة | ٦٠٪ تطبيق | ٣٠٪ استدلال</div>
+          <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:10%">١٠٪</div><div class="pbar-t" style="width:60%">٦٠٪</div><div class="pbar-s" style="width:30%">٣٠٪</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ INTERMEDIATE ═══════════════════ -->
+<div class="section" id="sec-intermediate">
+  <div class="sec-title">🟢 المرحلة المتوسطة — جدول المواصفات</div>
+
+  <div class="info-box info-green">
+    <strong>📋 الصف الثالث متوسط — الفصل الدراسي الثاني — ١٤٤٧ هـ</strong><br>
+    المادة: رياضيات<br>
+    إجمالي الحصص: ١٠٢ &nbsp;|&nbsp; إجمالي الأسئلة: ٣٤ &nbsp;|&nbsp; درجة الاختبار: ٤٠
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 الأوزان النسبية الإجمالية — الصف الثالث متوسط</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:14px">
+      <div style="text-align:center;padding:16px;background:#e3f2fd;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#1565c0">٣٠٪</div>
+        <div style="font-size:13px;font-weight:700;color:#1565c0">المعرفة</div>
+        <div style="font-size:11px;color:#888">١١ سؤال / ١٢ درجة</div>
+      </div>
+      <div style="text-align:center;padding:16px;background:#e8f5e9;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#2e7d32">٤٥٪</div>
+        <div style="font-size:13px;font-weight:700;color:#2e7d32">التطبيق</div>
+        <div style="font-size:11px;color:#888">١٥ سؤال / ١٨ درجة</div>
+      </div>
+      <div style="text-align:center;padding:16px;background:#ffebee;border-radius:12px">
+        <div style="font-size:28px;font-weight:900;color:#c62828">٢٥٪</div>
+        <div style="font-size:13px;font-weight:700;color:#c62828">الاستدلال</div>
+        <div style="font-size:11px;color:#888">٨ أسئلة / ١٠ درجات</div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="height:32px">
+      <div class="pbar-k" style="width:30%">معرفة ٣٠٪</div>
+      <div class="pbar-t" style="width:45%">تطبيق ٤٥٪</div>
+      <div class="pbar-s" style="width:25%">استدلال ٢٥٪</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 جدول المواصفات — الصف الثالث متوسط</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:140px">فصل المقرر</th>
+            <th>الحصص</th>
+            <th class="th-blue">الوزن<br>النسبي للمعرفة</th>
+            <th class="th-green">الوزن<br>النسبي للتطبيق</th>
+            <th style="background:#c62828">الوزن<br>النسبي للاستدلال</th>
+            <th class="th-blue" style="font-size:11px">معرفة<br>أس / در</th>
+            <th class="th-green" style="font-size:11px">تطبيق<br>أس / در</th>
+            <th style="background:#c62828;font-size:11px">استدلال<br>أس / در</th>
+            <th style="background:#6a1b9a">مجموع<br>أس / در</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">الفصل (١)</td><td>٢٠</td>
+            <td class="val-k pct">٢١٪</td><td class="val-t pct">٤٩٪</td><td class="val-s pct">٣١٪</td>
+            <td class="val-k">٢ / ٢</td><td class="val-t">٣ / ٤</td><td class="val-s">٢ / ٢</td><td class="val-m">٧ / ٨</td>
+          </tr>
+          <tr>
+            <td class="lbl">الفصل (٢)</td><td>٢٠</td>
+            <td class="val-k pct">١١٪</td><td class="val-t pct">٥٤٪</td><td class="val-s pct">٣٦٪</td>
+            <td class="val-k">١ / ١</td><td class="val-t">٣ / ٤</td><td class="val-s">٢ / ٣</td><td class="val-m">٦ / ٨</td>
+          </tr>
+          <tr>
+            <td class="lbl">الفصل (٣)</td><td>١٧</td>
+            <td class="val-k pct">٤٥٪</td><td class="val-t pct">٣٥٪</td><td class="val-s pct">٢٠٪</td>
+            <td class="val-k">٣ / ٣</td><td class="val-t">٢ / ٢</td><td class="val-s">١ / ١</td><td class="val-m">٦ / ٦</td>
+          </tr>
+          <tr>
+            <td class="lbl">الفصل (٤)</td><td>٢٥</td>
+            <td class="val-k pct">٣٣٪</td><td class="val-t pct">٤٧٪</td><td class="val-s pct">١٩٪</td>
+            <td class="val-k">٢ / ٣</td><td class="val-t">٤ / ٥</td><td class="val-s">٢ / ٢</td><td class="val-m">٨ / ١٠</td>
+          </tr>
+          <tr>
+            <td class="lbl">الفصل (٥)</td><td>٢٠</td>
+            <td class="val-k pct">٤٢٪</td><td class="val-t pct">٣٦٪</td><td class="val-s pct">٢٢٪</td>
+            <td class="val-k">٣ / ٣</td><td class="val-t">٣ / ٣</td><td class="val-s">١ / ٢</td><td class="val-m">٧ / ٨</td>
+          </tr>
+          <tr class="tr-total">
+            <td class="lbl">مجموع الأسئلة / الدرجات</td><td>١٠٢</td>
+            <td>—</td><td>—</td><td>—</td>
+            <td class="val-k">١١ / ١٢</td><td class="val-t">١٥ / ١٨</td><td class="val-s">٨ / ١٠</td><td class="val-m">٣٤ / ٤٠</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Per chapter bars -->
+  <div class="card">
+    <div class="card-title">📊 توزيع الأوزان النسبية — فصل بفصل</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (١) — ٢٠ حصة — ٢١٪ معرفة | ٤٩٪ تطبيق | ٣١٪ استدلال</div>
+        <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:21%">٢١٪</div><div class="pbar-t" style="width:49%">٤٩٪</div><div class="pbar-s" style="width:30%">٣١٪</div></div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٢) — ٢٠ حصة — ١١٪ معرفة | ٥٤٪ تطبيق | ٣٦٪ استدلال</div>
+        <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:11%">١١٪</div><div class="pbar-t" style="width:54%">٥٤٪</div><div class="pbar-s" style="width:36%">٣٦٪</div></div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٣) — ١٧ حصة — ٤٥٪ معرفة | ٣٥٪ تطبيق | ٢٠٪ استدلال</div>
+        <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:45%">٤٥٪</div><div class="pbar-t" style="width:35%">٣٥٪</div><div class="pbar-s" style="width:20%">٢٠٪</div></div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٤) — ٢٥ حصة — ٣٣٪ معرفة | ٤٧٪ تطبيق | ١٩٪ استدلال</div>
+        <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:33%">٣٣٪</div><div class="pbar-t" style="width:47%">٤٧٪</div><div class="pbar-s" style="width:20%">٢٠٪</div></div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:5px">الفصل (٥) — ٢٠ حصة — ٤٢٪ معرفة | ٣٦٪ تطبيق | ٢٢٪ استدلال</div>
+        <div class="pbar-wrap" style="height:22px"><div class="pbar-k" style="width:42%">٤٢٪</div><div class="pbar-t" style="width:36%">٣٦٪</div><div class="pbar-s" style="width:22%">٢٢٪</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box info-green" style="margin-top:8px">
+    📌 <strong>ملاحظة:</strong> يُلاحظ أن نسبة الاستدلال في الثالث متوسط (٢٥٪) هي الأعلى بين جميع الصفوف، مما يعكس تصاعد مستوى التفكير الرياضي والمنطقي المطلوب في المرحلة المتوسطة.
+  </div>
+</div>
+
+<!-- ═══════════════════ COMPARE ═══════════════════ -->
+<div class="section" id="sec-compare">
+  <div class="sec-title">📈 مقارنة المراحل الدراسية</div>
+
+  <div class="card">
+    <div class="card-title">📋 مقارنة شاملة — جميع الصفوف</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-r" style="min-width:120px"></th>
+            <th colspan="3" class="th-blue">الصف الثالث ابتدائي</th>
+            <th colspan="3" class="th-green">الصف الرابع ابتدائي</th>
+            <th colspan="3" style="background:#e65100">الصف السادس ابتدائي</th>
+            <th colspan="3" style="background:#2e7d32">الصف الثالث متوسط</th>
+          </tr>
+          <tr>
+            <th class="th-dark th-r">المستوى</th>
+            <th class="th-dark" style="font-size:10px">أسئلة</th>
+            <th class="th-dark" style="font-size:10px">درجات</th>
+            <th class="th-dark" style="font-size:10px">نسبة</th>
+            <th class="th-dark" style="font-size:10px">أسئلة</th>
+            <th class="th-dark" style="font-size:10px">درجات</th>
+            <th class="th-dark" style="font-size:10px">نسبة</th>
+            <th class="th-dark" style="font-size:10px">أسئلة</th>
+            <th class="th-dark" style="font-size:10px">درجات</th>
+            <th class="th-dark" style="font-size:10px">نسبة</th>
+            <th class="th-dark" style="font-size:10px">أسئلة</th>
+            <th class="th-dark" style="font-size:10px">درجات</th>
+            <th class="th-dark" style="font-size:10px">نسبة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl val-k">المعرفة</td>
+            <td class="val-k">١٣</td><td class="val-k">١٤</td><td class="val-k pct">٣٥٪</td>
+            <td class="val-k">١٣</td><td class="val-k">١٤</td><td class="val-k pct">٣٩٪</td>
+            <td class="val-k">١٢</td><td class="val-k">١٥</td><td class="val-k pct">٣٧٪</td>
+            <td class="val-k">١١</td><td class="val-k">١٢</td><td class="val-k pct">٣٠٪</td>
+          </tr>
+          <tr>
+            <td class="lbl val-t">التطبيق</td>
+            <td class="val-t">١٥</td><td class="val-t">١٩</td><td class="val-t pct">٤٧٪</td>
+            <td class="val-t">١٥</td><td class="val-t">١٩</td><td class="val-t pct">٤٧٪</td>
+            <td class="val-t">١٥</td><td class="val-t">١٧</td><td class="val-t pct">٤٢٪</td>
+            <td class="val-t">١٥</td><td class="val-t">١٨</td><td class="val-t pct">٤٥٪</td>
+          </tr>
+          <tr>
+            <td class="lbl val-s">الاستدلال</td>
+            <td class="val-s">٧</td><td class="val-s">٧</td><td class="val-s pct">١٨٪</td>
+            <td class="val-s">٧</td><td class="val-s">٧</td><td class="val-s pct">١٤٪</td>
+            <td class="val-s">٦</td><td class="val-s">٨</td><td class="val-s pct">٢٠٪</td>
+            <td class="val-s">٨</td><td class="val-s">١٠</td><td class="val-s pct">٢٥٪</td>
+          </tr>
+          <tr class="tr-total">
+            <td class="lbl">المجموع</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٥</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٣</td><td>٤٠</td><td>١٠٠٪</td>
+            <td>٣٤</td><td>٤٠</td><td>١٠٠٪</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Visual comparison -->
+  <div class="card">
+    <div class="card-title">📊 الرسم التوضيحي — توزيع الدرجات حسب المستوى</div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#1565c0;margin-bottom:6px">الصف الثالث ابتدائي — معرفة ٣٥٪ | تطبيق ٤٧٪ | استدلال ١٨٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:35%">١٤</div><div class="pbar-t" style="width:47%">١٩</div><div class="pbar-s" style="width:18%">٧</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#388e3c;margin-bottom:6px">الصف الرابع ابتدائي — معرفة ٣٩٪ | تطبيق ٤٧٪ | استدلال ١٤٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:35%">١٤</div><div class="pbar-t" style="width:47%">١٩</div><div class="pbar-s" style="width:18%">٧</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#e65100;margin-bottom:6px">الصف السادس ابتدائي — معرفة ٣٧٪ | تطبيق ٤٢٪ | استدلال ٢٠٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:37%">١٥</div><div class="pbar-t" style="width:43%">١٧</div><div class="pbar-s" style="width:20%">٨</div></div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;color:#2e7d32;margin-bottom:6px">الصف الثالث متوسط — معرفة ٣٠٪ | تطبيق ٤٥٪ | استدلال ٢٥٪</div>
+        <div class="pbar-wrap" style="height:30px"><div class="pbar-k" style="width:30%">١٢</div><div class="pbar-t" style="width:45%">١٨</div><div class="pbar-s" style="width:25%">١٠</div></div>
+      </div>
+    </div>
+    <div class="legend" style="margin-top:16px;margin-bottom:0">
+      <div class="lchip" style="background:#e3f2fd"><div class="ldot" style="background:#1565c0"></div>معرفة (الأرقام = الدرجات)</div>
+      <div class="lchip" style="background:#e8f5e9"><div class="ldot" style="background:#2e7d32"></div>تطبيق</div>
+      <div class="lchip" style="background:#ffebee"><div class="ldot" style="background:#c62828"></div>استدلال</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💡 ملاحظات تحليلية مقارنة</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+      <div class="info-box info-blue" style="margin-bottom:0">
+        <strong>🔵 مستوى المعرفة:</strong><br>
+        الأعلى في الصف الرابع ابتدائي (٣٩٪) والأدنى في الثالث متوسط (٣٠٪)، مما يشير إلى أن المرحلة المتوسطة تُركّز أقل على الحفظ وتزيد من التطبيق والتفكير.
+      </div>
+      <div class="info-box info-green" style="margin-bottom:0">
+        <strong>🟢 مستوى التطبيق:</strong><br>
+        يسيطر بنسبة ٤٢–٤٧٪ في جميع الصفوف، مما يؤكد توجه المنهج نحو ربط الرياضيات بواقع الحياة اليومية في كل المراحل.
+      </div>
+      <div class="info-box" style="background:#ffebee;border-right:4px solid #c62828;color:#1a3a5c;margin-bottom:0">
+        <strong>🔴 مستوى الاستدلال:</strong><br>
+        يتصاعد من ١٤٪ (رابع) إلى ٢٥٪ (ثالث متوسط)، مما يعكس نمو المتطلبات التحليلية والاستنتاجية مع المرحلة الدراسية.
+      </div>
+      <div class="info-box info-gold" style="margin-bottom:0">
+        <strong>⭐ إجمالي الأسئلة:</strong><br>
+        ٣٣–٣٥ سؤالاً مع ثبات درجة الاختبار عند ٤٠ لجميع الصفوف. السادس الابتدائي (٣٣ سؤال) له متوسط درجة أعلى لكل سؤال مقارنة بباقي الصفوف (٣٥ سؤال).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ OBJECTIVES ═══════════════════ -->
+<div class="section" id="sec-objectives">
+  <div class="sec-title">🎯 توزيع الأهداف التعليمية — مستويات بلوم</div>
+
+  <div class="card">
+    <div class="card-title">📋 مستويات الأهداف المعتمدة في جداول المواصفات</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+      <div style="padding:20px;border-radius:12px;background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-right:5px solid #1565c0;text-align:center">
+        <div style="font-size:28px;margin-bottom:6px">🧠</div>
+        <div style="font-size:17px;font-weight:900;color:#1565c0;margin-bottom:6px">مستوى المعرفة</div>
+        <div style="font-size:12px;color:#37474f;line-height:1.7">التذكر والحفظ وتعريف المصطلحات الرياضية والحقائق والقواعد الأساسية دون تطبيق أو استنتاج.</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-right:5px solid #2e7d32;text-align:center">
+        <div style="font-size:28px;margin-bottom:6px">⚙️</div>
+        <div style="font-size:17px;font-weight:900;color:#2e7d32;margin-bottom:6px">مستوى التطبيق</div>
+        <div style="font-size:12px;color:#37474f;line-height:1.7">تطبيق المفاهيم والقواعد في حل مسائل من واقع الحياة اليومية، وإيجاد الناتج باستخدام طريقة أو خطة مناسبة.</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;background:linear-gradient(135deg,#ffebee,#ffcdd2);border-right:5px solid #c62828;text-align:center">
+        <div style="font-size:28px;margin-bottom:6px">💡</div>
+        <div style="font-size:17px;font-weight:900;color:#c62828;margin-bottom:6px">مستوى الاستدلال</div>
+        <div style="font-size:12px;color:#37474f;line-height:1.7">التحليل والاستنتاج والتبرير وحل المسائل التي تتطلب تفكيراً ناقداً واختيار الخطة المناسبة من بين بدائل متعددة.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 تصاعد مستوى الاستدلال بين المراحل</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-weight:800;font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between">
+          <span>الصف الرابع ابتدائي</span><span style="color:#c62828">١٤٪</span>
+        </div>
+        <div class="pbar-wrap" style="height:18px;background:#f5f5f5">
+          <div class="pbar-s" style="width:14%"></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between">
+          <span>الصف الثالث ابتدائي</span><span style="color:#c62828">١٨٪</span>
+        </div>
+        <div class="pbar-wrap" style="height:18px;background:#f5f5f5">
+          <div class="pbar-s" style="width:18%"></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between">
+          <span>الصف السادس ابتدائي</span><span style="color:#c62828">٢٠٪</span>
+        </div>
+        <div class="pbar-wrap" style="height:18px;background:#f5f5f5">
+          <div class="pbar-s" style="width:20%"></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between">
+          <span>الصف الثالث متوسط</span><span style="color:#c62828">٢٥٪</span>
+        </div>
+        <div class="pbar-wrap" style="height:18px;background:#f5f5f5">
+          <div class="pbar-s" style="width:25%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 إرشادات بناء جدول المواصفات</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;gap:12px;padding:12px 16px;background:#f8faff;border-radius:10px;border:1px solid var(--border)">
+        <div style="min-width:28px;height:28px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">١</div>
+        <div style="font-size:13.5px;line-height:1.75">تعبئة صفحة البيانات بالمعلومات الأساسية: المادة، الصف، الفترة الدراسية، العام الدراسي، عدد الأسئلة الكلي، درجة الاختبار، وعدد حصص التدريس لكل وحدة.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 16px;background:#f8faff;border-radius:10px;border:1px solid var(--border)">
+        <div style="min-width:28px;height:28px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">٢</div>
+        <div style="font-size:13.5px;line-height:1.75">حصر الأهداف التعليمية لموضوعات المادة الدراسية من خلال تحليل محتوى المقرر، وتصنيفها حسب المستويات المعرفية (معرفة — تطبيق — استدلال) لكل وحدة أو فصل في صفحة مستقلة.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 16px;background:#f8faff;border-radius:10px;border:1px solid var(--border)">
+        <div style="min-width:28px;height:28px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">٣</div>
+        <div style="font-size:13.5px;line-height:1.75">الانتقال لصفحة جدول المواصفات والتحقق من اكتمال كافة البيانات الأساسية، ومراجعة عدد الأسئلة ومجموع الدرجات وتفصيلاتها، مع ضرورة التأكد من أن المجموع صحيح ويطابق المدخلات.</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:12px 16px;background:#fff8e1;border-radius:10px;border:1px solid #f5a623">
+        <div style="min-width:28px;height:28px;background:#f5a623;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0">⚠</div>
+        <div style="font-size:13.5px;line-height:1.75;color:#7f5a00">تجنب المسح والتعديل المباشر على صفحة جدول المواصفات — إذا لزم التعديل يكون في الصفحات السابقة (البيانات وصفحات الأهداف). المجاميع قد تختلف قليلاً بسبب التقريب التلقائي.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="margin-bottom:8px;font-size:15px;font-weight:700;color:var(--primary)">
+    جداول مواصفات الرياضيات — الفصل الثاني ١٤٤٧ هـ
+  </div>
+  <div class="designer-line" style="display:block;margin-bottom:12px">🎨 تصميم د / فواز &nbsp;—&nbsp; تفضل للمزيد هنا</div>
+  <a class="tg-btn" href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.008 9.455c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.871.766z"/></svg>
+    للمزيد من التصاميم — تيليجرام
+  </a>
+</div>
+
+<script>
+function showMain(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  const idx = ['overview','primary','intermediate','compare','objectives'].indexOf(id);
+  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+}
+
+function showGrade(id) {
+  document.querySelectorAll('.grade-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelector('.grade-tab.' + id).classList.add('active');
+}
+</script>
+</body>
+</html>
