@@ -578,6 +578,394 @@ body.compact .m-name-ar { font-size: 0.85rem; }
   .title-en  { font-size: 1.5rem; }
   .title-year { font-size: 1.6rem; }
 }
+
+/* ===== HEADER ACTION BUTTONS ===== */
+.s-btn-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,213,79,0.35);
+  color: #ffd54f;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  white-space: nowrap;
+  width: 100%;
+  justify-content: flex-end;
+}
+.s-btn-header:hover {
+  background: rgba(255,213,79,0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+/* ===== MODAL BASE ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: linear-gradient(160deg, #0d2460 0%, #1a3a8a 100%);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  padding: 24px 28px;
+  width: 680px;
+  max-width: 96vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffd54f;
+  text-align: center;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255,82,82,0.5); }
+
+/* ===== EVENTS MODAL ===== */
+.event-form {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.event-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.event-form-row.full { grid-template-columns: 1fr; }
+
+.ev-label {
+  font-size: 0.78rem;
+  color: #90caf9;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: block;
+}
+.ev-input, .ev-select, .ev-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  color: #fff;
+  padding: 9px 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.82rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ev-input:focus, .ev-select:focus, .ev-textarea:focus {
+  border-color: #42a5f5;
+}
+.ev-select option { background: #1a3a8a; color: #fff; }
+.ev-textarea { resize: vertical; min-height: 64px; }
+
+.ev-add-btn {
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  border: none;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s;
+  margin-top: 4px;
+}
+.ev-add-btn:hover {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* Event list */
+.ev-list-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffd54f;
+  margin-bottom: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.ev-list { display: flex; flex-direction: column; gap: 8px; }
+.ev-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: background 0.2s;
+}
+.ev-card:hover { background: rgba(255,255,255,0.12); }
+.ev-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.ev-card-info { flex: 1; }
+.ev-card-title { font-size: 0.88rem; font-weight: 700; color: #fff; }
+.ev-card-date { font-size: 0.72rem; color: #90caf9; margin-top: 2px; }
+.ev-card-note { font-size: 0.72rem; color: #bdbdbd; margin-top: 3px; font-style: italic; }
+.ev-del-btn {
+  background: rgba(255,82,82,0.15);
+  border: 1px solid rgba(255,82,82,0.3);
+  color: #ef9a9a;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.ev-del-btn:hover { background: rgba(255,82,82,0.4); color: #fff; }
+
+.ev-empty {
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.82rem;
+  padding: 18px 0;
+}
+
+/* Event type badge colors */
+.ev-type-appointment  { background: #42a5f5; }
+.ev-type-occasion     { background: #ffd54f; }
+.ev-type-program      { background: #81c784; }
+.ev-type-meeting      { background: #ce93d8; }
+.ev-type-reminder     { background: #ff8a65; }
+.ev-type-other        { background: #90a4ae; }
+
+/* Badge on calendar cells */
+.has-event::after {
+  content: '●';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 0.45rem;
+  color: #ffd54f;
+  line-height: 1;
+}
+/* ===== MONTHLY DISTRIBUTION PANEL ===== */
+.monthly-dist-wrap {
+  background: linear-gradient(135deg, #0a1e56 0%, #112060 60%, #0a1e56 100%);
+  border-bottom: 2px solid rgba(255,213,79,0.2);
+  overflow: hidden;
+}
+
+.monthly-dist-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.monthly-dist-header:hover { background: rgba(255,255,255,0.04); }
+
+.mdi-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffd54f;
+  flex: 1;
+  letter-spacing: 0.3px;
+}
+.mdi-icon { flex-shrink: 0; }
+.mdi-toggle {
+  color: #90caf9;
+  font-size: 0.75rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.mdi-toggle.open { transform: rotate(180deg); }
+
+.monthly-dist-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.monthly-dist-body.open { max-height: 400px; }
+
+/* Cards row */
+.month-cards-row {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 14px 16px 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+.month-cards-row::-webkit-scrollbar { height: 4px; }
+.month-cards-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+.m-dist-card {
+  flex: 0 0 auto;
+  width: 108px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  margin-left: 8px;
+  padding: 10px 8px 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.m-dist-card:first-child { margin-right: 0; }
+.m-dist-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Season stripe at top of card */
+.m-dist-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 12px 12px 0 0;
+}
+.m-dist-card.s-winter::before  { background: #1e88e5; }
+.m-dist-card.s-spring::before  { background: #43a047; }
+.m-dist-card.s-summer::before  { background: #e53935; }
+.m-dist-card.s-autumn::before  { background: #fb8c00; }
+.m-dist-card.s-ramadan::before { background: #7b1fa2; }
+
+.mdc-num {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.mdc-name {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #ffd54f;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.mdc-greg {
+  font-size: 0.6rem;
+  color: #90caf9;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Mini bar chart inside card */
+.mdc-bars {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  justify-content: center;
+  height: 32px;
+  margin-bottom: 6px;
+}
+.mdc-bar {
+  width: 22px;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  transition: opacity 0.2s;
+}
+.mdc-bar:hover { opacity: 0.85; }
+.mdc-bar-label {
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  margin-top: 3px;
+  display: block;
+}
+
+.mdc-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4px;
+  padding-top: 5px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.mdc-stat {
+  text-align: center;
+}
+.mdc-stat-val {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  line-height: 1.1;
+}
+.mdc-stat-key {
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.45);
+  display: block;
+}
+
+/* Totals bar */
+.mdi-totals {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 8px 16px 14px;
+  flex-wrap: wrap;
+}
+.mdi-total-item {
+  text-align: center;
+}
+.mdi-total-val {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffd54f;
+  display: block;
+}
+.mdi-total-key {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.5);
+  display: block;
+  margin-top: 1px;
+}
 </style>
 </head>
 <body>
@@ -586,27 +974,16 @@ body.compact .m-name-ar { font-size: 0.85rem; }
   <!-- ===== HEADER ===== -->
   <header class="cal-header">
     <div class="designer-block">
-      <span class="designer-label">تصميم / أ.</span>
-      <span class="designer-name">خالد الرفاعي</span>
-      <span class="designer-handle">@KhalidRefaei &nbsp;𝕏</span>
-      <div class="qr-placeholder">
-        <!-- QR Code SVG placeholder -->
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="16" height="16" rx="2" fill="none" stroke="#333" stroke-width="2"/>
-          <rect x="6" y="6" width="8" height="8" fill="#333"/>
-          <rect x="26" y="2" width="16" height="16" rx="2" fill="none" stroke="#333" stroke-width="2"/>
-          <rect x="30" y="6" width="8" height="8" fill="#333"/>
-          <rect x="2" y="26" width="16" height="16" rx="2" fill="none" stroke="#333" stroke-width="2"/>
-          <rect x="6" y="30" width="8" height="8" fill="#333"/>
-          <rect x="26" y="26" width="4" height="4" fill="#333"/>
-          <rect x="32" y="26" width="4" height="4" fill="#333"/>
-          <rect x="38" y="26" width="4" height="4" fill="#333"/>
-          <rect x="26" y="32" width="4" height="4" fill="#333"/>
-          <rect x="32" y="38" width="4" height="4" fill="#333"/>
-          <rect x="38" y="32" width="4" height="4" fill="#333"/>
-          <rect x="38" y="38" width="4" height="4" fill="#333"/>
+      <span class="designer-label">الأدوات</span>
+      <button class="s-btn-header" onclick="openEventsModal()" title="تسجيل المواعيد والمناسبات">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;vertical-align:middle;margin-left:6px;">
+          <circle cx="12" cy="12" r="9" stroke="#ffd54f" stroke-width="1.8" fill="none"/>
+          <line x1="12" y1="7" x2="12" y2="12" stroke="#ffd54f" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="15.5" y2="14.5" stroke="#ff8a65" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="1.2" fill="#ffd54f"/>
         </svg>
-      </div>
+        المواعيد والمناسبات
+      </button>
     </div>
 
     <div class="title-block">
@@ -635,6 +1012,36 @@ body.compact .m-name-ar { font-size: 0.85rem; }
     <div class="leg-item"><div class="leg-box" style="background:#43a047;"></div>الربيع</div>
     <div class="leg-item"><div class="leg-box" style="background:#e53935;"></div>الصيف</div>
     <div class="leg-item"><div class="leg-box" style="background:#fb8c00;"></div>الخريف</div>
+  </div>
+
+  <!-- ===== MONTHLY DISTRIBUTION PANEL ===== -->
+  <div class="monthly-dist-wrap">
+    <div class="monthly-dist-header" onclick="toggleMonthlyDist(this)">
+      <span class="mdi-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;vertical-align:middle;">
+          <rect x="2" y="3" width="18" height="16" rx="2" stroke="#ffd54f" stroke-width="1.6" fill="none"/>
+          <line x1="7" y1="1" x2="7" y2="5" stroke="#ffd54f" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="15" y1="1" x2="15" y2="5" stroke="#ffd54f" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="2" y1="8" x2="20" y2="8" stroke="#ffd54f" stroke-width="1.3"/>
+          <rect x="5.5" y="10.5" width="3" height="2.2" rx="0.4" fill="#90caf9" opacity="0.9"/>
+          <rect x="9.5" y="10.5" width="3" height="2.2" rx="0.4" fill="#90caf9" opacity="0.9"/>
+          <rect x="13.5" y="10.5" width="3" height="2.2" rx="0.4" fill="#90caf9" opacity="0.9"/>
+          <rect x="5.5" y="13.5" width="3" height="2.2" rx="0.4" fill="#81c784" opacity="0.9"/>
+          <rect x="9.5" y="13.5" width="3" height="2.2" rx="0.4" fill="#81c784" opacity="0.9"/>
+          <rect x="13.5" y="13.5" width="3" height="2.2" rx="0.4" fill="#ff8a65" opacity="0.9"/>
+        </svg>
+      </span>
+      <span class="mdi-title">التوزيع الشهري لعام ١٤٤٨هـ &nbsp;—&nbsp; ١٢ شهراً &nbsp;|&nbsp; ٣٥٤ يوماً</span>
+      <span class="mdi-toggle" id="mdi-arrow">▼</span>
+    </div>
+    <div class="monthly-dist-body" id="monthly-dist-body">
+      <div class="month-cards-row" id="month-cards-row">
+        <!-- filled by JS -->
+      </div>
+      <div class="mdi-totals" id="mdi-totals">
+        <!-- filled by JS -->
+      </div>
+    </div>
   </div>
 
   <!-- ===== CALENDAR ===== -->
@@ -677,7 +1084,7 @@ body.compact .m-name-ar { font-size: 0.85rem; }
 
   <!-- ===== FOOTER ===== -->
   <footer class="cal-footer">
-    <div class="thanks-line">✨ الشكر موصول لمعدّها الأستاذ / خالد الرفاعي ✨</div>
+    <div class="thanks-line">✨ التقويم الهجري ١٤٤٨هـ | 2026 – 2027 ✨</div>
 
     <div class="settings-panel">
       <div class="settings-title">⚙️ إعدادات العرض</div>
@@ -693,10 +1100,72 @@ body.compact .m-name-ar { font-size: 0.85rem; }
       </div>
     </div>
 
-    <div class="copyright">جميع الحقوق محفوظة &copy; ١٤٤٨هـ &nbsp;|&nbsp; تصميم أ. خالد الرفاعي</div>
+    <div class="copyright">جميع الحقوق محفوظة &copy; ١٤٤٨هـ &nbsp;|&nbsp; تصميم د/فواز</div>
   </footer>
 
 </div><!-- end wrapper -->
+
+<!-- ===== MODAL: المواعيد والمناسبات ===== -->
+<div class="modal-overlay" id="eventsModal">
+  <div class="modal-box" style="max-width:640px;">
+    <button class="modal-close" onclick="closeModal('eventsModal')">✕</button>
+    <div class="modal-title">🗓️ تسجيل المواعيد والمناسبات والبرامج</div>
+
+    <div class="event-form">
+      <div class="event-form-row">
+        <div>
+          <label class="ev-label">عنوان الموعد / المناسبة *</label>
+          <input class="ev-input" id="ev-title" type="text" placeholder="مثال: اجتماع مجلس المعلمين">
+        </div>
+        <div>
+          <label class="ev-label">النوع</label>
+          <select class="ev-select" id="ev-type">
+            <option value="appointment">📌 موعد</option>
+            <option value="occasion">🎉 مناسبة</option>
+            <option value="program">📋 برنامج</option>
+            <option value="meeting">🤝 اجتماع</option>
+            <option value="reminder">⏰ تذكير</option>
+            <option value="other">📎 أخرى</option>
+          </select>
+        </div>
+      </div>
+      <div class="event-form-row">
+        <div>
+          <label class="ev-label">التاريخ الهجري</label>
+          <input class="ev-input" id="ev-hijri" type="text" placeholder="مثال: ١٥ محرم ١٤٤٨">
+        </div>
+        <div>
+          <label class="ev-label">التاريخ الميلادي</label>
+          <input class="ev-input" id="ev-greg" type="date">
+        </div>
+      </div>
+      <div class="event-form-row">
+        <div>
+          <label class="ev-label">الوقت (اختياري)</label>
+          <input class="ev-input" id="ev-time" type="time">
+        </div>
+        <div>
+          <label class="ev-label">المكان (اختياري)</label>
+          <input class="ev-input" id="ev-place" type="text" placeholder="مثال: قاعة الاجتماعات">
+        </div>
+      </div>
+      <div class="event-form-row full">
+        <label class="ev-label">ملاحظات (اختياري)</label>
+        <textarea class="ev-textarea" id="ev-note" placeholder="أي تفاصيل أو ملاحظات إضافية..."></textarea>
+      </div>
+      <button class="ev-add-btn" onclick="addEvent()">➕ إضافة إلى السجل</button>
+    </div>
+
+    <div class="ev-list-title" id="ev-list-header">📋 السجل ( <span id="ev-count">0</span> مدخل )</div>
+    <div class="ev-list" id="ev-list-container">
+      <div class="ev-empty" id="ev-empty-msg">لا توجد مواعيد مسجلة بعد</div>
+    </div>
+    <div style="margin-top:14px; display:flex; gap:8px; justify-content:flex-end;">
+      <button class="ev-add-btn" style="width:auto; padding:8px 18px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);" onclick="exportEvents()">⬇️ تصدير (نسخ)</button>
+      <button class="ev-add-btn" style="width:auto; padding:8px 18px; background:rgba(255,82,82,0.2); border:1px solid rgba(255,82,82,0.3);" onclick="clearAllEvents()">🗑️ مسح الكل</button>
+    </div>
+  </div>
+</div>
 
 <!-- Scroll to top button -->
 <button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="الرجوع للأعلى">↑</button>
@@ -1013,6 +1482,251 @@ function toggleCompact(btn) {
 
 // ===== INIT =====
 render();
+
+// ===== MONTHLY DISTRIBUTION — INLINE PANEL =====
+function toggleMonthlyDist(headerEl) {
+  const body  = document.getElementById('monthly-dist-body');
+  const arrow = document.getElementById('mdi-arrow');
+  const isOpen = body.classList.toggle('open');
+  arrow.classList.toggle('open', isOpen);
+  if (isOpen && !document.getElementById('month-cards-row').innerHTML.trim()) {
+    buildMonthlyCards();
+  }
+}
+
+const SEASON_COLORS = {
+  winter: { bg:'#1e88e5', label:'شتاء' },
+  spring: { bg:'#43a047', label:'ربيع' },
+  summer: { bg:'#e53935', label:'صيف' },
+  autumn: { bg:'#fb8c00', label:'خريف' },
+};
+const MONTH_BORDERS = [
+  '#1565c0','#1976d2','#0288d1','#00838f',
+  '#2e7d32','#558b2f','#f57f17','#e65100',
+  '#7b1fa2','#c62828','#ad1457','#4527a0'
+];
+const GM_AR = ['يناير','فبراير','مارس','أبريل','مايو','يونيو',
+               'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+
+function buildMonthlyCards() {
+  const row = document.getElementById('month-cards-row');
+  const totals = document.getElementById('mdi-totals');
+  let totalDays=0, totalWork=0, totalWeekend=0, totalSpecial=0;
+  let html = '';
+
+  MONTHS.forEach((m, idx) => {
+    let weekends=0, working=0, special=0;
+    for (let d=1; d<=m.days; d++) {
+      const dow = (m.startDow + d - 1) % 7;
+      const sp  = m.sp && m.sp[d];
+      if (sp === 'national' || sp === 'founding' || sp === 'flagday' || sp === 'eid') {
+        special++;
+      } else if (dow === 5 || dow === 6 || sp === 'weekend') {
+        weekends++;
+      } else {
+        working++;
+      }
+    }
+    totalDays    += m.days;
+    totalWork    += working;
+    totalWeekend += weekends;
+    totalSpecial += special;
+
+    // bar heights (max 28px)
+    const maxV  = Math.max(working, weekends, special || 1, 1);
+    const hWork = Math.round((working  / maxV) * 28);
+    const hWknd = Math.round((weekends / maxV) * 28);
+    const hSpec = special ? Math.round((special / maxV) * 28) : 2;
+
+    const sc = m.isRamadan ? 's-ramadan' : `s-${m.season}`;
+    const sColor = m.isRamadan ? '#7b1fa2' : SEASON_COLORS[m.season].bg;
+    const borderColor = MONTH_BORDERS[idx];
+
+    const gEnd = addDays(m.gStartY, m.gStartM, m.gStartD, m.days - 1);
+    const gregStr = `${m.gStartD} ${GM_AR[m.gStartM-1]}<br>${gEnd.d} ${GM_AR[gEnd.m-1]}`;
+
+    html += `<div class="m-dist-card ${sc}" style="border-right:3px solid ${borderColor};">
+      <div class="mdc-num">${m.num}</div>
+      <div class="mdc-name">${m.ar}</div>
+      <div class="mdc-greg">${gregStr}</div>
+      <div class="mdc-bars">
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="mdc-bar" style="height:${hWork}px;background:#42a5f5;" title="أيام العمل: ${working}"></div>
+          <span class="mdc-bar-label">عمل</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="mdc-bar" style="height:${hWknd}px;background:#fff9c4;" title="عطل نهاية الأسبوع: ${weekends}"></div>
+          <span class="mdc-bar-label">عطلة</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="mdc-bar" style="height:${hSpec}px;background:#ffd54f;" title="مناسبات وطنية: ${special}"></div>
+          <span class="mdc-bar-label">وطني</span>
+        </div>
+      </div>
+      <div class="mdc-stats">
+        <div class="mdc-stat"><span class="mdc-stat-val">${m.days}</span><span class="mdc-stat-key">يوم</span></div>
+        <div class="mdc-stat"><span class="mdc-stat-val" style="color:#42a5f5;">${working}</span><span class="mdc-stat-key">عمل</span></div>
+        <div class="mdc-stat"><span class="mdc-stat-val" style="color:#fff9c4;">${weekends}</span><span class="mdc-stat-key">عطلة</span></div>
+      </div>
+    </div>`;
+  });
+
+  row.innerHTML = html;
+
+  totals.innerHTML = `
+    <div class="mdi-total-item"><span class="mdi-total-val">${totalDays}</span><span class="mdi-total-key">إجمالي الأيام</span></div>
+    <div class="mdi-total-item"><span class="mdi-total-val" style="color:#42a5f5;">${totalWork}</span><span class="mdi-total-key">أيام العمل</span></div>
+    <div class="mdi-total-item"><span class="mdi-total-val" style="color:#fff9c4;">${totalWeekend}</span><span class="mdi-total-key">عطل نهاية الأسبوع</span></div>
+    <div class="mdi-total-item"><span class="mdi-total-val" style="color:#ffd54f;">${totalSpecial}</span><span class="mdi-total-key">مناسبات وطنية</span></div>
+  `;
+}
+
+// ===== MODAL HELPERS =====
+function openEventsModal() {
+  renderEventList();
+  document.getElementById('eventsModal').classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', e => { if(e.target === el) el.classList.remove('open'); });
+});
+
+// ===== EVENTS =====
+const EV_KEY = 'cal1448_events';
+const EV_COLORS = {
+  appointment:'#42a5f5', occasion:'#ffd54f', program:'#81c784',
+  meeting:'#ce93d8', reminder:'#ff8a65', other:'#90a4ae'
+};
+const EV_LABELS = {
+  appointment:'موعد', occasion:'مناسبة', program:'برنامج',
+  meeting:'اجتماع', reminder:'تذكير', other:'أخرى'
+};
+
+function loadEvents() {
+  try { return JSON.parse(localStorage.getItem(EV_KEY) || '[]'); }
+  catch { return []; }
+}
+function saveEvents(arr) {
+  localStorage.setItem(EV_KEY, JSON.stringify(arr));
+}
+
+function addEvent() {
+  const title = document.getElementById('ev-title').value.trim();
+  if (!title) { alert('يرجى إدخال عنوان الموعد'); return; }
+  const ev = {
+    id: Date.now(),
+    title,
+    type:  document.getElementById('ev-type').value,
+    hijri: document.getElementById('ev-hijri').value.trim(),
+    greg:  document.getElementById('ev-greg').value,
+    time:  document.getElementById('ev-time').value,
+    place: document.getElementById('ev-place').value.trim(),
+    note:  document.getElementById('ev-note').value.trim(),
+  };
+  const arr = loadEvents();
+  arr.unshift(ev);
+  saveEvents(arr);
+  // clear form
+  ['ev-title','ev-hijri','ev-greg','ev-time','ev-place','ev-note'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  renderEventList();
+  markCalendarEvents(arr);
+}
+
+function deleteEvent(id) {
+  let arr = loadEvents().filter(e => e.id !== id);
+  saveEvents(arr);
+  renderEventList();
+  markCalendarEvents(arr);
+}
+
+function clearAllEvents() {
+  if (!confirm('هل تريد مسح جميع المواعيد المسجلة؟')) return;
+  saveEvents([]);
+  renderEventList();
+  markCalendarEvents([]);
+}
+
+function renderEventList() {
+  const arr = loadEvents();
+  document.getElementById('ev-count').textContent = arr.length;
+  const container = document.getElementById('ev-list-container');
+  const emptyMsg  = document.getElementById('ev-empty-msg');
+  if (!arr.length) {
+    container.innerHTML = '<div class="ev-empty">لا توجد مواعيد مسجلة بعد</div>';
+    return;
+  }
+  const gm = ['يناير','فبراير','مارس','أبريل','مايو','يونيو',
+               'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  let html = arr.map(ev => {
+    const color = EV_COLORS[ev.type] || '#90a4ae';
+    const label = EV_LABELS[ev.type] || '';
+    let dateStr = '';
+    if (ev.hijri) dateStr += ev.hijri;
+    if (ev.greg) {
+      const d = new Date(ev.greg);
+      dateStr += (dateStr ? ' | ' : '') + d.getDate() + ' ' + gm[d.getMonth()] + ' ' + d.getFullYear();
+    }
+    if (ev.time) dateStr += ' — الساعة ' + ev.time;
+    return `<div class="ev-card">
+      <div class="ev-dot" style="background:${color};"></div>
+      <div class="ev-card-info">
+        <div class="ev-card-title">${ev.title} <span style="font-size:0.68rem;color:${color};margin-right:6px;">[${label}]</span></div>
+        ${dateStr ? `<div class="ev-card-date">📅 ${dateStr}</div>` : ''}
+        ${ev.place ? `<div class="ev-card-date">📍 ${ev.place}</div>` : ''}
+        ${ev.note  ? `<div class="ev-card-note">📝 ${ev.note}</div>` : ''}
+      </div>
+      <button class="ev-del-btn" onclick="deleteEvent(${ev.id})">حذف</button>
+    </div>`;
+  }).join('');
+  container.innerHTML = html;
+}
+
+function markCalendarEvents(arr) {
+  // Mark calendar cells that have events (by Gregorian date)
+  document.querySelectorAll('td.day-cell').forEach(td => td.classList.remove('has-event'));
+  arr.forEach(ev => {
+    if (!ev.greg) return;
+    const d = new Date(ev.greg);
+    // find cell — we can match by data attribute if needed; use title-based search is impractical
+    // Instead we'll re-build with event markers on next render
+  });
+}
+
+function exportEvents() {
+  const arr = loadEvents();
+  if (!arr.length) { alert('لا توجد مواعيد للتصدير'); return; }
+  const gm = ['يناير','فبراير','مارس','أبريل','مايو','يونيو',
+               'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  let txt = 'سجل المواعيد والمناسبات — التقويم الهجري ١٤٤٨هـ\n';
+  txt += '='.repeat(50) + '\n\n';
+  arr.forEach((ev, i) => {
+    txt += `${i+1}. ${ev.title} [${EV_LABELS[ev.type]||''}]\n`;
+    if (ev.hijri) txt += `   التاريخ الهجري: ${ev.hijri}\n`;
+    if (ev.greg) {
+      const d = new Date(ev.greg);
+      txt += `   التاريخ الميلادي: ${d.getDate()} ${gm[d.getMonth()]} ${d.getFullYear()}\n`;
+    }
+    if (ev.time)  txt += `   الوقت: ${ev.time}\n`;
+    if (ev.place) txt += `   المكان: ${ev.place}\n`;
+    if (ev.note)  txt += `   ملاحظات: ${ev.note}\n`;
+    txt += '\n';
+  });
+  navigator.clipboard.writeText(txt).then(() => alert('✅ تم نسخ السجل إلى الحافظة'))
+    .catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      alert('✅ تم نسخ السجل');
+    });
+}
+
+// Load events on init
+renderEventList();
 
 // Animate rows on load
 document.querySelectorAll('#cal-body tr').forEach((row, i) => {
