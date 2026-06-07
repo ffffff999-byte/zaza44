@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كيفية التعامل مع تسريب الأسئلة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#f0f4f8;
+  font-family:'Cairo',sans-serif;
+  color:#1a2a3a;
+  direction:rtl;
+  padding:0 0 40px;
+}
+
+/* ── HEADER ── */
+.hdr{
+  background:linear-gradient(150deg,#1a6faa 0%,#2190d8 55%,#1a6faa 100%);
+  padding:34px 24px 26px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.hdr::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.10);}
+.hdr::after{content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08);}
+.hdr-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
+  border-radius:30px;padding:5px 18px;margin-bottom:14px;
+  font-size:12px;color:#fff;font-weight:700;
+}
+.hdr h1{font-size:clamp(20px,5vw,36px);font-weight:900;color:#fff;line-height:1.3;}
+.hdr h1 span{color:#ffe580;}
+.hdr-sub{
+  margin:12px auto 0;max-width:700px;
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
+  border-radius:10px;padding:10px 18px;
+  font-size:13px;line-height:1.7;color:rgba(255,255,255,.92);
+}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 14px;}
+
+/* ── TRIGGER BOX ── */
+.trigger{
+  display:flex;align-items:flex-start;gap:16px;
+  background:#fff3cd;
+  border:1.5px solid #f0b429;
+  border-radius:14px;padding:16px 20px;margin:22px 0 6px;
+  box-shadow:0 3px 12px rgba(240,180,41,.15);
+}
+.trigger-icon{font-size:34px;flex-shrink:0;}
+.trigger-text{font-size:13.5px;line-height:1.75;color:#5a3a00;}
+.trigger-text strong{color:#c07000;}
+
+.arrow-down{text-align:center;font-size:26px;color:#aac4df;margin:6px 0;line-height:1;}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  display:flex;align-items:center;gap:10px;
+  margin:18px 0 10px;
+  font-size:15px;font-weight:900;color:#1a3a5a;
+}
+.sec-bar{width:5px;height:26px;border-radius:3px;flex-shrink:0;}
+
+/* ── STEPS GRID ── */
+.steps-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:10px;
+}
+@media(max-width:560px){.steps-grid{grid-template-columns:1fr;}}
+
+.step-card{
+  border-radius:13px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.09);
+  animation:up .5s ease both;
+  background:#fff;
+}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.step-card:nth-child(1){animation-delay:.05s;}
+.step-card:nth-child(2){animation-delay:.11s;}
+.step-card:nth-child(3){animation-delay:.17s;}
+.step-card:nth-child(4){animation-delay:.23s;}
+.step-card:nth-child(5){animation-delay:.29s;}
+
+.step-head{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;
+}
+.step-num{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:900;
+  background:rgba(255,255,255,.3);
+  border:2px solid rgba(255,255,255,.5);
+  color:#fff;flex-shrink:0;
+}
+.step-title{font-size:13px;font-weight:800;color:#fff;line-height:1.35;}
+.step-body{
+  padding:12px 16px;
+  font-size:13px;line-height:1.7;
+  color:#2a3a4a;
+  min-height:60px;
+}
+
+.s1 .step-head{background:linear-gradient(135deg,#1a7ac8,#38a8f0);}
+.s2 .step-head{background:linear-gradient(135deg,#1a8a5a,#28c07a);}
+.s3 .step-head{background:linear-gradient(135deg,#c05010,#e07830);}
+.s4 .step-head{background:linear-gradient(135deg,#7030a0,#a050d0);}
+.s5 .step-head{background:linear-gradient(135deg,#1a6aa0,#2898d8);}
+
+/* ── BUND 9 ── */
+.bund9{
+  background:#fff;
+  border-radius:14px;
+  border-right:5px solid #e07030;
+  padding:16px 20px;
+  margin:12px 0;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  animation:up .5s .32s ease both;
+}
+.bund9-title{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:900;color:#c05010;
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid #f0e0d0;
+}
+.bund9-body{font-size:13px;line-height:1.8;color:#2a3a4a;}
+
+/* ── BUND 10 ── */
+.bund10{
+  background:#e8f4ff;
+  border-radius:14px;
+  border-right:5px solid #1a80c8;
+  padding:16px 20px;
+  margin:12px 0;
+  box-shadow:0 4px 14px rgba(0,0,0,.07);
+  animation:up .5s .38s ease both;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.bund10-icon{font-size:28px;flex-shrink:0;}
+.bund10-text{font-size:13px;line-height:1.75;color:#1a2a3a;}
+.bund10-text strong{color:#0a60a0;}
+
+/* ── REFERENCE ── */
+.ref-box{
+  background:#f0f7e8;
+  border:1px solid #a0c878;
+  border-radius:10px;padding:10px 16px;
+  margin:14px 0 0;
+  font-size:12px;color:#3a5a20;
+  display:flex;align-items:center;gap:8px;
+}
+
+/* ── FOOTER ── */
+.footer{
+  text-align:center;padding:26px 20px 14px;
+  border-top:2px dashed #c8d8e8;
+  margin-top:20px;
+}
+.footer-cta{font-size:13px;color:#5a7a9a;margin-bottom:10px;font-weight:700;}
+.footer-link{
+  display:inline-block;
+  background:linear-gradient(135deg,#0070cc,#0099ee);
+  color:#fff;text-decoration:none;
+  padding:10px 30px;border-radius:30px;
+  font-size:14px;font-weight:700;
+  box-shadow:0 4px 14px rgba(0,120,200,.25);
+  margin-bottom:12px;
+}
+.footer-end{font-size:12px;color:#7a9ab8;margin-top:4px;}
+.footer-end span{color:#b88010;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-badge">🎓 وزارة التعليم – المملكة العربية السعودية</div>
+  <h1>كيفية التعامل مع <span>تسريب الأسئلة</span></h1>
+  <div class="hdr-sub">
+    الإجراءات التي تتخذها لجنة التحصيل الدراسي في المدرسة عند ثبوت ما يفيد بتسرُّب أسئلة أي مادة قبل الاختبار
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Trigger -->
+  <div class="trigger">
+    <div class="trigger-icon">🚨</div>
+    <div class="trigger-text">
+      <strong>متى تُطبَّق هذه الإجراءات؟</strong><br>
+      عند ثبوت ما يفيد بتسرُّب أسئلة أي مادة <strong>قبل الاختبار</strong>، تتخذ لجنة التحصيل الدراسي في المدرسة الإجراءات التالية — البند (٨):
+    </div>
+  </div>
+
+  <div class="arrow-down">▼</div>
+
+  <!-- Section label -->
+  <div class="sec-label">
+    <div class="sec-bar" style="background:#1a7ac8;"></div>
+    <span>📋 إجراءات لجنة التحصيل الدراسي – البند (٨)</span>
+  </div>
+
+  <!-- Steps -->
+  <div class="steps-grid">
+    <div class="step-card s1">
+      <div class="step-head">
+        <div class="step-num">١</div>
+        <div class="step-title">تدوين محضر</div>
+      </div>
+      <div class="step-body">
+        <strong>٨-١</strong> تدوين محضر بذلك فور ثبوت التسريب.
+      </div>
+    </div>
+
+    <div class="step-card s2">
+      <div class="step-head">
+        <div class="step-num">٢</div>
+        <div class="step-title">إشعار إدارة تقويم الأداء فوريًا</div>
+      </div>
+      <div class="step-body">
+        <strong>٨-٢</strong> إشعار إدارة تقويم الأداء المعرفي والمهاري فيما يتعلق بالتسرب <strong>بصورة فورية</strong>؛ لاتخاذ الإجراءات اللازمة.
+      </div>
+    </div>
+
+    <div class="step-card s3">
+      <div class="step-head">
+        <div class="step-num">٣</div>
+        <div class="step-title">إلغاء الأسئلة بعد التحري</div>
+      </div>
+      <div class="step-body">
+        <strong>٨-٣</strong> إلغاء أسئلة هذه المادة بعد التحري الدقيق والتأكد من الأمر.
+      </div>
+    </div>
+
+    <div class="step-card s4">
+      <div class="step-head">
+        <div class="step-num">٤</div>
+        <div class="step-title">تكليف معلم آخر بوضع أسئلة بديلة</div>
+      </div>
+      <div class="step-body">
+        <strong>٨-٤</strong> تكليف معلم أو معلمين غير من قام بإعدادها إذا كانت التهمة موجهة لمن قام بإعدادها، وذلك <strong>بوضع أسئلة بديلة أخرى</strong>.
+      </div>
+    </div>
+
+    <div class="step-card s5">
+      <div class="step-head">
+        <div class="step-num">٥</div>
+        <div class="step-title">استخدام الأسئلة البديلة المعدة للغائبين</div>
+      </div>
+      <div class="step-body">
+        <strong>٨-٥</strong> استخدام الأسئلة المعدة للغائبين <strong>(البديل)</strong>، أو التعاون مع مدرسة أخرى بالتنسيق مع إدارة تقويم الأداء المعرفي والمهاري، إذا اكتُشف الأمر في وقت لا يسمح بإعداد أسئلة.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bund 9 -->
+  <div class="arrow-down">▼</div>
+
+  <div class="bund9">
+    <div class="bund9-title">
+      <span style="font-size:22px;">🔍</span>
+      البند (٩) – إذا كُشف التسريب أثناء الاختبار أو بعد أداء الطلاب له
+    </div>
+    <div class="bund9-body">
+      إذا تم كشف تسرُّب الأسئلة <strong>أثناء الاختبار أو بعد أداء الطلاب</strong> لاختبار المادة؛ يتم دراسة الوضع مفصَّلاً عن طريق لجنة التحصيل الدراسي بالمدرسة، ويُعد محضر بذلك بمشاركة إدارة تقويم الأداء المعرفي والمهاري في إدارة التعليم، ويتخذ القرار المناسب مع مراعاة <strong>تحقيق العدل والمصلحة التربوية والتعليمية لجميع الطلاب</strong> وإبلاغ أولياء أمورهم للاطمئنان على الوضع في حينه.
+    </div>
+  </div>
+
+  <!-- Bund 10 -->
+  <div class="bund10">
+    <div class="bund10-icon">📞</div>
+    <div class="bund10-text">
+      <strong>البند (١٠) – الاستشارة العاجلة:</strong><br>
+      طلب الاستشارة العاجلة <strong>هاتفيًا</strong> مع إدارة تقويم الأداء المعرفي والمهاري عند حدوث <strong>أي مشكلة تتعلق بالاختبارات</strong>.
+    </div>
+  </div>
+
+  <!-- Reference -->
+  <div class="ref-box">
+    📚 <strong>المرجع:</strong> دليل الاختبارات – صفحة ٥١
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-cta">✨ تفضل للمزيد</div>
+    <a class="footer-link" href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📢 قناة التيليغرام</a>
+    <div class="footer-end">نهاية المقالة — المرجع: دليل الاختبارات ص ٥١</div>
+    <div class="footer-end" style="margin-top:4px;">تصميم <span>د/ فواز</span></div>
+  </div>
+
+</div>
+</body>
+</html>
