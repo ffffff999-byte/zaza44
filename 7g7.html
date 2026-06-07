@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استمارة بناء خطة التحسين - الممارسات الإشرافية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #0d5c3a;
+    --green-mid: #1a8a56;
+    --green-light: #27c07a;
+    --green-pale: #e8f7f0;
+    --gold: #c9a227;
+    --gold-light: #f5e6b0;
+    --white: #ffffff;
+    --gray-100: #f8fafb;
+    --gray-200: #eef1f4;
+    --gray-400: #9aabb8;
+    --gray-700: #3d5166;
+    --dark: #0f1e2a;
+    --shadow: 0 4px 24px rgba(13,92,58,0.10);
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #e8f7f0 0%, #f0faf5 40%, #eaf3ff 100%);
+    min-height: 100vh;
+    color: var(--dark);
+    direction: rtl;
+  }
+
+  /* ===== HEADER ===== */
+  .page-header {
+    background: linear-gradient(120deg, var(--green-deep) 0%, #0a7a50 60%, var(--green-mid) 100%);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-pattern {
+    position: absolute; inset: 0; opacity: 0.07;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.4) 12px, rgba(255,255,255,0.4) 13px),
+                      repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(255,255,255,0.2) 12px, rgba(255,255,255,0.2) 13px);
+  }
+  .header-inner {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 40px;
+    gap: 20px;
+  }
+  .header-logo {
+    width: 72px; height: 72px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  .header-text { flex: 1; text-align: center; }
+  .header-badge {
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .header-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .header-subtitle {
+    font-size: 0.88rem;
+    opacity: 0.85;
+    margin-top: 5px;
+    font-weight: 300;
+  }
+  .header-num {
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .header-num span { display: block; font-size: 1.8rem; font-weight: 900; }
+  .header-num small { font-size: 0.72rem; opacity: 0.8; }
+
+  /* ===== MAIN CONTAINER ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px 50px; }
+
+  /* ===== SECTION TITLE ===== */
+  .sec-title {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; margin-top: 32px;
+  }
+  .sec-num {
+    width: 36px; height: 36px;
+    background: var(--green-deep);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .sec-label {
+    font-size: 1.15rem; font-weight: 800;
+    color: var(--green-deep);
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 3px;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid rgba(13,92,58,0.08);
+  }
+
+  /* ===== BASIC DATA GRID ===== */
+  .basic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .basic-cell {
+    padding: 14px 18px;
+    border-left: 1px solid #e2ecf0;
+    border-bottom: 1px solid #e2ecf0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .basic-cell:last-child { border-left: none; }
+  .basic-cell label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .basic-cell label::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .basic-cell input, .basic-cell select {
+    border: 1.5px solid #dde8ec;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.88rem;
+    color: var(--dark);
+    background: var(--gray-100);
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    direction: rtl;
+  }
+  .basic-cell input:focus, .basic-cell select:focus {
+    outline: none;
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(39,192,122,0.12);
+    background: white;
+  }
+  .radio-group { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 2px; }
+  .radio-group label {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.85rem; font-weight: 500; color: var(--gray-700);
+    cursor: pointer;
+  }
+  .radio-group label::before { display: none; }
+  .radio-group input[type=radio] { accent-color: var(--green-mid); width: 15px; height: 15px; }
+
+  /* ===== PERF ROW ===== */
+  .perf-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #e2ecf0;
+  }
+  .perf-cell {
+    padding: 14px 18px;
+    border-left: 1px solid #e2ecf0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .perf-cell:last-child { border-left: none; }
+  .perf-cell label {
+    font-size: 0.82rem; font-weight: 700;
+    color: var(--green-deep); display: flex; align-items: center; gap: 6px;
+  }
+  .perf-cell label::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%; display: inline-block;
+  }
+  .perf-cell select {
+    border: 1.5px solid #dde8ec; border-radius: 8px;
+    padding: 7px 10px; font-family: 'Tajawal', sans-serif;
+    font-size: 0.88rem; color: var(--dark); background: var(--gray-100);
+    width: 100%; direction: rtl;
+    transition: border-color 0.2s;
+  }
+  .perf-cell select:focus { outline: none; border-color: var(--green-mid); }
+
+  /* ===== DOMAIN ACCORDION ===== */
+  .domain-block {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+    border: 1px solid rgba(13,92,58,0.10);
+  }
+  .domain-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .domain-header:hover { filter: brightness(0.97); }
+  .domain-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+    background: rgba(255,255,255,0.25);
+  }
+  .domain-title-wrap { flex: 1; }
+  .domain-title { font-size: 1.05rem; font-weight: 800; color: white; }
+  .domain-sub { font-size: 0.78rem; opacity: 0.85; color: white; margin-top: 2px; }
+  .domain-toggle {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: white;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .domain-block.open .domain-toggle { transform: rotate(180deg); }
+
+  .domain-body {
+    background: white;
+    display: none;
+    padding: 0;
+  }
+  .domain-block.open .domain-body { display: block; }
+
+  /* ===== DOMAIN COLORS ===== */
+  .d1 .domain-header { background: linear-gradient(90deg, #1a6b42, #2aaa6a); }
+  .d2 .domain-header { background: linear-gradient(90deg, #1a5580, #2288cc); }
+  .d3 .domain-header { background: linear-gradient(90deg, #7b3a0e, #d4632a); }
+  .d4 .domain-header { background: linear-gradient(90deg, #4a1a7a, #8844cc); }
+  .d5 .domain-header { background: linear-gradient(90deg, #0d5c5c, #1a9999); }
+
+  /* ===== FIELD GRID ===== */
+  .field-section {
+    padding: 18px 22px;
+    border-bottom: 1px solid #eef2f5;
+    background: #fafcfe;
+  }
+  .field-section-title {
+    font-size: 0.82rem; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .field-section-title::before {
+    content: ''; display: inline-block;
+    width: 3px; height: 16px;
+    background: var(--gold); border-radius: 2px;
+  }
+  .field-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .field-full { grid-column: 1 / -1; }
+  .field-item { display: flex; flex-direction: column; gap: 5px; }
+  .field-item label {
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--gray-700);
+  }
+  .field-item input, .field-item select, .field-item textarea {
+    border: 1.5px solid #dde8ec; border-radius: 8px;
+    padding: 8px 11px; font-family: 'Tajawal', sans-serif;
+    font-size: 0.88rem; color: var(--dark);
+    background: white; width: 100%; direction: rtl;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+  }
+  .field-item input:focus, .field-item select:focus, .field-item textarea:focus {
+    outline: none; border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(39,192,122,0.12);
+  }
+  .field-item textarea { min-height: 70px; line-height: 1.7; }
+
+  /* ===== TAGS SELECTOR ===== */
+  .tags-wrap { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 4px; }
+  .tag-btn {
+    padding: 5px 13px; border-radius: 20px; cursor: pointer;
+    font-family: 'Tajawal', sans-serif; font-size: 0.8rem; font-weight: 600;
+    border: 1.5px solid #c5d8e0; background: #f4f8fa;
+    color: var(--gray-700); transition: all 0.18s;
+  }
+  .tag-btn:hover { border-color: var(--green-mid); color: var(--green-mid); }
+  .tag-btn.active {
+    background: var(--green-mid); border-color: var(--green-mid);
+    color: white;
+  }
+
+  /* ===== RECOMMENDATIONS ===== */
+  .rec-area {
+    padding: 20px 22px;
+  }
+  .rec-area textarea {
+    width: 100%; min-height: 100px;
+    border: 1.5px solid #dde8ec; border-radius: 10px;
+    padding: 12px; font-family: 'Tajawal', sans-serif;
+    font-size: 0.9rem; direction: rtl; resize: vertical;
+    line-height: 1.9; color: var(--dark); background: var(--gray-100);
+    transition: border-color 0.2s;
+  }
+  .rec-area textarea:focus { outline: none; border-color: var(--green-mid); background: white; }
+
+  /* ===== SIGNATURE ROW ===== */
+  .sig-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0; border-top: 2px solid var(--green-pale);
+  }
+  .sig-cell {
+    padding: 18px 22px;
+    border-left: 1px solid #e2ecf0;
+    text-align: center;
+  }
+  .sig-cell:last-child { border-left: none; }
+  .sig-cell label {
+    display: block; font-size: 0.8rem; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 8px;
+  }
+  .sig-cell input {
+    border: none; border-bottom: 2px dashed #cddde4;
+    width: 100%; text-align: center;
+    font-family: 'Tajawal', sans-serif; font-size: 0.9rem;
+    padding: 6px 0; background: transparent;
+    color: var(--dark);
+  }
+  .sig-cell input:focus { outline: none; border-bottom-color: var(--green-mid); }
+
+  /* ===== BUTTONS ===== */
+  .btn-row {
+    display: flex; gap: 12px; justify-content: center;
+    margin: 30px 0 10px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 13px 34px; border-radius: 10px;
+    font-family: 'Tajawal', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; border: none; display: flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--green-deep), var(--green-mid));
+    color: white; box-shadow: 0 4px 16px rgba(26,138,86,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(26,138,86,0.4); }
+  .btn-gold {
+    background: linear-gradient(90deg, #b8890f, var(--gold));
+    color: white; box-shadow: 0 4px 16px rgba(201,162,39,0.3);
+  }
+  .btn-gold:hover { transform: translateY(-2px); }
+  .btn-outline {
+    background: white; color: var(--green-deep);
+    border: 2px solid var(--green-deep);
+  }
+  .btn-outline:hover { background: var(--green-pale); }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    text-align: center; padding: 22px;
+    color: var(--gray-400); font-size: 0.82rem;
+    border-top: 1px solid #e2ecf0; margin-top: 30px;
+    background: white;
+  }
+  .page-footer a { color: var(--green-mid); text-decoration: none; font-weight: 600; }
+
+  /* ===== PRINT PREVIEW DIV ===== */
+  .print-text {
+    display: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--dark);
+    padding: 8px 11px;
+    border: 1.5px solid #dde8ec;
+    border-radius: 8px;
+    background: #fafcfe;
+    width: 100%;
+    min-height: 40px;
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: white !important; }
+    .btn-row, .page-footer, .progress-wrap { display: none !important; }
+    .domain-body { display: block !important; }
+    .domain-block { break-inside: avoid; margin-bottom: 10px; }
+    .page-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .domain-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .domain-toggle { display: none; }
+    .container { padding: 0 10px; }
+
+    /* إخفاء textarea وإظهار div النصي بدلاً عنه */
+    textarea { display: none !important; }
+    .print-text { display: block !important; }
+
+    /* إخفاء select وإظهار قيمته */
+    select { display: none !important; }
+    .print-select { display: inline-block !important; font-weight: 600; color: var(--dark); font-size: 0.9rem; }
+
+    /* الخلايا الأساسية */
+    .basic-cell input, .basic-cell select { border: none !important; background: transparent !important; padding: 2px 0 !important; }
+    .perf-cell select { border: none !important; background: transparent !important; }
+    .field-item input { border: none !important; background: transparent !important; }
+
+    /* تفادي قطع المجالات عبر الصفحات */
+    .field-section { break-inside: avoid; }
+    .sig-row { break-inside: avoid; }
+  }
+
+  .print-select { display: none; }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-wrap {
+    background: var(--green-pale);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .progress-label { font-size: 0.85rem; font-weight: 700; color: var(--green-deep); white-space: nowrap; }
+  .progress-bar-bg {
+    flex: 1; height: 10px; background: #d0eadb;
+    border-radius: 10px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--green-mid), var(--green-light));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  .progress-pct { font-size: 0.88rem; font-weight: 800; color: var(--green-deep); min-width: 36px; }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--green-deep); color: white;
+    padding: 12px 28px; border-radius: 30px;
+    font-family: 'Tajawal', sans-serif; font-size: 0.95rem; font-weight: 600;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    opacity: 0; z-index: 9999; pointer-events: none;
+    white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="header-pattern"></div>
+  <div class="header-inner">
+    <div class="header-logo">🏫</div>
+    <div class="header-text">
+      <div class="header-badge">وزارة التعليم — المملكة العربية السعودية</div>
+      <div class="header-title">استمارة بناء خطة التحسين<br>في مجالات الممارسات الإشرافية</div>
+      <div class="header-subtitle">الاستمارة الأولى | الممارسات الإشرافية للمدرسة</div>
+    </div>
+    <div class="header-num">
+      <span>١</span>
+      <small>الاستمارة</small>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <span class="progress-label">📊 نسبة الإنجاز:</span>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+
+  <!-- SECTION 1: BASIC DATA -->
+  <div class="sec-title">
+    <div class="sec-num">١</div>
+    <div class="sec-label">البيانات الأساسية</div>
+  </div>
+
+  <div class="card">
+    <div class="basic-grid">
+      <div class="basic-cell">
+        <label>اسم المدرسة</label>
+        <input type="text" id="school_name" placeholder="أدخل اسم المدرسة" oninput="updateProgress()">
+      </div>
+      <div class="basic-cell">
+        <label>المرحلة</label>
+        <select id="stage" onchange="updateProgress()">
+          <option value="">— اختر المرحلة —</option>
+          <option>ابتدائية</option>
+          <option>متوسطة</option>
+          <option>ثانوية</option>
+        </select>
+      </div>
+      <div class="basic-cell">
+        <label>جنس المدرسة</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="بنين" onchange="updateProgress()"> بنين</label>
+          <label><input type="radio" name="gender" value="بنات" onchange="updateProgress()"> بنات</label>
+        </div>
+      </div>
+      <div class="basic-cell">
+        <label>الرقم الوزاري</label>
+        <input type="text" id="ministry_num" placeholder="أدخل الرقم الوزاري" oninput="updateProgress()">
+      </div>
+      <div class="basic-cell">
+        <label>نوع المبنى</label>
+        <div class="radio-group">
+          <label><input type="radio" name="building_type" value="حكومي" onchange="updateProgress()"> حكومي</label>
+          <label><input type="radio" name="building_type" value="مستأجر" onchange="updateProgress()"> مستأجر</label>
+        </div>
+      </div>
+      <div class="basic-cell">
+        <label>استقلالية المبنى</label>
+        <div class="radio-group">
+          <label><input type="radio" name="building_ind" value="مستقل" onchange="updateProgress()"> مستقل</label>
+          <label><input type="radio" name="building_ind" value="مشترك" onchange="updateProgress()"> مشترك</label>
+        </div>
+      </div>
+      <div class="basic-cell">
+        <label>الفترة</label>
+        <div class="radio-group">
+          <label><input type="radio" name="period" value="صباحي" onchange="updateProgress()"> صباحي</label>
+          <label><input type="radio" name="period" value="مسائي" onchange="updateProgress()"> مسائي</label>
+        </div>
+      </div>
+      <div class="basic-cell">
+        <label>استقلالية الإدارة</label>
+        <div class="radio-group">
+          <label><input type="radio" name="admin_ind" value="مستقلة" onchange="updateProgress()"> مستقلة</label>
+          <label><input type="radio" name="admin_ind" value="مشتركة" onchange="updateProgress()"> مشتركة</label>
+        </div>
+      </div>
+      <div class="basic-cell">
+        <label>اسم المدرسة المشتركة في الإدارة</label>
+        <input type="text" id="shared_school" placeholder="إن وُجدت" oninput="updateProgress()">
+      </div>
+    </div>
+    <div class="perf-row">
+      <div class="perf-cell">
+        <label>مستوى الأداء العام للمدرسة في التقويم المدرسي (آخر تقرير)</label>
+        <select id="perf_general" onchange="updateProgress()">
+          <option value="">— اختر المستوى —</option>
+          <option>ممتاز</option>
+          <option>جيد جداً</option>
+          <option>جيد</option>
+          <option>مقبول</option>
+          <option>يحتاج تطوير</option>
+        </select>
+      </div>
+      <div class="perf-cell">
+        <label>مستوى المدرسة في نواتج التعلم في التقويم المدرسي (آخر تقرير)</label>
+        <select id="perf_outcomes" onchange="updateProgress()">
+          <option value="">— اختر المستوى —</option>
+          <option>ممتاز</option>
+          <option>جيد جداً</option>
+          <option>جيد</option>
+          <option>مقبول</option>
+          <option>يحتاج تطوير</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: IMPROVEMENT PLAN -->
+  <div class="sec-title">
+    <div class="sec-num">٢</div>
+    <div class="sec-label">إجراءات خطة التحسين في مجالات الممارسات الإشرافية</div>
+  </div>
+
+  <!-- DOMAIN 1: TEACHING -->
+  <div class="domain-block d1" id="d1">
+    <div class="domain-header" onclick="toggleDomain('d1')">
+      <div class="domain-icon">📚</div>
+      <div class="domain-title-wrap">
+        <div class="domain-title">مجال التدريس</div>
+        <div class="domain-sub">تخطيط التدريس · تنفيذ التدريس · تقويم التعلم</div>
+      </div>
+      <div class="domain-toggle">▼</div>
+    </div>
+    <div class="domain-body">
+      <div class="field-section">
+        <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">تخطيط التدريس</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">تنفيذ التدريس</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">تقويم التعلم</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">وصف الاحتياج</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea  placeholder="تخطيط الوحدات والفصول والدروس — طرائق التدريس وأساليبه — التقنيات والوسائل التعليمية — التخطيط للتقويم وإعداد أدواته ...">تخطيط الوحدات والفصول والدروس
+طرائق التدريس وأساليبه
+التقنيات والوسائل التعليمية
+التخطيط للتقويم وإعداد أدواته</textarea>
+<div class="print-text">تخطيط الوحدات والفصول والدروس
+طرائق التدريس وأساليبه
+التقنيات والوسائل التعليمية
+التخطيط للتقويم وإعداد أدواته</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">إجراءات التحسين</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea  placeholder="اعداد خطط الدروس — التنوع في الاستراتيجيات — دمج وسائل التقنية ...">إعداد خطط الدروس وفق خطة الدرس
+التنوع في الاستراتيجيات وطرائق التدريس
+دمج وسائل التقنية
+تطبيق أساليب التقويم
+تعزيز التدريس الفعال
+تهيئة مناخ آمن وجاذب للتعلم</textarea>
+<div class="print-text">إعداد خطط الدروس وفق خطة الدرس
+التنوع في الاستراتيجيات وطرائق التدريس
+دمج وسائل التقنية
+تطبيق أساليب التقويم
+تعزيز التدريس الفعال
+تهيئة مناخ آمن وجاذب للتعلم</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">أساليب وطرق التحسين</div>
+        <div class="tags-wrap" id="methods_d1">
+          <span class="tag-btn active" onclick="toggleTag(this)">ورش عمل</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">مجتمعات تعلم مهنية</span>
+          <span class="tag-btn" onclick="toggleTag(this)">مقاطع تعليمية</span>
+          <span class="tag-btn" onclick="toggleTag(this)">تعلم أقران</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
+        <div class="field-grid">
+          <div class="field-item">
+            <label>مدة الإنجاز</label>
+            <select>
+              <option>فصل دراسي</option>
+              <option>شهر</option>
+              <option>فصلان دراسيان</option>
+              <option>العام الدراسي</option>
+            </select>
+          </div>
+          <div class="field-item">
+            <label>التنفيذ والمسؤولية</label>
+            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 2: LEARNING OUTCOMES -->
+  <div class="domain-block d2" id="d2">
+    <div class="domain-header" onclick="toggleDomain('d2')">
+      <div class="domain-icon">🎯</div>
+      <div class="domain-title-wrap">
+        <div class="domain-title">مجال نواتج التعلم</div>
+        <div class="domain-sub">تحسين التحصيل العلمي والدراسي للطالب</div>
+      </div>
+      <div class="domain-toggle">▼</div>
+    </div>
+    <div class="domain-body">
+      <div class="field-section">
+        <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">تحسين التحصيل العلمي والدراسي للطالب</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">وصف الاحتياج</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >معايير المحتوى والأهداف
+دراسة نتائج تعلم الطلاب وتحليلها
+تحديد جوانب القوة والضعف
+تحديد أسباب تدني المستوى
+مشاركة أولياء الأمور في تعليم أبنائهم
+ارتباط الأنشطة بالأهداف التعليمية</textarea>
+<div class="print-text">معايير المحتوى والأهداف
+دراسة نتائج تعلم الطلاب وتحليلها
+تحديد جوانب القوة والضعف
+تحديد أسباب تدني المستوى
+مشاركة أولياء الأمور في تعليم أبنائهم
+ارتباط الأنشطة بالأهداف التعليمية</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">إجراءات التحسين</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >تصميم برامج مناسبة لرفع مستوى التعلم مثل دروس تقوية ومنصات تعليمية
+تحسين بيئات التعلم والإدارة الصفية
+تعزيز سلوك التعلم العميق وتفريد التعليم والتعلم الذاتي
+تحسين ممارسات التقويم التكويني وتعزيز العلاقات الإيجابية بين المعلم والطالب
+تنمية مهارات التفكير الناقد والإبداعي</textarea>
+<div class="print-text">تصميم برامج مناسبة لرفع مستوى التعلم مثل دروس تقوية ومنصات تعليمية
+تحسين بيئات التعلم والإدارة الصفية
+تعزيز سلوك التعلم العميق وتفريد التعليم والتعلم الذاتي
+تحسين ممارسات التقويم التكويني وتعزيز العلاقات الإيجابية بين المعلم والطالب
+تنمية مهارات التفكير الناقد والإبداعي</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">أساليب وطرق التحسين</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">مجتمعات تعلم مهنية</span>
+          <span class="tag-btn" onclick="toggleTag(this)">تحليل البيانات</span>
+          <span class="tag-btn" onclick="toggleTag(this)">خطط علاجية فردية</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
+        <div class="field-grid">
+          <div class="field-item">
+            <label>مدة الإنجاز</label>
+            <select>
+              <option>فصل دراسي</option>
+              <option>شهر</option>
+              <option>فصلان دراسيان</option>
+              <option>العام الدراسي</option>
+            </select>
+          </div>
+          <div class="field-item">
+            <label>التنفيذ والمسؤولية</label>
+            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 3: SCHOOL ACTIVITIES -->
+  <div class="domain-block d3" id="d3">
+    <div class="domain-header" onclick="toggleDomain('d3')">
+      <div class="domain-icon">🏃</div>
+      <div class="domain-title-wrap">
+        <div class="domain-title">مجال الأنشطة المدرسية</div>
+        <div class="domain-sub">البرامج والأنشطة الصفية وغير الصفية</div>
+      </div>
+      <div class="domain-toggle">▼</div>
+    </div>
+    <div class="domain-body">
+      <div class="field-section">
+        <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">البرامج والأنشطة الصفية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">الأنشطة غير الصفية</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">وصف الاحتياج</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >ارتباط الأنشطة بالأهداف التعليمية
+فاعلية الأنشطة في تحسين المهارات والقدرات والنواتج
+الشراكة مع الأسرة والمجتمع</textarea>
+<div class="print-text">ارتباط الأنشطة بالأهداف التعليمية
+فاعلية الأنشطة في تحسين المهارات والقدرات والنواتج
+الشراكة مع الأسرة والمجتمع</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">إجراءات التحسين</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >عمل برامج وأنشطة تدعم التعلم
+عمل أنشطة غير صفية تعزز التعليم
+عمل أنشطة صفية تدعم احتياج الطالب</textarea>
+<div class="print-text">عمل برامج وأنشطة تدعم التعلم
+عمل أنشطة غير صفية تعزز التعليم
+عمل أنشطة صفية تدعم احتياج الطالب</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">أساليب وطرق التحسين</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">مجتمعات تعلم مهنية</span>
+          <span class="tag-btn" onclick="toggleTag(this)">مسابقات ومعارض</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
+        <div class="field-grid">
+          <div class="field-item">
+            <label>مدة الإنجاز</label>
+            <select>
+              <option>فصل دراسي</option>
+              <option>شهر</option>
+              <option>فصلان دراسيان</option>
+              <option>العام الدراسي</option>
+            </select>
+          </div>
+          <div class="field-item">
+            <label>التنفيذ والمسؤولية</label>
+            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 4: STUDENT GUIDANCE -->
+  <div class="domain-block d4" id="d4">
+    <div class="domain-header" onclick="toggleDomain('d4')">
+      <div class="domain-icon">🧭</div>
+      <div class="domain-title-wrap">
+        <div class="domain-title">مجال التوجيه الطلابي</div>
+        <div class="domain-sub">البرامج والإجراءات والفعاليات</div>
+      </div>
+      <div class="domain-toggle">▼</div>
+    </div>
+    <div class="domain-body">
+      <div class="field-section">
+        <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">البرامج والإجراءات والفعاليات</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">وصف الاحتياج</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >توجيه سلوك الطالب
+توجيه تعليمي ومهني للطلاب
+الشراكة الأسرية والمجتمعية</textarea>
+<div class="print-text">توجيه سلوك الطالب
+توجيه تعليمي ومهني للطلاب
+الشراكة الأسرية والمجتمعية</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">إجراءات التحسين</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >تعزيز القيم وأخلاقيات المهنة
+تعزيز الانتماء الوطني والتنوع الثقافي
+برامج رفع الدافعية وتحفيز التعلم
+تعزيز التطور الصحي والنفسي والاجتماعي للطلاب
+الشراكة الأسرية والمجتمعية</textarea>
+<div class="print-text">تعزيز القيم وأخلاقيات المهنة
+تعزيز الانتماء الوطني والتنوع الثقافي
+برامج رفع الدافعية وتحفيز التعلم
+تعزيز التطور الصحي والنفسي والاجتماعي للطلاب
+الشراكة الأسرية والمجتمعية</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">أساليب وطرق التحسين</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">مجتمعات تعلم مهنية</span>
+          <span class="tag-btn" onclick="toggleTag(this)">لقاءات أولياء أمور</span>
+          <span class="tag-btn" onclick="toggleTag(this)">برامج إرشادية</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
+        <div class="field-grid">
+          <div class="field-item">
+            <label>مدة الإنجاز</label>
+            <select>
+              <option>فصل دراسي</option>
+              <option>شهر</option>
+              <option>فصلان دراسيان</option>
+              <option>العام الدراسي</option>
+            </select>
+          </div>
+          <div class="field-item">
+            <label>التنفيذ والمسؤولية</label>
+            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 5: PROFESSIONAL DEVELOPMENT -->
+  <div class="domain-block d5" id="d5">
+    <div class="domain-header" onclick="toggleDomain('d5')">
+      <div class="domain-icon">🌱</div>
+      <div class="domain-title-wrap">
+        <div class="domain-title">مجال التطوير المهني المستمر</div>
+        <div class="domain-sub">التطوير المهني المستمر والتفاعل مع التربويين والمجتمع</div>
+      </div>
+      <div class="domain-toggle">▼</div>
+    </div>
+    <div class="domain-body">
+      <div class="field-section">
+        <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">التطوير المهني المستمر والتفاعل مع التربويين والمجتمع</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">وصف الاحتياج</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >التطوير الفردي والنمو المهني
+التطوير الفريقي كمجتمعات تعلم
+التطوير المستمر للمدرسة</textarea>
+<div class="print-text">التطوير الفردي والنمو المهني
+التطوير الفريقي كمجتمعات تعلم
+التطوير المستمر للمدرسة</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">إجراءات التحسين</div>
+        <div class="field-grid">
+          <div class="field-item field-full">
+            <textarea >التأمل الذاتي (تقويم — مراجعة — تصحيح)
+تعلم الأقران
+حلقات وورش عمل
+دروس تطبيقية وتبادل زيارات
+لقاءات ومجتمعات تعلم مهنية</textarea>
+<div class="print-text">التأمل الذاتي (تقويم — مراجعة — تصحيح)
+تعلم الأقران
+حلقات وورش عمل
+دروس تطبيقية وتبادل زيارات
+لقاءات ومجتمعات تعلم مهنية</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">أساليب وطرق التحسين</div>
+        <div class="tags-wrap">
+          <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
+          <span class="tag-btn active" onclick="toggleTag(this)">مجتمعات تعلم مهنية</span>
+          <span class="tag-btn" onclick="toggleTag(this)">التأمل الذاتي</span>
+          <span class="tag-btn" onclick="toggleTag(this)">تعلم الأقران</span>
+        </div>
+      </div>
+      <div class="field-section">
+        <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
+        <div class="field-grid">
+          <div class="field-item">
+            <label>مدة الإنجاز</label>
+            <select>
+              <option>فصل دراسي</option>
+              <option>شهر</option>
+              <option>فصلان دراسيان</option>
+              <option>العام الدراسي</option>
+            </select>
+          </div>
+          <div class="field-item">
+            <label>التنفيذ والمسؤولية</label>
+            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: RECOMMENDATIONS -->
+  <div class="sec-title">
+    <div class="sec-num">٣</div>
+    <div class="sec-label">التوصيات والمقترحات</div>
+  </div>
+
+  <div class="card">
+    <div class="rec-area">
+      <textarea  id="recommendations" placeholder="أدخل التوصيات والمقترحات هنا ..." oninput="updateProgress()"></textarea>
+<div class="print-text"></div>
+    </div>
+
+    <!-- SIGNATURES -->
+    <div class="sig-row">
+      <div class="sig-cell">
+        <label>مدير / ة المدرسة</label>
+        <input type="text" id="principal_name" placeholder="الاسم">
+      </div>
+      <div class="sig-cell">
+        <label>التوقيع</label>
+        <input type="text" placeholder="..........................">
+      </div>
+      <div class="sig-cell">
+        <label>ختم المدرسة</label>
+        <input type="text" placeholder="..........................">
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="saveDraft()">💾 حفظ مسودة</button>
+    <button class="btn btn-gold" onclick="window.print()">🖨️ طباعة</button>
+    <button class="btn btn-outline" onclick="clearAll()">🗑️ مسح البيانات</button>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  تصميم: <strong>د/ فواز</strong> &nbsp;|&nbsp;
+  <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📲 قناة التيليجرام</a>
+</div>
+
+<div id="toast">✅ تم الحفظ بنجاح</div>
+
+<script>
+  // ===== مزامنة textarea مع div الطباعة =====
+  function syncPrintDivs() {
+    document.querySelectorAll('textarea').forEach(ta => {
+      const div = ta.nextElementSibling;
+      if (div && div.classList.contains('print-text')) {
+        div.textContent = ta.value;
+        ta.addEventListener('input', () => { div.textContent = ta.value; });
+      }
+    });
+  }
+
+  // Open domain 1 by default
+  document.getElementById('d1').classList.add('open');
+
+  function toggleDomain(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  function toggleTag(el) {
+    el.classList.toggle('active');
+  }
+
+  function updateProgress() {
+    const fields = [
+      document.getElementById('school_name').value,
+      document.getElementById('stage').value,
+      document.querySelector('input[name="gender"]:checked'),
+      document.getElementById('ministry_num').value,
+      document.getElementById('perf_general').value,
+      document.getElementById('perf_outcomes').value,
+      document.getElementById('recommendations').value,
+    ];
+    let filled = 0;
+    fields.forEach(f => { if (f && (typeof f === 'string' ? f.trim() : true)) filled++; });
+    const pct = Math.round((filled / fields.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function saveDraft() {
+    const data = {
+      school_name: document.getElementById('school_name').value,
+      stage: document.getElementById('stage').value,
+      ministry_num: document.getElementById('ministry_num').value,
+      perf_general: document.getElementById('perf_general').value,
+      perf_outcomes: document.getElementById('perf_outcomes').value,
+      recommendations: document.getElementById('recommendations').value,
+      principal_name: document.getElementById('principal_name').value,
+      gender: (document.querySelector('input[name="gender"]:checked') || {}).value || '',
+      period: (document.querySelector('input[name="period"]:checked') || {}).value || '',
+      building_type: (document.querySelector('input[name="building_type"]:checked') || {}).value || '',
+    };
+    localStorage.setItem('school_improvement_plan', JSON.stringify(data));
+    showToast('✅ تم حفظ المسودة بنجاح');
+  }
+
+  function clearAll() {
+    if (!confirm('هل تريد مسح جميع البيانات المدخلة؟')) return;
+    document.querySelectorAll('input[type=text], textarea').forEach(el => el.value = '');
+    document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+    document.querySelectorAll('input[type=radio]').forEach(el => el.checked = false);
+    updateProgress();
+    showToast('🗑️ تم مسح البيانات');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // Load saved data
+  window.addEventListener('load', () => {
+    syncPrintDivs();
+    const saved = localStorage.getItem('school_improvement_plan');
+    if (saved) {
+      try {
+        const d = JSON.parse(saved);
+        if (d.school_name) document.getElementById('school_name').value = d.school_name;
+        if (d.stage) document.getElementById('stage').value = d.stage;
+        if (d.ministry_num) document.getElementById('ministry_num').value = d.ministry_num;
+        if (d.perf_general) document.getElementById('perf_general').value = d.perf_general;
+        if (d.perf_outcomes) document.getElementById('perf_outcomes').value = d.perf_outcomes;
+        if (d.recommendations) document.getElementById('recommendations').value = d.recommendations;
+        if (d.principal_name) document.getElementById('principal_name').value = d.principal_name;
+        if (d.gender) { const r = document.querySelector(`input[name="gender"][value="${d.gender}"]`); if(r) r.checked = true; }
+        if (d.period) { const r = document.querySelector(`input[name="period"][value="${d.period}"]`); if(r) r.checked = true; }
+        if (d.building_type) { const r = document.querySelector(`input[name="building_type"][value="${d.building_type}"]`); if(r) r.checked = true; }
+        updateProgress();
+      } catch(e) {}
+    }
+  });
+</script>
+</body>
+</html>
