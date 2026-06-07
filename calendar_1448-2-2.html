@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقويم الهجري ١٤٤٨هـ | 2026-2027</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --c-bg:        #0b1a4f;
+  --c-header1:   #1a3a8a;
+  --c-header2:   #0d2460;
+  --c-title:     #ffffff;
+  --c-year:      #ff4444;
+  --c-sub:       #90caf9;
+
+  /* season */
+  --s-winter:    #1565c0;
+  --s-spring:    #2e7d32;
+  --s-summer:    #c62828;
+  --s-autumn:    #e65100;
+
+  /* special */
+  --sp-weekend:  #fff9c4;
+  --sp-national: #81c784;
+  --sp-founding: #8d6e63;
+  --sp-flag:     #4caf50;
+  --sp-eid:      #e0e0e0;
+  --sp-salary:   #b0bec5;
+  --sp-special1: #b3e5fc;
+  --sp-special2: #1565c0;
+  --sp-ramadan:  #6a1b9a;
+}
+
+html { font-size: 14px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+  background: linear-gradient(160deg, #071030 0%, #0d2060 50%, #071030 100%);
+  min-height: 100vh;
+  padding: 16px;
+  color: #222;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 40% at 20% 20%, rgba(30,100,200,0.15), transparent),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(100,30,200,0.1), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper { position: relative; z-index: 1; }
+
+/* ===== WRAPPER ===== */
+.wrapper {
+  max-width: 1700px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+}
+
+/* ===== HEADER ===== */
+.cal-header {
+  background: linear-gradient(135deg, #0d2460 0%, #1a3a8a 40%, #0d2460 100%);
+  padding: 22px 30px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 4px solid;
+  border-image: linear-gradient(90deg, #1565c0, #42a5f5, #ff5252, #42a5f5, #1565c0) 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.cal-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(100,160,255,0.12), transparent);
+  pointer-events: none;
+}
+
+/* Designer block */
+.designer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 150px;
+  position: relative;
+  z-index: 1;
+}
+
+.designer-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 400;
+}
+
+.designer-name {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #ffd54f;
+  letter-spacing: 0.5px;
+}
+
+.designer-handle {
+  font-size: 0.72rem;
+  color: #90caf9;
+  direction: ltr;
+  font-weight: 600;
+}
+
+.qr-placeholder {
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.qr-placeholder svg { width: 44px; height: 44px; }
+
+/* Title block */
+.title-block {
+  text-align: center;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.title-ar {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+  line-height: 1.15;
+}
+
+.title-en {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #90caf9;
+  margin-top: 2px;
+}
+
+.title-year {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ff5252;
+  text-shadow: 0 0 24px rgba(255,82,82,0.5);
+  margin-top: 4px;
+  letter-spacing: 2px;
+}
+
+/* Spacer right */
+.header-right { min-width: 150px; }
+
+/* ===== LEGEND ===== */
+.legend {
+  background: #f0f0f0;
+  padding: 10px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #444;
+  white-space: nowrap;
+}
+
+.leg-box {
+  width: 22px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.18);
+  flex-shrink: 0;
+}
+
+/* ===== CALENDAR TABLE ===== */
+.cal-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+}
+
+.cal-table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Column widths */
+.col-month  { width: 160px; }
+.col-greg   { width: 150px; }
+.col-day    { width: auto; }
+
+/* ===== HEADER ROW ===== */
+.cal-table thead tr.days-row th {
+  background: linear-gradient(180deg, #1a3a8a, #0d2460);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 7px 1px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.cal-table thead tr.days-row th.th-month {
+  background: #0d2460;
+  color: #90caf9;
+  font-size: 0.72rem;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.cal-table thead tr.days-row th.th-greg {
+  background: #0d2460;
+  color: #90caf9;
+  font-size: 0.72rem;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.cal-table thead tr.days-row th.fri,
+.cal-table thead tr.days-row th.sat {
+  color: #ffeb3b;
+  background: linear-gradient(180deg, #1a3a8a, #162d6e);
+}
+
+/* ===== BODY ROWS ===== */
+.cal-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cal-table tbody tr:nth-child(odd)  { background: #fafafa; }
+.cal-table tbody tr:nth-child(even) { background: #f3f3f3; }
+
+/* Month name cell */
+td.month-cell {
+  padding: 5px 10px 5px 6px;
+  border-right: 5px solid;
+  vertical-align: middle;
+  background: rgba(255,255,255,0.65) !important;
+}
+
+.m-name-ar {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #1a237e;
+  display: block;
+  line-height: 1.2;
+}
+
+.m-name-en {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #666;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Gregorian cell */
+td.greg-cell {
+  padding: 4px 8px;
+  border-left: 5px solid;
+  vertical-align: middle;
+  background: rgba(255,255,255,0.65) !important;
+  text-align: left;
+}
+
+.g-start {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #1565c0;
+  display: block;
+  line-height: 1.5;
+}
+
+.g-end {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #c62828;
+  display: block;
+}
+
+/* Day cell */
+td.day-cell {
+  text-align: center;
+  padding: 2px 0;
+  border: 1px solid rgba(0,0,0,0.07);
+  vertical-align: middle;
+  position: relative;
+  transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s;
+  cursor: default;
+  min-height: 50px;
+  height: 50px;
+}
+
+td.day-cell:hover {
+  transform: scale(1.18);
+  z-index: 20;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  border-radius: 4px;
+}
+
+td.day-cell .hd {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #222;
+}
+
+td.day-cell .gd {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: #888;
+  line-height: 1.1;
+}
+
+td.day-cell.empty {
+  background: transparent !important;
+}
+
+/* ===== COLOR CLASSES ===== */
+td.day-cell.weekend    { background: #fff9c4 !important; }
+td.day-cell.weekend .hd { color: #e65100 !important; }
+
+td.day-cell.national   { background: #81c784 !important; }
+td.day-cell.founding   { background: #8d6e63 !important; }
+td.day-cell.founding .hd,
+td.day-cell.founding .gd { color: #fff !important; }
+
+td.day-cell.flagday    { background: #4caf50 !important; }
+td.day-cell.flagday .hd { color: #fff !important; }
+td.day-cell.flagday .gd { color: rgba(255,255,255,0.8) !important; }
+
+td.day-cell.eid        { background: #e0e0e0 !important; }
+td.day-cell.salary     { background: #b0bec5 !important; }
+
+td.day-cell.winter     { background: #1e88e5 !important; }
+td.day-cell.winter .hd,
+td.day-cell.winter .gd { color: #fff !important; }
+
+td.day-cell.spring     { background: #43a047 !important; }
+td.day-cell.spring .hd,
+td.day-cell.spring .gd { color: #fff !important; }
+
+td.day-cell.summer     { background: #e53935 !important; }
+td.day-cell.summer .hd,
+td.day-cell.summer .gd { color: #fff !important; }
+
+td.day-cell.autumn     { background: #fb8c00 !important; }
+td.day-cell.autumn .hd,
+td.day-cell.autumn .gd { color: #fff !important; }
+
+td.day-cell.sp1        { background: #b3e5fc !important; border: 2px solid #0288d1 !important; }
+td.day-cell.sp1 .hd    { color: #01579b !important; }
+
+td.day-cell.sp2        { background: #1565c0 !important; }
+td.day-cell.sp2 .hd,
+td.day-cell.sp2 .gd    { color: #fff !important; }
+
+td.day-cell.ramadan-hl { background: #6a1b9a !important; }
+td.day-cell.ramadan-hl .hd,
+td.day-cell.ramadan-hl .gd { color: #fff !important; }
+
+/* ===== MONTH BORDER COLORS ===== */
+.m1  { border-color: #1565c0 !important; }
+.m2  { border-color: #1976d2 !important; }
+.m3  { border-color: #0288d1 !important; }
+.m4  { border-color: #00838f !important; }
+.m5  { border-color: #2e7d32 !important; }
+.m6  { border-color: #558b2f !important; }
+.m7  { border-color: #f57f17 !important; }
+.m8  { border-color: #e65100 !important; }
+.m9  { border-color: #7b1fa2 !important; }
+.m10 { border-color: #c62828 !important; }
+.m11 { border-color: #ad1457 !important; }
+.m12 { border-color: #4527a0 !important; }
+
+/* ===== FOOTER ===== */
+.cal-footer {
+  background: linear-gradient(135deg, #0d2460 0%, #1a3a8a 50%, #0d2460 100%);
+  padding: 22px 30px;
+  text-align: center;
+}
+
+.thanks-line {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffd54f;
+  text-shadow: 0 2px 12px rgba(255,213,79,0.4), 0 0 30px rgba(255,213,79,0.15);
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+  padding: 10px 20px;
+  background: rgba(255,213,79,0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(255,213,79,0.2);
+  display: inline-block;
+}
+
+/* Settings panel */
+.settings-panel {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.settings-title {
+  width: 100%;
+  color: #90caf9;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.s-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.s-btn:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.s-btn.active {
+  background: #1565c0;
+  border-color: #42a5f5;
+}
+
+/* Fawaz credit */
+.fawaz-line {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+
+.fawaz-line a {
+  color: #80d8ff;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px dashed #80d8ff;
+  transition: color 0.2s;
+}
+
+.fawaz-line a:hover { color: #fff; }
+
+.copyright {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 8px;
+}
+
+/* ===== TOOLTIP ===== */
+td.day-cell[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.88);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.62rem;
+  white-space: nowrap;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* ===== SCROLL TO TOP BUTTON ===== */
+.scroll-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: all 0.2s;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .settings-panel { display: none !important; }
+  .cal-footer { background: #1a3a8a; }
+  .wrapper { box-shadow: none; border-radius: 0; }
+}
+
+/* ===== DARK MODE ===== */
+body.dark .cal-scroll,
+body.dark .cal-table tbody tr { background: #1a1a2e !important; color: #e0e0e0; }
+body.dark .cal-table tbody tr:nth-child(odd) { background: #16213e !important; }
+body.dark td.month-cell,
+body.dark td.greg-cell { background: #0f3460 !important; }
+body.dark .m-name-ar { color: #90caf9; }
+body.dark .g-start { color: #64b5f6; }
+body.dark .g-end { color: #ef9a9a; }
+body.dark td.day-cell.empty { background: transparent !important; }
+
+/* ===== COMPACT MODE ===== */
+body.compact td.day-cell { height: 36px !important; min-height: 36px !important; }
+body.compact td.day-cell .hd { font-size: 0.72rem; }
+body.compact td.day-cell .gd { font-size: 0.5rem; }
+body.compact td.month-cell { padding: 3px 8px 3px 4px; }
+body.compact .m-name-ar { font-size: 0.85rem; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .col-month { width: 130px; }
+  .col-greg  { width: 120px; }
+  .title-ar  { font-size: 2rem; }
+  .title-en  { font-size: 1.5rem; }
+  .title-year { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== HEADER ===== -->
+  <header class="cal-header">
+    <div class="designer-block"></div>
+
+    <div class="title-block">
+      <div class="title-ar">التقويم الهجري ١٤٤٨هـ</div>
+      <div class="title-en">Calendar 1448</div>
+      <div class="title-year">2026 – 2027</div>
+    </div>
+
+    <div class="header-right" style="min-width:150px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:6px;">
+      <div style="color:rgba(255,255,255,0.5); font-size:0.68rem;">السنة الهجرية</div>
+      <div style="color:#ffd54f; font-size:1.4rem; font-weight:900;">١٤٤٨هـ</div>
+      <div style="color:rgba(255,255,255,0.5); font-size:0.68rem; margin-top:4px;">١٢ شهراً هجرياً</div>
+      <div style="color:#90caf9; font-size:0.72rem; font-weight:600;">354 يوم</div>
+    </div>
+  </header>
+
+  <!-- ===== LEGEND TOP ===== -->
+  <div class="legend" id="legend-top">
+    <div class="leg-item"><div class="leg-box" style="background:#fff9c4;"></div>عطلة نهاية الأسبوع</div>
+    <div class="leg-item"><div class="leg-box" style="background:#81c784;"></div>اليوم الوطني السعودي</div>
+    <div class="leg-item"><div class="leg-box" style="background:#8d6e63;"></div>يوم التأسيس</div>
+    <div class="leg-item"><div class="leg-box" style="background:#4caf50;"></div>يوم العلم السعودي</div>
+    <div class="leg-item"><div class="leg-box" style="background:#e0e0e0;"></div>إجازات العيد</div>
+    <div class="leg-item"><div class="leg-box" style="background:#b0bec5;"></div>أيام الرواتب</div>
+    <div class="leg-item"><div class="leg-box" style="background:#1e88e5;"></div>الشتاء</div>
+    <div class="leg-item"><div class="leg-box" style="background:#43a047;"></div>الربيع</div>
+    <div class="leg-item"><div class="leg-box" style="background:#e53935;"></div>الصيف</div>
+    <div class="leg-item"><div class="leg-box" style="background:#fb8c00;"></div>الخريف</div>
+  </div>
+
+  <!-- ===== CALENDAR ===== -->
+  <div class="cal-scroll">
+    <table class="cal-table" id="cal-table">
+      <colgroup>
+        <col class="col-month">
+        <!-- 35 day columns -->
+        <col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day">
+        <col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day">
+        <col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day">
+        <col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day">
+        <col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day"><col class="col-day">
+        <col class="col-greg">
+      </colgroup>
+      <thead>
+        <tr class="days-row" id="days-header-row">
+          <!-- filled by JS -->
+        </tr>
+      </thead>
+      <tbody id="cal-body">
+        <!-- filled by JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== LEGEND BOTTOM ===== -->
+  <div class="legend">
+    <div class="leg-item"><div class="leg-box" style="background:#fff9c4;"></div>Weekend</div>
+    <div class="leg-item"><div class="leg-box" style="background:#81c784;"></div>Saudi National Day</div>
+    <div class="leg-item"><div class="leg-box" style="background:#8d6e63;"></div>Saudi Founding Day</div>
+    <div class="leg-item"><div class="leg-box" style="background:#4caf50;"></div>Saudi Flag Day</div>
+    <div class="leg-item"><div class="leg-box" style="background:#e0e0e0;"></div>Eid Holidays</div>
+    <div class="leg-item"><div class="leg-box" style="background:#b0bec5;"></div>Salary Days</div>
+    <div class="leg-item"><div class="leg-box" style="background:#1e88e5;"></div>Winter</div>
+    <div class="leg-item"><div class="leg-box" style="background:#43a047;"></div>Spring</div>
+    <div class="leg-item"><div class="leg-box" style="background:#e53935;"></div>Summer</div>
+    <div class="leg-item"><div class="leg-box" style="background:#fb8c00;"></div>Autumn</div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="cal-footer">
+    <div class="settings-panel">
+      <div class="settings-title">⚙️ إعدادات العرض</div>
+      <button class="s-btn active" onclick="setLang('ar',this)">🌙 التقويم الهجري (عربي)</button>
+      <button class="s-btn" onclick="setLang('en',this)">📅 English Version</button>
+      <button class="s-btn" onclick="showWestern(this)">🕌 نسخة المناطق الغربية</button>
+      <button class="s-btn" onclick="window.print()">🖨️ طباعة</button>
+      <button class="s-btn" onclick="toggleDark(this)">🌙 الوضع الليلي</button>
+      <button class="s-btn" onclick="toggleCompact(this)">📐 عرض مضغوط</button>
+      <div class="fawaz-line">
+        تصميم د/فواز &nbsp;|&nbsp; إعداد خالد الرفاعي
+      </div>
+    </div>
+
+  </footer>
+
+</div><!-- end wrapper -->
+
+<!-- Scroll to top button -->
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="الرجوع للأعلى">↑</button>
+
+<script>
+/* ============================================================
+   CALENDAR DATA — 1448 AH / 2026-2027
+   Source: Official Saudi calendar PDF files
+   ============================================================ */
+
+// Day-of-week: 0=Sun 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat
+const MONTHS = [
+  {
+    num:1, ar:'محـــرم', en:'Muharram', days:30, startDow:0,
+    gStartM:6, gStartD:6, gStartY:2026,
+    gStartLbl:'يونيو (6) 2026', gEndLbl:'يوليو (7) 2026',
+    gStartLblEn:'Jun 6, 2026', gEndLblEn:'Jul 5, 2026',
+    season:'summer',
+    // special overrides: day -> class
+    sp:{ 6:'weekend',7:'weekend', 13:'weekend',14:'weekend',
+         20:'weekend',21:'weekend', 27:'weekend',28:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:2, ar:'صفـــر', en:'Safar', days:30, startDow:2,
+    gStartM:7, gStartD:7, gStartY:2026,
+    gStartLbl:'يوليو (7) 2026', gEndLbl:'أغسطس (8) 2026',
+    gStartLblEn:'Jul 7, 2026', gEndLblEn:'Aug 5, 2026',
+    season:'summer',
+    sp:{ 4:'weekend',5:'weekend', 11:'weekend',12:'weekend',
+         18:'weekend',19:'weekend', 25:'weekend',26:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:3, ar:'ربيع الأول', en:'Rabia I', days:29, startDow:5,
+    gStartM:8, gStartD:8, gStartY:2026,
+    gStartLbl:'أغسطس (8) 2026', gEndLbl:'سبتمبر (9) 2026',
+    gStartLblEn:'Aug 8, 2026', gEndLblEn:'Sep 5, 2026',
+    season:'summer',
+    sp:{ 1:'weekend',2:'weekend', 8:'weekend',9:'weekend',
+         15:'weekend',16:'weekend',
+         22:'weekend',23:'weekend',
+         27:'salary',28:'salary',29:'salary' }
+    // Note: Sep 23 (National Day) falls in Rabia II
+  },
+  {
+    num:4, ar:'ربيع الثاني', en:'Rabia II', days:30, startDow:0,
+    gStartM:9, gStartD:6, gStartY:2026,
+    gStartLbl:'سبتمبر (9) 2026', gEndLbl:'أكتوبر (10) 2026',
+    gStartLblEn:'Sep 6, 2026', gEndLblEn:'Oct 5, 2026',
+    season:'autumn',
+    // Sep 23 = day 18 of Rabia II (Sep 6 + 17 = Sep 23)
+    sp:{ 5:'weekend',6:'weekend', 12:'weekend',13:'weekend',
+         18:'national',  // Sep 23 = National Day
+         19:'weekend',20:'weekend', 26:'weekend',27:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:5, ar:'جمادى الأولى', en:'Jumada I', days:30, startDow:2,
+    gStartM:10, gStartD:6, gStartY:2026,
+    gStartLbl:'أكتوبر (10) 2026', gEndLbl:'نوفمبر (11) 2026',
+    gStartLblEn:'Oct 6, 2026', gEndLblEn:'Nov 4, 2026',
+    season:'autumn',
+    sp:{ 3:'weekend',4:'weekend', 10:'weekend',11:'weekend',
+         17:'weekend',18:'weekend', 24:'weekend',25:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:6, ar:'جمادى الآخرة', en:'Jumada II', days:29, startDow:4,
+    gStartM:11, gStartD:5, gStartY:2026,
+    gStartLbl:'نوفمبر (11) 2026', gEndLbl:'ديسمبر (12) 2026',
+    gStartLblEn:'Nov 5, 2026', gEndLblEn:'Dec 3, 2026',
+    season:'winter',
+    sp:{ 2:'weekend',3:'weekend', 9:'weekend',10:'weekend',
+         16:'weekend',17:'weekend', 23:'weekend',24:'weekend',
+         27:'salary',28:'salary',29:'salary' }
+  },
+  {
+    num:7, ar:'رجـــب', en:'Rajab', days:30, startDow:0,
+    gStartM:12, gStartD:4, gStartY:2026,
+    gStartLbl:'ديسمبر (12) 2026', gEndLbl:'يناير (1) 2027',
+    gStartLblEn:'Dec 4, 2026', gEndLblEn:'Jan 2, 2027',
+    season:'winter',
+    sp:{ 6:'weekend',7:'weekend', 13:'weekend',14:'weekend',
+         18:'sp2',  // special highlight blue
+         20:'weekend',21:'weekend', 27:'weekend',28:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:8, ar:'شعـبان', en:'Shaban', days:30, startDow:3,
+    gStartM:1, gStartD:1, gStartY:2027,
+    gStartLbl:'يناير (1) 2027', gEndLbl:'فبراير (2) 2027',
+    gStartLblEn:'Jan 1, 2027', gEndLblEn:'Jan 30, 2027',
+    season:'winter',
+    sp:{ 4:'weekend',5:'weekend', 11:'weekend',12:'weekend',
+         18:'weekend',19:'weekend', 25:'weekend',26:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:9, ar:'رمضـان', en:'Ramadhan', days:29, startDow:1,
+    gStartM:2, gStartD:2, gStartY:2027,
+    gStartLbl:'فبراير (2) 2027', gEndLbl:'مارس (3) 2027',
+    gStartLblEn:'Feb 2, 2027', gEndLblEn:'Mar 2, 2027',
+    season:'spring', isRamadan:true,
+    // Feb 22 = founding day = day 21 of Ramadan (Feb 2 + 20 = Feb 22)
+    sp:{ 6:'weekend',7:'weekend', 13:'weekend',14:'weekend',
+         15:'ramadan-hl',  // mid-Ramadan highlight
+         20:'weekend',21:'founding',  // Feb 22 = Founding Day
+         27:'weekend',28:'weekend',
+         27:'salary',28:'salary',29:'salary' }
+  },
+  {
+    num:10, ar:'شـوال', en:'Shawwal', days:30, startDow:2,
+    gStartM:3, gStartD:3, gStartY:2027,
+    gStartLbl:'مارس (3) 2027', gEndLbl:'أبريل (4) 2027',
+    gStartLblEn:'Mar 3, 2027', gEndLblEn:'Apr 1, 2027',
+    season:'spring',
+    // Mar 3 = Eid al-Fitr (1 Shawwal)
+    // Mar 11 = Flag Day = day 9 of Shawwal (Mar 3 + 8 = Mar 11)
+    sp:{ 1:'eid',2:'eid',3:'eid',
+         7:'weekend',8:'weekend',
+         9:'flagday',  // Mar 11 = Flag Day
+         14:'weekend',15:'weekend',
+         20:'sp1',  // special highlight
+         21:'weekend',22:'weekend',
+         28:'weekend',29:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+  {
+    num:11, ar:'ذو القعدة', en:'Thul-Qidah', days:29, startDow:4,
+    gStartM:4, gStartD:4, gStartY:2027,
+    gStartLbl:'أبريل (4) 2027', gEndLbl:'مايو (5) 2027',
+    gStartLblEn:'Apr 4, 2027', gEndLblEn:'May 2, 2027',
+    season:'spring',
+    sp:{ 2:'weekend',3:'weekend', 9:'weekend',10:'weekend',
+         16:'weekend',17:'weekend',
+         20:'sp1',  // special highlight
+         23:'weekend',24:'weekend',
+         27:'salary',28:'salary',29:'salary' }
+  },
+  {
+    num:12, ar:'ذو الحجة', en:'Thul-Hijjah', days:30, startDow:5,
+    gStartM:5, gStartD:5, gStartY:2027,
+    gStartLbl:'مايو (5) 2027', gEndLbl:'يونيو (6) 2027',
+    gStartLblEn:'May 5, 2027', gEndLblEn:'Jun 3, 2027',
+    season:'summer',
+    // Eid al-Adha: 10-13 Dhul-Hijjah
+    sp:{ 1:'weekend',2:'weekend',
+         8:'weekend',9:'weekend',
+         10:'eid',11:'eid',12:'eid',13:'eid',
+         15:'weekend',16:'weekend',
+         21:'sp1',  // special highlight
+         22:'weekend',23:'weekend',
+         29:'weekend',30:'weekend',
+         28:'salary',29:'salary',30:'salary' }
+  },
+];
+
+const GREG_AR = ['يناير','فبراير','مارس','أبريل','مايو','يونيو',
+                 'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const GREG_EN = ['Jan','Feb','Mar','Apr','May','Jun',
+                 'Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const DOW_AR = ['أحد','اثن','ثلا','أرب','خمي','جمع','سبت'];
+const DOW_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+let currentLang = 'ar';
+
+function addDays(y, m, d, n) {
+  const dt = new Date(y, m-1, d);
+  dt.setDate(dt.getDate() + n);
+  return { y: dt.getFullYear(), m: dt.getMonth()+1, d: dt.getDate() };
+}
+
+function buildHeader() {
+  const tr = document.getElementById('days-header-row');
+  const dow = currentLang === 'ar' ? DOW_AR : DOW_EN;
+  let html = `<th class="th-month col-month">${currentLang==='ar'?'الشهر الهجري':'Hijri Month'}</th>`;
+  for (let w = 0; w < 5; w++) {
+    for (let d = 0; d < 7; d++) {
+      const isFri = (d === 5), isSat = (d === 6);
+      html += `<th class="${isFri?'fri':''} ${isSat?'sat':''}">${dow[d]}</th>`;
+    }
+  }
+  html += `<th class="th-greg col-greg">${currentLang==='ar'?'التاريخ الميلادي':'Gregorian'}</th>`;
+  tr.innerHTML = html;
+}
+
+function getCellClass(m, day, dow) {
+  const sp = m.sp || {};
+  // Priority: special overrides season
+  if (sp[day]) {
+    const s = sp[day];
+    if (s === 'weekend') return 'weekend';
+    if (s === 'national') return 'national';
+    if (s === 'founding') return 'founding';
+    if (s === 'flagday')  return 'flagday';
+    if (s === 'eid')      return 'eid';
+    if (s === 'salary')   return 'salary';
+    if (s === 'sp1')      return 'sp1';
+    if (s === 'sp2')      return 'sp2';
+    if (s === 'ramadan-hl') return 'ramadan-hl';
+  }
+  // Weekend (Fri/Sat)
+  if (dow === 5 || dow === 6) return 'weekend';
+  // Season
+  return m.season;
+}
+
+function getCellTitle(cls) {
+  const map = {
+    national: 'اليوم الوطني السعودي',
+    founding: 'يوم التأسيس السعودي',
+    flagday:  'يوم العلم السعودي',
+    eid:      'إجازة العيد',
+    salary:   'يوم الراتب',
+    'ramadan-hl': 'منتصف رمضان',
+  };
+  return map[cls] || '';
+}
+
+function buildBody() {
+  const tbody = document.getElementById('cal-body');
+  let html = '';
+
+  MONTHS.forEach(m => {
+    const mc = `m${m.num}`;
+    const ramClass = m.isRamadan ? 'ramadan-row' : '';
+
+    html += `<tr class="${ramClass}">`;
+
+    // Month name cell
+    const mName = currentLang === 'ar'
+      ? `${m.ar} (${m.num})`
+      : `${m.en} (${m.num})`;
+    html += `<td class="month-cell ${mc}">
+      <span class="m-name-ar">${mName}</span>
+    </td>`;
+
+    // Build 35 cells
+    const cells = [];
+    for (let i = 0; i < m.startDow; i++) cells.push(null);
+    for (let d = 1; d <= m.days; d++) {
+      const dow = (m.startDow + d - 1) % 7;
+      const greg = addDays(m.gStartY, m.gStartM, m.gStartD, d - 1);
+      cells.push({ d, dow, greg });
+    }
+    while (cells.length < 35) cells.push(null);
+
+    cells.forEach(c => {
+      if (!c) {
+        html += `<td class="day-cell empty"></td>`;
+      } else {
+        const cls = getCellClass(m, c.d, c.dow);
+        const ttl = getCellTitle(cls);
+        const ttlAttr = ttl ? ` title="${ttl}"` : '';
+        const gregLabel = `${c.greg.d}`;
+        html += `<td class="day-cell ${cls}"${ttlAttr}>
+          <span class="hd">${c.d}</span>
+          <span class="gd">${gregLabel}</span>
+        </td>`;
+      }
+    });
+
+    // Greg dates cell
+    const gs = currentLang === 'ar' ? m.gStartLbl : m.gStartLblEn;
+    const ge = currentLang === 'ar' ? m.gEndLbl   : m.gEndLblEn;
+    html += `<td class="greg-cell ${mc}">
+      <span class="g-start">${gs}</span>
+      <span class="g-end">${ge}</span>
+    </td>`;
+
+    html += `</tr>`;
+  });
+
+  tbody.innerHTML = html;
+}
+
+function render() {
+  buildHeader();
+  buildBody();
+}
+
+// ===== CONTROLS =====
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.s-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function showWestern(btn) {
+  document.querySelectorAll('.s-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Add western edition note
+  const note = document.getElementById('western-note');
+  if (note) { note.remove(); return; }
+  const div = document.createElement('div');
+  div.id = 'western-note';
+  div.style.cssText = 'background:#e3f2fd;border:2px solid #1565c0;border-radius:8px;padding:10px 16px;margin:8px 0;text-align:center;font-weight:700;color:#0d47a1;font-size:0.9rem;';
+  div.innerHTML = '🕌 نسخة خاصة بمناطق: مكة المكرمة &bull; المدينة المنورة &bull; جدة &bull; الطائف';
+  document.querySelector('.legend').insertAdjacentElement('afterend', div);
+}
+
+function toggleDark(btn) {
+  document.body.classList.toggle('dark');
+  btn.classList.toggle('active');
+}
+
+function toggleCompact(btn) {
+  document.body.classList.toggle('compact');
+  btn.classList.toggle('active');
+}
+
+// ===== INIT =====
+render();
+
+// Animate rows on load
+document.querySelectorAll('#cal-body tr').forEach((row, i) => {
+  row.style.opacity = '0';
+  row.style.transform = 'translateX(20px)';
+  setTimeout(() => {
+    row.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    row.style.opacity = '1';
+    row.style.transform = 'translateX(0)';
+  }, 80 + i * 60);
+});
+</script>
+</body>
+</html>
