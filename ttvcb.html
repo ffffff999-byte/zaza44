@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقويم المدرسي الصفي وأنواعه</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0d7a6b;
+  --primary-dark: #095c50;
+  --primary-light: #14a896;
+  --accent: #f0a500;
+  --accent2: #e05c2a;
+  --bg: #f4f7f6;
+  --bg2: #e8f0ee;
+  --white: #ffffff;
+  --dark: #1a2e2a;
+  --text: #2d4a44;
+  --text-light: #5a7a74;
+  --border: #c8dcd8;
+  --shadow: rgba(13,122,107,0.15);
+  --shadow-strong: rgba(13,122,107,0.3);
+  --teal-gradient: linear-gradient(135deg, #0d7a6b 0%, #14a896 60%, #1cc9b8 100%);
+  --gold-gradient: linear-gradient(135deg, #f0a500 0%, #f5c842 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  direction: rtl;
+}
+
+/* ====== HEADER ====== */
+.hero {
+  background: var(--teal-gradient);
+  padding: 48px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -40px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+.hero h1 {
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+.hero h2 {
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  position: relative;
+  z-index: 1;
+  font-family: 'Amiri', serif;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.stat-item {
+  text-align: center;
+  color: #fff;
+}
+.stat-item .num {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+}
+.stat-item .lbl {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* ====== NAV ====== */
+.nav-container {
+  background: var(--white);
+  box-shadow: 0 2px 20px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 16px;
+  gap: 0;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-light);
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.25s ease;
+}
+.nav-tab:hover { color: var(--primary); }
+.nav-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: linear-gradient(to bottom, rgba(13,122,107,0.04), transparent);
+}
+.nav-tab .icon { font-size: 18px; }
+
+/* ====== SECTIONS ====== */
+.section { display: none; padding: 32px 20px 60px; max-width: 1100px; margin: 0 auto; }
+.section.active { display: block; animation: fadeUp 0.4s ease; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.section-title .bar {
+  width: 5px;
+  height: 36px;
+  background: var(--teal-gradient);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.section-title h2 {
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 800;
+  color: var(--dark);
+}
+
+/* ====== CARDS ====== */
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 16px var(--shadow);
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 28px var(--shadow-strong); }
+
+/* ====== TABLE ====== */
+.table-wrapper { overflow-x: auto; border-radius: 14px; box-shadow: 0 2px 16px var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 14px; }
+thead th {
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.15);
+}
+thead th:first-child { border-left: none; }
+.th-sub {
+  background: #0a6358;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+tbody tr:nth-child(even) td { background: var(--bg2); }
+tbody tr:hover td { background: #d4ede8; }
+tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+}
+tbody td:first-child { border-left: none; font-weight: 600; }
+.row-header {
+  background: var(--primary-dark) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+}
+.cell-list { text-align: right; }
+.cell-list li { margin-bottom: 4px; list-style: disc; margin-right: 16px; }
+
+/* ====== METHODS GRID ====== */
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+.method-card {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.method-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px var(--shadow-strong);
+}
+.method-header {
+  background: var(--teal-gradient);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.method-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 900; color: #fff;
+  flex-shrink: 0;
+}
+.method-name { font-size: 15px; font-weight: 800; color: #fff; }
+.method-name-en { font-size: 11px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+.method-body { padding: 18px 20px; }
+.method-body p { font-size: 13px; color: var(--text); line-height: 1.8; }
+.method-example {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border-radius: 8px;
+  border-right: 3px solid var(--primary);
+  font-size: 12.5px;
+  color: var(--primary-dark);
+  line-height: 1.7;
+}
+.method-example strong { color: var(--primary-dark); font-weight: 700; }
+
+/* ====== TYPES SECTION ====== */
+.type-card {
+  background: var(--white);
+  border-radius: 16px;
+  border: 2px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 16px var(--shadow);
+}
+.type-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+}
+.type-header.qabli { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+.type-header.takweeni { background: linear-gradient(135deg, #0d7a6b, #14a896); }
+.type-header.khatami { background: linear-gradient(135deg, #2c3e50, #34495e); }
+.type-header.electronic { background: linear-gradient(135deg, #2980b9, #3498db); }
+.type-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.type-title { color: #fff; }
+.type-title h3 { font-size: 20px; font-weight: 900; }
+.type-title p { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+.type-toggle { margin-right: auto; color: rgba(255,255,255,0.8); font-size: 22px; transition: transform 0.3s; }
+.type-toggle.open { transform: rotate(180deg); }
+.type-body { padding: 24px; display: none; }
+.type-body.open { display: block; animation: fadeUp 0.3s ease; }
+.two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width: 600px) { .two-cols { grid-template-columns: 1fr; } }
+.info-box { background: var(--bg2); border-radius: 12px; padding: 18px; }
+.info-box h4 { font-size: 15px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; }
+.info-box ul { padding-right: 18px; }
+.info-box ul li { font-size: 13px; line-height: 1.8; color: var(--text); list-style: disc; }
+
+/* ====== IMPORTANCE TABLE ====== */
+.imp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media(max-width: 640px) { .imp-grid { grid-template-columns: 1fr; } }
+.imp-col {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+.imp-col-header {
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+}
+.imp-col-header.teacher { background: var(--teal-gradient); }
+.imp-col-header.student { background: var(--gold-gradient); color: var(--dark); }
+.imp-category {
+  padding: 10px 16px 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-top: 1px solid var(--border);
+}
+.imp-item {
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.7;
+}
+.imp-item::before {
+  content: '◈';
+  color: var(--primary);
+  font-size: 10px;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+/* ====== FRAMEWORK ====== */
+.fw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.fw-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 14px var(--shadow);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.fw-card .fw-icon { font-size: 32px; margin-bottom: 10px; }
+.fw-card h4 { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+.fw-card ul { text-align: right; padding-right: 16px; }
+.fw-card ul li { font-size: 12.5px; color: var(--text-light); list-style: disc; line-height: 1.8; }
+
+/* ====== CHART ====== */
+.timeline {
+  position: relative;
+  padding-right: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.tl-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.tl-dot {
+  position: absolute;
+  right: -32px;
+  top: 6px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+.tl-content {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px var(--shadow);
+  flex: 1;
+}
+.tl-content h4 { font-size: 15px; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; }
+.tl-content p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+/* ====== ASSESSMENT TYPES TABLE ====== */
+.assess-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.assess-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+.assess-card .cat-label {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cat-specific { background: #d4edda; color: #155724; }
+.cat-short { background: #d1ecf1; color: #0c5460; }
+.cat-drawing { background: #fff3cd; color: #856404; }
+.cat-map { background: #e2d9f3; color: #432874; }
+.cat-interactive { background: #f8d7da; color: #721c24; }
+.assess-card h4 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.assess-card ul { padding-right: 14px; }
+.assess-card ul li { font-size: 12px; color: var(--text-light); list-style: disc; line-height: 1.8; }
+
+/* ====== FOOTER ====== */
+.footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 40px;
+}
+.footer a { color: var(--primary-light); text-decoration: none; font-weight: 700; }
+.footer a:hover { color: var(--accent); }
+.footer .brand { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+
+/* ====== BADGES ====== */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-teal { background: #d4ede8; color: var(--primary-dark); }
+.badge-gold { background: #fff0cc; color: #7a5200; }
+.badge-red { background: #fde8e8; color: #9b1c1c; }
+
+/* ====== HIGHLIGHT BOX ====== */
+.highlight-box {
+  background: linear-gradient(135deg, rgba(13,122,107,0.08), rgba(20,168,150,0.05));
+  border: 1px solid rgba(13,122,107,0.2);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.highlight-box p { font-size: 14px; line-height: 1.9; color: var(--text); }
+.highlight-box strong { color: var(--primary-dark); }
+
+/* ====== RESPONSIVE ====== */
+@media(max-width: 768px) {
+  .hero { padding: 32px 16px 48px; }
+  .hero-stats { gap: 20px; }
+  .methods-grid { grid-template-columns: 1fr; }
+  .section { padding: 24px 14px 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 دليل الاختبارات 2025 — وزارة التعليم</div>
+  <h1>التقويم المدرسي الصفي وأنواعه</h1>
+  <h2>الأسس الفنية والعمليات الإجرائية</h2>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="num">3</div><div class="lbl">أنواع رئيسية</div></div>
+    <div class="stat-item"><div class="num">18+</div><div class="lbl">أسلوب تكويني</div></div>
+    <div class="stat-item"><div class="num">5</div><div class="lbl">فئات أساليب</div></div>
+    <div class="stat-item"><div class="num">2025</div><div class="lbl">الإصدار</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-container">
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="intro" onclick="showTab('intro')">
+      <span class="icon">🏠</span> المقدمة
+    </button>
+    <button class="nav-tab" data-tab="framework" onclick="showTab('framework')">
+      <span class="icon">🗂️</span> إطار الأساليب
+    </button>
+    <button class="nav-tab" data-tab="formative" onclick="showTab('formative')">
+      <span class="icon">📋</span> التقويم التكويني
+    </button>
+    <button class="nav-tab" data-tab="methods" onclick="showTab('methods')">
+      <span class="icon">🔧</span> الأساليب التكوينية
+    </button>
+    <button class="nav-tab" data-tab="types" onclick="showTab('types')">
+      <span class="icon">🏷️</span> أنواع التقويم
+    </button>
+    <button class="nav-tab" data-tab="importance" onclick="showTab('importance')">
+      <span class="icon">⭐</span> الأهمية
+    </button>
+  </div>
+</div>
+
+<!-- ============ SECTION: INTRO ============ -->
+<div class="section active" id="tab-intro">
+  <div class="section-title"><div class="bar"></div><h2>مقدمة التقويم — الأنواع المختلفة</h2></div>
+
+  <div class="highlight-box">
+    <p>تشمل الأنواع المختلفة للتقويم التربوي ثلاثة محاور رئيسية: <strong>التقويم القبلي</strong> (التشخيصي)، و<strong>التقويم التكويني</strong> (البنائي - المستمر طوال العام)، و<strong>تقويم نتائج التعلم</strong> (الختامي). ويختلف كل نوع من حيث وقت التنفيذ، والغرض، والمنهجية المستخدمة، ودور كل من المعلم والطالب.</p>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>المحور</th>
+          <th>التقويم القبلي (التشخيصي)</th>
+          <th>التقويم التكويني (البنائي)</th>
+          <th>تقويم نتائج التعلم (الختامي)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-header">وقت التنفيذ</td>
+          <td>بداية العام — بداية وحدة — طالب جديد</td>
+          <td>طوال العام</td>
+          <td>تقييم مشروع — نهاية وحدة — نهاية العام</td>
+        </tr>
+        <tr>
+          <td class="row-header">الغرض</td>
+          <td>المعرفة السابقة، وتحديد نقاط القوة والضعف</td>
+          <td>متابعة عملية التعليم والتعلم</td>
+          <td>التأكد من الإتقان</td>
+        </tr>
+        <tr>
+          <td class="row-header">المنهجية</td>
+          <td>كمية ونوعية</td>
+          <td>كمية ونوعية مع التركيز على النوعية</td>
+          <td>كمية مع بعض الإثراء بالنوعية</td>
+        </tr>
+        <tr>
+          <td class="row-header">دور المعلم</td>
+          <td>تشخيص</td>
+          <td>دعم وتيسير</td>
+          <td>تقييم</td>
+        </tr>
+        <tr>
+          <td class="row-header">دور الطالب</td>
+          <td>مستقل</td>
+          <td>تفاعلي</td>
+          <td>مستقل</td>
+        </tr>
+        <tr>
+          <td class="row-header">تكرار جمع البيانات</td>
+          <td>محدد</td>
+          <td>رصد مستمر</td>
+          <td>محدد</td>
+        </tr>
+        <tr>
+          <td class="row-header">المخرجات</td>
+          <td>بيانات أولية تُبنى عليها خطط التدريس</td>
+          <td>بيانات تساعد في قياس الفاقد وردمه والتخطيط للخطوة القادمة</td>
+          <td>بيانات تقدم حكمًا نهائيًا وإعطاء تقدير أو درجة للطالب</td>
+        </tr>
+        <tr>
+          <td class="row-header">تكرار كتابة التقارير</td>
+          <td>في البداية</td>
+          <td>متكرر خلال التقويم</td>
+          <td>في الختام</td>
+        </tr>
+        <tr>
+          <td class="row-header">الآليات المستخدمة</td>
+          <td class="cell-list">
+            <ul>
+              <li>مقابلة شخصية</li>
+              <li>اختبار اختيار من متعدد</li>
+              <li>أسئلة شفهية</li>
+              <li>الملاحظة</li>
+            </ul>
+          </td>
+          <td class="cell-list">
+            <ul>
+              <li>أسئلة صفية</li>
+              <li>اختبار فتري</li>
+              <li>واجب منزلي</li>
+              <li>عمل جماعي</li>
+            </ul>
+          </td>
+          <td class="cell-list">
+            <ul>
+              <li>اختبار نهائي</li>
+              <li>مشروع نهائي</li>
+              <li>ملف الإنجاز</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ SECTION: FRAMEWORK ============ -->
+<div class="section" id="tab-framework">
+  <div class="section-title"><div class="bar"></div><h2>إطار أساليب التقويم</h2></div>
+
+  <div class="highlight-box">
+    <p>اختيار الأسلوب الأنسب للتقويم الصفي يتطلب <strong>مراعاة عدة عوامل</strong> للتأكد من أن الأسلوب المختار يتماشى مع أهداف العملية التعليمية واحتياجات الطلاب، مع ملاحظة مناسبته للغرض من التقويم سواء كان <strong>قبليًا أو تكوينيًا أو ختاميًا</strong>.</p>
+  </div>
+
+  <div class="fw-grid">
+    <div class="fw-card">
+      <div class="fw-icon">✅</div>
+      <h4>إجابة محددة</h4>
+      <ul>
+        <li>الاختيار من متعدد</li>
+        <li>الصواب والخطأ</li>
+        <li>المزاوجة</li>
+        <li>عناصر معززة تقنيًا (الترتيب، التصنيف، السحب والإفلات)</li>
+      </ul>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">📝</div>
+      <h4>إجابات مختصرة</h4>
+      <ul>
+        <li>ملء الفراغات</li>
+        <li>إجابات قصيرة</li>
+        <li>رسم توضيحي</li>
+        <li>خريطة مفاهيم</li>
+        <li>وصف مخطط بياني</li>
+        <li>ملء جداول البيانات</li>
+      </ul>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">📖</div>
+      <h4>تقويم المنتج</h4>
+      <ul>
+        <li>مكتوبة: المقال، المدونة</li>
+        <li>مرئية: المجسمات، اللوحات</li>
+        <li>مسموعة: الملفات الصوتية</li>
+      </ul>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">🎤</div>
+      <h4>تقويم الأداء</h4>
+      <ul>
+        <li>العرض الشفوي</li>
+        <li>المناظرة</li>
+        <li>إلقاء قصيدة</li>
+        <li>عرض مسرحي</li>
+        <li>أداء المهارات الرياضية</li>
+        <li>عرض مختبر العلوم</li>
+      </ul>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">👁️</div>
+      <h4>تقويم الإجراء</h4>
+      <ul>
+        <li>أسئلة شفهية</li>
+        <li>ملاحظة</li>
+        <li>مقابلة شخصية</li>
+        <li>التقويم الذاتي</li>
+      </ul>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">📊</div>
+      <h4>تقويمات قائمة على الأداء</h4>
+      <ul>
+        <li>روبريك (معيار تقييم)</li>
+        <li>قائمة مراجعة</li>
+        <li>سجل الملاحظات</li>
+        <li>بطاقة متابعة</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION: FORMATIVE ============ -->
+<div class="section" id="tab-formative">
+  <div class="section-title"><div class="bar"></div><h2>ما هو التقويم التكويني؟</h2></div>
+
+  <div class="card">
+    <h3 style="font-size:18px;font-weight:800;color:var(--primary-dark);margin-bottom:16px;">تعريف التقويم التكويني (البنائي)</h3>
+    <p style="font-size:14px;line-height:2;color:var(--text);">
+      يمكن أن يُفسَّر التقويم التكويني بأنه <strong style="color:var(--primary-dark)">الأنشطة اليومية والاستراتيجيات التقويمية البسيطة</strong> التي يستخدمها المعلمون مع طلابهم، ويتم دمجها طوال فترة تعليم الدرس بهدف تشخيص نواحي القوة والضعف لدى الطالب، مما يساهم في توفير معلومات تُستخدم كتغذية راجعة تُخبر المعلم عن فاعلية التعليم، كما تُخبر الطالب عن تقدمه في إتقانه.
+    </p>
+    <div style="margin-top:20px;padding:16px 20px;background:var(--bg2);border-radius:12px;">
+      <p style="font-size:14px;font-weight:700;color:var(--primary-dark);margin-bottom:12px;">لكي يُصنَّف التقويم تكوينيًا لابد من مراعاة عدة أمور، منها:</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span style="background:var(--primary);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">١</span>
+          <p style="font-size:13.5px;color:var(--text);line-height:1.7;">أن <strong>يُستخدم التقويم</strong> للتعرف على تعلم الطلاب.</p>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span style="background:var(--primary);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">٢</span>
+          <p style="font-size:13.5px;color:var(--text);line-height:1.7;">أن <strong>يُعطى هؤلاء الطلاب</strong> وقتًا ودعمًا إضافيًا؛ ليكتسبوا المهارة المستهدفة ويتقنوها ويتميزوا بها.</p>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span style="background:var(--primary);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">٣</span>
+          <p style="font-size:13.5px;color:var(--text);line-height:1.7;">أن <strong>يُعطى الطلاب</strong> فرصة أخرى لإظهار ما تعلموه فعلًا.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;"><div class="bar"></div><h2>التقويم من حيث زمن التقويم</h2></div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:24px;">
+    <div class="type-card" style="margin-bottom:0;">
+      <div class="type-header qabli" style="cursor:default;">
+        <div class="type-icon">🔍</div>
+        <div class="type-title">
+          <h3>القبلي والتشخيصي</h3>
+          <p>المبدئي — الأولي</p>
+        </div>
+      </div>
+      <div class="type-body open">
+        <div class="two-cols">
+          <div class="info-box">
+            <h4>الاستخدام</h4>
+            <ul><li>قبل بداية عملية التعلم</li><li>لتقوية الطالب من حيث قدراته وميوله واتجاهاته</li><li>للاستفادة منها في تحديد المستوى الذي يمكن أن يبدأ منه التعلم</li></ul>
+          </div>
+          <div class="info-box">
+            <h4>الوظائف</h4>
+            <ul><li>الكشف عن المهارات الضرورية اللازمة قبل البدء في الدراسة</li><li>الكشف عن مهارات الطلاب ومعارفهم قبل البدء في التدريس</li><li>تحديد خبرات المتعلمين ومعرفة مدى استعدادهم للتعلم</li><li>تحديد المستوى الذي يمكن أن يبدأ منه المعلم</li></ul>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;background:#fde8e8;border-radius:10px;font-size:13px;color:#7b1c1c;">
+          <strong>الأنواع الفرعية:</strong> تشخيصي — تقويم الاستعداد — تقويم لوضع الطالب في المكان المناسب
+        </div>
+      </div>
+    </div>
+
+    <div class="type-card" style="margin-bottom:0;">
+      <div class="type-header takweeni" style="cursor:default;">
+        <div class="type-icon">🔄</div>
+        <div class="type-title">
+          <h3>البنائي التكويني المستمر</h3>
+          <p>يلازم فترة التعلم</p>
+        </div>
+      </div>
+      <div class="type-body open">
+        <div class="two-cols">
+          <div class="info-box">
+            <h4>الأدوات</h4>
+            <ul><li>المناقشة الصفية</li><li>الاختبارات الشهرية</li><li>التمرينات</li><li>المشروعات</li><li>ملاحظة الأداء</li><li>ملف أعمال الطالب</li><li>البحوث</li><li>الأسئلة الشفهية</li><li>الأنشطة اللاصفية</li><li>الاختبارات القصيرة وحصص التقوية</li></ul>
+          </div>
+          <div class="info-box">
+            <h4>الوظائف</h4>
+            <ul><li>مراقبة تقدم المتعلم وجمع المؤشرات لعلاج الضعف وتعزيز مواطن القوة</li><li>إثارة دافعية المتعلم بتعريفه بنتائجه وتوجيهه نحو الاتجاه المرغوب</li><li>مساعدة المعلم في تحسين أسلوب تدريسه</li><li>إزالة خوف المتعلم من الاختبارات</li><li>تزويدنا بتغذية راجعة يستفيد منها المعلم والمتعلم وواضعو المناهج</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="type-card" style="margin-bottom:0;">
+      <div class="type-header khatami" style="cursor:default;">
+        <div class="type-icon">🏆</div>
+        <div class="type-title">
+          <h3>الختامي التقريري</h3>
+          <p>التجميعي — في نهاية الدرس</p>
+        </div>
+      </div>
+      <div class="type-body open">
+        <div class="two-cols">
+          <div class="info-box">
+            <h4>المقصود به</h4>
+            <ul><li>التقويم المعتمد في نهاية عملية التعلم</li><li>لتقويم المكتسبات الإجمالية</li><li>واستخلاص المحصلة منها</li><li>بهدف تقرير النتيجة وإصدار الحكم</li></ul>
+          </div>
+          <div class="info-box">
+            <h4>الوظائف</h4>
+            <ul><li>تقدير مدى تحصيل التلاميذ وكفاءتهم في نهاية العملية التعليمية</li><li>توفير المعلومات التي تساعد في تقدير مدى تحصيل التلاميذ وكفاءتهم</li><li>توفير المعلومات التي تساعد في تقدير مدى كفاءة المنهج</li><li>منح الشهادات والإجازات للترقية أو الصف الأعلى أو التخرج</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-header electronic" style="cursor:default;">
+      <div class="type-icon">💻</div>
+      <div class="type-title">
+        <h3>التقويم الإلكتروني</h3>
+        <p>من خلال التقنية الرقمية</p>
+      </div>
+    </div>
+    <div class="type-body open">
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text);">يتم التقويم الإلكتروني عبر التقنية الرقمية، ويشمل: <strong>الاختبارات الإلكترونية</strong>، والواجبات الإلكترونية، وملفات الإنجاز الرقمية، والأنشطة الصفية الإلكترونية، والاستبانات الإلكترونية، مما يتيح سهولة الوصول وتوفير التغذية الراجعة الفورية.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION: METHODS ============ -->
+<div class="section" id="tab-methods">
+  <div class="section-title"><div class="bar"></div><h2>أساليب التقويم التكويني</h2></div>
+
+  <div class="highlight-box">
+    <p>فيما يلي أبرز الأساليب المستخدمة في التقويم التكويني الصفي، مع وصف موجز لكل أسلوب ومثال تطبيقي مقترح.</p>
+  </div>
+
+  <div class="methods-grid">
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">١</div>
+        <div><div class="method-name">السؤال المفتوح</div><div class="method-name-en">Open-ended Question</div></div>
+      </div>
+      <div class="method-body">
+        <p>خلال جلسات التقويم التكويني يُنصح بتجنب الأسئلة المغلقة كـ "نعم أو لا". بل يُفضَّل طرح أسئلة مفتوحة تتطلب التفكير والتحليل لمعرفة مدى فهم الطلاب للدرس.</p>
+        <div class="method-example"><strong>مثال:</strong> ما العوامل التي يجب أخذها في الاعتبار عند تحديد الحدود السياسية بين الدول؟</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٢</div>
+        <div><div class="method-name">تذكرة الخروج</div><div class="method-name-en">Exit Ticket</div></div>
+      </div>
+      <div class="method-body">
+        <p>يُطلب من الطلاب كتابة إجابتهم على سؤال يُطرح عليهم في نهاية الحصة، ثم ينتظر المعلم باب الفصل لاستلام الإجابة بطاقات الخروج. هذه البطاقات دليل على مدى استيعاب الطلاب للدرس، وفرصة لتقديم تغذية راجعة أو دعم إضافي.</p>
+        <div class="method-example"><strong>الفائدة:</strong> يساعد هذا التمرين السريع في توليد أفكار متعددة لفهم مدى استيعاب الطلاب للدرس، ويمكن من خلاله تطوير استراتيجيات للدعم والتدخل العلاجي في وقت لاحق.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٣</div>
+        <div><div class="method-name">تقييم الأقران</div><div class="method-name-en">Peer Assessment</div></div>
+      </div>
+      <div class="method-body">
+        <p>يتيح هذا الأسلوب للطلاب تقديم التغذية الراجعة لزملائهم باستخدام نموذج تقييم أو قائمة مراجعة؛ حيث يقومون بمراجعة الأعمال وتقديم التعليقات بناءً على المعايير المحددة، وهذا يساعد المعلم في تقييم فهم الطلاب وتوفير الدعم اللازم.</p>
+        <div class="method-example">
+          <strong>مثال (نموذج تقييم رسم خريطة مبسطة):</strong><br>
+          • دقة الرسم — التسميات الجغرافية — التناسب والمقياس — الألوان والرموز — الشمال والاتجاهات — الإبداع والتفاصيل
+        </div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٤</div>
+        <div><div class="method-name">الاختبارات التكوينية</div><div class="method-name-en">Formative Tests</div></div>
+      </div>
+      <div class="method-body">
+        <p>يتيح هذا الأسلوب للمعلمين تقييم فهم الطلاب على الفور؛ حيث يُقدِّم المعلمون اختبارًا قصيرًا أو تقييمًا لقياس مستوى فهم الطلاب. يمكن للمعلم استخدام نتائج الاختبار لتعديل التعليمات وتقديم الدعم أو الموارد الإضافية حسب الحاجة. كما يوفر هذا الأسلوب ملاحظات فورية للطلاب، وفرصة لتحديد المفاهيم الصعبة أو الفهم الخاطئ.</p>
+        <div class="method-example"><strong>مثال:</strong> اختبار نهاية الدرس، أو الاختبارات الفترية.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٥</div>
+        <div><div class="method-name">التقييم الذاتي</div><div class="method-name-en">Self-Assessment</div></div>
+      </div>
+      <div class="method-body">
+        <p>يسمح التقييم الذاتي للطلاب بتقييم تعلمهم وتحديد المجالات التي يحتاجون فيها إلى دعم إضافي. كما يمكّن للطلاب استخدام التقييم الذاتي لتطوير مهارات ما وراء المعرفة، مما يساعدهم على تحسين التعلم والأداء بشكل عام.</p>
+        <div class="method-example">
+          <strong>مثال:</strong> قم بتقييم مهاراتك في البرمجة بواسطة المايكروسوفت بناءً على الدرس الأخير الذي تعلمته باستخدام المعايير التالية: مستوى فهمك للمفاهيم الأساسية، قدرتك على كتابة برامج بسيطة، قدرتك على تحديد الأخطاء وإصلاحها في البرامج، مدى تحسنك في البرمجة بمرور الوقت والتدريب.
+        </div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٦</div>
+        <div><div class="method-name">التلخيص</div><div class="method-name-en">Summary</div></div>
+      </div>
+      <div class="method-body">
+        <p>في هذا الأسلوب يطلب المعلم من الطلاب تلخيص ما تم شرحه خلال الحصة كتابيًا، أو يمكن طلب التلخيص الشفهي لتوفير الوقت والجهد.</p>
+        <div class="method-example"><strong>مثال:</strong> اكتب الأفكار الرئيسية الواردة في النص القرائي بأسلوبك الخاص.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٧</div>
+        <div><div class="method-name">العصف الذهني أ، ب، ت</div><div class="method-name-en">A, B, C Brainstorming</div></div>
+      </div>
+      <div class="method-body">
+        <p>يطلب المعلم من الطلاب توليد أفكار أو معلومات أو مصطلحات أو مفاهيم تبدأ بالحروف الأبجدية، ويمكن أن تُنفَّذ بشكل فردي، زوجي، مجموعات أو لكامل الفصل.</p>
+        <div class="method-example"><strong>مثال:</strong> اذكر أكبر عدد من الأفعال التي تبدأ بحرف الباء.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٨</div>
+        <div><div class="method-name">التدوين على عمودين</div><div class="method-name-en">Two-Column Note-Taking</div></div>
+      </div>
+      <div class="method-body">
+        <p>يصمم المعلم نشاطًا للطلاب على شكل عمودين، ويطلب منهم تدوين جمل محددة. في العمود الأيمن: الاقتباسات، والأفكار الخاصة بالدرس. وعلى الطلاب في العمود الأيسر كتابة آرائهم، فهمهم، إجاباتهم.</p>
+        <div class="method-example"><strong>مثال:</strong> في درس عن الطيران، يدوِّن الطلاب في العمود الأيمن عبارات كالتالي: "الارتفاع مقابل الجاذبية"، و"الأخوان رايت"، و"قوانين الطيران". وعلى الطلاب الرد عليها في العمود الأيسر.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">٩</div>
+        <div><div class="method-name">الاختبارات غير مرصودة الدرجة</div><div class="method-name-en">Ungraded Tests</div></div>
+      </div>
+      <div class="method-body">
+        <p>تُعتبر هذه الاختبارات مثالًا أساسيًا للتقييم التكويني، كما أنها إحدى أقوى وأسهل الطرق لتقييم المعرفة السابقة لدى التلاميذ وتقديم تعليقات سريعة لتحسين التعلم، يستغرق الاختبار ما بين خمس إلى عشر دقائق في بداية الفصل أو نهايته.</p>
+        <div class="method-example"><strong>مثال:</strong> يمكنك طرح سؤال يجمع بين إيجاد مساحة شبه المنحرف مع تطبيق نظرية فيثاغورس، والتأكد من فهم الطلاب ربط المواضيع ببعضها والعلاقة بينها.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">١٠</div>
+        <div><div class="method-name">الإغلاق</div><div class="method-name-en">Close</div></div>
+      </div>
+      <div class="method-body">
+        <p>يستخدم المعلم قطعة مرتبطة بالدرس مراعيًا أن تناسب القطعة مستوى القدرة على القراءة للطلاب. ومن الأفضل استخدام ٣ قطع على سبيل المثال تتناسب مع مستويات الطلاب في الفصل؛ بحيث يطمس المعلم كلمات محددة بالنص. يحذف المعلم مثلًا كلمة بعد كل خمس كلمات.</p>
+        <div class="method-example"><strong>مثال:</strong> يختار المعلم قصة وتطمس الأفعال، الطالب تدوين الكلمة المناسبة.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">١١</div>
+        <div><div class="method-name">مهام أدائية من واقع الحياة</div><div class="method-name-en">Real-life Performance Tasks</div></div>
+      </div>
+      <div class="method-body">
+        <p>يطلب المعلم من الطلاب نقل المفهوم الحالي الذي تعلموه في الفصل إلى سياق جديد يُطبَّق أو يُرى في الحياة اليومية.</p>
+        <div class="method-example"><strong>مثال:</strong> في درس أطوار القمر يمكن أن يطلب المعلم من الطلاب تصميم جدول لأيام الشهر ورسم شكل القمر حسب ما يرونه في السماء في كل ليلة.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">١٢</div>
+        <div><div class="method-name">تقديم مقترح بحثي</div><div class="method-name-en">Research Proposal</div></div>
+      </div>
+      <div class="method-body">
+        <p>يُطلب من الطلاب تقديم مقترح بحثي وهمي أو حقيقي يوضح ما يريدون معرفته وإجراء مزيد من البحث فيه حول موضوع الدرس، ويطلب المعلم منهم مناقشة ما سيبحثون فيه بهذا الجانب. يمكن أن يكشف هذا الأسلوب عن قدر كبير من المعلومات الجديدة حول المستوى الحالي للمعرفة لدى الطالب.</p>
+        <div class="method-example"><strong>مثال:</strong> يطلب المعلم من الطلاب العمل في مجموعات، وتقديم مقترح بحثي عن المأكولات الصحية وتأثيرها على النمو.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">١٣</div>
+        <div><div class="method-name">المثال واللامثال</div><div class="method-name-en">Example and Non-example</div></div>
+      </div>
+      <div class="method-body">
+        <p>في بعض الأحيان تكون الطريقة الأكثر فعالية لمعرفة ما إذا كان الطلاب قد فهموا التعريف هي أن تطلب منهم كتابة مثال ولا مثال عليه، وهذا من شأنه أن يمكّن التلاميذ من التفكير في إثبات فهمهم للتعريف.</p>
+        <div class="method-example"><strong>مثال:</strong> اذكر مثالًا لعدد أولي وآخر غير أولي. اذكر مثالًا لحيوان من الثدييات وآخر من غير الثدييات.</div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-header">
+        <div class="method-num">١٤</div>
+        <div><div class="method-name">الرحلات المعرفية</div><div class="method-name-en">WebQuests</div></div>
+      </div>
+      <div class="method-body">
+        <p>نموذج تعليمي يعود للباحث "برني دودج"، يسعى إلى تغيير النهج التقليدي للفعل التربوي والتعليمي، ويشجع الطالب على بناء تعلمه بنفسه من خلال مجموعة من الأنشطة التربوية القائمة على البحث والتقصي في شبكة الإنترنت. تنقسم إلى: رحلات معرفية طويلة المدى، ورحلات معرفية قصيرة المدى.</p>
+        <div class="method-example">
+          <strong>مثال (رحلة معرفية حول النظام البيئي البحري):</strong><br>
+          العنوان: استكشاف النظام البيئي البحري. تستكشف مكوناته وأنواعه المختلفة والعلاقات بين الكائنات الحية داخل هذا النظام.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ SECTION: TYPES ============ -->
+<div class="section" id="tab-types">
+  <div class="section-title"><div class="bar"></div><h2>أنواع التقويم المدرسي الصفي</h2></div>
+
+  <div class="assess-grid">
+    <div class="assess-card">
+      <span class="cat-label cat-specific">إجابة محددة</span>
+      <h4>الاختيار من متعدد</h4>
+      <ul><li>الصواب والخطأ</li><li>المزاوجة</li><li>عناصر معززة تقنيًا: الترتيب، التصنيف بالسحب والإفلات والإفلات والإفلات</li></ul>
+    </div>
+    <div class="assess-card">
+      <span class="cat-label cat-short">إجابات مختصرة</span>
+      <h4>ملء الفراغات</h4>
+      <ul><li>إجابات قصيرة</li><li>رسم توضيحي</li><li>خريطة مفاهيم</li><li>وصف مخطط بياني</li><li>ملء جداول البيانات</li></ul>
+    </div>
+    <div class="assess-card">
+      <span class="cat-label cat-drawing">تقويم المنتج</span>
+      <h4>مكتوبة</h4>
+      <ul><li>المقال</li><li>المدونة</li><li>مجسمات ولوحات</li><li>ملفات صوتية</li></ul>
+    </div>
+    <div class="assess-card">
+      <span class="cat-label cat-map">تقويم الأداء</span>
+      <h4>العرض الشفوي</h4>
+      <ul><li>المناظرة</li><li>إلقاء قصيدة</li><li>عرض مسرحي</li><li>أداء المهارات الرياضية</li><li>عرض مختبر العلوم</li></ul>
+    </div>
+    <div class="assess-card">
+      <span class="cat-label cat-interactive">تقويم الإجراء</span>
+      <h4>أسئلة شفهية</h4>
+      <ul><li>ملاحظة</li><li>مقابلة شخصية</li><li>التقويم الذاتي</li></ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:32px;"><div class="bar"></div><h2>مخطط أنواع التقويم من حيث الزمن</h2></div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🔴 التقويم القبلي التشخيصي</h4>
+        <p>يُنفَّذ في بداية العام أو بداية الوحدة أو عند استقبال طالب جديد. يهدف إلى الكشف عن المعرفة السابقة وتحديد نقاط القوة والضعف لدى الطلاب.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🟢 التقويم التكويني البنائي المستمر</h4>
+        <p>يلازم فترة التعلم كاملة، ويُنفَّذ طوال العام الدراسي. يركز على متابعة عملية التعليم والتعلم وتقديم التغذية الراجعة المستمرة.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🔵 التقويم الختامي التجميعي</h4>
+        <p>يُنفَّذ في نهاية الدرس أو الوحدة أو العام الدراسي. يهدف إلى تقدير مكتسبات الطلاب الإجمالية وإصدار الحكم النهائي.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--accent2);box-shadow:0 0 0 2px var(--accent2);"></div>
+      <div class="tl-content">
+        <h4>🟠 التقويم الإلكتروني الرقمي</h4>
+        <p>يُنفَّذ عبر التقنية الرقمية في أي مرحلة، ويشمل الاختبارات والواجبات والأنشطة الصفية الإلكترونية والاستبانات الإلكترونية.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SECTION: IMPORTANCE ============ -->
+<div class="section" id="tab-importance">
+  <div class="section-title"><div class="bar"></div><h2>أهمية التقويم التكويني</h2></div>
+
+  <div class="imp-grid">
+    <div class="imp-col">
+      <div class="imp-col-header teacher">🎓 للمعلم</div>
+
+      <div class="imp-category">الغاية</div>
+      <div class="imp-item">يساعد المعلمين على تحديد نقاط القوة والضعف لدى الطلاب</div>
+      <div class="imp-item">ييسر عملية تغيير أو تكييف الاستراتيجيات المستخدمة مع الطلاب الذين يواجهون صعوبات في التعلم</div>
+      <div class="imp-item">يوجه عملية تصميم خطط ومهام إثرائية للطلاب الذين يظهرون إتقانًا كاملًا للمهارات المستهدفة</div>
+
+      <div class="imp-category">طرق التعلم</div>
+      <div class="imp-item">يوجِّه طرق التعليم</div>
+      <div class="imp-item">يساعد المعلم في تحديد استراتيجيات وأساليب التدريس المناسبة لمستويات وقدرات طلابه وبما يحقق أهداف المحتوى</div>
+      <div class="imp-item">يُقيِّم أساليب المعلم واستراتيجياته المستخدمة</div>
+
+      <div class="imp-category">الأدوار</div>
+      <div class="imp-item">يدعم المعلم في دوره كميسر لعملية التعلم</div>
+
+      <div class="imp-category">التقدم</div>
+      <div class="imp-item">يوفِّر فرصًا للمعلم لتقديم التغذية الراجعة، وإجراء التعديلات المطلوبة في حينها لتلافي سلبيات نتائج الاختبار النهائي</div>
+
+      <div class="imp-category">التمايز</div>
+      <div class="imp-item">يساعد المعلم في فهم أعمق لاحتياجات الطلاب المتنوعة، ويعزز تحقيق النتائج التعليمية لكل طالب في الصف</div>
+    </div>
+
+    <div class="imp-col">
+      <div class="imp-col-header student">📚 للطالب</div>
+
+      <div class="imp-category">الغاية</div>
+      <div class="imp-item">يعزز الثقة بالنفس، ويساعد في توجيه الجهود للتحسين المستمر</div>
+      <div class="imp-item">يثير دافعية الطلاب نحو التعلم من خلال اطلاعهم على نتائجهم باستمرار</div>
+
+      <div class="imp-category">طرق التعلم</div>
+      <div class="imp-item">يُحسِّن تعلُّم الطلاب</div>
+      <div class="imp-item">يعزز تثبيت التعلم وزيادة الاحتفاظ به</div>
+
+      <div class="imp-category">الأدوار</div>
+      <div class="imp-item">يشجِّع الطلاب على التفكير والتعلم الذاتي، مما يمكِّنهم من تخطيط ومراقبة وتقييم تقدمهم في التعلم بشكل فعال</div>
+
+      <div class="imp-category">التقدم</div>
+      <div class="imp-item">يحسن أداء الطلاب الأكاديمي، ويساعد على تحقيق نتائج أفضل في التقييمات والاختبارات</div>
+
+      <div class="imp-category">التمايز</div>
+      <div class="imp-item">يحسن الممارسات اليومية التي يقوم بها الطلاب في التعلم نحو تحقيق نتائج أفضل من خلال تلبية احتياجاتهم الفردية، وتوفير الدعم والتحفيز اللازم</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">تصميم د/ فواز</div>
+  <div>تفضَّل للمزيد هنا: <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a></div>
+</div>
+
+<script>
+function showTab(tabId) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleType(el) {
+  const body = el.nextElementSibling;
+  const icon = el.querySelector('.type-toggle');
+  body.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+</script>
+</body>
+</html>
