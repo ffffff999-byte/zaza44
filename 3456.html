@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة شهادات الشكر والتقدير</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #1a8c7a;
+  --teal-dark: #116b5d;
+  --teal-light: #2ab09a;
+  --gold: #c9a84c;
+  --gold-light: #e2c97a;
+  --bg: #e8f0ee;
+  --text: #1a2e2b;
+  --border: #c8dedd;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); }
+
+/* ── HEADER ── */
+.app-header {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal), var(--teal-light));
+  color: #fff;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 16px rgba(26,140,122,.35);
+}
+.app-header h1 { font-size: 1.35rem; font-weight: 800; }
+.app-header .brand { font-size: .75rem; opacity: .85; direction: ltr; text-align: left; }
+.app-header .brand a { color: #a0f0e0; }
+
+/* ── CONTROLS ── */
+.controls-panel {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  padding: 18px 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+.ctrl-group label {
+  display: block;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 4px;
+}
+.ctrl-group input,
+.ctrl-group textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: .88rem;
+  color: var(--text);
+  background: #f7fffe;
+  direction: rtl;
+  transition: border-color .2s;
+}
+.ctrl-group input:focus,
+.ctrl-group textarea:focus { outline: none; border-color: var(--teal); }
+.ctrl-group textarea { resize: vertical; min-height: 58px; }
+
+/* ── ACTION BAR ── */
+.action-bar {
+  background: #fff;
+  padding: 12px 28px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 9px 20px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Tajawal', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s;
+}
+.btn-primary { background: linear-gradient(135deg,var(--teal-dark),var(--teal)); color:#fff; box-shadow:0 3px 10px rgba(26,140,122,.3); }
+.btn-primary:hover { transform:translateY(-1px); box-shadow:0 5px 16px rgba(26,140,122,.4); }
+.btn-gold { background: linear-gradient(135deg,#a8822a,var(--gold)); color:#fff; }
+.btn-gold:hover { transform:translateY(-1px); }
+.btn-outline { background:#fff; color:var(--teal-dark); border:2px solid var(--teal); }
+.btn-outline:hover { background:var(--teal); color:#fff; }
+
+/* ── PREVIEW AREA ── */
+.preview-area {
+  background: var(--bg);
+  padding: 28px 20px 40px;
+  width: 100%;
+}
+
+/*
+  THE KEY TRICK:
+  The certificate is designed on a 2048×1447 canvas.
+  We use an <svg viewBox="0 0 2048 1447"> that scales to 100% width.
+  Everything inside uses foreignObject so HTML renders correctly.
+  This means ZERO JS scaling — the browser handles it natively.
+*/
+.cert-svg-wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,.18);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.cert-svg-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── PRINT ── */
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  * { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  body { background:#fff; }
+  .app-header, .controls-panel, .action-bar, .preview-area { display:none!important; }
+  .print-area { display:block!important; }
+  .print-page {
+    width: 297mm;
+    height: 210mm;
+    page-break-after: always;
+    page-break-inside: avoid;
+    overflow: hidden;
+  }
+  .print-page:last-child { page-break-after: auto; }
+  .print-page svg { width:297mm!important; height:210mm!important; }
+}
+.print-area { display:none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="app-header">
+  <div>
+    <h1>🎓 منصة شهادات الشكر والتقدير</h1>
+    <div style="font-size:.78rem;opacity:.8;margin-top:2px;">قابلة للتعديل والطباعة — وزارة التعليم</div>
+  </div>
+  <div class="brand">
+    تصميم د/فواز<br>
+    <a href="https://t.me/TAqhjT3MFVE1Yzk0">قناة التيليجرام</a>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls-panel">
+  <div class="ctrl-group"><label>عنوان الشهادة</label><input id="f_cert_title" value="شهادة شُكر وتقدير" oninput="render()"></div>
+  <div class="ctrl-group"><label>اسم المدرسة</label><input id="f_school" value="مدرسة النموذجية" oninput="render()"></div>
+  <div class="ctrl-group"><label>اسم المكرَّم</label><input id="f_name" value="اسم المعلم المكرَّم" oninput="render()"></div>
+  <div class="ctrl-group"><label>اللقب (المعلم / المعلمة...)</label><input id="f_title" value="المعلم الفاضل" oninput="render()"></div>
+  <div class="ctrl-group"><label>سبب الشكر</label><input id="f_reason" value="التميز والعطاء في العملية التعليمية" oninput="render()"></div>
+  <div class="ctrl-group"><label>العام الدراسي</label><input id="f_year" value="١٤٤٧ / ١٤٤٨هـ" oninput="render()"></div>
+  <div class="ctrl-group"><label>التاريخ</label><input id="f_date" value="١ / ١٢ / ١٤٤٧هـ" oninput="render()"></div>
+  <div class="ctrl-group"><label>مدير المدرسة</label><input id="f_principal" value="الاسم" oninput="render()"></div>
+  <div class="ctrl-group"><label>وكيل المدرسة</label><input id="f_vice" value="الاسم" oninput="render()"></div>
+  <div class="ctrl-group"><label>المنصب الثالث</label><input id="f_t3title" value="المشرف التربوي" oninput="render()"></div>
+  <div class="ctrl-group"><label>اسم التوقيع الثالث</label><input id="f_t3name" value="الاسم" oninput="render()"></div>
+  <div class="ctrl-group" style="grid-column:span 2"><label>النص الافتتاحي</label><textarea id="f_intro" oninput="render()">تتقدم مدرسة [school] بأسمى آيات الشكر والتقدير إلى</textarea></div>
+  <div class="ctrl-group" style="grid-column:span 3"><label>نص جسم الشهادة</label><textarea id="f_body" rows="3" oninput="render()">وذلك تقديراً لجهوده المتميزة وعطائه الصادق في [reason]،
+سائلين الله عز وجل أن يوفقه، ويبارك جهوده، ويسدد خطاه،
+مع خالص تمنياتنا له بمزيد من التقدم والنجاح والتميز المستمر.</textarea></div>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+  <button class="btn btn-primary" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+  <button class="btn btn-gold" onclick="resetForm()">↺ إعادة الضبط</button>
+  <button class="btn btn-outline" onclick="toggleWm()">💧 العلامة المائية</button>
+</div>
+
+<!-- PREVIEW -->
+<div class="preview-area">
+  <div class="cert-svg-wrap" id="certWrap"></div>
+</div>
+
+<!-- PRINT AREA -->
+<div class="print-area" id="printArea"></div>
+
+<script>
+let wmOn = true;
+
+function g(id){ return document.getElementById(id)?.value || ''; }
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function buildSVG(overrideName) {
+  const certTitle = esc(g('f_cert_title'));
+  const school   = esc(g('f_school'));
+  const rawName  = overrideName != null ? overrideName : g('f_name');
+  const name     = esc(rawName);
+  const title    = esc(g('f_title'));
+  const reason   = esc(g('f_reason'));
+  const year     = esc(g('f_year'));
+  const date     = esc(g('f_date'));
+  const principal= esc(g('f_principal'));
+  const vice     = esc(g('f_vice'));
+  const t3title  = esc(g('f_t3title'));
+  const t3name   = esc(g('f_t3name'));
+  const intro    = esc(g('f_intro').replace('[school]', g('f_school')));
+  const body     = esc(g('f_body').replace('[reason]', g('f_reason')));
+  const bodyLines = body.split('\n');
+
+  // dot grid for MOE logo — داخل الإطار يسار (x=100..280, y=100..180)
+  let dots = '';
+  for(let r=0;r<4;r++) for(let c=0;c<8;c++){
+    const op = (r+c)%2===0 ? '0.85' : '0.35';
+    dots += `<circle cx="${110+c*22}" cy="${105+r*22}" r="7" fill="#1a8c7a" opacity="${op}"/>`;
+  }
+
+  const wm = wmOn ? `
+    <circle cx="1024" cy="780" r="260" fill="none" stroke="#1a8c7a" stroke-width="6" opacity="0.04"/>
+    <circle cx="1024" cy="780" r="190" fill="none" stroke="#1a8c7a" stroke-width="3" opacity="0.04"/>
+    <text x="1024" y="790" text-anchor="middle" font-size="52" fill="#1a8c7a" opacity="0.04" font-family="Tajawal">وزارة التعليم</text>
+  ` : '';
+
+  // body lines as tspan
+  const bodyTspans = bodyLines.map((line,i) =>
+    `<tspan x="1024" dy="${i===0?0:68}" text-anchor="middle">${line}</tspan>`
+  ).join('');
+
+  return `<svg viewBox="0 0 2048 1447" xmlns="http://www.w3.org/2000/svg"
+    style="font-family:Tajawal,sans-serif;direction:rtl;">
+  <defs>
+    <linearGradient id="gGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#c9a84c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="2048" height="1447" fill="white"/>
+
+  ${wm}
+
+  <!-- ═══ CORNERS ═══ -->
+  <!-- Top-Right corner -->
+  <polygon points="2048,0 2048,260 2040,260 2040,8 1788,8 1788,0" fill="#1a8c7a" opacity="0.85"/>
+  <polygon points="2048,0 2048,180 2043,180 2043,5 1868,5 1868,0" fill="#c9a84c" opacity="0.7"/>
+  <polygon points="2048,0 2048,110 2044,110 2044,4 1938,4 1938,0" fill="#1a8c7a" opacity="0.5"/>
+  <!-- Top-Left corner -->
+  <polygon points="0,0 0,260 8,260 8,8 260,8 260,0" fill="#1a8c7a" opacity="0.85"/>
+  <polygon points="0,0 0,180 5,180 5,5 180,5 180,0" fill="#c9a84c" opacity="0.7"/>
+  <polygon points="0,0 0,110 4,110 4,4 110,4 110,0" fill="#1a8c7a" opacity="0.5"/>
+  <!-- Bottom-Right corner -->
+  <polygon points="2048,1447 2048,1187 2040,1187 2040,1439 1788,1439 1788,1447" fill="#1a8c7a" opacity="0.85"/>
+  <polygon points="2048,1447 2048,1267 2043,1267 2043,1442 1868,1442 1868,1447" fill="#c9a84c" opacity="0.7"/>
+  <polygon points="2048,1447 2048,1337 2044,1337 2044,1443 1938,1443 1938,1447" fill="#1a8c7a" opacity="0.5"/>
+  <!-- Bottom-Left corner -->
+  <polygon points="0,1447 0,1187 8,1187 8,1439 260,1439 260,1447" fill="#1a8c7a" opacity="0.85"/>
+  <polygon points="0,1447 0,1267 5,1267 5,1442 180,1442 180,1447" fill="#c9a84c" opacity="0.7"/>
+  <polygon points="0,1447 0,1337 4,1337 4,1443 110,1443 110,1447" fill="#1a8c7a" opacity="0.5"/>
+
+  <!-- ═══ GOLD FRAME (inset 80px) ═══ -->
+  <rect x="80" y="80" width="1888" height="1287" fill="none" stroke="#c9a84c" stroke-width="5" rx="2"/>
+  <rect x="93" y="93" width="1862" height="1261" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity="0.4" rx="2"/>
+
+  <!-- ═══ HEADER ROW  (y: 95–310) ═══ -->
+
+  <!-- MOE Logo — داخل الإطار يمين (RTL) -->
+  ${dots}
+  <text x="215" y="210" text-anchor="middle" font-size="26" fill="#1a8c7a" font-weight="700">وزارة التعليم</text>
+  <text x="215" y="242" text-anchor="middle" font-size="20" fill="#1a8c7a">Ministry of Education</text>
+
+  <!-- Title — وسط — يبدأ من أسفل الخط الذهبي مباشرة -->
+  <text x="1024" y="240" text-anchor="middle" font-size="130" fill="#1a8c7a" font-weight="700"
+    font-family="Amiri,serif">${certTitle}</text>
+
+  <!-- School + Date — يسار -->
+  <text x="1820" y="175" text-anchor="middle" font-size="30" fill="#116b5d" font-weight="700">${school}</text>
+  <text x="1820" y="215" text-anchor="middle" font-size="26" fill="#888">التاريخ: ${date}</text>
+
+  <!-- ═══ DIVIDER ═══ -->
+  <rect x="612" y="330" width="824" height="5" fill="url(#gGold)" rx="3"/>
+
+  <!-- ═══ BODY (y: 370–980) ═══ -->
+  <!-- Intro -->
+  <text x="1024" y="400" text-anchor="middle" font-size="38" fill="#444">${intro}</text>
+
+  <!-- Name box -->
+  <rect x="424" y="428" width="1200" height="3" fill="url(#gGold)"/>
+  <rect x="424" y="578" width="1200" height="3" fill="url(#gGold)"/>
+  <text x="454"  y="520" font-size="38" fill="#c9a84c" text-anchor="middle">❖</text>
+  <text x="1594" y="520" font-size="38" fill="#c9a84c" text-anchor="middle">❖</text>
+
+  <!-- Name -->
+  <text x="1024" y="534" text-anchor="middle" font-size="74" fill="#116b5d" font-weight="700"
+    font-family="Amiri,serif">${title} / ${name}</text>
+
+  <!-- Body text -->
+  <text x="1024" y="660" text-anchor="middle" font-size="37" fill="#444">
+    ${bodyTspans}
+  </text>
+
+  <!-- Year -->
+  <text x="1024" y="980" text-anchor="middle" font-size="30" fill="#888">العام الدراسي: ${year}</text>
+
+  <!-- ═══ SIGNATURES (y: 1140–1340) ═══ -->
+  <line x1="160"  y1="1160" x2="540"  y2="1160" stroke="url(#gGold)" stroke-width="3"/>
+  <line x1="824"  y1="1160" x2="1224" y2="1160" stroke="url(#gGold)" stroke-width="3"/>
+  <line x1="1508" y1="1160" x2="1888" y2="1160" stroke="url(#gGold)" stroke-width="3"/>
+
+  <text x="350"  y="1210" text-anchor="middle" font-size="30" fill="#116b5d" font-weight="700">مدير المدرسة</text>
+  <text x="350"  y="1250" text-anchor="middle" font-size="28" fill="#555">${principal}</text>
+
+  <text x="1024" y="1210" text-anchor="middle" font-size="30" fill="#116b5d" font-weight="700">وكيل المدرسة</text>
+  <text x="1024" y="1250" text-anchor="middle" font-size="28" fill="#555">${vice}</text>
+
+  <text x="1698" y="1210" text-anchor="middle" font-size="30" fill="#116b5d" font-weight="700">${t3title}</text>
+  <text x="1698" y="1250" text-anchor="middle" font-size="28" fill="#555">${t3name}</text>
+
+</svg>`;
+}
+
+function render() {
+  document.getElementById('certWrap').innerHTML = buildSVG(null);
+  document.getElementById('printArea').innerHTML =
+    `<div class="print-page">${buildSVG(null)}</div>`;
+}
+
+function toggleWm() { wmOn = !wmOn; render(); }
+
+function resetForm() {
+  document.getElementById('f_cert_title').value = 'شهادة شُكر وتقدير';
+  g('f_school') && (document.getElementById('f_school').value = 'مدرسة النموذجية');
+  document.getElementById('f_name').value    = 'اسم المعلم المكرَّم';
+  document.getElementById('f_title').value   = 'المعلم الفاضل';
+  document.getElementById('f_reason').value  = 'التميز والعطاء في العملية التعليمية';
+  document.getElementById('f_year').value    = '١٤٤٧ / ١٤٤٨هـ';
+  document.getElementById('f_date').value    = '١ / ١٢ / ١٤٤٧هـ';
+  document.getElementById('f_principal').value = 'الاسم';
+  document.getElementById('f_vice').value    = 'الاسم';
+  document.getElementById('f_t3title').value = 'المشرف التربوي';
+  document.getElementById('f_t3name').value  = 'الاسم';
+  document.getElementById('f_intro').value   = 'تتقدم مدرسة [school] بأسمى آيات الشكر والتقدير إلى';
+  document.getElementById('f_body').value    = 'وذلك تقديراً لجهوده المتميزة وعطائه الصادق في [reason]،\nسائلين الله عز وجل أن يوفقه، ويبارك جهوده، ويسدد خطاه،\nمع خالص تمنياتنا له بمزيد من التقدم والنجاح والتميز المستمر.';
+  render();
+}
+
+window.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
