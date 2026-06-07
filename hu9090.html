@@ -8,7 +8,689 @@
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
+:root {<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تواريخ مهمة في التعليم ١٤٤٨هـ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
 :root {
+  --teal:     #0a7c6e;
+  --teal-mid: #0d9e8c;
+  --teal-lt:  #b2e0da;
+  --gold-lt:  #ffd966;
+  --red:      #c0392b;
+  --bg:       #f0faf8;
+  --white:    #ffffff;
+  --text:     #1a2e2b;
+  --muted:    #4a6b65;
+  --border:   #b2d8d3;
+  --shadow:   0 4px 24px rgba(10,124,110,0.13);
+}
+
+html { font-size: 15px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 0% 0%, rgba(10,124,110,0.09), transparent),
+    radial-gradient(ellipse 50% 60% at 100% 100%, rgba(200,134,10,0.07), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 14px 40px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(135deg, #064d43 0%, #0a7c6e 45%, #0d9e8c 100%);
+  border-radius: 20px;
+  padding: 26px 20px 18px;
+  margin-bottom: 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(10,124,110,0.35);
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,255,255,0.13), transparent),
+    repeating-linear-gradient(135deg, transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px);
+  pointer-events: none;
+}
+.header-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+.header-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.4);
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+.header-sub {
+  margin-top: 6px;
+  font-size: clamp(0.75rem, 2.5vw, 0.92rem);
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+.header-year {
+  display: inline-block;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 30px;
+  padding: 4px 16px;
+  font-size: clamp(0.72rem, 2vw, 0.88rem);
+  font-weight: 700;
+  color: var(--gold-lt);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SENDER ===== */
+.sender-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--white);
+  border: 2px solid var(--teal-lt);
+  border-radius: 14px;
+  padding: 11px 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.sender-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.sender-text {
+  font-size: clamp(0.88rem, 3vw, 1.05rem);
+  font-weight: 700;
+  color: var(--teal);
+}
+
+/* ===== STATS ===== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-3px); }
+.stat-num {
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: clamp(0.62rem, 2vw, 0.72rem);
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ===== FILTER TABS ===== */
+.filter-tabs {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 30px;
+  padding: 7px 13px;
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.tab-btn:hover, .tab-btn:focus { border-color: var(--teal-mid); color: var(--teal); outline: none; }
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(10,124,110,0.3);
+}
+
+/* ===== TABLE (desktop) ===== */
+.table-wrap {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background: linear-gradient(135deg, #064d43, #0a7c6e);
+}
+thead th {
+  padding: 13px 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+thead th:first-child, thead th:last-child { border-left: none; }
+
+tbody tr {
+  border-bottom: 1px solid #e8f5f3;
+  transition: background 0.18s;
+  animation: fadeRow 0.4s ease both;
+}
+@keyframes fadeRow {
+  from { opacity:0; transform: translateX(10px); }
+  to   { opacity:1; transform: translateX(0); }
+}
+tbody tr:nth-child(odd)  { background: #fafefe; }
+tbody tr:nth-child(even) { background: #f3faf8; }
+tbody tr:hover           { background: #e4f5f2 !important; }
+tbody tr.hidden          { display: none; }
+
+td {
+  padding: 12px 12px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: center;
+  border-left: 1px solid #e8f5f3;
+  vertical-align: middle;
+  line-height: 1.55;
+}
+td:last-child { border-left: none; }
+
+td.td-occasion {
+  text-align: right;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+td.td-occasion .hl      { color: var(--red); font-weight: 900; }
+td.td-occasion .hl-green{ color: var(--teal); font-weight: 900; }
+td.td-day    { font-weight: 900; color: var(--teal); white-space: nowrap; }
+td.td-hijri  { color: #0a5c52; font-weight: 700; direction: ltr; white-space: nowrap; font-size: 0.84rem; }
+td.td-miladi { color: #555; font-weight: 600; direction: ltr; white-space: nowrap; font-size: 0.82rem; }
+
+/* ===== BADGES ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.badge-eid   { background:#fef9e7; color:#c8860a; border:1px solid #f0d060; }
+.badge-exam  { background:#fde8e8; color:#c0392b; border:1px solid #f5a9a9; }
+.badge-start { background:#e8f5f0; color:#0a7c6e; border:1px solid #9dd5c8; }
+.badge-vac   { background:#e8f0fe; color:#1a56b0; border:1px solid #a0b8f0; }
+.badge-staff { background:#f3e8fd; color:#6b21a8; border:1px solid #c4a0f0; }
+
+/* ===== CARD VIEW (mobile) ===== */
+.cards-wrap { display: none; }
+
+.event-card {
+  background: var(--white);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  animation: fadeRow 0.35s ease both;
+}
+.event-card.hidden { display: none; }
+
+.card-header {
+  background: linear-gradient(135deg, #064d43, #0a7c6e);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.card-day {
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: var(--gold-lt);
+}
+.card-body {
+  padding: 12px 14px;
+}
+.card-occasion {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.card-occasion .hl       { color: var(--red); font-weight: 900; }
+.card-occasion .hl-green { color: var(--teal); font-weight: 900; }
+
+.card-dates {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.card-date-item {
+  flex: 1;
+  min-width: 120px;
+  background: #f3faf8;
+  border: 1px solid var(--teal-lt);
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+}
+.card-date-lbl {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 2px;
+}
+.card-date-val {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--teal);
+  direction: ltr;
+  display: block;
+}
+.card-date-item.miladi .card-date-val { color: #555; }
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #064d43, #0a7c6e);
+  border-radius: 18px;
+  padding: 20px 18px;
+  text-align: center;
+  box-shadow: 0 6px 24px rgba(10,124,110,0.3);
+  position: relative;
+  overflow: hidden;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, transparent, transparent 18px, rgba(255,255,255,0.03) 18px, rgba(255,255,255,0.03) 19px);
+  pointer-events: none;
+}
+.footer-thanks {
+  font-size: clamp(0.82rem, 2.5vw, 1rem);
+  font-weight: 700;
+  color: var(--gold-lt);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  line-height: 1.6;
+}
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 10px 0;
+  position: relative;
+  z-index: 1;
+}
+.footer-credit {
+  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.88);
+  position: relative;
+  z-index: 1;
+  line-height: 1.8;
+}
+.footer-credit a {
+  color: var(--gold-lt);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--gold-lt);
+  transition: color 0.2s;
+}
+.footer-credit a:hover { color: #fff; }
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: #fff; }
+  .filter-tabs, .stats-bar { display: none !important; }
+  .footer { background: #0a7c6e !important; }
+  .header, .table-wrap, .cards-wrap { box-shadow: none !important; }
+  .event-card { break-inside: avoid; }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile — switch table → cards */
+@media (max-width: 600px) {
+  .page { padding: 12px 10px 32px; }
+  .header { border-radius: 16px; padding: 20px 14px 16px; }
+  .sender-badge { padding: 10px 14px; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 14px; }
+
+  /* Hide table, show cards */
+  .table-wrap { display: none; }
+  .cards-wrap { display: block; }
+
+  .filter-tabs { gap: 6px; }
+  .tab-btn { padding: 6px 11px; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .card-dates { flex-direction: column; }
+  .card-date-item { min-width: unset; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="header-icon">📅</span>
+    <div class="header-title">تواريخ مهمة في التعليم</div>
+    <div class="header-sub">المملكة العربية السعودية — وزارة التعليم</div>
+    <div class="header-year">العام الدراسي ١٤٤٧ / ١٤٤٨هـ &nbsp;|&nbsp; 2026م</div>
+  </div>
+
+  <!-- SENDER -->
+  <div class="sender-badge">
+    <div class="sender-icon">👤</div>
+    <div class="sender-text">إعداد / أخوكم عبدالرحمن الزهراني</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-num" id="stat-total">11</div>
+      <div class="stat-lbl">إجمالي المواعيد</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-shown">11</div>
+      <div class="stat-lbl">المعروضة حالياً</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">٢</div>
+      <div class="stat-lbl">الفصل الثالث</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">١٤٤٨</div>
+      <div class="stat-lbl">العام الهجري</div>
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterAll(this)">🗓 الكل</button>
+    <button class="tab-btn" onclick="filterCat('eid',this)">🌙 العودة</button>
+    <button class="tab-btn" onclick="filterCat('exam',this)">📝 اختبارات</button>
+    <button class="tab-btn" onclick="filterCat('vac',this)">🏖 إجازات</button>
+    <button class="tab-btn" onclick="filterCat('staff',this)">👥 هيئة إدارية</button>
+    <button class="tab-btn" onclick="filterCat('start',this)">🎒 بداية العام</button>
+  </div>
+
+  <!-- ====== TABLE (tablet + desktop) ====== -->
+  <div class="table-wrap">
+    <table id="main-table">
+      <thead>
+        <tr>
+          <th>المناسبة</th>
+          <th>اليوم</th>
+          <th>التاريخ الهجري</th>
+          <th>التاريخ الميلادي</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr data-cat="eid">
+          <td class="td-occasion"><span class="badge badge-eid">🌙 عودة</span><br>العودة بعد إجازة عيد الأضحى</td>
+          <td class="td-day">الثلاثاء</td>
+          <td class="td-hijri">١٤٤٧/١٢/١٦هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٦/٢</td>
+        </tr>
+        <tr data-cat="exam">
+          <td class="td-occasion"><span class="badge badge-exam">📝 اختبارات</span><br>بداية الاختبارات النهائية <span class="hl-green">لمناطق المملكة</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٧/١٢/٢٨هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٦/١٤</td>
+        </tr>
+        <tr data-cat="exam">
+          <td class="td-occasion"><span class="badge badge-exam">📝 اختبارات</span><br>بداية الاختبارات النهائية لمنطقة <span class="hl">( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٨/١/٦هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٦/٢١</td>
+        </tr>
+        <tr data-cat="vac">
+          <td class="td-occasion"><span class="badge badge-vac">🏖 إجازة</span><br>بداية الإجازة <span class="hl-green">لمناطق المملكة</span></td>
+          <td class="td-day">الخميس</td>
+          <td class="td-hijri">١٤٤٨/١/١٠هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٦/٢٥</td>
+        </tr>
+        <tr data-cat="vac">
+          <td class="td-occasion"><span class="badge badge-vac">🏖 إجازة صيفية</span><br>بداية الإجازة الصيفية لمنطقة <span class="hl">( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)</span></td>
+          <td class="td-day">الخميس</td>
+          <td class="td-hijri">١٤٤٨/١/١٧هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٧/٢</td>
+        </tr>
+        <tr data-cat="staff">
+          <td class="td-occasion"><span class="badge badge-staff">👥 هيئة إدارية</span><br>عودة الهيئة الإدارية والمشرفين التربويين في جميع المراحل الدراسية <span class="hl-green">لمناطق المملكة</span></td>
+          <td class="td-day">الثلاثاء</td>
+          <td class="td-hijri">١٤٤٨/٢/٢٨هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٨/١١</td>
+        </tr>
+        <tr data-cat="staff">
+          <td class="td-occasion"><span class="badge badge-staff">👨‍🏫 معلمون</span><br>عودة المعلمين الممارسين للتدريس في جميع المراحل الدراسية <span class="hl-green">لمناطق المملكة</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٨/٣/٣هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٨/١٦</td>
+        </tr>
+        <tr data-cat="start">
+          <td class="td-occasion"><span class="badge badge-start">🎒 بداية عام</span><br>بداية العام الدراسي ١٤٤٨هـ <span class="hl-green">لمناطق المملكة</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٨/٣/١٠هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٨/٢٣</td>
+        </tr>
+        <tr data-cat="staff">
+          <td class="td-occasion"><span class="badge badge-staff">👥 هيئة إدارية</span><br>عودة الهيئة الإدارية والمشرفين التربويين في جميع المراحل الدراسية <span class="hl">لمنطقة ( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٨/٣/٣هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٨/١٦</td>
+        </tr>
+        <tr data-cat="staff">
+          <td class="td-occasion"><span class="badge badge-staff">👨‍🏫 معلمون</span><br>عودة المعلمين الممارسين للتدريس في جميع المراحل الدراسية <span class="hl">لمنطقة ( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٨/٣/١٠هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٨/٢٣</td>
+        </tr>
+        <tr data-cat="start">
+          <td class="td-occasion"><span class="badge badge-start">🎒 بداية عام</span><br>بداية العام الدراسي ١٤٤٨هـ <span class="hl">لمنطقة ( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)</span></td>
+          <td class="td-day">الأحد</td>
+          <td class="td-hijri">١٤٤٨/٣/١٧هـ</td>
+          <td class="td-miladi">م٢٠٢٦/٨/٣٠</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ====== CARDS (mobile) ====== -->
+  <div class="cards-wrap" id="cards-wrap">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-thanks">✨ والشكر موصول لأخي المبدع / عبدالرحمن الزهراني على هذا الجهد الطيب ✨</div>
+    <div class="footer-divider"></div>
+    <div class="footer-credit">
+      تصميم د/فواز &nbsp;|&nbsp; إعداد خالد الرفاعي
+      &nbsp;&nbsp;
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد هنا 📲</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ===== DATA =====
+const DATA = [
+  { cat:'eid',   badge:'badge-eid',   badgeTxt:'🌙 عودة',          day:'الثلاثاء', hijri:'١٤٤٧/١٢/١٦هـ', miladi:'م٢٠٢٦/٦/٢',   occasion:'العودة بعد إجازة عيد الأضحى', hlType:'' },
+  { cat:'exam',  badge:'badge-exam',  badgeTxt:'📝 اختبارات',       day:'الأحد',    hijri:'١٤٤٧/١٢/٢٨هـ', miladi:'م٢٠٢٦/٦/١٤',  occasion:'بداية الاختبارات النهائية', region:'لمناطق المملكة', hlType:'green' },
+  { cat:'exam',  badge:'badge-exam',  badgeTxt:'📝 اختبارات',       day:'الأحد',    hijri:'١٤٤٨/١/٦هـ',   miladi:'م٢٠٢٦/٦/٢١',  occasion:'بداية الاختبارات النهائية لمنطقة', region:'( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)', hlType:'red' },
+  { cat:'vac',   badge:'badge-vac',   badgeTxt:'🏖 إجازة',          day:'الخميس',  hijri:'١٤٤٨/١/١٠هـ',  miladi:'م٢٠٢٦/٦/٢٥',  occasion:'بداية الإجازة', region:'لمناطق المملكة', hlType:'green' },
+  { cat:'vac',   badge:'badge-vac',   badgeTxt:'🏖 إجازة صيفية',   day:'الخميس',  hijri:'١٤٤٨/١/١٧هـ',  miladi:'م٢٠٢٦/٧/٢',   occasion:'بداية الإجازة الصيفية لمنطقة', region:'( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)', hlType:'red' },
+  { cat:'staff', badge:'badge-staff', badgeTxt:'👥 هيئة إدارية',   day:'الثلاثاء', hijri:'١٤٤٨/٢/٢٨هـ',  miladi:'م٢٠٢٦/٨/١١',  occasion:'عودة الهيئة الإدارية والمشرفين التربويين في جميع المراحل الدراسية', region:'لمناطق المملكة', hlType:'green' },
+  { cat:'staff', badge:'badge-staff', badgeTxt:'👨‍🏫 معلمون',        day:'الأحد',    hijri:'١٤٤٨/٣/٣هـ',   miladi:'م٢٠٢٦/٨/١٦',  occasion:'عودة المعلمين الممارسين للتدريس في جميع المراحل الدراسية', region:'لمناطق المملكة', hlType:'green' },
+  { cat:'start', badge:'badge-start', badgeTxt:'🎒 بداية عام',      day:'الأحد',    hijri:'١٤٤٨/٣/١٠هـ',  miladi:'م٢٠٢٦/٨/٢٣',  occasion:'بداية العام الدراسي ١٤٤٨هـ', region:'لمناطق المملكة', hlType:'green' },
+  { cat:'staff', badge:'badge-staff', badgeTxt:'👥 هيئة إدارية',   day:'الأحد',    hijri:'١٤٤٨/٣/٣هـ',   miladi:'م٢٠٢٦/٨/١٦',  occasion:'عودة الهيئة الإدارية والمشرفين التربويين في جميع المراحل الدراسية', region:'لمنطقة ( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)', hlType:'red' },
+  { cat:'staff', badge:'badge-staff', badgeTxt:'👨‍🏫 معلمون',        day:'الأحد',    hijri:'١٤٤٨/٣/١٠هـ',  miladi:'م٢٠٢٦/٨/٢٣',  occasion:'عودة المعلمين الممارسين للتدريس في جميع المراحل الدراسية', region:'لمنطقة ( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)', hlType:'red' },
+  { cat:'start', badge:'badge-start', badgeTxt:'🎒 بداية عام',      day:'الأحد',    hijri:'١٤٤٨/٣/١٧هـ',  miladi:'م٢٠٢٦/٨/٣٠',  occasion:'بداية العام الدراسي ١٤٤٨هـ', region:'لمنطقة ( مكة المكرمة ، الطائف ، جدة ، المدينة المنورة)', hlType:'red' },
+];
+
+// ===== BUILD CARDS =====
+function buildCards() {
+  const wrap = document.getElementById('cards-wrap');
+  wrap.innerHTML = DATA.map((d, i) => {
+    const regionHtml = d.region
+      ? ` <span class="${d.hlType==='red'?'hl':'hl-green'}">${d.region}</span>`
+      : '';
+    return `
+    <div class="event-card" data-cat="${d.cat}" style="animation-delay:${i*0.05}s">
+      <div class="card-header">
+        <span class="badge ${d.badge}">${d.badgeTxt}</span>
+        <span class="card-day">${d.day}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-occasion">${d.occasion}${regionHtml}</div>
+        <div class="card-dates">
+          <div class="card-date-item">
+            <span class="card-date-lbl">التاريخ الهجري</span>
+            <span class="card-date-val">${d.hijri}</span>
+          </div>
+          <div class="card-date-item miladi">
+            <span class="card-date-lbl">التاريخ الميلادي</span>
+            <span class="card-date-val">${d.miladi}</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+buildCards();
+
+// ===== FILTER =====
+function setActive(btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function updateCount(shown) {
+  document.getElementById('stat-shown').textContent = shown;
+}
+
+function filterAll(btn) {
+  setActive(btn);
+  // table rows
+  document.querySelectorAll('#table-body tr').forEach(r => r.classList.remove('hidden'));
+  // cards
+  document.querySelectorAll('#cards-wrap .event-card').forEach(c => c.classList.remove('hidden'));
+  updateCount(11);
+}
+
+function filterCat(cat, btn) {
+  setActive(btn);
+  let shown = 0;
+  // table rows
+  document.querySelectorAll('#table-body tr').forEach(r => {
+    const match = r.dataset.cat === cat;
+    r.classList.toggle('hidden', !match);
+    if (match) {
+      shown++;
+      r.style.animation = 'none';
+      void r.offsetWidth;
+      r.style.animation = 'fadeRow 0.35s ease both';
+    }
+  });
+  // cards
+  shown = 0;
+  document.querySelectorAll('#cards-wrap .event-card').forEach(c => {
+    const match = c.dataset.cat === cat;
+    c.classList.toggle('hidden', !match);
+    if (match) shown++;
+  });
+  updateCount(shown);
+}
+</script>
+</body>
+</html>
+
   --teal:      #0a7c6e;
   --teal-mid:  #0d9e8c;
   --teal-lt:   #b2e0da;
