@@ -171,10 +171,39 @@ body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--t
   <div class="ctrl-group"><label>وكيل المدرسة</label><input id="f_vice" value="الاسم" oninput="render()"></div>
   <div class="ctrl-group"><label>المنصب الثالث</label><input id="f_t3title" value="المشرف التربوي" oninput="render()"></div>
   <div class="ctrl-group"><label>اسم التوقيع الثالث</label><input id="f_t3name" value="الاسم" oninput="render()"></div>
-  <div class="ctrl-group" style="grid-column:span 2"><label>النص الافتتاحي</label><textarea id="f_intro" oninput="render()">تتقدم مدرسة [school] بأسمى آيات الشكر والتقدير إلى</textarea></div>
-  <div class="ctrl-group" style="grid-column:span 3"><label>نص جسم الشهادة</label><textarea id="f_body" rows="3" oninput="render()">وذلك تقديراً لجهوده المتميزة وعطائه الصادق في [reason]،
+  <div class="ctrl-group" style="grid-column:span 2">
+    <label>النص الافتتاحي</label>
+    <div style="display:flex;gap:6px;margin-bottom:6px;">
+      <select id="f_intro_align" onchange="render()" style="border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-family:Tajawal,sans-serif;font-size:.85rem;color:var(--text);background:#f7fffe;direction:rtl;">
+        <option value="middle">⬛ وسط</option>
+        <option value="end">◀ يمين</option>
+        <option value="start">▶ يسار</option>
+        <option value="middle" data-half="1">⬜ نصف الصفحة</option>
+      </select>
+      <select id="f_intro_half" onchange="render()" style="border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-family:Tajawal,sans-serif;font-size:.85rem;color:var(--text);background:#f7fffe;direction:rtl;">
+        <option value="full">كامل العرض</option>
+        <option value="half">نصف الصفحة</option>
+      </select>
+    </div>
+    <textarea id="f_intro" oninput="render()">تتقدم مدرسة [school] بأسمى آيات الشكر والتقدير إلى</textarea>
+  </div>
+  <div class="ctrl-group" style="grid-column:span 3">
+    <label>نص جسم الشهادة</label>
+    <div style="display:flex;gap:6px;margin-bottom:6px;">
+      <select id="f_body_align" onchange="render()" style="border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-family:Tajawal,sans-serif;font-size:.85rem;color:var(--text);background:#f7fffe;direction:rtl;">
+        <option value="middle">⬛ وسط</option>
+        <option value="end">◀ يمين</option>
+        <option value="start">▶ يسار</option>
+      </select>
+      <select id="f_body_half" onchange="render()" style="border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-family:Tajawal,sans-serif;font-size:.85rem;color:var(--text);background:#f7fffe;direction:rtl;">
+        <option value="full">كامل العرض</option>
+        <option value="half">نصف الصفحة</option>
+      </select>
+    </div>
+    <textarea id="f_body" rows="3" oninput="render()">وذلك تقديراً لجهوده المتميزة وعطائه الصادق في [reason]،
 سائلين الله عز وجل أن يوفقه، ويبارك جهوده، ويسدد خطاه،
-مع خالص تمنياتنا له بمزيد من التقدم والنجاح والتميز المستمر.</textarea></div>
+مع خالص تمنياتنا له بمزيد من التقدم والنجاح والتميز المستمر.</textarea>
+  </div>
 </div>
 
 <!-- ACTION BAR -->
@@ -196,6 +225,19 @@ body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--t
 let wmOn = true;
 
 function g(id){ return document.getElementById(id)?.value || ''; }
+
+// حساب x و text-anchor بناءً على المحاذاة والعرض
+function textPos(alignId, halfId) {
+  const align = document.getElementById(alignId)?.value || 'middle';
+  const half  = document.getElementById(halfId)?.value  || 'full';
+  // نطاق X: كامل = 130..1918 | نصف = 130..1024
+  const xMin = 130, xMax = half === 'half' ? 1024 : 1918;
+  const xMid = (xMin + xMax) / 2;
+  if (align === 'middle') return { x: xMid,  anchor: 'middle' };
+  if (align === 'end')    return { x: xMin,  anchor: 'end'    }; // يمين (RTL: end = right)
+  if (align === 'start')  return { x: xMax,  anchor: 'start'  }; // يسار
+  return { x: xMid, anchor: 'middle' };
+}
 
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -229,10 +271,13 @@ function buildSVG(overrideName) {
     <text x="1024" y="790" text-anchor="middle" font-size="52" fill="#1a8c7a" opacity="0.04" font-family="Tajawal">وزارة التعليم</text>
   ` : '';
 
-  // body lines as tspan
-  const bodyTspans = bodyLines.map((line,i) =>
-    `<tspan x="1024" dy="${i===0?0:68}" text-anchor="middle">${line}</tspan>`
-  ).join('');
+  const introPos   = textPos('f_intro_align','f_intro_half');
+  const bodyPos    = textPos('f_body_align','f_body_half');
+
+  // كل سطر كـ <text> مستقل لضمان المحاذاة الصحيحة
+  const bodyTexts = bodyLines.map((line,i) =>
+    `<text x="${bodyPos.x}" y="${660 + i*68}" text-anchor="${bodyPos.anchor}" font-size="37" fill="#444" font-family="Tajawal,sans-serif">${line}</text>`
+  ).join('\n  ');
 
   return `<svg viewBox="0 0 2048 1447" xmlns="http://www.w3.org/2000/svg"
     style="font-family:Tajawal,sans-serif;direction:rtl;">
@@ -291,7 +336,7 @@ function buildSVG(overrideName) {
 
   <!-- ═══ BODY (y: 370–980) ═══ -->
   <!-- Intro -->
-  <text x="1024" y="400" text-anchor="middle" font-size="38" fill="#444">${intro}</text>
+  <text x="${introPos.x}" y="400" text-anchor="${introPos.anchor}" font-size="38" fill="#444">${intro}</text>
 
   <!-- Name box -->
   <rect x="424" y="428" width="1200" height="3" fill="url(#gGold)"/>
@@ -304,9 +349,7 @@ function buildSVG(overrideName) {
     font-family="Amiri,serif">${title} / ${name}</text>
 
   <!-- Body text -->
-  <text x="1024" y="660" text-anchor="middle" font-size="37" fill="#444">
-    ${bodyTspans}
-  </text>
+  ${bodyTexts}
 
   <!-- Year -->
   <text x="1024" y="980" text-anchor="middle" font-size="30" fill="#888">العام الدراسي: ${year}</text>
