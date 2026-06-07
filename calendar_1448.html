@@ -325,6 +325,7 @@ td.day-cell:hover {
   z-index: 20;
   box-shadow: 0 4px 14px rgba(0,0,0,0.25);
   border-radius: 4px;
+  cursor: pointer;
 }
 
 td.day-cell .hd {
@@ -776,15 +777,184 @@ body.compact .m-name-ar { font-size: 0.85rem; }
 .ev-type-reminder     { background: #ff8a65; }
 .ev-type-other        { background: #90a4ae; }
 
-/* Badge on calendar cells */
-.has-event::after {
-  content: '●';
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  font-size: 0.45rem;
+/* ===== EVENT DOTS ON CELLS ===== */
+td.day-cell.has-event {
+  cursor: pointer !important;
+  outline: 2px solid rgba(255,213,79,0.6);
+  outline-offset: -2px;
+}
+td.day-cell.has-event:hover {
+  outline-color: #ffd54f;
+}
+.ev-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+  min-height: 6px;
+}
+.ev-dot-mini {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===== DAY POPUP ===== */
+.day-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 8888;
+  align-items: center;
+  justify-content: center;
+}
+.day-popup-overlay.open { display: flex; }
+
+.day-popup {
+  background: linear-gradient(155deg, #0d2460 0%, #1a3a8a 60%, #0d2460 100%);
+  border: 1px solid rgba(255,213,79,0.35);
+  border-radius: 18px;
+  padding: 0;
+  width: 360px;
+  max-width: 94vw;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06);
+  font-family: 'Cairo', sans-serif;
+  overflow: hidden;
+  animation: popupIn 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popupIn {
+  from { transform: scale(0.82) translateY(12px); opacity: 0; }
+  to   { transform: scale(1)    translateY(0);    opacity: 1; }
+}
+
+.day-popup-header {
+  background: linear-gradient(90deg, rgba(255,213,79,0.12), rgba(255,213,79,0.04));
+  border-bottom: 1px solid rgba(255,213,79,0.2);
+  padding: 14px 18px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.day-popup-date {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.day-popup-hijri {
+  font-size: 1.15rem;
+  font-weight: 900;
   color: #ffd54f;
-  line-height: 1;
+  line-height: 1.1;
+}
+.day-popup-greg {
+  font-size: 0.72rem;
+  color: #90caf9;
+  font-weight: 600;
+}
+.day-popup-close {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.day-popup-close:hover { background: rgba(255,82,82,0.4); color: #fff; }
+
+.day-popup-events {
+  padding: 12px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+.day-popup-events::-webkit-scrollbar { width: 4px; }
+.day-popup-events::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+.day-ev-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  padding: 10px 12px;
+  position: relative;
+  overflow: hidden;
+}
+.day-ev-item::before {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 0 10px 10px 0;
+}
+.day-ev-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.day-ev-body { flex: 1; min-width: 0; }
+.day-ev-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.day-ev-meta {
+  font-size: 0.68rem;
+  color: #90caf9;
+  line-height: 1.5;
+}
+.day-ev-note {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  margin-top: 2px;
+}
+.day-ev-type-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  color: #fff;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.day-popup-add-btn {
+  margin: 0 16px 14px;
+  width: calc(100% - 32px);
+  background: rgba(255,213,79,0.12);
+  border: 1px dashed rgba(255,213,79,0.4);
+  color: #ffd54f;
+  padding: 8px;
+  border-radius: 9px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.day-popup-add-btn:hover {
+  background: rgba(255,213,79,0.22);
+  border-color: #ffd54f;
+}
+
+.day-popup-empty {
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.82rem;
+  padding: 18px 0 8px;
 }
 /* ===== MONTHLY DISTRIBUTION PANEL ===== */
 .monthly-dist-wrap {
@@ -1105,6 +1275,21 @@ body.compact .m-name-ar { font-size: 0.85rem; }
 
 </div><!-- end wrapper -->
 
+<!-- ===== DAY POPUP ===== -->
+<div class="day-popup-overlay" id="dayPopupOverlay" onclick="closeDayPopup(event)">
+  <div class="day-popup" id="dayPopup">
+    <div class="day-popup-header">
+      <div class="day-popup-date">
+        <span class="day-popup-hijri" id="dp-hijri-date">—</span>
+        <span class="day-popup-greg"  id="dp-greg-date">—</span>
+      </div>
+      <button class="day-popup-close" onclick="document.getElementById('dayPopupOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="day-popup-events" id="dp-events-list"></div>
+    <button class="day-popup-add-btn" id="dp-add-btn" onclick="openAddFromDay()">＋ إضافة موعد لهذا اليوم</button>
+  </div>
+</div>
+
 <!-- ===== MODAL: المواعيد والمناسبات ===== -->
 <div class="modal-overlay" id="eventsModal">
   <div class="modal-box" style="max-width:640px;">
@@ -1423,9 +1608,17 @@ function buildBody() {
         const ttl = getCellTitle(cls);
         const ttlAttr = ttl ? ` title="${ttl}"` : '';
         const gregLabel = `${c.greg.d}`;
-        html += `<td class="day-cell ${cls}"${ttlAttr}>
+        // Build ISO date string for event matching: YYYY-MM-DD
+        const mm = String(c.greg.m).padStart(2,'0');
+        const dd = String(c.greg.d).padStart(2,'0');
+        const isoDate = `${c.greg.y}-${mm}-${dd}`;
+        const hijriLabel = `${c.d} ${m.ar} ${1448}هـ`;
+        const gmAr = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+        const gregFullLabel = `${c.greg.d} ${gmAr[c.greg.m-1]} ${c.greg.y}م`;
+        html += `<td class="day-cell ${cls}"${ttlAttr} data-iso="${isoDate}" data-hijri="${hijriLabel}" data-greg="${gregFullLabel}" onclick="onDayClick(this)">
           <span class="hd">${c.d}</span>
           <span class="gd">${gregLabel}</span>
+          <span class="ev-dots-row" id="dots-${isoDate}"></span>
         </td>`;
       }
     });
@@ -1687,14 +1880,117 @@ function renderEventList() {
 }
 
 function markCalendarEvents(arr) {
-  // Mark calendar cells that have events (by Gregorian date)
-  document.querySelectorAll('td.day-cell').forEach(td => td.classList.remove('has-event'));
+  // Clear all event markers first
+  document.querySelectorAll('td.day-cell.has-event').forEach(td => {
+    td.classList.remove('has-event');
+  });
+  document.querySelectorAll('.ev-dots-row').forEach(el => el.innerHTML = '');
+
+  // Build a map: isoDate -> [events]
+  const evMap = {};
   arr.forEach(ev => {
     if (!ev.greg) return;
-    const d = new Date(ev.greg);
-    // find cell — we can match by data attribute if needed; use title-based search is impractical
-    // Instead we'll re-build with event markers on next render
+    const key = ev.greg; // already YYYY-MM-DD
+    if (!evMap[key]) evMap[key] = [];
+    evMap[key].push(ev);
   });
+
+  // Apply to cells
+  Object.entries(evMap).forEach(([iso, evs]) => {
+    const td = document.querySelector(`td[data-iso="${iso}"]`);
+    if (!td) return;
+    td.classList.add('has-event');
+    const dotsEl = document.getElementById(`dots-${iso}`);
+    if (!dotsEl) return;
+    // Show up to 3 color dots
+    const shown = evs.slice(0, 3);
+    dotsEl.innerHTML = shown.map(ev =>
+      `<span class="ev-dot-mini" style="background:${EV_COLORS[ev.type]||'#90a4ae'};"></span>`
+    ).join('');
+    if (evs.length > 3) {
+      dotsEl.innerHTML += `<span style="font-size:0.45rem;color:#ffd54f;line-height:1;">+${evs.length-3}</span>`;
+    }
+  });
+}
+
+// ===== DAY CLICK POPUP =====
+let _currentDayIso   = null;
+let _currentDayHijri = null;
+let _currentDayGreg  = null;
+
+const EV_TYPE_ICON = {
+  appointment:'📌', occasion:'🎉', program:'📋',
+  meeting:'🤝', reminder:'⏰', other:'📎'
+};
+
+function onDayClick(td) {
+  const iso   = td.dataset.iso;
+  const hijri = td.dataset.hijri;
+  const greg  = td.dataset.greg;
+  _currentDayIso   = iso;
+  _currentDayHijri = hijri;
+  _currentDayGreg  = greg;
+
+  document.getElementById('dp-hijri-date').textContent = hijri;
+  document.getElementById('dp-greg-date').textContent  = greg;
+
+  const arr  = loadEvents();
+  const dayEvs = arr.filter(ev => ev.greg === iso);
+  const list = document.getElementById('dp-events-list');
+
+  if (!dayEvs.length) {
+    list.innerHTML = `<div class="day-popup-empty">لا توجد مواعيد مسجلة لهذا اليوم</div>`;
+  } else {
+    list.innerHTML = dayEvs.map(ev => {
+      const color = EV_COLORS[ev.type]  || '#90a4ae';
+      const icon  = EV_TYPE_ICON[ev.type]|| '📎';
+      const label = EV_LABELS[ev.type]  || '';
+      let meta = '';
+      if (ev.time)  meta += `⏰ ${ev.time}`;
+      if (ev.place) meta += (meta ? '&nbsp; · &nbsp;' : '') + `📍 ${ev.place}`;
+      return `<div class="day-ev-item" style="border-right-color:${color};">
+        <div class="day-ev-item" style="border:none;padding:0;background:none;gap:8px;display:flex;align-items:flex-start;width:100%;">
+          <span class="day-ev-icon">${icon}</span>
+          <div class="day-ev-body">
+            <span class="day-ev-type-badge" style="background:${color};">${label}</span>
+            <div class="day-ev-title">${ev.title}</div>
+            ${meta ? `<div class="day-ev-meta">${meta}</div>` : ''}
+            ${ev.note ? `<div class="day-ev-note">${ev.note}</div>` : ''}
+          </div>
+          <button onclick="deleteEventFromPopup(${ev.id},'${iso}')" style="background:rgba(255,82,82,0.15);border:1px solid rgba(255,82,82,0.3);color:#ef9a9a;border-radius:6px;padding:3px 7px;font-size:0.65rem;cursor:pointer;flex-shrink:0;font-family:'Cairo',sans-serif;">حذف</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('dayPopupOverlay').classList.add('open');
+}
+
+function closeDayPopup(e) {
+  if (e.target === document.getElementById('dayPopupOverlay')) {
+    document.getElementById('dayPopupOverlay').classList.remove('open');
+  }
+}
+
+function deleteEventFromPopup(id, iso) {
+  let arr = loadEvents().filter(e => e.id !== id);
+  saveEvents(arr);
+  renderEventList();
+  markCalendarEvents(arr);
+  // Refresh popup
+  const fakeEl = document.querySelector(`td[data-iso="${iso}"]`);
+  if (fakeEl) onDayClick(fakeEl);
+  else document.getElementById('dayPopupOverlay').classList.remove('open');
+}
+
+function openAddFromDay() {
+  // Close day popup, open events modal with date pre-filled
+  document.getElementById('dayPopupOverlay').classList.remove('open');
+  if (_currentDayIso) {
+    document.getElementById('ev-greg').value  = _currentDayIso;
+    document.getElementById('ev-hijri').value = _currentDayHijri || '';
+  }
+  openEventsModal();
 }
 
 function exportEvents() {
@@ -1727,6 +2023,7 @@ function exportEvents() {
 
 // Load events on init
 renderEventList();
+markCalendarEvents(loadEvents());
 
 // Animate rows on load
 document.querySelectorAll('#cal-body tr').forEach((row, i) => {
