@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسابقة إثارة: مدخل إلى الإدارة التربوية</title>
+    <style>
+        :root {
+            --navy-blue: #000080;
+            --gold-foil: #D4AF37;
+            --teal: #008080;
+            --white: #FFFFFF;
+            --light-grey: #f4f4f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-grey);
+            color: var(--navy-blue);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: var(--white);
+            border: 3px solid var(--gold-foil);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--gold-foil);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: var(--navy-blue);
+            margin: 0 0 10px 0;
+        }
+
+        .header h2 {
+            color: var(--teal);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .stage-indicator {
+            background-color: var(--gold-foil);
+            color: var(--white);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .question-box {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background-color: var(--white);
+            color: var(--navy-blue);
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: right;
+            font-family: inherit;
+        }
+
+        .option-btn:hover {
+            background-color: var(--teal);
+            color: var(--white);
+        }
+
+        .option-btn.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .option-btn.wrong {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .score-board {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--navy-blue);
+        }
+        
+        .progress-text {
+            font-size: 1.1rem;
+            color: var(--teal);
+            font-weight: bold;
+            background-color: var(--light-grey);
+            padding: 5px 15px;
+            border-radius: 8px;
+        }
+
+        .next-btn {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s;
+        }
+
+        .next-btn:hover {
+            background-color: var(--gold-foil);
+        }
+
+        .result-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .result-screen h2 {
+            color: var(--gold-foil);
+            font-size: 2rem;
+        }
+
+        .custom-footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--gold-foil);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--navy-blue);
+            font-weight: bold;
+        }
+
+        .custom-footer a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .custom-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .reference-text {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-weight: normal;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header">
+        <h1>مسابقة إثارة التفاعلية الكبرى</h1>
+        <h2>استكشاف مكنونات "مدخل إلى الإدارة التربوية"</h2>
+    </div>
+
+    <div id="quiz-area">
+        <div class="stage-indicator" id="stage-text">المرحلة الأولى</div>
+        <div class="question-box" id="question-text">جاري تحميل السؤال...</div>
+        
+        <div class="options-container" id="options-area">
+            </div>
+
+        <div class="controls">
+            <div class="score-board">النقاط: <span id="score">0</span></div>
+            <div class="progress-text">السؤال <span id="current-q"></span> من <span id="total-q"></span></div>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">السؤال التالي ❯</button>
+        </div>
+    </div>
+
+    <div id="result-area" class="result-screen">
+        <h2>اكتملت التحديات الثلاث بنجاح!</h2>
+        <p class="question-box">لقد أتممت كافة مكنونات ونظريات ومصطلحات الإدارة التربوية.</p>
+        <div class="score-board" style="font-size: 1.5rem; margin-bottom: 20px;">النتيجة النهائية: <span id="final-score"></span> من <span id="total-questions"></span></div>
+        <button class="next-btn" style="display: inline-block; background-color: var(--teal);" onclick="location.reload()">إعادة خوض المسابقة</button>
+    </div>
+
+    <div class="custom-footer">
+        تصميم د/فواز تفضل للمزيد هنا <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a>
+        <span class="reference-text">المرجع: كتاب مدخل إلى الإدارة التربوية</span>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        // === المرحلة الأولى: المفاهيم والتطور التاريخي للإدارة (10 أسئلة) ===
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "الإدارة التي تُعنى بتنظيم وتوجيه الموارد المادية والبشرية لتحقيق الأهداف التعليمية تسمى:",
+            options: ["الإدارة العامة", "الإدارة التربوية", "الإدارة الصناعية", "الإدارة التجارية"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "أي من الوظائف الإدارية التالية تعنى بـ 'تحديد الأهداف ورسم السياسات المستقبلية'؟",
+            options: ["التنظيم", "التوجيه", "التخطيط (Planning)", "الرقابة"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "العملية التي يتم من خلالها قياس الأداء الفعلي ومقارنته بالأهداف المخططة هي:",
+            options: ["التخطيط", "التنظيم", "الرقابة (Controlling)", "اتخاذ القرار"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "توزيع المهام وتحديد الصلاحيات والمسؤوليات بين موظفي المدرسة يندرج تحت وظيفة:",
+            options: ["التنظيم (Organizing)", "الرقابة", "التوجيه", "التقييم"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "المدرسة الفكرية التي ركزت على 'الإنتاجية' واعتبرت العامل آلة هي:",
+            options: ["مدرسة العلاقات الإنسانية", "المدرسة السلوكية", "الإدارة العلمية (Scientific Management)", "الإدارة الموقفية"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "من أبرز رواد مدرسة 'الإدارة العلمية' الذي ركز على دراسة الوقت والحركة هو:",
+            options: ["فريدريك تايلور", "إلتون مايو", "هنري فايول", "ماكس ويبر"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "رائد مدرسة 'التقسيم الإداري' الذي وضع 14 مبدأ للإدارة هو:",
+            options: ["ماكس ويبر", "هنري فايول", "دوجلاس مكريجور", "فريدريك تايلور"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "'البيروقراطية' كنظام إداري يعتمد على التسلسل الهرمي والقواعد الصارمة ارتبطت بالعالم:",
+            options: ["ماكس ويبر", "إلتون مايو", "ابراهام ماسلو", "بليك وموتون"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "المدرسة التي جاءت كرد فعل على الإدارة الكلاسيكية وركزت على الجانب النفسي والاجتماعي للعاملين هي:",
+            options: ["مدرسة النظم", "مدرسة العلاقات الإنسانية", "مدرسة الإدارة العلمية", "المدرسة البيروقراطية"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الأولى: أساسيات ومفاهيم الإدارة",
+            question: "تجارب 'هاوثورن' التي أثبتت أهمية العوامل الإنسانية في زيادة الإنتاجية قادها العالم:",
+            options: ["إلتون مايو", "كورت لوين", "فريدريك تايلور", "دوجلاس مكريجور"],
+            correct: 0
+        },
+
+        // === المرحلة الثانية: العمليات الإدارية في المدرسة (10 أسئلة) ===
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "جوهر العملية الإدارية والمحور الذي تدور حوله كافة النشاطات الإدارية هو:",
+            options: ["حفظ الملفات", "اتخاذ القرار (Decision Making)", "تقييم الأداء", "الاتصال الخارجي"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "أول خطوة علمية في عملية 'اتخاذ القرار' هي:",
+            options: ["طرح البدائل", "تقييم البدائل", "تحديد المشكلة وتشخيصها", "اختيار البديل الأنسب"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "نقل المعاني والأفكار والتوجيهات بين القائد وموظفي المدرسة بطريقة مفهومة يُعرف بـ:",
+            options: ["الرقابة", "الاتصال (Communication)", "التفويض", "التخطيط"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "الاتصال الذي يتم من خلال اللوائح والتعاميم والقرارات المكتوبة يُصنف على أنه اتصال:",
+            options: ["غير رسمي", "رسمي (Formal)", "أفقي", "صاعد"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "الاتصالات التي تتم بين المعلمين أو الإداريين في نفس المستوى الإداري تسمى:",
+            options: ["اتصالات صاعدة", "اتصالات هابطة", "اتصالات أفقية (Horizontal)", "اتصالات محورية"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "لضمان استمرارية العمل وعدم توقفه عند غياب المدير، يُنصح بتطبيق مبدأ:",
+            options: ["المركزية المطلقة", "تفويض السلطة (Delegation)", "الرقابة الصارمة", "القيادة المتسلطة"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "السلطة الإدارية يمكن تفويضها، ولكن ______ لا تُفوض وتظل على عاتق القائد.",
+            options: ["المهام", "المسؤولية (Responsibility)", "الواجبات", "الصلاحيات"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "تقييم أداء موظفي المدرسة يجب أن يعتمد بشكل أساسي على:",
+            options: ["المزاج الشخصي", "الانطباع العام", "معايير موضوعية ومصنّفة مسبقاً", "الأقدمية فقط"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "القائد التربوي الناجح هو الذي _____ المشكلات المدرسية بأسلوب علمي وحكيم.",
+            options: ["يعالج", "يتجاهل", "يؤجل", "يخفي"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية في المدرسة",
+            question: "الأهداف التربوية التي تسعى المدرسة لتحقيقها يجب أن تكون SMART، وحرف M يرمز إلى:",
+            options: ["محدد (Specific)", "قابل للقياس (Measurable)", "واقعي (Realistic)", "محدد بوقت (Time-bound)"],
+            correct: 1
+        },
+
+        // === المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي (10 أسئلة) ===
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "النمط الإشرافي الذي يركز على تصيد الأخطاء ومراقبة المعلمين بشدة هو التفتيش الـ:",
+            options: ["الديمقراطي", "العيادي", "التقليدي (التفتيشي)", "التطوري"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "الإشراف التربوي الحديث يُعرّف بأنه عملية:",
+            options: ["فنية شوروية تعاونية", "إدارية بحتة", "مكتبية مغلقة", "روتينية يومية"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "النمط الإشرافي الذي يعتمد على الملاحظة الصفية المباشرة وتحليل أداء المعلم بالتعاون معه يسمى:",
+            options: ["الإشراف العيادي (Clinical Supervision)", "الإشراف الوقائي", "الإشراف الإبداعي", "الإشراف بالأهداف"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "من أهم كفايات المشرف التربوي أو مدير المدرسة في العصر الحديث:",
+            options: ["التسلط", "القدرة على التغيير وإدارة الأزمات", "الانعزال عن المجتمع المحلي", "التمسك بالروتين"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "مصطلح 'TQM' في الإدارة الحديثة يشير إلى:",
+            options: ["إدارة الجودة الشاملة", "الإدارة بالأهداف", "الإدارة بالتجوال", "هندرة العمليات"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "مبدأ التطوير المستمر 'كايزن' ارتبط بتجربة الإدارة في:",
+            options: ["أمريكا", "فرنسا", "اليابان", "بريطانيا"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "الإدارة التي تعتمد على تحديد أهداف مشتركة بين المدير وموظفي المدرسة وتقييم الأداء بناءً عليها هي:",
+            options: ["الإدارة بالأهداف (MBO)", "الإدارة بالاستثناء", "الإدارة بالأزمات", "الإدارة الموقفية"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "لضمان بيئة مدرسية جاذبة، يجب أن يكون المناخ التنظيمي:",
+            options: ["مغلقاً", "مفتوحاً وداعماً للابتكار", "مليئاً بالصراعات", "بيروقراطياً معقداً"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "النظرة الحديثة للإدارة التربوية تعتبرها نظاماً مفتوحاً (Open System) يتفاعل مع:",
+            options: ["البيئة المدرسية الداخلية فقط", "البيئة الخارجية والمجتمع المحلي", "قرارات الوزارة فقط", "لا شيء مما ذكر"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والإشراف التربوي",
+            question: "الأداة الإدارية التي تتضمن تحليل نقاط القوة والضعف والفرص والتهديدات تسمى:",
+            options: ["تحليل SWOT", "نموذج ديمينج", "دائرة الجودة", "نموذج الإدارة بالأهداف"],
+            correct: 0
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let hasAnswered = false;
+
+    const stageText = document.getElementById('stage-text');
+    const questionText = document.getElementById('question-text');
+    const optionsArea = document.getElementById('options-area');
+    const scoreDisplay = document.getElementById('score');
+    const nextBtn = document.getElementById('next-btn');
+    const quizArea = document.getElementById('quiz-area');
+    const resultArea = document.getElementById('result-area');
+    const currentQDisplay = document.getElementById('current-q');
+    const totalQDisplay = document.getElementById('total-q');
+
+    function loadQuestion() {
+        hasAnswered = false;
+        nextBtn.style.display = 'none';
+        
+        const currentData = quizData[currentQuestionIndex];
+        stageText.innerText = currentData.stage;
+        questionText.innerText = currentData.question;
+        
+        currentQDisplay.innerText = currentQuestionIndex + 1;
+        totalQDisplay.innerText = quizData.length;
+        
+        optionsArea.innerHTML = '';
+        
+        currentData.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.innerText = option;
+            button.onclick = () => checkAnswer(index, button);
+            optionsArea.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selectedIndex, buttonElement) {
+        if (hasAnswered) return;
+        hasAnswered = true;
+
+        const currentData = quizData[currentQuestionIndex];
+        const allButtons = optionsArea.children;
+
+        if (selectedIndex === currentData.correct) {
+            buttonElement.classList.add('correct');
+            score++;
+            scoreDisplay.innerText = score;
+        } else {
+            buttonElement.classList.add('wrong');
+            allButtons[currentData.correct].classList.add('correct');
+        }
+
+        for(let btn of allButtons) {
+            btn.style.cursor = 'default';
+        }
+
+        nextBtn.style.display = 'inline-block';
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        quizArea.style.display = 'none';
+        resultArea.style.display = 'block';
+        document.getElementById('final-score').innerText = score;
+        document.getElementById('total-questions').innerText = quizData.length;
+    }
+
+    window.onload = loadQuestion;
+</script>
+
+</body>
+</html>
