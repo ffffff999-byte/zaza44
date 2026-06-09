@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسابقة الاختبارات المركزية - سادس ب</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy2: #112240;
+    --gold: #d4a017;
+    --gold2: #f0c040;
+    --gold3: #ffe08a;
+    --cyan: #00c8d4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --white: #f8f6f0;
+    --muted: #94a3b8;
+    --card: #16305a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+  .screen.active { display: flex; }
+
+  /* ===== HEADER BADGE ===== */
+  .badge {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  /* ===== HOME ===== */
+  #home {
+    background: radial-gradient(ellipse at 60% 0%, #1a3a6b 0%, var(--navy) 60%);
+    text-align: center;
+    gap: 0;
+  }
+
+  .home-stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: hidden; z-index: 0;
+  }
+  .star {
+    position: absolute; background: #fff; border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+    opacity: 0.3;
+  }
+  @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.6; } }
+
+  .home-inner { position: relative; z-index: 1; max-width: 480px; width: 100%; }
+
+  .title-ar {
+    font-size: clamp(22px, 6vw, 36px);
+    font-weight: 900;
+    color: var(--gold2);
+    line-height: 1.3;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(212,160,23,0.4);
+  }
+  .title-sub {
+    font-size: clamp(13px, 3.5vw, 18px);
+    color: var(--cyan);
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+    width: 100%;
+  }
+
+  .stage-btn {
+    background: var(--card);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    padding: 18px 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    color: var(--white);
+    font-family: 'Tajawal', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .stage-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(212,160,23,0.1));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .stage-btn:hover::before, .stage-btn.active-stage::before { opacity: 1; }
+  .stage-btn:hover, .stage-btn.active-stage {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212,160,23,0.2);
+  }
+  .stage-icon { font-size: 28px; margin-bottom: 6px; display: block; }
+  .stage-label { font-size: 14px; font-weight: 700; color: var(--gold2); display: block; }
+  .stage-count { font-size: 11px; color: var(--muted); margin-top: 4px; display: block; }
+
+  .start-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--navy);
+    border: none;
+    border-radius: 14px;
+    padding: 16px 48px;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'Tajawal', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(212,160,23,0.4);
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,160,23,0.5); }
+  .start-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ===== QUIZ ===== */
+  #quiz {
+    background: var(--navy);
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  .quiz-header {
+    width: 100%;
+    background: var(--navy2);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid rgba(212,160,23,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .q-stage-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold2);
+    background: rgba(212,160,23,0.15);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .progress-wrap { flex: 1; }
+  .progress-bar-bg {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--cyan));
+    border-radius: 10px;
+    transition: width 0.4s ease;
+  }
+  .progress-text { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  .score-badge {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gold2);
+    white-space: nowrap;
+  }
+
+  .quiz-body {
+    width: 100%;
+    max-width: 560px;
+    padding: 20px 16px 100px;
+    flex: 1;
+    margin: 0 auto;
+  }
+
+  .q-num {
+    font-size: 11px;
+    color: var(--cyan);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .q-text {
+    font-size: clamp(15px, 4vw, 19px);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    color: var(--white);
+  }
+
+  .choices { display: flex; flex-direction: column; gap: 10px; }
+
+  .choice-btn {
+    background: var(--card);
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Tajawal', sans-serif;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: right;
+    direction: rtl;
+    line-height: 1.5;
+  }
+  .choice-btn:hover:not(:disabled) {
+    border-color: var(--gold);
+    background: rgba(212,160,23,0.1);
+  }
+  .choice-btn.correct {
+    background: rgba(34,197,94,0.2);
+    border-color: var(--green);
+    color: #86efac;
+  }
+  .choice-btn.wrong {
+    background: rgba(239,68,68,0.2);
+    border-color: var(--red);
+    color: #fca5a5;
+  }
+  .choice-btn:disabled { cursor: default; }
+
+  .feedback-bar {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    display: none;
+  }
+  .feedback-bar.correct { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid var(--green); }
+  .feedback-bar.wrong { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid var(--red); }
+  .feedback-bar.show { display: block; animation: fadeIn 0.3s; }
+
+  .next-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--navy);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: 'Tajawal', sans-serif;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+    display: none;
+    transition: all 0.2s;
+  }
+  .next-btn.show { display: block; animation: fadeIn 0.3s; }
+  .next-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,160,23,0.4); }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ===== RESULTS ===== */
+  #results {
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 0%, #1a3a6b, var(--navy) 70%);
+  }
+
+  .result-circle {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    background: var(--card);
+    box-shadow: 0 0 40px rgba(212,160,23,0.3);
+  }
+  .result-percent { font-size: 32px; font-weight: 900; color: var(--gold2); }
+  .result-label { font-size: 11px; color: var(--muted); }
+
+  .result-title { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+  .result-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+
+  .result-stats {
+    display: flex; gap: 12px;
+    justify-content: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px 20px;
+    min-width: 80px;
+  }
+  .stat-val { font-size: 22px; font-weight: 900; }
+  .stat-lbl { font-size: 11px; color: var(--muted); }
+
+  .action-btns { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 320px; }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold2);
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Tajawal', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: rgba(212,160,23,0.1); }
+
+  /* ===== SETTINGS FOOTER ===== */
+  .settings-footer {
+    width: 100%;
+    background: var(--navy2);
+    border-top: 1px solid rgba(212,160,23,0.15);
+    padding: 14px 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .settings-footer .designer {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .settings-footer .designer a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .settings-footer .designer a:hover { text-decoration: underline; }
+  .settings-footer .thanks {
+    font-size: 11px;
+    color: rgba(148,163,184,0.6);
+    margin-top: 4px;
+  }
+
+  /* ===== TIMER ===== */
+  .timer-display {
+    font-size: 13px;
+    color: var(--cyan);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .timer-display.warning { color: #fb923c; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+  /* ===== STAGE DIVIDER ===== */
+  .stage-divider {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(212,160,23,0.1), rgba(0,200,212,0.1));
+    border-radius: 14px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(212,160,23,0.2);
+  }
+  .stage-divider h3 { font-size: 18px; color: var(--gold2); }
+  .stage-divider p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+
+  @media (max-width: 400px) {
+    .stage-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- نجوم الخلفية -->
+<div class="home-stars" id="stars"></div>
+
+<!-- ===== شاشة الرئيسية ===== -->
+<div class="screen active" id="home">
+  <div class="home-inner">
+    <div class="badge">🏆 مسابقة تفاعلية</div>
+    <h1 class="title-ar">الاختبارات المركزية<br>الصف السادس الابتدائي</h1>
+    <p class="title-sub">اختر المادة وابدأ التحدي!</p>
+
+    <div class="stage-grid" id="stageGrid">
+      <button class="stage-btn" data-stage="math" onclick="selectStage('math', this)">
+        <span class="stage-icon">🔢</span>
+        <span class="stage-label">الرياضيات</span>
+        <span class="stage-count">22 سؤالاً</span>
+      </button>
+      <button class="stage-btn" data-stage="arabic" onclick="selectStage('arabic', this)">
+        <span class="stage-icon">📖</span>
+        <span class="stage-label">لغتي الجميلة</span>
+        <span class="stage-count">20 سؤالاً</span>
+      </button>
+      <button class="stage-btn" data-stage="math3" onclick="selectStage('math3', this)">
+        <span class="stage-icon">📐</span>
+        <span class="stage-label">رياضيات - ثالث</span>
+        <span class="stage-count">13 سؤالاً</span>
+      </button>
+      <button class="stage-btn" data-stage="arabic3" onclick="selectStage('arabic3', this)">
+        <span class="stage-icon">✏️</span>
+        <span class="stage-label">لغتي - ثالث ابتدائي</span>
+        <span class="stage-count">10 أسئلة</span>
+      </button>
+    </div>
+
+    <button class="start-btn" id="startBtn" onclick="startQuiz()" disabled>
+      ابدأ المسابقة ✨
+    </button>
+
+    <div class="settings-footer">
+      <div class="designer">
+        تصميم <strong>د/فواز</strong> &nbsp;|&nbsp;
+        <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد هنا 📲</a>
+      </div>
+      <div class="thanks">والشكر موصول لجامعها أخونا المبدع عبدالرحمن الزهراني</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== شاشة الأسئلة ===== -->
+<div class="screen" id="quiz">
+  <div class="quiz-header">
+    <div class="q-stage-label" id="stageLabel">الرياضيات</div>
+    <div class="progress-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="progress-text" id="progressText">1 / 22</div>
+    </div>
+    <div class="timer-display" id="timerDisplay">⏱ 30</div>
+    <div class="score-badge" id="scoreBadge">⭐ 0</div>
+  </div>
+
+  <div class="quiz-body" id="quizBody">
+    <!-- الأسئلة تُعرض هنا -->
+  </div>
+</div>
+
+<!-- ===== شاشة النتائج ===== -->
+<div class="screen" id="results">
+  <div class="result-circle">
+    <div class="result-percent" id="resultPercent">0%</div>
+    <div class="result-label">نتيجتك</div>
+  </div>
+  <h2 class="result-title" id="resultTitle">أحسنت!</h2>
+  <p class="result-sub" id="resultSub">لقد أنهيت المسابقة</p>
+
+  <div class="result-stats">
+    <div class="stat-box">
+      <div class="stat-val" id="statCorrect" style="color:var(--green)">0</div>
+      <div class="stat-lbl">صحيحة ✅</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="statWrong" style="color:var(--red)">0</div>
+      <div class="stat-lbl">خاطئة ❌</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="statTotal" style="color:var(--cyan)">0</div>
+      <div class="stat-lbl">مجموع الأسئلة</div>
+    </div>
+  </div>
+
+  <div class="action-btns">
+    <button class="start-btn" onclick="restartSameStage()">إعادة المحاولة 🔄</button>
+    <button class="btn-outline" onclick="goHome()">اختيار مادة أخرى 🏠</button>
+  </div>
+
+  <div class="settings-footer">
+    <div class="designer">
+      تصميم <strong>د/فواز</strong> &nbsp;|&nbsp;
+      <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد هنا 📲</a>
+    </div>
+    <div class="thanks">والشكر موصول لجامعها أخونا المبدع عبدالرحمن الزهراني</div>
+  </div>
+</div>
+
+<script>
+// ===================== بيانات الأسئلة =====================
+
+const STAGES = {
+
+  // ===== رياضيات سادس =====
+  math: {
+    label: "الرياضيات - سادس",
+    icon: "🔢",
+    questions: [
+      {
+        q: "معدل الوحدة لـ 42 كلم في سبع ساعات هو:",
+        choices: ["6 ساعات / 1 كلم", "1 كلم / 6 ساعات", "6 كلم / 1 ساعة", "1 ساعة / 6 كلم"],
+        ans: 2
+      },
+      {
+        q: "نسبة 20 سيارة بيضاء من بين 64 سيارة في أبسط صورة هي:",
+        choices: ["20/64", "5/16", "16/5", "64/20"],
+        ans: 1
+      },
+      {
+        q: "نسبة عدد القصص العلمية (10) إلى العدد الكلي (20) في أبسط صورة هي:",
+        choices: ["10 : 20", "5 : 20", "5 : 12", "1 : 2"],
+        ans: 3
+      },
+      {
+        q: "حل التناسب: 7/ل = 35/10 هو ل = ؟",
+        choices: ["1", "2", "3", "4"],
+        ans: 1
+      },
+      {
+        q: "يكتب الكسر الاعتيادي 3/5 في صورة نسبة مئوية:",
+        choices: ["50%", "60%", "70%", "80%"],
+        ans: 1
+      },
+      {
+        q: "مساحة متوازي أضلاع طوله 10 سم وارتفاعه 5 سم تساوي:",
+        choices: ["5 سم²", "15 سم²", "50 سم²", "25 سم²"],
+        ans: 2
+      },
+      {
+        q: "العدد الناقص في النمط: 63، ....، 49، 42، 35 هو:",
+        choices: ["29", "56", "59", "62"],
+        ans: 1
+      },
+      {
+        q: "يُصنَّف المثلث الذي زواياه جميعها أقل من 90° وضلعان منه متساويان إلى:",
+        choices: ["حاد الزوايا، متطابق الأضلاع", "قائم الزاوية، متطابق الأضلاع", "منفرج الزاوية، متطابق الضلعين", "حاد الزوايا، متطابق الضلعين"],
+        ans: 3
+      },
+      {
+        q: "أيٌّ من الأعداد الآتية لا يمكن أن يمثل احتمال حادثة ما؟",
+        choices: ["صفر", "7/34", "0.67", "47.9"],
+        ans: 3
+      },
+      {
+        q: "في النمط التالي، عدد المربعات الصغيرة التي يتكون منها الشكل الخامس هو: (الأشكال: 3، 5، 7، 9، ...)",
+        choices: ["11", "13", "17", "20"],
+        ans: 0
+      },
+      {
+        q: "إذا كان 6 طلاب من بين 30 يفضلون فصل الربيع، فإن عدد الطلاب المتوقع أن يفضلوا فصل الربيع من بين 500 طالب هو:",
+        choices: ["100", "105", "115", "120"],
+        ans: 0
+      },
+      {
+        q: "يعرف لؤي قطر إطار سيارته مسبقاً ويريد معرفة محيط الإطار. أي الطرق يمكنه استعمالها؟",
+        choices: ["قسمة القطر على ط", "ضرب نصف القطر في ط", "ضرب القطر في 2 وفي ط", "ضرب القطر في ط"],
+        ans: 3
+      },
+      {
+        q: "مساحة سطح المنشور الرباعي المجاور (8×3×4 سم) تساوي:",
+        choices: ["15 سم²", "28 سم²", "96 سم²", "136 سم²"],
+        ans: 3
+      },
+      {
+        q: "في حفلة عائلية، إذا كانت نسبة الأطفال إلى الكبار 3 : 4، فأي مما يأتي يمكن أن يبين عدد الأطفال وعدد الكبار؟",
+        choices: ["30 طفلاً، 44 كبيراً", "27 طفلاً، 36 كبيراً", "22 طفلاً، 28 كبيراً", "36 طفلاً، 50 كبيراً"],
+        ans: 1
+      },
+      {
+        q: "أ ب جـ مثلث متطابق الأضلاع، فيه ق أ = ق ب = ق جـ، فما ق أ؟",
+        choices: ["30°", "45°", "60°", "75°"],
+        ans: 2
+      },
+      {
+        q: "في حادثة رمي مكعب أرقام وتدوير مؤشر قرص دوار مقسم إلى 7 أقسام متطابقة، العدد الكلي للنواتج المكنة يساوي:",
+        choices: ["42 ناتجاً", "صحيح 42", "خطأ - 48 ناتجاً", "13 ناتجاً"],
+        choices: ["42 ناتجاً ✅ (صح)", "48 ناتجاً ❌ (خطأ)", "13 ناتجاً", "6 نواتج"],
+        ans: 0
+      },
+      {
+        q: "دائرة محيطها 44 سم، فإن طول قطرها يساوي (استعمل ط ≈ 3.14):",
+        choices: ["10 سم", "14 سم", "16 سم", "22 سم"],
+        ans: 1
+      },
+      {
+        q: "مثلث طول ارتفاعه 3 سم وطول قاعدته 4 سم، فإن مساحته تساوي:",
+        choices: ["12 سم²", "6 سم²", "7 سم²", "24 سم²"],
+        ans: 1
+      },
+      {
+        q: "يكتب الكسر العشري 0.01 على صورة نسبة مئوية:",
+        choices: ["0.01%", "0.1%", "1%", "10%"],
+        ans: 2
+      },
+      {
+        q: "إذا كان قطر الدائرة يساوي 48 سم، فإن نصف قطرها:",
+        choices: ["12 سم", "24 سم", "48 سم", "96 سم"],
+        ans: 1
+      },
+      {
+        q: "قيمة س° في شكل رباعي إذا كانت ثلاث زوايا منه تساوي 70°, 55°, س° وزاوية رابعة 90°:",
+        choices: ["35°", "55°", "145°", "160°"],
+        ans: 2
+      },
+      {
+        q: "باستعمال قائمة الملابس: قمصان (أبيض، رمادي، أزرق)، شماغ (أحمر، أبيض)، جوارب (أسود، بني) - احتمال اختيار قميص أبيض وشماغ أبيض وجورب بني يساوي:",
+        choices: ["7/12", "4/12", "3/12", "1/12"],
+        ans: 3
+      }
+    ]
+  },
+
+  // ===== لغتي سادس =====
+  arabic: {
+    label: "لغتي الجميلة - سادس",
+    icon: "📖",
+    questions: [
+      {
+        q: "ضد كلمة (تبرأ):",
+        choices: ["تمرض", "تشفى", "تتعافى", "تسلم"],
+        ans: 1
+      },
+      {
+        q: "يقصد بعبارة (بل إنها نمط حياة...):",
+        choices: ["وسيلة ترفيه", "أسلوب حياة", "حياة خاصة", "نظام مؤقت"],
+        ans: 1
+      },
+      {
+        q: "العنوان المناسب لنص عن أنواع الرياضة في الإسلام:",
+        choices: ["ترويض النفس", "ألوان الرياضة", "دروب المعرفة", "اللياقة البدنية"],
+        ans: 1
+      },
+      {
+        q: "أيٌّ من العبارات الآتية تمثل رأياً وليس حقيقة؟",
+        choices: ["الرياضة تنشط القلب والجسم", "بعض العلل تبرأ بالرياضة", "للرياضة البدنية أنواع مختلفة", "رياضة البدن أحق بالعناية"],
+        ans: 3
+      },
+      {
+        q: "الجملة التي تحوي (صيغة أفعل) هي:",
+        choices: ["الحوت من الأسماك", "الحوت أضخم من السردين", "الحوت كائن بحري", "الحوت كبير وضخم"],
+        ans: 1
+      },
+      {
+        q: "الجملة التي بها أسلوب توكيد:",
+        choices: ["كل المؤمنين إخوة", "جميع المؤمنين إخوة", "المؤمنون كلهم إخوة", "المؤمنون إخوة"],
+        ans: 2
+      },
+      {
+        q: "(الاستبداد بالرأي يسبب الندم) عند تحويلها إلى أسلوب شرط تصبح:",
+        choices: ["لا تستبد بالرأي فتندم", "من يستبد بالرأي يندم", "استبد بالرأي وستندم", "إن الاستبداد بالرأي يندم"],
+        ans: 1
+      },
+      {
+        q: "الكلمتان اللتان رسمت الألف اللينة فيهما صحيحاً فيما يأتي:",
+        choices: ["رما - شذى", "حتا - استحيا", "تقوى - قفي", "عصا - رحى"],
+        ans: 3
+      },
+      {
+        q: "(اللاعبان يمارسان الرياضة) - تصويب ما تحته خط:",
+        choices: ["يمارسان ✅", "يمارسون", "يمارسُ", "يمارسوا"],
+        ans: 0
+      },
+      {
+        q: "(احرصي على صلة الرحم كي تنالي الأجر) - علامة نصب الفعل المضارع:",
+        choices: ["الفتحة الظاهرة", "حذف حرف العلة", "حذف النون", "الفتحة المقدرة"],
+        ans: 2
+      },
+      {
+        q: "الجملة التي بها فعل مضارع منصوب:",
+        choices: ["إن السماء صافية", "يجب أن نحترم الكبير", "إن تقرأ تزدد علماً", "أسعدني أنك ناجح"],
+        ans: 1
+      },
+      {
+        q: "(اللاعبان يمارسَا الرياضة) - تصويب:",
+        choices: ["يمارسان ✅ (الألف ليست صحيحة)", "يمارسون", "يمارسُ", "يمارسا ✅ (صح لأنهم اثنان)"],
+        choices: ["يمارسان", "يمارسون", "يمارسُ", "يمارسا"],
+        ans: 0
+      },
+      {
+        q: "مصدر الفعل (خاط):",
+        choices: ["يخيط", "مخاط", "خياطة", "خاطه"],
+        ans: 2
+      },
+      {
+        q: "(قرأ الطالب القصة .......... صحيحة) - المصدر المناسب للفراغ:",
+        choices: ["قارئة", "قارئ", "قراءة", "مقروءة"],
+        ans: 2
+      },
+      {
+        q: "الجملة التي اشتملت على أسلوب توكيد:",
+        choices: ["رسم أحمد اللوحة", "اللوحة رسمها أحمد", "رسم أحمد اللوحة كلها", "كل اللوحة رسمها أحمد"],
+        ans: 2
+      },
+      {
+        q: "من يذكر الله يذكره - نوع الأسلوب في الجملة:",
+        choices: ["أسلوب شرط", "أسلوب توكيد", "أسلوب استثناء", "أسلوب تعجب"],
+        ans: 0
+      },
+      {
+        q: "تكتب الألف اللينة في الفعل الثلاثي قائمة (ا) إذا:",
+        choices: ["كان أصلها واو", "كان أصلها ياء", "سبقت بياء", "لم تسبق بياء"],
+        ans: 0
+      },
+      {
+        q: "كُتبت الألف اللينة في الاسم (مصطفى) على صورة الياء لأنها:",
+        choices: ["أصلها واو", "أصلها ياء", "فوق الثلاثي وسبقت بياء", "فوق الثلاثي ولم تسبق بياء"],
+        ans: 3
+      },
+      {
+        q: "الأصل في الفعل المضارع أن يكون:",
+        choices: ["مرفوعاً", "منصوباً", "مجزوماً", "مجروراً"],
+        ans: 0
+      },
+      {
+        q: "علامة رفع الأفعال الخمسة هي:",
+        choices: ["الضمة", "الواو", "ثبوت النون", "حذف النون"],
+        ans: 2
+      }
+    ]
+  },
+
+  // ===== رياضيات ثالث =====
+  math3: {
+    label: "رياضيات - سادس (حائل)",
+    icon: "📐",
+    questions: [
+      {
+        q: "أكتبْ تحت كل شكل من الأشكال المجاورة (مثلث متطابق الضلعين) - الشكل الذي أضلاعه 31، 25، 27 ملم:",
+        choices: ["مثلث متطابق الضلعين", "مثلث مختلف الأضلاع", "مثلث متطابق الأضلاع", "مثلث قائم الزاوية"],
+        ans: 1
+      },
+      {
+        q: "تكتب النسبة المئوية 50% في صورة كسر اعتيادي في أبسط صورة:",
+        choices: ["1/4", "1/2", "3/4", "1/50"],
+        ans: 1
+      },
+      {
+        q: "وزعت إحدى الشركات أرباحاً بنسبة 4٪، النسبة المئوية تُكتب في صورة كسر عشري:",
+        choices: ["0.004", "0.04", "0.40", "4.00"],
+        ans: 1
+      },
+      {
+        q: "مساحة متوازي الأضلاع في الشكل المجاور (قاعدة 10 سم، ارتفاع 5 سم) يساوي:",
+        choices: ["5 سم²", "15 سم²", "25 سم²", "50 سم²"],
+        ans: 3
+      },
+      {
+        q: "طول قطر الدائرة إذا كان نصف القطر 8 م يساوي:",
+        choices: ["4 م", "8 م", "16 م", "24 م"],
+        ans: 2
+      },
+      {
+        q: "يشرب حصان 120 عبوة ماء كل 4 أيام. كم عبوة ماء يشرب هذا الحصان في 40 يوماً بحسب هذا المعدل؟",
+        choices: ["1200 عبوة", "400 عبوة", "240 عبوة", "60 عبوة"],
+        ans: 0
+      },
+      {
+        q: "حجم المنشور الرباعي المجاور (10×10×4 سم) يساوي:",
+        choices: ["400 سم³", "200 سم³", "24 سم²", "16 سم³"],
+        ans: 0
+      },
+      {
+        q: "الجدول يمثل نتائج فريق كرة القدم: فوز 10، تعادل 8، خسارة 2. ما النسبة التي تقارن عدد المباريات التي فاز بها الفريق إلى إجمالي عدد النتائج؟",
+        choices: ["20 : 1", "10 : 20", "20 : 10", "10 : 8"],
+        ans: 1
+      },
+      {
+        q: "تحتاج هيفاء إلى كيلوجرامين من التفاح لعمل 10 فطائر. فكم كيلوجراماً من التفاح تحتاج لعمل 40 فطيرة؟",
+        choices: ["4", "6", "8", "10"],
+        ans: 3
+      },
+      {
+        q: "محيط دائرة طول قطرها 10 سم (استعمل ط = 3.14):",
+        choices: ["3.14 سم", "31.4 سم", "314 سم", "3140 سم"],
+        ans: 1
+      },
+      {
+        q: "مساحة سطح منشور رباعي طوله 3 م وعرضه 2 م وارتفاعه 1 م =",
+        choices: ["6 م²", "7 م²", "18 م²", "22 م²"],
+        ans: 3
+      },
+      {
+        q: "إذا كان الماء يشكل نحو 9/10 من البطيخة الواحدة، فإن النسبة المئوية لكمية الماء في البطيخة =",
+        choices: ["9%", "90%", "0.9%", "100.9%"],
+        ans: 1
+      },
+      {
+        q: "مساحة المثلث في الشكل المجاور (قاعدة 12 سم، ارتفاع 8 سم) =",
+        choices: ["4 سم²", "20 سم²", "48 سم²", "96 سم²"],
+        ans: 2
+      }
+    ]
+  },
+
+  // ===== لغتي ثالث ابتدائي =====
+  arabic3: {
+    label: "لغتي - ثالث ابتدائي (جدة)",
+    icon: "✏️",
+    questions: [
+      {
+        q: "حرف المد المناسب لكلمة (العُصْفُ...ر) هو:",
+        choices: ["ـا", "يـ", "ـو", "ـى"],
+        ans: 0
+      },
+      {
+        q: "الكلمة المختومة (بتاء مفتوحة) في الجملة: (السلاحف من الكائنات البحرية تعيش أكثر من مئة سنة) هي:",
+        choices: ["البحرية", "الكائنات", "مئة", "سنة"],
+        ans: 1
+      },
+      {
+        q: "لتحويل كلمة (يزيد) من (فعل) إلى (علم)، نقول:",
+        choices: ["نحمد الله", "يزيد يحمد الله", "يزيد يحمد الله.", "زاد الله."],
+        ans: 1
+      },
+      {
+        q: "الجملة التي تحوي أسلوب الترجي هي:",
+        choices: ["المجتهدون فائزون", "إن المجتهد فائز", "من يجتهد يفز", "لعل المجتهد فائز"],
+        ans: 3
+      },
+      {
+        q: "لتحويل كلمة (بحر) من نكرة إلى معرفة، نقول:",
+        choices: ["بحارٌ", "يُبحر", "البحر", "بحيرة"],
+        ans: 2
+      },
+      {
+        q: "الجملة التي تحوي (صيغة أفعل) هي:",
+        choices: ["الحوت من الأسماك", "الحوت أضخم من السردين", "الحوت كائن بحري", "الحوت وضخم كبير"],
+        ans: 1
+      },
+      {
+        q: "ما أحسن تقدير الوقت! - نوع الأسلوب في الجملة السابقة:",
+        choices: ["استفهام", "ترجي", "تعجب", "نهي"],
+        ans: 2
+      },
+      {
+        q: "الكلمة التي بها (همزة متوسطة) في جملة: (اشتهر العلماء بذكائهم وإنجازاتهم) هي:",
+        choices: ["العلماء", "بذكائهم", "إنجازاتهم", "اشتهر"],
+        ans: 1
+      },
+      {
+        q: "عند تحويل الفعل المضارع (يحرص) إلى فعل (أمر) نقول:",
+        choices: ["تحرص", "احرص", "حرص", "نحرص"],
+        ans: 1
+      },
+      {
+        q: "مُرادف كلمة (لمعان): للذهب لمعان.",
+        choices: ["أحجام", "بريق", "عجيب", "جمال"],
+        ans: 1
+      }
+    ]
+  }
+};
+
+// ===================== متغيرات عامة =====================
+let currentStage = null;
+let currentQ = 0;
+let score = 0;
+let answered = false;
+let timerInterval = null;
+let timeLeft = 30;
+let wrongCount = 0;
+
+// ===================== النجوم =====================
+(function createStars() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 50; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 3 + 1;
+    s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s`;
+    container.appendChild(s);
+  }
+})();
+
+// ===================== الشاشات =====================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ===================== اختيار المرحلة =====================
+function selectStage(stage, btn) {
+  document.querySelectorAll('.stage-btn').forEach(b => b.classList.remove('active-stage'));
+  btn.classList.add('active-stage');
+  currentStage = stage;
+  document.getElementById('startBtn').disabled = false;
+}
+
+// ===================== بداية المسابقة =====================
+function startQuiz() {
+  if (!currentStage) return;
+  currentQ = 0;
+  score = 0;
+  wrongCount = 0;
+  answered = false;
+  showScreen('quiz');
+  document.getElementById('stageLabel').textContent = STAGES[currentStage].label;
+  renderQuestion();
+}
+
+// ===================== عرض السؤال =====================
+function renderQuestion() {
+  const stg = STAGES[currentStage];
+  const total = stg.questions.length;
+
+  if (currentQ >= total) {
+    endQuiz();
+    return;
+  }
+
+  const q = stg.questions[currentQ];
+  answered = false;
+
+  // تحديث الشريط
+  const pct = Math.round((currentQ / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = (currentQ + 1) + ' / ' + total;
+  document.getElementById('scoreBadge').textContent = '⭐ ' + score;
+
+  // بناء HTML
+  const body = document.getElementById('quizBody');
+  let choicesHtml = q.choices.map((c, i) =>
+    `<button class="choice-btn" onclick="checkAnswer(${i})">${c}</button>`
+  ).join('');
+
+  body.innerHTML = `
+    <div class="q-num">السؤال ${currentQ + 1} من ${total}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="choices" id="choices">${choicesHtml}</div>
+    <div class="feedback-bar" id="feedback"></div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+      ${currentQ + 1 < total ? 'السؤال التالي ←' : 'عرض النتائج 🏆'}
+    </button>
+  `;
+
+  startTimer();
+}
+
+// ===================== المؤقت =====================
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 30;
+  updateTimerUI();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerUI();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      if (!answered) autoFail();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  const el = document.getElementById('timerDisplay');
+  if (!el) return;
+  el.textContent = '⏱ ' + timeLeft;
+  el.className = 'timer-display' + (timeLeft <= 10 ? ' warning' : '');
+}
+
+function autoFail() {
+  answered = true;
+  wrongCount++;
+  const q = STAGES[currentStage].questions[currentQ];
+  const btns = document.querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+  btns[q.ans].classList.add('correct');
+  showFeedback(false, 'انتهى الوقت! الإجابة الصحيحة محددة بالأخضر.');
+  document.getElementById('nextBtn').classList.add('show');
+}
+
+// ===================== التحقق من الإجابة =====================
+function checkAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+
+  const q = STAGES[currentStage].questions[currentQ];
+  const btns = document.querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const correct = idx === q.ans;
+
+  if (correct) {
+    btns[idx].classList.add('correct');
+    score++;
+    showFeedback(true, '✅ يا سلام! إجابة صحيحة 🎉');
+  } else {
+    btns[idx].classList.add('wrong');
+    btns[q.ans].classList.add('correct');
+    wrongCount++;
+    showFeedback(false, '❌ حظ أوفر! الإجابة الصحيحة بالأخضر.');
+  }
+
+  document.getElementById('scoreBadge').textContent = '⭐ ' + score;
+  document.getElementById('nextBtn').classList.add('show');
+}
+
+function showFeedback(correct, msg) {
+  const fb = document.getElementById('feedback');
+  fb.textContent = msg;
+  fb.className = 'feedback-bar show ' + (correct ? 'correct' : 'wrong');
+}
+
+// ===================== السؤال التالي =====================
+function nextQuestion() {
+  currentQ++;
+  renderQuestion();
+}
+
+// ===================== نهاية المسابقة =====================
+function endQuiz() {
+  clearInterval(timerInterval);
+  const total = STAGES[currentStage].questions.length;
+  const pct = Math.round((score / total) * 100);
+
+  document.getElementById('resultPercent').textContent = pct + '%';
+  document.getElementById('statCorrect').textContent = score;
+  document.getElementById('statWrong').textContent = wrongCount;
+  document.getElementById('statTotal').textContent = total;
+
+  let title, sub;
+  if (pct >= 90) { title = 'ممتاز! أنت نجم المسابقة 🌟'; sub = 'أداء رائع جداً، استمر!'; }
+  else if (pct >= 75) { title = 'جيد جداً! أحسنت 👏'; sub = 'نتيجة جيدة، تستطيع الأفضل!'; }
+  else if (pct >= 60) { title = 'جيد! 💪'; sub = 'أداء مقبول، راجع الأسئلة الخاطئة.'; }
+  else { title = 'حاول مجدداً! 🔄'; sub = 'لا تستسلم، التكرار أساس التعلم.'; }
+
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent = sub;
+
+  if (pct >= 80) launchConfetti();
+  showScreen('results');
+}
+
+// ===================== إعادة المحاولة =====================
+function restartSameStage() {
+  startQuiz();
+}
+
+function goHome() {
+  showScreen('home');
+}
+
+// ===================== كونفتي =====================
+function launchConfetti() {
+  const canvas = document.createElement('canvas');
+  canvas.className = 'confetti';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = Array.from({length: 80}, () => ({
+    x: Math.random() * canvas.width,
+    y: -10,
+    vx: (Math.random() - 0.5) * 4,
+    vy: Math.random() * 3 + 2,
+    color: ['#d4a017','#00c8d4','#22c55e','#f0c040','#fff'][Math.floor(Math.random()*5)],
+    size: Math.random() * 8 + 4,
+    rot: Math.random() * 360
+  }));
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size/2);
+      ctx.restore();
+      p.x += p.vx; p.y += p.vy; p.rot += 3;
+    });
+    frame++;
+    if (frame < 120) requestAnimationFrame(draw);
+    else canvas.remove();
+  }
+  draw();
+}
+</script>
+</body>
+</html>
