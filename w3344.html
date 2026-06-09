@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسابقة إثارة: القيادة المدرسية</title>
+    <style>
+        :root {
+            --navy-blue: #000080;
+            --gold-foil: #D4AF37;
+            --teal: #008080;
+            --white: #FFFFFF;
+            --light-grey: #f4f4f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-grey);
+            color: var(--navy-blue);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: var(--white);
+            border: 3px solid var(--gold-foil);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--gold-foil);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: var(--navy-blue);
+            margin: 0 0 10px 0;
+        }
+
+        .header h2 {
+            color: var(--teal);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .stage-indicator {
+            background-color: var(--gold-foil);
+            color: var(--white);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .question-box {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background-color: var(--white);
+            color: var(--navy-blue);
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: right;
+            font-family: inherit;
+        }
+
+        .option-btn:hover {
+            background-color: var(--teal);
+            color: var(--white);
+        }
+
+        .option-btn.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .option-btn.wrong {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .score-board {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--navy-blue);
+        }
+        
+        .progress-text {
+            font-size: 1.1rem;
+            color: var(--teal);
+            font-weight: bold;
+            background-color: var(--light-grey);
+            padding: 5px 15px;
+            border-radius: 8px;
+        }
+
+        .next-btn {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s;
+        }
+
+        .next-btn:hover {
+            background-color: var(--gold-foil);
+        }
+
+        .result-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .result-screen h2 {
+            color: var(--gold-foil);
+            font-size: 2rem;
+        }
+
+        .custom-footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--gold-foil);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--navy-blue);
+            font-weight: bold;
+        }
+
+        .custom-footer a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .custom-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .reference-text {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-weight: normal;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header">
+        <h1>مسابقة إثارة التفاعلية الكبرى</h1>
+        <h2>استكشاف مكنونات ودقائق "كتاب القيادة المدرسية"</h2>
+    </div>
+
+    <div id="quiz-area">
+        <div class="stage-indicator" id="stage-text">المرحلة الأولى</div>
+        <div class="question-box" id="question-text">جاري تحميل السؤال...</div>
+        
+        <div class="options-container" id="options-area">
+            </div>
+
+        <div class="controls">
+            <div class="score-board">النقاط: <span id="score">0</span></div>
+            <div class="progress-text">السؤال <span id="current-q"></span> من <span id="total-q"></span></div>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">السؤال التالي ❯</button>
+        </div>
+    </div>
+
+    <div id="result-area" class="result-screen">
+        <h2>اكتملت التحديات الثلاث بنجاح!</h2>
+        <p class="question-box">لقد أتممت كافة مكنونات ونظريات ومصطلحات القيادة المدرسية.</p>
+        <div class="score-board" style="font-size: 1.5rem; margin-bottom: 20px;">النتيجة النهائية: <span id="final-score"></span> من <span id="total-questions"></span></div>
+        <button class="next-btn" style="display: inline-block; background-color: var(--teal);" onclick="location.reload()">إعادة خوض المسابقة</button>
+    </div>
+
+    <div class="custom-footer">
+        تصميم د/فواز تفضل للمزيد هنا <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a>
+        <span class="reference-text">المرجع: كتاب القيادة المدرسية</span>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        // === المرحلة الأولى: مفاهيم وأسس القيادة المدرسية (10 أسئلة) ===
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "ما هو المفهوم الذي يعبر عن قدرة مدير المدرسة على التأثير الإيجابي في سلوك المعلمين والطلاب لتحقيق الأهداف التربوية؟",
+            options: ["القيادة المدرسية", "الرقابة الإدارية", "الإدارة المكتبية", "السلطة المركزية"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "أي من الأنماط القيادية التالية يحرص على إشراك المعلمين في صنع القرارات المدرسية ووضع الخطط؟",
+            options: ["النمط الأوتوقراطي (المتسلط)", "النمط التشاركي (الديمقراطي)", "النمط السائب (الفوضوي)", "النمط البيروقراطي"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "العملية التي يقوم بها مدير المدرسة لتوزيع المهام وتحديد المسؤوليات بين الهيئتين التعليمية والإدارية تسمى:",
+            options: ["التخطيط", "التقويم", "التنظيم", "التوجيه"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "الفعل الإداري واللغوي الصحيح لتدخل مدير المدرسة السليم في المواقف وحل المشكلات الطارئة هو أنه:",
+            options: ["يتجاهل", "يتغاضى", "يعالج", "يفرض"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "عند صياغة التعاميم والتقارير الإدارية، المسمى الصحيح والأكثر احترافية للإشارة إلى طاقم العمل هو موظفي:",
+            options: ["التعليم", "المدرسة", "المدرسية", "المنشأة"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "تفويض بعض الصلاحيات من مدير المدرسة للوكلاء يهدف بشكل أساسي إلى:",
+            options: ["التهرب من المسؤولية الكاملة", "تخفيف العبء وبناء وصناعة قيادات جديدة", "تقليل صلاحيات المعلمين", "إطالة الإجراءات الإدارية"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "المهارة التي تمكن مدير المدرسة من فهم اللوائح والأنظمة الإدارية، وتطبيق القواعد بمهنية تسمى:",
+            options: ["المهارة الفنية", "المهارة الفكرية", "المهارة الإنسانية", "المهارة الذاتية"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "تعتمد 'القيادة التحويلية' داخل البيئة المدرسية على محور هام هو:",
+            options: ["التركيز على العقوبات فقط", "تطبيق اللوائح بحرفية دون مرونة", "استثارة دافعية المعلمين نحو الإبداع والتطوير", "الحفاظ على الوضع الراهن"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "النمط القيادي الذي يركز كلياً على تطبيق اللوائح حرفياً وإنجاز المعاملات دون مراعاة للظروف الإنسانية هو النمط:",
+            options: ["الإبداعي", "الموقفي", "التحويلي", "البيروقراطي"],
+            correct: 3
+        },
+        {
+            stage: "المرحلة الأولى: مفاهيم وأسس القيادة المدرسية",
+            question: "قدرة القائد التربوي على التعامل مع الأزمات والتغيرات المفاجئة بتغيير أسلوبه حسب الموقف تتطلب إتقان مهارات:",
+            options: ["القيادة الموقفية", "الإدارة المركزية المطلقة", "القيادة التبادلية فقط", "التفتيش الإداري"],
+            correct: 0
+        },
+
+        // === المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية (10 أسئلة) ===
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "في لغة الإدارة والتقييم، عند الإشارة إلى المدارس التي تم ترتيبها وفق فئات بناءً على أدائها، نستخدم كلمة المدارس الـ:",
+            options: ["المصفّة", "المصنَّفة", "العشوائية", "المرقمة"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "أول خطوة عملية ومنهجية يقوم بها القائد في عملية 'اتخاذ القرار' لحل مشكلة طلابية أو إدارية هي:",
+            options: ["تنفيذ القرار فوراً", "تقييم النتائج", "اختيار البديل الأنسب", "تحديد المشكلة وتشخيصها بدقة وجمع معلوماتها"],
+            correct: 3
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "أي مما يلي يمثل قناة من قنوات 'الاتصال الرسمي الهابط' في الإدارة المدرسية؟",
+            options: ["صندوق الاقتراحات والشكاوى", "التعاميم والقرارات الإدارية الصادرة من المدير", "النقاشات الجانبية بين المعلمين", "تقارير المعلمين للمدير"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "الهدف الاستراتيجي والتربوي الرئيسي من 'تقييم الأداء الوظيفي' للمعلمين هو:",
+            options: ["رصد الأخطاء وتوثيقها", "التطوير المهني وتحسين المخرجات", "إجبار المعلمين على العمل الإضافي", "تحديد النقل الإداري فقط"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "إدارة الوقت بفعالية عالية بالنسبة لمدير المدرسة تعني بالضرورة:",
+            options: ["تأجيل المهام الصعبة لنهاية العام", "ترتيب الأولويات وإنجاز المهام الهامة غير العاجلة", "قضاء وقت أطول في الأعمال الورقية", "تفويض جميع المهام للوكيل"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "عند تشكيل المجالس واللجان المدرسية، يفضل للقائد المدرسي المتميز تطبيق مبدأ:",
+            options: ["التفرد بالقرار", "العمل بروح الفريق الواحد", "إقصاء المعلمين الجدد", "الروتينية والمركزية"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "من أهم السجلات التنظيمية الأساسية في الإدارة المدرسية التي توثق الانضباط الوظيفي:",
+            options: ["سجل الزائرين", "سجل الدوام الرسمي (حضور وانصراف)", "سجل استعارة الكتب", "سجل الوسائل التعليمية"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "تطبيق قواعد ولوائح السلوك والمواظبة للطلاب يهدف في مقامه الأول إلى:",
+            options: ["تقويم السلوك وتعديله بأسلوب تربوي", "العقاب والتشهير", "التخلص من الطلاب المشاغبين", "الضغط النفسي على الطالب"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "لضمان نجاح أي خطة تشغيلية مدرسية، يجب أن تتسم أهدافها بأنها (SMART)، أي:",
+            options: ["طويلة جداً ومعقدة", "عامة وغير محددة", "محددة، قابلة للقياس، واقعية ومحددة بوقت", "مرنة لدرجة إلغائها"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثانية: العمليات الإدارية والأنظمة المدرسية",
+            question: "توفير مناخ نفسي واجتماعي آمن وجاذب للتعلم يندرج تحت دور مدير المدرسة في:",
+            options: ["إدارة الميزانية", "إدارة البيئة المدرسية", "إدارة شؤون المبنى", "إدارة المستودعات"],
+            correct: 1
+        },
+
+        // === المرحلة الثالثة: الاتجاهات الحديثة والإشراف والتقويم التربوي (10 أسئلة) ===
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "عمليات التقويم والقياس للمدرسة التي تتم من قبل جهات مستقلة ومختصة (مثل هيئة تقويم التعليم والتدريب) تسمى:",
+            options: ["التقويم الذاتي", "التقويم البنائي", "التقويم الخارجي", "التقويم التشخيصي"],
+            correct: 2
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "يُعرّف 'التقويم الذاتي' للمدرسة بأنه أداة منهجية تهدف بشكل رئيسي إلى:",
+            options: ["إعداد قوائم الرواتب", "التعرف الدقيق على نقاط القوة والضعف وفرص التحسين بالمدرسة", "تجهيز السجلات للزوار فقط", "مقارنة المدرسة بمدارس دول أخرى"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "وفقاً للاتجاهات المعاصرة، الإشراف التربوي الحديث ينظر للمشرف والمدير على أنه:",
+            options: ["مفتش ومراقب صارم", "داعم وموجه وميسر للعملية التعليمية", "منفذ للقرارات فقط", "قاضٍ لتقييم الأداء"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "مصطلح 'مجتمعات التعلم المهنية' (PLC) المنتشر في التطوير المدرسي يشير إلى:",
+            options: ["اجتماعات أولياء الأمور السنوية", "مجموعات تعاونية من المعلمين تهدف لتطوير الممارسات التدريسية وتأملها", "اللقاءات الإدارية الخاصة بالرواتب", "دورات تدريبية خارج المدرسة"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "مسؤولية 'التنمية المهنية المستدامة' للمعلم تقع في المقام الأول على عاتق:",
+            options: ["المعلم نفسه بمسؤولية ذاتية وبدعم من المدرسة", "إدارة التعليم فقط", "وزارة الخدمة المدنية", "المشرف التربوي الزائر فقط"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "مفهوم 'الشراكة المجتمعية' في الإدارة المدرسية الحديثة يعني:",
+            options: ["تأجير مرافق المدرسة تجارياً", "تفعيل دور الأسرة ومؤسسات المجتمع لدعم أهداف المدرسة", "إلغاء دور المدرسة في التربية", "الاعتماد المالي الكلي على التبرعات"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "عندما تتبنى المدرسة نظام 'إدارة الجودة الشاملة (TQM)'، فإن تركيزها الأكبر ينصب على:",
+            options: ["التحسين المستمر وتقليل الأخطاء والتركيز على رضا المستفيد (الطالب)", "تضخيم السجلات الورقية", "زيادة التكاليف المالية", "تطبيق القوانين بأثر رجعي"],
+            correct: 0
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "لنجاح تطبيق أي مبادرة تقنية أو تطويرية جديدة، يجب على القائد التربوي ممارس 'قيادة التغيير' أن:",
+            options: ["يفرضها بالقوة دون نقاش", "يهيئ بيئة المدرسة ويقلل من حدة مقاومة التغيير", "يتخلى عنها عند أول عقبة", "يطبقها سراً"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "يتميز 'التخطيط الاستراتيجي' للمدرسة عن التخطيط التشغيلي بأنه عادةً ما يكون:",
+            options: ["قصير المدى ويركز على التفاصيل اليومية", "بعيد المدى ويركز على الرؤية الشاملة والغايات الكبرى", "مرتبطاً بفصل دراسي واحد", "يُوضع من قبل الطلاب فقط"],
+            correct: 1
+        },
+        {
+            stage: "المرحلة الثالثة: الاتجاهات الحديثة والتقويم التربوي",
+            question: "الأداة الإدارية الشائعة التي يستخدمها القائد لتحليل البيئة الداخلية (نقاط قوة/ضعف) والخارجية (فرص/تحديات) تسمى:",
+            options: ["نموذج التفتيش المباشر", "طريقة ديلفي", "تحليل سوات (SWOT Analysis)", "دائرة ديمينج للرقابة"],
+            correct: 2
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let hasAnswered = false;
+
+    const stageText = document.getElementById('stage-text');
+    const questionText = document.getElementById('question-text');
+    const optionsArea = document.getElementById('options-area');
+    const scoreDisplay = document.getElementById('score');
+    const nextBtn = document.getElementById('next-btn');
+    const quizArea = document.getElementById('quiz-area');
+    const resultArea = document.getElementById('result-area');
+    const currentQDisplay = document.getElementById('current-q');
+    const totalQDisplay = document.getElementById('total-q');
+
+    function loadQuestion() {
+        hasAnswered = false;
+        nextBtn.style.display = 'none';
+        
+        const currentData = quizData[currentQuestionIndex];
+        stageText.innerText = currentData.stage;
+        questionText.innerText = currentData.question;
+        
+        currentQDisplay.innerText = currentQuestionIndex + 1;
+        totalQDisplay.innerText = quizData.length;
+        
+        optionsArea.innerHTML = '';
+        
+        currentData.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.innerText = option;
+            button.onclick = () => checkAnswer(index, button);
+            optionsArea.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selectedIndex, buttonElement) {
+        if (hasAnswered) return;
+        hasAnswered = true;
+
+        const currentData = quizData[currentQuestionIndex];
+        const allButtons = optionsArea.children;
+
+        if (selectedIndex === currentData.correct) {
+            buttonElement.classList.add('correct');
+            score++;
+            scoreDisplay.innerText = score;
+        } else {
+            buttonElement.classList.add('wrong');
+            allButtons[currentData.correct].classList.add('correct');
+        }
+
+        for(let btn of allButtons) {
+            btn.style.cursor = 'default';
+        }
+
+        nextBtn.style.display = 'inline-block';
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        quizArea.style.display = 'none';
+        resultArea.style.display = 'block';
+        document.getElementById('final-score').innerText = score;
+        document.getElementById('total-questions').innerText = quizData.length;
+    }
+
+    window.onload = loadQuestion;
+</script>
+
+</body>
+</html>
