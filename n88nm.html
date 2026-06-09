@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاختبارات المركزية سادس ب - مسابقة اللغة الإنجليزية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy2: #112240;
+    --navy3: #1a3a6b;
+    --gold: #f4c430;
+    --gold2: #e6a817;
+    --gold-light: #fff3b0;
+    --white: #ffffff;
+    --green: #00c853;
+    --red: #ff3d57;
+    --purple: #7c4dff;
+    --cyan: #00bcd4;
+    --orange: #ff6d00;
+    --text-light: #cdd9f0;
+    --card-bg: #152a4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== STARS BG ===== */
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+  }
+  @keyframes twinkle { 0%{opacity:0.2;} 100%{opacity:0.9;} }
+
+  /* ===== HEADER ===== */
+  header {
+    position: relative; z-index: 10;
+    background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 50%, #0d1f3c 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 18px 24px 14px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(244,196,48,0.25);
+  }
+  header h1 {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-shadow: 0 2px 12px rgba(244,196,48,0.5);
+    letter-spacing: 1px;
+  }
+  header p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .crown { font-size: 1.5rem; }
+
+  /* ===== MAIN WRAPPER ===== */
+  .wrapper {
+    position: relative; z-index: 5;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ===== SCORE BAR ===== */
+  .score-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--navy2);
+    border: 1px solid var(--navy3);
+    border-radius: 14px;
+    padding: 12px 20px;
+    margin-bottom: 22px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .score-item {
+    text-align: center;
+    flex: 1; min-width: 80px;
+  }
+  .score-item .val {
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold);
+  }
+  .score-item .lbl {
+    font-size: 0.72rem; color: var(--text-light);
+    margin-top: 2px;
+  }
+  .progress-wrap {
+    width: 100%;
+    background: var(--navy3);
+    border-radius: 999px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold2), var(--gold));
+    border-radius: 999px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* ===== PHASE TABS ===== */
+  .phase-tabs {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .phase-tab {
+    flex: 1; min-width: 120px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background: var(--card-bg);
+    color: var(--text-light);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .phase-tab.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(244,196,48,0.1);
+    box-shadow: 0 0 14px rgba(244,196,48,0.2);
+  }
+  .phase-tab.completed {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(0,200,83,0.08);
+  }
+  .phase-tab .phase-icon { font-size: 1.1rem; display: block; margin-bottom: 3px; }
+
+  /* ===== QUESTION CARD ===== */
+  .question-card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--navy3);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    animation: fadeSlide 0.4s ease;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .question-card::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 5px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), var(--gold2));
+    border-radius: 0 18px 18px 0;
+  }
+
+  .q-phase-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .q-num {
+    font-size: 0.78rem; color: #8899bb;
+    margin-bottom: 6px;
+  }
+  .q-english {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-align: center;
+    margin: 12px 0 6px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(244,196,48,0.3);
+    font-family: 'Cairo', sans-serif;
+    direction: ltr;
+  }
+  .q-hint {
+    text-align: center;
+    font-size: 0.78rem; color: #778899;
+    margin-bottom: 18px;
+  }
+
+  /* ===== OPTIONS ===== */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  @media(max-width:500px){ .options-grid { grid-template-columns: 1fr; } }
+
+  .opt-btn {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--navy3);
+    background: var(--navy2);
+    color: var(--white);
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    direction: rtl;
+  }
+  .opt-btn:hover:not(:disabled) {
+    border-color: var(--gold);
+    background: rgba(244,196,48,0.1);
+    transform: scale(1.02);
+  }
+  .opt-btn.correct {
+    border-color: var(--green);
+    background: rgba(0,200,83,0.15);
+    color: var(--green);
+    animation: pulse-green 0.5s;
+  }
+  .opt-btn.wrong {
+    border-color: var(--red);
+    background: rgba(255,61,87,0.15);
+    color: var(--red);
+    animation: shake 0.4s;
+  }
+  @keyframes pulse-green {
+    0%{transform:scale(1)} 50%{transform:scale(1.07)} 100%{transform:scale(1)}
+  }
+  @keyframes shake {
+    0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
+  }
+
+  /* ===== FEEDBACK ===== */
+  .feedback {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-top: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    animation: fadeSlide 0.3s ease;
+    display: none;
+  }
+  .feedback.correct { background: rgba(0,200,83,0.15); color: var(--green); }
+  .feedback.wrong { background: rgba(255,61,87,0.1); color: var(--red); }
+
+  /* ===== NAV BUTTONS ===== */
+  .nav-row {
+    display: flex; gap: 12px; justify-content: center;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+  .btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold2), var(--gold));
+    color: var(--navy);
+    box-shadow: 0 4px 16px rgba(244,196,48,0.35);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(244,196,48,0.5); }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--navy3);
+    color: var(--text-light);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ===== RESULT SCREEN ===== */
+  .result-screen {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+  .result-trophy { font-size: 5rem; margin-bottom: 12px; animation: bounce 1s infinite alternate; }
+  @keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-12px)} }
+  .result-score {
+    font-size: 3.5rem; font-weight: 900; color: var(--gold);
+    text-shadow: 0 0 30px rgba(244,196,48,0.5);
+  }
+  .result-msg { font-size: 1.2rem; color: var(--text-light); margin: 12px 0 24px; }
+  .result-stats {
+    display: flex; justify-content: center; gap: 24px;
+    flex-wrap: wrap; margin: 20px 0;
+  }
+  .result-stat {
+    background: var(--card-bg); border-radius: 14px;
+    padding: 16px 24px; min-width: 110px;
+    border: 1px solid var(--navy3);
+  }
+  .result-stat .rv { font-size: 2rem; font-weight: 900; color: var(--gold); }
+  .result-stat .rl { font-size: 0.75rem; color: var(--text-light); }
+
+  /* ===== CONFETTI ===== */
+  .confetti-piece {
+    position: fixed;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    animation: confetti-fall linear forwards;
+    pointer-events: none;
+    z-index: 999;
+  }
+  @keyframes confetti-fall {
+    0%{ transform: translateY(-20px) rotate(0deg); opacity:1; }
+    100%{ transform: translateY(110vh) rotate(720deg); opacity:0; }
+  }
+
+  /* ===== SETTINGS FOOTER ===== */
+  .settings-footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #070f1e;
+    border-top: 1px solid var(--navy3);
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #778899;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .settings-footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .settings-footer a:hover { text-decoration: underline; }
+
+  /* ===== START SCREEN ===== */
+  .start-screen {
+    text-align: center;
+    padding: 30px 10px;
+  }
+  .start-screen .big-icon { font-size: 4rem; margin-bottom: 12px; }
+  .start-screen h2 {
+    font-size: 1.5rem; font-weight: 900; color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .start-screen p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 24px; }
+  .phase-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 28px;
+  }
+  @media(max-width:480px){ .phase-cards { grid-template-columns: 1fr; } }
+  .phase-card {
+    background: var(--card-bg);
+    border: 2px solid var(--navy3);
+    border-radius: 14px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .phase-card:hover { border-color: var(--gold); transform: scale(1.02); }
+  .phase-card .pc-icon { font-size: 2rem; margin-bottom: 6px; }
+  .phase-card .pc-title { font-size: 0.9rem; font-weight: 700; color: var(--gold); }
+  .phase-card .pc-count { font-size: 0.72rem; color: var(--text-light); margin-top: 3px; }
+
+  /* Timer */
+  .timer-ring {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    font-size: 1.2rem; font-weight: 900;
+    color: var(--gold);
+    margin: 0 auto 10px;
+    position: relative;
+  }
+  .timer-ring.danger { border-color: var(--red); color: var(--red); animation: pulse-red 0.5s infinite; }
+  @keyframes pulse-red { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Header -->
+<header>
+  <div class="crown">👑</div>
+  <h1>🏆 الاختبارات المركزية سادس ب 🏆</h1>
+  <p>مسابقة اللغة الإنجليزية – الثالث متوسط – الفصل الثالث</p>
+</header>
+
+<div class="wrapper">
+
+  <!-- START SCREEN -->
+  <div class="start-screen" id="startScreen">
+    <div class="big-icon">🎯</div>
+    <h2>مسابقة كلمات الاختبارات المركزية</h2>
+    <p>اختر الترجمة الصحيحة لكل كلمة إنجليزية – المسابقة مقسّمة على 4 مراحل</p>
+
+    <div class="phase-cards">
+      <div class="phase-card">
+        <div class="pc-icon">📚</div>
+        <div class="pc-title">المرحلة الأولى</div>
+        <div class="pc-count">المفردات الأساسية</div>
+      </div>
+      <div class="phase-card">
+        <div class="pc-icon">🔤</div>
+        <div class="pc-title">المرحلة الثانية</div>
+        <div class="pc-count">القواعد والتعبيرات</div>
+      </div>
+      <div class="phase-card">
+        <div class="pc-icon">🌟</div>
+        <div class="pc-title">المرحلة الثالثة</div>
+        <div class="pc-count">الأفعال والصفات</div>
+      </div>
+      <div class="phase-card">
+        <div class="pc-icon">🏆</div>
+        <div class="pc-title">المرحلة الرابعة</div>
+        <div class="pc-count">الجمل والتعابير</div>
+      </div>
+    </div>
+
+    <button class="btn btn-gold" onclick="startQuiz()" style="font-size:1.1rem; padding:14px 48px;">
+      🚀 ابدأ المسابقة
+    </button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quizScreen" class="hidden">
+    <!-- Score Bar -->
+    <div class="score-bar">
+      <div class="score-item">
+        <div class="val" id="scoreVal">0</div>
+        <div class="lbl">الدرجة</div>
+      </div>
+      <div class="score-item">
+        <div class="val" id="correctVal">0</div>
+        <div class="lbl">✅ صحيح</div>
+      </div>
+      <div class="score-item">
+        <div class="val" id="wrongVal">0</div>
+        <div class="lbl">❌ خطأ</div>
+      </div>
+      <div class="score-item">
+        <div class="val" id="qNumVal">1</div>
+        <div class="lbl">السؤال</div>
+      </div>
+      <div style="width:100%">
+        <div class="progress-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase Tabs -->
+    <div class="phase-tabs" id="phaseTabs"></div>
+
+    <!-- Question Card -->
+    <div class="question-card" id="questionCard">
+      <div class="q-phase-badge" id="phaseBadge"></div>
+      <div class="q-num" id="qNum"></div>
+      <div class="q-english" id="qEnglish"></div>
+      <div class="q-hint">اختر الترجمة الصحيحة للكلمة أعلاه</div>
+      <div class="options-grid" id="optionsGrid"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+
+    <!-- Nav -->
+    <div class="nav-row">
+      <button class="btn btn-outline" onclick="skipQuestion()">تخطي ⏭</button>
+      <button class="btn btn-gold hidden" id="nextBtn" onclick="nextQuestion()">التالي ▶</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="result-screen" id="resultScreen">
+    <div class="result-trophy" id="resultTrophy">🏆</div>
+    <div class="result-score" id="resultScore"></div>
+    <div class="result-msg" id="resultMsg"></div>
+    <div class="result-stats">
+      <div class="result-stat">
+        <div class="rv" id="rs-correct">0</div>
+        <div class="rl">✅ إجابات صحيحة</div>
+      </div>
+      <div class="result-stat">
+        <div class="rv" id="rs-wrong">0</div>
+        <div class="rl">❌ إجابات خاطئة</div>
+      </div>
+      <div class="result-stat">
+        <div class="rv" id="rs-total">0</div>
+        <div class="rl">📝 مجموع الأسئلة</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+      <button class="btn btn-gold" onclick="restartQuiz()">🔄 إعادة المسابقة</button>
+      <button class="btn btn-outline" onclick="goHome()">🏠 الرئيسية</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="settings-footer">
+  <span>تصميم د/فواز</span>
+  <span>|</span>
+  <span>تفضل للمزيد هنا</span>
+  <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">📲 https://t.me/TAqhjT3MFVE1Yzk0</a>
+  <span>|</span>
+  <span>والشكر موصول لجامعها أخونا المبدع عبدالرحمن الزهراني</span>
+</div>
+
+<script>
+// =============================================
+// DATA: All words from the 4 exams, 4 phases
+// =============================================
+const phases = [
+  {
+    id: 1,
+    name: 'المرحلة الأولى',
+    subtitle: 'المفردات الأساسية',
+    icon: '📚',
+    color: '#f4c430',
+    bgColor: 'rgba(244,196,48,0.15)',
+    questions: [
+      { en: 'social', ar: 'اجتماعي', options: ['اجتماعي','وحيد','خامل','غريب'] },
+      { en: 'lazy', ar: 'كسول', options: ['نشيط','كسول','تعبان','ذكي'] },
+      { en: 'talkative', ar: 'ثرثار / كثير الكلام', options: ['هادئ','ثرثار / كثير الكلام','مضحك','محترم'] },
+      { en: 'rude', ar: 'وقح / غير مؤدب', options: ['وقح / غير مؤدب','لطيف','صادق','متواضع'] },
+      { en: 'funny', ar: 'مضحك', options: ['مضحك','محزن','مخيف','مملّ'] },
+      { en: 'friendly', ar: 'ودود', options: ['ودود','عدائي','خجول','متعجرف'] },
+      { en: 'polite', ar: 'مؤدب', options: ['وقح','مؤدب','متكبر','غريب'] },
+      { en: 'honest', ar: 'صادق / أمين', options: ['صادق / أمين','كاذب','كسول','متهور'] },
+      { en: 'quiet', ar: 'هادئ', options: ['هادئ','صاخب','غاضب','نشيط'] },
+      { en: 'kind', ar: 'لطيف / طيب', options: ['لطيف / طيب','قاسٍ','جشع','خبيث'] },
+      { en: 'homesick', ar: 'مشتاق للوطن', options: ['مشتاق للوطن','مريض','سعيد','خائف'] },
+      { en: 'upset', ar: 'منزعج / مضطرب', options: ['منزعج / مضطرب','سعيد','متحمس','هادئ'] },
+      { en: 'merciful', ar: 'رحيم', options: ['رحيم','قاسٍ','بخيل','متكبر'] },
+      { en: 'responsible', ar: 'مسؤول', options: ['مسؤول','مهمل','متكبر','كسول'] },
+      { en: 'fake', ar: 'مزيف / غير حقيقي', options: ['مزيف / غير حقيقي','حقيقي','جميل','غالٍ'] },
+    ]
+  },
+  {
+    id: 2,
+    name: 'المرحلة الثانية',
+    subtitle: 'القواعد والتعبيرات',
+    icon: '🔤',
+    color: '#00bcd4',
+    bgColor: 'rgba(0,188,212,0.15)',
+    questions: [
+      { en: 'No kidding', ar: 'لا أصدّق! / جدياً؟', options: ['لا أصدّق! / جدياً؟','لا تمزح','انتهِ','إلى اللقاء'] },
+      { en: 'make up your mind', ar: 'اتخذ قرارك', options: ['اتخذ قرارك','غيّر رأيك','افكّر كثيراً','كن صادقاً'] },
+      { en: 'at long last', ar: 'أخيراً وبعد طول انتظار', options: ['أخيراً وبعد طول انتظار','في البداية','في الواقع','من فترة طويلة'] },
+      { en: 'benefits', ar: 'فوائد / مزايا', options: ['فوائد / مزايا','عقوبات','مشاكل','أسباب'] },
+      { en: 'in a hurry', ar: 'في عجلة / مستعجل', options: ['في عجلة / مستعجل','في راحة','بهدوء','بشكل جميل'] },
+      { en: 'a real treat', ar: 'شيء ممتع جداً', options: ['شيء ممتع جداً','مشكلة كبيرة','أمر مزعج','شيء ممل'] },
+      { en: 'I mean', ar: 'أعني / أقصد', options: ['أعني / أقصد','أريد','أظن','أعتقد'] },
+      { en: 'refused', ar: 'رفض', options: ['رفض','قبل','طلب','وعد'] },
+      { en: 'pretend', ar: 'يتظاهر / يتصنّع', options: ['يتظاهر / يتصنّع','يساعد','يتذكر','يدرس'] },
+      { en: 'customs', ar: 'عادات / تقاليد', options: ['عادات / تقاليد','ملابس','طعام','لغة'] },
+      { en: 'cuisine', ar: 'مطبخ / طعام', options: ['مطبخ / طعام','موسيقى','لغة','رياضة'] },
+      { en: 'gestures', ar: 'إيماءات / حركات الجسد', options: ['إيماءات / حركات الجسد','كلمات','أصوات','ألوان'] },
+    ]
+  },
+  {
+    id: 3,
+    name: 'المرحلة الثالثة',
+    subtitle: 'الأفعال والصفات',
+    icon: '🌟',
+    color: '#7c4dff',
+    bgColor: 'rgba(124,77,255,0.15)',
+    questions: [
+      { en: 'scissors', ar: 'مقصّ', options: ['مقصّ','مطرقة','مسمار','مفك'] },
+      { en: 'shampoo', ar: 'شامبو', options: ['شامبو','معجون أسنان','صابون','كريم'] },
+      { en: 'toothpaste', ar: 'معجون أسنان', options: ['معجون أسنان','شامبو','غسول','ملح'] },
+      { en: 'laundry', ar: 'غسيل الملابس', options: ['غسيل الملابس','الطبخ','الكنس','التسوق'] },
+      { en: 'garbage', ar: 'قمامة / مهملات', options: ['قمامة / مهملات','حقيبة','كتاب','سلة'] },
+      { en: 'dishes', ar: 'أطباق', options: ['أطباق','ملاعق','شوك','أكواب'] },
+      { en: 'thief', ar: 'لص / سارق', options: ['لص / سارق','شرطي','مدير','معلم'] },
+      { en: 'ticket', ar: 'مخالفة / تذكرة', options: ['مخالفة / تذكرة','رخصة','وثيقة','بطاقة'] },
+      { en: 'complaint', ar: 'شكوى', options: ['شكوى','طلب','سؤال','اقتراح'] },
+      { en: 'poverty', ar: 'فقر', options: ['فقر','ثروة','سعادة','صحة'] },
+      { en: 'tourist', ar: 'سائح', options: ['سائح','طالب','موظف','تاجر'] },
+      { en: 'nephew', ar: 'ابن الأخ / ابن الأخت', options: ['ابن الأخ / ابن الأخت','العم','الجد','الأب'] },
+      { en: 'serious', ar: 'جادّ / خطير', options: ['جادّ / خطير','مضحك','سهل','بسيط'] },
+      { en: 'disease', ar: 'مرض', options: ['مرض','صحة','علاج','دواء'] },
+      { en: 'farm', ar: 'مزرعة', options: ['مزرعة','مصنع','مدرسة','مستشفى'] },
+    ]
+  },
+  {
+    id: 4,
+    name: 'المرحلة الرابعة',
+    subtitle: 'الجمل والتعابير',
+    icon: '🏆',
+    color: '#ff6d00',
+    bgColor: 'rgba(255,109,0,0.15)',
+    questions: [
+      { en: 'volunteer', ar: 'يتطوع', options: ['يتطوع','يرفض','يهرب','يدفع'] },
+      { en: 'explore', ar: 'يستكشف', options: ['يستكشف','يهجر','يكره','يتجاهل'] },
+      { en: 'consequences', ar: 'عواقب / نتائج', options: ['عواقب / نتائج','أسباب','مشاعر','أفكار'] },
+      { en: 'impact', ar: 'تأثير', options: ['تأثير','سبب','هدف','فكرة'] },
+      { en: 'innovations', ar: 'ابتكارات', options: ['ابتكارات','عوائق','مشكلات','تقاليد'] },
+      { en: 'determination', ar: 'عزيمة / إصرار', options: ['عزيمة / إصرار','تردد','خوف','كسل'] },
+      { en: 'exceptional', ar: 'استثنائي / رائع', options: ['استثنائي / رائع','عادي','ضعيف','مألوف'] },
+      { en: 'unprecedented', ar: 'غير مسبوق', options: ['غير مسبوق','معتاد','قديم','معروف'] },
+      { en: 'unite', ar: 'يوحّد', options: ['يوحّد','يفرّق','يهدم','يتجاهل'] },
+      { en: 'spread', ar: 'ينشر / يمتد', options: ['ينشر / يمتد','يجمع','يحذف','يوقف'] },
+      { en: 'insults', ar: 'إهانات', options: ['إهانات','مدائح','هدايا','أسرار'] },
+      { en: 'raised', ar: 'رُبّي / نشأ', options: ['رُبّي / نشأ','تُرك','ضاع','هرب'] },
+      { en: 'deliver', ar: 'يُبلّغ / يُسلّم', options: ['يُبلّغ / يُسلّم','يأخذ','يرفض','يخفي'] },
+      { en: 'suffering', ar: 'معاناة', options: ['معاناة','سعادة','راحة','استمتاع'] },
+      { en: 'storied', ar: 'ذو تاريخ عريق', options: ['ذو تاريخ عريق','حديث','غير معروف','بسيط'] },
+    ]
+  }
+];
+
+// =============================================
+// STATE
+// =============================================
+let currentPhase = 0;
+let currentQ = 0;
+let score = 0;
+let correct = 0;
+let wrong = 0;
+let totalAnswered = 0;
+let allQuestions = [];
+let answered = false;
+let phaseProgress = [0, 0, 0, 0]; // questions answered per phase
+
+function buildAllQuestions() {
+  allQuestions = [];
+  phases.forEach((ph, pi) => {
+    ph.questions.forEach((q, qi) => {
+      allQuestions.push({ ...q, phaseIndex: pi, phaseId: ph.id });
+    });
+  });
+}
+
+// =============================================
+// STARS
+// =============================================
+function createStars() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 3 + 1;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%;
+      left:${Math.random()*100}%;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2+Math.random()*3}s;
+    `;
+    container.appendChild(s);
+  }
+}
+
+// =============================================
+// START
+// =============================================
+function startQuiz() {
+  buildAllQuestions();
+  currentPhase = 0;
+  currentQ = 0;
+  score = 0; correct = 0; wrong = 0; totalAnswered = 0;
+  phaseProgress = [0,0,0,0];
+
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+
+  buildPhaseTabs();
+  showQuestion();
+}
+
+function goHome() {
+  document.getElementById('resultScreen').style.display = 'none';
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('startScreen').classList.remove('hidden');
+}
+
+// =============================================
+// PHASE TABS
+// =============================================
+function buildPhaseTabs() {
+  const cont = document.getElementById('phaseTabs');
+  cont.innerHTML = '';
+  phases.forEach((ph, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'phase-tab' + (i === currentPhase ? ' active' : '');
+    btn.id = `ptab${i}`;
+    btn.innerHTML = `<span class="phase-icon">${ph.icon}</span>${ph.name}`;
+    btn.onclick = () => jumpToPhase(i);
+    cont.appendChild(btn);
+  });
+}
+
+function updatePhaseTabs() {
+  phases.forEach((ph, i) => {
+    const btn = document.getElementById(`ptab${i}`);
+    if (!btn) return;
+    btn.className = 'phase-tab';
+    if (i === currentPhase) btn.classList.add('active');
+    else if (phaseProgress[i] >= ph.questions.length) btn.classList.add('completed');
+  });
+}
+
+function jumpToPhase(idx) {
+  currentPhase = idx;
+  currentQ = phaseProgress[idx];
+  if (currentQ >= phases[idx].questions.length) currentQ = 0;
+  answered = false;
+  document.getElementById('nextBtn').classList.add('hidden');
+  showQuestion();
+  updatePhaseTabs();
+}
+
+// =============================================
+// SHOW QUESTION
+// =============================================
+function showQuestion() {
+  const ph = phases[currentPhase];
+  if (!ph) { showResult(); return; }
+
+  const q = ph.questions[currentQ];
+  if (!q) {
+    // Phase done — move to next
+    if (currentPhase < phases.length - 1) {
+      currentPhase++;
+      currentQ = 0;
+      showQuestion();
+      updatePhaseTabs();
+      return;
+    } else {
+      showResult();
+      return;
+    }
+  }
+
+  answered = false;
+  document.getElementById('nextBtn').classList.add('hidden');
+  document.getElementById('feedback').style.display = 'none';
+
+  // Phase badge
+  const badge = document.getElementById('phaseBadge');
+  badge.textContent = ph.name + ' ' + ph.icon;
+  badge.style.background = ph.bgColor;
+  badge.style.color = ph.color;
+  badge.style.border = '1px solid ' + ph.color;
+
+  // Q number
+  const globalNum = phases.slice(0, currentPhase).reduce((a,p)=>a+p.questions.length,0) + currentQ + 1;
+  const totalAll = phases.reduce((a,p)=>a+p.questions.length, 0);
+  document.getElementById('qNum').textContent = `سؤال ${globalNum} من ${totalAll}`;
+  document.getElementById('qNumVal').textContent = globalNum;
+
+  // Word
+  document.getElementById('qEnglish').textContent = q.en;
+
+  // Progress
+  document.getElementById('progressBar').style.width = ((globalNum-1)/totalAll*100) + '%';
+
+  // Options — shuffle
+  const opts = shuffle([...q.options]);
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(btn, opt, q.ar, grid);
+    grid.appendChild(btn);
+  });
+
+  // Animate card
+  const card = document.getElementById('questionCard');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = 'fadeSlide 0.4s ease';
+}
+
+function checkAnswer(btn, chosen, correct_ar, grid) {
+  if (answered) return;
+  answered = true;
+  totalAnswered++;
+
+  const allBtns = grid.querySelectorAll('.opt-btn');
+  allBtns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById('feedback');
+
+  if (chosen === correct_ar) {
+    btn.classList.add('correct');
+    score += 10;
+    correct++;
+    document.getElementById('scoreVal').textContent = score;
+    document.getElementById('correctVal').textContent = correct;
+    fb.textContent = '🎉 يا سلام! إجابة صحيحة!';
+    fb.className = 'feedback correct';
+    fb.style.display = 'block';
+    spawnConfetti();
+  } else {
+    btn.classList.add('wrong');
+    wrong++;
+    document.getElementById('wrongVal').textContent = wrong;
+    // Show correct
+    allBtns.forEach(b => {
+      if (b.textContent === correct_ar) b.classList.add('correct');
+    });
+    fb.textContent = `😔 حظ أوفر! الإجابة الصحيحة: ${correct_ar}`;
+    fb.className = 'feedback wrong';
+    fb.style.display = 'block';
+  }
+
+  phaseProgress[currentPhase] = currentQ + 1;
+  document.getElementById('nextBtn').classList.remove('hidden');
+}
+
+function nextQuestion() {
+  currentQ++;
+  const ph = phases[currentPhase];
+  if (currentQ >= ph.questions.length) {
+    // Phase complete
+    phaseProgress[currentPhase] = ph.questions.length;
+    if (currentPhase < phases.length - 1) {
+      currentPhase++;
+      currentQ = 0;
+      updatePhaseTabs();
+    } else {
+      showResult();
+      return;
+    }
+  }
+  answered = false;
+  document.getElementById('nextBtn').classList.add('hidden');
+  showQuestion();
+  updatePhaseTabs();
+}
+
+function skipQuestion() {
+  nextQuestion();
+}
+
+// =============================================
+// RESULT
+// =============================================
+function showResult() {
+  document.getElementById('quizScreen').classList.add('hidden');
+  const rs = document.getElementById('resultScreen');
+  rs.style.display = 'block';
+
+  const pct = Math.round((correct / Math.max(totalAnswered,1)) * 100);
+  document.getElementById('resultScore').textContent = score + ' نقطة';
+  document.getElementById('rs-correct').textContent = correct;
+  document.getElementById('rs-wrong').textContent = wrong;
+  document.getElementById('rs-total').textContent = totalAnswered;
+
+  let msg, trophy;
+  if (pct >= 90) { msg = '🌟 ممتاز! أداء رائع جداً!'; trophy = '🏆'; }
+  else if (pct >= 70) { msg = '👍 جيد جداً! استمر في التفوق!'; trophy = '🥈'; }
+  else if (pct >= 50) { msg = '💪 جيد! يمكنك التحسن أكثر!'; trophy = '🥉'; }
+  else { msg = '📚 حاول مجدداً وستتحسن!'; trophy = '📖'; }
+
+  document.getElementById('resultMsg').textContent = msg;
+  document.getElementById('resultTrophy').textContent = trophy;
+
+  // Big confetti
+  for (let i = 0; i < 50; i++) {
+    setTimeout(spawnConfetti, i * 60);
+  }
+}
+
+function restartQuiz() {
+  document.getElementById('resultScreen').style.display = 'none';
+  startQuiz();
+}
+
+// =============================================
+// CONFETTI
+// =============================================
+function spawnConfetti() {
+  const colors = ['#f4c430','#00c853','#00bcd4','#7c4dff','#ff6d00','#ff3d57','#fff'];
+  for (let i = 0; i < 5; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.width = (6 + Math.random()*8) + 'px';
+    el.style.height = (6 + Math.random()*8) + 'px';
+    el.style.animationDuration = (1.5 + Math.random()*2) + 's';
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+// =============================================
+// HELPERS
+// =============================================
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// =============================================
+// INIT
+// =============================================
+createStars();
+</script>
+</body>
+</html>
