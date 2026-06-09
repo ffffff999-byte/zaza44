@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تجميعات المركزية - ثالث متوسط</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- شاشة البداية -->
+<div id="screen-home" class="screen active">
+  <div class="home-bg"></div>
+  <div class="home-content">
+    <div class="logo-area">
+      <div class="logo-icon">🏆</div>
+      <h1 class="main-title">تجميعات المركزية</h1>
+      <p class="sub-title">ثالث متوسط — الترم الثاني</p>
+    </div>
+    <div class="subjects-grid">
+      <div class="subject-card" data-subject="science" onclick="selectSubject('science')">
+        <div class="subject-icon">🔬</div>
+        <div class="subject-name">العلوم</div>
+        <div class="subject-stages">3 مراحل · 20 سؤال</div>
+      </div>
+      <div class="subject-card" data-subject="arabic" onclick="selectSubject('arabic')">
+        <div class="subject-icon">📖</div>
+        <div class="subject-name">لغتي الخالدة</div>
+        <div class="subject-stages">3 مراحل · 26 سؤال</div>
+      </div>
+      <div class="subject-card" data-subject="english" onclick="selectSubject('english')">
+        <div class="subject-icon">🌍</div>
+        <div class="subject-name">اللغة الإنجليزية</div>
+        <div class="subject-stages">3 مراحل · 27 سؤال</div>
+      </div>
+      <div class="subject-card" data-subject="math" onclick="selectSubject('math')">
+        <div class="subject-icon">📐</div>
+        <div class="subject-name">الرياضيات</div>
+        <div class="subject-stages">3 مراحل · 22 سؤال</div>
+      </div>
+    </div>
+    <div class="footer-credit">
+      <p>تصميم د/فواز &nbsp;|&nbsp; <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد هنا 👈</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- شاشة اختيار المرحلة -->
+<div id="screen-stages" class="screen">
+  <div class="stages-header">
+    <button class="back-btn" onclick="goHome()">← رجوع</button>
+    <div id="stages-subject-title" class="stages-title"></div>
+    <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
+  </div>
+  <div id="stages-list" class="stages-list"></div>
+  <div class="footer-credit-bottom">
+    <p>تصميم د/فواز &nbsp;|&nbsp; <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد هنا 👈</a></p>
+  </div>
+</div>
+
+<!-- شاشة المسابقة -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-header">
+    <button class="back-btn" onclick="goStages()">← رجوع</button>
+    <div class="quiz-info">
+      <span id="quiz-subject-name"></span>
+      <span id="quiz-stage-name"></span>
+    </div>
+    <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
+    <div class="quiz-progress-wrap">
+      <span id="quiz-counter">1 / 10</span>
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+    </div>
+  </div>
+  <div class="quiz-body">
+    <div id="question-number" class="question-number">السؤال 1</div>
+    <div id="question-text" class="question-text"></div>
+    <div id="options-container" class="options-container"></div>
+    <div id="explanation-box" class="explanation-box hidden">
+      <div class="explanation-icon">💡</div>
+      <div id="explanation-text"></div>
+    </div>
+    <button id="next-btn" class="next-btn hidden" onclick="nextQuestion()">السؤال التالي ←</button>
+  </div>
+</div>
+
+<!-- شاشة النتيجة -->
+<div id="screen-result" class="screen">
+  <div class="result-content">
+    <div id="result-emoji" class="result-emoji">🏆</div>
+    <h2 id="result-title" class="result-title">أحسنت!</h2>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-message" class="result-message"></div>
+    <div class="result-buttons">
+      <button class="btn-retry" onclick="retryStage()">🔄 إعادة المحاولة</button>
+      <button class="btn-home" onclick="goHome()">🏠 القائمة الرئيسية</button>
+    </div>
+    <div class="footer-credit-bottom">
+      <p>تصميم د/فواز &nbsp;|&nbsp; <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد هنا 👈</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- مؤثر الإجابة الصحيحة -->
+<div id="correct-effect" class="correct-effect hidden">✅ إجابة صحيحة!</div>
+<div id="wrong-effect" class="wrong-effect hidden">❌ إجابة خاطئة!</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
