@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسابقة الاختبارات المركزية - السادس الابتدائي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy2: #112240;
+    --gold: #f0a500;
+    --gold2: #ffd166;
+    --teal: #06b6d4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --card: #162035;
+    --border: #1e3a5f;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ===== HEADER ===== */
+  .top-bar {
+    background: linear-gradient(135deg, #0f1f3d 0%, #1a3a6b 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .top-bar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .top-bar .logo-icon {
+    width: 46px; height: 46px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .top-bar .logo-text h1 { font-size: 17px; font-weight: 900; color: var(--gold); line-height: 1.2; }
+  .top-bar .logo-text p { font-size: 12px; color: var(--muted); }
+
+  /* ===== HOME ===== */
+  #home {
+    background: radial-gradient(ellipse at top, #1a3a6b 0%, var(--navy) 60%);
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .home-hero {
+    text-align: center;
+    padding: 40px 20px 30px;
+    background: linear-gradient(180deg, rgba(26,58,107,0.4) 0%, transparent 100%);
+  }
+  .home-hero .badge {
+    display: inline-block;
+    background: rgba(240,165,0,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .home-hero h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .home-hero h2 span { color: var(--gold); }
+  .home-hero p { color: var(--muted); font-size: 14px; }
+
+  .stages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 20px 16px 10px;
+  }
+  .stage-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stage-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100%; height: 4px;
+  }
+  .stage-card.s1::before { background: linear-gradient(90deg, #f0a500, #ffd166); }
+  .stage-card.s2::before { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+  .stage-card.s3::before { background: linear-gradient(90deg, #a855f7, #d946ef); }
+  .stage-card.s4::before { background: linear-gradient(90deg, #22c55e, #86efac); }
+
+  .stage-card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 8px 24px rgba(240,165,0,0.2); }
+  .stage-card .stage-icon { font-size: 32px; margin-bottom: 10px; }
+  .stage-card h3 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .stage-card .stage-info { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+  .stage-card .q-count {
+    display: inline-block;
+    background: rgba(240,165,0,0.12);
+    border: 1px solid rgba(240,165,0,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+
+  .all-btn-wrap { padding: 10px 16px 20px; }
+  .all-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold) 0%, #f59e0b 100%);
+    color: var(--navy);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .all-btn:hover { opacity: 0.9; }
+
+  /* ===== STAGE SELECT ===== */
+  #stageScreen {
+    background: var(--navy);
+  }
+  .stage-header {
+    background: linear-gradient(135deg, #0f1f3d 0%, #1a3a6b 100%);
+    padding: 18px 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .back-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .stage-header h2 { font-size: 20px; font-weight: 900; color: var(--gold); }
+  .stage-header p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .topics-list {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .topic-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topic-item:hover { border-color: var(--teal); background: #1a2d4a; }
+  .topic-icon { font-size: 24px; flex-shrink: 0; }
+  .topic-info h4 { font-size: 15px; font-weight: 800; color: #fff; }
+  .topic-info p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .topic-arrow { margin-right: auto; color: var(--muted); font-size: 18px; }
+
+  /* ===== QUIZ ===== */
+  #quizScreen { background: var(--navy); }
+
+  .quiz-top {
+    background: linear-gradient(135deg, #0f1f3d 0%, #1a3a6b 100%);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .quiz-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .quiz-title { font-size: 14px; font-weight: 800; color: var(--gold); }
+  .quiz-score-box {
+    background: rgba(240,165,0,0.12);
+    border: 1px solid rgba(240,165,0,0.3);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 10px;
+    height: 7px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    border-radius: 10px;
+    transition: width 0.4s ease;
+  }
+  .q-counter { font-size: 12px; color: var(--muted); margin-top: 6px; text-align: center; }
+
+  .quiz-body {
+    flex: 1;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+  }
+
+  .question-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .q-stage-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    background: rgba(6,182,212,0.15);
+    color: var(--teal);
+    border: 1px solid rgba(6,182,212,0.3);
+  }
+  .q-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .q-img {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 0 auto 16px;
+    border-radius: 8px;
+    background: #1a2d4a;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .option-btn {
+    background: rgba(30,58,95,0.6);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 10px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 52px;
+    line-height: 1.4;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--teal); background: rgba(6,182,212,0.1); }
+  .option-btn.correct { background: rgba(34,197,94,0.2); border-color: var(--green); color: #86efac; }
+  .option-btn.wrong { background: rgba(239,68,68,0.2); border-color: var(--red); color: #fca5a5; }
+  .option-btn:disabled { cursor: default; }
+
+  .option-label {
+    width: 22px; height: 22px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .feedback-box {
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+  .feedback-box.correct { background: rgba(34,197,94,0.15); border: 2px solid var(--green); color: #86efac; }
+  .feedback-box.wrong { background: rgba(239,68,68,0.15); border: 2px solid var(--red); color: #fca5a5; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .next-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--teal) 0%, #0284c7 100%);
+    color: #fff;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.2s;
+  }
+  .next-btn:hover { opacity: 0.9; }
+
+  /* ===== RESULT ===== */
+  #resultScreen {
+    background: radial-gradient(ellipse at top, #1a3a6b 0%, var(--navy) 60%);
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .result-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px 20px;
+    gap: 20px;
+  }
+  .result-circle {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    border: 5px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(240,165,0,0.08);
+    box-shadow: 0 0 40px rgba(240,165,0,0.25);
+  }
+  .result-circle .result-pct { font-size: 36px; font-weight: 900; color: var(--gold); }
+  .result-circle .result-lbl { font-size: 12px; color: var(--muted); }
+  .result-title { font-size: 24px; font-weight: 900; color: #fff; text-align: center; }
+  .result-subtitle { font-size: 14px; color: var(--muted); text-align: center; }
+  .result-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-box .sv { font-size: 24px; font-weight: 900; }
+  .stat-box .sk { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat-box.correct .sv { color: var(--green); }
+  .stat-box.wrong .sv { color: var(--red); }
+  .stat-box.total .sv { color: var(--teal); }
+
+  .result-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #f59e0b 100%);
+    color: var(--navy);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px; font-weight: 900;
+    padding: 14px; border: none;
+    border-radius: 14px; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--border);
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px; font-weight: 700;
+    padding: 12px; border-radius: 14px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ===== FOOTER ===== */
+  .footer-credit {
+    background: var(--navy2);
+    border-top: 1px solid var(--border);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .footer-credit p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .footer-credit a { color: var(--gold); text-decoration: none; font-weight: 700; }
+  .footer-credit a:hover { text-decoration: underline; }
+  .footer-credit .author { color: var(--teal); font-weight: 700; }
+
+  /* ===== CONFETTI ===== */
+  .confetti-piece {
+    position: fixed;
+    width: 10px; height: 10px;
+    top: -10px;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== LOADING ===== */
+  .loading-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10,22,40,0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    gap: 16px;
+    display: none;
+  }
+  .spinner {
+    width: 50px; height: 50px;
+    border: 4px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===== SETTINGS PANEL ===== */
+  .settings-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 10px 16px;
+  }
+  .settings-panel h3 { font-size: 14px; font-weight: 800; color: var(--gold); margin-bottom: 12px; }
+  .setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .setting-row:last-child { border-bottom: none; }
+  .setting-label { font-size: 13px; color: var(--text); }
+  .toggle {
+    width: 44px; height: 24px;
+    background: var(--border);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle.on { background: var(--teal); }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 3px; right: 3px;
+    transition: transform 0.2s;
+  }
+  .toggle.on::after { transform: translateX(-20px); }
+</style>
+</head>
+<body>
+
+<!-- ===== HOME ===== -->
+<div id="home" class="screen active">
+  <div class="top-bar">
+    <div class="logo">
+      <div class="logo-icon">🏆</div>
+      <div class="logo-text">
+        <h1>الاختبارات المركزية</h1>
+        <p>السادس الابتدائي – رياضيات</p>
+      </div>
+    </div>
+    <div style="font-size:24px; cursor:pointer" onclick="toggleSettings()">⚙️</div>
+  </div>
+
+  <div class="home-hero">
+    <div class="badge">🎯 الفصل الدراسي الثالث – 1445هـ</div>
+    <h2>مسابقة <span>الرياضيات</span><br>الصف السادس</h2>
+    <p>اختبر معلوماتك في مواضيع الفصل الثالث</p>
+  </div>
+
+  <div id="settingsPanel" style="display:none">
+    <div class="settings-panel">
+      <h3>⚙️ إعدادات المسابقة</h3>
+      <div class="setting-row">
+        <span class="setting-label">🔊 أصوات التنبيه</span>
+        <div class="toggle on" id="soundToggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="setting-row">
+        <span class="setting-label">🎉 تأثير الفرقعة عند الإجابة الصحيحة</span>
+        <div class="toggle on" id="confettiToggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stages-grid">
+    <div class="stage-card s1" onclick="startStage(1)">
+      <div class="stage-icon">📐</div>
+      <h3>المرحلة الأولى</h3>
+      <div class="stage-info">النسب المئوية<br>الكسور والأعداد العشرية</div>
+      <div class="q-count">8 أسئلة</div>
+    </div>
+    <div class="stage-card s2" onclick="startStage(2)">
+      <div class="stage-icon">📏</div>
+      <h3>المرحلة الثانية</h3>
+      <div class="stage-info">الهندسة والقياس<br>الزوايا والأشكال</div>
+      <div class="q-count">8 أسئلة</div>
+    </div>
+    <div class="stage-card s3" onclick="startStage(3)">
+      <div class="stage-icon">📊</div>
+      <h3>المرحلة الثالثة</h3>
+      <div class="stage-info">الإحصاء والاحتمالات<br>التناسب والمعدل</div>
+      <div class="q-count">8 أسئلة</div>
+    </div>
+    <div class="stage-card s4" onclick="startStage(4)">
+      <div class="stage-icon">🔢</div>
+      <h3>المرحلة الرابعة</h3>
+      <div class="stage-info">مسائل تطبيقية<br>تفكير وحل مشكلات</div>
+      <div class="q-count">8 أسئلة</div>
+    </div>
+  </div>
+
+  <div class="all-btn-wrap">
+    <button class="all-btn" onclick="startStage(0)">🚀 تحدّ شامل – كل المراحل (32 سؤالاً)</button>
+  </div>
+
+  <div class="footer-credit">
+    <p>تصميم <span class="author">د/فواز</span> &nbsp;|&nbsp; تفضل للمزيد هنا <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">t.me/TAqhjT3MFVE1Yzk0</a></p>
+    <p style="margin-top:4px">والشكر موصول لجامعها أخونا المبدع <span style="color:var(--gold)">عبدالرحمن الزهراني</span></p>
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="quizScreen" class="screen">
+  <div class="quiz-top">
+    <div class="quiz-meta">
+      <button class="back-btn" onclick="goHome()">→ رجوع</button>
+      <div class="quiz-score-box">النقاط: <span id="scoreDisplay">0</span></div>
+    </div>
+    <div class="quiz-title" id="quizTitle">المرحلة الأولى</div>
+    <div class="progress-bar-wrap" style="margin-top:8px">
+      <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+    </div>
+    <div class="q-counter" id="qCounter">السؤال 1 من 8</div>
+  </div>
+
+  <div class="quiz-body" id="quizBody">
+    <!-- dynamic -->
+  </div>
+</div>
+
+<!-- ===== RESULT ===== -->
+<div id="resultScreen" class="screen">
+  <div class="top-bar">
+    <div class="logo">
+      <div class="logo-icon">🏆</div>
+      <div class="logo-text">
+        <h1>النتيجة النهائية</h1>
+        <p>الاختبارات المركزية</p>
+      </div>
+    </div>
+  </div>
+  <div class="result-body">
+    <div class="result-circle">
+      <div class="result-pct" id="resultPct">0%</div>
+      <div class="result-lbl">من الدرجات</div>
+    </div>
+    <div class="result-title" id="resultTitle">أحسنت!</div>
+    <div class="result-subtitle" id="resultSub">نتيجة رائعة</div>
+    <div class="result-stats">
+      <div class="stat-box correct"><div class="sv" id="resCorrect">0</div><div class="sk">✅ صحيح</div></div>
+      <div class="stat-box wrong"><div class="sv" id="resWrong">0</div><div class="sk">❌ خطأ</div></div>
+      <div class="stat-box total"><div class="sv" id="resTotal">0</div><div class="sk">📋 مجموع</div></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn-primary" onclick="retryQuiz()">🔄 إعادة المرحلة</button>
+      <button class="btn-secondary" onclick="goHome()">🏠 الصفحة الرئيسية</button>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <p>تصميم <span class="author">د/فواز</span> &nbsp;|&nbsp; تفضل للمزيد هنا <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">t.me/TAqhjT3MFVE1Yzk0</a></p>
+    <p style="margin-top:4px">والشكر موصول لجامعها أخونا المبدع <span style="color:var(--gold)">عبدالرحمن الزهراني</span></p>
+  </div>
+</div>
+
+<script>
+// =========================================
+// DATA – مأخوذة مباشرة من اختبارات تبوك وحائل
+// =========================================
+const allQuestions = {
+  1: [ // المرحلة الأولى – النسب والكسور
+    {
+      q: "من الشكل المجاور: نسبة أقلام الحبر إلى أقلام الرصاص في أبسط صورة هي:",
+      opts: ["٣/٨","٣/٥","٥/٨","٥/٣"],
+      ans: 1, // ب
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "اكتب النسبة المئوية 47% في صورة كسر اعتيادي في أبسط صورة:",
+      opts: ["47/100","1/47","7/10","1/2"],
+      ans: 0, // أ
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "اكتب النسبة المئوية 27% في صورة كسر عشري:",
+      opts: ["2.7","0.27","7.2","0.72"],
+      ans: 1, // ب
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "تكتب النسبة المئوية 50% في صورة كسر اعتيادي في أبسط صورة:",
+      opts: ["1/4","1/2","3/4","1/50"],
+      ans: 1, // ب
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "أيّ الكسور الآتية يكافئ 1/5؟",
+      opts: ["1/10","2/10","2/5","2/12"],
+      ans: 1, // ب
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "إذا كان الماء يشكّل نحو 9/10 من البطيخة الواحدة، فإن النسبة المئوية لكمية الماء في البطيخة =",
+      opts: ["%9","%90","%.9","%1..9"],
+      ans: 1, // ب
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "وزّعت إحدى الشركات أرباحاً على المساهمين بنسبة 4٪، النسبة المئوية 4٪ تكتب في صورة كسر عشري:",
+      opts: ["0.004","0.04","0.40","4.00"],
+      ans: 1, // ب
+      stage:"المرحلة الأولى"
+    },
+    {
+      q: "حصل سعيد على خصم بنسبة 18٪ من قيمة مشترياته. إذا أراد أن يشتري بمبلغ 246 ريالاً، فما مقدار الخصم الذي يحصل عليه تقريباً؟",
+      opts: ["250 ريال","200 ريال","50 ريال","4 ريال"],
+      ans: 2, // ج
+      stage:"المرحلة الأولى"
+    }
+  ],
+  2: [ // المرحلة الثانية – الهندسة والقياس
+    {
+      q: "تقدير قياس الزاوية المجاورة (زاوية حادة تقريباً 30°):",
+      opts: ["90°","30°","120°","180°"],
+      ans: 1, // ب
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "محيط دائرة طول قطرها 100 سم (ط ≈ 3.14) يساوي:",
+      opts: ["314 سم","31 سم","3.2 سم","62 سم"],
+      ans: 0, // أ
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "مساحة متوازي الأضلاع في الشكل المجاور (قاعدة=10 سم، ارتفاع=5 سم):",
+      opts: ["5 سم²","15 سم²","25 سم²","50 سم²"],
+      ans: 3, // د
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "قيمة (س) في متوازي الأضلاع المجاور (الزاوية المجاورة 65°) تساوي:",
+      opts: ["100°","115°","65°","50°"],
+      ans: 1, // ب
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "مساحة سطح المنشور الرباعي المجاور (ط=7سم، ع=5سم، ر=3سم) تساوي:",
+      opts: ["142 سم²","120 سم²","71 سم²","22 سم²"],
+      ans: 0, // أ
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "طول قطر الدائرة في الشكل المجاور (نصف القطر = 8م) يساوي:",
+      opts: ["4م","8م","16م","24م"],
+      ans: 2, // ج
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "محيط دائرة طول قطرها 10 سم (استعمل ط = 3.14):",
+      opts: ["3.14 سم","31.4 سم","314 سم","3140 سم"],
+      ans: 1, // ب
+      stage:"المرحلة الثانية"
+    },
+    {
+      q: "مساحة المثلث في الشكل المجاور (القاعدة=12سم، الارتفاع=8سم):",
+      opts: ["4 سم²","20 سم²","48 سم²","96 سم²"],
+      ans: 2, // ج
+      stage:"المرحلة الثانية"
+    }
+  ],
+  3: [ // المرحلة الثالثة – الإحصاء والاحتمالات
+    {
+      q: "ما عدد النواتج الممكنة عند رمي مكعب أرقام (1–6) واختيار حرف من الكيس المجاور؟",
+      opts: ["6","7","13","42"],
+      ans: 3, // د
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "نصف قطر الدائرة التي قطرها 3م هو:",
+      opts: ["51م","6م","9م","1.5م"],
+      ans: 3, // د
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "إذا كان 17 طالباً من كل 20 طالباً في إحدى المدارس يفضلون السباحة على غيرها من الرياضات، فما عدد الطلاب الذين يفضلون السباحة من بين 300 طالب؟",
+      opts: ["3 طلاب","170 طالباً","30 طالباً","100 طالباً"],
+      ans: 1, // ب
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "يحتاج الشركة إلى كيلوجرامين من التفاح لعمل 10 فطائر. فكم كيلوجراماً من التفاح تحتاج لعمل 40 فطيرة؟",
+      opts: ["4","6","8","10"],
+      ans: 3, // د
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "احتمال اختيار بطاقة معيّنة في لعبة يساوي 25٪، أوجد احتمال متممة هذه الحادثة في صورة نسبة مئوية:",
+      opts: ["25٪","50٪","75٪","100٪"],
+      ans: 2, // ج
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "الحادثة البسيطة هي الحادثة المكوّنة من:",
+      opts: ["ناتج واحد","ناتجين","ثلاثة نواتج","أربعة نواتج أو أكثر"],
+      ans: 0, // أ
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "يمكن أن يصطف رائد وقاسم وفؤاد أمام طاولة أمين المكتبة لتسجيل الكتب التي يرغبون في استعارتها بـ:",
+      opts: ["12 طريقة","9 طرق","6 طرق","3 طرق"],
+      ans: 2, // ج
+      stage:"المرحلة الثالثة"
+    },
+    {
+      q: "بكم طريقة يمكن لصعد وفهد وعمر أن يصطفوا أمام طاولة أمين المكتبة لتسجيل الكتب؟",
+      opts: ["12","9","6","3"],
+      ans: 2, // ج
+      stage:"المرحلة الثالثة"
+    }
+  ],
+  4: [ // المرحلة الرابعة – مسائل تطبيقية
+    {
+      q: "لدى فوّاز 3 قمصان وبنطالان بحيث يستطيع أن يلبسها بأي تشكيلة يرغب. كم تشكيلةً من قميص وبنطال يمكنه الحصول عليها؟",
+      opts: ["3","4","5","6"],
+      ans: 3, // د
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "تحتاج سيدة إلى أربع كرات من الصوف لصنع 8 قبعات، فكم كرةً من الصوف تحتاج لصنع 6 قبعات؟",
+      opts: ["3 كرات","4 كرات","5 كرات","6 كرات"],
+      ans: 0, // أ
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "يمشي خالد كل صباح إلى موقع الحافلات الذي يبعد عن بيته كيلو متراً واحداً. ثم يركب الحافلة 6 كيلومترات. وبعد انتهاء العمل يعود بالطريقة نفسها. فكم كيلو متراً يقطع خالد كل يوم؟",
+      opts: ["7 كم","12 كم","14 كم","16 كم"],
+      ans: 2, // ج
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "ادّخرت سلمى 35 ريالاً في 5 أيام، وادّخرت أختها 49 ريالاً في أسبوع. هل يوجد تناسب بين مقداري الادخار؟",
+      opts: ["لا يوجد تناسب","نعم يوجد تناسب","يوجد أحياناً","لا يمكن التحديد"],
+      ans: 1, // ب
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "يبشرب حصانٌ 120 عبوةَ ماء كل 4 أيام. كم عبوةً من الماء يشربه هذا الحصان في 40 يوماً بحسب هذا المعدل؟",
+      opts: ["1200 عبوة","400 عبوة","240 عبوة","60 عبوة"],
+      ans: 0, // أ
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "حجم المنشور الرباعي في الشكل المجاور (ط=10سم، ع=10سم، ر=4سم):",
+      opts: ["400 سم³","200 سم³","24 سم³","16 سم³"],
+      ans: 0, // أ
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "حصل سعيد على خصم بنسبة 10٪ من قيمة مشترياته. إذا أراد أن يشتري بمبلغ 500 ريالاً، فما مقدار الخصم الذي يحصل عليه؟",
+      opts: ["10 ريال","50 ريال","100 ريال","500 ريال"],
+      ans: 1, // ب
+      stage:"المرحلة الرابعة"
+    },
+    {
+      q: "يأخذ مريض لتراً من السوائل كل 8 ساعات. استعمل جدول النسبة لإيجاد عدد الساعات التي يحتاج إليها المريض لأخذ 4 لترات من السوائل بهذا المعدل:",
+      opts: ["8 ساعات","16 ساعة","22 ساعة","32 ساعة"],
+      ans: 3, // د
+      stage:"المرحلة الرابعة"
+    }
+  ]
+};
+
+// =========================================
+// STATE
+// =========================================
+let currentStage = 1;
+let currentQList = [];
+let currentQIndex = 0;
+let score = 0;
+let correctCount = 0;
+let wrongCount = 0;
+let selectedAnswer = null;
+let answered = false;
+
+// =========================================
+// HELPERS
+// =========================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleSettings() {
+  const p = document.getElementById('settingsPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+}
+
+function goHome() {
+  showScreen('home');
+}
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+// =========================================
+// QUIZ LOGIC
+// =========================================
+function startStage(stage) {
+  currentStage = stage;
+  score = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  currentQIndex = 0;
+
+  if (stage === 0) {
+    // All stages shuffled
+    let all = [];
+    for (let s = 1; s <= 4; s++) all = all.concat(allQuestions[s]);
+    currentQList = shuffleArray(all);
+  } else {
+    currentQList = shuffleArray(allQuestions[stage]);
+  }
+
+  document.getElementById('scoreDisplay').textContent = '0';
+  const titles = {0:'التحدي الشامل', 1:'المرحلة الأولى', 2:'المرحلة الثانية', 3:'المرحلة الثالثة', 4:'المرحلة الرابعة'};
+  document.getElementById('quizTitle').textContent = titles[stage] || 'المسابقة';
+
+  showScreen('quizScreen');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = currentQList[currentQIndex];
+  const total = currentQList.length;
+  answered = false;
+
+  // Update progress
+  const pct = (currentQIndex / total) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('qCounter').textContent = `السؤال ${currentQIndex+1} من ${total}`;
+
+  const body = document.getElementById('quizBody');
+  body.innerHTML = `
+    <div class="question-card">
+      <div class="q-stage-badge">${q.stage}</div>
+      <div class="q-text">سؤال ${currentQIndex+1}: ${q.q}</div>
+      <div class="options-grid" id="optionsGrid">
+        ${q.opts.map((opt, i) => `
+          <button class="option-btn" onclick="selectAnswer(${i})" id="opt${i}">
+            <span class="option-label">${['أ','ب','ج','د'][i]}</span>
+            ${opt}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+    <div class="feedback-box" id="feedbackBox"></div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+      ${currentQIndex + 1 < total ? 'السؤال التالي ←' : '🏁 عرض النتيجة'}
+    </button>
+  `;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = currentQList[currentQIndex];
+  const buttons = document.querySelectorAll('.option-btn');
+  const feedback = document.getElementById('feedbackBox');
+  const nextBtn = document.getElementById('nextBtn');
+
+  buttons.forEach(b => b.disabled = true);
+
+  if (idx === q.ans) {
+    buttons[idx].classList.add('correct');
+    score += 10;
+    correctCount++;
+    document.getElementById('scoreDisplay').textContent = score;
+    feedback.textContent = '🎉 يا سلام! إجابة صحيحة!';
+    feedback.className = 'feedback-box correct';
+    feedback.style.display = 'block';
+    launchConfetti();
+  } else {
+    buttons[idx].classList.add('wrong');
+    buttons[q.ans].classList.add('correct');
+    wrongCount++;
+    feedback.textContent = `😔 حظ أوفر! الإجابة الصحيحة: ${['أ','ب','ج','د'][q.ans]}) ${q.opts[q.ans]}`;
+    feedback.className = 'feedback-box wrong';
+    feedback.style.display = 'block';
+  }
+
+  nextBtn.style.display = 'block';
+  nextBtn.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function nextQuestion() {
+  currentQIndex++;
+  if (currentQIndex >= currentQList.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  const total = currentQList.length;
+  const pct = Math.round((correctCount / total) * 100);
+
+  document.getElementById('resultPct').textContent = pct + '%';
+  document.getElementById('resCorrect').textContent = correctCount;
+  document.getElementById('resWrong').textContent = wrongCount;
+  document.getElementById('resTotal').textContent = total;
+
+  let title, sub;
+  if (pct >= 90) { title = '🌟 ممتاز! أداء رائع!'; sub = 'أنت نجم الاختبار المركزي!'; }
+  else if (pct >= 75) { title = '🏅 جيد جداً!'; sub = 'نتيجة مشرّفة، استمر!'; }
+  else if (pct >= 60) { title = '👍 جيد'; sub = 'بإمكانك تحسين نتيجتك أكثر!'; }
+  else { title = '💪 لا بأس، حاول مجدداً'; sub = 'المراجعة والتدريب يصنعان الفارق!'; }
+
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent = sub;
+
+  if (pct >= 75) launchConfetti(80);
+
+  showScreen('resultScreen');
+}
+
+function retryQuiz() {
+  startStage(currentStage);
+}
+
+// =========================================
+// CONFETTI
+// =========================================
+function launchConfetti(count = 30) {
+  const toggle = document.getElementById('confettiToggle');
+  if (!toggle || !toggle.classList.contains('on')) return;
+  const colors = ['#f0a500','#06b6d4','#22c55e','#a855f7','#ef4444','#ffd166'];
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.background = colors[Math.floor(Math.random()*colors.length)];
+      el.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+      el.style.transform = `rotate(${Math.random()*360}deg)`;
+      el.style.width = el.style.height = (6 + Math.random()*8) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }, i * 40);
+  }
+}
+</script>
+</body>
+</html>
