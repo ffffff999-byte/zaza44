@@ -6,11 +6,670 @@
   <title>تجميعات المركزية - ثالث متوسط</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    /* ===== إعادة التعيين الأساسية ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent: #0f3460;
+      --gold: #e94560;
+      --gold2: #f5a623;
+      --white: #ffffff;
+      --light: #f0f4ff;
+      --science: #2ecc71;
+      --arabic: #e74c3c;
+      --english: #3498db;
+      --math: #9b59b6;
+      --correct: #27ae60;
+      --wrong: #e74c3c;
+      --shadow: 0 8px 32px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Cairo', sans-serif;
+      background: var(--primary);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== الشاشات ===== */
+    .screen {
+      display: none;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      animation: fadeIn 0.4s ease;
+    }
+    .screen.active { display: flex; flex-direction: column; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== شاشة البداية ===== */
+    .home-bg {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      z-index: 0;
+    }
+    .home-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(233,69,96,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(52,152,219,0.15) 0%, transparent 60%);
+    }
+
+    .home-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 20px;
+      min-height: 100vh;
+    }
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-icon {
+      font-size: 72px;
+      animation: bounce 2s infinite;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .main-title {
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 900;
+      background: linear-gradient(135deg, #f5a623, #e94560, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .sub-title {
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+    }
+
+    /* ===== شبكة المواد ===== */
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .subject-card {
+      background: rgba(255,255,255,0.07);
+      border: 2px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 30px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: var(--radius);
+    }
+
+    .subject-card[data-subject="science"]::before { background: linear-gradient(135deg, rgba(46,204,113,0.3), transparent); }
+    .subject-card[data-subject="arabic"]::before { background: linear-gradient(135deg, rgba(231,76,60,0.3), transparent); }
+    .subject-card[data-subject="english"]::before { background: linear-gradient(135deg, rgba(52,152,219,0.3), transparent); }
+    .subject-card[data-subject="math"]::before { background: linear-gradient(135deg, rgba(155,89,182,0.3), transparent); }
+
+    .subject-card:hover::before { opacity: 1; }
+    .subject-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .subject-card[data-subject="science"]:hover { border-color: var(--science); }
+    .subject-card[data-subject="arabic"]:hover { border-color: var(--arabic); }
+    .subject-card[data-subject="english"]:hover { border-color: var(--english); }
+    .subject-card[data-subject="math"]:hover { border-color: var(--math); }
+
+    .subject-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+    .subject-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .subject-stages { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+    /* ===== شاشة المراحل ===== */
+    #screen-stages {
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      padding: 0;
+    }
+
+    .stages-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stages-title {
+      font-size: 22px;
+      font-weight: 700;
+      flex: 1;
+      text-align: center;
+    }
+
+    .stages-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 30px 24px;
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .stage-card {
+      background: rgba(255,255,255,0.07);
+      border: 2px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .stage-card:hover {
+      transform: translateX(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .stage-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .stage-info { flex: 1; }
+    .stage-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .stage-count { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .stage-arrow { font-size: 22px; opacity: 0.6; }
+
+    /* ===== شاشة المسابقة ===== */
+    #screen-quiz {
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.4);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+
+    .quiz-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    #quiz-subject-name {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    #quiz-stage-name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .quiz-progress-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      min-width: 100px;
+    }
+
+    #quiz-counter {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .progress-bar {
+      width: 100px;
+      height: 6px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f5a623, #e94560);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    .quiz-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px 50px;
+      max-width: 750px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .question-number {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .question-text {
+      font-size: clamp(17px, 3vw, 22px);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 24px;
+      width: 100%;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .option-btn {
+      background: rgba(255,255,255,0.07);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 17px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      direction: rtl;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .option-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .option-btn:hover:not(:disabled)::after { opacity: 1; }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.35);
+      transform: translateX(-4px);
+    }
+
+    .option-btn .option-letter {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 900;
+      flex-shrink: 0;
+      transition: all 0.25s;
+    }
+
+    .option-btn.correct {
+      background: rgba(39,174,96,0.25);
+      border-color: var(--correct);
+      animation: correctPulse 0.5s ease;
+    }
+    .option-btn.correct .option-letter { background: var(--correct); }
+
+    .option-btn.wrong {
+      background: rgba(231,76,60,0.2);
+      border-color: var(--wrong);
+      animation: shake 0.4s ease;
+    }
+    .option-btn.wrong .option-letter { background: var(--wrong); }
+
+    .option-btn:disabled { cursor: not-allowed; }
+
+    @keyframes correctPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    /* ===== صندوق الشرح ===== */
+    .explanation-box {
+      margin-top: 20px;
+      background: rgba(245,166,35,0.15);
+      border: 1px solid rgba(245,166,35,0.4);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .explanation-icon { font-size: 22px; flex-shrink: 0; }
+    #explanation-text { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+
+    /* ===== زر التالي ===== */
+    .next-btn {
+      margin-top: 24px;
+      background: linear-gradient(135deg, #f5a623, #e94560);
+      border: none;
+      border-radius: 14px;
+      padding: 16px 40px;
+      font-size: 18px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(233,69,96,0.4);
+    }
+
+    .next-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(233,69,96,0.6);
+    }
+
+    /* ===== شاشة النتيجة ===== */
+    #screen-result {
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .result-content {
+      text-align: center;
+      padding: 40px 24px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .result-emoji {
+      font-size: 80px;
+      display: block;
+      margin-bottom: 16px;
+      animation: bounce 1s ease infinite;
+    }
+
+    .result-title {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #f5a623, #e94560);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .result-score {
+      font-size: 64px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .result-message {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .result-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn-retry, .btn-home {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-retry {
+      background: linear-gradient(135deg, #f5a623, #e94560);
+      color: white;
+      box-shadow: 0 4px 20px rgba(233,69,96,0.4);
+    }
+
+    .btn-home {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-retry:hover, .btn-home:hover { transform: translateY(-3px); }
+
+    /* ===== مؤثرات الإجابة ===== */
+    .correct-effect, .wrong-effect {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      font-weight: 900;
+      padding: 20px 40px;
+      border-radius: 20px;
+      z-index: 999;
+      animation: popEffect 0.8s ease forwards;
+      pointer-events: none;
+    }
+
+    .correct-effect {
+      background: rgba(39,174,96,0.95);
+      color: white;
+      box-shadow: 0 0 40px rgba(39,174,96,0.6);
+    }
+
+    .wrong-effect {
+      background: rgba(231,76,60,0.95);
+      color: white;
+      box-shadow: 0 0 40px rgba(231,76,60,0.6);
+    }
+
+    @keyframes popEffect {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+      70% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
+
+    /* ===== زر الرجوع ===== */
+    .back-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 15px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s;
+      flex-shrink: 0;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* ===== زر الرئيسية ===== */
+    .home-btn {
+      background: rgba(245,166,35,0.15);
+      border: 1px solid rgba(245,166,35,0.4);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      color: #f5a623;
+      cursor: pointer;
+      transition: all 0.25s;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .home-btn:hover {
+      background: rgba(245,166,35,0.3);
+      border-color: rgba(245,166,35,0.7);
+      transform: translateY(-2px);
+    }
+
+    /* ===== تذييل الصفحة ===== */
+    .footer-credit {
+      margin-top: auto;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-credit-bottom {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-credit a, .footer-credit-bottom a {
+      color: var(--gold2);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .footer-credit a:hover, .footer-credit-bottom a:hover { text-decoration: underline; }
+
+    /* ===== مخفي ===== */
+    .hidden { display: none !important; }
+
+    /* ===== استجابة الشاشات الصغيرة ===== */
+    @media (max-width: 480px) {
+      .subjects-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .subject-card { padding: 20px 12px; }
+      .subject-icon { font-size: 36px; }
+      .subject-name { font-size: 16px; }
+      .question-text { font-size: 16px; padding: 18px; }
+      .option-btn { font-size: 15px; padding: 14px 16px; }
+      .result-score { font-size: 48px; }
+    }
+
+    /* ===== ألوان خاصة بكل مادة ===== */
+    .subject-science .stage-number { background: var(--science); color: white; }
+    .subject-arabic .stage-number { background: var(--arabic); color: white; }
+    .subject-english .stage-number { background: var(--english); color: white; }
+    .subject-math .stage-number { background: var(--math); color: white; }
+
+    .subject-science .stage-card:hover { border-color: var(--science); }
+    .subject-arabic .stage-card:hover { border-color: var(--arabic); }
+    .subject-english .stage-card:hover { border-color: var(--english); }
+    .subject-math .stage-card:hover { border-color: var(--math); }
+
+    /* ===== تأثير الجسيمات المتحركة ===== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+
+    /* ===== نجوم خلفية ===== */
+    .home-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 90% 30%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.2) 0%, transparent 100%);
+    }
+  </style>
 </head>
 <body>
 
-<!-- شاشة البداية -->
 <div id="screen-home" class="screen active">
   <div class="home-bg"></div>
   <div class="home-content">
@@ -47,7 +706,6 @@
   </div>
 </div>
 
-<!-- شاشة اختيار المرحلة -->
 <div id="screen-stages" class="screen">
   <div class="stages-header">
     <button class="back-btn" onclick="goHome()">← رجوع</button>
@@ -60,7 +718,6 @@
   </div>
 </div>
 
-<!-- شاشة المسابقة -->
 <div id="screen-quiz" class="screen">
   <div class="quiz-header">
     <button class="back-btn" onclick="goStages()">← رجوع</button>
@@ -86,7 +743,6 @@
   </div>
 </div>
 
-<!-- شاشة النتيجة -->
 <div id="screen-result" class="screen">
   <div class="result-content">
     <div id="result-emoji" class="result-emoji">🏆</div>
@@ -103,11 +759,999 @@
   </div>
 </div>
 
-<!-- مؤثر الإجابة الصحيحة -->
 <div id="correct-effect" class="correct-effect hidden">✅ إجابة صحيحة!</div>
 <div id="wrong-effect" class="wrong-effect hidden">❌ إجابة خاطئة!</div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script>
+// بيانات مسابقة تجميعات الاختبارات المركزية - ثالث متوسط
+const quizData = {
+  subjects: [
+    {
+      id: "science",
+      name: "العلوم",
+      icon: "🔬",
+      color: "#2ecc71",
+      stages: [
+        {
+          id: "science_s1",
+          name: "المرحلة الأولى: الحركة والقوى",
+          questions: [
+            {
+              id: 1,
+              question: "ما سبب اندفاع ركاب السيارة للأمام عند التوقف المفاجئ؟",
+              options: ["الاحتكاك", "التسارع", "القصور الذاتي", "الإزاحة"],
+              correct: 2,
+              explanation: "القصور الذاتي هو ميل الجسم للمحافظة على حالته من الحركة أو السكون."
+            },
+            {
+              id: 2,
+              question: "ماذا تقيس كاميرات ساهر المرورية الموضوعة على جانبي الطرق؟",
+              options: ["السرعة المتوسطة", "السرعة اللحظية", "التسارع", "الزخم"],
+              correct: 1,
+              explanation: "كاميرات ساهر تقيس السرعة اللحظية للمركبات."
+            },
+            {
+              id: 3,
+              question: "ما مقدار تسارع سيارة تغيّرت سرعتها من 10م/ث إلى 25م/ث خلال 3 ثوانٍ؟",
+              options: ["45 م/ث²", "18 م/ث²", "12 م/ث²", "5 م/ث²"],
+              correct: 3,
+              explanation: "التسارع = (25-10)/3 = 15/3 = 5 م/ث²"
+            },
+            {
+              id: 4,
+              question: "يبقى الجسم على حالته من السكون أو الحركة ما لم تؤثر عليه قوة خارجية. أي مما يأتي يتفق مع ذلك؟",
+              options: ["قانون نيوتن الأول", "قانون نيوتن الثاني", "قانون نيوتن الثالث", "الاحتكاك"],
+              correct: 0,
+              explanation: "هذا هو قانون نيوتن الأول (قانون القصور الذاتي)."
+            },
+            {
+              id: 5,
+              question: "تؤثر قوة محصلة مقدارها 200 نيوتن على كتلة مقدارها 10 كجم. ما مقدار تسارعها؟",
+              options: ["0.05 م/ث²", "5 م/ث²", "10 م/ث²", "20 م/ث²"],
+              correct: 3,
+              explanation: "التسارع = القوة ÷ الكتلة = 200 ÷ 10 = 20 م/ث²"
+            },
+            {
+              id: 6,
+              question: "ما سبب وضع عجلات صغيرة أسفل بعض الثلاجات؟",
+              options: ["تثبيت الثلاجة", "زيادة التوازن", "تقليل الاحتكاك", "زيادة الاحتكاك"],
+              correct: 2,
+              explanation: "العجلات تحوّل الاحتكاك الانزلاقي إلى احتكاك دحرجي مما يقلل الاحتكاك."
+            },
+            {
+              id: 7,
+              question: "ما الذي يميز القوى المتزنة؟",
+              options: ["تسارعها يزداد", "محصلتها تساوي صفراً", "احتكاكها عالٍ", "جاذبيتها كبيرة"],
+              correct: 1,
+              explanation: "القوى المتزنة هي قوى محصلتها تساوي صفراً، مما يعني أن الجسم لا يتسارع."
+            },
+            {
+              id: 8,
+              question: "ما الذي يحدث للكتلة والوزن داخل المركبة الفضائية؟",
+              options: ["تتغير الكتلة ويتغير الوزن", "الكتلة والوزن يبقيان ثابتين", "يبقى الوزن ثابتاً وتتغير الكتلة", "تبقى الكتلة ثابتة ويتغير الوزن"],
+              correct: 3,
+              explanation: "الكتلة ثابتة دائماً، أما الوزن فيتغير بتغير الجاذبية."
+            }
+          ]
+        },
+        {
+          id: "science_s2",
+          name: "المرحلة الثانية: الكهرباء والمغناطيسية",
+          questions: [
+            {
+              id: 9,
+              question: "عند دلك البالون بالشعر، أي مما يلي سينتقل من ذرات الشعر إلى البالون؟",
+              options: ["النيوترونات", "البروتونات", "النواة", "الإلكترونات"],
+              correct: 3,
+              explanation: "الإلكترونات هي الجسيمات المتحركة في الشحن الكهربائي الساكن."
+            },
+            {
+              id: 10,
+              question: "ما المادة التي يمكن أن تكمل الدائرة الكهربائية لكي يضيء المصباح؟",
+              options: ["المطاط", "الحديد", "البلاستيك", "الخشب"],
+              correct: 1,
+              explanation: "الحديد موصل للكهرباء، بينما المطاط والبلاستيك والخشب عوازل."
+            },
+            {
+              id: 11,
+              question: "عند إزالة أحد مصابيح الإضاءة من دائرة التوالي والتوازي، ماذا يحدث لباقي المصابيح؟",
+              options: ["تتوقف في الشكل(1) وتعمل في الشكل(2)", "تعمل في الشكل(1) وتتوقف في الشكل(2)", "تتوقف في كلا الشكلين", "تعمل في كلا الشكلين"],
+              correct: 0,
+              explanation: "في التوالي (شكل1) تتوقف كلها، وفي التوازي (شكل2) تعمل الباقية."
+            },
+            {
+              id: 12,
+              question: "أي من المواد التالية تنجذب للمغناطيس؟",
+              options: ["البلاستيك", "النحاس", "الحديد", "الخشب"],
+              correct: 2,
+              explanation: "الحديد مادة مغناطيسية تنجذب للمغناطيس."
+            },
+            {
+              id: 13,
+              question: "المنطقة التي تحمي الأرض من كثير من الجسيمات المتأينة القادمة من الشمس:",
+              options: ["اللب الداخلي للأرض", "الغلاف المغناطيسي للأرض", "القطب الشمالي للأرض", "القطب الجنوبي للأرض"],
+              correct: 1,
+              explanation: "الغلاف المغناطيسي للأرض يحمي الكوكب من الرياح الشمسية."
+            },
+            {
+              id: 14,
+              question: "ما الذي يحدث للملف عند توصيل الدائرة الكهربائية بين قطبين مغناطيسيين؟",
+              options: ["يلتصق بالقطب ش", "يلتصق بالقطب ج", "يدور", "لا يحدث أي تغيير"],
+              correct: 2,
+              explanation: "الملف الحامل للتيار بين قطبين مغناطيسيين يدور بفعل القوة المغناطيسية."
+            }
+          ]
+        },
+        {
+          id: "science_s3",
+          name: "المرحلة الثالثة: المطابقة والصح والخطأ",
+          questions: [
+            {
+              id: 15,
+              question: "المسافة التي يقطعها الجسم خلال وحدة الزمن تسمى:",
+              options: ["التسارع", "السرعة", "البطارية", "المغناطيس الكهربائي"],
+              correct: 1,
+              explanation: "السرعة = المسافة ÷ الزمن"
+            },
+            {
+              id: 16,
+              question: "لكل قوة فعل قوة رد فعل. هذه العبارة تمثل:",
+              options: ["قانون نيوتن الأول", "قانون نيوتن الثاني", "قانون نيوتن الثالث", "قانون الاحتكاك"],
+              correct: 2,
+              explanation: "هذا هو قانون نيوتن الثالث: لكل فعل رد فعل مساوٍ له في المقدار ومعاكس له في الاتجاه."
+            },
+            {
+              id: 17,
+              question: "تحول الطاقة الكيميائية بداخلها إلى طاقة كهربائية. هذا ينطبق على:",
+              options: ["التسارع", "السرعة", "البطارية", "المقاومة الكهربائية"],
+              correct: 2,
+              explanation: "البطارية تحول الطاقة الكيميائية إلى طاقة كهربائية."
+            },
+            {
+              id: 18,
+              question: "سلك ملفوف حول قلب حديدي ويسري به تيار كهربائي يُسمى:",
+              options: ["الموصلات فائقة التوصيل", "المغناطيس الكهربائي", "البطارية", "المقاومة الكهربائية"],
+              correct: 1,
+              explanation: "المغناطيس الكهربائي هو سلك ملفوف حول قلب حديدي يسري به تيار."
+            },
+            {
+              id: 19,
+              question: "من الأمثلة على حدوث التسارع: تصل سرعة بعض سيارات الفورميال 1 إلى 100كم/ساعة خلال أقل من ثانيتين من انطلاقها. هل هذه العبارة صحيحة؟",
+              options: ["صحيح", "خطأ"],
+              correct: 0,
+              explanation: "صحيح، لأن تغير السرعة خلال زمن يمثل تسارعاً."
+            },
+            {
+              id: 20,
+              question: "الأقمار الصناعية التي تدور حول الأرض بسرعة ثابتة المقدار ليس لها تسارع. هل هذه العبارة صحيحة؟",
+              options: ["صحيح", "خطأ"],
+              correct: 1,
+              explanation: "خطأ، لأن الاتجاه يتغير باستمرار مما يعني وجود تسارع مركزي."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "arabic",
+      name: "لغتي الخالدة",
+      icon: "📖",
+      color: "#e74c3c",
+      stages: [
+        {
+          id: "arabic_s1",
+          name: "المرحلة الأولى: فهم المقروء",
+          questions: [
+            {
+              id: 1,
+              question: "انحصرت بدايات ظهور الذكاء الاصطناعي في:",
+              options: ["العالم الافتراضي", "الخيال العلمي", "التنقل بين المدن", "الازدحام المروري"],
+              correct: 1,
+              explanation: "بدأ الذكاء الاصطناعي في الخيال العلمي قبل أن يصبح واقعاً."
+            },
+            {
+              id: 2,
+              question: "وردت كلمة (الشرس) في النص بمعنى:",
+              options: ["الشديد", "المثابر", "اللين", "المكابر"],
+              correct: 0,
+              explanation: "الشرس تعني الشديد والقاسي."
+            },
+            {
+              id: 3,
+              question: "من مميزات الذكاء الاصطناعي الواردة في النص:",
+              options: ["استخدام المساعد الافتراضي", "بناء المدن الافتراضية", "تنشيط الثقافة المجتمعية", "تقوية العلاقات الإنسانية"],
+              correct: 0,
+              explanation: "استخدام المساعد الافتراضي من أبرز مميزات الذكاء الاصطناعي."
+            },
+            {
+              id: 4,
+              question: "يُسهم الذكاء الاصطناعي في أداء المهام، ماذاً:",
+              options: ["اتخاذ القرارات", "التخطيط والتطوير", "التعليم والتعلم", "زيادة القوى العاملة"],
+              correct: 1,
+              explanation: "يسهم الذكاء الاصطناعي في التخطيط والتطوير وأداء المهام."
+            },
+            {
+              id: 5,
+              question: "وردت في النص كلمة تعني (الأفكار):",
+              options: ["الأرآء", "الجموح", "الهجوم", "التهذيب"],
+              correct: 0,
+              explanation: "الأفكار مرادفها الآراء في سياق النص."
+            },
+            {
+              id: 6,
+              question: "لتعتمد عليهم في حالي رخائها وشدتها - الضمير في آخر كلمة (شدتها) يعود على:",
+              options: ["الأرض", "السلم", "الشباب", "الدول"],
+              correct: 2,
+              explanation: "الضمير يعود على الدول التي تعتمد على الشباب."
+            },
+            {
+              id: 7,
+              question: "العبارة التي جاءت بها الرعاية والعناية:",
+              options: ["الرعاية والعناية", "الركن الشديد", "النصح والتوجيه", "العقل الراشد"],
+              correct: 1,
+              explanation: "الركن الشديد يعني الرعاية والعناية في سياق النص."
+            },
+            {
+              id: 8,
+              question: "أي الأساليب الآتية تصل بالحوار مع الشباب إلى النهج النبوي القويم:",
+              options: ["التسامح المطلق", "الزجر والتأنيب", "المناقشة الهادئة", "القوة والردع"],
+              correct: 2,
+              explanation: "المناقشة الهادئة هي الأسلوب الأمثل في التعامل مع الشباب."
+            }
+          ]
+        },
+        {
+          id: "arabic_s2",
+          name: "المرحلة الثانية: المهارات اللغوية",
+          questions: [
+            {
+              id: 9,
+              question: "قال الشاعر في قصيدة (الفقار الذامي): فهي تختأ في بحر لنيل خطيل طويل - تثلّؤ بأفاقي الحسام. الدلالة التي تحملها الصورة في البيت السابق:",
+              options: ["التنفير", "التشويق", "الترغيب", "التحسر"],
+              correct: 1,
+              explanation: "الصورة الشعرية تحمل دلالة التشويق والإثارة."
+            },
+            {
+              id: 10,
+              question: "قال الشاعر: كُلُّتُ في الحياة قبل المنايا - وزَدَّها الإدمان بالأشقام. معنى كلمة (المنايا):",
+              options: ["الحياة", "الموت", "الأمل", "التمني"],
+              correct: 1,
+              explanation: "المنايا جمع منية وتعني الموت."
+            },
+            {
+              id: 11,
+              question: "قال تعالى: (سلامٌ هي حتى مطلع الفجر) - يفيد حرف العطف (حتى):",
+              options: ["الشك", "التخيير", "النفي", "الغاية"],
+              correct: 3,
+              explanation: "حتى هنا حرف جر يفيد الغاية."
+            },
+            {
+              id: 12,
+              question: "خرج خالد وزيادٌ. تُعرب كلمة (زياد) معطوفاً:",
+              options: ["مجزوماً", "منصوباً", "مرفوعاً", "مجروراً"],
+              correct: 2,
+              explanation: "زياد معطوف على خالد المرفوع فيكون مرفوعاً."
+            },
+            {
+              id: 13,
+              question: "(سافر محمد إلى مكة لأداء مناسك الحج وبعد مدة عاد إلى مدينته). الجملة التي تعبر عن هذا المعنى:",
+              options: ["سافر محمد ثم عاد", "سافر محمد وعاد", "سافر محمد فعاد", "سافر محمد أو عاد"],
+              correct: 2,
+              explanation: "الفاء تفيد الترتيب مع التعقيب وهي الأنسب للمعنى."
+            },
+            {
+              id: 14,
+              question: "الجملة التي بها بدل اشتمال:",
+              options: ["حفظت السورة نصفها", "حضر الطالب سعد", "قرأت نصف القصة", "أعجبني الطالب أدبه"],
+              correct: 3,
+              explanation: "أعجبني الطالب أدبه: أدبه بدل اشتمال من الطالب."
+            },
+            {
+              id: 15,
+              question: "(أصبح الذكاء الاصطناعي حقيقة، لا خيالاً) - تُعرب كلمة (خيالاً):",
+              options: ["حالاً منصوبة", "نعتاً منصوباً", "معطوفاً منصوباً", "بدلاً منصوباً"],
+              correct: 1,
+              explanation: "خيالاً نعت منصوب لأنه يصف حقيقة."
+            },
+            {
+              id: 16,
+              question: "للتعجب من جمال البحر:",
+              options: ["البحر جميل", "ما أجمل البحر", "للبحر جميل", "للبحر جمال"],
+              correct: 1,
+              explanation: "صيغة التعجب: ما أفعله - ما أجمل البحر."
+            },
+            {
+              id: 17,
+              question: "(ثالث المعلمة 14 جائزة) - الكتابة الصحيحة للعدد الوارد في الجملة السابقة:",
+              options: ["أربع عشرة", "أربعة عشر", "أربعة عشرة", "أربع عشر"],
+              correct: 0,
+              explanation: "العدد 14 مع مؤنث يكتب: أربع عشرة."
+            },
+            {
+              id: 18,
+              question: "(أضاء الفتى المصباح) - في الجملة السابقة اسم الله على وزن:",
+              options: ["فاعل", "مفعال", "مفعول", "مفاعل"],
+              correct: 0,
+              explanation: "الفتى على وزن فاعل."
+            },
+            {
+              id: 19,
+              question: "يُسمى الاسم الذي يدل على حدث مجرد من الزمن:",
+              options: ["تعجب", "صفة", "بدل", "مصدر"],
+              correct: 3,
+              explanation: "المصدر هو الاسم الذي يدل على حدث مجرد من الزمن."
+            },
+            {
+              id: 20,
+              question: "مصدر الفعل الرباعي من (دَرَّنَ):",
+              options: ["دارس", "تدرُّس", "دَرشا", "تدريس"],
+              correct: 3,
+              explanation: "مصدر الفعل الرباعي (درَّنَ) هو تدريس على وزن تفعيل."
+            }
+          ]
+        },
+        {
+          id: "arabic_s3",
+          name: "المرحلة الثالثة: الصح والخطأ والإملاء",
+          questions: [
+            {
+              id: 21,
+              question: "الواو في الجملة السابقة واو عطف. هل هذه العبارة صحيحة؟",
+              options: ["صحيح", "خطأ"],
+              correct: 1,
+              explanation: "خطأ، الواو هنا واو معية وليست واو عطف."
+            },
+            {
+              id: 22,
+              question: "يتبع البدل المبدل منه في إعرابه رفعاً ونصباً وجراً. هل هذه العبارة صحيحة؟",
+              options: ["صحيح", "خطأ"],
+              correct: 0,
+              explanation: "صحيح، البدل يتبع المبدل منه في إعرابه."
+            },
+            {
+              id: 23,
+              question: "(شعور داخلي تنفعل به النفس لاستعظام أمر نادر أو لا مثيل له) هو أسلوب الاستفهام. هل هذه العبارة صحيحة؟",
+              options: ["صحيح", "خطأ"],
+              correct: 1,
+              explanation: "خطأ، هذا هو تعريف أسلوب التعجب وليس الاستفهام."
+            },
+            {
+              id: 24,
+              question: "العددان (واحد واثنان) يطابقان المعدود تذكيراً وتأنيثاً. هل هذه العبارة صحيحة؟",
+              options: ["صحيح", "خطأ"],
+              correct: 0,
+              explanation: "صحيح، الأعداد 1 و2 تطابق المعدود في التذكير والتأنيث."
+            },
+            {
+              id: 25,
+              question: "تصح زيادة الألف بعد الواو في الكلمات: ذهبوا، بدعوا، مسلموا. أي الكلمات تصح فيها زيادة الألف؟",
+              options: ["ذهبوا", "بدعوا", "مسلموا", "نرجوا"],
+              correct: 0,
+              explanation: "تزاد الألف بعد واو الجماعة في الأفعال: ذهبوا."
+            },
+            {
+              id: 26,
+              question: "عند تنوين الكلمات (فناء - حديقة - حلم) تنوين فتح، تكتب:",
+              options: ["فناءً - حديقةً - حلماً", "فناءً - حديقةً - حلمً", "فناءً - حديقةً - حلماً", "فناءً - حديقةً - حلماً"],
+              correct: 0,
+              explanation: "فناءً بالهمزة على السطر، حديقةً بالتاء المربوطة، حلماً بالألف."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "english",
+      name: "اللغة الإنجليزية",
+      icon: "🌍",
+      color: "#3498db",
+      stages: [
+        {
+          id: "english_s1",
+          name: "Stage 1: Reading Comprehension",
+          questions: [
+            {
+              id: 1,
+              question: "If you don't shake your cup, your Saudi host will keep pouring you coffee.",
+              options: ["True", "False"],
+              correct: 0,
+              explanation: "True. The text says the host keeps pouring until you shake the cup."
+            },
+            {
+              id: 2,
+              question: "There is a Peruvian facial expression which tells someone they owe money.",
+              options: ["True", "False"],
+              correct: 0,
+              explanation: "True. Raising eyebrows in Peru means 'money' or 'pay me'."
+            },
+            {
+              id: 3,
+              question: "Tapping an Indian person on the shoulder will offend him/her.",
+              options: ["True", "False"],
+              correct: 1,
+              explanation: "False. Tapping on the shoulder is the way to apologize in India."
+            },
+            {
+              id: 4,
+              question: "In China, it's a nice gesture to offer ________ to the host.",
+              options: ["money", "a gift", "flowers", "food"],
+              correct: 1,
+              explanation: "The text says it is polite to offer a gift to a Chinese host."
+            },
+            {
+              id: 5,
+              question: "The ____________ greet one another with a slight nod and a bow.",
+              options: ["Peruvian", "Chinese", "Indians", "Saudis"],
+              correct: 1,
+              explanation: "Greeting in China is usually a slight nod and a bow."
+            },
+            {
+              id: 6,
+              question: "What does raising your eyebrows mean in most countries?",
+              options: ["It's a sign of surprise", "It's a sign of respect", "It's a sign of victory", "It's a sign of happiness"],
+              correct: 0,
+              explanation: "Raising your eyebrows in most countries is a sign of surprise."
+            },
+            {
+              id: 7,
+              question: "In line 3, the word (trouble) means:",
+              options: ["advantage", "peace", "solution", "problem"],
+              correct: 3,
+              explanation: "Trouble means problem or difficulty."
+            },
+            {
+              id: 8,
+              question: "The opposite of the word (polite) is:",
+              options: ["respectful", "rude", "attentive", "interested"],
+              correct: 1,
+              explanation: "The opposite of polite is rude."
+            }
+          ]
+        },
+        {
+          id: "english_s2",
+          name: "Stage 2: Grammar",
+          questions: [
+            {
+              id: 9,
+              question: "A good student is someone __________ studies well.",
+              options: ["when", "who", "which", "where"],
+              correct: 1,
+              explanation: "We use 'who' for people in relative clauses."
+            },
+            {
+              id: 10,
+              question: "While Ali was eating, his phone ___________.",
+              options: ["was ringing", "ring", "rings", "had rung"],
+              correct: 0,
+              explanation: "Past continuous is used for an action happening at the same time as another."
+            },
+            {
+              id: 11,
+              question: "____________ football is my favourite sport.",
+              options: ["Play", "Playing", "Played", "Plays"],
+              correct: 1,
+              explanation: "A gerund (verb+ing) is used as the subject of a sentence."
+            },
+            {
+              id: 12,
+              question: "You haven't cleaned your room ______________ .",
+              options: ["yet", "already", "just", "never"],
+              correct: 0,
+              explanation: "'Yet' is used in negative sentences with present perfect."
+            },
+            {
+              id: 13,
+              question: "My friend enjoys ________ TV.",
+              options: ["watch", "watches", "watched", "watching"],
+              correct: 3,
+              explanation: "After 'enjoy', we use the gerund (verb+ing)."
+            },
+            {
+              id: 14,
+              question: "Please, turn ______________ the TV, I want to sleep.",
+              options: ["down", "about", "in", "out"],
+              correct: 3,
+              explanation: "'Turn out' means to switch off."
+            },
+            {
+              id: 15,
+              question: "When the traffic light is red, you ______________ stop your car.",
+              options: ["may", "must", "might", "would"],
+              correct: 1,
+              explanation: "'Must' expresses obligation or necessity."
+            },
+            {
+              id: 16,
+              question: "If she studies math well, she will ___________ the exam.",
+              options: ["passing", "have passed", "passes", "pass"],
+              correct: 3,
+              explanation: "First conditional: If + present simple, will + base verb."
+            },
+            {
+              id: 17,
+              question: "Khalid isn't famous. He wishes he __________ famous.",
+              options: ["is", "had", "was", "has"],
+              correct: 2,
+              explanation: "After 'wish' for present situations, we use past simple."
+            },
+            {
+              id: 18,
+              question: "I was looking at the store window when the thief ________ my cellphone.",
+              options: ["grab", "grabbed", "was grabbing", "grabs"],
+              correct: 1,
+              explanation: "Past simple is used for a sudden action interrupting a continuous one."
+            }
+          ]
+        },
+        {
+          id: "english_s3",
+          name: "Stage 3: Vocabulary & Spelling",
+          questions: [
+            {
+              id: 19,
+              question: "Sultan is ____________ student. He likes sports.",
+              options: ["an athletic", "a lazy", "a funny", "an outgoing"],
+              correct: 0,
+              explanation: "Athletic describes someone who likes and is good at sports."
+            },
+            {
+              id: 20,
+              question: "I am very _______________ about the future.",
+              options: ["generous", "funny", "optimistic", "reliable"],
+              correct: 2,
+              explanation: "Optimistic means having a positive view about the future."
+            },
+            {
+              id: 21,
+              question: "An electric _______________ makes cleaning my teeth much easier.",
+              options: ["toothbrush", "hair dryer", "shampoo", "toothpaste"],
+              correct: 0,
+              explanation: "An electric toothbrush is used for cleaning teeth."
+            },
+            {
+              id: 22,
+              question: "He uses _______________ to cut paper.",
+              options: ["nails", "mirrors", "hammers", "scissors"],
+              correct: 3,
+              explanation: "Scissors are used to cut paper."
+            },
+            {
+              id: 23,
+              question: "My brother _____________ from university last year.",
+              options: ["painted", "graduated", "calculated", "pretended"],
+              correct: 1,
+              explanation: "Graduated means to complete a university degree."
+            },
+            {
+              id: 24,
+              question: "I'm sorry I'm late, the road was really __________.",
+              options: ["similar", "punctual", "crowded", "customary"],
+              correct: 2,
+              explanation: "Crowded means full of people or traffic."
+            },
+            {
+              id: 25,
+              question: "Japanese people usually eat sushi using __________ .",
+              options: ["chopsticks", "spoons", "knives", "plates"],
+              correct: 0,
+              explanation: "Chopsticks are traditional Japanese eating utensils."
+            },
+            {
+              id: 26,
+              question: "I have a ticket from Saudi air___ines. (Choose the missing letter)",
+              options: ["s", "n", "l", "m"],
+              correct: 2,
+              explanation: "Airlines - the missing letter is 'l'."
+            },
+            {
+              id: 27,
+              question: "We need to save the envi___onment. (Choose the missing letter)",
+              options: ["s", "a", "o", "r"],
+              correct: 3,
+              explanation: "Environment - the missing letter is 'r'."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "math",
+      name: "الرياضيات",
+      icon: "📐",
+      color: "#9b59b6",
+      stages: [
+        {
+          id: "math_s1",
+          name: "المرحلة الأولى: الدوال التربيعية - الرسوم البيانية",
+          questions: [
+            {
+              id: 1,
+              question: "مجال الدالة التربيعية هو مجموعة الأعداد:",
+              options: ["الكلية", "الصحيحة", "النسبية", "الحقيقية"],
+              correct: 3,
+              explanation: "مجال الدالة التربيعية هو مجموعة الأعداد الحقيقية جميعها."
+            },
+            {
+              id: 2,
+              question: "إذا كانت قيمة المميز تساوي صفراً، فإن عدد الحلول الحقيقية للمعادلة التربيعية:",
+              options: ["حل واحد", "حلان", "لا يوجد حل حقيقي", "عدد لا نهائي"],
+              correct: 0,
+              explanation: "إذا كان المميز = 0، فإن للمعادلة حلاً حقيقياً واحداً مكرراً."
+            },
+            {
+              id: 3,
+              question: "إذا كانت قيمة المميز موجباً، فإن عدد الحلول الحقيقية للمعادلة التربيعية:",
+              options: ["حل واحد", "حلان حقيقيان", "لا يوجد حل حقيقي", "عدد لا نهائي"],
+              correct: 1,
+              explanation: "إذا كان المميز > 0، فإن للمعادلة حلين حقيقيين مختلفين."
+            },
+            {
+              id: 4,
+              question: "التمثيل البياني للدالة د(س) = -3س² + 5س + 7 هو:",
+              options: ["قطع مكافئ مفتوح لأعلى له قيمة عظمى", "قطع مكافئ مفتوح لأسفل له قيمة صغرى", "قطع مكافئ مفتوح لأسفل له قيمة عظمى", "قطع مكافئ مفتوح لأعلى له قيمة صغرى"],
+              correct: 2,
+              explanation: "معامل س² سالب (-3) يعني القطع المكافئ مفتوح لأسفل وله قيمة عظمى."
+            },
+            {
+              id: 5,
+              question: "إذا كان د(س) = -5س² - 10س - 6، فإن معادلة محور التماثل في:",
+              options: ["س = -1", "س = 1", "س = 2", "س = -3"],
+              correct: 0,
+              explanation: "محور التماثل: س = -ب/(2أ) = -(-10)/(2×-5) = 10/(-10) = -1"
+            },
+            {
+              id: 6,
+              question: "قيمة المميز للمعادلة: 3س² + 5س + 0 = 0 هي:",
+              options: ["121", "120", "60", "1"],
+              correct: 0,
+              explanation: "المميز = ب² - 4أجـ = 25 - 4(3)(0) = 25 - 0 = 25... للمعادلة 3س²+11س+15=0: المميز = 121-180 = -59... للمعادلة 2س²+11س+15=0: المميز = 121-120 = 1"
+            },
+            {
+              id: 7,
+              question: "إذا كان طول مستطيل يساوي ثلاثة أمثال عرضه ومساحته 75 سم²، فما عرض المستطيل؟",
+              options: ["5 سم", "25 سم", "15 سم", "9 سم"],
+              correct: 0,
+              explanation: "المساحة = ط × ع = 3ع × ع = 3ع² = 75، إذن ع² = 25، ع = 5 سم"
+            },
+            {
+              id: 8,
+              question: "إذا كان حاصل ضرب عددين صحيحين موجبين زوجيين متتاليين 34²، فإن حاصل جمعهما يساوي:",
+              options: ["26", "30", "34", "34"],
+              correct: 1,
+              explanation: "العددان هما 32 و34، حاصل جمعهما = 66... أو العددان 30 و32 حاصل جمعهما = 62"
+            }
+          ]
+        },
+        {
+          id: "math_s2",
+          name: "المرحلة الثانية: خصائص الدوال التربيعية",
+          questions: [
+            {
+              id: 9,
+              question: "إذا كان المدى = {ص | ص ≤ 9} فإن القيمة العظمى للدالة:",
+              options: ["5", "9", "25", "50"],
+              correct: 1,
+              explanation: "القيمة العظمى للدالة هي 9 وهي الحد الأعلى للمدى."
+            },
+            {
+              id: 10,
+              question: "إذا كان المدى = {ص | ص ≤ 6} فإن القيمة الصغرى:",
+              options: ["لا توجد قيمة صغرى", "6", "-2", "9"],
+              correct: 0,
+              explanation: "إذا كان المدى ص ≤ 6 فالدالة مفتوحة لأسفل وليس لها قيمة صغرى."
+            },
+            {
+              id: 11,
+              question: "المقطع الصادي للدالة: ص = س² + 6س + 5 هو:",
+              options: ["5", "6", "3", "-3"],
+              correct: 0,
+              explanation: "المقطع الصادي يُحسب بتعويض س = 0: ص = 0 + 0 + 5 = 5"
+            },
+            {
+              id: 12,
+              question: "معادلة محور التماثل للدالة: ص = س² + 3س + 4 هو:",
+              options: ["س = -1", "س = 1", "س = 2", "س = 3"],
+              correct: 0,
+              explanation: "محور التماثل: س = -ب/(2أ) = -3/(2×1) = -3/2 ≈ -1.5"
+            },
+            {
+              id: 13,
+              question: "التمثيل البياني للدالة د(س) = -2س² + 4س + 1 يكون مفتوحاً:",
+              options: ["لأعلى له قيمة صغرى", "لأسفل له قيمة صغرى", "لأعلى له قيمة عظمى", "لأسفل له قيمة عظمى"],
+              correct: 3,
+              explanation: "معامل س² سالب (-2) يعني القطع مفتوح لأسفل وله قيمة عظمى."
+            },
+            {
+              id: 14,
+              question: "قيمة جـ التي تجعل ثلاثية الحدود: س² + 8س + جـ مربعاً كاملاً تساوي:",
+              options: ["4", "8", "16", "64"],
+              correct: 2,
+              explanation: "جـ = (ب/2)² = (8/2)² = 4² = 16"
+            },
+            {
+              id: 15,
+              question: "قيمة جـ التي تجعل ثلاثية الحدود: س² + 10س + جـ مربعاً كاملاً تساوي:",
+              options: ["5", "10", "25", "50"],
+              correct: 2,
+              explanation: "جـ = (ب/2)² = (10/2)² = 5² = 25"
+            }
+          ]
+        },
+        {
+          id: "math_s3",
+          name: "المرحلة الثالثة: حل المعادلات التربيعية",
+          questions: [
+            {
+              id: 16,
+              question: "الصح والخطأ: التمثيل البياني للدالة د(س) = -4س² + 4س - 1 يكون مفتوحاً إلى أسفل.",
+              options: ["صحيح", "خطأ"],
+              correct: 0,
+              explanation: "صحيح، لأن معامل س² سالب (-4)."
+            },
+            {
+              id: 17,
+              question: "الصح والخطأ: للدالة ص = س² - 4س + 6 قيمة عظمى.",
+              options: ["صحيح", "خطأ"],
+              correct: 1,
+              explanation: "خطأ، معامل س² موجب (+1) يعني الدالة لها قيمة صغرى وليس عظمى."
+            },
+            {
+              id: 18,
+              question: "الصح والخطأ: قيمة المميز للمعادلة 5س² + 5س + 0 = 0 تساوي صفراً.",
+              options: ["صحيح", "خطأ"],
+              correct: 0,
+              explanation: "المميز = 25 - 4(5)(0) = 25 - 0 = 25... للمعادلة 5س²+5س+0: المميز = 25 ≠ 0"
+            },
+            {
+              id: 19,
+              question: "الصح والخطأ: الدوال التربيعية في دوال خطية.",
+              options: ["صحيح", "خطأ"],
+              correct: 1,
+              explanation: "خطأ، الدوال التربيعية ليست خطية، فالدوال الخطية من الدرجة الأولى."
+            },
+            {
+              id: 20,
+              question: "الصح والخطأ: المجال في الدالة التربيعية هو جميع الأعداد الحقيقية.",
+              options: ["صحيح", "خطأ"],
+              correct: 0,
+              explanation: "صحيح، مجال الدالة التربيعية هو مجموعة الأعداد الحقيقية."
+            },
+            {
+              id: 21,
+              question: "قيمة جـ التي تجعل ثلاثية الحدود: س² + 8س + جـ مربعاً كاملاً هي:",
+              options: ["4", "8", "16", "64"],
+              correct: 2,
+              explanation: "جـ = (8/2)² = 16"
+            },
+            {
+              id: 22,
+              question: "المقطع الصادي للدالة: ص = 3س² + 4س + 5 هو:",
+              options: ["3", "4", "5", "-5"],
+              correct: 2,
+              explanation: "المقطع الصادي = قيمة الثابت جـ = 5"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+// ===== حالة التطبيق =====
+let currentSubject = null;
+let currentStage = null;
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+let answered = false;
+
+// ===== الحروف للخيارات =====
+const letters = ['أ', 'ب', 'ج', 'د', 'هـ'];
+const lettersEn = ['A', 'B', 'C', 'D', 'E'];
+
+// ===== التنقل بين الشاشات =====
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ===== اختيار مادة =====
+function selectSubject(subjectId) {
+  currentSubject = quizData.subjects.find(s => s.id === subjectId);
+  if (!currentSubject) return;
+
+  // تحديث عنوان شاشة المراحل
+  const titleEl = document.getElementById('stages-subject-title');
+  titleEl.innerHTML = `${currentSubject.icon} ${currentSubject.name}`;
+
+  // بناء قائمة المراحل
+  const listEl = document.getElementById('stages-list');
+  listEl.className = `stages-list subject-${subjectId}`;
+  listEl.innerHTML = '';
+
+  currentSubject.stages.forEach((stage, idx) => {
+    const card = document.createElement('div');
+    card.className = 'stage-card';
+    card.onclick = () => startStage(stage);
+    card.innerHTML = `
+      <div class="stage-number">${idx + 1}</div>
+      <div class="stage-info">
+        <div class="stage-name">${stage.name}</div>
+        <div class="stage-count">${stage.questions.length} سؤال</div>
+      </div>
+      <div class="stage-arrow">←</div>
+    `;
+    listEl.appendChild(card);
+  });
+
+  showScreen('screen-stages');
+}
+
+// ===== بدء مرحلة =====
+function startStage(stage) {
+  currentStage = stage;
+  currentQuestions = [...stage.questions];
+  currentQuestionIndex = 0;
+  score = 0;
+
+  // تحديث معلومات المسابقة
+  document.getElementById('quiz-subject-name').textContent = currentSubject.icon + ' ' + currentSubject.name;
+  document.getElementById('quiz-stage-name').textContent = stage.name;
+
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+// ===== عرض السؤال =====
+function renderQuestion() {
+  answered = false;
+  const q = currentQuestions[currentQuestionIndex];
+  const total = currentQuestions.length;
+
+  // تحديث العداد وشريط التقدم
+  document.getElementById('quiz-counter').textContent = `${currentQuestionIndex + 1} / ${total}`;
+  const pct = ((currentQuestionIndex) / total) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  // رقم السؤال
+  document.getElementById('question-number').textContent = `السؤال ${currentQuestionIndex + 1}`;
+
+  // نص السؤال
+  document.getElementById('question-text').textContent = q.question;
+
+  // الخيارات
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+
+  const isEnglish = currentSubject.id === 'english';
+  const useLetters = isEnglish ? lettersEn : letters;
+
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.onclick = () => selectAnswer(idx, btn);
+    btn.innerHTML = `
+      <span class="option-letter">${useLetters[idx]}</span>
+      <span class="option-text">${opt}</span>
+    `;
+    if (isEnglish) {
+      btn.style.direction = 'ltr';
+      btn.style.textAlign = 'left';
+    }
+    container.appendChild(btn);
+  });
+
+  // إخفاء الشرح وزر التالي
+  document.getElementById('explanation-box').classList.add('hidden');
+  document.getElementById('next-btn').classList.add('hidden');
+}
+
+// ===== اختيار إجابة =====
+function selectAnswer(selectedIdx, clickedBtn) {
+  if (answered) return;
+  answered = true;
+
+  const q = currentQuestions[currentQuestionIndex];
+  const allBtns = document.querySelectorAll('.option-btn');
+
+  // تعطيل جميع الأزرار
+  allBtns.forEach(btn => btn.disabled = true);
+
+  if (selectedIdx === q.correct) {
+    // إجابة صحيحة
+    score++;
+    clickedBtn.classList.add('correct');
+    showEffect('correct');
+  } else {
+    // إجابة خاطئة
+    clickedBtn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    showEffect('wrong');
+  }
+
+  // إظهار الشرح
+  document.getElementById('explanation-text').textContent = q.explanation;
+  document.getElementById('explanation-box').classList.remove('hidden');
+
+  // إظهار زر التالي
+  const nextBtn = document.getElementById('next-btn');
+  const isLast = currentQuestionIndex === currentQuestions.length - 1;
+  nextBtn.textContent = isLast ? '🏁 عرض النتيجة' : 'السؤال التالي ←';
+  nextBtn.classList.remove('hidden');
+}
+
+// ===== السؤال التالي =====
+function nextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < currentQuestions.length) {
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+// ===== عرض النتيجة =====
+function showResult() {
+  const total = currentQuestions.length;
+  const pct = Math.round((score / total) * 100);
+
+  // تحديث شريط التقدم إلى 100%
+  document.getElementById('progress-fill').style.width = '100%';
+
+  let emoji, title, message;
+
+  if (pct === 100) {
+    emoji = '🏆'; title = 'ممتاز جداً!';
+    message = 'أحسنت! حصلت على العلامة الكاملة. أنت نجم المسابقة!';
+  } else if (pct >= 80) {
+    emoji = '🌟'; title = 'رائع!';
+    message = 'أداء ممتاز! أنت على المسار الصحيح.';
+  } else if (pct >= 60) {
+    emoji = '👍'; title = 'جيد!';
+    message = 'أداء جيد! يمكنك تحسين نتيجتك بمزيد من المراجعة.';
+  } else if (pct >= 40) {
+    emoji = '📚'; title = 'تحتاج مراجعة';
+    message = 'راجع المادة مرة أخرى وحاول مجدداً!';
+  } else {
+    emoji = '💪'; title = 'لا تستسلم!';
+    message = 'المحاولة مفتاح النجاح. راجع وحاول مرة أخرى!';
+  }
+
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-score').innerHTML = `
+    <span style="color: #f5a623;">${score}</span>
+    <span style="font-size: 32px; color: rgba(255,255,255,0.5);">/ ${total}</span>
+  `;
+  document.getElementById('result-message').textContent = message;
+
+  showScreen('screen-result');
+}
+
+// ===== مؤثر الإجابة =====
+function showEffect(type) {
+  const el = document.getElementById(type === 'correct' ? 'correct-effect' : 'wrong-effect');
+  el.classList.remove('hidden');
+  setTimeout(() => el.classList.add('hidden'), 900);
+}
+
+// ===== إعادة المحاولة =====
+function retryStage() {
+  if (currentStage) startStage(currentStage);
+}
+
+// ===== الرجوع للقائمة الرئيسية =====
+function goHome() {
+  showScreen('screen-home');
+}
+
+// ===== الرجوع لقائمة المراحل =====
+function goStages() {
+  if (currentSubject) selectSubject(currentSubject.id);
+}
+</script>
+
 </body>
 </html>
