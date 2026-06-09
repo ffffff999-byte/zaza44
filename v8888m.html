@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاختبارات المركزية — الصف الثالث الابتدائي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal',sans-serif;background:#0d1f3c;color:#f0e8d0;direction:rtl;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px}
+:root{--navy:#0a1628;--gold:#c9a227;--gold2:#e8c84a;--teal:#0f7c6e;--teal2:#1ab89f;--red:#c0392b;--bg:#0d1f3c;--card:#112244;--card2:#16305a;--text:#f0e8d0;--muted:#8fa8cc;--border:#1e3a6e}
+#app{width:100%;max-width:500px;background:var(--bg);border-radius:14px;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.5)}
+.header{background:linear-gradient(135deg,#0a1628 0%,#1a3a6e 100%);padding:20px;border-bottom:2px solid var(--gold);text-align:center}
+.header h1{font-size:22px;font-weight:900;color:var(--gold2);letter-spacing:1px}
+.header p{font-size:12px;color:var(--muted);margin-top:4px}
+.screen{display:none;padding:16px}.screen.active{display:block}
+.stages-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.stages-header p{font-size:12px;color:var(--muted)}
+.stage-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stage-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;cursor:pointer;transition:all .2s;text-align:center;position:relative;overflow:hidden}
+.stage-card:hover{border-color:var(--gold);background:var(--card2);transform:translateY(-2px)}
+.stage-card .icon{font-size:26px;margin-bottom:5px}
+.stage-card h3{font-size:13px;font-weight:700;color:var(--gold2)}
+.stage-card p{font-size:10px;color:var(--muted);margin-top:3px}
+.stage-card .count{background:var(--gold);color:#0a1628;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;display:inline-block;margin-top:5px}
+.stage-card.done::after{content:'✓';position:absolute;top:7px;left:7px;background:var(--teal);color:#fff;width:18px;height:18px;border-radius:50%;font-size:10px;line-height:18px;text-align:center}
+.cat-label{font-size:9px;padding:2px 6px;border-radius:10px;font-weight:700;margin-top:4px;display:inline-block}
+.cat-math{background:#0f3b5e;color:#5bc8f5}.cat-arabic{background:#3b1f5e;color:#c57fff}.cat-f2{background:#1a3b1a;color:#6fff88}
+.q-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.q-stage-title{font-size:12px;font-weight:700;color:var(--gold2)}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:12px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:2px;transition:width .4s}
+.question-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+.q-num{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:5px}
+.q-text{font-size:14px;font-weight:500;line-height:1.7;color:var(--text)}
+.options{display:grid;gap:8px;margin-top:10px}
+.opt-btn{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;text-align:right;font-size:13px;color:var(--text);transition:all .2s;font-family:'Tajawal',sans-serif;width:100%}
+.opt-btn:hover:not(:disabled){border-color:var(--gold);background:#1e3a6e}
+.opt-btn.correct{background:#0d3b26;border-color:var(--teal2);color:#6fffbe}
+.opt-btn.wrong{background:#3b0d0d;border-color:var(--red);color:#ff8888}
+.opt-btn:disabled{cursor:default}
+.feedback{text-align:center;padding:10px;border-radius:8px;font-size:14px;font-weight:700;margin-top:8px}
+.feedback.correct{background:#0d3b26;color:#6fffbe}.feedback.wrong{background:#3b0d0d;color:#ff8888}
+.next-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--teal),var(--teal2));border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'Tajawal',sans-serif}
+.result-box{background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:20px;text-align:center}
+.result-score{font-size:52px;font-weight:900;color:var(--gold2);line-height:1}
+.result-total{font-size:15px;color:var(--muted);margin-top:4px}
+.result-msg{font-size:15px;font-weight:700;margin-top:12px;padding:8px 16px;border-radius:8px;display:inline-block}
+.stars{font-size:28px;margin:8px 0}
+.action-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.action-btn{padding:10px;border-radius:8px;border:none;font-size:13px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif}
+.btn-retry{background:var(--gold);color:#0a1628}.btn-back{background:var(--card2);border:1px solid var(--border);color:var(--text)}
+.settings-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:10px}
+.settings-panel h3{font-size:14px;font-weight:700;color:var(--gold2);margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:8px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}.setting-row:last-child{border:none}
+.setting-label{font-size:13px;color:var(--text)}
+.toggle{width:40px;height:22px;background:var(--border);border-radius:11px;position:relative;cursor:pointer;transition:background .2s}
+.toggle.on{background:var(--teal)}.toggle::after{content:'';width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;transition:right .2s}
+.toggle.on::after{right:20px}
+.footer-credit{text-align:center;padding:12px;border-top:1px solid var(--border);margin-top:4px;font-size:11px;color:var(--muted)}
+.footer-credit a{color:var(--gold);text-decoration:none}.footer-credit strong{color:var(--gold2)}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#0a1628;background:var(--gold);border:none;border-radius:8px;cursor:pointer;padding:8px 16px;margin-bottom:10px;font-family:'Tajawal',sans-serif;transition:background .2s}
+.back-link:hover{background:var(--gold2)}
+.timer{font-size:13px;color:var(--gold2);font-weight:700;background:var(--card2);padding:4px 10px;border-radius:20px;border:1px solid var(--gold)}
+.score-mini{display:flex;gap:12px;font-size:12px;color:var(--muted)}
+.credit-box{margin-top:10px;padding:10px;background:var(--card);border-radius:8px;border:1px solid var(--border);text-align:center;font-size:11px;color:var(--muted);line-height:1.8}
+.credit-box a{color:var(--teal2);text-decoration:none}.credit-box strong{color:var(--gold2)}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="header">
+  <h1>🎯 الاختبارات المركزية</h1>
+  <p>الصف الثالث الابتدائي — الفصل الثاني والثالث</p>
+</div>
+
+<div id="home-screen" class="screen active">
+  <div class="stages-header">
+    <p>اختر مرحلة للبدء:</p>
+  </div>
+  <div class="stage-grid" id="stage-grid"></div>
+  <div style="margin-top:12px;text-align:center">
+    <button onclick="showSettings()" style="background:var(--card2);border:1px solid var(--border);color:var(--muted);font-size:12px;padding:7px 16px;border-radius:8px;cursor:pointer;font-family:'Tajawal',sans-serif">⚙️ الإعدادات</button>
+  </div>
+  <div id="settings-area" style="display:none">
+    <div class="settings-panel">
+      <h3>⚙️ إعدادات المسابقة</h3>
+      <div class="setting-row"><span class="setting-label">⏱ موقت السؤال (20 ثانية)</span><div class="toggle" id="timer-toggle" onclick="toggleSetting(this)"></div></div>
+      <div class="setting-row"><span class="setting-label">🔀 ترتيب عشوائي للأسئلة</span><div class="toggle" id="shuffle-toggle" onclick="toggleSetting(this)"></div></div>
+    </div>
+    <div class="credit-box">
+      <strong>تصميم د/فواز</strong><br>
+      تفضل للمزيد هنا: <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a><br>
+      والشكر موصول لجامعها أخونا المبدع <strong>عبدالرحمن الزهراني</strong>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <strong>تصميم د/فواز</strong> &nbsp;|&nbsp; <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">تفضل للمزيد 📲</a><br>
+    والشكر موصول لجامعها أخونا المبدع <strong>عبدالرحمن الزهراني</strong>
+  </div>
+</div>
+
+<div id="quiz-screen" class="screen">
+  <button class="back-link" onclick="backToHome()">🏠 العودة للرئيسية</button>
+  <div class="q-header">
+    <span class="q-stage-title" id="q-stage-name"></span>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="score-mini"><span id="correct-count">0</span>✅ <span id="wrong-count">0</span>❌</div>
+      <span class="timer" id="timer-display" style="display:none">⏱<span id="timer-val">20</span></span>
+      <span style="font-size:12px;color:var(--muted)" id="q-progress">1/10</span>
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:10%"></div></div>
+  <div class="question-box">
+    <div class="q-num" id="q-num">السؤال 1</div>
+    <div class="q-text" id="q-text"></div>
+  </div>
+  <div class="options" id="options-container"></div>
+  <div class="feedback" id="feedback" style="display:none"></div>
+  <button class="next-btn" id="next-btn" style="display:none" onclick="nextQuestion()">التالي ←</button>
+</div>
+
+<div id="result-screen" class="screen">
+  <div class="result-box">
+    <div style="font-size:13px;color:var(--muted);margin-bottom:8px" id="result-stage"></div>
+    <div class="result-score" id="result-score">0</div>
+    <div class="result-total" id="result-total">من 0 سؤال</div>
+    <div class="stars" id="result-stars">⭐⭐⭐</div>
+    <div class="result-msg" id="result-msg"></div>
+    <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:13px">
+      <span>✅ صح: <strong id="r-correct" style="color:#6fffbe">0</strong></span>
+      <span>❌ خطأ: <strong id="r-wrong" style="color:#ff8888">0</strong></span>
+    </div>
+  </div>
+  <div class="action-btns">
+    <button class="action-btn btn-retry" onclick="retryStage()">🔄 إعادة المحاولة</button>
+    <button class="action-btn btn-back" onclick="backToHome()">🏠 الرئيسية</button>
+  </div>
+  <div class="credit-box" style="margin-top:12px">
+    <strong>تصميم د/فواز</strong><br>
+    <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank">https://t.me/TAqhjT3MFVE1Yzk0</a><br>
+    والشكر موصول لجامعها أخونا المبدع <strong>عبدالرحمن الزهراني</strong>
+  </div>
+</div>
+</div>
+
+<script>
+const STAGES=[
+{id:1,title:'ف3 — رياضيات',sub:'الطائف',icon:'📐',cat:'math',
+questions:[
+{q:'أفضل تقدير للمسافة التي أقطعها بالقطار:',opts:['500 ملمترات','500 سنتيمترات','500 أمتار','500 كيلومترات'],ans:3},
+{q:'التقدير الأنسب لكتلة سيارة:',opts:['900 ملجرام','900 جرام','900 كيلوجرام','900 ملمتر'],ans:2},
+{q:'المجسم الذي ليس له أوجه ولا أحرف ولا رؤوس:',opts:['الأسطوانة','الكرة','المكعب','الهرم'],ans:1},
+{q:'اسم الشكل المستوي السداسي (6 أضلاع):',opts:['رباعي','خماسي','سداسي','سباعي'],ans:2},
+{q:'الوحدة الأنسب لقياس طول النملة:',opts:['الملمتر','السنتيمتر','المتر','الكيلومتر'],ans:0},
+{q:'10 كرات، واحدة فقط زرقاء. احتمال اختيار كرة زرقاء:',opts:['مستحيل','أقل احتمالاً','أكثر احتمالاً','مؤكد'],ans:1},
+{q:'سأل سعود أصدقاءه الخمسة. ما عدد أعمدة التمثيل؟',opts:['2','3','4','5'],ans:3},
+{q:'التقدير الأنسب لسعة حوض الاستحمام:',opts:['40 مللتر','40 ملمتر','40 لتر','40 متر'],ans:2},
+{q:'كم عدد الطلاب يفضلون كرة القدم؟ (من الرسم)',opts:['5','10','15','20'],ans:1},
+{q:'الدائرة لا تصنف بأنها مضلع:',opts:['صحيح ✓','خطأ ✗'],ans:0},
+]},
+{id:2,title:'ف3 — رياضيات',sub:'جازان + نموذج مقترح',icon:'🔢',cat:'math',
+questions:[
+{q:'ما الوحدة الأنسب لقياس ارتفاع سارية العلم؟',opts:['ملم','سم','م','كلم'],ans:2},
+{q:'ما التقدير الأنسب لكتلة سيارة؟',opts:['10 جم','900 جم','10 كجم','900 كجم'],ans:3},
+{q:'الشكل المستوي الذي له 7 أضلاع و7 زوايا:',opts:['خماسي','سداسي','سباعي','ثماني'],ans:2},
+{q:'المجسم الذي ليس له أوجه ولا أحرف ولا رؤوس:',opts:['الكرة','الأسطوانة','المخروط','الهرم الرباعي'],ans:0},
+{q:'ما التقدير الأنسب للمسافة التي يقطعها القطار؟',opts:['500 ملم','500 سم','500 م','500 كلم'],ans:3},
+{q:'ما التقدير الأنسب لسعة ملعقة صغيرة؟',opts:['5 مل','50 مل','2 ل','4 ل'],ans:0},
+{q:'أي مما يلي كتلته 5 كجم؟',opts:['موزة','بطيخة','سيارة','سفينة'],ans:1},
+{q:'لدى فواز 3 قمصان وبنطالان. كم تشكيلة ممكنة؟',opts:['2','4','6','8'],ans:2},
+{q:'رتب الكسور تصاعدياً: 1/8 و 7/8 و 4/8',opts:['1/8 ، 4/8 ، 7/8','7/8 ، 4/8 ، 1/8','4/8 ، 1/8 ، 7/8','1/8 ، 7/8 ، 4/8'],ans:0},
+{q:'الكسر المكافئ لـ 1/5:',opts:['1/10','2/10','2/5','2/12'],ans:1},
+]},
+{id:3,title:'ف3 — رياضيات',sub:'تبوك',icon:'🧮',cat:'math',
+questions:[
+{q:'الوحدة الأنسب لقياس المسافة بين مدينتين:',opts:['اللتر','السنتمتر','المتر','الكيلومتر'],ans:3},
+{q:'التقدير الأنسب لسعة ملعقة صغيرة:',opts:['2 مل','2 ل','200 مل','200 ل'],ans:0},
+{q:'التقدير الأنسب لطول النافذة:',opts:['2 ملم','2 سم','2 م','2 كلم'],ans:2},
+{q:'في الكيلوجرام 1000 جرام. كم جراماً في 7 كيلوجرامات؟',opts:['70 جراماً','700 جرام','1000 جرام','7000 جرام'],ans:3},
+{q:'مجسم له وجهان دائريان:',opts:['مكعب','أسطوانة','متوازي مستطيلات','كرة'],ans:1},
+{q:'لعبة مكعبات 1-6. احتمال ظهور وجه مكتوب عليه 9:',opts:['أكيد','أكثر احتمالاً','أقل احتمالاً','مستحيل'],ans:3},
+{q:'الكسر الذي يمثل القطعة البيضاء (1 من 4):',opts:['1/2','1/4','3/4','2/4'],ans:1},
+{q:'مع ليلى 3 قطع زرقاء و4 حمراء و3 صفراء. الكسر الذي يمثل الحمراء:',opts:['5/10','4/8','4/10','2/8'],ans:2},
+{q:'محيط الشكل 24م. أضلاعه 10م و4م و4م و؟:',opts:['4م','5م','6م','7م'],ans:2},
+{q:'صف الشكل السداسي:',opts:['رباعي له 4 أضلاع','مثلث له 3 أضلاع','خماسي له 5 أضلاع','سداسي له 6 أضلاع'],ans:3},
+]},
+{id:4,title:'ف3 — لغتي',sub:'جدة — اختيار من متعدد',icon:'📖',cat:'arabic',
+questions:[
+{q:'حرف المد المناسب لكلمة (العُصفُ...ر):',opts:['ا','يـ','وـ','ى'],ans:2},
+{q:'الكلمة المختومة بتاء مفتوحة في (السلاحف من الكائنات البحرية تعيش من مئة سنة):',opts:['البحرية','الكائنات','مئة','سنة'],ans:1},
+{q:'لتحويل كلمة (يزيد) من فعل إلى علم نقول:',opts:['نحمد الله كثيراً','زاد الله الحامدين','يزيد يحمد الله','زد من حمد الله'],ans:2},
+{q:'الجملة التي تحوي أسلوب الترجي:',opts:['المجتهدون فائزون','إن المجتهد فائز','من يجتهد يفز','لعل المجتهد فائز'],ans:3},
+{q:'لتحويل كلمة (بحر) من نكرة إلى معرفة نقول:',opts:['بحارّ','يُبحر','البحر','بُحيرة'],ans:2},
+{q:'الجملة التي تحوي صيغة أفعل التفضيل:',opts:['الحوت من الأسماك','الحوت أضخم من السردين','الحوت كائن بحري','الحوت كبير وضخم'],ans:1},
+{q:'ما أحسن تقدير الوقت! نوع الأسلوب اللغوي:',opts:['استفهام','ترجي','تعجب','استثناء'],ans:2},
+{q:'اشتهر العلماء بذكائهم. الكلمة بها همزة متوسطة:',opts:['العلماء','بذكائهم','إنجازاتهم','اشتهر'],ans:1},
+{q:'يحرص على نظافة الشاطئ. تحويل (يحرص) إلى أمر:',opts:['تحرصُ','حرصَ','احرص','نحرص'],ans:2},
+{q:'للذهب لمعانٌ. مرادف كلمة (لمعان):',opts:['أحجام','بريق','عجيب','جمال'],ans:1},
+]},
+{id:5,title:'ف3 — لغتي',sub:'تبوك + جازان',icon:'✍️',cat:'arabic',
+questions:[
+{q:'خرجت أسرة خالد إلى:',opts:['المزرعة','نزهة بحرية','الحديقة','المدرسة'],ans:1},
+{q:'مرادف كلمة (مبتهجاً) في النص:',opts:['حزيناً','سعيداً','غاضباً','قلقاً'],ans:1},
+{q:'جمع كلمة (الشاطئ):',opts:['الشواطئ','شاطئان','شاطئين','شطأً'],ans:0},
+{q:'كلمة (هذه) هي:',opts:['اسم موصول','حرف عطف','اسم إشارة','فعل'],ans:2},
+{q:'ضد كلمة (تُغادر):',opts:['تذهب','تبقى','ترحل','تترك'],ans:1},
+{q:'العنوان المناسب للقصة:',opts:['نزهة بريّة','نزهة بحرية','حازم وعائلته','الراعي الكذاب'],ans:1},
+{q:'يقطع النجار الخشب بالمنشار. اسم الآلة:',opts:['يقطع','النجار','الخشب','المنشار'],ans:3},
+{q:'المحيط أكبر من البحر. الكلمة التي تدل على التفضيل:',opts:['المحيط','أكبر','من','البحر'],ans:1},
+{q:'الجملة التي تحوي أسلوب تعجب:',opts:['قدرة الله','أعظم قدرة الله','أن الله هو القادر','ما أعظم قدرة الله!'],ans:3},
+{q:'نوع الأسلوب في (لعل جيل اليوم يعترفون بفضل العلماء):',opts:['استفهام','ترجي','نفي','تفضيل'],ans:1},
+]},
+{id:6,title:'ف2 — رياضيات',sub:'نموذج مقترح (مع الإجابة)',icon:'📊',cat:'f2math',
+questions:[
+{q:'أي مما يلي ليست من خطوات حل المسألة؟',opts:['أحل','أتدرب','أُخطِّط','أفهم'],ans:1},
+{q:'عدد زوايا الشكل الخماسي:',opts:['4 زوايا','5 زوايا','6 زوايا','7 زوايا'],ans:1},
+{q:'الرقم (8) في الكسر 2/8 يُسمى:',opts:['البسط','المكافئ','العدد الأقل','المقام'],ans:3},
+{q:'من وحدات السعة المترية:',opts:['كيلوجرام','المتر','السنتمتر','المللتر'],ans:3},
+{q:'مجسم ليس له أوجه:',opts:['مكعب','هرم','مخروط','كرة'],ans:3},
+{q:'الكسور المرتبة تصاعدياً: 3/6 و5/6 و4/6',opts:['3/6 ، 4/6 ، 5/6','5/6 ، 4/6 ، 3/6','4/6 ، 5/6 ، 3/6','5/6 ، 3/6 ، 4/6'],ans:0},
+{q:'الساعة الرقمية التي تشير إلى الثانية عشر وثلاثة وخمسون دقيقة:',opts:['10:53','12:25','05:12','12:53'],ans:3},
+{q:'حجم المجسم المجاور (مكعبات):',opts:['6 وحدات مكعبة','10 وحدات مكعبة','15 وحدات مكعبة','18 وحدات مكعبة'],ans:3},
+{q:'مسح طريقة لجمع البيانات عن طريق طرح أسئلة:',opts:['صحيح ✓','خطأ ✗'],ans:0},
+{q:'التقدير المناسب لطول أصبع اليد هو 8 ملمتر:',opts:['صحيح ✓','خطأ ✗'],ans:1},
+]},
+{id:7,title:'ف2 — رياضيات',sub:'تبوك',icon:'📐',cat:'f2math',
+questions:[
+{q:'الوحدة الأنسب لقياس المسافة بين مدينتين:',opts:['اللتر','السنتمتر','المتر','الكيلومتر'],ans:3},
+{q:'التقدير الأنسب لسعة ملعقة صغيرة:',opts:['2 مل','2 ل','200 مل','200 ل'],ans:0},
+{q:'الشكل الخماسي له:',opts:['3 أضلاع','4 أضلاع','5 أضلاع','6 أضلاع'],ans:2},
+{q:'التقدير الأنسب لطول النافذة:',opts:['2 ملم','2 سم','2 م','2 كلم'],ans:2},
+{q:'مجسم له وجهان دائريان:',opts:['مكعب','أسطوانة','متوازي مستطيلات','كرة'],ans:1},
+{q:'لعبة مكعبات 1-6. احتمال ظهور وجه مكتوب عليه 9:',opts:['أكيد','أكثر احتمالاً','أقل احتمالاً','مستحيل'],ans:3},
+{q:'الكسر الذي يمثل القطعة البيضاء (1 قطة من 4):',opts:['1/2','1/4','3/4','2/4'],ans:1},
+{q:'محيط الشكل 24م. ما طول الضلع المجهول (أضلاع: 10م و4م و4م و؟):',opts:['4م','5م','6م','7م'],ans:2},
+{q:'طول الشكل المجاور على المسطرة = 3 سم',opts:['صحيح ✓','خطأ ✗'],ans:0},
+{q:'المستطيل له محورا تماثل:',opts:['صحيح ✓','خطأ ✗'],ans:0},
+]},
+{id:8,title:'ف2 — لغتي',sub:'جدة',icon:'📚',cat:'f2arabic',
+questions:[
+{q:'المُثنَّى من كلمة (الفلاح):',opts:['الفلاحون','الفلاحان','الفلاحات','الفلاحة'],ans:1},
+{q:'نوع الأسلوب في (لعل جيل اليوم يكونون علماء الغد):',opts:['نفي','ترجي','استثناء','استفهام'],ans:1},
+{q:'جمع كلمة (جِسم):',opts:['أجسام','جسمان','مجسمان','جاسم'],ans:0},
+{q:'اسم الفاعل من الفعل (حمد):',opts:['حمدوا','حامد','محمود','يحمدُ'],ans:1},
+{q:'الجملة التي تحوي أسلوب الشرط:',opts:['إن تقرأ تستفد','الناس يقدرون الكبير','ليت الصغير يقدر الكبير','هل تقدر الكبير؟'],ans:0},
+{q:'ما أجمل الشاطئ النظيف! نوع الأسلوب:',opts:['استفهام','تعجب','ترجي','شرط'],ans:1},
+{q:'كلمة (خَبَّاز) على وزن:',opts:['مِفعال','فَعَّال','فاعل','مفعول'],ans:1},
+{q:'الكلمة التي تنتهي بألف مقصورة:',opts:['سارى','سارَة','ساري','سارٍ'],ans:0},
+{q:'كلمة (طَرَأ) هي فعل ماضٍ:',opts:['صحيح ✓','خطأ ✗'],ans:0},
+{q:'كلمة (هَدى) خُتمت بألف قائمة:',opts:['صحيح ✓','خطأ ✗'],ans:1},
+]},
+{id:9,title:'ف2 — لغتي',sub:'جازان — أبو الكيمياء',icon:'📝',cat:'f2arabic',
+questions:[
+{q:'مرادف كلمة (شَغَف) في النص عن جابر بن حيان:',opts:['حب','كُره','ود','عشق'],ans:0},
+{q:'المهنة التي كان يعمل بها والد جابر بن حيان:',opts:['التعليم','الصناعة','الجزارة','الصيدلة'],ans:3},
+{q:'ألف جابر بن حيان عدداً كبيراً من الكتب في:',opts:['علم واحد','علمين','علوم مختلفة','لا شيء'],ans:2},
+{q:'الفكرة الرئيسية من النص:',opts:['مجهودات بن حيان في علم الكيمياء','فضل الإيثار بين الأصدقاء','براعة الرازي في الطب','حماية البحار'],ans:0},
+{q:'من اختراعات جابر بن حيان:',opts:['تشخيص المرضى','ابتكار خيوط الجراحة','تحضير ماء الذهب','طريقة المشاهدة'],ans:1},
+{q:'أسلوب النفي في جملة:',opts:['لا تمحوه النار','وهل يتلوث البحر؟','ما أبعد السماء!','إن العلم نور'],ans:0},
+{q:'عدد الشخصيات الواردة في النص:',opts:['ستة','خمسة','أربعة','ثلاثة'],ans:3},
+{q:'من الاختراعات المقاومة للنار لجابر:',opts:['الزجاج','الورق','المصابيح','المرايا'],ans:1},
+{q:'تلبية جابر لطلب أستاذه تدل على:',opts:['حب مهنة الهندسة','الفرح والسرور','عدم الاهتمام','احترام المعلم'],ans:3},
+{q:'عمل جابر بن حيان في تركيب:',opts:['مخلفات المصانع','العطور والأدوية','خيوط صيد السمك','أدوات البناء'],ans:1},
+]},
+];
+
+let currentStage=null,currentQ=0,correctCount=0,wrongCount=0,answered=false;
+let timerInterval=null,timerOn=false,shuffleOn=false,stageQuestions=[];
+const stagesDone={};
+const catColors={'math':'cat-math','arabic':'cat-arabic','f2math':'cat-f2','f2arabic':'cat-f2'};
+const catLabels={'math':'ف3 رياضيات','arabic':'ف3 لغتي','f2math':'ف2 رياضيات','f2arabic':'ف2 لغتي'};
+
+function buildStageGrid(){
+  const grid=document.getElementById('stage-grid');
+  grid.innerHTML='';
+  STAGES.forEach(s=>{
+    const el=document.createElement('div');
+    el.className='stage-card'+(stagesDone[s.id]?' done':'');
+    el.innerHTML='<div class="icon">'+s.icon+'</div><h3>'+s.title+'</h3><p>'+s.sub+'</p><span class="cat-label '+catColors[s.cat]+'">'+catLabels[s.cat]+'</span><div class="count">'+s.questions.length+' سؤال</div>';
+    el.onclick=()=>startStage(s.id);
+    grid.appendChild(el);
+  });
+}
+
+function startStage(id){
+  currentStage=STAGES.find(s=>s.id===id);
+  stageQuestions=shuffleOn?[...currentStage.questions].sort(()=>Math.random()-.5):[...currentStage.questions];
+  currentQ=0;correctCount=0;wrongCount=0;
+  document.getElementById('q-stage-name').textContent=currentStage.title+' — '+currentStage.sub;
+  document.getElementById('correct-count').textContent='0';
+  document.getElementById('wrong-count').textContent='0';
+  showScreen('quiz-screen');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q=stageQuestions[currentQ];
+  answered=false;
+  const total=stageQuestions.length;
+  document.getElementById('q-num').textContent='السؤال '+(currentQ+1);
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('q-progress').textContent=(currentQ+1)+'/'+total;
+  document.getElementById('progress-fill').style.width=(((currentQ+1)/total)*100)+'%';
+  document.getElementById('feedback').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  const container=document.getElementById('options-container');
+  container.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt-btn';
+    btn.textContent=opt;
+    btn.onclick=()=>selectAnswer(i,q.ans);
+    container.appendChild(btn);
+  });
+  if(timerOn)startTimer();
+}
+
+function selectAnswer(selected,correct){
+  if(answered)return;
+  answered=true;
+  clearInterval(timerInterval);
+  document.getElementById('timer-display').style.display='none';
+  const btns=document.querySelectorAll('.opt-btn');
+  btns.forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');if(i===selected&&i!==correct)b.classList.add('wrong');});
+  const fb=document.getElementById('feedback');
+  if(selected===correct){correctCount++;fb.className='feedback correct';fb.textContent='✅ يا سلام! إجابة صحيحة';}
+  else{wrongCount++;fb.className='feedback wrong';fb.textContent='❌ حظ أوفر! الإجابة الصحيحة: '+stageQuestions[currentQ].opts[correct];}
+  fb.style.display='block';
+  document.getElementById('correct-count').textContent=correctCount;
+  document.getElementById('wrong-count').textContent=wrongCount;
+  const nxt=document.getElementById('next-btn');
+  nxt.textContent=currentQ===stageQuestions.length-1?'🏆 عرض النتيجة':'التالي ←';
+  nxt.style.display='block';
+}
+
+function startTimer(){
+  let t=20;
+  const td=document.getElementById('timer-display');
+  const tv=document.getElementById('timer-val');
+  td.style.display='inline-flex';tv.textContent=t;
+  clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{t--;tv.textContent=t;if(t<=0){clearInterval(timerInterval);if(!answered)selectAnswer(-1,stageQuestions[currentQ].ans);}},1000);
+}
+
+function nextQuestion(){currentQ++;if(currentQ>=stageQuestions.length){showResult();return;}renderQuestion();}
+
+function showResult(){
+  stagesDone[currentStage.id]=true;
+  const pct=Math.round((correctCount/stageQuestions.length)*100);
+  document.getElementById('result-stage').textContent=currentStage.title+' — '+currentStage.sub;
+  document.getElementById('result-score').textContent=correctCount;
+  document.getElementById('result-total').textContent='من '+stageQuestions.length+' سؤال';
+  document.getElementById('r-correct').textContent=correctCount;
+  document.getElementById('r-wrong').textContent=wrongCount;
+  document.getElementById('result-stars').textContent=pct>=80?'⭐⭐⭐':pct>=60?'⭐⭐':'⭐';
+  let msg='',bg='';
+  if(pct>=80){msg='🏆 ممتاز! أداء رائع';bg='#0d3b26';document.getElementById('result-msg').style.color='#6fffbe';}
+  else if(pct>=60){msg='👍 جيد! يمكنك التحسين';bg='#3b3b0d';document.getElementById('result-msg').style.color='#ffea88';}
+  else{msg='💪 حاول مرة أخرى';bg='#3b0d0d';document.getElementById('result-msg').style.color='#ff8888';}
+  const rm=document.getElementById('result-msg');rm.textContent=msg;rm.style.background=bg;
+  showScreen('result-screen');buildStageGrid();
+}
+
+function retryStage(){startStage(currentStage.id);}
+function backToHome(){clearInterval(timerInterval);showScreen('home-screen');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showSettings(){const el=document.getElementById('settings-area');el.style.display=el.style.display==='none'?'block':'none';}
+function toggleSetting(el){el.classList.toggle('on');if(el.id==='timer-toggle')timerOn=el.classList.contains('on');if(el.id==='shuffle-toggle')shuffleOn=el.classList.contains('on');}
+
+buildStageGrid();
+</script>
+</body>
+</html>
