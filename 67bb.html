@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نماذج قواعد السلوك والمواظبة 1447هـ</title>
+    <style>
+        :root {
+            --primary-color: #0b5e56; /* لون وزارة التعليم */
+            --secondary-color: #118a7e;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --border-color: #ccc;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body {
+            margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color);
+            display: flex; height: 100vh; overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px; background-color: #fff; border-left: 1px solid var(--border-color);
+            display: flex; flex-direction: column; height: 100%; box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+        }
+        .sidebar-header {
+            padding: 20px; background-color: var(--primary-color); color: #fff; text-align: center;
+        }
+        .sidebar-header h2 { margin: 0; font-size: 1.2rem; }
+        .nav-list {
+            list-style: none; padding: 0; margin: 0; overflow-y: auto; flex-grow: 1;
+        }
+        .nav-item {
+            padding: 15px 20px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s;
+            font-weight: 600; font-size: 0.95rem;
+        }
+        .nav-item:hover, .nav-item.active {
+            background-color: var(--secondary-color); color: #fff;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1; display: flex; flex-direction: column; overflow-y: auto;
+        }
+        .top-bar {
+            padding: 15px 30px; background-color: #fff; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10;
+        }
+        .btn-print {
+            background-color: var(--primary-color); color: #fff; border: none; padding: 10px 20px;
+            border-radius: 5px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s;
+        }
+        .btn-print:hover { background-color: var(--secondary-color); }
+
+        .forms-container { padding: 30px; }
+        .form-section {
+            display: none; background-color: #fff; padding: 40px; border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px;
+        }
+        .form-section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Form Elements & Typography */
+        .form-header {
+            text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; margin-bottom: 25px;
+        }
+        .form-header h3 { margin: 5px 0; color: var(--primary-color); }
+        .school-info {
+            display: flex; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;
+        }
+        .input-group { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex: 1; min-width: 250px;}
+        .input-group label { font-weight: bold; white-space: nowrap; }
+        
+        input[type="text"], input[type="date"], input[type="time"], input[type="number"], textarea {
+            width: 100%; padding: 8px; border: 1px dashed var(--border-color); border-radius: 4px;
+            font-size: 1rem; outline: none; transition: border 0.3s; background: transparent;
+        }
+        input:focus, textarea:focus { border-color: var(--primary-color); border-style: solid; }
+        textarea { resize: vertical; min-height: 80px; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid var(--border-color); padding: 10px; text-align: center; }
+        th { background-color: #f9f9f9; font-weight: bold; }
+        td input { border: none; text-align: center; background: transparent; }
+        
+        .signatures {
+            display: flex; justify-content: space-between; margin-top: 40px; flex-wrap: wrap; gap: 20px;
+        }
+        .sig-box { text-align: center; flex: 1; min-width: 200px; }
+        .sig-box input { margin-top: 10px; text-align: center; }
+
+        .checkbox-group { display: flex; gap: 20px; margin: 15px 0; flex-wrap: wrap;}
+        .checkbox-item { display: flex; align-items: center; gap: 5px; }
+
+        .designer-footer {
+            text-align: center; padding: 20px; margin-top: auto; font-weight: bold;
+            background: #fff; border-top: 1px solid var(--border-color);
+        }
+        .designer-footer a { color: var(--primary-color); text-decoration: none; }
+
+        /* Print Styles */
+        @media print {
+            body { height: auto; overflow: visible; background-color: #fff; }
+            .sidebar, .top-bar { display: none; }
+            .main-content { overflow: visible; }
+            .forms-container { padding: 0; }
+            .form-section {
+                display: none; box-shadow: none; border: none; padding: 0; margin: 0; page-break-after: always;
+            }
+            .form-section.active { display: block; }
+            input[type="text"], input[type="date"], input[type="time"], input[type="number"], textarea {
+                border: none; border-bottom: 1px dotted #000; border-radius: 0;
+            }
+            td input { border-bottom: none; }
+            .designer-footer { position: fixed; bottom: 0; width: 100%; font-size: 12px; border:none;}
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>نماذج قواعد السلوك والمواظبة</h2>
+        </div>
+        <ul class="nav-list" id="navList">
+            <li class="nav-item active" data-target="form1">1. الالتزام المدرسي</li>
+            <li class="nav-item" data-target="form2">2. رصد درجات السلوك المتميز</li>
+            <li class="nav-item" data-target="form3">3. خطة تعديل السلوك</li>
+            <li class="nav-item" data-target="form4">4. رصد المعلم/ة لمشكلة سلوكية</li>
+            <li class="nav-item" data-target="form5">5. رصد مشكلة سلوكية</li>
+            <li class="nav-item" data-target="form6">6. فرص تعويض درجات السلوك</li>
+            <li class="nav-item" data-target="form7">7. سري - إحالة طالب/ة</li>
+            <li class="nav-item" data-target="form8">8. تعهد سلوكي</li>
+            <li class="nav-item" data-target="form9">9. إشعار ولي الأمر بمشكلة</li>
+            <li class="nav-item" data-target="form10">10. دعوة ولي الأمر</li>
+            <li class="nav-item" data-target="form11">11. سري - محضر ضبط واقعة</li>
+            <li class="nav-item" data-target="form12">12. محضر اجتماع لجنة التوجيه</li>
+            <li class="nav-item" data-target="form13">13. بلاغ عن حالة إيذاء</li>
+            <li class="nav-item" data-target="form14">14. بلاغ حالة عالية الخطورة</li>
+            <li class="nav-item" data-target="form15">15. إجراءات الغياب بعذر</li>
+            <li class="nav-item" data-target="form16">16. إجراءات الغياب بدون عذر</li>
+            <li class="nav-item" data-target="form17">17. تعهد الالتزام بالحضور</li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h2 id="currentFormTitle">1. الالتزام المدرسي</h2>
+            <button class="btn-print" onclick="window.print()">طباعة / حفظ كـ PDF</button>
+        </div>
+
+        <div class="forms-container">
+
+            <section class="form-section active" id="form1">
+                <div class="form-header">
+                    <h3>المملكة العربية السعودية - وزارة التعليم</h3>
+                    <h3>نموذج الالتزام المدرسي</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>المنطقة/المحافظة:</label><input type="text"></div>
+                    <div class="input-group"><label>المدرسة:</label><input type="text"></div>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>المرحلة:</label><input type="text"></div>
+                    <div class="input-group"><label>الصف:</label><input type="text"></div>
+                </div>
+                
+                <table style="text-align: right;">
+                    <tr>
+                        <th style="width: 20%;">خاص بالطالب/ة</th>
+                        <td>
+                            <p>نعم أنا الطالب/ة الموضح اسمه وبياناته أعلاه. قد اطلعت على محتوى قواعد السلوك والمواظبة وبناء عليه أتعهد أن ألتزم بالأنظمة والتعليمات الخاصة بقواعد السلوك والمواظبة.</p>
+                            <div class="input-group"><label>التاريخ:</label><input type="date"></div>
+                            <div class="input-group"><label>التوقيع:</label><input type="text"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>خاص بولي الأمر</th>
+                        <td>
+                            <p>نعم أنا ولي أمر الطالب/ة الموضح اسمه وبياناته أعلاه. قد اطلعت على محتوى قواعد السلوك والمواظبة. وبناء عليه أتعهد أن أتعاون مع إدارة المدرسة في سبيل مصلحة ابني/ابنتي ليكون ملتزماً بالأنظمة والتعليمات الخاصة بقواعد السلوك والمواظبة، وأتحمل مسؤولية صحة أرقام التواصل.</p>
+                            <div class="school-info">
+                                <div class="input-group"><label>الاسم:</label><input type="text"></div>
+                                <div class="input-group"><label>التوقيع:</label><input type="text"></div>
+                                <div class="input-group"><label>التاريخ:</label><input type="date"></div>
+                            </div>
+                            <div class="school-info">
+                                <div class="input-group"><label>هاتف العمل:</label><input type="text"></div>
+                                <div class="input-group"><label>هاتف المنزل:</label><input type="text"></div>
+                            </div>
+                            <div class="school-info">
+                                <div class="input-group"><label>رقم الجوال:</label><input type="text"></div>
+                                <div class="input-group"><label>رقم آخر:</label><input type="text"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section class="form-section" id="form2">
+                <div class="form-header">
+                    <h3>المملكة العربية السعودية - وزارة التعليم</h3>
+                    <h3>نموذج رصد درجات السلوك المتميز</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>المنطقة/المحافظة:</label><input type="text"></div>
+                    <div class="input-group"><label>المدرسة:</label><input type="text"></div>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>المرحلة:</label><input type="text"></div>
+                    <div class="input-group"><label>الصف:</label><input type="text"></div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>موضوع ممارسة السلوك</th>
+                            <th>نوع الممارسة</th>
+                            <th>تاريخ التنفيذ</th>
+                            <th>شواهد السلوك المتميز</th>
+                            <th>الدرجة المكتسبة</th>
+                            <th>اسم الراصد/ة</th>
+                            <th>توقيع الراصد/ة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="number"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="number"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="number"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    </tbody>
+                </table>
+                <div class="signatures">
+                    <div class="sig-box">
+                        <strong>المدير/ة:</strong>
+                        <input type="text" placeholder="الاسم"><input type="text" placeholder="التوقيع"><input type="date">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form3">
+                <div class="form-header">
+                    <h3>المملكة العربية السعودية - وزارة التعليم</h3>
+                    <h3>نموذج خطة تعديل السلوك</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>الصف/الفصل:</label><input type="text"></div>
+                    <div class="input-group"><label>العمر الزمني:</label><input type="text"></div>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>تاريخ البداية:</label><input type="date"></div>
+                    <div class="input-group"><label>تاريخ النهاية:</label><input type="date"></div>
+                </div>
+                
+                <h4>ثانياً: تحديد المشكلة السلوكية</h4>
+                <div class="input-group"><label>المشكلة السلوكية:</label><input type="text"></div>
+                <div class="input-group"><label>وصف المشكلة:</label><textarea></textarea></div>
+                
+                <h4>ثالثاً: قياس شدة أو تكرار السلوك</h4>
+                <table>
+                    <tr><th>التاريخ</th><th>فترة الملاحظة</th><th>التكرار (1-5)</th><th>المجموع</th></tr>
+                    <tr><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                </table>
+
+                <h4>رابعاً: تحليل السلوك</h4>
+                <div class="input-group"><label>المثيرات القبلية:</label><textarea></textarea></div>
+                <div class="input-group"><label>المثيرات البعدية:</label><textarea></textarea></div>
+
+                <h4>خامساً: تصميم خطة تعديل السلوك</h4>
+                <div class="input-group"><label>تعريف السلوك المرغوب:</label><textarea></textarea></div>
+                
+                <div class="signatures">
+                    <div class="sig-box"><strong>رأي الوكيل/ة</strong><textarea></textarea></div>
+                    <div class="sig-box"><strong>رأي المعلم/ة</strong><textarea></textarea></div>
+                    <div class="sig-box"><strong>رأي ولي الأمر</strong><textarea></textarea></div>
+                </div>
+                
+                <div class="signatures">
+                    <div class="sig-box">
+                        <strong>القائم بتعديل السلوك (معلم/ة - موجه/ة طلابي/ة):</strong>
+                        <input type="text" placeholder="الاسم"><input type="text" placeholder="التوقيع"><input type="date">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form4">
+                <div class="form-header">
+                    <h3>نموذج رصد المعلم/ة لمشكلة سلوكية</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>المادة:</label><input type="text"></div>
+                    <div class="input-group"><label>الصف:</label><input type="text"></div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم الطالب/ة</th>
+                            <th>المشكلة السلوكية</th>
+                            <th>درجة المشكلة</th>
+                            <th>الإجراء المتخذ</th>
+                            <th>تكرار المشكلة</th>
+                            <th>مدى الاستجابة</th>
+                            <th>التاريخ</th>
+                            <th>الحصة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td></tr>
+                        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td></tr>
+                    </tbody>
+                </table>
+                <div class="signatures">
+                    <div class="sig-box"><strong>المعلم/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form5">
+                <div class="form-header">
+                    <h3>نموذج رصد مشكلة سلوكية</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>الصف/الفصل:</label><input type="text"></div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المشكلة السلوكية</th>
+                            <th>نوعها ودرجتها</th>
+                            <th>تاريخها</th>
+                            <th>درجات السلوك المحسومة</th>
+                            <th>الإجراءات المتخذة</th>
+                            <th>تاريخ الإجراء</th>
+                            <th>توقيع الطالب/ة</th>
+                            <th>توقيع ولي الأمر</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    </tbody>
+                </table>
+                <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form6">
+                <div class="form-header">
+                    <h3>نموذج فرص تعويض درجات السلوك الإيجابي</h3>
+                </div>
+                 <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>المرحلة/الصف:</label><input type="text"></div>
+                </div>
+                <table>
+                    <tr>
+                        <th>المشكلة السلوكية</th>
+                        <th>نوعها ودرجتها</th>
+                        <th>درجات السلوك المحسومة</th>
+                        <th>فرص التعويض (الدرجات المكتسبة)</th>
+                        <th>توقيع الطالب/ة</th>
+                    </tr>
+                    <tr><td><input type="text"></td><td><input type="text"></td><td><input type="number"></td><td><input type="number"></td><td><input type="text"></td></tr>
+                </table>
+                <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form7">
+                <div class="form-header">
+                    <h3 style="color: red;">سري - إحالة طالب/ة</h3>
+                </div>
+                <p>المكرم الموجه/ة الطلابي/ة.. السلام عليكم ورحمة الله وبركاته</p>
+                <div class="input-group"><label>نحيل إليكم الطالب/ة:</label><input type="text"></div>
+                <div class="input-group"><label>بالصف:</label><input type="text"></div>
+                <div class="input-group"><label>ذي المشكلة السلوكية من الدرجة:</label><input type="text"></div>
+                <div class="input-group"><label>وهي:</label><textarea></textarea></div>
+                <p>يرجى منكم متابعة الطالب/ة ودراسة حالته/ا، ووضع الحلول التربوية والعلاجية المناسبة.</p>
+                <div class="signatures">
+                    <div class="sig-box"><strong>الوكيل/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form8">
+                <div class="form-header">
+                    <h3>تعهد سلوكي</h3>
+                </div>
+                <div class="input-group"><label>أنا الطالب/ة:</label><input type="text"></div>
+                <div class="input-group"><label>بالصف:</label><input type="text"></div>
+                <div class="input-group"><label>أنني قمت في يوم:</label><input type="text"></div>
+                <div class="input-group"><label>الموافق:</label><input type="date"></div>
+                <div class="input-group"><label>بمشكلة سلوكية من الدرجة:</label><input type="text"></div>
+                <div class="input-group"><label>وهي:</label><textarea></textarea></div>
+                <p>وأتعهد بعدم تكرار أي مشكلة سلوكية مستقبلاً وعلى ذلك جرى التوقيع.</p>
+                <div class="signatures">
+                    <div class="sig-box"><strong>الطالب/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                    <div class="sig-box"><strong>ولي الأمر:</strong><input type="text"><input type="text"><input type="date"></div>
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+             <section class="form-section" id="form9">
+                <div class="form-header">
+                    <h3 style="color: red;">سري - إشعار ولي أمر الطالب/ة بمشكلة سلوكية</h3>
+                </div>
+                <div class="input-group"><label>المكرم ولي أمر الطالب/ة:</label><input type="text"></div>
+                <div class="input-group"><label>بالصف:</label><input type="text"></div>
+                <p>نشعركم بأن الطالب/ة قام/ت بمشكلة سلوكية من الدرجة: <input type="text" style="width:100px"></p>
+                <div class="input-group"><label>وهي:</label><textarea></textarea></div>
+                <p>وقد قررت الإجراءات التالية حياله/ا:</p>
+                <ol>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                </ol>
+                 <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+             <section class="form-section" id="form10">
+                <div class="form-header">
+                    <h3>خطاب دعوة ولي الأمر</h3>
+                </div>
+                <div class="input-group"><label>المكرم ولي أمر الطالب/ة:</label><input type="text"></div>
+                <div class="input-group"><label>بالصف:</label><input type="text"></div>
+                <p>نأمل منكم الحضور إلى المدرسة في يوم: <input type="text" style="width:150px"> الموافق: <input type="date"></p>
+                <div class="input-group"><label>لمقابلة المدير/ة، وذلك بهدف:</label><input type="text"></div>
+                
+                <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+                
+                <hr>
+                <h4>رد ولي الأمر:</h4>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> أقر بالعلم، وسأحضر في الموعد المحدد.</label>
+                    <label class="checkbox-item"><input type="checkbox"> أقر بالعلم، وأرغب بتغيير الموعد إلى يوم: <input type="date"></label>
+                </div>
+                <div class="signatures">
+                    <div class="sig-box"><strong>الاسم:</strong><input type="text"></div>
+                    <div class="sig-box"><strong>التوقيع:</strong><input type="text"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form11">
+                <div class="form-header">
+                    <h3 style="color: red;">سري - محضر ضبط واقعة</h3>
+                </div>
+                 <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>الصف/المرحلة:</label><input type="text"></div>
+                </div>
+                <div class="input-group"><label>المشكلة السلوكية:</label><input type="text"></div>
+                
+                <h4>نوع المشاهدة المضبوطة:</h4>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> محادثات أخرى</label>
+                    <label class="checkbox-item"><input type="checkbox"> صور مقاطع فيديو</label>
+                    <label class="checkbox-item"><input type="checkbox"> أخرى <input type="text"></label>
+                </div>
+                
+                <div class="input-group"><label>مكان ضبط الواقعة:</label><input type="text"></div>
+                
+                <h4>شهود الواقعة:</h4>
+                <table>
+                    <tr><th>م</th><th>الاسم</th><th>الوظيفة</th><th>التوقيع</th></tr>
+                    <tr><td>1</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td>2</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                </table>
+                
+                <div class="signatures">
+                    <div class="sig-box"><strong>الطالب/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                    <div class="sig-box"><strong>ولي الأمر:</strong><input type="text"><input type="text"><input type="date"></div>
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form12">
+                <div class="form-header">
+                    <h3>محضر اجتماع لجنة التوجيه الطلابي بالمدرسة</h3>
+                </div>
+                <div class="input-group"><label>وصف المشكلة السلوكية:</label><textarea></textarea></div>
+                <div class="input-group"><label>تصنيف المشكلة (درجة ونوعاً):</label><input type="text"></div>
+                <div class="input-group"><label>قرارات اللجنة:</label><textarea></textarea></div>
+                
+                <h4>أعضاء اللجنة:</h4>
+                <table>
+                    <tr><th>اسم العضو</th><th>الوظيفة</th><th>العمل المسند إليه</th><th>التوقيع</th></tr>
+                    <tr><td><input type="text"></td><td>الوكيل/ة لشؤون الطلبة</td><td>رئيس/ة</td><td><input type="text"></td></tr>
+                    <tr><td><input type="text"></td><td>الموجه/ة الطلابي/ة</td><td>مقرر/ة</td><td><input type="text"></td></tr>
+                </table>
+                <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form13">
+                <div class="form-header">
+                    <h3 style="color: red;">(سري للغاية) نموذج إبلاغ عن حالة إيذاء</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>تاريخ/وقت البلاغ:</label><input type="datetime-local"></div>
+                </div>
+                <h4>بيانات الحالة:</h4>
+                <div class="school-info">
+                    <div class="input-group"><label>الاسم:</label><input type="text"></div>
+                    <div class="input-group"><label>السجل المدني:</label><input type="number"></div>
+                </div>
+                 <div class="input-group"><label>ملخص المشكلة:</label><textarea></textarea></div>
+                 <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+            
+            <section class="form-section" id="form14">
+                <div class="form-header">
+                    <h3 style="color: red;">(سري للغاية) إبلاغ عن حالة عالية الخطورة</h3>
+                </div>
+                <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                <div class="input-group"><label>وصف الحالة:</label><textarea></textarea></div>
+                <h4>الإجراءات المتخذة:</h4>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> تبليغ إدارة التعليم</label>
+                    <label class="checkbox-item"><input type="checkbox"> تبليغ الجهات الأمنية</label>
+                    <label class="checkbox-item"><input type="checkbox"> تبليغ وزارة الصحة</label>
+                </div>
+                 <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form15">
+                <div class="form-header">
+                    <h3>نموذج إجراءات الغياب بعذر</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>المرحلة/الصف:</label><input type="text"></div>
+                </div>
+                <table>
+                    <tr>
+                        <th>عدد أيام الغياب</th>
+                        <th>الإجراء المتخذ</th>
+                        <th>تاريخ الإجراء</th>
+                        <th>توقيع الطالب/ة</th>
+                        <th>توقيع ولي الأمر</th>
+                    </tr>
+                    <tr><td>3 أيام</td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td>5 أيام</td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td>10 أيام</td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                </table>
+                 <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+             <section class="form-section" id="form16">
+                <div class="form-header">
+                    <h3>نموذج إجراءات الغياب بدون عذر</h3>
+                </div>
+                <div class="school-info">
+                    <div class="input-group"><label>اسم الطالب/ة:</label><input type="text"></div>
+                    <div class="input-group"><label>المرحلة/الصف:</label><input type="text"></div>
+                </div>
+                <table>
+                    <tr>
+                        <th>عدد أيام الغياب</th>
+                        <th>درجات المواظبة المحسومة</th>
+                        <th>الإجراء المتخذ</th>
+                        <th>تاريخ الإجراء</th>
+                        <th>توقيع الطالب/ة</th>
+                        <th>توقيع ولي الأمر</th>
+                    </tr>
+                    <tr><td>3 أيام</td><td><input type="number"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td>5 أيام</td><td><input type="number"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td>10 أيام</td><td><input type="number"></td><td><input type="text"></td><td><input type="date"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                </table>
+                 <div class="signatures">
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+            <section class="form-section" id="form17">
+                <div class="form-header">
+                    <h3>تعهد الالتزام بالحضور</h3>
+                </div>
+                <div class="input-group"><label>أنا الطالب/ة:</label><input type="text"></div>
+                <div class="input-group"><label>بالصف:</label><input type="text"></div>
+                <p>أنني تغيبت عن الحضور للمدرسة بدون عذر لمدة: <input type="number" style="width:60px"> أيام، بتاريخ: <input type="date"></p>
+                <p>وأتعهد بالالتزام بالخطة التربوية والعلاجية المقدمة لتحسين الحضور، وعلى ذلك جرى التوقيع.</p>
+                <div class="signatures">
+                    <div class="sig-box"><strong>الطالب/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                    <div class="sig-box"><strong>ولي الأمر:</strong><input type="text"><input type="text"><input type="date"></div>
+                    <div class="sig-box"><strong>المدير/ة:</strong><input type="text"><input type="text"><input type="date"></div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer class="designer-footer">
+            <p>تفضل للمزيد:</p>
+            <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" rel="noopener noreferrer">https://t.me/TAqhjT3MFVE1Yzk0</a>
+            <p>تصميم د/فواز</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const formSections = document.querySelectorAll('.form-section');
+            const currentFormTitle = document.getElementById('currentFormTitle');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Remove active class from all
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    formSections.forEach(form => form.classList.remove('active'));
+
+                    // Add active class to clicked
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                    
+                    // Update Title
+                    currentFormTitle.textContent = item.textContent;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
