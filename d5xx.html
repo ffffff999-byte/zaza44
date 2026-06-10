@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تميز - خطة التحسين المدرسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #2563eb;
+            --accent-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            background-color: #eff6ff;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Guide Section */
+        .guide-list {
+            list-style: none;
+            counter-reset: guide-counter;
+        }
+
+        .guide-list li {
+            position: relative;
+            padding-right: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            background: #f8fafc;
+            padding: 1.5rem 4rem 1.5rem 1.5rem;
+            border-radius: 8px;
+            border-right: 4px solid var(--secondary-color);
+        }
+
+        .guide-list li::before {
+            counter-increment: guide-counter;
+            content: counter(guide-counter);
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9fafb;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background-color: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Buttons */
+        .btn-action {
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-generate { background-color: var(--accent-color); }
+        .btn-generate:hover { background-color: #059669; transform: translateY(-2px); }
+
+        .btn-print { background-color: var(--secondary-color); }
+        .btn-print:hover { background-color: #1d4ed8; transform: translateY(-2px); }
+
+        .btn-add { background-color: var(--warning-color); }
+        .btn-add:hover { background-color: #d97706; transform: translateY(-2px); }
+
+        .btn-clear { background-color: var(--danger-color); }
+        .btn-clear:hover { background-color: #b91c1c; transform: translateY(-2px); }
+
+        .buttons-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        /* Generator Section */
+        .generator-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .result-box {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-color);
+            min-height: 100px;
+            text-align: right;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            display: none;
+        }
+
+        .activities-list {
+            margin-top: 10px;
+            padding-right: 20px;
+            list-style-type: decimal;
+        }
+
+        .activities-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Grouped Plans Section */
+        .grouped-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            display: none;
+        }
+
+        .plan-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+
+        /* ===== CSS PRINT احترافي - A4 ===== */
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+
+        @media print {
+
+            /* ── إخفاء عناصر الشاشة ── */
+            header,
+            footer,
+            .tabs,
+            .btn-action,
+            .buttons-row,
+            .generator-box > .form-grid,
+            .generator-box > label,
+            .generator-box > select,
+            #add-to-group-btn,
+            .tab-content:not(.active),
+            .result-box:not(#gen-result) {
+                display: none !important;
+            }
+
+            /* ── إعادة ضبط الجسم ── */
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            html, body {
+                width: 210mm;
+                min-height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+                color: #000 !important;
+                font-family: 'Tajawal', sans-serif !important;
+                font-size: 11pt !important;
+                line-height: 1.7 !important;
+            }
+
+            /* ── الحاوية ── */
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* ── تبويب نشط فقط ── */
+            .tab-content {
+                display: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .tab-content.active {
+                display: block !important;
+            }
+
+            /* ── ترويسة الطباعة ── */
+            .print-header {
+                display: block !important;
+                text-align: center;
+                padding: 6mm 0 4mm;
+                border-bottom: 2px solid #1e3a8a;
+                margin-bottom: 6mm;
+            }
+
+            .print-header h1 {
+                font-size: 16pt;
+                font-weight: 800;
+                color: #1e3a8a !important;
+                margin-bottom: 2mm;
+            }
+
+            .print-header p {
+                font-size: 10pt;
+                color: #444 !important;
+            }
+
+            /* ── عنوان القسم ── */
+            .section-title {
+                font-size: 13pt !important;
+                font-weight: 800 !important;
+                color: #1e3a8a !important;
+                border-bottom: 1.5px solid #1e3a8a !important;
+                padding-bottom: 2mm !important;
+                margin-bottom: 5mm !important;
+                break-after: avoid !important;
+                page-break-after: avoid !important;
+            }
+
+            /* ── بطاقات الخطة المجمعة ── */
+            .plan-item {
+                background: #f8fafc !important;
+                border: 1px solid #ccc !important;
+                border-right: 4px solid #1e3a8a !important;
+                border-radius: 6px !important;
+                padding: 5mm 6mm !important;
+                margin-bottom: 5mm !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            .plan-item strong {
+                color: #1e3a8a !important;
+            }
+
+            /* ── نتيجة المولد الفردية ── */
+            #gen-result {
+                display: block !important;
+                border: 1px solid #10b981 !important;
+                border-radius: 6px !important;
+                padding: 5mm 6mm !important;
+                margin-bottom: 5mm !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                background: #f0fdf4 !important;
+                font-size: 11pt !important;
+            }
+
+            /* ── قائمة الأنشطة ── */
+            .activities-list {
+                padding-right: 6mm !important;
+                margin-top: 3mm !important;
+            }
+
+            .activities-list li {
+                margin-bottom: 2mm !important;
+                font-size: 10.5pt !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            /* ── منع انقسام العناوين عن محتواها ── */
+            h2, h3, strong {
+                break-after: avoid !important;
+                page-break-after: avoid !important;
+            }
+
+            /* ── حقول النموذج ── */
+            input, textarea, select {
+                border: 1px solid #999 !important;
+                background: transparent !important;
+                color: #000 !important;
+                resize: none !important;
+                font-size: 10.5pt !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            /* ── صندوق المولد ── */
+            .generator-box {
+                border: none !important;
+                padding: 0 !important;
+                background: transparent !important;
+            }
+
+            /* ── دليل الخطوات ── */
+            .guide-list li {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                font-size: 10.5pt !important;
+                margin-bottom: 4mm !important;
+                background: #f8fafc !important;
+            }
+
+            /* ── تذييل الطباعة ── */
+            .print-footer {
+                display: none !important;
+            }
+
+            /* ── صفحة جديدة قبل قسم الخطة المجمعة إذا طالت ── */
+            .grouped-section {
+                display: block !important;
+                break-before: auto !important;
+                page-break-before: auto !important;
+            }
+
+        }
+
+        /* ترويسة وتذييل الطباعة - مخفية على الشاشة */
+        .print-header,
+        .print-footer {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .tabs { flex-direction: column; }
+            .tab-btn { width: 100%; text-align: center; }
+            .tab-content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ترويسة تظهر عند الطباعة فقط -->
+    <div class="print-header">
+        <h1>منصة تميز — خطة التحسين المدرسية</h1>
+        <p>اللوحة التفاعلية لبناء خطة التحسين المدرسية</p>
+    </div>
+
+    <header>
+        <h1>منصة تميز</h1>
+        <p>اللوحة التفاعلية لبناء خطة التحسين المدرسية</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'guide')">دليل بناء خطة التحسين</button>
+            <button class="tab-btn" onclick="openTab(event, 'builder')">لوحة بناء الخطة (مفردة)</button>
+            <button class="tab-btn" onclick="openTab(event, 'generator')">المولد الذكي (تجميع وطباعة)</button>
+        </div>
+
+        <div id="guide" class="tab-content active">
+            <h2 class="section-title">خطوات بناء خطة التحسين</h2>
+            <ul class="guide-list">
+                <li><strong>إصدار قرار التشكيل وتوزيع المهام:</strong> تشكيل لجنة التميز برئاسة المدير/ة وتوزيع الأدوار بوضوح على كل معلم/ة ومشرف/ة وإداري/ة في المدرسة.</li>
+                <li><strong>مراجعة نتائج التقويم الذاتي السابقة:</strong> قراءة فاحصة لتقارير الأداء السابقة للوقوف على نقاط القوة والضعف بدقة.</li>
+                <li><strong>تحليل الفجوات ورصد مستوى تحقق المؤشرات:</strong> مقارنة الأداء الحالي بالمستهدفات وتحديد الفجوات في مجالات الإدارة، التعليم والتعلم، نواتج التعلم، والبيئة.</li>
+                <li><strong>تحديد أولويات التحسين وربطها بالمجالات:</strong> صياغة المبادرات والأنشطة العلاجية والوقائية وجدولتها زمنياً بما يتوافق مع المعايير.</li>
+            </ul>
+        </div>
+
+        <div id="builder" class="tab-content">
+            <h2 class="section-title">إدخال بيانات خطة التحسين</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>المجال الرئيسي</label>
+                    <select id="build-domain" onchange="updateSubDomains('build-domain', 'build-subdomain')">
+                        <option value="">-- اختر المجال --</option>
+                        <option value="admin">الإدارة المدرسية</option>
+                        <option value="teaching">التعليم والتعلم</option>
+                        <option value="outcomes">نواتج التعلم</option>
+                        <option value="environment">البيئة المدرسية</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>المعيار الفرعي</label>
+                    <select id="build-subdomain" disabled>
+                        <option value="">-- اختر المعيار الفرعي --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>مستوى الأداء الحالي</label>
+                    <select>
+                        <option value="1">التهيئة</option>
+                        <option value="2">الانطلاق</option>
+                        <option value="3">التقدم</option>
+                        <option value="4">التميز</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>مستوى الأداء المستهدف</label>
+                    <select>
+                        <option value="1">التهيئة</option>
+                        <option value="2">الانطلاق</option>
+                        <option value="3">التقدم</option>
+                        <option value="4">التميز</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>اسم المبادرة</label>
+                    <input type="text" placeholder="اكتب اسم المبادرة هنا...">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>الأنشطة وأساليب التنفيذ</label>
+                    <textarea placeholder="صف الأنشطة، ورش العمل، البرامج التي سينفذها المعلم/ة أو المدير/ة..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>الاحتياجات (مادية/بشرية)</label>
+                    <textarea placeholder="أدوات، ميزانية، تدريب..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>الأدلة والشواهد المتوقعة</label>
+                    <textarea placeholder="سجلات، استبانات، صور..."></textarea>
+                </div>
+            </div>
+            <div class="buttons-row">
+                <button class="btn-action btn-print" onclick="window.print()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    طباعة / حفظ كـ PDF
+                </button>
+            </div>
+        </div>
+
+        <div id="generator" class="tab-content">
+            <h2 class="section-title">توليد صياغات التحسين التلقائية (المبادرات والأنشطة)</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>المجال الرئيسي</label>
+                    <select id="gen-domain" onchange="updateSubDomains('gen-domain', 'gen-subdomain')">
+                        <option value="">-- اختر المجال --</option>
+                        <option value="admin">الإدارة المدرسية</option>
+                        <option value="teaching">التعليم والتعلم</option>
+                        <option value="outcomes">نواتج التعلم</option>
+                        <option value="environment">البيئة المدرسية</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>المعيار الفرعي</label>
+                    <select id="gen-subdomain" disabled>
+                        <option value="">-- يرجى اختيار المجال أولاً --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="generator-box">
+                <div class="buttons-row">
+                    <button class="btn-action btn-generate" onclick="generateText()">
+                        <span>✨</span> توليد المبادرة والأنشطة
+                    </button>
+                    <button id="add-to-group-btn" class="btn-action btn-add" style="display:none;" onclick="addToGroup()">
+                        <span>➕</span> إضافة للخطة المجمعة
+                    </button>
+                </div>
+                <div id="gen-result" class="result-box"></div>
+            </div>
+
+            <div id="grouped-section" class="grouped-section">
+                <h2 class="section-title">الخطة المجمعة</h2>
+                <div id="grouped-plans-container"></div>
+                <div class="buttons-row">
+                    <button class="btn-action btn-print" onclick="window.print()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                        طباعة / حفظ الخطة المجمعة
+                    </button>
+                    <button class="btn-action btn-clear" onclick="clearGroup()">
+                        <span>🗑️</span> مسح المجموعة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>تفضل للمزيد</p>
+        <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" rel="noopener noreferrer">https://t.me/TAqhjT3MFVE1Yzk0</a>
+        <p>تصميم د/فواز</p>
+    </footer>
+
+    <script>
+        // Expanded Data Structure with Initiatives AND Detailed Activities
+        const dataMap = {
+            admin: {
+                title: "الإدارة المدرسية",
+                sub: {
+                    planning: { 
+                        title: "التخطيط", 
+                        initiative: "تضع المدرسة خطة تشغيلية مكتملة العناصر وفق أهداف تطويرية محددة.",
+                        activities: [
+                            "تحديد وترتيب الوسائل والبرامج والأنشطة المقترحة ذات الأهداف التطويرية.",
+                            "توزيع الأدوار والمسؤوليات على كل معلم/ة وإداري/ة في تنفيذ خطة المدرسة واشراك المجتمع المدرسي.",
+                            "شمول الخطة لتلبية احتياجات جميع المتعلمين بما فيهم ذوي الإعاقة والموهوبين.",
+                            "متابعة تنفيذ الخطة وتحسينها من قبل المدير/ة والمشرف/ة بما يضمن الوصول للأهداف وحل المشكلات.",
+                            "إيجاد أدوات تقويمية لتقويم تنفيذ البرامج وتحديد جوانب القوة وفرص التحسين."
+                        ]
+                    },
+                    leadership: { 
+                        title: "قيادة العملية التعليمية", 
+                        initiative: "تعزيز القيم الإسلامية والهوية الوطنية وقيم المهنة وتوفير بيئة آمنة للتعلم.",
+                        activities: [
+                            "توفير أنشطة وبرامج تعزز القيم والهوية الوطنية والاحتفاء بالمناسبات الوطنية.",
+                            "قيام المدير/ة بتوفير ونشر إجراءات واضحة تشرح قواعد السلوك والمواظبة الوظيفية.",
+                            "تطبيق إجراءات واضحة للمساءلة بشأن مخالفات القيم والأخلاقيات المهنية.",
+                            "تفعيل مجالس الحوار الطلابي لدعم السلوك الإيجابي وعلاج حالات التنمر ببرامج مستدامة.",
+                            "توفير أنشطة إثرائية شاملة للكشف عن المواهب وتقديم حوافز تشجيعية، وحث كل معلم/ة على التعلم الذاتي."
+                        ]
+                    },
+                    community: { 
+                        title: "المجتمع المدرسي", 
+                        initiative: "تعزيز العمل التعاوني ومشاركة الأسرة وتحفيز الشراكة المجتمعية لدعم التعلم.",
+                        activities: [
+                            "وضع خطة شاملة وتفعيل مجالس أولياء الأمور لمناقشة تقدم الطلاب وتعزيز الشراكة الأسرية.",
+                            "توجيه الأسرة للاستفادة من الموارد التعليمية مثل موقع عين ومنصة مدرستي لمتابعة نواتج التعلم.",
+                            "تعزيز الشراكة المجتمعية لتبادل الخبرات وتوفير فرص تعلم عملية لذوي الإعاقة وبقية المتعلمين.",
+                            "حث المجتمع المدرسي على المساهمة في حضور الفعاليات الثقافية والعلمية والتطوعية."
+                        ]
+                    },
+                    dev: { 
+                        title: "التطوير المؤسسي", 
+                        initiative: "توفير كوادر تعليمية مؤهلة وتشكيل لجان إدارية ومالية وبناء خطة للنمو المهني.",
+                        activities: [
+                            "تحديث بيانات الموظفين وتوزيع الأنصبة من قبل المدير/ة بما يتوافق مع خبرات وتخصصات كل معلم/ة.",
+                            "عمل ميزانية مستقرة وتوثيق المعاملات المالية والمراجعة الدقيقة للصندوق المدرسي.",
+                            "تنظيم ورش عمل تحضيرية وتقديم برامج تدريبية داخلية لاجتياز امتحانات الرخصة المهنية.",
+                            "بناء خطة للتطوير المهني ببرامج وأنشطة واجراء بحوث إجرائية لتحفيز مجتمعات التعلم."
+                        ]
+                    }
+                }
+            },
+            teaching: {
+                title: "التعليم والتعلم",
+                sub: {
+                    experiences: { 
+                        title: "بناء خبرات التعلم", 
+                        initiative: "دعم تنفيذ المناهج لتحقيق نواتج التعلم وتنمية المهارات القرائية والعددية ومهارات التفكير العليا.",
+                        activities: [
+                            "قيام كل معلم/ة باستخدام استراتيجيات تدريس متنوعة تشجع المشاركة وتراعي الفروق الفردية.",
+                            "التركيز على استخدام أنشطة ومواد إثرائية لدعم سريعي التعلم والموهوبين.",
+                            "توفير أنشطة تنمي مهارات التفكير العليا (الناقد والإبداعي) وحل المشكلات والاستنتاج.",
+                            "تفعيل التعلم الإلكتروني ودمجه بالأنشطة الصفية لدعم التعلم."
+                        ]
+                    },
+                    eval: { 
+                        title: "تقويم التعلم", 
+                        initiative: "عمل تقويم لأداء المتعلمين وتحليل نتائجه لتقديم تغذية راجعة مستدامة وتحسين النواتج.",
+                        activities: [
+                            "إعداد وتحضير الدروس وتوفير عينة من الأنشطة التعليمية الخاصة بكل متعلم/ة.",
+                            "توفير أساليب تقويمية تكوينية وختامية مستمرة وتشاركية (ذاتي، أقران) تراعي الفروق الفردية.",
+                            "تقديم برامج لتدريب كل معلم/ة على أساليب التقويم المتنوعة.",
+                            "تحليل نتائج التقويم لتنفيذ أنشطة علاجية وتقديم تغذية راجعة مستدامة للطلاب."
+                        ]
+                    }
+                }
+            },
+            outcomes: {
+                title: "نواتج التعلم",
+                sub: {
+                    achievement: { 
+                        title: "التحصيل التعليمي", 
+                        initiative: "مبادرة تحسين نتائج الاختبارات الوطنية (نافس) والتحصيلية.",
+                        activities: [
+                            "بناء خطة تنطلق من إتقان المهارات الأساسية للمواد المستهدفة وليس مجرد تدريبات وقتية.",
+                            "عقد اجتماعات مستمرة مع كل معلم/ة للمواد المستهدفة وعمل اختبارات محاكية للطلاب وتدريبهم.",
+                            "تكليف لجان متخصصة بمتابعة دخول الطلاب للاختبارات وتطبيق أدلة الاختبار.",
+                            "قيام الموجه/ة الطلابي/ة بنشر ثقافة الاختبارات بين الطلاب وأولياء الأمور."
+                        ]
+                    },
+                    personal: { 
+                        title: "التطور الشخصي والصحي والاجتماعي", 
+                        initiative: "مشاركة المدرسة في الأنشطة المجتمعية والتزام المنسوبين بقواعد السلوك والانضباط.",
+                        activities: [
+                            "الاعتناء بالعمل التطوعي وتوفير برامج وأنشطة تشجع مساهمة كل متعلم/ة.",
+                            "رصد المخالفات السلوكية والحث على الانضباط المدرسي وتقديم الحوافز والتكريم للمنتظمين.",
+                            "الالتزام بالممارسات الصحية السليمة، والنظافة الشخصية، وبرامج الوقاية الصحية.",
+                            "التفاعل مع الأنشطة الثقافية والمهرجانات واحترام التنوع الثقافي والاعتزاز بالقيم."
+                        ]
+                    }
+                }
+            },
+            environment: {
+                title: "البيئة المدرسية",
+                sub: {
+                    building: { 
+                        title: "المبنى المدرسي", 
+                        initiative: "تنظيم المبنى المدرسي وتلبية الاحتياجات التعليمية لجميع المستفيدين.",
+                        activities: [
+                            "تنظيم مساحات المبنى المدرسي بما يتوافق مع أعداد المتعلمين والخصائص العمرية.",
+                            "توفير الاحتياجات لجميع المتعلمين ومنهم ذوي الإعاقة لتسهيل حركتهم.",
+                            "تجهيز المعامل، والوسائل، والأدوات التفاعلية، وأماكن الأنشطة لكل معلم/ة.",
+                            "متابعة سلامة المقصف المدرسي والساحات والمرافق العامة."
+                        ]
+                    },
+                    safety: { 
+                        title: "الأمن والسلامة", 
+                        initiative: "توفير جميع أدوات الأمن والسلامة في المدرسة والعمل المستدام لصيانتها.",
+                        activities: [
+                            "تشكيل وتفعيل لجنة الأمن والسلامة من قبل المدير/ة والمشرف/ة.",
+                            "توفير شهادة الأمن والسلامة من الجهات المختصة (الدفاع المدني).",
+                            "عمل برامج وأنشطة ونشرات توعوية تعزز ثقافة الأمن والسلامة.",
+                            "توافر خطط الإخلاء والطوارئ، وبناء خطة مجدولة لأعمال الصيانة الوقائية."
+                        ]
+                    }
+                }
+            }
+        };
+
+        let currentGeneratedHTML = "";
+        let currentDomainTitle = "";
+        let currentSubDomainTitle = "";
+
+        // Tab Switching Logic
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Dependent Dropdowns Logic
+        function updateSubDomains(domainSelectId, subDomainSelectId) {
+            const domainSelect = document.getElementById(domainSelectId);
+            const subDomainSelect = document.getElementById(subDomainSelectId);
+            const selectedDomain = domainSelect.value;
+
+            subDomainSelect.innerHTML = '<option value="">-- اختر المعيار الفرعي --</option>';
+            
+            if (selectedDomain && dataMap[selectedDomain]) {
+                subDomainSelect.disabled = false;
+                const subs = dataMap[selectedDomain].sub;
+                for (const key in subs) {
+                    const option = document.createElement("option");
+                    option.value = key;
+                    option.textContent = subs[key].title;
+                    subDomainSelect.appendChild(option);
+                }
+            } else {
+                subDomainSelect.disabled = true;
+            }
+        }
+
+        // Smart Generator Logic
+        function generateText() {
+            const domainKey = document.getElementById("gen-domain").value;
+            const subDomainKey = document.getElementById("gen-subdomain").value;
+            const resultBox = document.getElementById("gen-result");
+            const btnAdd = document.getElementById("add-to-group-btn");
+
+            if (!domainKey || !subDomainKey) {
+                resultBox.style.display = "block";
+                resultBox.style.borderColor = "var(--danger-color)";
+                resultBox.style.backgroundColor = "#fef2f2";
+                resultBox.innerHTML = "<strong>تنبيه:</strong> يرجى اختيار المجال والمعيار الفرعي أولاً لتوليد البيانات.";
+                btnAdd.style.display = "none";
+                return;
+            }
+
+            const data = dataMap[domainKey].sub[subDomainKey];
+            currentDomainTitle = dataMap[domainKey].title;
+            currentSubDomainTitle = data.title;
+            
+            resultBox.style.display = "block";
+            resultBox.style.borderColor = "var(--accent-color)";
+            resultBox.style.backgroundColor = "white";
+            
+            // Build the HTML structure
+            let htmlContent = `<div style="margin-bottom: 10px;"><strong>المجال:</strong> ${currentDomainTitle} | <strong>المعيار الفرعي:</strong> ${currentSubDomainTitle}</div>`;
+            htmlContent += `<strong>📌 المبادرة المقترحة:</strong><br>${data.initiative}<br><br>`;
+            htmlContent += `<strong>⚙️ الأساليب والأنشطة الإجرائية:</strong><ul class="activities-list">`;
+            
+            data.activities.forEach(activity => {
+                htmlContent += `<li>${activity}</li>`;
+            });
+            htmlContent += `</ul>`;
+
+            currentGeneratedHTML = htmlContent;
+            resultBox.innerHTML = htmlContent;
+            
+            // Show the "Add to Group" button
+            btnAdd.style.display = "inline-flex";
+        }
+
+        // Add to Group Logic
+        function addToGroup() {
+            if (!currentGeneratedHTML) return;
+            
+            const groupedSection = document.getElementById("grouped-section");
+            const container = document.getElementById("grouped-plans-container");
+            
+            // Make section visible
+            groupedSection.style.display = "block";
+            
+            // Create a new item
+            const item = document.createElement("div");
+            item.className = "plan-item";
+            item.innerHTML = currentGeneratedHTML;
+            
+            container.appendChild(item);
+            
+            // Optional: Scroll to it or show alert
+            alert("تمت الإضافة إلى الخطة المجمعة بنجاح!");
+        }
+
+        // Clear Group Logic
+        function clearGroup() {
+            if (confirm("هل أنت متأكد من مسح جميع الخطط المجمعة؟")) {
+                document.getElementById("grouped-plans-container").innerHTML = "";
+                document.getElementById("grouped-section").style.display = "none";
+            }
+        }
+    </script>
+    <!-- تذييل يظهر عند الطباعة فقط -->
+    <div class="print-footer">
+        تصميم د/فواز &nbsp;|&nbsp; https://t.me/TAqhjT3MFVE1Yzk0
+    </div>
+
+</body>
+</html>
