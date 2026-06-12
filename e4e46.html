@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة نافس | مسابقة الفهم القرائي — الصف السادس الابتدائي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+:root{
+  --primary:#1a237e;--secondary:#0d47a1;--accent:#ffd600;--gold:#f9a825;
+  --green:#1b5e20;--green-l:#43a047;--red:#b71c1c;--red-l:#e53935;
+  --bg:#0a0a2e;--card:rgba(255,255,255,.07);--dim:#b0bec5;
+  --shadow:0 8px 32px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden}
+
+/* BG */
+.bg-wrap{position:fixed;inset:0;z-index:0;background:linear-gradient(135deg,#0a0a2e,#1a237e 50%,#0d47a1);overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) infinite alternate}
+@keyframes twinkle{0%{opacity:.2;transform:scale(1)}100%{opacity:1;transform:scale(1.5)}}
+
+/* LAYOUT */
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:20px}
+
+/* HEADER */
+.hdr{text-align:center;padding:30px 20px 15px}
+.hdr-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--gold));color:#000;font-size:13px;font-weight:800;padding:6px 22px;border-radius:50px;margin-bottom:14px;letter-spacing:1px;box-shadow:0 4px 15px rgba(255,214,0,.4)}
+.hdr h1{font-size:clamp(26px,5vw,50px);font-weight:900;background:linear-gradient(135deg,#fff,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:8px}
+.hdr-sub{font-size:17px;color:var(--dim)}
+.trophy{font-size:58px;display:block;margin-bottom:10px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* SCOREBOARD */
+.scores{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:18px 0}
+.sc{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px 22px;text-align:center;backdrop-filter:blur(10px);min-width:120px;box-shadow:var(--shadow);transition:transform .3s}
+.sc:hover{transform:translateY(-3px)}
+.sc-lbl{font-size:11px;color:var(--dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.sc-val{font-size:30px;font-weight:900;color:var(--accent)}
+
+/* NAV */
+.nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px 0}
+.nb{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);color:var(--dim);padding:9px 18px;border-radius:50px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;transition:all .3s;display:flex;align-items:center;gap:6px}
+.nb.active{background:linear-gradient(135deg,var(--accent),var(--gold));border-color:var(--accent);color:#000;box-shadow:0 4px 20px rgba(255,214,0,.4)}
+.nb.done{background:linear-gradient(135deg,var(--green),var(--green-l));border-color:var(--green-l);color:#fff}
+.nb:hover:not(.active){background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:#fff;transform:translateY(-2px)}
+
+/* SCREENS */
+.scr{display:none;animation:fadeUp .5s ease}
+.scr.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* WELCOME */
+.wcard{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:40px;text-align:center;backdrop-filter:blur(15px);box-shadow:var(--shadow);max-width:720px;margin:0 auto}
+.wcard h2{font-size:30px;font-weight:900;color:var(--accent);margin-bottom:18px}
+.wcard p{font-size:16px;color:var(--dim);line-height:1.8;margin-bottom:12px}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:22px 0}
+.ov-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 12px;text-align:center}
+.ov-icon{font-size:34px;margin-bottom:8px;display:block}
+.ov-card h3{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.ov-card p{font-size:12px;color:var(--dim);margin:0}
+
+/* TEXT DISPLAY */
+.txt-card{background:linear-gradient(135deg,rgba(26,35,126,.6),rgba(13,71,161,.6));border:2px solid rgba(255,214,0,.3);border-radius:24px;padding:35px;margin-bottom:28px;backdrop-filter:blur(15px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.txt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent))}
+.txt-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--gold));color:#000;font-size:11px;font-weight:800;padding:4px 14px;border-radius:50px;margin-bottom:10px}
+.txt-title{font-size:23px;font-weight:900;color:var(--accent);text-align:center;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,214,0,.3)}
+.txt-body{font-size:16px;line-height:2.2;color:#e3f2fd;text-align:justify;direction:rtl}
+.txt-body p{margin-bottom:14px}
+
+/* STAGE INTRO */
+.si{background:linear-gradient(135deg,rgba(26,35,126,.7),rgba(13,71,161,.7));border:2px solid rgba(255,214,0,.4);border-radius:24px;padding:38px;text-align:center;margin-bottom:28px;backdrop-filter:blur(15px);box-shadow:var(--shadow)}
+.si-icon{font-size:58px;margin-bottom:14px;display:block;animation:bounce 2s infinite}
+.si h2{font-size:26px;font-weight:900;color:var(--accent);margin-bottom:8px}
+.si p{font-size:15px;color:var(--dim)}
+
+/* PROGRESS */
+.prog{margin:18px 0}
+.prog-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--dim);margin-bottom:7px}
+.prog-bar{height:10px;background:rgba(255,255,255,.1);border-radius:50px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:50px;transition:width .5s ease;position:relative}
+.prog-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* QUESTION */
+.q-sec{max-width:820px;margin:0 auto}
+.q-card{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:32px;backdrop-filter:blur(15px);box-shadow:var(--shadow);margin-bottom:22px}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--gold));color:#000;font-size:17px;font-weight:900;border-radius:50%;margin-bottom:12px}
+.q-skill{display:inline-block;background:rgba(255,255,255,.08);color:var(--dim);font-size:11px;padding:5px 13px;border-radius:50px;border:1px solid rgba(255,255,255,.12);margin-right:8px;margin-bottom:12px}
+.q-text{font-size:19px;font-weight:700;color:#fff;line-height:1.7;margin-bottom:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:600px){.opts{grid-template-columns:1fr}}
+.opt{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.15);color:#fff;padding:13px 16px;border-radius:13px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:500;text-align:right;transition:all .3s;display:flex;align-items:center;gap:9px;direction:rtl}
+.opt:hover:not(:disabled){background:rgba(255,255,255,.12);border-color:var(--accent);transform:translateX(-3px)}
+.opt-l{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,255,255,.1);border-radius:7px;font-size:13px;font-weight:800;flex-shrink:0;color:var(--accent)}
+.opt.correct{background:linear-gradient(135deg,rgba(27,94,32,.8),rgba(67,160,71,.8));border-color:var(--green-l);animation:cpulse .5s ease}
+.opt.correct .opt-l{background:var(--green-l);color:#fff}
+.opt.wrong{background:linear-gradient(135deg,rgba(183,28,28,.8),rgba(229,57,53,.8));border-color:var(--red-l);animation:shake .5s ease}
+.opt.wrong .opt-l{background:var(--red-l);color:#fff}
+@keyframes cpulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{display:none;padding:13px 18px;border-radius:13px;margin-top:13px;font-size:15px;font-weight:700;text-align:center;animation:fadeUp .4s ease}
+.fb.c{background:linear-gradient(135deg,rgba(27,94,32,.6),rgba(67,160,71,.6));border:1px solid var(--green-l);color:#a5d6a7;display:block}
+.fb.w{background:linear-gradient(135deg,rgba(183,28,28,.6),rgba(229,57,53,.6));border:1px solid var(--red-l);color:#ef9a9a;display:block}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;border:none;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;transition:all .3s;text-decoration:none}
+.btn-p{background:linear-gradient(135deg,var(--accent),var(--gold));color:#000;box-shadow:0 4px 20px rgba(255,214,0,.4)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(255,214,0,.5)}
+.btn-s{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-s:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.btn-b{background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff;box-shadow:0 4px 20px rgba(21,101,192,.4)}
+.btn-b:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(21,101,192,.5)}
+.btns{display:flex;justify-content:center;gap:14px;margin-top:24px;flex-wrap:wrap}
+
+/* RESULT */
+.res-card{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:50px 38px;text-align:center;backdrop-filter:blur(15px);box-shadow:var(--shadow);max-width:700px;margin:0 auto;position:relative;overflow:hidden}
+.res-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent),var(--gold),#ff6f00,var(--gold),var(--accent));background-size:200% 100%;animation:gmove 3s linear infinite}
+@keyframes gmove{0%{background-position:0}100%{background-position:200%}}
+.res-trophy{font-size:78px;margin-bottom:18px;display:block;animation:bounce 1.5s infinite}
+.res-score{font-size:70px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.res-title{font-size:26px;font-weight:800;color:#fff;margin-bottom:12px}
+.res-msg{font-size:16px;color:var(--dim);line-height:1.8;margin-bottom:26px}
+.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
+.rs{background:rgba(255,255,255,.05);border-radius:13px;padding:14px;border:1px solid rgba(255,255,255,.1)}
+.rs-v{font-size:26px;font-weight:900;color:var(--accent)}
+.rs-l{font-size:11px;color:var(--dim);margin-top:4px}
+
+/* CONFETTI */
+.cf{position:fixed;border-radius:2px;animation:cfall 3s ease-in forwards;z-index:9999}
+@keyframes cfall{0%{transform:translateY(-100px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* NOTIFICATION */
+.notif{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);background:linear-gradient(135deg,var(--green),var(--green-l));color:#fff;padding:14px 28px;border-radius:50px;font-size:15px;font-weight:700;z-index:9999;transition:transform .4s ease;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.notif.show{transform:translateX(-50%) translateY(0)}
+.notif.bad{background:linear-gradient(135deg,var(--red),var(--red-l))}
+
+/* SETTINGS */
+.sett{background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px;margin-top:28px;backdrop-filter:blur(10px);text-align:center}
+.sett h3{font-size:15px;color:var(--dim);margin-bottom:14px;font-weight:600}
+.sett-row{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.tgl{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--dim);padding:8px 16px;border-radius:50px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:600;transition:all .3s}
+.tgl.on{background:linear-gradient(135deg,var(--green),var(--green-l));border-color:var(--green-l);color:#fff}
+hr.div{border:none;border-top:1px solid rgba(255,255,255,.1);margin:13px 0}
+.cred{font-size:14px;color:var(--dim);margin-bottom:10px}
+.tg-link{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0088cc,#00aaff);color:#fff;padding:10px 24px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:700;transition:all .3s;box-shadow:0 4px 15px rgba(0,136,204,.4)}
+.tg-link:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,136,204,.5)}
+.thanks{font-size:13px;color:rgba(255,255,255,.45);margin-top:10px;font-style:italic}
+
+/* FOOTER */
+footer{text-align:center;padding:28px 20px;margin-top:36px;border-top:1px solid rgba(255,255,255,.1)}
+footer p{font-size:13px;color:var(--dim);margin-bottom:8px}
+
+/* WORD CARD (مفردات) */
+.vocab-section{background:linear-gradient(135deg,rgba(26,35,126,.5),rgba(13,71,161,.5));border:1px solid rgba(255,214,0,.25);border-radius:18px;padding:22px;margin-bottom:22px}
+.vocab-title{font-size:17px;font-weight:800;color:var(--accent);margin-bottom:16px;text-align:center}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.vocab-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.vocab-word{font-size:17px;font-weight:800;color:var(--accent)}
+.vocab-mean{font-size:14px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="bg-wrap"><div id="stars"></div></div>
+<div class="notif" id="notif"></div>
+
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="hdr">
+  <span class="trophy">🏆</span>
+  <div class="hdr-badge">✦ اختبارات نافس الوطنية ✦</div>
+  <h1>مسابقة الفهم القرائي</h1>
+  <p class="hdr-sub">الصف السادس الابتدائي — مهارات القراءة والاستيعاب</p>
+</div>
+
+<!-- SCORES -->
+<div class="scores">
+  <div class="sc"><div class="sc-lbl">النقاط</div><div class="sc-val" id="sScore">0</div></div>
+  <div class="sc"><div class="sc-lbl">صحيحة</div><div class="sc-val" id="sCorrect">0</div></div>
+  <div class="sc"><div class="sc-lbl">المرحلة</div><div class="sc-val" id="sStage">—</div></div>
+  <div class="sc"><div class="sc-lbl">الدقة</div><div class="sc-val" id="sAcc">—%</div></div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nb active" id="nb0" onclick="go(0)">🏠 البداية</button>
+  <button class="nb" id="nb1" onclick="go(1)">📖 المرحلة ١</button>
+  <button class="nb" id="nb2" onclick="go(2)">🔤 المرحلة ٢</button>
+  <button class="nb" id="nb3" onclick="go(3)">📚 المرحلة ٣</button>
+  <button class="nb" id="nb4" onclick="go(4)">✍️ المرحلة ٤</button>
+  <button class="nb" id="nb5" onclick="go(5)">📜 المرحلة ٥</button>
+  <button class="nb" id="nb6" onclick="go(6)">🕌 المرحلة ٦</button>
+  <button class="nb" id="nb7" onclick="go(7)">🏅 النتائج</button>
+</div>
+
+<!-- ====== SCREEN 0: WELCOME ====== -->
+<div class="scr active" id="s0">
+  <div class="wcard">
+    <h2>🎯 مرحباً بك في مسابقة نافس!</h2>
+    <p>استعد لاختبار مهاراتك في الفهم القرائي من خلال <strong style="color:var(--accent)">ثلاثة نصوص</strong> متنوعة وأسئلة تفاعلية مثيرة</p>
+    <p>ستمر بـ <strong style="color:var(--accent)">6 مراحل</strong> تشمل عرض النصوص وأسئلة المفردات والفهم القرائي</p>
+    <div class="ov-grid">
+      <div class="ov-card"><span class="ov-icon">📖</span><h3>مرحلة ١</h3><p>نص المعلبات الغذائية</p></div>
+      <div class="ov-card"><span class="ov-icon">🔤</span><h3>مرحلة ٢</h3><p>أسئلة المعلبات الغذائية</p></div>
+      <div class="ov-card"><span class="ov-icon">📚</span><h3>مرحلة ٣</h3><p>نص الضيف الصغير</p></div>
+      <div class="ov-card"><span class="ov-icon">✍️</span><h3>مرحلة ٤</h3><p>أسئلة الضيف الصغير</p></div>
+      <div class="ov-card"><span class="ov-icon">📜</span><h3>مرحلة ٥</h3><p>نصوص تدريبية إضافية</p></div>
+      <div class="ov-card"><span class="ov-icon">🕌</span><h3>مرحلة ٦</h3><p>نص القرآن الكريم</p></div>
+    </div>
+    <div class="btns"><button class="btn btn-p" onclick="startGame()">🚀 ابدأ المسابقة</button></div>
+  </div>
+  <div class="sett">
+    <h3>⚙️ إعدادات المسابقة</h3>
+    <div class="sett-row">
+      <button class="tgl on" id="tSound" onclick="toggleS('sound')">🔊 الأصوات: تشغيل</button>
+      <button class="tgl on" id="tAnim" onclick="toggleS('anim')">✨ التأثيرات: تشغيل</button>
+    </div>
+    <hr class="div">
+    <p class="cred">تصميم د/ فواز — تفضل للمزيد هنا</p>
+    <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" class="tg-link">📱 قناة التيليجرام</a>
+    <p class="thanks">والشكر والدعاء موصول لجامعها ومعدها</p>
+  </div>
+</div>
+
+<!-- ====== SCREEN 1: TEXT 1 ====== -->
+<div class="scr" id="s1">
+  <div class="si"><span class="si-icon">📖</span><h2>المرحلة الأولى — قراءة النص</h2><p>اقرأ النص التالي بتمعن وتركيز، ستُسأل عنه في المرحلة القادمة</p></div>
+  <div class="txt-card">
+    <div style="text-align:center;margin-bottom:14px"><span class="txt-badge">نص تعليمي — نثر</span></div>
+    <div class="txt-title">المعلَّبات الغذائية</div>
+    <div class="txt-body">
+      <p>إنَّ الحفظَ بالتعليبِ هو أحدُ وسائلِ حفظِ الأغذيةِ وحمايتِها من التلفِ والتلوثِ، ويُعدُّ من وسائلِ حفظِ الغذاءِ المستديمِ.</p>
+      <p>ويُقصدُ بحفظِ الأغذيةِ بالتعليبِ: تعبئتُها بطريقةٍ تقنيةٍ حديثةٍ داخلَ عبواتٍ مناسبةٍ محكمةِ القفلِ، ثمَّ معاملتُها حراريًّا بالمعاملةِ الكافيةِ للقضاءِ على جميعِ صورِ الفسادِ المكروبيِّ والكيميائيِّ، للدرجةِ التي تسمحُ قدرَ الإمكانِ بالمحافظةِ على الصفاتِ المرغوبةِ في الغذاءِ.</p>
+      <p>وعلى الرغمِ من فوائدِ التعليبِ إلا أنَّه يؤثرُ على الصفاتِ الطبيعيةِ للغذاءِ؛ أيْ: يؤثرُ بصفةٍ عامةٍ على جودةِ الغذاءِ فيتأثرُ لونُه ونكهتُه، كما تتأثرُ الفيتامينات الذائبةُ في الماءِ بالمعاملةِ الحراريةِ.</p>
+      <p>ولضمانِ استهلاكِ الموادِ الغذائيةِ بصورةٍ آمنةٍ تنبغي مراعاةُ عدةِ نواحٍ عندَ شراءِ المعلباتِ، ومن ذلكَ التأكدُ من أنَّ مدةَ الصلاحيةِ للمنتجِ لا تزالُ ساريةَ المفعولِ، مع تجنبِ المعلباتِ التي يظهرُ عليها الاعوجاجُ أو الانتفاخُ، كما ينبغي الانتباهُ عندَ شراءِ الأغذيةِ التي تُركتْ دونَ تبريدٍ وقد كُتبَ عليها (تُحفظُ مبردةً أو مجمدةً).</p>
+      <p>وينبغي توخِّي الحذرِ عندَ استخدامِ المعلباتِ الغذائيةِ، وعلى مستهلكِ المعلباتِ المحافظةَ على جودةِ المنتجِ وسلامتِه في المنزلِ كالاهتمامِ باتباعِ طرائقِ الحفظِ والتخزينِ الصحيحةِ والمناسبةِ التي تكونُ موضحةً في بطاقاتِ تغليفِ المنتجِ، وعدمِ الاستهانةِ بذلكَ.</p>
+      <p>وعندَ استهلاكِ الأغذيةِ السريعةِ الفسادِ، كالحليبِ واللحومِ، التي يجبُ حفظُها في الثلاجةِ خصوصًا بعدَ فتحِها ويُفضلُ استهلاكُ الموادِ الغذائيةِ بعدَ فتحِها مباشرةً، وتُعدُّ الأطعمةُ الطازجةُ أفضلَ من الأطعمةِ المعلبةِ، فكلْ الأطعمةَ الطازجةَ يسلمْ بدنُكَ.</p>
+    </div>
+  </div>
+  <div class="btns">
+    <button class="btn btn-p" onclick="go(2)">🎯 انتقل لأسئلة النص ←</button>
+  </div>
+</div>
+
+<!-- ====== SCREEN 2: Q1 ====== -->
+<div class="scr" id="s2">
+  <div class="si"><span class="si-icon">🔤</span><h2>المرحلة الثانية — أسئلة المعلبات الغذائية</h2><p>أجب عن الأسئلة التالية بناءً على النص الذي قرأته</p></div>
+  <div class="prog"><div class="prog-lbl"><span>التقدم</span><span id="pt2">0 / 0</span></div><div class="prog-bar"><div class="prog-fill" id="pf2" style="width:0%"></div></div></div>
+  <div class="q-sec" id="qs2"></div>
+  <div class="btns"><button class="btn btn-p" onclick="go(3)">📚 انتقل للمرحلة التالية ←</button></div>
+</div>
+
+<!-- ====== SCREEN 3: TEXT 2 ====== -->
+<div class="scr" id="s3">
+  <div class="si"><span class="si-icon">📚</span><h2>المرحلة الثالثة — قراءة النص</h2><p>اقرأ القصة التالية بتأمل، ستُسأل عنها في المرحلة القادمة</p></div>
+  <div class="txt-card">
+    <div style="text-align:center;margin-bottom:14px"><span class="txt-badge">نص قصصي — قصة</span></div>
+    <div class="txt-title">الضيف الصغير</div>
+    <div class="txt-body">
+      <p>قالَ أحمدُ: قضيتُ ليلةَ أمسِ أنتظرُ عودةَ أمي التي ذهبتْ بصحبةِ أبي إلى المستشفى؛ لتضعَ مولودَها الجديدَ، وفي الصباحِ نبَّهني من نومي صوتٌ خُيِّلَ إليَّ أنني كنتُ أسمعُه منذُ مدةٍ في أثناءِ نومي، دققتُ، ثم دخلتُ، استأذنتُ، كانتْ أمي تحملُ بينَ ذراعيها الحانيتينِ ذلكَ المولودَ الذي انتظرناهُ طويلًا.</p>
+      <p>كانتْ عيناها مشرقتينِ على الرغمِ من الإعياءِ الذي يبدو على محياها. بادرتُها القولَ: حمدًا للهِ على سلامتكِ يا أمي. سلَّمكِ اللهُ يا بُنيَّ.</p>
+      <p>تعالَ انظرْ إلى أخيكَ الصغيرِ، إنه يشبهُكَ، لقد سمَّيناهُ خالدًا كما كنتَ تريدُ. اقتربتُ رويدًا رويدًا، أمعنتُ النظرَ في المولودِ، يا اللهُ! ما أجملَه! جسمٌ ضئيلٌ، عيانِ صغيرتانِ، يدانِ طريَّتانِ، حركاتٌ غيرُ مركزةٍ، رغبتُ في معانقتِه غيرَ أنني تذكرتُ أنَّ ذلكَ قد يُعرِّضُه للخطرِ.</p>
+      <p>وبسرعةٍ جنحَ بي الخيالُ بعيدًا لأراهُ لاعبًا في حديقةِ المنزلِ، أو ممسكًا كتابَه، أو واقفًا إلى جانبي في الصلاةِ، حمدتِ اللهَ، وشكرتُه، لقد أصبحَ لي أخٌ، أصبحَ لي من سيقفُ إلى جانبي في معركةِ الحياةِ، وسأكونُ بعونِ اللهِ خيرَ مساعدٍ لهُ، وخيرَ نصيرٍ.</p>
+      <p>وبعدَ مدةٍ جلسنا حولَ مأدبةِ الإفطارِ، كانتِ السعادةُ تغمرُ الجميعَ، كانتْ سعادةً مضاعفةً، إنها السعادةُ بسلامةِ والدتي، والسعادةُ بقدومِ أخي الصغيرِ، ولم أرَ والديَّ قطُّ بمثلِ ما رأيتُه اليومَ، إنه يشعرُ بكرمِ اللهِ وعطائِه، ويتجلَّى هذا الشعورُ في تعابيرِ الحمدِ والثناءِ على اللهِ الواهبِ الكريمِ، التي كانَ يرددُها.</p>
+      <p>ثمَّ سمَّى أبي اللهَ وحمدَه، ثمَّ قالَ: أتاكمُ اليومَ ضيفٌ صغيرٌ، ومن حقِّه عليكم جميعًا إكرامُه، ورعايتُه، وتربيتُه التربيةَ الصالحةَ، إنه نبتةٌ صغيرةٌ، وسيصبحُ بفضلِ اللهِ ثمَّ بتعاونِكم شجرةً قويةً باسقةً تزيدُ وطنَنا قوةً ورفعةً، فحمدًا للهِ على نعمائِه وفضلِه، باركَ اللهُ لنا في هذا المولودِ.</p>
+    </div>
+  </div>
+  <div class="btns">
+    <button class="btn btn-s" onclick="go(2)">← العودة</button>
+    <button class="btn btn-p" onclick="go(4)">🎯 انتقل لأسئلة النص ←</button>
+  </div>
+</div>
+
+<!-- ====== SCREEN 4: Q2 ====== -->
+<div class="scr" id="s4">
+  <div class="si"><span class="si-icon">✍️</span><h2>المرحلة الرابعة — أسئلة الضيف الصغير</h2><p>أجب عن الأسئلة التالية بناءً على قصة الضيف الصغير</p></div>
+  <div class="prog"><div class="prog-lbl"><span>التقدم</span><span id="pt4">0 / 0</span></div><div class="prog-bar"><div class="prog-fill" id="pf4" style="width:0%"></div></div></div>
+  <div class="q-sec" id="qs4"></div>
+  <div class="btns"><button class="btn btn-p" onclick="go(5)">📜 انتقل للمرحلة التالية ←</button></div>
+</div>
+
+<!-- ====== SCREEN 5: TEXTS 3+4 ====== -->
+<div class="scr" id="s5">
+  <div class="si"><span class="si-icon">📜</span><h2>المرحلة الخامسة — نصوص تدريبية</h2><p>نصان قصصيان تدريبيان مع أسئلة الفهم القرائي</p></div>
+
+  <!-- نص مفاجأة غير سارة -->
+  <div class="txt-card">
+    <div style="text-align:center;margin-bottom:14px"><span class="txt-badge">نص قصصي — قصة</span></div>
+    <div class="txt-title">مفاجأة غير سارة</div>
+    <div class="txt-body">
+      <p>تقدَّمَ العمرُ بالنجارِ الماهرِ، وطلبَ من صاحبِ العملِ أن يُحيلَه على التقاعدِ ليقضيَ بقيةَ عمرِه مع زوجتِه وأولادِه، ولكنَّ صاحبَ العملِ رفضَ طلبَ النجارِ، إلا أنَّ النجارَ أصرَّ على طلبِ التقاعدِ، فقالَ له صاحبُ العملِ: إنَّ لي عندَكَ رجاءً أخيرًا، وهو أن تبنيَ منزلًا وسيكونُ هذا آخرَ عملٍ لكَ، وبعدَ الانتهاءِ منه سأوافقُ على طلبِ التقاعدِ، فوافقَ النجارُ على مضضٍ.</p>
+      <p>فاستخدمَ موادًا رديئةً، ولعلمِه أنَّ هذا البيتَ سيكونُ الأخيرَ لم يُحسنِ الصنعةَ؛ وأسرعَ في الإنجازِ دونَ الجودةِ المطلوبةِ، وكانتِ الطريقةُ التي أدَّى بها العملَ نهايةً غيرَ جيدةٍ لعمرٍ طويلٍ من الإنجازِ والتميزِ والإبداعِ.</p>
+      <p>عندما انتهى النجارُ من البناءِ سلَّمَ صاحبُ العملِ مفاتيحَ المنزلِ الجديدِ، وطلبَ منه السماحَ له بالرحيلِ، غيرَ أنَّ صاحبَ العملِ استوقفَه وقالَ له: "إنَّ هذا المنزلَ هو هديتي لكَ نظيرَ سنينَ عملِكَ معي فآملُ أن تقبلَه منِّي". صعقَ النجارُ من المفاجأةِ؛ لأنَّه لو علمَ أنه يبني منزلَ العمرِ ما توانى في الإخلاصِ في إتقانِ عملِه.</p>
+    </div>
+  </div>
+
+  <div class="prog"><div class="prog-lbl"><span>التقدم</span><span id="pt5a">0 / 0</span></div><div class="prog-bar"><div class="prog-fill" id="pf5a" style="width:0%"></div></div></div>
+  <div class="q-sec" id="qs5a"></div>
+
+  <!-- نص سالم والصدق -->
+  <div class="txt-card" style="margin-top:32px">
+    <div style="text-align:center;margin-bottom:14px"><span class="txt-badge">نص قصصي — قصة</span></div>
+    <div class="txt-title">الصدق ينجي</div>
+    <div class="txt-body">
+      <p>طلبتِ الأمُّ من صغيرِها سالمٍ الذهابَ للمتجرِ لشراءِ بعضِ البيضِ لتُعدَّ لهم الحلوى التي يُحبُّها سالمٌ كثيرًا. خرجَ سالمٌ مسرعًا لشراءِ البيضِ وفي الطريقِ قابلَه جارُه سعيدٌ، فأخبرَه سعيدٌ أنه مُتجهٌ لنفسِ المتجرِ لشراءِ بعضِ حاجاتِ دارِهم.</p>
+      <p>سارا معًا حتى وصلا للمتجرِ واشترى كلٌّ منهما حاجتَه، ثمَّ عادا معًا، وفي أثناءِ عودتِهما لم ينتبهْ سالمٌ لحفرةٍ صغيرةٍ في الطريقِ فتعثَّرتْ قدماهُ وسقطَ أرضًا وتكسَّرَ البيضُ كلُّه، أخذَ سالمٌ يبكي بحُرقةٍ لأنه لم ينتبهْ للطريقِ فتسبَّبَ في كسرِ البيضِ، بينما حاولَ سعيدٌ أن يُهدِّئَه دونَ فائدةٍ.</p>
+      <p>"ماذا سأقولُ لأمِّي؟! التي ائتمنَتْني على الذهابِ لشراءِ البيضِ، ستغضبُ كثيرًا وربما ستُعاقبُني. ماذا سأقولُ لها كي تغفرَ لي وتُسامحَني؟!" ارتسمتْ علاماتُ التفكيرِ على وجهِ سعيدٍ قبلَ أن يقولَ: "سأُخبرُكَ بفكرةٍ رائعةٍ لتنجوَ من العقابِ" أخبرْ أمَّكَ أنَّ النقودَ سقطتْ منكَ وأنكَ بحثتَ عنها فلم تجدْها. لم يتقبَّلْ سالمٌ تلكَ الفكرةَ مطلقًا، "هل أكذبُ لأنجوَ من عقابِ أمِّي؟! وماذا عن عقابِ اللهِ؟!" ولكنَّ سعيدًا أخذَ يُزيِّنُ له الفكرةَ ويُخبرُه أنها كذبةٌ بيضاءُ لا تضرُّ.</p>
+      <p>افترقَ الصديقانِ واتجهَ كلٌّ منهما لدارِه وما إن وصلَ سالمٌ للدارِ وطرقَ البابَ حتى فتحتْ أمُّه، تأملتِ الأمُّ قليلًا، هل يُنفِّذُ خطةَ سعيدٍ ويكذبُ؟ أم يُخبرُها بالحقيقةِ؟ وفجأةً ارتمى سالمٌ في حضنِ أمِّه ومن بينِ دموعِه المنهمرةِ أخذَ يُخبرُها بكلِّ ما حدثَ، وهنا احتضنتْه أمُّه بشدةٍ وقالتْ له في حنانٍ: "حمدًا للهِ أنكَ لم تكذبْ، سأُعطيكَ نقودًا أخرى لتذهبَ لشراءِ البيضِ وسأُعدَّ لكَ الحلوى التي تُحبُّها".</p>
+    </div>
+  </div>
+
+  <div class="prog" style="margin-top:16px"><div class="prog-lbl"><span>التقدم</span><span id="pt5b">0 / 0</span></div><div class="prog-bar"><div class="prog-fill" id="pf5b" style="width:0%"></div></div></div>
+  <div class="q-sec" id="qs5b"></div>
+
+  <div class="btns"><button class="btn btn-p" onclick="go(6)">🕌 انتقل للمرحلة التالية ←</button></div>
+</div>
+
+<!-- ====== SCREEN 6: TEXT 5 + Q ====== -->
+<div class="scr" id="s6">
+  <div class="si"><span class="si-icon">🕌</span><h2>المرحلة السادسة — القرآن الكريم</h2><p>اقرأ النص ثم أجب عن الأسئلة</p></div>
+  <div class="txt-card">
+    <div style="text-align:center;margin-bottom:14px"><span class="txt-badge">نص ديني — معلوماتي</span></div>
+    <div class="txt-title">القرآن الكريم المكي والمدني</div>
+    <div class="txt-body">
+      <p>نزلَ القرآنُ مُنجَّمًا على النبيِّ ﷺ فكانَ إذا حدثَ موقفٌ نزلَ القرآنُ يعالجُه ويبيِّنُ حكمَ الدينِ فيه، ثمَّ بعدَ فترةٍ إذا حدثَ موقفٌ آخرُ نزلَ فيه القرآنُ، لذا ينقسمُ القرآنُ إلى مكيٍّ ومدنيٍّ.</p>
+      <p>فالقرآنُ المكيُّ هو ما نزلَ قبلَ الهجرةِ إلى المدينةِ، وإن كانَ نزولُه خارجَ مكةَ، أما القرآنُ المدنيُّ فهو ما نزلَ بعدَ الهجرةِ، وإن كانَ نزولُه خارجَ المدينةِ.</p>
+      <p>وقد جاءتِ السورُ المكيةُ قصيرةً في الغالبِ، مما جعلَ حفظَها سهلًا. تناولَ القرآنُ المكيُّ موضوعاتٍ تتعلقُ بالعقيدةِ، مثلَ: توحيدِ اللهِ، والدعوةِ إلى الإسلامِ، ويومِ القيامةِ، وقصصِ الأنبياءِ والرسلِ السابقينَ عليهم السلامُ وغيرِ ذلكَ. ويبلغُ القرآنُ المكيُّ نحوَ ثلثَي القرآنِ.</p>
+      <p>أما القرآنُ المدنيُّ فجاءتْ سورُه وآياتُه طويلةً في الغالبِ، وقد تناولَ موضوعاتٍ جديدةً مثلَ: الفرائضِ والحدودِ والحقوقِ والجهادِ وغيرِ ذلكَ.</p>
+    </div>
+  </div>
+  <div class="prog"><div class="prog-lbl"><span>التقدم</span><span id="pt6">0 / 0</span></div><div class="prog-bar"><div class="prog-fill" id="pf6" style="width:0%"></div></div></div>
+  <div class="q-sec" id="qs6"></div>
+  <div class="btns"><button class="btn btn-p" onclick="go(7)">🏅 عرض النتائج النهائية ←</button></div>
+</div>
+
+<!-- ====== SCREEN 7: RESULTS ====== -->
+<div class="scr" id="s7">
+  <div class="res-card">
+    <span class="res-trophy" id="rTrophy">🏆</span>
+    <div class="res-score" id="rScore">0</div>
+    <div class="res-title" id="rTitle">نتيجتك النهائية</div>
+    <div class="res-msg" id="rMsg">أكمل جميع المراحل لرؤية نتيجتك</div>
+    <div class="res-stats">
+      <div class="rs"><div class="rs-v" id="rC">0</div><div class="rs-l">إجابة صحيحة</div></div>
+      <div class="rs"><div class="rs-v" id="rW">0</div><div class="rs-l">إجابة خاطئة</div></div>
+      <div class="rs"><div class="rs-v" id="rA">0%</div><div class="rs-l">نسبة الدقة</div></div>
+    </div>
+    <div class="btns">
+      <button class="btn btn-p" onclick="restart()">🔄 إعادة المسابقة</button>
+      <button class="btn btn-s" onclick="go(1)">📖 مراجعة النصوص</button>
+    </div>
+  </div>
+  <div class="sett" style="margin-top:28px">
+    <h3>⚙️ إعدادات</h3>
+    <hr class="div">
+    <p class="cred">تصميم د/ فواز — تفضل للمزيد هنا</p>
+    <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" class="tg-link">📱 قناة التيليجرام</a>
+    <p class="thanks">والشكر والدعاء موصول لجامعها ومعدها</p>
+  </div>
+</div>
+
+</div><!-- end wrap -->
+
+<footer>
+  <p>تصميم د/ فواز — تفضل للمزيد هنا</p>
+  <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" class="tg-link">📱 قناة التيليجرام</a>
+  <p style="margin-top:10px;font-size:12px;color:rgba(255,255,255,.4)">والشكر والدعاء موصول لجامعها ومعدها</p>
+</footer>
+
+<script>
+/* ===== STARS ===== */
+(()=>{
+  const c=document.getElementById('stars');
+  for(let i=0;i<160;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*3+1;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*4+2}s;animation-delay:${Math.random()*4}s`;
+    c.appendChild(s);
+  }
+})();
+
+/* ===== STATE ===== */
+let G={score:0,correct:0,wrong:0,sound:true,anim:true,ans:{}};
+
+/* ===== QUESTIONS DATA ===== */
+const Q={
+  /* ---- نص المعلبات ---- */
+  q2:[
+    {sk:"يحدد مرادفات المفردات",q:"مرادف كلمة «التلف» الواردة في النص:",o:["الفساد","النجاح","التعليب","التغليف"],c:0},
+    {sk:"يحدد أضداد المفردات",q:"ضد كلمة «استهلك»:",o:["أنتج","حافظ","ضيَّع","راجع"],c:0},
+    {sk:"يحدد معاني المفردات",q:"معنى كلمة «تَوَخَّى»:",o:["تباعد","تجانس","قصد","تاخم"],c:2},
+    {sk:"يصنف المفردات",q:"أي الكلمات التالية ليست مؤنثًا؟",o:["الأغذية","طريقة","الغذاء","المرغوبة"],c:2},
+    {sk:"يحدد نوع الكلمة",q:"حدد الاسم من بين المفردات التالية:",o:["يُعدُّ","على","ينبغي","التلوث"],c:3},
+    {sk:"يصنف المفردات حسب عددها",q:"حدد نوع الكلمة «المواد»:",o:["مفرد","مثنى","جمع","جميع الإجابات خاطئة"],c:2},
+    {sk:"يستخدم المفردات",q:"ما جمع مفردة «فائدة»؟",o:["فائدتان","فائدتين","فوائد","أفئدة"],c:2},
+    {sk:"يحدد الجمل التعجبية",q:"أي الجمل التالية ليست تعجبية؟",o:["كيف يهمل البعض الأطعمة؟!","سبحان الله لماذا لا يراعي الناس صحة الأطعمة!","كيف نستطيع حفظ الأطعمة؟","جميع الإجابات تعجبية"],c:2},
+    {sk:"يستنتج الهدف العام",q:"ضع عنوانًا مناسبًا آخر للنص:",o:["صناعة المعلبات","تغذية الإنسان","المحافظة على المعلبات الغذائية","حاجة الناس من الأطعمة"],c:2},
+    {sk:"يستنتج الهدف العام",q:"ما الهدف العام من النص؟",o:["ضرورة الالتزام بالتغذية السليمة","طرق المحافظة على الأطعمة وأضرار إهمالها","منجزات الدول في صناعة الأغذية","عواقب التلوث"],c:1},
+    {sk:"يحدد الفكرة الرئيسة",q:"حدد الفكرة الرئيسة للفقرة الأولى:",o:["حفظ الأطعمة","أضرار التلوث","استهلاك الأغذية","المنتجات الغذائية"],c:0},
+    {sk:"يجيب عن أسئلة تعليلية",q:"لماذا يجب الحذر من تعليب الأغذية رغم فوائده؟",o:["لأنه ضار","لأنه يفسد الطعام","لأنه يؤثر على الصفات الطبيعية للغذاء","كل الإجابات خاطئة"],c:2},
+    {sk:"يحدد نوع النص",q:"ما نوع النص المقروء؟",o:["حوار","شعر","نثر","قصة"],c:2},
+    {sk:"يجيب عن أسئلة تعليلية",q:"لماذا تجب المعاملة الحرارية للمعلبات الغذائية؟",o:["حتى ينضج الطعام","لأنها فاسدة","بسبب التدفئة","للقضاء على جميع صور الفساد المكروبي والكيميائي"],c:3},
+    {sk:"يحدد مكونات النص",q:"متى تصبح الأطعمة المعلبة قابلة للفساد؟",o:["إذا طُبخت","إذا وُضعت في الثلاجة","إذا فُتحت","كل الإجابات صحيحة"],c:2},
+    {sk:"يحدد العنصر المتحدث",q:"العنصر المتحدث في النص هو:",o:["الأب","الأم","الطالب","مؤلف النص"],c:3},
+    {sk:"يحدد مكونات النص",q:"لضمان استهلاك المواد الغذائية المعلبة تجب مراعاة:",o:["مدة صلاحية المنتج","تجنب العلب المفتوحة","ترك العلب غير المبردة","كل الإجابات صحيحة"],c:3},
+    {sk:"يحدد الأسباب والنتائج",q:"ما الأسباب التي تدفع الإنسان لاستهلاك الأطعمة المعلبة مباشرة؟",o:["حتى لا تتلوث وتصبح ضارة","حتى لا يتغير طعمها","كي لا تتغير رائحتها","كل الإجابات صحيحة"],c:3},
+    {sk:"يستنتج أوجه الشبه والاختلاف",q:"بماذا تختلف الأطعمة الطازجة عن المعلبة؟",o:["الطازجة أكثر عرضة للفساد","المعلبة عند فتحها أكثر عرضة للتلوث","كلاهما يتعرض للتلوث بنفس الوقت","كل الإجابات صحيحة"],c:1},
+    {sk:"يستنتج أثر التعليب",q:"ما أثر التعليب في الأطعمة؟",o:["أحد وسائل التخزين","أحد وسائل النقل","أحد وسائل حفظ الأغذية وسلامتها","أ ـ ب"],c:2},
+    {sk:"يبدي رأيه",q:"أي الأطعمة أكثر نفعًا لصحة الإنسان؟",o:["المعلبة","المطبوخة","الطازجة","المجمدة"],c:2},
+    {sk:"يحدد السبب الأساسي",q:"ما السبب الأساسي في التأثير على جودة الأطعمة كما جاء في النص؟",o:["تغليفه","طبخه","تخزينه","تعليبه"],c:3},
+    {sk:"يقترح عنوانًا مناسبًا",q:"اقترح عنوانًا يصف أحداث النص:",o:["فوائد الأطعمة الطازجة","الفواكه والخضراوات","الأطعمة المعلبة","الأطعمة النافعة"],c:2},
+    {sk:"يحدد الأسباب والنتائج",q:"ما الذي يحدث للأطعمة المعلبة إذا تُركت دون تبريد؟",o:["تتحسن جودتها","تتلف وتفسد","تصبح أكثر أمانًا","لا يحدث لها شيء"],c:1},
+    {sk:"يحدد الفكرة الرئيسة",q:"ما الفكرة الرئيسة للنص بأكمله؟",o:["التعليب يضر بالأطعمة دائمًا","طرق حفظ الأغذية وأهمية الحفاظ عليها","الأطعمة المعلبة أفضل من الطازجة","يجب تجنب الأطعمة المعلبة كليًا"],c:1}
+  ],
+
+  /* ---- نص الضيف الصغير ---- */
+  q4:[
+    {sk:"يحدد مرادفات المفردات",q:"مرادف كلمة «طريَّتان» الواردة في النص:",o:["لينتان","غليظتان","منتفختان","سريعتان"],c:0},
+    {sk:"يحدد أضداد المفردات",q:"ضد كلمة «اقتربت» الواردة في النص:",o:["قربت","ابتعدت","جاءت","خرجت"],c:1},
+    {sk:"يحدد معاني المفردات",q:"معنى كلمة «تغمر»:",o:["تكبر","تقلل","تغطي","ترتمي"],c:2},
+    {sk:"يصنف المفردات",q:"أي الكلمات التالية ليست مؤنثًا؟",o:["عودة","غرفة","حديقة","الجديد"],c:3},
+    {sk:"يحدد نوع الكلمة",q:"حدد الاسم من بين المفردات التالية:",o:["انظر","الصغير","لم","قال"],c:1},
+    {sk:"يصنف المفردات حسب عددها",q:"حدد نوع الكلمة «مولودها»:",o:["مفرد","مثنى","جمع","جميع الإجابات خاطئة"],c:0},
+    {sk:"يستخدم المفردات",q:"ما جمع مفردة «معركة»؟",o:["معركتان","معركتين","معارك","عِراك"],c:2},
+    {sk:"يستنتج الهدف العام",q:"ضع عنوانًا مناسبًا آخر للنص:",o:["جمال المولود","ضعف المولود الصغير","أخي الصغير","حاجة المولود للحليب"],c:2},
+    {sk:"يستنتج الهدف العام",q:"ما الهدف العام من القصة؟",o:["المولود الجديد واحتياجاته واستقبال الأسرة له","حاجات المولود","رعاية الأم لمولودها","عواقب التغذية السيئة للطفل"],c:0},
+    {sk:"يحدد الفكرة الرئيسة",q:"حدد الفكرة الرئيسة للفقرة الأولى:",o:["مشاهدة المولود الجديد","انتظار المولود الجديد","احتياجات المولود","رعاية الأم لمولودها"],c:1},
+    {sk:"يجيب عن أسئلة تعليلية",q:"لماذا كانت السعادة تغمر الأسرة على مائدة الطعام؟",o:["بسبب المولود الجديد","بسبب حلاوة الطعام","لسلامة الأم وسلامة المولود الجديد","كل الإجابات خاطئة"],c:2},
+    {sk:"يحدد نوع النص",q:"ما نوع النص المقروء؟",o:["حوار","شعر","نثر","قصة"],c:3},
+    {sk:"يجيب عن أسئلة تعليلية",q:"لماذا لم يعانق أحمد أخاه المولود؟",o:["لأنه لا يحبه","لأن ذلك قد يعرضه للخطر","لأن أمه منعته","لأنه كان خائفًا"],c:1},
+    {sk:"يحدد مكونات النص",q:"ما الذي جعل الأب يوصي الأسرة بالمولود الجديد؟",o:["لحاجته للرعاية كالنبتة الصغيرة","لأنه ضعيف","لأنه لا يحتاج لأحد","كل الإجابات صحيحة"],c:0},
+    {sk:"يصف الدوافع والأفعال",q:"بماذا تصف شعور الأسرة بقدوم مولودها الجديد؟",o:["بالخوف","بالسعادة","بالاعتزاز","بالوحدة"],c:1},
+    {sk:"يستنتج أوجه الشبه والاختلاف",q:"بماذا يختلف المولود الجديد عن أحمد؟",o:["لا يستطيع الاعتماد على نفسه","لا يستطيع المشي","أحمد يتكلم والمولود يصرخ","كل الإجابات صحيحة"],c:3},
+    {sk:"يستنتج نتيجة الرعاية",q:"ما نتيجة الرعاية السليمة للمولود الجديد؟",o:["ينشأ بصحة وسلامة","يشعر بالأمن","يصبح نافعًا لدينه ووطنه","كل ما سبق صحيح"],c:3},
+    {sk:"يستنتج وجه الشبه",q:"ما وجه الشبه بين المولود والنبتة الصغيرة كما ورد في النص؟",o:["كلاهما يحتاج للماء","كلاهما يحتاج للغذاء","كلاهما يحتاج للرعاية","أ ـ ب"],c:2},
+    {sk:"يميز التعبيرات الجمالية",q:"ما الدافع وراء حب الأسرة للمولود الجديد؟",o:["عاطفة إنسانية","الرحمة والشفقة","طلب الحياة الكريمة له","جميع ما سبق"],c:3},
+    {sk:"يحدد الزمن في النص",q:"متى شاهد أحمد أخاه خالدًا؟",o:["في المساء","الظهيرة","في الصباح","بعد العصر"],c:2},
+    {sk:"يبدي رأيه",q:"أي العواطف التالية هي الأكثر انتشارًا في النص؟",o:["الحزن","الفرح والشوق","التعجب","كل ما سبق"],c:1},
+    {sk:"يبدي رأيه حول الأحداث",q:"ما رأيك في احتضان المولود بقوة؟",o:["أمر طبيعي","لا بأس فيه","تصرف خاطئ فربما يضر به","أ ـ ب"],c:2},
+    {sk:"يقترح عنوانًا مناسبًا",q:"اقترح عنوانًا يصف أحداث القصة:",o:["حاجات الرعاية للمولود","فرحة الأهل بالمولود الجديد","الزائر الصغير","استقبال المولود"],c:2},
+    {sk:"يحدد الأسباب والنتائج",q:"ما الذي شعر به الأب عند رؤية مولوده الجديد؟",o:["الحزن والقلق","الفرح والامتنان لله","الخوف على المولود","الإرهاق والتعب"],c:1},
+    {sk:"يحدد الفكرة الرئيسة",q:"ما الفكرة الرئيسة للنص بأكمله؟",o:["فرحة الأسرة بقدوم المولود ومسؤولية رعايته","وصف المولود الجديد فقط","مشاعر أحمد تجاه أخيه","أهمية الذهاب للمستشفى"],c:0}
+  ],
+
+  /* ---- نص مفاجأة غير سارة ---- */
+  q5a:[
+    {sk:"يستنتج مرادفات المفردات",q:"معنى «على مضضٍ» في النص:",o:["على حب","على رغبة","على كُرهٍ","على أمل"],c:2},
+    {sk:"يميز المفردات المتشابهة",q:"من خلال قراءتك للنص، ما العلاقة بين صاحب العمل والنجار؟",o:["صاحب العمل والنجار متقاعدان","النجار رئيس صاحب العمل","صاحب العمل رئيس النجار","صاحب العمل والنجار أقارب"],c:2},
+    {sk:"يصنف المترادفات والأضداد",q:"العلاقة بين كلمتي «رديئة وجيدة»:",o:["ترادف","تضاد","تتابع","تناظر"],c:1},
+    {sk:"يجيب عن أسئلة مباشرة",q:"لماذا طلب النجار من صاحب العمل أن يُحيله على التقاعد؟",o:["لأن النجار لا يحب بناء المنازل","لأن النجار لا يجيد بناء المنازل","لأن النجار تقدَّم به العمر","لأن صاحب العمل ظالم"],c:2},
+    {sk:"يحدد المعلومات الواردة",q:"لماذا صعقَ النجارُ من المفاجأة؟",o:["لأن صاحب العمل وافق على طلب التقاعد","لأن صاحب العمل رفض طلب التقاعد","لأنه تقدَّم به العمر","لأنه لم يتقن منزلَ العمر"],c:3},
+    {sk:"يميز الأفكار الرئيسة",q:"كيف يمكن أن نصف فعل النجار؟",o:["نهاية جيدة لسنوات جيدة","نهاية سيئة لسنوات سيئة","نهاية جيدة لسنوات سيئة","نهاية سيئة لسنوات جيدة"],c:3},
+    {sk:"يصف الشخصيات والأحداث",q:"كيف تصف موقف صاحب العمل والنجار؟",o:["صاحب العمل أخطأ والنجار أصاب","صاحب العمل أصاب والنجار أخطأ","كالهما أخطأ","كلاهما أصاب"],c:1},
+    {sk:"يستدل من النص",q:"أتعلم من النص:",o:["الإسراع في الإنجاز","بناء المنازل","إتقان العمل","طلب التقاعد"],c:2}
+  ],
+
+  /* ---- نص الصدق ينجي ---- */
+  q5b:[
+    {sk:"يصنف المترادفات والأضداد",q:"العلاقة بين كلمتي «تَغفر وتُسامح»:",o:["ترادف","تضاد","تناقض","تناظر"],c:0},
+    {sk:"يجيب عن أسئلة مباشرة",q:"لماذا خرج سالمٌ للمتجر مسرعًا؟",o:["ليقابل جاره سعيدًا","ليلعب في الحفرة الصغيرة","لأن أمه غضبت كثيرًا وستعاقبه","لأن أمه ستُعد الحلوى التي يُحبها"],c:3},
+    {sk:"يجيب عن أسئلة مباشرة",q:"ماذا فعل سالمٌ عندما وصل للدار؟",o:["نفَّذ خطة صديقه سعيد","كذب على أمه","أخبر أمه الحقيقة","أخبر أمه أن النقود سقطت منه"],c:2},
+    {sk:"يصف الشخصيات والأحداث",q:"كيف تصف موقف سعيد وسالم؟",o:["سعيد أصاب وسالم أخطأ","سعيد أخطأ وسالم أصاب","كلاهما أخطأ","كلاهما أصاب"],c:1},
+    {sk:"يستدل من النص",q:"نفهم من النص أن الصديق الصالح يجب أن:",o:["يساعد صديقه على قول الحقيقة","يساعد صديقه على الكذب","يساعد صديقه على كسر البيض","لا يساعد صديقه"],c:0},
+    {sk:"يميز التعبيرات الجمالية",q:"يدل قول سالم «وماذا عن عقاب الله؟!» أنه:",o:["لا يخاف من عقاب الله","يخاف من عقاب الله","لا يخاف من عقاب أمه","يخاف من عقاب سعيد"],c:1},
+    {sk:"يقترح عنوانًا مناسبًا",q:"أنسب عنوان للقصة:",o:["أهمية البيض","مشكلة في المتجر","الصدق يُنجيك","الصديق يُنجيك"],c:2},
+    {sk:"يقترح نهاية مغايرة",q:"ماذا تفعل لو كنت مكان سعيد؟",o:["لا أساعد سالمًا","أقترح على سالم أن يكذب على أمه","أقترح نفس خطة سعيد","أقترح على سالم أن يخبر أمه الحقيقة"],c:3},
+    {sk:"يوظف مغزى النص",q:"من خلال قراءتك للنص، ماذا تفعل إذا نسيت أن تجيب عن أحد الواجبات وسألك المعلم؟",o:["لا أخبره الحقيقة وأبحث عن عذر","أكذب عليه","أسكت ولا أجيب","أخبره الحقيقة وأعتذر عن ذلك"],c:3},
+    {sk:"يبدي رأيه حول القيم",q:"ما رأيك في موقف الأم؟",o:["سيء؛ لأنها شجعت سالمًا على الكذب","سيء؛ لأنها شجعت سعيدًا على الكذب","جيد؛ لأنها قبلت بمقترح سعيد","جيد؛ لأنها شجعت سالمًا على الصدق"],c:3}
+  ],
+
+  /* ---- نص القرآن الكريم ---- */
+  q6:[
+    {sk:"يحدد المعلومات الواردة",q:"من خلال النص أي الآتي صحيح؟",o:["القرآن المدني أكثر من القرآن المكي","القرآن المدني أقل من القرآن المكي","القرآن المدني والقرآن المكي متساويان","كل القرآن مكي"],c:1},
+    {sk:"يستخدم وسائل الإقناع والتعليل",q:"من خلال النص، سورة الفلق سورة مكية لأنها:",o:["نزلت بعد الهجرة","نزلت قبل الهجرة","آياتها طويلة","نزلت في المدينة"],c:1},
+    {sk:"يحدد الفكرة الرئيسة",q:"ما الفكرة الرئيسة للنص؟",o:["أهمية حفظ القرآن الكريم","تقسيم القرآن إلى مكي ومدني وخصائص كل منهما","فضل تلاوة القرآن الكريم","قصص الأنبياء في القرآن"],c:1},
+    {sk:"يجيب عن أسئلة مباشرة",q:"ما الفرق بين القرآن المكي والمدني من حيث طول السور؟",o:["المكي طويل والمدني قصير","المكي قصير والمدني طويل","كلاهما متساويان في الطول","لا فرق بينهما"],c:1},
+    {sk:"يحدد المعلومات الواردة",q:"ما الموضوعات التي تناولها القرآن المكي؟",o:["الفرائض والحدود والحقوق","توحيد الله والدعوة إلى الإسلام ويوم القيامة","الجهاد والحقوق","كل ما سبق"],c:1},
+    {sk:"يحدد المعلومات الواردة",q:"لماذا نزل القرآن الكريم منجَّمًا؟",o:["لصعوبة حفظه دفعة واحدة","لأن النبي ﷺ طلب ذلك","لمعالجة المواقف وبيان أحكام الدين","لأن الصحابة لم يستطيعوا كتابته دفعة واحدة"],c:2}
+  ]
+};
+
+/* ===== RENDER ===== */
+function render(arr, secId, stageKey){
+  const sec=document.getElementById(secId);
+  sec.innerHTML='';
+  const L=['أ','ب','ج','د'];
+  arr.forEach((q,i)=>{
+    const d=document.createElement('div');
+    d.id=`qc_${stageKey}_${i}`;d.className='q-card';
+    d.innerHTML=`
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+        <div class="q-num">${i+1}</div>
+        <span class="q-skill">${q.sk}</span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="opts">
+        ${q.o.map((o,oi)=>`
+          <button class="opt" id="opt_${stageKey}_${i}_${oi}" onclick="pick('${stageKey}',${i},${oi})" data-oi="${oi}">
+            <span class="opt-l">${L[oi]}</span><span>${o}</span>
+          </button>`).join('')}
+      </div>
+      <div class="fb" id="fb_${stageKey}_${i}"></div>`;
+    sec.appendChild(d);
+  });
+  updProg(stageKey);
+}
+
+/* ===== PICK ANSWER ===== */
+function pick(sk,qi,oi){
+  const key=`${sk}_${qi}`;
+  if(G.ans[key])return;
+  G.ans[key]=true;
+  const arr=Q[sk];
+  const q=arr[qi];
+  const L=['أ','ب','ج','د'];
+  const isC=oi===q.c;
+  document.querySelectorAll(`[id^="opt_${sk}_${qi}_"]`).forEach(b=>b.disabled=true);
+  document.getElementById(`opt_${sk}_${qi}_${oi}`).classList.add(isC?'correct':'wrong');
+  if(!isC)document.getElementById(`opt_${sk}_${qi}_${q.c}`).classList.add('correct');
+  if(isC){G.score+=10;G.correct++;showN('✅ إجابة صحيحة! +10 نقاط','g');if(G.sound)beep(1);if(G.anim)confetti(6);}
+  else{G.wrong++;showN('❌ الإجابة الصحيحة: '+L[q.c],'b');if(G.sound)beep(0);}
+  const fb=document.getElementById(`fb_${sk}_${qi}`);
+  fb.className=`fb ${isC?'c':'w'}`;
+  fb.innerHTML=isC?`✅ ممتاز! الإجابة: <strong>${L[q.c]}) ${q.o[q.c]}</strong>`:`❌ الإجابة الصحيحة: <strong>${L[q.c]}) ${q.o[q.c]}</strong>`;
+  updScores();updProg(sk);
+}
+
+/* ===== UPDATE SCORES ===== */
+function updScores(){
+  document.getElementById('sScore').textContent=G.score;
+  document.getElementById('sCorrect').textContent=G.correct;
+  const t=G.correct+G.wrong;
+  document.getElementById('sAcc').textContent=t>0?Math.round(G.correct/t*100)+'%':'—%';
+}
+
+/* ===== UPDATE PROGRESS ===== */
+function updProg(sk){
+  const arr=Q[sk];if(!arr)return;
+  const total=arr.length;
+  let done=0;
+  for(let i=0;i<total;i++)if(G.ans[`${sk}_${i}`])done++;
+  const pct=Math.round(done/total*100);
+  const pfMap={q2:'pf2',q4:'pf4',q5a:'pf5a',q5b:'pf5b',q6:'pf6'};
+  const ptMap={q2:'pt2',q4:'pt4',q5a:'pt5a',q5b:'pt5b',q6:'pt6'};
+  if(pfMap[sk])document.getElementById(pfMap[sk]).style.width=pct+'%';
+  if(ptMap[sk])document.getElementById(ptMap[sk]).textContent=`${done} / ${total}`;
+}
+
+/* ===== NAVIGATION ===== */
+function go(n){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('active'));
+  document.getElementById(`s${n}`).classList.add('active');
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById(`nb${n}`).classList.add('active');
+  document.getElementById('sStage').textContent=n===0?'—':n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===7)showResult();
+}
+
+function startGame(){
+  render(Q.q2,'qs2','q2');
+  render(Q.q4,'qs4','q4');
+  render(Q.q5a,'qs5a','q5a');
+  render(Q.q5b,'qs5b','q5b');
+  render(Q.q6,'qs6','q6');
+  go(1);
+}
+
+function restart(){
+  G={score:0,correct:0,wrong:0,sound:G.sound,anim:G.anim,ans:{}};
+  updScores();
+  render(Q.q2,'qs2','q2');
+  render(Q.q4,'qs4','q4');
+  render(Q.q5a,'qs5a','q5a');
+  render(Q.q5b,'qs5b','q5b');
+  render(Q.q6,'qs6','q6');
+  go(0);
+}
+
+/* ===== RESULT ===== */
+function showResult(){
+  const t=G.correct+G.wrong;
+  const acc=t>0?Math.round(G.correct/t*100):0;
+  document.getElementById('rScore').textContent=G.score;
+  document.getElementById('rC').textContent=G.correct;
+  document.getElementById('rW').textContent=G.wrong;
+  document.getElementById('rA').textContent=acc+'%';
+  let tr,ti,ms;
+  if(acc>=90){tr='🏆';ti='ممتاز! أداء رائع!';ms='أنت نجم المسابقة! حققت نتيجة استثنائية تدل على إتقانك للفهم القرائي';if(G.anim)confetti(30);}
+  else if(acc>=75){tr='🥇';ti='جيد جداً! عمل رائع!';ms='أداء متميز! أنت على الطريق الصحيح نحو التفوق في الفهم القرائي';}
+  else if(acc>=60){tr='🥈';ti='جيد! استمر في التحسن!';ms='أداء جيد! مراجعة النصوص مرة أخرى ستساعدك على تحسين نتيجتك';}
+  else{tr='📚';ti='تحتاج لمزيد من التدريب';ms='لا تيأس! راجع النصوص مرة أخرى وأعد المحاولة للحصول على نتيجة أفضل';}
+  document.getElementById('rTrophy').textContent=tr;
+  document.getElementById('rTitle').textContent=ti;
+  document.getElementById('rMsg').textContent=ms;
+}
+
+/* ===== NOTIFICATIONS ===== */
+function showN(msg,type){
+  const n=document.getElementById('notif');
+  n.textContent=msg;n.className='notif'+(type==='b'?' bad':'');
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),2500);
+}
+
+/* ===== CONFETTI ===== */
+function confetti(cnt){
+  const cols=['#ffd600','#f9a825','#1976d2','#43a047','#e53935','#fff'];
+  for(let i=0;i<cnt;i++){
+    setTimeout(()=>{
+      const p=document.createElement('div');p.className='cf';
+      const sz=Math.random()*10+5;
+      p.style.cssText=`left:${Math.random()*100}vw;background:${cols[Math.floor(Math.random()*cols.length)]};animation-duration:${Math.random()*2+2}s;animation-delay:${Math.random()*0.5}s;width:${sz}px;height:${sz}px;border-radius:${Math.random()>.5?'50%':'2px'}`;
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),4000);
+    },i*50);
+  }
+}
+
+/* ===== SOUND ===== */
+function beep(type){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g);g.connect(ctx.destination);
+    if(type){
+      o.frequency.setValueAtTime(523,ctx.currentTime);
+      o.frequency.setValueAtTime(659,ctx.currentTime+.1);
+      o.frequency.setValueAtTime(784,ctx.currentTime+.2);
+      g.gain.setValueAtTime(.3,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.5);
+      o.start(ctx.currentTime);o.stop(ctx.currentTime+.5);
+    }else{
+      o.frequency.setValueAtTime(200,ctx.currentTime);
+      o.frequency.setValueAtTime(150,ctx.currentTime+.1);
+      g.gain.setValueAtTime(.3,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.3);
+      o.start(ctx.currentTime);o.stop(ctx.currentTime+.3);
+    }
+  }catch(e){}
+}
+
+/* ===== TOGGLES ===== */
+function toggleS(t){
+  if(t==='sound'){
+    G.sound=!G.sound;
+    const b=document.getElementById('tSound');
+    b.textContent=G.sound?'🔊 الأصوات: تشغيل':'🔇 الأصوات: إيقاف';
+    b.className='tgl'+(G.sound?' on':'');
+  }else{
+    G.anim=!G.anim;
+    const b=document.getElementById('tAnim');
+    b.textContent=G.anim?'✨ التأثيرات: تشغيل':'✨ التأثيرات: إيقاف';
+    b.className='tgl'+(G.anim?' on':'');
+  }
+}
+
+/* ===== INIT ===== */
+window.startGame=startGame;
+window.restart=restart;
+window.go=go;
+window.pick=pick;
+window.toggleS=toggleS;
+document.addEventListener('DOMContentLoaded',()=>{
+  render(Q.q2,'qs2','q2');
+  render(Q.q4,'qs4','q4');
+  render(Q.q5a,'qs5a','q5a');
+  render(Q.q5b,'qs5b','q5b');
+  render(Q.q6,'qs6','q6');
+  updScores();
+});
+</script>
+</body>
+</html>
