@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قطة الخميسية</title>
+<style>
+  :root {
+    --green: #16a34a;
+    --red: #dc2626;
+    --blue: #1d4ed8;
+    --amber: #d97706;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e3a5f, #2563eb);
+    color: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+  }
+  .header h1 { font-size: 1.8rem; font-weight: 700; }
+  .header p { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+  .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .btn-white { background: white; color: #1d4ed8; }
+  .btn-white:hover { background: #eff6ff; }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .btn-green { background: var(--green); color: white; }
+  .btn-green:hover { background: #15803d; }
+  .btn-red { background: var(--red); color: white; }
+  .btn-red:hover { background: #b91c1c; }
+  .btn-blue { background: var(--blue); color: white; }
+  .btn-blue:hover { background: #1e40af; }
+  .btn-sm { padding: 6px 14px; font-size: 0.82rem; }
+
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .tab {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab.active { background: #1d4ed8; color: white; border-color: #1d4ed8; }
+  .tab:hover:not(.active) { border-color: #1d4ed8; color: #1d4ed8; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+  .stat-card .label { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+  .stat-card .value { font-size: 1.6rem; font-weight: 700; }
+  .stat-card .sub { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+  .color-green { color: var(--green); }
+  .color-red { color: var(--red); }
+  .color-blue { color: var(--blue); }
+  .color-amber { color: var(--amber); }
+
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h2 { font-size: 1rem; font-weight: 700; }
+  .card-body { padding: 20px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: #f1f5f9;
+    padding: 10px 14px;
+    text-align: right;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .badge-green { background: #dcfce7; color: var(--green); }
+  .badge-red { background: #fee2e2; color: var(--red); }
+  .badge-amber { background: #fef3c7; color: var(--amber); }
+  .badge-blue { background: #dbeafe; color: var(--blue); }
+
+  .member-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    background: none;
+    font-family: inherit;
+  }
+  .member-toggle.paid { border-color: var(--green); color: var(--green); }
+  .member-toggle.paid:hover { background: #dcfce7; }
+  .member-toggle.unpaid { border-color: var(--red); color: var(--red); }
+  .member-toggle.unpaid:hover { background: #fee2e2; }
+
+  .month-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  select, input {
+    padding: 8px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: white;
+    color: var(--text);
+  }
+  select:focus, input:focus { outline: none; border-color: #1d4ed8; }
+
+  .expense-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+  .expense-row input { flex: 1; }
+  .expense-row .amount-input { max-width: 150px; }
+
+  .progress-bar { height: 6px; background: #e2e8f0; border-radius: 3px; margin-top: 6px; }
+  .progress-fill { height: 100%; border-radius: 3px; background: var(--green); }
+
+  .total-row td { font-weight: 700; background: #f1f5f9; }
+  .surplus-row td { background: #dcfce7; color: var(--green); font-weight: 700; }
+  .deficit-row td { background: #fee2e2; color: var(--red); font-weight: 700; }
+
+  .empty { text-align: center; padding: 40px; color: var(--muted); font-size: 0.95rem; }
+
+  .month-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: #dbeafe;
+    color: #1d4ed8;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .header-actions, .tabs, .btn { display: none !important; }
+    .section { display: block !important; }
+    .card { box-shadow: none; break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 20px; }
+    .header h1 { font-size: 1.4rem; }
+    .cards-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>🤝 قطة الخميسية</h1>
+    <p>تتبّع المدفوعات • المصاريف • الحسابات الشهرية</p>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-white" onclick="printPage()">🖨️ طباعة</button>
+    <button class="btn btn-outline" onclick="exportHTML()">⬇️ تحميل الملف</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('payments')">💵 المدفوعات</button>
+  <button class="tab" onclick="showTab('expenses')">🧾 المصاريف</button>
+  <button class="tab" onclick="showTab('summary')">📊 الملخص الكامل</button>
+  <button class="tab" onclick="showTab('members')">👥 الأعضاء</button>
+</div>
+
+<!-- ===== PAYMENTS TAB ===== -->
+<div id="tab-payments" class="section active">
+  <div class="card-header" style="background:white; border-radius:12px; border:1px solid var(--border); padding:16px 20px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+    <div class="month-selector">
+      <label style="font-weight:600; font-size:0.9rem;">الشهر:</label>
+      <select id="paymentMonth" onchange="renderPayments()"></select>
+      <button class="btn btn-blue btn-sm" onclick="addMonth()">+ شهر جديد</button>
+      <button class="btn btn-red btn-sm" onclick="deleteCurrentMonth()">🗑 حذف الشهر</button>
+    </div>
+  </div>
+
+  <div class="cards-row" id="paymentStats"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>سجل المدفوعات</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-green btn-sm" onclick="setAllPaid(true)">✅ تحديد الكل دفع</button>
+        <button class="btn btn-red btn-sm" onclick="setAllPaid(false)">❌ تحديد الكل لم يدفع</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم العضو</th>
+            <th>المبلغ المطلوب</th>
+            <th>الحالة</th>
+            <th>المبلغ المدفوع</th>
+            <th>الفرق</th>
+          </tr>
+        </thead>
+        <tbody id="paymentsTable"></tbody>
+        <tfoot id="paymentsFoot"></tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EXPENSES TAB ===== -->
+<div id="tab-expenses" class="section">
+  <div class="card-header" style="background:white; border-radius:12px; border:1px solid var(--border); padding:16px 20px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+    <div class="month-selector">
+      <label style="font-weight:600; font-size:0.9rem;">الشهر:</label>
+      <select id="expenseMonth" onchange="renderExpenses()"></select>
+    </div>
+    <button class="btn btn-blue btn-sm" onclick="addExpense()">+ إضافة مصروف</button>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h2>مصاريف الشهر</h2></div>
+    <div class="card-body">
+      <div id="expensesList"></div>
+      <div id="expensesTotal" style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUMMARY TAB ===== -->
+<div id="tab-summary" class="section">
+  <div class="cards-row" id="summaryStats"></div>
+  <div class="card">
+    <div class="card-header"><h2>الملخص الشهري الكامل</h2></div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>الشهر</th>
+            <th>إجمالي المجمّع</th>
+            <th>عدد الدافعين</th>
+            <th>المتأخرون</th>
+            <th>إجمالي المصاريف</th>
+            <th>الرصيد</th>
+            <th>الحالة</th>
+          </tr>
+        </thead>
+        <tbody id="summaryTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-header"><h2>متابعة كل عضو عبر الأشهر</h2></div>
+    <div style="overflow-x:auto;">
+      <table id="memberSummaryTable"></table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MEMBERS TAB ===== -->
+<div id="tab-members" class="section">
+  <div class="card">
+    <div class="card-header">
+      <h2>إدارة الأعضاء</h2>
+      <button class="btn btn-blue btn-sm" onclick="addMember()">+ عضو جديد</button>
+    </div>
+    <div class="card-body">
+      <div id="membersList"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <div class="card-header"><h2>إعدادات القطة</h2></div>
+    <div class="card-body">
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <label style="font-weight:600;">قيمة القطة الشهرية (ريال):</label>
+        <input type="number" id="monthlyAmount" value="200" min="1" style="width:120px;" onchange="saveSettings(); renderAll();">
+        <span style="color:var(--muted); font-size:0.85rem;">يُطبَّق على جميع الأشهر</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// =========================================================
+//  DATA
+// =========================================================
+let data = {
+  members: [
+    "أبو عبدالله","أبو سعد","أبو محمد","أبو حسام","أبو أحمد",
+    "أبو عاصم","أبو حسن","أبو نبيل","أبو ياسر","أبو عبدالعزيز"
+  ],
+  monthlyAmount: 200,
+  months: {
+    "يونيو 2025": {
+      payments: {
+        "أبو عبدالله": true,
+        "أبو سعد": true,
+        "أبو محمد": true,
+        "أبو حسام": true,
+        "أبو أحمد": true,
+        "أبو عاصم": true,
+        "أبو حسن": false,
+        "أبو نبيل": true,
+        "أبو ياسر": false,
+        "أبو عبدالعزيز": true
+      },
+      expenses: [
+        { desc: "طعام وشواء", amount: 450 },
+        { desc: "مشروبات", amount: 120 }
+      ]
+    }
+  }
+};
+
+// =========================================================
+//  PERSISTENCE
+// =========================================================
+function save() {
+  localStorage.setItem('khamissiya_data', JSON.stringify(data));
+}
+function load() {
+  const s = localStorage.getItem('khamissiya_data');
+  if (s) {
+    try { data = JSON.parse(s); } catch(e) {}
+  }
+}
+
+// =========================================================
+//  HELPERS
+// =========================================================
+function getMonths() { return Object.keys(data.months); }
+
+function getPayments(month) {
+  return data.months[month]?.payments || {};
+}
+
+function getExpenses(month) {
+  return data.months[month]?.expenses || [];
+}
+
+function totalCollected(month) {
+  const payments = getPayments(month);
+  return data.members.filter(m => payments[m] === true).length * data.monthlyAmount;
+}
+
+function totalExpenses(month) {
+  return getExpenses(month).reduce((s, e) => s + Number(e.amount || 0), 0);
+}
+
+function balance(month) {
+  return totalCollected(month) - totalExpenses(month);
+}
+
+function paidCount(month) {
+  const p = getPayments(month);
+  return data.members.filter(m => p[m] === true).length;
+}
+
+function unpaidCount(month) {
+  return data.members.length - paidCount(month);
+}
+
+function fmt(n) {
+  return Number(n).toLocaleString('ar-SA') + ' ﷼';
+}
+
+function populateSelects() {
+  const months = getMonths();
+  ['paymentMonth','expenseMonth'].forEach(id => {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    const cur = sel.value;
+    sel.innerHTML = months.map(m => `<option value="${m}">${m}</option>`).join('');
+    if (months.includes(cur)) sel.value = cur;
+    else if (months.length) sel.value = months[months.length - 1];
+  });
+}
+
+// =========================================================
+//  TABS
+// =========================================================
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  renderAll();
+}
+
+// =========================================================
+//  PAYMENTS
+// =========================================================
+function renderPayments() {
+  const month = document.getElementById('paymentMonth')?.value;
+  if (!month) return;
+  if (!data.months[month]) data.months[month] = { payments: {}, expenses: [] };
+
+  const payments = getPayments(month);
+  const amt = data.monthlyAmount;
+  const tbody = document.getElementById('paymentsTable');
+  const tfoot = document.getElementById('paymentsFoot');
+
+  tbody.innerHTML = data.members.map((m, i) => {
+    const paid = payments[m] === true;
+    const diff = paid ? 0 : -amt;
+    return `<tr>
+      <td>${i + 1}</td>
+      <td><strong>${m}</strong></td>
+      <td>${fmt(amt)}</td>
+      <td>
+        <button class="member-toggle ${paid ? 'paid' : 'unpaid'}" onclick="togglePayment('${month}','${m}')">
+          ${paid ? '✅ دفع' : '❌ لم يدفع'}
+        </button>
+      </td>
+      <td style="color:${paid ? 'var(--green)' : 'var(--muted)'}; font-weight:600;">
+        ${paid ? fmt(amt) : '—'}
+      </td>
+      <td style="color:${diff < 0 ? 'var(--red)' : 'var(--green)'}; font-weight:600;">
+        ${diff === 0 ? '<span class="badge badge-green">مكتمل</span>' : '<span class="badge badge-red">' + fmt(diff) + '</span>'}
+      </td>
+    </tr>`;
+  }).join('');
+
+  const collected = totalCollected(month);
+  const target = data.members.length * amt;
+  const missing = target - collected;
+  tfoot.innerHTML = `
+    <tr class="total-row">
+      <td colspan="2">الإجمالي</td>
+      <td>${fmt(target)}</td>
+      <td><span class="badge badge-blue">${paidCount(month)} / ${data.members.length}</span></td>
+      <td style="color:var(--green)">${fmt(collected)}</td>
+      <td style="color:${missing > 0 ? 'var(--red)' : 'var(--green)'}">
+        ${missing > 0 ? '−' + fmt(missing) : '<span class="badge badge-green">مكتمل</span>'}
+      </td>
+    </tr>`;
+
+  // Stats cards
+  const bal = balance(month);
+  const exp = totalExpenses(month);
+  document.getElementById('paymentStats').innerHTML = `
+    <div class="stat-card">
+      <div class="label">إجمالي المجمّع</div>
+      <div class="value color-green">${fmt(collected)}</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${target ? Math.round(collected/target*100) : 0}%"></div></div>
+      <div class="sub">${paidCount(month)} من ${data.members.length} دفعوا</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">المتأخرون</div>
+      <div class="value color-red">${unpaidCount(month)}</div>
+      <div class="sub">${fmt(missing)} غير مجموعة</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">إجمالي المصاريف</div>
+      <div class="value color-amber">${fmt(exp)}</div>
+      <div class="sub">${getExpenses(month).length} بند</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">الرصيد</div>
+      <div class="value ${bal >= 0 ? 'color-green' : 'color-red'}">${fmt(bal)}</div>
+      <div class="sub">${bal >= 0 ? '✅ فائض' : '⚠️ عجز'}</div>
+    </div>`;
+}
+
+function togglePayment(month, member) {
+  if (!data.months[month]) data.months[month] = { payments: {}, expenses: [] };
+  data.months[month].payments[member] = !data.months[month].payments[member];
+  save();
+  renderPayments();
+}
+
+function setAllPaid(paid) {
+  const month = document.getElementById('paymentMonth')?.value;
+  if (!month) return;
+  if (!data.months[month]) data.months[month] = { payments: {}, expenses: [] };
+  data.members.forEach(m => data.months[month].payments[m] = paid);
+  save();
+  renderPayments();
+}
+
+function addMonth() {
+  const arabic = ['يناير','فبراير','مارس','أبريل','مايو','يونيو',
+                  'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  const now = new Date();
+  const name = prompt('اسم الشهر الجديد:', arabic[now.getMonth()] + ' ' + now.getFullYear());
+  if (!name || !name.trim()) return;
+  const key = name.trim();
+  if (data.months[key]) { alert('هذا الشهر موجود مسبقاً'); return; }
+  data.months[key] = { payments: {}, expenses: [] };
+  save();
+  populateSelects();
+  document.getElementById('paymentMonth').value = key;
+  document.getElementById('expenseMonth').value = key;
+  renderPayments();
+}
+
+function deleteCurrentMonth() {
+  const month = document.getElementById('paymentMonth')?.value;
+  if (!month) return;
+  if (!confirm('هل تريد حذف شهر "' + month + '"؟ لا يمكن التراجع.')) return;
+  delete data.months[month];
+  save();
+  populateSelects();
+  renderAll();
+}
+
+// =========================================================
+//  EXPENSES
+// =========================================================
+function renderExpenses() {
+  const month = document.getElementById('expenseMonth')?.value;
+  if (!month) return;
+  if (!data.months[month]) data.months[month] = { payments: {}, expenses: [] };
+  const expenses = getExpenses(month);
+  const list = document.getElementById('expensesList');
+  const totDiv = document.getElementById('expensesTotal');
+
+  if (expenses.length === 0) {
+    list.innerHTML = '<div class="empty">لا توجد مصاريف مسجّلة لهذا الشهر</div>';
+  } else {
+    list.innerHTML = expenses.map((e, i) => `
+      <div class="expense-row">
+        <input type="text" value="${e.desc || ''}" placeholder="وصف المصروف"
+          onchange="updateExpense('${month}', ${i}, 'desc', this.value)" style="flex:1;">
+        <input type="number" class="amount-input" value="${e.amount || ''}" placeholder="المبلغ ﷼"
+          onchange="updateExpense('${month}', ${i}, 'amount', this.value)" min="0">
+        <button class="btn btn-red btn-sm" onclick="removeExpense('${month}', ${i})">🗑</button>
+      </div>`).join('');
+  }
+
+  const total = totalExpenses(month);
+  const collected = totalCollected(month);
+  const bal = collected - total;
+  totDiv.innerHTML = `
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <div>
+        <span style="color:var(--muted); font-size:0.85rem;">إجمالي المصاريف: </span>
+        <strong style="font-size:1.1rem; color:var(--amber)">${fmt(total)}</strong>
+      </div>
+      <div>
+        <span style="color:var(--muted); font-size:0.85rem;">المجمّع: </span>
+        <strong style="color:var(--green)">${fmt(collected)}</strong>
+      </div>
+      <div>
+        <span style="color:var(--muted); font-size:0.85rem;">الرصيد: </span>
+        <strong style="color:${bal >= 0 ? 'var(--green)' : 'var(--red)'}; font-size:1.1rem;">
+          ${bal >= 0 ? '+' : ''}${fmt(bal)} ${bal >= 0 ? '(فائض)' : '(عجز)'}
+        </strong>
+      </div>
+    </div>`;
+}
+
+function addExpense() {
+  const month = document.getElementById('expenseMonth')?.value;
+  if (!month) return;
+  if (!data.months[month]) data.months[month] = { payments: {}, expenses: [] };
+  data.months[month].expenses.push({ desc: '', amount: 0 });
+  save();
+  renderExpenses();
+}
+
+function updateExpense(month, idx, field, value) {
+  if (!data.months[month]?.expenses[idx]) return;
+  data.months[month].expenses[idx][field] = field === 'amount' ? Number(value) : value;
+  save();
+  renderExpenses();
+}
+
+function removeExpense(month, idx) {
+  if (!confirm('حذف هذا المصروف؟')) return;
+  data.months[month].expenses.splice(idx, 1);
+  save();
+  renderExpenses();
+}
+
+// =========================================================
+//  SUMMARY
+// =========================================================
+function renderSummary() {
+  const months = getMonths();
+  let totalAll = 0, expAll = 0;
+
+  const tbody = document.getElementById('summaryTable');
+  tbody.innerHTML = months.map(m => {
+    const col = totalCollected(m);
+    const exp = totalExpenses(m);
+    const bal = col - exp;
+    totalAll += col;
+    expAll += exp;
+    const balClass = bal >= 0 ? 'color-green' : 'color-red';
+    return `<tr>
+      <td><span class="month-pill">${m}</span></td>
+      <td style="color:var(--green); font-weight:600;">${fmt(col)}</td>
+      <td><span class="badge badge-green">${paidCount(m)} دفعوا</span></td>
+      <td><span class="badge ${unpaidCount(m) > 0 ? 'badge-red' : 'badge-green'}">${unpaidCount(m)} متأخر</span></td>
+      <td style="color:var(--amber); font-weight:600;">${fmt(exp)}</td>
+      <td class="${balClass}" style="font-weight:700;">${bal >= 0 ? '+' : ''}${fmt(bal)}</td>
+      <td>${bal >= 0
+        ? '<span class="badge badge-green">✅ فائض</span>'
+        : '<span class="badge badge-red">⚠️ عجز</span>'}</td>
+    </tr>`;
+  }).join('');
+
+  if (months.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">لا توجد أشهر مسجّلة</td></tr>';
+  }
+
+  const netBal = totalAll - expAll;
+  document.getElementById('summaryStats').innerHTML = `
+    <div class="stat-card">
+      <div class="label">إجمالي المجموع (كل الأشهر)</div>
+      <div class="value color-green">${fmt(totalAll)}</div>
+      <div class="sub">${months.length} أشهر مسجّلة</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">إجمالي المصاريف</div>
+      <div class="value color-amber">${fmt(expAll)}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">الرصيد الإجمالي</div>
+      <div class="value ${netBal >= 0 ? 'color-green' : 'color-red'}">${fmt(netBal)}</div>
+      <div class="sub">${netBal >= 0 ? 'فائض متراكم' : 'عجز متراكم'}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">عدد الأعضاء</div>
+      <div class="value color-blue">${data.members.length}</div>
+      <div class="sub">${fmt(data.monthlyAmount)} / شهر للعضو</div>
+    </div>`;
+
+  // Member cross-month table
+  const tbl = document.getElementById('memberSummaryTable');
+  const hdr = `<thead><tr>
+    <th>العضو</th>
+    ${months.map(m => `<th>${m}</th>`).join('')}
+    <th>الإجمالي</th>
+    <th>المتأخر</th>
+  </tr></thead>`;
+
+  const rows = data.members.map(member => {
+    let memberTotal = 0;
+    let memberMissed = 0;
+    const cells = months.map(m => {
+      const paid = getPayments(m)[member] === true;
+      if (paid) memberTotal += data.monthlyAmount;
+      else memberMissed += data.monthlyAmount;
+      return `<td style="text-align:center">${paid
+        ? '<span class="badge badge-green">✅</span>'
+        : '<span class="badge badge-red">❌</span>'}</td>`;
+    }).join('');
+    return `<tr>
+      <td><strong>${member}</strong></td>
+      ${cells}
+      <td style="color:var(--green); font-weight:700;">${fmt(memberTotal)}</td>
+      <td style="color:${memberMissed > 0 ? 'var(--red)' : 'var(--green)'}; font-weight:700;">
+        ${memberMissed > 0 ? fmt(-memberMissed) : '—'}
+      </td>
+    </tr>`;
+  }).join('');
+
+  tbl.innerHTML = hdr + '<tbody>' + rows + '</tbody>';
+}
+
+// =========================================================
+//  MEMBERS
+// =========================================================
+function renderMembers() {
+  const list = document.getElementById('membersList');
+  list.innerHTML = data.members.map((m, i) => `
+    <div style="display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border);">
+      <span style="color:var(--muted); font-size:0.85rem; width:24px;">${i+1}</span>
+      <input type="text" value="${m}" style="flex:1;" onchange="updateMember(${i}, this.value)">
+      <button class="btn btn-red btn-sm" onclick="removeMember(${i})">🗑</button>
+    </div>`).join('');
+  document.getElementById('monthlyAmount').value = data.monthlyAmount;
+}
+
+function addMember() {
+  const name = prompt('اسم العضو الجديد:');
+  if (!name || !name.trim()) return;
+  data.members.push(name.trim());
+  save();
+  renderMembers();
+}
+
+function updateMember(i, val) {
+  const oldName = data.members[i];
+  const newName = val.trim();
+  if (!newName) return;
+  data.members[i] = newName;
+  // Update payments references
+  Object.values(data.months).forEach(m => {
+    if (oldName in m.payments) {
+      m.payments[newName] = m.payments[oldName];
+      delete m.payments[oldName];
+    }
+  });
+  save();
+}
+
+function removeMember(i) {
+  if (!confirm('حذف العضو "' + data.members[i] + '"؟')) return;
+  data.members.splice(i, 1);
+  save();
+  renderMembers();
+}
+
+function saveSettings() {
+  data.monthlyAmount = Number(document.getElementById('monthlyAmount').value) || 200;
+  save();
+}
+
+// =========================================================
+//  EXPORT / PRINT
+// =========================================================
+function printPage() { window.print(); }
+
+function exportHTML() {
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'قطة_الخميسية.html';
+  a.click();
+}
+
+// =========================================================
+//  INIT
+// =========================================================
+function renderAll() {
+  renderPayments();
+  renderExpenses();
+  renderSummary();
+  renderMembers();
+}
+
+load();
+populateSelects();
+renderAll();
+</script>
+</body>
+</html>
