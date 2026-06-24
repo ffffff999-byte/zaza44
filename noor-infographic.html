@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل إدارة درجات الدور الثاني - نظام نور</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --gold: #C9922A;
+    --gold-light: #E8B84B;
+    --teal: #1A8C7E;
+    --teal-light: #25B5A3;
+    --cream: #F5F0E8;
+    --white: #FFFFFF;
+    --step1: #1E6FA8;
+    --step2: #1A8C7E;
+    --step3: #7B3FA6;
+    --accent-red: #D63B3B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0B1F3A 0%, #142D52 50%, #0D2640 100%);
+    position: relative;
+    padding: 60px 40px 50px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 300px at 50% 0%, rgba(201,146,42,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 400px at 90% 80%, rgba(26,140,126,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 20px rgba(201,146,42,0.4));
+  }
+
+  .hero h1 {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    line-height: 1.3;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E8D9B8 60%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+
+  .hero-steps-preview {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .preview-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .preview-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .chip-1 .dot { background: var(--step1); }
+  .chip-2 .dot { background: var(--step2); }
+  .chip-3 .dot { background: var(--step3); }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+
+  /* ── SECTION CARD ── */
+  .section-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .section-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .section-num {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: linear-gradient(135deg, var(--step1), #2589CC); box-shadow: 0 4px 16px rgba(30,111,168,0.4); }
+  .s2 .section-num { background: linear-gradient(135deg, var(--step2), var(--teal-light)); box-shadow: 0 4px 16px rgba(26,140,126,0.4); }
+  .s3 .section-num { background: linear-gradient(135deg, var(--step3), #9D59D4); box-shadow: 0 4px 16px rgba(123,63,166,0.4); }
+
+  .section-title-group { flex: 1; }
+  .section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+  }
+  .section-emoji { font-size: 1.8rem; }
+
+  .section-body { padding: 22px 28px 26px; }
+
+  /* ── STEPS LIST ── */
+  .steps { list-style: none; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step:last-child { margin-bottom: 0; }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .s1 .step-num { background: rgba(30,111,168,0.25); color: #5BB3F0; border: 1px solid rgba(30,111,168,0.4); }
+  .s2 .step-num { background: rgba(26,140,126,0.25); color: #4DD4C6; border: 1px solid rgba(26,140,126,0.4); }
+  .s3 .step-num { background: rgba(123,63,166,0.25); color: #C085F5; border: 1px solid rgba(123,63,166,0.4); }
+
+  .step-text {
+    flex: 1;
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+  .step-text strong {
+    color: #fff;
+    font-weight: 700;
+    background: rgba(255,255,255,0.07);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.88rem;
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: linear-gradient(135deg, rgba(201,146,42,0.12), rgba(232,184,75,0.06));
+    border: 1px solid rgba(201,146,42,0.3);
+    border-right: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .tip-content { flex: 1; }
+  .tip-label {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+  }
+  .tip-text {
+    font-size: 0.87rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+  }
+  .tip-text strong { color: var(--gold-light); font-weight: 700; }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: rgba(123,63,166,0.1);
+    border: 1px solid rgba(123,63,166,0.25);
+    border-right: 4px solid var(--step3);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+  }
+  .note-box strong { color: #C085F5; }
+
+  /* ── SUBCATEGORY ── */
+  .sub-section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .sub-section:last-of-type { margin-bottom: 0; }
+  .sub-title {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sub-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(26,140,126,0.2);
+    color: var(--teal-light);
+    border: 1px solid rgba(26,140,126,0.3);
+  }
+
+  /* ── TABLE for promotion ── */
+  .promo-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  @media(max-width:580px) { .promo-split { grid-template-columns: 1fr; } }
+
+  .promo-card {
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+  }
+  .promo-card.fail {
+    background: rgba(214,59,59,0.1);
+    border: 1px solid rgba(214,59,59,0.25);
+  }
+  .promo-card.pass {
+    background: rgba(26,140,126,0.1);
+    border: 1px solid rgba(26,140,126,0.25);
+  }
+  .promo-card .card-icon { font-size: 2rem; margin-bottom: 8px; }
+  .promo-card .card-label {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .promo-card.fail .card-label { color: #F08080; }
+  .promo-card.pass .card-label { color: var(--teal-light); }
+  .promo-card .card-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* ── CONNECTOR LINES between sections ── */
+  .connector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    position: relative;
+    margin: -4px 0;
+  }
+  .connector::before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(201,146,42,0.4), rgba(201,146,42,0.1));
+  }
+  .connector-arrow {
+    position: absolute;
+    color: var(--gold);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 26px 40px;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0B6EFD20, #0088CC20);
+    border: 1px solid rgba(0,136,204,0.3);
+    color: #60C8FF;
+    text-decoration: none;
+    padding: 9px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all 0.3s ease;
+  }
+  .footer-link:hover {
+    background: linear-gradient(135deg, #0B6EFD40, #0088CC40);
+    box-shadow: 0 4px 20px rgba(0,136,204,0.2);
+    transform: translateY(-2px);
+  }
+  .footer-link .tg-icon { font-size: 1.1rem; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section-card {
+    animation: fadeUp 0.6s ease both;
+  }
+  .section-card:nth-child(1) { animation-delay: 0.1s; }
+  .section-card:nth-child(3) { animation-delay: 0.2s; }
+  .section-card:nth-child(5) { animation-delay: 0.3s; }
+
+  @media print {
+    .footer-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 نظام نور التعليمي</div>
+  <span class="hero-icon">🎓</span>
+  <h1>الدليل الإرشادي<br>إدارة درجات الدور الثاني وترفيع الطلاب</h1>
+  <p class="hero-subtitle">دليل شامل وموجز للعمليات الثلاث الأساسية في نظام نور</p>
+  <div class="hero-steps-preview">
+    <div class="preview-chip chip-1"><span class="dot"></span> رصد الدرجات</div>
+    <div class="preview-chip chip-2"><span class="dot"></span> إغلاق الدرجات</div>
+    <div class="preview-chip chip-3"><span class="dot"></span> ترفيع الطلاب</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section-card s1">
+    <div class="section-header">
+      <div class="section-num">١</div>
+      <div class="section-title-group">
+        <div class="section-label">الخطوة الأولى</div>
+        <div class="section-title">إدخال ورصد درجات الدور الثاني</div>
+      </div>
+      <div class="section-emoji">📝</div>
+    </div>
+    <div class="section-body">
+      <ul class="steps">
+        <li class="step">
+          <div class="step-num">١</div>
+          <div class="step-text">من القائمة الجانبية الرئيسية، انقر على <strong>«الاختبارات»</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٢</div>
+          <div class="step-text">اختر <strong>«الدرجات»</strong> ثم انقر على <strong>«إدخال درجات الدور الثاني»</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٣</div>
+          <div class="step-text">في شاشة التصفية، عبّئ البيانات: <strong>نظام الإدارة</strong> • <strong>المدرسة</strong> • <strong>الصف</strong> • <strong>الفصل</strong> • <strong>المادة</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٤</div>
+          <div class="step-text">بعد اكتمال الخيارات، انقر على زر <strong>«عرض»</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٥</div>
+          <div class="step-text">ستظهر قائمة الطلاب — أدخل الدرجة المستحقة لكل طالب في الحقل المخصص</div>
+        </li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div class="tip-content">
+          <div class="tip-label">تلميح تقني — حل مشكلة «تعليق النظام» أثناء الحفظ</div>
+          <div class="tip-text">
+            إذا لم يستجب النظام عند الحفظ، غيّر حالة الطالب إلى <strong>«غائب»</strong> ثم أعدها فوراً إلى <strong>«حاضر»</strong> — سيؤدي ذلك إلى تنشيط النظام وحفظ الدرجة بنجاح.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-arrow">↓</div></div>
+
+  <!-- SECTION 2 -->
+  <div class="section-card s2">
+    <div class="section-header">
+      <div class="section-num">٢</div>
+      <div class="section-title-group">
+        <div class="section-label">الخطوة الثانية</div>
+        <div class="section-title">إغلاق درجات الدور الثاني</div>
+      </div>
+      <div class="section-emoji">🔒</div>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-section">
+        <div class="sub-title">
+          ⚙️ الخطوة التحضيرية (قبل الإغلاق)
+          <span class="sub-badge">مهم جداً</span>
+        </div>
+        <ul class="steps">
+          <li class="step">
+            <div class="step-num">١</div>
+            <div class="step-text">اذهب إلى <strong>«شؤون الطلاب»</strong></div>
+          </li>
+          <li class="step">
+            <div class="step-num">٢</div>
+            <div class="step-text">اختر <strong>«تقرير البيانات المفقودة»</strong> (وكذلك حساب الغياب)</div>
+          </li>
+          <li class="step">
+            <div class="step-num">٣</div>
+            <div class="step-text">تأكد من عدم وجود أي درجات ناقصة أو غير مرصودة قبل الإغلاق</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">🔐 خطوات الإغلاق الفعلي</div>
+        <ul class="steps">
+          <li class="step">
+            <div class="step-num">١</div>
+            <div class="step-text">عد إلى قائمة <strong>«الاختبارات»</strong></div>
+          </li>
+          <li class="step">
+            <div class="step-num">٢</div>
+            <div class="step-text">اختر <strong>«إغلاق إدخال الدرجات»</strong></div>
+          </li>
+          <li class="step">
+            <div class="step-num">٣</div>
+            <div class="step-text">من الصفحة الظاهرة، توجه إلى قسم <strong>«درجات الدور الثاني»</strong> ونفّذ عملية الإغلاق</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-arrow">↓</div></div>
+
+  <!-- SECTION 3 -->
+  <div class="section-card s3">
+    <div class="section-header">
+      <div class="section-num">٣</div>
+      <div class="section-title-group">
+        <div class="section-label">الخطوة الثالثة</div>
+        <div class="section-title">ترفيع الطلاب للعام الدراسي الجديد</div>
+      </div>
+      <div class="section-emoji">🚀</div>
+    </div>
+    <div class="section-body">
+      <ul class="steps">
+        <li class="step">
+          <div class="step-num">١</div>
+          <div class="step-text">من القائمة الرئيسية، انقر على <strong>«شؤون الطلاب»</strong> ثم اختر <strong>«الطلاب»</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٢</div>
+          <div class="step-text">من قائمة العمليات، ابحث عن خيار <strong>«لتعيين صفوف الطلبة في العام الجديد، انقر هنا»</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٣</div>
+          <div class="step-text">لتفعيل الترفيع، انقر على الرابط <strong>«لتفعيل ترفيع الطلاب من العام الحالي إلى العام القادم»</strong></div>
+        </li>
+        <li class="step">
+          <div class="step-num">٤</div>
+          <div class="step-text">سيظهر جدول مقسم — تعامل مع كل فئة وفق الإجراء المناسب (انظر أدناه)</div>
+        </li>
+        <li class="step">
+          <div class="step-num">٥</div>
+          <div class="step-text">للناجحين: انقر على <strong>«ترفيع الطلاب بشكل نهائي»</strong> أمام كل صف</div>
+        </li>
+      </ul>
+
+      <div class="promo-split">
+        <div class="promo-card fail">
+          <div class="card-icon">⚠️</div>
+          <div class="card-label">الراسبون</div>
+          <div class="card-desc">طلاب الدور الثاني الذين لم يجتازوا — يمكن تحديدهم ونقلهم أو إبقائهم حسب الإجراء المتبع</div>
+        </div>
+        <div class="promo-card pass">
+          <div class="card-icon">✅</div>
+          <div class="card-label">الناجحون</div>
+          <div class="card-desc">انقر على «ترفيع الطلاب بشكل نهائي» أمام كل صف لنقلهم للعام الجديد</div>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>📌 ملاحظة للمراحل الانتقالية</strong> (مثل الثالث متوسط ← الأول ثانوي)<br>
+        عند الترفيع للمرحلة الجديدة، ستظهر شاشة تتطلب تحديد أسماء الطلاب. يجب تعبئة بيانات <strong>«المدرسة المنقول إليها الطالب»</strong> في الحقول السفلية، ثم النقر على <strong>«بحث»</strong> لاستكمال الترفيع.
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .content -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">✦ تصميم د/فواز ✦</div>
+  <a href="https://t.me/TAqhjT3MFVE1Yzk0" target="_blank" class="footer-link">
+    <span class="tg-icon">✈️</span>
+    تفضل للمزيد هنا
+  </a>
+</div>
+
+</body>
+</html>
