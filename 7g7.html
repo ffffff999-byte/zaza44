@@ -316,6 +316,25 @@
     background: var(--green-mid); border-color: var(--green-mid);
     color: white;
   }
+  .tag-add-row {
+    display: flex; gap: 7px; margin-top: 9px;
+    align-items: center;
+  }
+  .tag-add-row input {
+    flex: 1; max-width: 220px;
+    border: 1.5px dashed #c5d8e0; border-radius: 20px;
+    padding: 5px 13px; font-family: 'Tajawal', sans-serif;
+    font-size: 0.8rem; color: var(--dark); background: white;
+    direction: rtl; transition: border-color 0.2s;
+  }
+  .tag-add-row input:focus { outline: none; border-color: var(--green-mid); }
+  .tag-add-btn {
+    padding: 5px 13px; border-radius: 20px; cursor: pointer;
+    font-family: 'Tajawal', sans-serif; font-size: 0.78rem; font-weight: 700;
+    border: 1.5px solid var(--gold); background: var(--gold-light);
+    color: #7a5f10; transition: all 0.18s; white-space: nowrap;
+  }
+  .tag-add-btn:hover { background: var(--gold); color: white; }
 
   /* ===== RECOMMENDATIONS ===== */
   .rec-area {
@@ -354,6 +373,18 @@
     color: var(--dark);
   }
   .sig-cell input:focus { outline: none; border-bottom-color: var(--green-mid); }
+  .sig-pad-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  #sigCanvas {
+    border: 1.5px dashed #cddde4; border-radius: 8px;
+    background: white; touch-action: none; cursor: crosshair;
+    width: 220px; height: 72px;
+  }
+  .sig-clear-btn {
+    border: none; background: none; color: var(--gray-400);
+    font-family: 'Tajawal', sans-serif; font-size: 0.72rem;
+    cursor: pointer; text-decoration: underline;
+  }
+  .sig-clear-btn:hover { color: var(--green-mid); }
 
   /* ===== BUTTONS ===== */
   .btn-row {
@@ -415,6 +446,7 @@
   @media print {
     body { background: white !important; }
     .btn-row, .page-footer, .progress-wrap { display: none !important; }
+    .tag-add-row, .sig-clear-btn { display: none !important; }
     .domain-body { display: block !important; }
     .domain-block { break-inside: avoid; margin-bottom: 10px; }
     .page-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -616,7 +648,7 @@
     <div class="domain-body">
       <div class="field-section">
         <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="elem_d1">
           <span class="tag-btn active" onclick="toggleTag(this)">تخطيط التدريس</span>
           <span class="tag-btn active" onclick="toggleTag(this)">تنفيذ التدريس</span>
           <span class="tag-btn active" onclick="toggleTag(this)">تقويم التعلم</span>
@@ -626,7 +658,7 @@
         <div class="field-section-title">وصف الاحتياج</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea  placeholder="تخطيط الوحدات والفصول والدروس — طرائق التدريس وأساليبه — التقنيات والوسائل التعليمية — التخطيط للتقويم وإعداد أدواته ...">تخطيط الوحدات والفصول والدروس
+            <textarea id="need_d1" placeholder="تخطيط الوحدات والفصول والدروس — طرائق التدريس وأساليبه — التقنيات والوسائل التعليمية — التخطيط للتقويم وإعداد أدواته ...">تخطيط الوحدات والفصول والدروس
 طرائق التدريس وأساليبه
 التقنيات والوسائل التعليمية
 التخطيط للتقويم وإعداد أدواته</textarea>
@@ -641,7 +673,7 @@
         <div class="field-section-title">إجراءات التحسين</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea  placeholder="اعداد خطط الدروس — التنوع في الاستراتيجيات — دمج وسائل التقنية ...">إعداد خطط الدروس وفق خطة الدرس
+            <textarea id="actions_d1" placeholder="اعداد خطط الدروس — التنوع في الاستراتيجيات — دمج وسائل التقنية ...">إعداد خطط الدروس وفق خطة الدرس
 التنوع في الاستراتيجيات وطرائق التدريس
 دمج وسائل التقنية
 تطبيق أساليب التقويم
@@ -667,13 +699,17 @@
           <span class="tag-btn" onclick="toggleTag(this)">مقاطع تعليمية</span>
           <span class="tag-btn" onclick="toggleTag(this)">تعلم أقران</span>
         </div>
+        <div class="tag-add-row">
+          <input type="text" id="methodInput_d1" placeholder="أسلوب جديد..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addMethodTag(1);}">
+          <button type="button" class="tag-add-btn" onclick="addMethodTag(1)">➕ إضافة</button>
+        </div>
       </div>
       <div class="field-section">
         <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
         <div class="field-grid">
           <div class="field-item">
             <label>مدة الإنجاز</label>
-            <select>
+            <select id="duration_d1">
               <option>فصل دراسي</option>
               <option>شهر</option>
               <option>فصلان دراسيان</option>
@@ -682,7 +718,7 @@
           </div>
           <div class="field-item">
             <label>التنفيذ والمسؤولية</label>
-            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+            <input type="text" id="resp_d1" value="لجان المدرسة * مشرف خدمات دعم التميز">
           </div>
         </div>
       </div>
@@ -702,7 +738,7 @@
     <div class="domain-body">
       <div class="field-section">
         <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="elem_d2">
           <span class="tag-btn active" onclick="toggleTag(this)">تحسين التحصيل العلمي والدراسي للطالب</span>
         </div>
       </div>
@@ -710,7 +746,7 @@
         <div class="field-section-title">وصف الاحتياج</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >معايير المحتوى والأهداف
+            <textarea id="need_d2">معايير المحتوى والأهداف
 دراسة نتائج تعلم الطلاب وتحليلها
 تحديد جوانب القوة والضعف
 تحديد أسباب تدني المستوى
@@ -729,7 +765,7 @@
         <div class="field-section-title">إجراءات التحسين</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >تصميم برامج مناسبة لرفع مستوى التعلم مثل دروس تقوية ومنصات تعليمية
+            <textarea id="actions_d2">تصميم برامج مناسبة لرفع مستوى التعلم مثل دروس تقوية ومنصات تعليمية
 تحسين بيئات التعلم والإدارة الصفية
 تعزيز سلوك التعلم العميق وتفريد التعليم والتعلم الذاتي
 تحسين ممارسات التقويم التكويني وتعزيز العلاقات الإيجابية بين المعلم والطالب
@@ -744,7 +780,7 @@
       </div>
       <div class="field-section">
         <div class="field-section-title">أساليب وطرق التحسين</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="methods_d2">
           <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
@@ -752,13 +788,17 @@
           <span class="tag-btn" onclick="toggleTag(this)">تحليل البيانات</span>
           <span class="tag-btn" onclick="toggleTag(this)">خطط علاجية فردية</span>
         </div>
+        <div class="tag-add-row">
+          <input type="text" id="methodInput_d2" placeholder="أسلوب جديد..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addMethodTag(2);}">
+          <button type="button" class="tag-add-btn" onclick="addMethodTag(2)">➕ إضافة</button>
+        </div>
       </div>
       <div class="field-section">
         <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
         <div class="field-grid">
           <div class="field-item">
             <label>مدة الإنجاز</label>
-            <select>
+            <select id="duration_d2">
               <option>فصل دراسي</option>
               <option>شهر</option>
               <option>فصلان دراسيان</option>
@@ -767,7 +807,7 @@
           </div>
           <div class="field-item">
             <label>التنفيذ والمسؤولية</label>
-            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+            <input type="text" id="resp_d2" value="لجان المدرسة * مشرف خدمات دعم التميز">
           </div>
         </div>
       </div>
@@ -787,7 +827,7 @@
     <div class="domain-body">
       <div class="field-section">
         <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="elem_d3">
           <span class="tag-btn active" onclick="toggleTag(this)">البرامج والأنشطة الصفية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">الأنشطة غير الصفية</span>
         </div>
@@ -796,7 +836,7 @@
         <div class="field-section-title">وصف الاحتياج</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >ارتباط الأنشطة بالأهداف التعليمية
+            <textarea id="need_d3">ارتباط الأنشطة بالأهداف التعليمية
 فاعلية الأنشطة في تحسين المهارات والقدرات والنواتج
 الشراكة مع الأسرة والمجتمع</textarea>
 <div class="print-text">ارتباط الأنشطة بالأهداف التعليمية
@@ -809,7 +849,7 @@
         <div class="field-section-title">إجراءات التحسين</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >عمل برامج وأنشطة تدعم التعلم
+            <textarea id="actions_d3">عمل برامج وأنشطة تدعم التعلم
 عمل أنشطة غير صفية تعزز التعليم
 عمل أنشطة صفية تدعم احتياج الطالب</textarea>
 <div class="print-text">عمل برامج وأنشطة تدعم التعلم
@@ -820,12 +860,16 @@
       </div>
       <div class="field-section">
         <div class="field-section-title">أساليب وطرق التحسين</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="methods_d3">
           <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">مجتمعات تعلم مهنية</span>
           <span class="tag-btn" onclick="toggleTag(this)">مسابقات ومعارض</span>
+        </div>
+        <div class="tag-add-row">
+          <input type="text" id="methodInput_d3" placeholder="أسلوب جديد..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addMethodTag(3);}">
+          <button type="button" class="tag-add-btn" onclick="addMethodTag(3)">➕ إضافة</button>
         </div>
       </div>
       <div class="field-section">
@@ -833,7 +877,7 @@
         <div class="field-grid">
           <div class="field-item">
             <label>مدة الإنجاز</label>
-            <select>
+            <select id="duration_d3">
               <option>فصل دراسي</option>
               <option>شهر</option>
               <option>فصلان دراسيان</option>
@@ -842,7 +886,7 @@
           </div>
           <div class="field-item">
             <label>التنفيذ والمسؤولية</label>
-            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+            <input type="text" id="resp_d3" value="لجان المدرسة * مشرف خدمات دعم التميز">
           </div>
         </div>
       </div>
@@ -862,7 +906,7 @@
     <div class="domain-body">
       <div class="field-section">
         <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="elem_d4">
           <span class="tag-btn active" onclick="toggleTag(this)">البرامج والإجراءات والفعاليات</span>
         </div>
       </div>
@@ -870,7 +914,7 @@
         <div class="field-section-title">وصف الاحتياج</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >توجيه سلوك الطالب
+            <textarea id="need_d4">توجيه سلوك الطالب
 توجيه تعليمي ومهني للطلاب
 الشراكة الأسرية والمجتمعية</textarea>
 <div class="print-text">توجيه سلوك الطالب
@@ -883,7 +927,7 @@
         <div class="field-section-title">إجراءات التحسين</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >تعزيز القيم وأخلاقيات المهنة
+            <textarea id="actions_d4">تعزيز القيم وأخلاقيات المهنة
 تعزيز الانتماء الوطني والتنوع الثقافي
 برامج رفع الدافعية وتحفيز التعلم
 تعزيز التطور الصحي والنفسي والاجتماعي للطلاب
@@ -898,7 +942,7 @@
       </div>
       <div class="field-section">
         <div class="field-section-title">أساليب وطرق التحسين</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="methods_d4">
           <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
@@ -906,13 +950,17 @@
           <span class="tag-btn" onclick="toggleTag(this)">لقاءات أولياء أمور</span>
           <span class="tag-btn" onclick="toggleTag(this)">برامج إرشادية</span>
         </div>
+        <div class="tag-add-row">
+          <input type="text" id="methodInput_d4" placeholder="أسلوب جديد..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addMethodTag(4);}">
+          <button type="button" class="tag-add-btn" onclick="addMethodTag(4)">➕ إضافة</button>
+        </div>
       </div>
       <div class="field-section">
         <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
         <div class="field-grid">
           <div class="field-item">
             <label>مدة الإنجاز</label>
-            <select>
+            <select id="duration_d4">
               <option>فصل دراسي</option>
               <option>شهر</option>
               <option>فصلان دراسيان</option>
@@ -921,7 +969,7 @@
           </div>
           <div class="field-item">
             <label>التنفيذ والمسؤولية</label>
-            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+            <input type="text" id="resp_d4" value="لجان المدرسة * مشرف خدمات دعم التميز">
           </div>
         </div>
       </div>
@@ -941,7 +989,7 @@
     <div class="domain-body">
       <div class="field-section">
         <div class="field-section-title">العنصر / المكون / العملية المراد تحسينها</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="elem_d5">
           <span class="tag-btn active" onclick="toggleTag(this)">التطوير المهني المستمر والتفاعل مع التربويين والمجتمع</span>
         </div>
       </div>
@@ -949,7 +997,7 @@
         <div class="field-section-title">وصف الاحتياج</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >التطوير الفردي والنمو المهني
+            <textarea id="need_d5">التطوير الفردي والنمو المهني
 التطوير الفريقي كمجتمعات تعلم
 التطوير المستمر للمدرسة</textarea>
 <div class="print-text">التطوير الفردي والنمو المهني
@@ -962,7 +1010,7 @@
         <div class="field-section-title">إجراءات التحسين</div>
         <div class="field-grid">
           <div class="field-item field-full">
-            <textarea >التأمل الذاتي (تقويم — مراجعة — تصحيح)
+            <textarea id="actions_d5">التأمل الذاتي (تقويم — مراجعة — تصحيح)
 تعلم الأقران
 حلقات وورش عمل
 دروس تطبيقية وتبادل زيارات
@@ -977,7 +1025,7 @@
       </div>
       <div class="field-section">
         <div class="field-section-title">أساليب وطرق التحسين</div>
-        <div class="tags-wrap">
+        <div class="tags-wrap" id="methods_d5">
           <span class="tag-btn active" onclick="toggleTag(this)">دورات تدريبية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">نشرات تربوية</span>
           <span class="tag-btn active" onclick="toggleTag(this)">زيارات صفية تبادلية</span>
@@ -985,13 +1033,17 @@
           <span class="tag-btn" onclick="toggleTag(this)">التأمل الذاتي</span>
           <span class="tag-btn" onclick="toggleTag(this)">تعلم الأقران</span>
         </div>
+        <div class="tag-add-row">
+          <input type="text" id="methodInput_d5" placeholder="أسلوب جديد..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addMethodTag(5);}">
+          <button type="button" class="tag-add-btn" onclick="addMethodTag(5)">➕ إضافة</button>
+        </div>
       </div>
       <div class="field-section">
         <div class="field-section-title">تفاصيل التنفيذ والمتابعة</div>
         <div class="field-grid">
           <div class="field-item">
             <label>مدة الإنجاز</label>
-            <select>
+            <select id="duration_d5">
               <option>فصل دراسي</option>
               <option>شهر</option>
               <option>فصلان دراسيان</option>
@@ -1000,7 +1052,7 @@
           </div>
           <div class="field-item">
             <label>التنفيذ والمسؤولية</label>
-            <input type="text" value="لجان المدرسة * مشرف خدمات دعم التميز">
+            <input type="text" id="resp_d5" value="لجان المدرسة * مشرف خدمات دعم التميز">
           </div>
         </div>
       </div>
@@ -1026,12 +1078,15 @@
         <input type="text" id="principal_name" placeholder="الاسم">
       </div>
       <div class="sig-cell">
-        <label>التوقيع</label>
-        <input type="text" placeholder="..........................">
+        <label>التوقيع الإلكتروني</label>
+        <div class="sig-pad-wrap">
+          <canvas id="sigCanvas" width="220" height="72"></canvas>
+          <button type="button" class="sig-clear-btn" onclick="clearSignature()">✖ مسح التوقيع</button>
+        </div>
       </div>
       <div class="sig-cell">
         <label>ختم المدرسة</label>
-        <input type="text" placeholder="..........................">
+        <input type="text" id="school_seal" placeholder="..........................">
       </div>
     </div>
   </div>
@@ -1040,6 +1095,9 @@
   <div class="btn-row">
     <button class="btn btn-primary" onclick="saveDraft()">💾 حفظ مسودة</button>
     <button class="btn btn-gold" onclick="window.print()">🖨️ طباعة</button>
+    <button class="btn btn-outline" onclick="exportBackup()">⬇️ تصدير نسخة احتياطية</button>
+    <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">⬆️ استيراد نسخة</button>
+    <input type="file" id="importFile" accept="application/json" style="display:none" onchange="importBackup(event)">
     <button class="btn btn-outline" onclick="clearAll()">🗑️ مسح البيانات</button>
   </div>
 
@@ -1077,6 +1135,75 @@
     el.classList.toggle('active');
   }
 
+  // ===== إضافة عنصر جديد لأساليب التحسين (لكل مجال) =====
+  function addMethodTag(n) {
+    const input = document.getElementById('methodInput_d' + n);
+    const wrap  = document.getElementById('methods_d' + n);
+    const text  = (input.value || '').trim();
+    if (!text) return;
+    const exists = Array.from(wrap.querySelectorAll('.tag-btn'))
+      .some(t => t.textContent.trim() === text);
+    if (exists) { input.value = ''; return; }
+    const span = document.createElement('span');
+    span.className = 'tag-btn active';
+    span.textContent = text;
+    span.onclick = function () { toggleTag(this); };
+    wrap.appendChild(span);
+    input.value = '';
+    showToast('✅ تمت إضافة الأسلوب');
+  }
+
+  // ===== التوقيع الإلكتروني (لوحة رسم) =====
+  (function initSignaturePad() {
+    const canvas = document.getElementById('sigCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.strokeStyle = '#0f1e2a';
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    let drawing = false;
+
+    function pos(e) {
+      const r = canvas.getBoundingClientRect();
+      const cx = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+      const cy = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
+      return { x: cx * canvas.width / r.width, y: cy * canvas.height / r.height };
+    }
+    function start(e) { drawing = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
+    function move(e) { if (!drawing) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }
+    function end() { drawing = false; }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, { passive: false });
+    canvas.addEventListener('touchmove', move, { passive: false });
+    canvas.addEventListener('touchend', end);
+  })();
+
+  function clearSignature() {
+    const canvas = document.getElementById('sigCanvas');
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function getSignatureData() {
+    const canvas = document.getElementById('sigCanvas');
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width; blank.height = canvas.height;
+    if (canvas.toDataURL() === blank.toDataURL()) return '';
+    return canvas.toDataURL('image/png');
+  }
+
+  function setSignatureData(dataUrl) {
+    if (!dataUrl) return;
+    const canvas = document.getElementById('sigCanvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    img.src = dataUrl;
+  }
+
   function updateProgress() {
     const fields = [
       document.getElementById('school_name').value,
@@ -1094,21 +1221,125 @@
     document.getElementById('progressPct').textContent = pct + '%';
   }
 
+  // ===== جمع/استعادة حالة أزرار الوسوم (تشمل أي عناصر أُضيفت يدوياً) =====
+  function collectTags(wrapId) {
+    const wrap = document.getElementById(wrapId);
+    if (!wrap) return [];
+    return Array.from(wrap.querySelectorAll('.tag-btn')).map(t => ({
+      text: t.textContent.trim(),
+      active: t.classList.contains('active')
+    }));
+  }
+
+  function applyTags(wrapId, arr) {
+    const wrap = document.getElementById(wrapId);
+    if (!wrap || !Array.isArray(arr) || !arr.length) return;
+    wrap.innerHTML = '';
+    arr.forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'tag-btn' + (t.active ? ' active' : '');
+      span.textContent = t.text;
+      span.onclick = function () { toggleTag(this); };
+      wrap.appendChild(span);
+    });
+  }
+
+  // ===== جمع كل بيانات النموذج (تُستخدم للحفظ المحلي وللتصدير) =====
+  function collectFormData() {
+    const data = {};
+    ['school_name', 'stage', 'ministry_num', 'shared_school', 'perf_general',
+     'perf_outcomes', 'principal_name', 'recommendations', 'school_seal'
+    ].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) data[id] = el.value;
+    });
+    ['gender', 'building_type', 'building_ind', 'period', 'admin_ind'].forEach(name => {
+      const r = document.querySelector(`input[name="${name}"]:checked`);
+      data[name] = r ? r.value : '';
+    });
+    for (let n = 1; n <= 5; n++) {
+      const need = document.getElementById('need_d' + n);
+      const actions = document.getElementById('actions_d' + n);
+      const duration = document.getElementById('duration_d' + n);
+      const resp = document.getElementById('resp_d' + n);
+      data['need_d' + n] = need ? need.value : '';
+      data['actions_d' + n] = actions ? actions.value : '';
+      data['duration_d' + n] = duration ? duration.value : '';
+      data['resp_d' + n] = resp ? resp.value : '';
+      data['elem_d' + n] = collectTags('elem_d' + n);
+      data['methods_d' + n] = collectTags('methods_d' + n);
+    }
+    data.signature = getSignatureData();
+    return data;
+  }
+
+  function applyFormData(d) {
+    ['school_name', 'stage', 'ministry_num', 'shared_school', 'perf_general',
+     'perf_outcomes', 'principal_name', 'recommendations', 'school_seal'
+    ].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && d[id] !== undefined) el.value = d[id];
+    });
+    ['gender', 'building_type', 'building_ind', 'period', 'admin_ind'].forEach(name => {
+      if (d[name]) {
+        const r = document.querySelector(`input[name="${name}"][value="${d[name]}"]`);
+        if (r) r.checked = true;
+      }
+    });
+    for (let n = 1; n <= 5; n++) {
+      const need = document.getElementById('need_d' + n);
+      const actions = document.getElementById('actions_d' + n);
+      const duration = document.getElementById('duration_d' + n);
+      const resp = document.getElementById('resp_d' + n);
+      if (need && d['need_d' + n] !== undefined) need.value = d['need_d' + n];
+      if (actions && d['actions_d' + n] !== undefined) actions.value = d['actions_d' + n];
+      if (duration && d['duration_d' + n] !== undefined) duration.value = d['duration_d' + n];
+      if (resp && d['resp_d' + n] !== undefined) resp.value = d['resp_d' + n];
+      if (d['elem_d' + n]) applyTags('elem_d' + n, d['elem_d' + n]);
+      if (d['methods_d' + n]) applyTags('methods_d' + n, d['methods_d' + n]);
+    }
+    if (d.signature) setSignatureData(d.signature);
+    syncPrintDivs();
+    updateProgress();
+  }
+
   function saveDraft() {
-    const data = {
-      school_name: document.getElementById('school_name').value,
-      stage: document.getElementById('stage').value,
-      ministry_num: document.getElementById('ministry_num').value,
-      perf_general: document.getElementById('perf_general').value,
-      perf_outcomes: document.getElementById('perf_outcomes').value,
-      recommendations: document.getElementById('recommendations').value,
-      principal_name: document.getElementById('principal_name').value,
-      gender: (document.querySelector('input[name="gender"]:checked') || {}).value || '',
-      period: (document.querySelector('input[name="period"]:checked') || {}).value || '',
-      building_type: (document.querySelector('input[name="building_type"]:checked') || {}).value || '',
-    };
+    const data = collectFormData();
     localStorage.setItem('school_improvement_plan', JSON.stringify(data));
     showToast('✅ تم حفظ المسودة بنجاح');
+  }
+
+  // ===== تصدير / استيراد نسخة احتياطية كملف =====
+  function exportBackup() {
+    const data = collectFormData();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const school = (document.getElementById('school_name').value || 'خطة_التحسين').trim().replace(/\s+/g, '_');
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `نسخة_${school}_${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('⬇️ تم تنزيل النسخة الاحتياطية');
+  }
+
+  function importBackup(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const data = JSON.parse(e.target.result);
+        applyFormData(data);
+        showToast('⬆️ تم استيراد النسخة بنجاح');
+      } catch (err) {
+        alert('⚠️ الملف غير صالح، تعذّر الاستيراد.');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
   }
 
   function clearAll() {
@@ -1116,6 +1347,7 @@
     document.querySelectorAll('input[type=text], textarea').forEach(el => el.value = '');
     document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
     document.querySelectorAll('input[type=radio]').forEach(el => el.checked = false);
+    clearSignature();
     updateProgress();
     showToast('🗑️ تم مسح البيانات');
   }
@@ -1133,19 +1365,8 @@
     const saved = localStorage.getItem('school_improvement_plan');
     if (saved) {
       try {
-        const d = JSON.parse(saved);
-        if (d.school_name) document.getElementById('school_name').value = d.school_name;
-        if (d.stage) document.getElementById('stage').value = d.stage;
-        if (d.ministry_num) document.getElementById('ministry_num').value = d.ministry_num;
-        if (d.perf_general) document.getElementById('perf_general').value = d.perf_general;
-        if (d.perf_outcomes) document.getElementById('perf_outcomes').value = d.perf_outcomes;
-        if (d.recommendations) document.getElementById('recommendations').value = d.recommendations;
-        if (d.principal_name) document.getElementById('principal_name').value = d.principal_name;
-        if (d.gender) { const r = document.querySelector(`input[name="gender"][value="${d.gender}"]`); if(r) r.checked = true; }
-        if (d.period) { const r = document.querySelector(`input[name="period"][value="${d.period}"]`); if(r) r.checked = true; }
-        if (d.building_type) { const r = document.querySelector(`input[name="building_type"][value="${d.building_type}"]`); if(r) r.checked = true; }
-        updateProgress();
-      } catch(e) {}
+        applyFormData(JSON.parse(saved));
+      } catch (e) {}
     }
   });
 </script>
